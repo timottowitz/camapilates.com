@@ -35,11 +35,11 @@ interface BlogPostMeta {
   heroImage?: string;
 }
 
-// Author information for schema and display
+// Author/brand info
 const AUTHOR_INFO = {
-  name: "Charles Bennett, Bennett Legal",
-  bio: "Experienced consumer protection attorney specializing in solar fraud cases and helping victims recover from scams. Over 15 years helping Texans fight fraudulent solar companies and recover their losses.",
-  url: window.location.origin + "/about"
+  name: "CAMA Pilates",
+  bio: "Recursos y guías sobre camas de Pilates (Reformer) para casa y estudio: compra, ejercicios y mantenimiento.",
+  url: window.location.origin
 };
 
 const BlogPost = () => {
@@ -301,9 +301,7 @@ const BlogPost = () => {
                   <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-2">
                     <h3 className="font-semibold text-foreground text-base">{postMeta.author}</h3>
                     <span className="hidden sm:inline text-sm text-muted-foreground">•</span>
-                    <Link to="/about" className="text-sm text-primary hover:text-primary/80 font-medium transition-colors">
-                      View Profile
-                    </Link>
+                    <Link to="/products" className="text-sm text-primary hover:text-primary/80 font-medium transition-colors">Ver productos</Link>
                   </div>
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {AUTHOR_INFO.bio}

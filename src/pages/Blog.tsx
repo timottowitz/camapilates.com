@@ -48,31 +48,31 @@ const Blog: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Solar Fraud Legal Blog | Expert Insights & Consumer Protection</title>
-        <meta name="description" content="Expert legal insights on solar panel fraud, consumer protection, and your rights. Stay informed with our comprehensive blog covering solar scams and legal solutions." />
+        <title>Blog de Pilates Reformer | Guías, ejercicios y equipo</title>
+        <meta name="description" content="Guías de compra de camas de Pilates, ejercicios con Reformer, mantenimiento y comparativas. Recomendaciones para casa y estudio." />
         <meta name="robots" content="index,follow" />
         <link rel="canonical" href={`${window.location.origin}/blog`} />
 
         {/* Open Graph */}
-        <meta property="og:site_name" content="SolarPanelFraud.org" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:title" content="Solar Fraud Legal Blog | Expert Insights & Consumer Protection" />
-        <meta property="og:description" content="Expert legal insights on solar panel fraud, consumer protection, and your rights." />
+        <meta property="og:site_name" content="camadepilates.com" />
+        <meta property="og:locale" content="es_MX" />
+        <meta property="og:title" content="Blog de Pilates Reformer | Guías, ejercicios y equipo" />
+        <meta property="og:description" content="Guías de compra, ejercicios y comparativas de camas de Pilates (Reformer)." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${window.location.origin}/blog`} />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Solar Fraud Legal Blog | Expert Insights & Consumer Protection" />
-        <meta name="twitter:description" content="Expert legal insights on solar panel fraud, consumer protection, and your rights." />
+        <meta name="twitter:title" content="Blog de Pilates Reformer | Guías, ejercicios y equipo" />
+        <meta name="twitter:description" content="Guías de compra, ejercicios y comparativas de camas de Pilates (Reformer)." />
 
         {/* JSON-LD Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            "name": "Solar Fraud Legal Blog",
-            "description": "Expert legal insights on solar panel fraud, consumer protection, and your rights",
+            "name": "Blog de Pilates Reformer",
+            "description": "Guías de compra de camas de Pilates, ejercicios con Reformer, mantenimiento y comparativas",
             "url": `${window.location.origin}/blog`,
             "mainEntity": {
               "@type": "ItemList",
@@ -91,12 +91,8 @@ const Blog: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-foreground mb-4">
-              Solar Fraud Legal Blog
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Expert insights on solar panel fraud, consumer protection, and your legal rights. Stay informed and protected.
-            </p>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">Blog de Pilates Reformer</h1>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Guías de compra, ejercicios, mantenimiento y comparativas. Todo sobre la cama de Pilates (Reformer) para casa y estudio.</p>
           </div>
 
           {/* Blog List */}
