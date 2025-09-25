@@ -18,7 +18,6 @@ import { DEFAULTS, getOrigin, toAbsoluteUrl } from '@/lib/seo';
 import { getAllPostsMeta } from '@/lib/content';
 import HubList from '@/components/blog/HubList';
 import SeeAlso from '@/components/blog/SeeAlso';
-import { ShoprocketButton } from '@/integrations/shoprocket';
 
 interface BlogPostMeta {
   slug: string;
@@ -505,10 +504,12 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
         const pk = attrs['pk'] || 'sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c';
         const product = attrs['product'] || '';
         if (product) {
+          const html = `
+<div class="sr-element sr-products" data-embed="single_product_widget">
+  <script type="application/json" data-config="embed">{"publishable_key":"${pk}","options":{"product_to_display":"${product}","open_product_in":"popup","variation_style":"on_hover"},"includes":{"show_product_name":"0","show_product_price":"0","show_product_image":"0","show_product_summary":"0","open_modal_on_image_click":"0","show_view_product_button":"1","show_add_to_cart_button":"1","show_min_max_order_quantity":"0","show_sale":"0","show_free_shipping":"0","show_new_product":"0","show_digital_download":"0","show_pwyw":"0","image_swap":"0","show_button_icons":"1"}}</script>
+</div>`;
           elements.push(
-            <div key={`srbtn-${m.index}`} className="not-prose my-6">
-              <ShoprocketButton publishableKey={pk} productId={product} />
-            </div>
+            <div key={`srbtn-${m.index}`} className="not-prose my-6" dangerouslySetInnerHTML={{ __html: html }} />
           );
         }
       }

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { ShoprocketButton } from '@/integrations/shoprocket';
 
 const Index = () => {
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://camadepilates.com';
@@ -76,8 +75,13 @@ const Index = () => {
             <p className="mt-6 text-xl text-gray-600">
               Para casa y estudio. Diseño minimalista, materiales de alto rendimiento y envío en México.
             </p>
-            <div className="mt-8 flex gap-4">
-              <ShoprocketButton publishableKey={productPk} productId={productId} />
+            <div className="mt-8 flex gap-4 items-center">
+              <div
+                dangerouslySetInnerHTML={{ __html: `
+<div class="sr-element sr-products" data-embed="single_product_widget">
+  <script type="application/json" data-config="embed">{"publishable_key":"${productPk}","options":{"product_to_display":"${productId}","open_product_in":"popup","variation_style":"on_hover"},"includes":{"show_product_name":"0","show_product_price":"0","show_product_image":"0","show_product_summary":"0","open_modal_on_image_click":"0","show_view_product_button":"1","show_add_to_cart_button":"1","show_min_max_order_quantity":"0","show_sale":"0","show_free_shipping":"0","show_new_product":"0","show_digital_download":"0","show_pwyw":"0","image_swap":"0","show_button_icons":"1"},"product_popup":{"show_product_name":"1","show_product_price":"1","show_product_summary":"1","show_product_description":"1","show_product_image":"1","show_add_to_cart_button":"1","show_select_quantity":"1","show_image_thumbnails":"1","show_product_reviews":"1","show_product_sku":"1","show_product_categories":"1","show_social_sharing_icons":"1","show_related_products":"1","thumbnail_layout":"horizontal_below","image_dimension_value":"crop","image_aspect_ratio":"portrait","variation_styling":"","show_min_max_order_quantity":"1","show_sale":"1","show_free_shipping":"1","show_new_product":"1","show_digital_download":"1","show_pwyw":"1","show_product_tabs":"1","image_zoom":"1","show_stock":"0"},"styles":{"align_content":"center","button_background":"#233642","button_color":"#ffffff","view_product_button_background":"#233642","view_product_button_color":"#ffffff","view_cart_button_background":"#233642","view_cart_button_color":"#ffffff","product_background":"transparent","modal_background":"#ffffff","button_font_weight":"normal","popup":{"colors":{"product_title":"#333","product_price":"#666666","product_summary":"#666666","button_background":"#233642","button_color":"#ffffff","product_active_tab_background":"#f5f5f5"}}}}</script>
+</div>` }}
+              />
               <a href="/store" className="inline-flex items-center px-6 py-3 border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors rounded-md">Ver tienda</a>
             </div>
           </div>
@@ -126,4 +130,3 @@ const Index = () => {
 };
 
 export default Index;
-
