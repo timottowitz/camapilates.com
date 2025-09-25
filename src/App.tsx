@@ -15,6 +15,7 @@ import BlogPost from "./pages/BlogPost";
 import BlogCategory from "./pages/BlogCategory";
 import BlogTag from "./pages/BlogTag";
 import Product from "./pages/Product";
+import Products from "./pages/Products";
 import IdentifySolarScams from "./pages/resources/IdentifySolarScams";
 import LegalRights from "./pages/resources/LegalRights";
 import ReportingFraud from "./pages/resources/ReportingFraud";
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/store" element={<Store />} />
+            <Route path="/products" element={<Products />} />
             <Route path="/services" element={<Services />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />

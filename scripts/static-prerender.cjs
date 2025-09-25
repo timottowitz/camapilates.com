@@ -75,6 +75,18 @@ function buildIndex(posts) {
   return `<div class="container mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-6">Solar Fraud Legal Blog</h1><div class="grid md:grid-cols-2 gap-4">${items}</div></div>`;
 }
 
+function buildProductsIndex(products) {
+  const cards = products.map(p => `
+    <a href="/product/${p.slug}" class="block group border rounded-lg p-6 hover:border-gray-900 transition-colors">
+      <img src="${p.image}" alt="${p.name}" class="w-full h-auto rounded mb-4 border" />
+      <h2 class="font-semibold text-gray-900 group-hover:text-black">${p.name}</h2>
+      <p class="text-sm text-gray-600 mt-2">${p.description}</p>
+      <div class="mt-3 font-semibold text-gray-900">$ ${p.price} ${p.currency}</div>
+    </a>
+  `).join('\n');
+  return `<div class="container mx-auto px-4 py-12"><h1 class="text-3xl font-bold text-gray-900 mb-8">Todos los productos</h1><div class="grid md:grid-cols-3 gap-6">${cards}</div></div>`;
+}
+
 function readPosts() {
   const files = walk(CONTENT);
   return files.map(f => {
@@ -225,6 +237,24 @@ function main() {
     let html = baseHtml(template, head, body);
     html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(schema)}</script>\n</head>`);
     writeFileForRoute(`/product/${pr.slug}`, html);
+  }
+  // Products hub
+  if (prods.length) {
+    const head = {
+      title: 'Productos: Camas de Pilates y Accesorios | camadepilates.com',
+      description: 'Explora todas nuestras camas de Pilates (Reformer) y accesorios. Compra para casa o estudio.',
+      canonical: `${origin}/products`,
+      ogImage: `${origin}${prods[0].image}`
+    };
+    const body = buildProductsIndex(prods);
+    const itemList = {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      itemListElement: prods.map((p, idx) => ({ '@type': 'ListItem', position: idx + 1, url: `${origin}/product/${p.slug}`, name: p.name }))
+    };
+    let html = baseHtml(template, head, body);
+    html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(itemList)}</script>\n</head>`);
+    writeFileForRoute('/products', html);
   }
   console.log('Static prerender complete.');
 }
