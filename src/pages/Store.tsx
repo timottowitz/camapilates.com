@@ -5,6 +5,43 @@ const Store = () => {
   const title = 'Tienda: Camas de Pilates y Accesorios';
   const desc = 'Compra camas de Pilates (Reformer) para casa y estudio. Envío en México.';
 
+  const productCasa = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'Cama de Pilates Reformer – Casa',
+    description: 'Reformer compacto para casa. Estabilidad, recorrido suave y accesorios básicos.',
+    brand: { '@type': 'Brand', name: 'CAMA Pilates' },
+    sku: 'HOME-REFORMER-001',
+    image: [`${origin}/og/cama-de-pilates-venta-mexico.png`],
+    url: `${origin}/store#casa`,
+    offers: {
+      '@type': 'Offer',
+      url: `${origin}/store#casa`,
+      priceCurrency: 'MXN',
+      price: '999.00',
+      availability: 'https://schema.org/InStock',
+      itemCondition: 'https://schema.org/NewCondition'
+    }
+  };
+  const productPro = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'Cama de Pilates Reformer – Profesional',
+    description: 'Reformer profesional para estudio. Construcción robusta, accesorios y servicio.',
+    brand: { '@type': 'Brand', name: 'CAMA Pilates' },
+    sku: 'PRO-REFORMER-001',
+    image: [`${origin}/og/cama-de-pilates-venta-mexico.png`],
+    url: `${origin}/store#profesional`,
+    offers: {
+      '@type': 'Offer',
+      url: `${origin}/store#profesional`,
+      priceCurrency: 'MXN',
+      price: '1999.00',
+      availability: 'https://schema.org/InStock',
+      itemCondition: 'https://schema.org/NewCondition'
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -15,12 +52,14 @@ const Store = () => {
         <meta property="og:description" content={desc} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${origin}/store`} />
+        <script type="application/ld+json">{JSON.stringify(productCasa)}</script>
+        <script type="application/ld+json">{JSON.stringify(productPro)}</script>
       </Helmet>
       <div className="container mx-auto px-4 py-12">
         <h1 className="text-3xl font-bold mb-8">{title}</h1>
 
         {/* Shop sections */}
-        <section className="mb-12">
+        <section className="mb-12" id="casa">
           <h2 className="text-xl font-semibold mb-4">Para Casa</h2>
           <div
             dangerouslySetInnerHTML={{ __html: `
@@ -30,7 +69,7 @@ const Store = () => {
           />
         </section>
 
-        <section className="mb-12">
+        <section className="mb-12" id="profesional">
           <h2 className="text-xl font-semibold mb-4">Profesional</h2>
           <div
             dangerouslySetInnerHTML={{ __html: `

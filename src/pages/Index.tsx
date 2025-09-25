@@ -49,6 +49,24 @@ const Index = () => {
       }
     ]
   };
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'Cama de Pilates Reformer – Casa',
+    description: 'Reformer compacto para casa. Recorrido suave, estabilidad y accesorios esenciales.',
+    brand: { '@type': 'Brand', name: 'CAMA Pilates' },
+    sku: 'HOME-REFORMER-001',
+    image: [`${origin}/og/cama-de-pilates-venta-mexico.png`],
+    url: `${origin}/store#casa`,
+    offers: {
+      '@type': 'Offer',
+      url: `${origin}/store#casa`,
+      priceCurrency: 'MXN',
+      price: '999.00',
+      availability: 'https://schema.org/InStock',
+      itemCondition: 'https://schema.org/NewCondition'
+    }
+  };
 
   return (
     <>
@@ -63,6 +81,7 @@ const Index = () => {
         <script type="application/ld+json">{JSON.stringify(orgSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(siteSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(productSchema)}</script>
       </Helmet>
 
       {/* Hero */}
