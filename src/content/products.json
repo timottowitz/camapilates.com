@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "reformer-casa",
+    "name": "Cama de Pilates Reformer – Casa",
+    "description": "Reformer compacto para casa. Estabilidad, recorrido suave y accesorios básicos.",
+    "brand": "CAMA Pilates",
+    "sku": "HOME-REFORMER-001",
+    "image": "/og/cama-de-pilates-venta-mexico.png",
+    "price": "999.00",
+    "currency": "MXN",
+    "availability": "https://schema.org/InStock",
+    "productId": "prod_6569ddc31c17b221072732",
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+  },
+  {
+    "slug": "reformer-profesional",
+    "name": "Cama de Pilates Reformer – Profesional",
+    "description": "Reformer profesional para estudio. Construcción robusta, accesorios y servicio.",
+    "brand": "CAMA Pilates",
+    "sku": "PRO-REFORMER-001",
+    "image": "/og/cama-de-pilates-venta-mexico.png",
+    "price": "1999.00",
+    "currency": "MXN",
+    "availability": "https://schema.org/InStock",
+    "productId": "prod_6569ddc31c17b221072732",
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+  }
+]
+

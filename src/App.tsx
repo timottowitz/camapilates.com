@@ -14,6 +14,7 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import BlogCategory from "./pages/BlogCategory";
 import BlogTag from "./pages/BlogTag";
+import Product from "./pages/Product";
 import IdentifySolarScams from "./pages/resources/IdentifySolarScams";
 import LegalRights from "./pages/resources/LegalRights";
 import ReportingFraud from "./pages/resources/ReportingFraud";
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/blog/category/:category" element={<BlogCategory />} />
             <Route path="/blog/tag/:tag" element={<BlogTag />} />
+            <Route path="/product/:slug" element={<Product />} />
             
             {/* Resource Pages */}
             <Route path="/identifying-solar-scams" element={<IdentifySolarScams />} />

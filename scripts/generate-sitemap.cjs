@@ -57,6 +57,22 @@ function build() {
     if (Array.isArray(data.tags)) data.tags.forEach(t => tags.add(String(t)));
   }
 
+  // Include product pages from JSON catalog
+  try {
+    const productsJson = fs.readFileSync(path.join(ROOT, 'src', 'content', 'products.json'), 'utf8');
+    const prods = JSON.parse(productsJson);
+    for (const p of prods) {
+      urls.push({
+        loc: `${origin}/product/${encodeURIComponent(p.slug)}`,
+        lastmod: now,
+        changefreq: 'weekly',
+        priority: '0.7'
+      });
+    }
+  } catch (e) {
+    // ignore
+  }
+
   // Category pages
   for (const c of Array.from(categories)) {
     urls.push({

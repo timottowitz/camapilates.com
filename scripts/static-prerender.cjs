@@ -7,6 +7,7 @@ const { marked } = require('marked');
 const ROOT = path.resolve(__dirname, '..');
 const DIST = path.join(ROOT, 'dist');
 const CONTENT = path.join(ROOT, 'src', 'content', 'blog');
+const PRODUCTS = path.join(ROOT, 'src', 'content', 'products.json');
 
 function ensureDir(d) { if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true }); }
 
@@ -91,6 +92,62 @@ function readPosts() {
   });
 }
 
+function readProducts() {
+  try {
+    const raw = fs.readFileSync(PRODUCTS, 'utf8');
+    const list = JSON.parse(raw);
+    return list;
+  } catch (e) {
+    return [];
+  }
+}
+
+function renderProduct(p, origin) {
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: p.name,
+    description: p.description,
+    brand: { '@type': 'Brand', name: p.brand },
+    sku: p.sku,
+    image: [origin + p.image],
+    url: `${origin}/product/${p.slug}`,
+    offers: {
+      '@type': 'Offer',
+      url: `${origin}/product/${p.slug}`,
+      priceCurrency: p.currency,
+      price: p.price,
+      availability: p.availability,
+      itemCondition: 'https://schema.org/NewCondition'
+    }
+  };
+  const head = {
+    title: `${p.name} | camadepilates.com`,
+    description: p.description,
+    canonical: `${origin}/product/${p.slug}`,
+    ogImage: `${origin}${p.image}`
+  };
+  const body = `
+  <section class="bg-white">
+    <div class="container mx-auto px-4 py-16 grid md:grid-cols-2 gap-10 items-start">
+      <div>
+        <img src="${p.image}" alt="${p.name}" class="w-full h-auto rounded-lg border" />
+      </div>
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900">${p.name}</h1>
+        <p class="mt-4 text-gray-700">${p.description}</p>
+        <div class="mt-6 text-xl text-gray-900 font-semibold">$ ${p.price} ${p.currency}</div>
+        <div class="mt-8">
+          <div class="sr-element sr-products" data-embed="single_product_widget">
+            <script type="application/json" data-config="embed">${JSON.stringify({ publishable_key: p.publishableKey, options: { product_to_display: p.productId, open_product_in: 'popup', variation_style: 'on_hover' }, includes: { show_product_name: '0', show_product_price: '0', show_product_image: '0', show_product_summary: '0', open_modal_on_image_click: '0', show_view_product_button: '1', show_add_to_cart_button: '1', show_button_icons: '1' } })}</script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>`;
+  return { head, body, schema: productSchema };
+}
+
 function writeFileForRoute(routePath, html) {
   // routePath like /blog/foo or /blog
   const targetDir = path.join(DIST, routePath.replace(/^\//, ''), routePath.endsWith('/') ? '' : '/');
@@ -106,6 +163,7 @@ function main() {
   const template = fs.readFileSync(path.join(DIST, 'index.html'), 'utf8');
   const origin = process.env.SITE_ORIGIN || 'https://camadepilates.com';
   const posts = readPosts().sort((a,b) => new Date(b.date) - new Date(a.date));
+  const prods = readProducts();
 
   // Blog index
   const blogHead = {
@@ -160,8 +218,15 @@ function main() {
     const html = baseHtml(template, head, body);
     writeFileForRoute(`/blog/tag/${t}`, html);
   }
+
+  // Product pages
+  for (const pr of prods) {
+    const { head, body, schema } = renderProduct(pr, origin);
+    let html = baseHtml(template, head, body);
+    html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(schema)}</script>\n</head>`);
+    writeFileForRoute(`/product/${pr.slug}`, html);
+  }
   console.log('Static prerender complete.');
 }
 
 main();
-
