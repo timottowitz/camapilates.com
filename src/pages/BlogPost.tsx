@@ -18,6 +18,7 @@ import { DEFAULTS, getOrigin, toAbsoluteUrl } from '@/lib/seo';
 import { getAllPostsMeta } from '@/lib/content';
 import HubList from '@/components/blog/HubList';
 import SeeAlso from '@/components/blog/SeeAlso';
+import { ShoprocketButton } from '@/integrations/shoprocket';
 
 interface BlogPostMeta {
   slug: string;
@@ -402,6 +403,7 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
     const audioStoryRegex = /<audio-story\s+audioUrl="([^"]+)"\s+title="([^"]+)"\s+description="([^"]+)"\s*\/>/g;
     const hubListRegex = /<hub-list\s+([^\/>]*)\/>/g; // attributes key="value"
     const seeAlsoRegex = /<see-also\s*([^\/>]*)\/>/g;
+    const shoprocketButtonRegex = /<shoprocket-button\s+([^\/>]*)\/>/g;
     
     const elements: React.ReactNode[] = [];
     let cursor = 0;
@@ -410,10 +412,12 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
       const a = audioStoryRegex.exec(text);
       const h = hubListRegex.exec(text);
       const s = seeAlsoRegex.exec(text);
+      const b = shoprocketButtonRegex.exec(text);
       const matches: any[] = [];
       if (a) matches.push({ type: 'audio', m: a });
       if (h) matches.push({ type: 'hub', m: h });
       if (s) matches.push({ type: 'see', m: s });
+      if (b) matches.push({ type: 'srbtn', m: b });
       if (matches.length === 0) return null;
       // earliest
       matches.sort((x, y) => x.m.index - y.m.index);
@@ -494,11 +498,25 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
         attr.replace(/(\w+)="([^"]*)"/g, (_: any, k: string, v: string) => { attrs[k] = v; return ''; });
         const limit = attrs['limit'] ? parseInt(attrs['limit'], 10) : 3;
         elements.push(<SeeAlso key={`see-${m.index}`} slug={slug} limit={limit} />);
+      } else if (type === 'srbtn') {
+        const attr = m[1] || '';
+        const attrs: Record<string,string> = {};
+        attr.replace(/(\w+)="([^"]*)"/g, (_: any, k: string, v: string) => { attrs[k] = v; return ''; });
+        const pk = attrs['pk'] || 'sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c';
+        const product = attrs['product'] || '';
+        if (product) {
+          elements.push(
+            <div key={`srbtn-${m.index}`} className="not-prose my-6">
+              <ShoprocketButton publishableKey={pk} productId={product} />
+            </div>
+          );
+        }
       }
       // reset lastIndex for other regex to continue scanning next matches
       audioStoryRegex.lastIndex = cursor;
       hubListRegex.lastIndex = cursor;
       seeAlsoRegex.lastIndex = cursor;
+      shoprocketButtonRegex.lastIndex = cursor;
     }
     
     return elements;
