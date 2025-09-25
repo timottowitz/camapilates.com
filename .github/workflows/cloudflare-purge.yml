@@ -3,7 +3,7 @@ name: Cloudflare Purge Cache
 on:
   workflow_dispatch: {}
   push:
-    branches: [ main, feature/devops ]
+    branches: [ main ]
 
 jobs:
   purge:
