@@ -102,6 +102,38 @@ const ProductPage: React.FC = () => {
   <script type="application/json" data-config="embed">{"publishable_key":"${prod.publishableKey}","options":{"product_to_display":"${prod.productId}","open_product_in":"popup","variation_style":"on_hover"},"includes":{"show_product_name":"0","show_product_price":"0","show_product_image":"0","show_product_summary":"0","open_modal_on_image_click":"0","show_view_product_button":"1","show_add_to_cart_button":"1","show_button_icons":"1"}}</script>
 </div>`;
 
+  // FAQ for Product pages (mirrors PDP info)
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: '¿Cuánto tarda la entrega?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'En México la entrega estimada es de 5–7 días hábiles. Envíos a EE. UU. y Europa entre 12–21 días.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Qué garantía incluye?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Garantía de 3 años que cubre defectos de fabricación en estructura, muelles y accesorios básicos. Incluye repuestos exprés y soporte en español.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Qué materiales y acabados tiene?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Cuero genuino o de micelio (opción sostenible), madera de nogal y acero estructural con tolerancias precisas para un recorrido silencioso.'
+        }
+      }
+    ]
+  };
+
   return (
     <>
       <Helmet>
@@ -114,6 +146,7 @@ const ProductPage: React.FC = () => {
         <meta property="og:url" content={url} />
         <meta property="og:image" content={`${origin}${prod.image}`} />
         <script type="application/ld+json">{JSON.stringify(productSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
       <RibbonBanner />
@@ -187,12 +220,37 @@ const ProductPage: React.FC = () => {
                 <li>• Soporte y garantía</li>
               </ul>
             </div>
+
+            {/* Entrega y garantía (accordion) */}
+            <div className="mt-8">
+              <h2 className="text-lg font-semibold text-foreground">Entrega y garantía</h2>
+              <details className="mt-3 bg-card p-4 rounded-lg border border-border">
+                <summary className="font-medium text-foreground cursor-pointer">Tiempos de entrega</summary>
+                <p className="mt-2 text-sm text-muted-foreground">México: 5–7 días hábiles. EE. UU.: 12–18 días (estimado). Europa: 12–21 días (estimado).</p>
+              </details>
+              <details className="mt-3 bg-card p-4 rounded-lg border border-border">
+                <summary className="font-medium text-foreground cursor-pointer">Garantía 3 años</summary>
+                <p className="mt-2 text-sm text-muted-foreground">Cubre defectos de fabricación en estructura, muelles y accesorios básicos. Repuestos exprés y soporte en español.</p>
+              </details>
+              <details className="mt-3 bg-card p-4 rounded-lg border border-border">
+                <summary className="font-medium text-foreground cursor-pointer">Pagos y factura</summary>
+                <p className="mt-2 text-sm text-muted-foreground">Pagos seguros con Mercado Pago y tarjetas bancarias. Facturación disponible para estudios.</p>
+              </details>
+            </div>
           <div className="mt-10">
             <ReviewsPreview productSlug={prod.slug} onAggregate={(avg, count) => setAgg({ ratingValue: avg.toFixed(1), reviewCount: count })} />
           </div>
         </div>
       </div>
     </section>
+    {/* Sticky mobile CTA bar */}
+    <div className="fixed inset-x-0 bottom-0 z-40 md:hidden border-t border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
+      <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-3">
+        <a href="#" onClick={(e) => { e.preventDefault(); document.querySelector('.sr-element')?.scrollIntoView({ behavior: 'smooth' }); }} className="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-md bg-primary text-primary-foreground">Comprar</a>
+        <a href="tel:+523222787690" className="inline-flex items-center justify-center px-4 py-2 rounded-md border border-border text-foreground">Llamar</a>
+        <a href="https://wa.me/523222787690" className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-green-600 text-white">WhatsApp</a>
+      </div>
+    </div>
     </>
   );
 };

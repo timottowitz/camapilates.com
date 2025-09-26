@@ -205,6 +205,71 @@ const Store = () => {
             <RegionNote />
           </div>
         </header>
+
+        {/* Compare Casa vs Profesional */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold text-foreground mb-4">Comparar: Casa vs Profesional</h2>
+          <div className="overflow-x-auto rounded-lg border border-border bg-card">
+            <table className="min-w-full text-sm">
+              <thead className="bg-muted/50 text-foreground">
+                <tr>
+                  <th className="text-left p-4">Característica</th>
+                  <th className="text-left p-4">Reformer Casa</th>
+                  <th className="text-left p-4">Reformer Profesional</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border text-muted-foreground">
+                <tr>
+                  <td className="p-4">Uso recomendado</td>
+                  <td className="p-4">Hogar, 1–2 personas</td>
+                  <td className="p-4">Estudio, uso continuo</td>
+                </tr>
+                <tr>
+                  <td className="p-4">Estructura</td>
+                  <td className="p-4">Acero + madera de nogal</td>
+                  <td className="p-4">Acero reforzado + nogal</td>
+                </tr>
+                <tr>
+                  <td className="p-4">Silencio</td>
+                  <td className="p-4">Recorrido silencioso</td>
+                  <td className="p-4">Silencio total (tolerancias precisas)</td>
+                </tr>
+                <tr>
+                  <td className="p-4">Accesorios</td>
+                  <td className="p-4">Básicos</td>
+                  <td className="p-4">Kit completo para clases</td>
+                </tr>
+                <tr>
+                  <td className="p-4">Garantía</td>
+                  <td className="p-4">3 años</td>
+                  <td className="p-4">3 años</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="flex items-center justify-between rounded-lg border border-border p-4 bg-background">
+              <div>
+                <div className="font-semibold text-foreground">Reformer Casa</div>
+                <div className="text-xs text-muted-foreground">Compacto y silencioso</div>
+              </div>
+              <div className="flex gap-2">
+                <a href="#casa" className="inline-flex items-center px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90">Comprar</a>
+                <Link to="/product/reformer-casa" className="inline-flex items-center px-4 py-2 rounded-md border border-border text-foreground hover:bg-foreground hover:text-background">Ver en detalle</Link>
+              </div>
+            </div>
+            <div className="flex items-center justify-between rounded-lg border border-border p-4 bg-background">
+              <div>
+                <div className="font-semibold text-foreground">Reformer Profesional</div>
+                <div className="text-xs text-muted-foreground">Uso continuo en estudio</div>
+              </div>
+              <div className="flex gap-2">
+                <a href="#profesional" className="inline-flex items-center px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90">Comprar</a>
+                <Link to="/product/reformer-profesional" className="inline-flex items-center px-4 py-2 rounded-md border border-border text-foreground hover:bg-foreground hover:text-background">Ver en detalle</Link>
+              </div>
+            </div>
+          </div>
+        </section>
         {/* Trust & Promotional Highlights */}
         <section className="mb-12 bg-accent/5 rounded-lg p-6 border border-accent/20">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 text-sm">
@@ -413,6 +478,15 @@ const Store = () => {
             </a>
           </div>
         </section>
+      </div>
+
+      {/* Sticky mobile CTA bar */}
+      <div className="fixed inset-x-0 bottom-0 z-40 md:hidden border-t border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-3">
+          <a href="#profesional" className="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-md bg-primary text-primary-foreground">Comprar</a>
+          <a href="tel:+523222787690" className="inline-flex items-center justify-center px-4 py-2 rounded-md border border-border text-foreground">Llamar</a>
+          <a href="https://wa.me/523222787690" className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-green-600 text-white">WhatsApp</a>
+        </div>
       </div>
     </React.Fragment>
   );
