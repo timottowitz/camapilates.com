@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import BlogList from '@/components/blog/BlogList';
 import { loadAllBlogPosts } from '@/utils/blogUtils';
+import { DEFAULTS, getOrigin } from '@/lib/seo';
 
 interface BlogPostMeta {
   slug: string;
@@ -51,7 +52,7 @@ const Blog: React.FC = () => {
         <title>Blog de Pilates Reformer | {DEFAULTS.siteName}</title>
         <meta name="description" content="Guías de compra de camas de Pilates, ejercicios con Reformer, mantenimiento y comparativas. Recomendaciones para casa y estudio." />
         <meta name="robots" content="index,follow" />
-        <link rel="canonical" href={`${window.location.origin}/blog`} />
+        <link rel="canonical" href={`${getOrigin()}/blog`} />
 
         {/* Open Graph */}
         <meta property="og:site_name" content={DEFAULTS.siteName} />
@@ -59,7 +60,7 @@ const Blog: React.FC = () => {
         <meta property="og:title" content="Blog de Pilates Reformer | Guías, ejercicios y equipo" />
         <meta property="og:description" content="Guías de compra, ejercicios y comparativas de camas de Pilates (Reformer)." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`${window.location.origin}/blog`} />
+        <meta property="og:url" content={`${getOrigin()}/blog`} />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -73,13 +74,13 @@ const Blog: React.FC = () => {
             "@type": "CollectionPage",
             "name": "Blog de Pilates Reformer",
             "description": "Guías de compra de camas de Pilates, ejercicios con Reformer, mantenimiento y comparativas",
-            "url": `${window.location.origin}/blog`,
+            "url": `${getOrigin()}/blog`,
             "mainEntity": {
               "@type": "ItemList",
               "itemListElement": (posts || []).slice(0, 20).map((p, idx) => ({
                 "@type": "ListItem",
                 "position": idx + 1,
-                "url": `${window.location.origin}/blog/${p.slug}`,
+                "url": `${getOrigin()}/blog/${p.slug}`,
                 "name": p.title
               }))
             }
