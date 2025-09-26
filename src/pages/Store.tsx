@@ -1,18 +1,20 @@
 import { Helmet } from 'react-helmet-async';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
 import React, { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { MessageCircle, Package, ShieldCheck, Truck, CreditCard, CheckCircle, Phone, Star } from 'lucide-react';
 
 const Store = () => {
   const origin = getOrigin();
-  const title = 'Tienda: Camas de Pilates y Accesorios';
-  const desc = 'Compra camas de Pilates (Reformer) para casa y estudio. Envío en México.';
+  const title = 'Cama de Pilates en México – Tienda Edelweiss Pilates';
+  const desc = 'Reformers de Pilates silenciosos con cuero y nogal. Envío 5-7 días en México y 3 años de garantía. Entra y conoce la tienda oficial Edelweiss.';
 
   const productCasa = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: 'Cama de Pilates Reformer – Casa',
     description: 'Reformer compacto para casa. Estabilidad, recorrido suave y accesorios básicos.',
-    brand: { '@type': 'Brand', name: 'CAMA Pilates' },
+    brand: { '@type': 'Brand', name: 'Edelweiss Pilates' },
     sku: 'HOME-REFORMER-001',
     image: [`${origin}/og/cama-de-pilates-venta-mexico.png`],
     url: `${origin}/store#casa`,
@@ -20,7 +22,7 @@ const Store = () => {
       '@type': 'Offer',
       url: `${origin}/store#casa`,
       priceCurrency: 'MXN',
-      price: '999.00',
+      price: '35000.00',
       availability: 'https://schema.org/InStock',
       itemCondition: 'https://schema.org/NewCondition',
       shippingDetails: [
@@ -35,7 +37,7 @@ const Store = () => {
     '@type': 'Product',
     name: 'Cama de Pilates Reformer – Profesional',
     description: 'Reformer profesional para estudio. Construcción robusta, accesorios y servicio.',
-    brand: { '@type': 'Brand', name: 'CAMA Pilates' },
+    brand: { '@type': 'Brand', name: 'Edelweiss Pilates' },
     sku: 'PRO-REFORMER-001',
     image: [`${origin}/og/cama-de-pilates-venta-mexico.png`],
     url: `${origin}/store#profesional`,
@@ -43,7 +45,7 @@ const Store = () => {
       '@type': 'Offer',
       url: `${origin}/store#profesional`,
       priceCurrency: 'MXN',
-      price: '1999.00',
+      price: '50000.00',
       availability: 'https://schema.org/InStock',
       itemCondition: 'https://schema.org/NewCondition',
       shippingDetails: [
@@ -61,8 +63,55 @@ const Store = () => {
     itemListElement: [productPro, productCasa].map((p, i) => ({ '@type': 'ListItem', position: i + 1, item: p }))
   };
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: '¿Cuál es la diferencia entre el Reformer de Estudio y el de Casa?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'El Reformer de Estudio está diseñado para uso intensivo con construcción más robusta y accesorios adicionales. El Reformer para Casa mantiene la misma calidad y silencio, pero en formato más compacto ideal para espacios domésticos. Ambos incluyen acabados en cuero genuino y madera de nogal.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cómo funciona la entrega y armado?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Ofrecemos entrega en todo México en 5–7 días hábiles. Tu reformer llega con instructivo y herramientas para armado fácil, y nuestro equipo de soporte está listo para ayudar si lo necesitas.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Qué formas de pago aceptan?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Aceptamos Visa, MasterCard y Mercado Pago. Para estudios ofrecemos opciones de financiamiento y descuentos por volumen. Todos los pagos son procesados de forma segura con SSL.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Ofrecen demostraciones o pruebas?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Sí, ofrecemos demostraciones en nuestro showroom en CDMX y visitas a estudios para compras de 8+ unidades. Contacta nuestro equipo vía WhatsApp para agendar una cita personalizada.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Qué incluye la garantía de 3 años?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Nuestra garantía cubre defectos de fabricación en estructura, muelles y accesorios básicos. Incluye repuestos exprés y soporte técnico.'
+        }
+      }
+    ]
+  };
+
   return (
-    <>
+    <React.Fragment>
       <Helmet>
         <title>{title} | {DEFAULTS.siteName}</title>
         <meta name="description" content={desc} />
@@ -77,23 +126,113 @@ const Store = () => {
         <script type="application/ld+json">{JSON.stringify(productCasa)}</script>
         <script type="application/ld+json">{JSON.stringify(productPro)}</script>
         <script type="application/ld+json">{JSON.stringify(shippingItemList)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
       <div className="container mx-auto px-4 py-12">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
-          <h1 className="text-3xl font-bold text-foreground">{title}</h1>
-          <RegionNote />
-        </div>
-        <div className="mb-6 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-4 text-xs text-muted-foreground">
-          <div className="flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-primary"></span> Mercado Pago</div>
-          <div className="flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-primary"></span> Soporte en español</div>
-          <div className="flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-primary"></span> Ensamblado en CDMX</div>
-          <div className="flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-primary"></span> Repuestos exprés</div>
-          <div className="hidden lg:flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-primary"></span> Garantía 3 años</div>
-        </div>
+        {/* Header & Introductory Section */}
+        <header className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Cama de Pilates Profesional Edelweiss – Silencio y Precisión
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
+            Reformers silenciosos y precisos con cuero genuino, madera de nogal y acero.
+            Entrega 5–7 días en México y soporte en español.
+          </p>
 
-        {/* Shop sections */}
-        <section className="mb-12" id="casa">
-          <h2 className="text-xl font-semibold text-foreground mb-4">Para Casa</h2>
+          {/* Visual USP bullets */}
+          <div className="flex flex-wrap justify-center gap-6 mb-8 text-sm">
+            <div className="flex items-center gap-2 text-foreground">
+              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                <span className="text-lg">🔇</span>
+              </div>
+              <span className="font-medium">Silencio total</span>
+            </div>
+            <div className="flex items-center gap-2 text-foreground">
+              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                <span className="text-lg">🪵</span>
+              </div>
+              <span className="font-medium">Cuero genuino, Madera de Nogal</span>
+            </div>
+            <div className="flex items-center gap-2 text-foreground">
+              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                <span className="text-lg">🔩</span>
+              </div>
+              <span className="font-medium">Acero estructural</span>
+            </div>
+            <div className="flex items-center gap-2 text-foreground">
+              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                <CheckCircle className="h-5 w-5 text-green-600" />
+              </div>
+              <span className="font-medium">Garantía 3 años</span>
+            </div>
+            <div className="flex items-center gap-2 text-foreground">
+              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                <Truck className="h-5 w-5 text-primary" />
+              </div>
+              <span className="font-medium">Entrega 5–7 días</span>
+            </div>
+          </div>
+
+          <div className="flex justify-center">
+            <RegionNote />
+          </div>
+        </header>
+        {/* Trust & Promotional Highlights */}
+        <section className="mb-12 bg-accent/5 rounded-lg p-6 border border-accent/20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 text-sm">
+            <div className="flex items-center gap-3">
+              <Truck className="h-5 w-5 text-accent" />
+              <span className="text-foreground font-medium">Entrega en 5–7 días en MX</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <ShieldCheck className="h-5 w-5 text-accent" />
+              <span className="text-foreground font-medium">Garantía 3 años</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Package className="h-5 w-5 text-accent" />
+              <span className="text-foreground font-medium">Repuestos exprés disponibles</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <CreditCard className="h-5 w-5 text-accent" />
+              <span className="text-foreground font-medium">Pagos seguros (Visa, MasterCard, Mercado Pago)</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <MessageCircle className="h-5 w-5 text-accent" />
+              <span className="text-foreground font-medium">Soporte vía WhatsApp</span>
+            </div>
+          </div>
+
+          {/* Studio Pack Promotion */}
+          <div className="mt-6 p-4 bg-accent/10 rounded-lg border border-accent/30">
+            <div className="flex items-center gap-3">
+              <div className="bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">20% OFF</div>
+              <div>
+                <span className="text-foreground font-semibold">Pack para Estudios – 20% off 8+ reformers</span>
+                <Link to="/packs/estudio" className="ml-2 text-accent hover:underline font-medium">
+                  Ver detalles →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Product Listing Display */}
+        <section className="mb-12" id="profesional">
+          <h2 className="text-2xl font-semibold text-foreground mb-2">Reformers Profesionales</h2>
+          <p className="text-muted-foreground mb-6">Reformer de Estudio – Silencio total, cuero genuino & acero estructural</p>
+          <div className="bg-card rounded-lg p-6 border border-border mb-4">
+            <div className="flex flex-wrap items-center gap-3 mb-4">
+              <div className="flex items-center gap-1">
+                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                <span className="text-sm text-muted-foreground ml-1">(12 reseñas)</span>
+              </div>
+              <span className="text-lg font-semibold text-foreground">MXN $50,000</span>
+              <span className="text-sm text-muted-foreground">Acabado nogal, cuero genuino</span>
+            </div>
           <div
             dangerouslySetInnerHTML={{ __html: `
 <div class="sr-element sr-products" data-embed="single_product_widget">
@@ -102,8 +241,22 @@ const Store = () => {
           />
         </section>
 
-        <section className="mb-12" id="profesional">
-          <h2 className="text-xl font-semibold text-foreground mb-4">Profesional</h2>
+        <section className="mb-12" id="casa">
+          <h2 className="text-2xl font-semibold text-foreground mb-2">Reformers para Casa</h2>
+          <p className="text-muted-foreground mb-6">Reformer Casa – compacto y silencioso, ideal para hogares (materiales profesionales)</p>
+          <div className="bg-card rounded-lg p-6 border border-border mb-4">
+            <div className="flex flex-wrap items-center gap-3 mb-4">
+              <div className="flex items-center gap-1">
+                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                <span className="text-sm text-muted-foreground ml-1">(8 reseñas)</span>
+              </div>
+              <span className="text-lg font-semibold text-foreground">MXN $35,000</span>
+              <span className="text-sm text-muted-foreground">Acabado nogal, cuero genuino</span>
+            </div>
           <div
             dangerouslySetInnerHTML={{ __html: `
 <div class="sr-element sr-products" data-embed="single_product_widget">
@@ -113,7 +266,8 @@ const Store = () => {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-xl font-semibold text-foreground mb-4">Accesorios</h2>
+          <h2 className="text-2xl font-semibold text-foreground mb-2">Accesorios</h2>
+          <p className="text-muted-foreground mb-6">Complementa tu práctica con accesorios de calidad profesional</p>
           <div
             dangerouslySetInnerHTML={{ __html: `
 <div class="sr-element sr-products" data-embed="multiple_products">
@@ -121,8 +275,116 @@ const Store = () => {
 </div>` }}
           />
         </section>
+
+        {/* Additional Content: FAQ and Testimonials */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold text-foreground mb-6">Preguntas Frecuentes</h2>
+          <div className="space-y-4">
+            <details className="bg-card p-6 rounded-lg border border-border">
+              <summary className="font-semibold text-foreground cursor-pointer hover:text-accent">
+                ¿Cuál es la diferencia entre el Reformer de Estudio y el de Casa?
+              </summary>
+              <div className="mt-4 text-muted-foreground">
+                <p>
+                  El Reformer de Estudio está diseñado para uso intensivo con construcción más robusta y accesorios adicionales.
+                  El Reformer para Casa mantiene la misma calidad y silencio, pero en formato más compacto ideal para espacios domésticos.
+                  Ambos incluyen <Link to="/acabados" className="text-accent hover:underline">acabados en cuero genuino</Link> y
+                  madera de nogal.
+                </p>
+              </div>
+            </details>
+
+            <details className="bg-card p-6 rounded-lg border border-border">
+              <summary className="font-semibold text-foreground cursor-pointer hover:text-accent">
+                ¿Cómo funciona la entrega y armado?
+              </summary>
+              <div className="mt-4 text-muted-foreground">
+                <p>
+                  Ofrecemos entrega en todo México en 5–7 días hábiles. Tu reformer llega con instructivo y herramientas
+                  para armado fácil, y nuestro equipo de soporte está listo para ayudar si lo necesitas.
+                  Para más información sobre <Link to="/cama-de-pilates/precio" className="text-accent hover:underline">precios y envío</Link>.
+                </p>
+              </div>
+            </details>
+
+            <details className="bg-card p-6 rounded-lg border border-border">
+              <summary className="font-semibold text-foreground cursor-pointer hover:text-accent">
+                ¿Qué formas de pago aceptan?
+              </summary>
+              <div className="mt-4 text-muted-foreground">
+                <p>
+                  Aceptamos Visa, MasterCard y Mercado Pago. Para estudios ofrecemos opciones de financiamiento
+                  y descuentos por volumen. Todos los pagos son procesados de forma segura con SSL.
+                </p>
+              </div>
+            </details>
+
+            <details className="bg-card p-6 rounded-lg border border-border">
+              <summary className="font-semibold text-foreground cursor-pointer hover:text-accent">
+                ¿Ofrecen demostraciones o pruebas?
+              </summary>
+              <div className="mt-4 text-muted-foreground">
+                <p>
+                  Sí, ofrecemos demostraciones en nuestro showroom en CDMX y visitas a estudios para compras de 8+ unidades.
+                  Contacta nuestro equipo vía WhatsApp para agendar una cita personalizada.
+                </p>
+              </div>
+            </details>
+
+            <details className="bg-card p-6 rounded-lg border border-border">
+              <summary className="font-semibold text-foreground cursor-pointer hover:text-accent">
+                ¿Qué incluye la garantía de 3 años?
+              </summary>
+              <div className="mt-4 text-muted-foreground">
+                <p>
+                  Nuestra garantía cubre defectos de fabricación en estructura, muelles y accesorios básicos.
+                  Incluye repuestos exprés y soporte técnico. Visita <Link to="/accesorios" className="text-accent hover:underline">nuestra sección de accesorios</Link>
+                  para piezas de mantenimiento.
+                </p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        {/* Testimonial Section */}
+        <section className="mb-12 bg-accent/5 rounded-lg p-6 border border-accent/20">
+          <h2 className="text-2xl font-semibold text-foreground mb-6 text-center">Lo que dicen nuestros clientes</h2>
+          <div className="max-w-3xl mx-auto text-center">
+            <blockquote className="text-lg text-foreground italic mb-4">
+              "El reformer Edelweiss transformó mi estudio – es silencioso y elegante.
+              Mis clientas están encantadas con la experiencia. La inversión se pagó sola en 6 meses."
+            </blockquote>
+            <cite className="text-muted-foreground font-medium">
+              — Laura Martínez, Instructora de Pilates, Estudio Equilibrium CDMX
+            </cite>
+            <div className="flex justify-center items-center gap-1 mt-3">
+              <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+              <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+              <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+              <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+              <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+            </div>
+          </div>
+        </section>
+
+        {/* WhatsApp Support CTA */}
+        <section className="text-center">
+          <div className="bg-card p-6 rounded-lg border border-border inline-block">
+            <h3 className="text-lg font-semibold text-foreground mb-2">¿Dudas sobre tu compra?</h3>
+            <p className="text-muted-foreground mb-4">Habla con Tim o Laura ahora</p>
+            <a
+              href="https://wa.me/525512345678"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            >
+              <MessageCircle className="h-5 w-5" />
+              Chat por WhatsApp
+            </a>
+          </div>
+        </section>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 

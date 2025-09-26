@@ -5,7 +5,7 @@ import { Finishes, FINISHES, type FinishKey } from '@/components/product/Finishe
 import RibbonBanner from '@/components/ui/ribbon-banner';
 import { Helmet } from 'react-helmet-async';
 import { getOrigin, DEFAULTS } from '@/lib/seo';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, Link } from 'react-router-dom';
 import products from '@/content/products.json';
 
 type Product = (typeof products)[number];
