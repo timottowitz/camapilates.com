@@ -7,7 +7,7 @@ const Header: React.FC = () => {
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
           <img src="/brand/edelweiss.svg" alt="CAMA Pilates" className="h-7 w-auto" />
-          <span className="text-sm md:text-base font-semibold tracking-tight text-gray-900">CAMA Pilates</span>
+          <span className="text-sm md:text-base font-semibold tracking-tight text-gray-900">Edelweiss Pilates Reformer</span>
         </Link>
         <nav className="flex items-center gap-6 text-sm text-gray-700">
           <Link to="/about" className="hover:text-black">Acerca de</Link>
