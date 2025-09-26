@@ -65,16 +65,20 @@ export default {
 				},
             // Brand palette mapped to a clean, neutral UI (no aggressive accents)
             bennett: {
-                // primary text color across headings (approx gray-900)
-                navy: '#111827',
-                // neutral accent used sparingly
-                gold: '#6b7280',
-                // secondary text
-                slate: '#4b5563',
-                // subtle surface backgrounds
-                lightBlue: '#f5f5f5',
-                // subtle accent surface
-                lightGold: '#fff2e8',
+                // Updated to brand palette from screenshot
+                navy: '#2C4F59',         // deep teal primary
+                gold: '#D9865B',         // terracotta accent
+                slate: '#4b5563',        // secondary text
+                lightBlue: '#CFE2DE',    // mint/blue surface
+                lightGold: '#F6E7C9',    // warm cream surface
+            },
+            brand: {
+                teal: '#2C4F59',
+                terracotta: '#D9865B',
+                coral: '#CF6C63',
+                mint: '#CFE2DE',
+                cream: '#F6E7C9',
+                sand: '#F4E9D8',
             },
 			},
 			borderRadius: {
