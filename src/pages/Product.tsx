@@ -43,6 +43,14 @@ const ProductPage: React.FC = () => {
     ? ['cuero de micelio (sostenible)', 'madera de nogal', 'acero estructural']
     : ['cuero genuino', 'madera de nogal', 'acero estructural'];
 
+  // Basic specs (public, non-medical)
+  const SPECS = {
+    dimensions: '~245 × 70 × 40 cm',
+    weight: '~70–95 kg (según acabado)',
+    carriage: 'Recorrido suave y silencioso',
+    warranty: '3 años',
+  } as const;
+
   const productSchema: any = {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -95,6 +103,10 @@ const ProductPage: React.FC = () => {
   productSchema.additionalProperty = [
     { '@type': 'PropertyValue', name: 'finish', value: finish },
     ...(finish === 'mycelium' ? [{ '@type': 'PropertyValue', name: 'sustainable', value: 'true' }] : [])
+  ,
+    { '@type': 'PropertyValue', name: 'dimensions', value: SPECS.dimensions },
+    { '@type': 'PropertyValue', name: 'weight', value: SPECS.weight },
+    { '@type': 'PropertyValue', name: 'warranty', value: SPECS.warranty },
   ];
 
   const embedHtml = `
@@ -170,6 +182,11 @@ const ProductPage: React.FC = () => {
             <p className="mt-2 text-sm text-foreground italic">El último Reformer que necesitarás. Desarrolla tu gracia con materiales nobles—solo lo mejor toca tu piel.</p>
             <p className="mt-4 text-muted-foreground">{prod.description}</p>
             <div className="mt-6 text-xl text-foreground font-semibold">$ {prod.price} {prod.currency}</div>
+            {/* Desktop quick actions */}
+            <div className="mt-3 hidden md:flex gap-2">
+              <a href="tel:+523222787690" className="inline-flex items-center px-4 py-2 rounded-md border border-border text-foreground hover:bg-foreground hover:text-background">Llamar</a>
+              <a href="https://wa.me/523222787690" className="inline-flex items-center px-4 py-2 rounded-md bg-green-600 text-white hover:bg-green-700">WhatsApp</a>
+            </div>
             <div className="mt-2 text-sm">
               <Link to="/packs/estudio" className="text-primary hover:underline">Pack para estudios (8+) — 20% de descuento</Link>
             </div>
@@ -209,6 +226,28 @@ const ProductPage: React.FC = () => {
                   <p className="text-sm text-muted-foreground mt-1">Rigidez y precisión para un recorrido estable y silencioso.</p>
                 </div>
               </div>
+            </div>
+            {/* Specs mini-block */}
+            <div className="mt-6">
+              <h2 className="text-lg font-semibold text-foreground">Especificaciones (resumen)</h2>
+              <dl className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-muted-foreground">
+                <div>
+                  <dt className="font-medium text-foreground">Dimensiones</dt>
+                  <dd>{SPECS.dimensions}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-foreground">Peso</dt>
+                  <dd>{SPECS.weight}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-foreground">Recorrido del carro</dt>
+                  <dd>{SPECS.carriage}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-foreground">Garantía</dt>
+                  <dd>{SPECS.warranty}</dd>
+                </div>
+              </dl>
             </div>
             <div className="mt-8" dangerouslySetInnerHTML={{ __html: embedHtml }} />
 
