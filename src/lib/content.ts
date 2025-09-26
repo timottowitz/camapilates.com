@@ -50,19 +50,26 @@ function estimateReadTime(text: string): string {
 // Eagerly import markdown as raw text
 const files = import.meta.glob('/src/content/blog/**/*.md', { query: '?raw', import: 'default', eager: true });
 
-const INDEX: PostFull[] = Object.entries(files).map(([path, raw]) => {
-  const { data, content } = matter((raw as unknown as string) || '');
+let INDEX: PostFull[] = Object.entries(files).map(([path, raw]) => {
+  const rawStr = (raw as unknown as string) || '';
+  // Some markdown files may include leading newlines/BOM before frontmatter.
+  // Strip BOM and leading whitespace just before frontmatter to help gray-matter parse.
+  const sanitized = rawStr
+    .replace(/^\uFEFF/, '')
+    .replace(/^\s*\n(?=---)/, '');
+  const { data, content } = matter(sanitized);
   const fm = (data || {}) as Partial<Frontmatter>;
   const slug = (fm.slug || slugFromPath(path)).toLowerCase();
   const title = fm.title || slug;
   const description = fm.description || '';
   const category = fm.category || 'General';
   const tags = Array.isArray(fm.tags) ? fm.tags : [];
-  const author = fm.author || 'Bennett Legal';
+  const author = fm.author || 'CAMA Pilates';
   const date = fm.publishDate || new Date().toISOString().slice(0, 10);
   const featured = Boolean(fm.featured);
   const excerpt = description;
-  const readTime = estimateReadTime(content);
+  const normalizedContent = /^\s*#\s+/.test(content) ? content : `# ${title}\n\n${content}`;
+  const readTime = estimateReadTime(normalizedContent);
 
   return {
     slug,
@@ -74,12 +81,23 @@ const INDEX: PostFull[] = Object.entries(files).map(([path, raw]) => {
     author,
     featured,
     tags,
-    content,
+    content: normalizedContent,
     updatedDate: fm.updatedDate,
     canonical: fm.canonical,
     noindex: fm.noindex,
   };
 }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+// Deduplicate by slug. Prefer posts with explicit H1 at start, then featured, then longer content.
+{
+  const best = new Map<string, PostFull>();
+  const score = (p: PostFull) => ( /^\s*#\s+/.test(p.content) ? 4 : 0 ) + (p.featured ? 2 : 0) + Math.min(1, Math.floor(p.content.length / 2000));
+  for (const p of INDEX) {
+    const current = best.get(p.slug);
+    if (!current || score(p) > score(current)) best.set(p.slug, p);
+  }
+  INDEX = Array.from(best.values()).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
 
 export function getAllPostsMeta(): PostIndexItem[] {
   return INDEX.map(({ content: _c, updatedDate: _u, canonical: _ca, noindex: _n, ...meta }) => meta);

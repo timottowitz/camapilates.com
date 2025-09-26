@@ -28,10 +28,16 @@ featured: false
 ---
 ```
 
-## Shortcodes
-- `<hub-list tags="a,b" category="Guías de compra" limit="30" title="..." />` — Autolista.
-- `<see-also limit="3" />` — Enlaces contextuales en medio del artículo.
-- `<shoprocket-button product="prod_xxx" pk="sr_live_pk_xxx" />` — Botón con popup.
+## Shortcodes Available in Markdown
+- `<see-also limit="3" />` — Auto-generated related articles based on tags/category (limit defaults to 3)
+- `<hub-list tags="a,b" category="Guías de compra" limit="30" title="..." />` — Filtered article lists by tags/category
+- `<audio-story audioUrl="url" title="title" description="desc" />` — Audio story component
+- `<shoprocket-button product="prod_xxx" pk="sr_live_pk_xxx" />` — Product purchase button with popup
+
+**Usage Notes:**
+- Components are processed automatically by the ArticleContentWithCTAs function
+- `<see-also />` is automatically injected after the first section and at article end
+- All shortcodes must be properly closed (self-closing with `/>`)
 
 ## Authoring Rules
 - Español, conciso, útil. Evita promesas exageradas o claims médicos.
@@ -45,6 +51,55 @@ featured: false
 - Catalog: `src/content/products.json` (slug, name, description, brand, sku, image, price, currency, availability, productId, publishableKey).
 - Autogenera páginas en `/product/:slug` y hub `/products`.
 - Cada página incluye JSON‑LD Product con Offer (usa placeholders si no hay datos reales).
+
+## Blog Planning System 🔄
+
+**MANDATORY**: Before writing ANY blog post, ALWAYS check `/blog-planning/BLOG_TODO.md`
+
+### Quick Blog Writer Agent
+For autonomous blog creation, use the specialized `blog_writer` agent:
+```
+Task: blog_writer - "Write next priority blog post"
+```
+This agent automatically handles research, writing, and status tracking according to established patterns.
+
+### Book Research Agent
+For discovering unique, viral-worthy topics from expert knowledge:
+```
+Task: book_research - "Discover unique blog topics from books_MD knowledge base"
+```
+This agent mines Pilates books for expert insights, generates viral titles, and creates research briefs that competitors cannot replicate. Integrates with keyword clusters for SEO optimization.
+
+### Workflow Rules
+1. **Check TODO List**: Always start by reading `blog-planning/BLOG_TODO.md`
+2. **Research First**: Complete the research file before writing
+3. **One Post at a Time**: Never write multiple posts simultaneously
+4. **Update Status**: Mark progress (🔬 → 📝 → ✅) in BLOG_TODO.md
+5. **Follow Queue**: Write posts in order of priority
+
+### Research Phase (Required)
+- Fill corresponding `/blog-planning/research/[topic].md` file
+- Minimum 1000 words of research content
+- Include Mexican market focus and CAMA Pilates product connections
+- Add SEO keywords and references
+- Plan shortcode placement (see-also, hub-list, etc.)
+- Structure content for automatic FAQ extraction (use ## FAQ section)
+- Mark as 📝 when research is complete
+
+### Writing Phase
+- Only start when research file is marked 📝
+- Follow blog structure suggested in research file
+- Target 1500-2500 words for final blog
+- Include proper shortcode placement: `<see-also />`, `<hub-list />` as needed
+- Add FAQ section (## FAQ) for automatic structured data
+- Include CAMA Pilates CTAs and product connections
+- Use correct frontmatter structure with all required fields
+- Mark as ✅ when published
+
+### File Locations
+- **TODO List**: `/blog-planning/BLOG_TODO.md`
+- **Research Files**: `/blog-planning/research/[topic-name].md`
+- **Published Blogs**: `/src/content/blog/[slug].md`
 
 ## Build & Deploy
 - Local: `npm ci && npm run build` → prerender + OG + sitemap.
@@ -75,22 +130,40 @@ featured: false
 > Nota: Contenido informativo; no es asesoramiento médico.
 
 ## Resumen
-<2–3 frases>
+<2–3 frases introductorias sobre el tema>
 
-## Criterios clave
-- <punto>
-- <punto>
-- <punto>
+## Criterios clave para elegir
+- <punto importante 1>
+- <punto importante 2>
+- <punto importante 3>
+
+## Tipos de camas de Pilates
+### <Subsección con detalles>
+Texto explicativo...
 
 <see-also limit="3" />
 
-## Qué comprar
-### <Subsección>
-Texto...
+## Qué considerar al comprar
+### Espacio y medidas
+Información sobre dimensiones...
+
+### Presupuesto y calidad
+Comparativa de opciones...
+
+## Recomendaciones CAMA Pilates
+Nuestros Reformers ofrecen calidad premium con ingeniería alemana y manufactura mexicana...
+
+<hub-list category="Guías de compra" limit="5" title="Más guías de compra" />
 
 ## FAQ
-### ¿Pregunta?
-Respuesta.
+### ¿Cuál es el mejor tamaño para casa?
+Respuesta detallada sobre dimensiones...
+
+### ¿Qué presupuesto necesito?
+Información sobre rangos de precio...
+
+### ¿Vale la pena invertir en calidad?
+Explicación sobre relación calidad-precio...
 ```
 
 ## Plantilla de Producto (products.json)

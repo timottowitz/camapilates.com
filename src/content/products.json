@@ -9,7 +9,7 @@
     "price": "999.00",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
-    "productId": "prod_6569ddc31c17b221072732",
+    "productId": "prod_reformer_casa_placeholder",
     "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
   },
   {
@@ -22,8 +22,7 @@
     "price": "1999.00",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
-    "productId": "prod_6569ddc31c17b221072732",
+    "productId": "prod_reformer_profesional_placeholder",
     "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
   }
 ]
-

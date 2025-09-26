@@ -4,7 +4,7 @@ interface Env {
 
 export default {
   async scheduled(_event: ScheduledEvent, env: Env, ctx: ExecutionContext) {
-    const origin = (env.SITE_URL || 'https://solarpanelfraud.org').replace(/\/$/, '');
+    const origin = (env.SITE_URL || 'https://camadepilates.com').replace(/\/$/, '');
     const sitemapUrl = `${origin}/sitemap.xml`;
     try {
       const resp = await fetch(sitemapUrl, { cf: { cacheEverything: true, cacheTtl: 3600 } });
@@ -18,4 +18,3 @@ export default {
     }
   }
 };
-

@@ -1,8 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Calendar, Phone, MessageCircle } from "lucide-react";
+import { ArrowRight, ShoppingCart, Info } from "lucide-react";
 import { Link } from "react-router-dom";
-import { getCalApi } from "@calcom/embed-react";
-import AirtableFormDialog from "@/components/ui/airtable-form-dialog";
 
 interface CTASectionProps {
   title?: string;
@@ -12,19 +10,11 @@ interface CTASectionProps {
 }
 
 const CTASection = ({
-  title = "Been Scammed by Solar Companies?",
-  description = "Our experienced attorneys are ready to help you recover your losses and hold fraudulent companies accountable. Get in touch today to discuss your specific situation.",
+  title = "¿Buscas una cama de Pilates?",
+  description = "Te ayudamos a elegir la cama de Pilates ideal para casa o estudio. Compara modelos, accesorios y precios con envíos en México.",
   variant = "default",
   className = ""
 }: CTASectionProps) => {
-  
-  // Using data attributes like the working implementation
-  const calDataAttributes = {
-    "data-cal-namespace": "client-interviews",
-    "data-cal-link": "ana/client-interviews",
-    "data-cal-origin": "https://calendar.bennettlegal.com",
-    "data-cal-config": '{"layout":"month_view"}'
-  };
 
   if (variant === "compact") {
     return (
@@ -35,36 +25,18 @@ const CTASection = ({
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Button 
-            size="sm" 
-            {...calDataAttributes}
-            className="bg-bennett-navy hover:bg-bennett-navy/90 text-white"
-          >
-            <Calendar className="mr-2 h-4 w-4" />
-            Schedule Consultation
+          <Button asChild size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+            <Link to="/products">
+              <ShoppingCart className="mr-2 h-4 w-4" />
+              Ver productos
+            </Link>
           </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            asChild
-          >
-            <a href="tel:(214)473-5897">
-              <Phone className="mr-2 h-4 w-4" />
-              Call Now
-            </a>
+          <Button asChild variant="outline" size="sm">
+            <Link to="/store">
+              <ArrowRight className="mr-2 h-4 w-4" />
+              Ir a la tienda
+            </Link>
           </Button>
-          <AirtableFormDialog 
-            title="Get Legal Help Now" 
-            description="Tell us about your solar fraud case and we'll get back to you immediately"
-          >
-            <Button
-              variant="outline"
-              size="sm"
-            >
-              <MessageCircle className="mr-2 h-4 w-4" />
-              Get Legal Help
-            </Button>
-          </AirtableFormDialog>
         </div>
       </div>
     );
@@ -72,35 +44,24 @@ const CTASection = ({
 
   if (variant === "inline") {
     return (
-      <div className={`bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-8 my-12 ${className}`}>
+      <div className={`bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20 rounded-lg p-8 my-12 ${className}`}>
         <div className="max-w-2xl mx-auto text-center">
           <h3 className="text-2xl font-bold text-foreground mb-4">{title}</h3>
           <p className="text-muted-foreground mb-6">{description}</p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              {...calDataAttributes}
-              className="bg-bennett-navy hover:bg-bennett-navy/90 text-white"
-            >
-              <Calendar className="w-5 h-5 mr-2" />
-              Schedule Consultation
+            <Button size="lg" asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
+              <Link to="/products" className="flex items-center gap-2">
+                <ShoppingCart className="w-5 h-5" />
+                Ver productos
+              </Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <a href="tel:(214)473-5897" className="flex items-center gap-2">
-                <Phone className="w-5 h-5" />
-                Call (214) 473-5897
-              </a>
+              <Link to="/blog/cama-de-pilates-guia-de-compra" className="flex items-center gap-2">
+                <Info className="w-5 h-5" />
+                Guía de compra
+              </Link>
             </Button>
-            <AirtableFormDialog 
-              title="Get Legal Help Now" 
-              description="Tell us about your solar fraud case and we'll get back to you immediately"
-            >
-              <Button size="lg" variant="outline">
-                <MessageCircle className="w-5 h-5 mr-2" />
-                Get Legal Help
-              </Button>
-            </AirtableFormDialog>
           </div>
         </div>
       </div>
@@ -119,59 +80,41 @@ const CTASection = ({
         <div className="grid md:grid-cols-3 gap-6">
           {/* Schedule Button */}
           <div className="text-center">
-            <Button
-              size="lg"
-              className="w-full mb-2 bg-bennett-navy hover:bg-bennett-navy/90 text-white"
-              {...calDataAttributes}
-            >
-              <Calendar className="mr-2 h-4 w-4" />
-              Schedule Consultation
+            <Button size="lg" className="w-full mb-2 bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
+              <Link to="/products">
+                <ShoppingCart className="mr-2 h-4 w-4" />
+                Ver productos
+              </Link>
             </Button>
-            <p className="text-sm text-muted-foreground">Book a free consultation</p>
+            <p className="text-sm text-muted-foreground">Explora modelos y accesorios</p>
           </div>
 
           {/* Call Button */}
           <div className="text-center">
-            <Button
-              size="lg"
-              variant="outline"
-              className="w-full mb-2"
-              asChild
-            >
-              <a href="tel:(214)473-5897">
-                <Phone className="mr-2 h-4 w-4" />
-                Call Now
-              </a>
+            <Button size="lg" variant="outline" className="w-full mb-2" asChild>
+              <Link to="/store">
+                <ArrowRight className="mr-2 h-4 w-4" />
+                Ir a la tienda
+              </Link>
             </Button>
-            <p className="text-sm text-muted-foreground">Direct phone consultation</p>
+            <p className="text-sm text-muted-foreground">Compra con envío en México</p>
           </div>
 
           {/* Get Legal Help Button */}
           <div className="text-center">
-            <AirtableFormDialog 
-              title="Get Legal Help Now" 
-              description="Tell us about your solar fraud case and we'll get back to you immediately"
-            >
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full mb-2"
-              >
-                <MessageCircle className="mr-2 h-4 w-4" />
-                Get Legal Help
-              </Button>
-            </AirtableFormDialog>
-            <p className="text-sm text-muted-foreground">Submit your case details</p>
+            <Button size="lg" variant="outline" className="w-full mb-2" asChild>
+              <Link to="/blog/cama-de-pilates-guia-de-compra">
+                <Info className="mr-2 h-4 w-4" />
+                Ver guía de compra
+              </Link>
+            </Button>
+            <p className="text-sm text-muted-foreground">Consejos para elegir tu cama</p>
           </div>
         </div>
 
-        {/* Additional Contact Info */}
+        {/* Additional info */}
         <div className="mt-6 pt-6 border-t border-border/50 text-center text-sm text-muted-foreground">
-          <p>
-            <strong>Phone:</strong> (214) 473-5897 |
-            <strong className="ml-2">Email:</strong> cbennett@bennettlegal.com
-          </p>
-          <p className="mt-1">Available Monday-Friday, 9 AM - 6 PM (CST)</p>
+          <p>Asesoría imparcial: casa vs. profesional, accesorios y servicio.</p>
         </div>
       </div>
     </div>

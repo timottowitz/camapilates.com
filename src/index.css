@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -16,10 +16,12 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 216 98% 23%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary accent: soft orange; neutral text */
+    /* Softer, neutral primary (charcoal) */
+    --primary: 215 28% 17%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 43 65% 49%;
+    --secondary: 220 14% 96%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
@@ -98,8 +100,8 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif font-bold text-bennett-navy;
-    font-family: 'Playfair Display', serif;
+    @apply font-sans font-extrabold text-bennett-navy;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
   h1 {
@@ -214,7 +216,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c99a2e;
+  background: #6b7280;
   border-radius: 4px;
 }
 

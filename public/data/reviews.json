@@ -1,0 +1,12 @@
+{
+  "reformer-profesional": [
+    { "name": "Laura • Instructora", "quote": "El deslizamiento es silencioso y estable. Ideal para clases largas.", "rating": 5 },
+    { "name": "Andrea • Estudio CDMX", "quote": "Cero crujidos y un look que eleva el estudio.", "rating": 5 },
+    { "name": "Mariana • Instructora", "quote": "Muelles consistentes y sensación de confianza al enseñar.", "rating": 5 }
+  ],
+  "reformer-casa": [
+    { "name": "Patricia • Usuario", "quote": "Compacto y muy silencioso. Fácil de integrar en casa.", "rating": 5 },
+    { "name": "Carolina • Alumna", "quote": "Los materiales se sienten premium. Gran estabilidad.", "rating": 5 }
+  ]
+}
+

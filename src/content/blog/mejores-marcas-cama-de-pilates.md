@@ -1,7 +1,7 @@
 
 ---
 title: "Mejores marcas de cama de Pilates: Criterios y selección"
-description: "Criterios para evaluar marcas de camas de Pilates y cómo elegir confiablemente."
+description: "Mejores marcas de cama de Pilates: criterios para evaluar calidad, repuestos y servicio. Comparativa para elegir con confianza según tu objetivo (casa o estudio)."
 category: "Guías de compra"
 tags: ["mejores marcas", "cama de pilates", "reformer marcas"]
 publishDate: "2025-09-24"

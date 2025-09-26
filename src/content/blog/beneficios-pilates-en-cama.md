@@ -1,6 +1,6 @@
 ---
 title: "Beneficios del Pilates en Cama (Reformer)"
-description: "Fortalecimiento, movilidad y postura. Qué esperar de la práctica con Reformer."
+description: "Beneficios del Pilates en cama (Reformer): fuerza y control, movilidad y postura, menor impacto articular. Qué esperar de la práctica y cómo progresar con seguridad."
 category: "Ejercicios y salud"
 tags: ["beneficios", "salud", "ejercicios reformer"]
 publishDate: "2025-09-24"

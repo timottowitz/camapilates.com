@@ -1,7 +1,7 @@
 
 ---
 title: "Calcetines para Pilates Reformer: Guía rápida"
-description: "Calcetines antideslizantes para Reformer: tallas, agarre y materiales."
+description: "Calcetines antideslizantes para cama de Pilates (Reformer): guía de tallas, niveles de agarre y materiales recomendados para mayor higiene, estabilidad y comodidad."
 category: "Equipo y mantenimiento"
 tags: ["calcetines pilates", "reformer", "accesorios"]
 publishDate: "2025-09-24"

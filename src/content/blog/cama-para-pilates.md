@@ -8,7 +8,6 @@ publishDate: "2025-09-24"
 author: "CAMA Pilates"
 slug: "cama-para-pilates"
 featured: false
-canonical: "https://camadepilates.com/blog/cama-de-pilates-venta-mexico"
 ---
 
 # Cama para Pilates: Qué tener en cuenta (alias)

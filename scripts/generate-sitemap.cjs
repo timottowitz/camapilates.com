@@ -38,6 +38,12 @@ function build() {
     { loc: `${origin}/services`, lastmod: now, changefreq: 'monthly', priority: '0.9' },
     { loc: `${origin}/blog`, lastmod: now, changefreq: 'daily', priority: '0.9' },
     { loc: `${origin}/products`, lastmod: now, changefreq: 'weekly', priority: '0.8' },
+    { loc: `${origin}/certificacion-pilates`, lastmod: now, changefreq: 'weekly', priority: '0.8' },
+    { loc: `${origin}/certificacion-pilates/cdmx`, lastmod: now, changefreq: 'weekly', priority: '0.7' },
+    { loc: `${origin}/certificacion-pilates/guadalajara`, lastmod: now, changefreq: 'weekly', priority: '0.7' },
+    { loc: `${origin}/certificacion-pilates/monterrey`, lastmod: now, changefreq: 'weekly', priority: '0.7' },
+    { loc: `${origin}/certificacion-pilates/puebla`, lastmod: now, changefreq: 'weekly', priority: '0.6' },
+    { loc: `${origin}/certificacion-pilates/queretaro`, lastmod: now, changefreq: 'weekly', priority: '0.6' },
   ];
 
   const files = walk(CONTENT_DIR);

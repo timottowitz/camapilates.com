@@ -4,7 +4,7 @@
   "exports": "./src/main.tsx",
   "tasks": {
     "dev": "deno run --allow-all npm:vite",
-    "prebuild": "deno run --allow-all scripts/generate-og.cjs && deno run --allow-all scripts/generate-sitemap.cjs",
+    "prebuild": "deno run --allow-read scripts/validate-content.ts && deno run --allow-all scripts/generate-og.cjs && deno run --allow-all scripts/generate-sitemap.cjs",
     "build": "deno run --allow-all npm:vite build && deno run --allow-all scripts/static-prerender.cjs",
     "build:dev": "deno run --allow-all npm:vite build --mode development",
     "lint": "deno lint",

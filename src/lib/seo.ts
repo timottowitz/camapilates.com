@@ -1,6 +1,6 @@
 export function getOrigin(): string {
   if (typeof window !== 'undefined' && window.location?.origin) return window.location.origin;
-  return (import.meta as any).env?.VITE_SITE_URL || 'https://solarpanelfraud.org';
+  return (import.meta as any).env?.VITE_SITE_URL || 'https://camadepilates.com';
 }
 
 export function canonicalUrl(pathname: string): string {
@@ -16,9 +16,8 @@ export function toAbsoluteUrl(maybePath: string | undefined | null): string | un
 }
 
 export const DEFAULTS = {
-  siteName: (import.meta as any).env?.VITE_SITE_NAME || 'camadepilates.com',
+  siteName: (import.meta as any).env?.VITE_SITE_NAME || 'CAMA Pilates',
   twitterSite: (import.meta as any).env?.VITE_TWITTER_SITE || '',
-  ogImage: '/lovable-uploads/cafd9240-68ad-4e1e-a695-6a0ba14f9afe.png',
-  locale: 'en_US'
+  ogImage: '/og/cama-de-pilates-venta-mexico.png',
+  locale: 'es_MX'
 };
-

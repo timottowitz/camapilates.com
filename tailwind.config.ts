@@ -63,13 +63,19 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				bennett: {
-					navy: '#1a365d',
-					gold: '#c99a2e',
-					slate: '#4a5568',
-					lightBlue: '#e6f0ff',
-					lightGold: '#f7f2e4',
-				},
+            // Brand palette mapped to a clean, neutral UI (no aggressive accents)
+            bennett: {
+                // primary text color across headings (approx gray-900)
+                navy: '#111827',
+                // neutral accent used sparingly
+                gold: '#6b7280',
+                // secondary text
+                slate: '#4b5563',
+                // subtle surface backgrounds
+                lightBlue: '#f5f5f5',
+                // subtle accent surface
+                lightGold: '#fff2e8',
+            },
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

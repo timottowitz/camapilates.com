@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
@@ -71,6 +71,53 @@ const BlogPost = () => {
     loadPost();
   }, [slug]);
 
+  // Compute values/hooks unconditionally to keep hook order consistent
+  const origin = getOrigin();
+  const safeSlug = slug || '';
+  const articleUrl = (postMeta as any)?.canonical || (safeSlug ? `${origin}/blog/${safeSlug}` : `${origin}/blog`);
+  const relatedPosts = postMeta ? getRelatedPosts(postMeta.slug, 3) : [];
+
+  // Prev/Next by publish date (newest first index) — compute without hooks
+  const computePrevNext = () => {
+    if (!postMeta) return { prevPost: null as any, nextPost: null as any };
+    const all = getAllPostsMeta();
+    const idx = all.findIndex(p => p.slug === postMeta.slug);
+    return {
+      prevPost: idx >= 0 && idx + 1 < all.length ? all[idx + 1] : null,
+      nextPost: idx > 0 ? all[idx - 1] : null,
+    };
+  };
+  const { prevPost, nextPost } = computePrevNext();
+
+  const ogImage = toAbsoluteUrl((postMeta as any)?.heroImage) || (postMeta ? `${origin}/og/${postMeta.slug}.png` : '');
+  const robots = (postMeta as any)?.noindex ? 'noindex,follow' : 'index,follow';
+  const tags = (postMeta as any)?.tags || [];
+  const keywords = tags.join(', ');
+
+  // (articleSchema removed) — build structured data inline in Helmet below
+
+  // Normalize content to ensure a top-level H1 exists for all posts
+  const normalizedContent = /^\s*#\s+/.test(content) ? content : `# ${postMeta?.title || ''}\n\n${content}`;
+
+  // Extract FAQ from content when a section starts with ## FAQ(S) — compute without hooks
+  const parseFaqs = (text: string) => {
+    const m = text.match(/\n##\s*FAQ[s]?\s*\n([\s\S]*)/i);
+    if (!m) return [] as { q: string; a: string }[];
+    const faqBody = m[1];
+    const parts = faqBody.split(/\n##\s+/)[0];
+    const qa: { q: string; a: string }[] = [];
+    const regex = /\n###\s+([^\n]+)\n([\s\S]*?)(?=\n###\s+|$)/g;
+    let match: RegExpExecArray | null;
+    while ((match = regex.exec(parts)) !== null) {
+      const q = match[1].trim();
+      const a = match[2].trim();
+      if (q && a) qa.push({ q, a });
+    }
+    return qa;
+  };
+  const faqs = parseFaqs(normalizedContent);
+
+  // Early returns after hooks to preserve consistent hook order
   if (loading) {
     return (
       <div className="container mx-auto px-4 py-8">
@@ -85,69 +132,6 @@ const BlogPost = () => {
     return <Navigate to="/blog" replace />;
   }
 
-  const origin = getOrigin();
-  const articleUrl = (postMeta as any).canonical || `${origin}/blog/${slug}`;
-  const relatedPosts = getRelatedPosts(postMeta.slug, 3);
-
-  // Prev/Next by publish date (newest first index)
-  const { prevPost, nextPost } = useMemo(() => {
-    const all = getAllPostsMeta();
-    const idx = all.findIndex(p => p.slug === postMeta.slug);
-    return {
-      prevPost: idx >= 0 && idx + 1 < all.length ? all[idx + 1] : null, // older
-      nextPost: idx > 0 ? all[idx - 1] : null // newer
-    };
-  }, [postMeta.slug]);
-
-  const ogImage = toAbsoluteUrl((postMeta as any).heroImage) || `${origin}/og/${postMeta.slug}.png`;
-  const robots = (postMeta as any).noindex ? 'noindex,follow' : 'index,follow';
-  const tags = (postMeta as any).tags || [];
-  const keywords = tags.join(', ');
-
-  // Structured data for article
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": postMeta.title,
-    "description": postMeta.excerpt,
-    "datePublished": postMeta.date,
-    "dateModified": postMeta.date,
-    "author": {
-      "@type": "Person",
-      "name": AUTHOR_INFO.name,
-      "description": AUTHOR_INFO.bio,
-      "url": AUTHOR_INFO.url
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Bennett Legal",
-      "url": window.location.origin
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": articleUrl
-    },
-    "articleSection": postMeta.category,
-    "wordCount": content.split(' ').length
-  };
-
-  // Extract FAQ from content when a section starts with ## FAQ(S)
-  const faqs = useMemo(() => {
-    const m = content.match(/\n##\s*FAQ[s]?\s*\n([\s\S]*)/i);
-    if (!m) return [] as { q: string; a: string }[];
-    const faqBody = m[1];
-    const parts = faqBody.split(/\n##\s+/)[0]; // stop at next H2
-    const qa: { q: string; a: string }[] = [];
-    const regex = /\n###\s+([^\n]+)\n([\s\S]*?)(?=\n###\s+|$)/g;
-    let match: RegExpExecArray | null;
-    while ((match = regex.exec(parts)) !== null) {
-      const q = match[1].trim();
-      const a = match[2].trim();
-      if (q && a) qa.push({ q, a });
-    }
-    return qa;
-  }, [content]);
-
   return (
     <>
       <Helmet>
@@ -160,7 +144,7 @@ const BlogPost = () => {
 
         {/* Open Graph */}
         <meta property="og:site_name" content={DEFAULTS.siteName} />
-        <meta property="og:locale" content="en_US" />
+        <meta property="og:locale" content={DEFAULTS.locale} />
         <meta property="og:title" content={postMeta.title} />
         <meta property="og:description" content={postMeta.excerpt} />
         <meta property="og:type" content="article" />
@@ -315,14 +299,14 @@ const BlogPost = () => {
               {/* Main Content */}
               <article className="lg:col-span-3">
                 <div className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-li:text-foreground prose-blockquote:text-muted-foreground prose-blockquote:border-l-primary prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
-                  <ArticleContentWithCTAs content={content} slug={postMeta.slug} />
+                  <ArticleContentWithCTAs content={normalizedContent} slug={postMeta.slug} />
                 </div>
               </article>
 
               {/* Sidebar */}
               <aside className="lg:col-span-1">
                 <div className="sticky top-24 space-y-8">
-                  <TableOfContents content={content} />
+                  <TableOfContents content={normalizedContent} />
 
                   {/* Share Card */}
                   <Card>
@@ -345,7 +329,7 @@ const BlogPost = () => {
 
           {/* Related Articles */}
           <div className="mt-12">
-            <h3 className="text-2xl font-semibold mb-6 text-foreground">Related Articles</h3>
+            <h3 className="text-2xl font-semibold mb-6 text-foreground">Artículos relacionados</h3>
             <div className="grid md:grid-cols-2 gap-6">
               {relatedPosts.map((p) => (
                 <Link key={p.slug} to={`/blog/${p.slug}`} className="block group">
@@ -368,7 +352,7 @@ const BlogPost = () => {
               {prevPost && (
                 <Link to={`/blog/${prevPost.slug}`} className="block group">
                   <div className="border rounded-lg p-6 hover:border-primary/50 transition-colors">
-                    <p className="text-xs text-muted-foreground mb-2">Previous</p>
+                    <p className="text-xs text-muted-foreground mb-2">Anterior</p>
                     <h4 className="font-semibold group-hover:text-primary transition-colors mb-1">{prevPost.title}</h4>
                     <p className="text-sm text-muted-foreground">{prevPost.excerpt}</p>
                   </div>
@@ -377,7 +361,7 @@ const BlogPost = () => {
               {nextPost && (
                 <Link to={`/blog/${nextPost.slug}`} className="block group md:text-right">
                   <div className="border rounded-lg p-6 hover:border-primary/50 transition-colors">
-                    <p className="text-xs text-muted-foreground mb-2">Next</p>
+                    <p className="text-xs text-muted-foreground mb-2">Siguiente</p>
                     <h4 className="font-semibold group-hover:text-primary transition-colors mb-1">{nextPost.title}</h4>
                     <p className="text-sm text-muted-foreground">{nextPost.excerpt}</p>
                   </div>
@@ -397,28 +381,24 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
 
   // Function to process content and replace shortcodes
   const processContent = (text: string) => {
-    const audioStoryRegex = /<audio-story\s+audioUrl="([^"]+)"\s+title="([^"]+)"\s+description="([^"]+)"\s*\/>/g;
-    const hubListRegex = /<hub-list\s+([^\/>]*)\/>/g; // attributes key="value"
-    const seeAlsoRegex = /<see-also\s*([^\/>]*)\/>/g;
-    const shoprocketButtonRegex = /<shoprocket-button\s+([^\/>]*)\/>/g;
-    
     const elements: React.ReactNode[] = [];
     let cursor = 0;
 
+    // Find next shortcode after current cursor without relying on sticky/global regex state
     const findNext = () => {
-      const a = audioStoryRegex.exec(text);
-      const h = hubListRegex.exec(text);
-      const s = seeAlsoRegex.exec(text);
-      const b = shoprocketButtonRegex.exec(text);
-      const matches: any[] = [];
-      if (a) matches.push({ type: 'audio', m: a });
-      if (h) matches.push({ type: 'hub', m: h });
-      if (s) matches.push({ type: 'see', m: s });
-      if (b) matches.push({ type: 'srbtn', m: b });
-      if (matches.length === 0) return null;
-      // earliest
-      matches.sort((x, y) => x.m.index - y.m.index);
-      return matches[0];
+      const slice = text.slice(cursor);
+      const res: any[] = [];
+      const a = /<audio-story\s+audioUrl="([^"]+)"\s+title="([^"]+)"\s+description="([^"]+)"\s*\/>/.exec(slice);
+      if (a) res.push({ type: 'audio', m: a, absIndex: cursor + a.index });
+      const h = /<hub-list\s+([^\/>]*)\/>/.exec(slice);
+      if (h) res.push({ type: 'hub', m: h, absIndex: cursor + h.index });
+      const s = /<see-also\s*([^\/>]*)\/>/.exec(slice);
+      if (s) res.push({ type: 'see', m: s, absIndex: cursor + s.index });
+      const b = /<shoprocket-button\s+([^\/>]*)\/>/.exec(slice);
+      if (b) res.push({ type: 'srbtn', m: b, absIndex: cursor + b.index });
+      if (res.length === 0) return null;
+      res.sort((x, y) => x.absIndex - y.absIndex);
+      return res[0];
     };
 
     const slugify = (raw: string) =>
@@ -442,7 +422,7 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
     
     while (true) {
       const next = findNext();
-      const nextIndex = next ? next.m.index : -1;
+      const nextIndex = next ? next.absIndex : -1;
       const chunk = nextIndex === -1 ? text.slice(cursor) : text.slice(cursor, nextIndex);
       if (chunk) {
         elements.push(
@@ -469,9 +449,9 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
       }
 
       if (!next) break;
-      const { type, m } = next;
+      const { type, m, absIndex } = next as any;
       // advance cursor past this match
-      cursor = m.index + m[0].length;
+      cursor = absIndex + m[0].length;
       if (type === 'audio') {
         const [, audioUrl, title, description] = m;
         elements.push(
@@ -511,11 +491,6 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
           );
         }
       }
-      // reset lastIndex for other regex to continue scanning next matches
-      audioStoryRegex.lastIndex = cursor;
-      hubListRegex.lastIndex = cursor;
-      seeAlsoRegex.lastIndex = cursor;
-      shoprocketButtonRegex.lastIndex = cursor;
     }
     
     return elements;
@@ -539,8 +514,8 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
               <div className="not-prose">
                 <CTASection
                   variant="compact"
-                  title="Been Scammed by Solar Companies?"
-                  description="Our attorneys specialize in solar fraud cases and can help you recover your losses. Get personalized legal advice for your situation."
+                  title="¿Lista para tu Reformer?"
+                  description="Asesoría personalizada para elegir tu cama de Pilates. Entrega 5–7 días desde CDMX, garantía 3 años y soporte en español."
                 />
               </div>
             )}

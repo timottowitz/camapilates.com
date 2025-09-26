@@ -14,4 +14,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://solarpanelfraud.org/sitemap.xml
+Sitemap: https://camadepilates.com/sitemap.xml

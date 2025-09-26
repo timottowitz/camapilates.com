@@ -31,21 +31,21 @@ const BlogCategory: React.FC = () => {
     run();
   }, [category]);
 
-  const title = `Blog Category: ${category}`;
+  const title = `Categoría: ${category}`;
 
   if (loading) return <div className="container mx-auto px-4 py-8">Loading…</div>;
 
   return (
     <>
       <Helmet>
-        <title>{title} | SolarPanelFraud.org</title>
-        <meta name="description" content={`Articles filed under ${category}`} />
+        <title>{title} | Edelweiss Pilates</title>
+        <meta name="description" content={`Artículos en la categoría ${category}`} />
         <meta name="robots" content="index,follow" />
         <link rel="canonical" href={`${window.location.origin}/blog/category/${category}`} />
-        <meta property="og:site_name" content="SolarPanelFraud.org" />
-        <meta property="og:locale" content="en_US" />
+        <meta property="og:site_name" content="Edelweiss Pilates" />
+        <meta property="og:locale" content="es_MX" />
         <meta property="og:title" content={title} />
-        <meta property="og:description" content={`Articles filed under ${category}`} />
+        <meta property="og:description" content={`Artículos en la categoría ${category}`} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${window.location.origin}/blog/category/${category}`} />
         <script type="application/ld+json">
@@ -53,7 +53,7 @@ const BlogCategory: React.FC = () => {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
             "name": title,
-            "description": `Articles filed under ${category}`,
+            "description": `Artículos en la categoría ${category}`,
             "url": `${window.location.origin}/blog/category/${category}`,
             "mainEntity": {
               "@type": "ItemList",
@@ -71,12 +71,12 @@ const BlogCategory: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <div className="mb-8 flex items-center justify-between">
             <h1 className="text-3xl font-bold">{title}</h1>
-            <Link to="/blog" className="text-primary">All Articles</Link>
+            <Link to="/blog" className="text-primary">Ver todos</Link>
           </div>
           {posts.length > 0 ? (
             <BlogList posts={posts} />
           ) : (
-            <p className="text-muted-foreground">No posts in this category yet.</p>
+            <p className="text-muted-foreground">Aún no hay artículos en esta categoría.</p>
           )}
         </div>
       </div>

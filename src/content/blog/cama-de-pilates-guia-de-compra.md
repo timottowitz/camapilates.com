@@ -1,6 +1,6 @@
 ---
 title: "Cama de Pilates (Reformer): Guía de compra 2025"
-description: "Cómo elegir tu cama de Pilates: tipos, materiales, accesorios, marcas y precio."
+description: "Cómo elegir tu cama de Pilates (Reformer): tipos y medidas, materiales y estabilidad, accesorios incluidos, marcas y servicio. Precios orientativos y recomendaciones."
 category: "Guías de compra"
 tags: ["cama de pilates", "precio", "mejor cama pilates", "reformer"]
 publishDate: "2025-09-24"

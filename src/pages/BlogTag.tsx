@@ -27,21 +27,21 @@ const BlogTag: React.FC = () => {
     setLoading(false);
   }, [tag]);
 
-  const title = `Tag: ${tag}`;
+  const title = `Etiqueta: ${tag}`;
 
   if (loading) return <div className="container mx-auto px-4 py-8">Loading…</div>;
 
   return (
     <>
       <Helmet>
-        <title>{title} | SolarPanelFraud.org</title>
-        <meta name="description" content={`Articles tagged with ${tag}`} />
+        <title>{title} | Edelweiss Pilates</title>
+        <meta name="description" content={`Artículos con la etiqueta ${tag}`} />
         <meta name="robots" content="index,follow" />
         <link rel="canonical" href={`${window.location.origin}/blog/tag/${tag}`} />
-        <meta property="og:site_name" content="SolarPanelFraud.org" />
-        <meta property="og:locale" content="en_US" />
+        <meta property="og:site_name" content="Edelweiss Pilates" />
+        <meta property="og:locale" content="es_MX" />
         <meta property="og:title" content={title} />
-        <meta property="og:description" content={`Articles tagged with ${tag}`} />
+        <meta property="og:description" content={`Artículos con la etiqueta ${tag}`} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${window.location.origin}/blog/tag/${tag}`} />
         <script type="application/ld+json">
@@ -49,7 +49,7 @@ const BlogTag: React.FC = () => {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
             "name": title,
-            "description": `Articles tagged with ${tag}`,
+            "description": `Artículos con la etiqueta ${tag}`,
             "url": `${window.location.origin}/blog/tag/${tag}`,
             "mainEntity": {
               "@type": "ItemList",
@@ -67,12 +67,12 @@ const BlogTag: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <div className="mb-8 flex items-center justify-between">
             <h1 className="text-3xl font-bold">{title}</h1>
-            <Link to="/blog" className="text-primary">All Articles</Link>
+            <Link to="/blog" className="text-primary">Ver todos</Link>
           </div>
           {posts.length > 0 ? (
             <BlogList posts={posts} />
           ) : (
-            <p className="text-muted-foreground">No posts with this tag yet.</p>
+            <p className="text-muted-foreground">Aún no hay artículos con esta etiqueta.</p>
           )}
         </div>
       </div>

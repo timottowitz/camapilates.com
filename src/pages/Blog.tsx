@@ -48,13 +48,13 @@ const Blog: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Blog de Pilates Reformer | Guías, ejercicios y equipo</title>
+        <title>Blog de Pilates Reformer | {DEFAULTS.siteName}</title>
         <meta name="description" content="Guías de compra de camas de Pilates, ejercicios con Reformer, mantenimiento y comparativas. Recomendaciones para casa y estudio." />
         <meta name="robots" content="index,follow" />
         <link rel="canonical" href={`${window.location.origin}/blog`} />
 
         {/* Open Graph */}
-        <meta property="og:site_name" content="camadepilates.com" />
+        <meta property="og:site_name" content={DEFAULTS.siteName} />
         <meta property="og:locale" content="es_MX" />
         <meta property="og:title" content="Blog de Pilates Reformer | Guías, ejercicios y equipo" />
         <meta property="og:description" content="Guías de compra, ejercicios y comparativas de camas de Pilates (Reformer)." />

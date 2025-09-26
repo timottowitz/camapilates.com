@@ -100,7 +100,7 @@ function svgTemplate(post, fontDataUrl) {
     <rect width="100%" height="100%" fill="url(#g)"/>
     <rect x="48" y="48" width="1104" height="534" rx="24" fill="#0b1220" opacity="0.6"/>
     <g transform="translate(96, 120)">
-      <rect x="0" y="-12" rx="10" width="auto" height="40" fill="#fbbf24" />
+      <rect x="0" y="-12" rx="10" width="auto" height="40" fill="#6B4F3B" />
       <text class="badge" x="0" y="20">${escapeXml(category)}</text>
     </g>
     <g transform="translate(96, 170)">
@@ -111,7 +111,7 @@ function svgTemplate(post, fontDataUrl) {
     ${subtitle ? `<g transform="translate(96, ${titleLines.length > 1 ? 360 : 300})"><text class="subtitle" x="0" y="0">${escapeXml(subtitle)}</text></g>` : ''}
     <g transform="translate(96, 560)">
       <text class="meta" x="0" y="0">${escapeXml(date)}</text>
-      <text class="meta" x="900" y="0">solarpanelfraud.org</text>
+      <text class="meta" x="900" y="0">camadepilates.com</text>
     </g>
   </svg>`;
 }
@@ -140,4 +140,3 @@ async function main() {
 }
 
 main();
-

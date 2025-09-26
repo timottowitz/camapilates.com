@@ -1,7 +1,7 @@
 
 ---
 title: "Accesorios para cama de Pilates: Imprescindibles"
-description: "Accesorios clave para el Reformer: box, correas, poleas y recomendaciones."
+description: "Accesorios para cama de Pilates: box, correas, poleas y muelles. Qué comprar según nivel y uso (casa o estudio), marcas a considerar y consejos de seguridad."
 category: "Equipo y mantenimiento"
 tags: ["accesorios", "box", "correas", "cama de pilates"]
 publishDate: "2025-09-24"
