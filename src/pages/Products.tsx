@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
 import products from '@/content/products.json';
-import products from '@/content/products.json';
 
 const Products: React.FC = () => {
   const origin = getOrigin();
