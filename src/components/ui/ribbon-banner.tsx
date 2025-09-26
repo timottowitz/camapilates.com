@@ -15,7 +15,7 @@ export const RibbonBanner: React.FC<RibbonBannerProps> = ({
       const k = `ribbon_dismissed_${id}`;
       const v = typeof window !== 'undefined' ? window.localStorage.getItem(k) : null;
       if (v === '1') setVisible(false);
-    } catch {}
+    } catch { /* ignore */ }
   }, [id]);
 
   const dismiss = () => {
@@ -23,7 +23,7 @@ export const RibbonBanner: React.FC<RibbonBannerProps> = ({
     try {
       const k = `ribbon_dismissed_${id}`;
       if (typeof window !== 'undefined') window.localStorage.setItem(k, '1');
-    } catch {}
+    } catch { /* ignore */ }
   };
 
   if (!visible) return null;

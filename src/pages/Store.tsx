@@ -6,15 +6,15 @@ import { MessageCircle, Package, ShieldCheck, Truck, CreditCard, CheckCircle, Ph
 
 const Store = () => {
   const origin = getOrigin();
-  const title = 'Cama de Pilates en México – Tienda Edelweiss Pilates';
-  const desc = 'Reformers de Pilates silenciosos con cuero y nogal. Envío 5-7 días en México y 3 años de garantía. Entra y conoce la tienda oficial Edelweiss.';
+  const title = 'Cama de Pilates (Reformer) en México — Tienda CAMA Pilates';
+  const desc = 'Compra tu cama de Pilates (Reformer) en México. Modelos para casa y estudio: silencio total, cuero genuino, nogal y acero. Envío 5–7 días y garantía de 3 años.';
 
   const productCasa = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: 'Cama de Pilates Reformer – Casa',
     description: 'Reformer compacto para casa. Estabilidad, recorrido suave y accesorios básicos.',
-    brand: { '@type': 'Brand', name: 'Edelweiss Pilates' },
+    brand: { '@type': 'Brand', name: 'CAMA Pilates' },
     sku: 'HOME-REFORMER-001',
     image: [`${origin}/og/cama-de-pilates-venta-mexico.png`],
     url: `${origin}/store#casa`,
@@ -37,7 +37,7 @@ const Store = () => {
     '@type': 'Product',
     name: 'Cama de Pilates Reformer – Profesional',
     description: 'Reformer profesional para estudio. Construcción robusta, accesorios y servicio.',
-    brand: { '@type': 'Brand', name: 'Edelweiss Pilates' },
+    brand: { '@type': 'Brand', name: 'CAMA Pilates' },
     sku: 'PRO-REFORMER-001',
     image: [`${origin}/og/cama-de-pilates-venta-mexico.png`],
     url: `${origin}/store#profesional`,
@@ -61,6 +61,26 @@ const Store = () => {
     '@type': 'ItemList',
     name: 'Camas de Pilates — Envío y disponibilidad',
     itemListElement: [productPro, productCasa].map((p, i) => ({ '@type': 'ListItem', position: i + 1, item: p }))
+  };
+
+  const keywords = [
+    'cama de pilates',
+    'reformer pilates',
+    'cama de pilates precio',
+    'reformer profesional',
+    'reformer para casa',
+    'cama de pilates mexico',
+    'venta de reformer en mexico',
+    'cama de pilates silenciosa',
+  ].join(', ');
+
+  const breadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${origin}/` },
+      { '@type': 'ListItem', position: 2, name: 'Tienda', item: `${origin}/store` }
+    ]
   };
 
   const faqSchema = {
@@ -116,6 +136,7 @@ const Store = () => {
         <title>{title} | {DEFAULTS.siteName}</title>
         <meta name="description" content={desc} />
         <link rel="canonical" href={`${origin}/store`} />
+        <meta name="keywords" content={keywords} />
         <meta property="og:site_name" content={DEFAULTS.siteName} />
         <meta property="og:locale" content={DEFAULTS.locale} />
         <meta property="og:title" content={title} />
@@ -126,18 +147,25 @@ const Store = () => {
         <script type="application/ld+json">{JSON.stringify(productCasa)}</script>
         <script type="application/ld+json">{JSON.stringify(productPro)}</script>
         <script type="application/ld+json">{JSON.stringify(shippingItemList)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
       <div className="container mx-auto px-4 py-12">
         {/* Header & Introductory Section */}
         <header className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Cama de Pilates Profesional Edelweiss – Silencio y Precisión
+            Cama de Pilates (Reformer) — CAMA Pilates
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
             Reformers silenciosos y precisos con cuero genuino, madera de nogal y acero.
             Entrega 5–7 días en México y soporte en español.
           </p>
+
+          <div className="flex flex-wrap justify-center gap-4 text-sm mb-6">
+            <Link to="/cama-de-pilates/en-venta" className="text-accent hover:underline">Cama de Pilates en venta</Link>
+            <Link to="/blog/reformer-casa-vs-profesional" className="text-accent hover:underline">Reformer casa vs profesional</Link>
+            <Link to="/cama-de-pilates/precio" className="text-accent hover:underline">Precio de la cama de Pilates</Link>
+          </div>
 
           {/* Visual USP bullets */}
           <div className="flex flex-wrap justify-center gap-6 mb-8 text-sm">
@@ -233,6 +261,7 @@ const Store = () => {
               <span className="text-lg font-semibold text-foreground">MXN $50,000</span>
               <span className="text-sm text-muted-foreground">Acabado nogal, cuero genuino</span>
             </div>
+          </div>
           <div
             dangerouslySetInnerHTML={{ __html: `
 <div class="sr-element sr-products" data-embed="single_product_widget">
@@ -263,6 +292,7 @@ const Store = () => {
   <script type="application/json" data-config="embed">{"publishable_key":"sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c","options":{"product_to_display":"prod_6569ddc31c17b221072732","open_product_in":"popup","variation_style":"on_hover"},"includes":{"show_product_name":"0","show_product_price":"0","show_product_image":"0","show_product_summary":"0","open_modal_on_image_click":"0","show_view_product_button":"1","show_add_to_cart_button":"1","show_min_max_order_quantity":"0","show_sale":"0","show_free_shipping":"0","show_new_product":"0","show_digital_download":"0","show_pwyw":"0","image_swap":"0","show_button_icons":"1"},"product_popup":{"show_product_name":"1","show_product_price":"1","show_product_summary":"1","show_product_description":"1","show_product_image":"1","show_add_to_cart_button":"1","show_select_quantity":"1","show_image_thumbnails":"1","show_product_reviews":"1","show_product_sku":"1","show_product_categories":"1","show_social_sharing_icons":"1","show_related_products":"1","thumbnail_layout":"horizontal_below","image_dimension_value":"crop","image_aspect_ratio":"portrait","variation_styling":"","show_min_max_order_quantity":"1","show_sale":"1","show_free_shipping":"1","show_new_product":"1","show_digital_download":"1","show_pwyw":"1","show_product_tabs":"1","image_zoom":"1","show_stock":"0"},"styles":{"align_content":"center","button_background":"#ff5a3d","button_color":"#ffffff","view_product_button_background":"#ff5a3d","view_product_button_color":"#ffffff","view_cart_button_background":"#ff5a3d","view_cart_button_color":"#ffffff","product_background":"transparent","modal_background":"#ffffff","button_font_weight":"normal","popup":{"colors":{"product_title":"#111827","product_price":"#111827","product_summary":"#4b5563","button_background":"#ff5a3d","button_color":"#ffffff","product_active_tab_background":"#f5f5f5"}}}}</script>
 </div>` }}
           />
+          </div>
         </section>
 
         <section className="mb-12">
@@ -371,9 +401,9 @@ const Store = () => {
         <section className="text-center">
           <div className="bg-card p-6 rounded-lg border border-border inline-block">
             <h3 className="text-lg font-semibold text-foreground mb-2">¿Dudas sobre tu compra?</h3>
-            <p className="text-muted-foreground mb-4">Habla con Tim o Laura ahora</p>
+            <p className="text-muted-foreground mb-4">Habla con Valery ahora</p>
             <a
-              href="https://wa.me/525512345678"
+              href="https://wa.me/523222787690"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
@@ -406,7 +436,7 @@ function useRegion() {
   }, [region]);
   const change = (val: 'MX' | 'US' | 'DE') => {
     setRegion(val);
-    try { if (typeof window !== 'undefined') window.localStorage.setItem('regionPref', val); } catch {}
+    try { if (typeof window !== 'undefined') window.localStorage.setItem('regionPref', val); } catch { /* ignore */ }
   };
   return { region, estimate, change };
 }
@@ -416,7 +446,7 @@ function RegionNote() {
   return (
     <div className="text-sm text-muted-foreground">
       <label htmlFor="regionStore" className="mr-2">Región:</label>
-      <select id="regionStore" className="rounded-md border border-border bg-background px-2 py-1 text-foreground" value={region} onChange={(e) => change(e.target.value as any)}>
+      <select id="regionStore" className="rounded-md border border-border bg-background px-2 py-1 text-foreground" value={region} onChange={(e) => change(e.target.value as 'MX' | 'US' | 'DE')}>
         <option value="MX">México</option>
         <option value="US">Estados Unidos</option>
         <option value="DE">Alemania / Europa</option>

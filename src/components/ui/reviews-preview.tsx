@@ -20,9 +20,9 @@ export const ReviewsPreview: React.FC<{ items?: ReviewItem[]; productSlug?: stri
         const json = await res.json();
         const list: ReviewItem[] = json?.[productSlug] || [];
         setData(list.length ? list : null);
-      } catch {}
+      } catch { /* ignore */ }
     })();
-  }, [productSlug]);
+  }, [productSlug, data]);
 
   const list: ReviewItem[] = data || [
     {
@@ -46,7 +46,7 @@ export const ReviewsPreview: React.FC<{ items?: ReviewItem[]; productSlug?: stri
   ];
 
   const avg = list.length ? list.reduce((a, r) => a + (r.rating || 5), 0) / list.length : 0;
-  React.useEffect(() => { if (onAggregate) onAggregate(avg, list.length); }, [avg, list.length]);
+  React.useEffect(() => { if (onAggregate) onAggregate(avg, list.length); }, [avg, list.length, onAggregate]);
 
   return (
     <div className="border border-border rounded-lg p-6 bg-card">

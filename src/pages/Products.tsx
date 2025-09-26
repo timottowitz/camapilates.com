@@ -120,7 +120,7 @@ function useRegion() {
   }, [region]);
   const change = (val: 'MX' | 'US' | 'DE') => {
     setRegion(val);
-    try { if (typeof window !== 'undefined') window.localStorage.setItem('regionPref', val); } catch {}
+    try { if (typeof window !== 'undefined') window.localStorage.setItem('regionPref', val); } catch { /* ignore */ }
   };
   return { region, estimate, change };
 }
@@ -130,7 +130,7 @@ function RegionNote() {
   return (
     <div className="text-sm text-muted-foreground">
       <label htmlFor="regionList" className="mr-2">Región:</label>
-      <select id="regionList" className="rounded-md border border-border bg-background px-2 py-1 text-foreground" value={region} onChange={(e) => change(e.target.value as any)}>
+      <select id="regionList" className="rounded-md border border-border bg-background px-2 py-1 text-foreground" value={region} onChange={(e) => change(e.target.value as 'MX' | 'US' | 'DE')}>
         <option value="MX">México</option>
         <option value="US">Estados Unidos</option>
         <option value="DE">Alemania / Europa</option>

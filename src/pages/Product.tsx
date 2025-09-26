@@ -14,9 +14,7 @@ const ProductPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const origin = getOrigin();
   const prod: Product | undefined = products.find(p => p.slug === slug);
-  if (!prod) return <Navigate to="/store" replace />;
 
-  const url = `${origin}/product/${prod.slug}`;
   const initialRegion = ((): 'MX' | 'US' | 'DE' => {
     if (typeof window === 'undefined') return 'MX';
     const v = window.localStorage?.getItem('regionPref');
@@ -24,6 +22,8 @@ const ProductPage: React.FC = () => {
   })();
   const [region, setRegion] = useState<'MX' | 'US' | 'DE'>(initialRegion);
   const [finish, setFinish] = useState<FinishKey>('walnut');
+  const [agg, setAgg] = useState<{ ratingValue: string; reviewCount: number } | undefined>(undefined);
+
   const estimate = useMemo(() => {
     if (region === 'MX') return '5–7 días';
     if (region === 'US') return '12–18 días (estimado)';
@@ -32,10 +32,12 @@ const ProductPage: React.FC = () => {
 
   const onChangeRegion = (value: 'MX' | 'US' | 'DE') => {
     setRegion(value);
-    try { if (typeof window !== 'undefined') window.localStorage.setItem('regionPref', value); } catch {}
+    try { if (typeof window !== 'undefined') window.localStorage.setItem('regionPref', value); } catch { /* ignore */ }
   };
-  // Aggregate rating dynamic (populated from ReviewsPreview when data is available)
-  const [agg, setAgg] = useState<{ ratingValue: string; reviewCount: number } | undefined>(undefined);
+
+  if (!prod) return <Navigate to="/store" replace />;
+
+  const url = `${origin}/product/${prod.slug}`;
 
   const materials = finish === 'mycelium'
     ? ['cuero de micelio (sostenible)', 'madera de nogal', 'acero estructural']
