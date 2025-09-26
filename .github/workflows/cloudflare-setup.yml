@@ -1,0 +1,28 @@
+name: Setup Cloudflare Pages (Env)
+
+on:
+  workflow_dispatch: {}
+
+env:
+  CF_PAGES_PROJECT_NAME: ${{ vars.CF_PAGES_PROJECT_NAME }}
+  SITE_URL: ${{ vars.SITE_URL }}
+
+jobs:
+  setup-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Wrangler (setup)
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: '3'
+          command: |
+            # Create Pages project if it doesn't exist (ignore error if exists)
+            wrangler pages project create "$CF_PAGES_PROJECT_NAME" --production-branch=main || true
+            # Put SITE_URL as a Pages secret so it's available to functions env
+            wrangler pages project secret put SITE_URL --project-name="$CF_PAGES_PROJECT_NAME" --value="$SITE_URL"
+

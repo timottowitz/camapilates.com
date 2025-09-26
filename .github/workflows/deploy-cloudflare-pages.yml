@@ -1,0 +1,66 @@
+name: Deploy (Cloudflare Pages)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: {}
+
+env:
+  # Set these as GitHub Variables (Repository settings → Variables)
+  CF_PAGES_PROJECT_NAME: ${{ vars.CF_PAGES_PROJECT_NAME }}
+  SITE_URL: ${{ vars.SITE_URL }}
+  NODE_VERSION: ${{ vars.NODE_VERSION || '20' }}
+
+jobs:
+  build-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: camapilates.com
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: camapilates.com/package-lock.json
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build (with prerender)
+        run: npm run build
+        env:
+          SITE_ORIGIN: ${{ env.SITE_URL }}
+          VITE_SITE_URL: ${{ env.SITE_URL }}
+
+      - name: Upload to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ${{ env.CF_PAGES_PROJECT_NAME }}
+          directory: camapilates.com/dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+  purge-cache:
+    name: Purge Cloudflare Cache (optional)
+    needs: build-deploy
+    runs-on: ubuntu-latest
+    if: ${{ secrets.CLOUDFLARE_ZONE_ID != '' && secrets.CLOUDFLARE_API_TOKEN != '' }}
+    steps:
+      - name: Purge everything
+        env:
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+        run: |
+          curl -sS -X POST \
+            -H "Authorization: Bearer ${CF_API_TOKEN}" \
+            -H "Content-Type: application/json" \
+            "https://api.cloudflare.com/client/v4/zones/${CF_ZONE_ID}/purge_cache" \
+            --data '{"purge_everything":true}'
+
