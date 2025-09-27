@@ -174,6 +174,11 @@
 **Target:** Dueños de Reformer y estudios
 **Keywords:** accesorios reformer, complementos pilates, equipo adicional
 
+### 📝 Precio de la cama de Pilates en México (2025)
+**Research File:** [precio-cama-de-pilates.md](./research/precio-cama-de-pilates.md)
+**Target:** Compradoras/es de hogar y dueñas/os de estudio en México
+**Keywords:** cama de pilates precio, reformer precio mexico, reformer profesional precio, financiación reformer, costo total de propiedad
+
 ---
 
 ## PRÓXIMOS TEMAS A INVESTIGAR
