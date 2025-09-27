@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { CreditCard, MessageCircle, Package, ShieldCheck } from 'lucide-react';
 import { ReviewsPreview } from '@/components/ui/reviews-preview';
 import { Finishes, FINISHES, type FinishKey } from '@/components/product/Finishes';
@@ -113,6 +113,15 @@ const ProductPage: React.FC = () => {
 <div class="sr-element sr-products" data-embed="single_product_widget">
   <script type="application/json" data-config="embed">{"publishable_key":"${prod.publishableKey}","options":{"product_to_display":"${prod.productId}","open_product_in":"popup","variation_style":"on_hover"},"includes":{"show_product_name":"0","show_product_price":"0","show_product_image":"0","show_product_summary":"0","open_modal_on_image_click":"0","show_view_product_button":"1","show_add_to_cart_button":"1","show_button_icons":"1"}}</script>
 </div>`;
+
+  const openBuyModal = useCallback(() => {
+    const root = document.getElementById('buy-widget');
+    if (!root) return;
+    const candidates = Array.from(root.querySelectorAll('button, a')) as HTMLElement[];
+    const match = candidates.find((el) => /ver|view|producto|product|comprar|add to cart|agregar/i.test(el.textContent || ''));
+    if (match) (match as HTMLButtonElement).click();
+    else root.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, []);
 
   // FAQ for Product pages (mirrors PDP info)
   const faqSchema = {
@@ -249,7 +258,7 @@ const ProductPage: React.FC = () => {
                 </div>
               </dl>
             </div>
-            <div className="mt-8" dangerouslySetInnerHTML={{ __html: embedHtml }} />
+            <div id="buy-widget" className="mt-8" dangerouslySetInnerHTML={{ __html: embedHtml }} />
 
             <div className="mt-10">
               <h2 className="text-lg font-semibold text-foreground">Características</h2>
@@ -285,7 +294,7 @@ const ProductPage: React.FC = () => {
     {/* Sticky mobile CTA bar */}
     <div className="fixed inset-x-0 bottom-0 z-40 md:hidden border-t border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-3">
-        <a href="#" onClick={(e) => { e.preventDefault(); document.querySelector('.sr-element')?.scrollIntoView({ behavior: 'smooth' }); }} className="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-md bg-primary text-primary-foreground">Comprar</a>
+        <a href="#comprar" onClick={(e) => { e.preventDefault(); openBuyModal(); }} className="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-md bg-primary text-primary-foreground">Comprar</a>
         <a href="tel:+523222787690" className="inline-flex items-center justify-center px-4 py-2 rounded-md border border-border text-foreground">Llamar</a>
         <a href="https://wa.me/523222787690" className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-green-600 text-white">WhatsApp</a>
       </div>
