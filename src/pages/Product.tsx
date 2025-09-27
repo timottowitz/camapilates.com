@@ -193,6 +193,7 @@ const ProductPage: React.FC = () => {
             <div className="mt-6 text-xl text-foreground font-semibold">$ {prod.price} {prod.currency}</div>
             {/* Desktop quick actions */}
             <div className="mt-3 hidden md:flex gap-2">
+              <button onClick={(e) => { e.preventDefault(); openBuyModal(); }} className="inline-flex items-center px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90">Comprar ahora</button>
               <a href="tel:+523222787690" className="inline-flex items-center px-4 py-2 rounded-md border border-border text-foreground hover:bg-foreground hover:text-background">Llamar</a>
               <a href="https://wa.me/523222787690" className="inline-flex items-center px-4 py-2 rounded-md bg-green-600 text-white hover:bg-green-700">WhatsApp</a>
             </div>
