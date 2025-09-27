@@ -169,7 +169,7 @@
 **Target:** Principiantes decidiendo qué tipo practicar
 **Keywords:** reformer vs mat, diferencias pilates, que elegir
 
-### 🔬 Accesorios esenciales para tu Reformer
+### ✅ Accesorios esenciales para tu Reformer
 **Research File:** [accesorios-esenciales-reformer.md](./research/accesorios-esenciales-reformer.md)
 **Target:** Dueños de Reformer y estudios
 **Keywords:** accesorios reformer, complementos pilates, equipo adicional
