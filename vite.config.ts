@@ -1,7 +1,7 @@
-import { defineConfig } from "npm:vite";
-import react from "npm:@vitejs/plugin-react-swc";
-import { resolve } from "https://deno.land/std@0.208.0/path/mod.ts";
-import { componentTagger } from "npm:lovable-tagger";
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import path from "node:path";
+import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => ({
   ].filter(Boolean),
   resolve: {
     alias: {
-      "@": resolve(Deno.cwd(), "./src"),
+      "@": path.resolve(process.cwd(), "./src"),
     },
   },
   define: {

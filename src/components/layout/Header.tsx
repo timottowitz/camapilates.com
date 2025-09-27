@@ -12,6 +12,7 @@ const Header: React.FC = () => {
         <nav className="flex items-center gap-6 text-sm text-gray-700">
           <Link to="/about" className="hover:text-black">Acerca de</Link>
           <Link to="/store" className="hover:text-black">Tienda</Link>
+          <Link to="/shop" className="hover:text-black">Tienda (Nuevo)</Link>
           <Link to="/acabados" className="hover:text-black">Acabados</Link>
           <Link to="/accesorios" className="hover:text-black">Accesorios</Link>
           <Link to="/blog" className="hover:text-black">Blog</Link>

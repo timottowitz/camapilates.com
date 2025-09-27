@@ -13,6 +13,7 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import NotFound from "./pages/NotFound";
 import Store from "./pages/Store";
+import Shop from "./pages/Shop";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import BlogCategory from "./pages/BlogCategory";
@@ -50,6 +51,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/store" element={<Store />} />
+            <Route path="/shop" element={<Shop />} />
             <Route path="/products" element={<Products />} />
             <Route path="/cama-de-pilates/en-venta" element={<CamaDePilatesEnVenta />} />
             <Route path="/cama-de-pilates/precio" element={<CamaDePilatesPrecio />} />

@@ -59,6 +59,7 @@ function baseHtml(template, headMeta, bodyHtml) {
       <nav class="flex items-center gap-6 text-sm text-gray-700">
         <a href="/about" class="hover:text-black">Acerca de</a>
         <a href="/store" class="hover:text-black">Tienda</a>
+        <a href="/shop" class="hover:text-black">Tienda (Nuevo)</a>
         <a href="/acabados" class="hover:text-black">Acabados</a>
         <a href="/accesorios" class="hover:text-black">Accesorios</a>
         <a href="/blog" class="hover:text-black">Blog</a>
@@ -111,6 +112,17 @@ function buildProductsIndex(products) {
     </a>
   `).join('\n');
   return `<div class="container mx-auto px-4 py-12"><h1 class="text-3xl font-bold text-gray-900 mb-8">Todos los productos</h1><div class="grid md:grid-cols-3 gap-6">${cards}</div></div>`;
+}
+function buildShopIndex(products) {
+  const cards = products.map(p => `
+    <a href="/product/${p.slug}" class="block group border rounded-lg p-6 hover:border-gray-900 transition-colors">
+      <img src="${p.image}" alt="${p.name}" class="w-full h-auto rounded mb-4 border" />
+      <h2 class="font-semibold text-gray-900 group-hover:text-black">${p.name}</h2>
+      <p class="text-sm text-gray-600 mt-2">${p.description}</p>
+      <div class="mt-3 font-semibold text-gray-900">$ ${p.price} ${p.currency}</div>
+    </a>
+  `).join('\n');
+  return `<div class="container mx-auto px-4 py-12"><h1 class="text-3xl font-bold text-gray-900 mb-8">Tienda</h1><div class="grid md:grid-cols-3 gap-6">${cards}</div></div>`;
 }
 
 function readPosts() {
@@ -294,6 +306,26 @@ function main() {
     let html = baseHtml(template, head, body);
     html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(itemList)}</script>\n</head>`);
     writeFileForRoute('/products', html);
+  }
+
+  // Shop hub (new)
+  if (prods.length) {
+    const head = {
+      title: 'Tienda — Camas de Pilates y Accesorios | camadepilates.com',
+      description: 'Compra tu Cama de Pilates (Reformer) y accesorios. Modelos para casa y estudio con envío en México.',
+      canonical: `${origin}/shop`,
+      ogImage: `${origin}${prods[0].image}`,
+      ogType: 'website'
+    };
+    const body = buildShopIndex(prods);
+    const itemList = {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      itemListElement: prods.map((p, idx) => ({ '@type': 'ListItem', position: idx + 1, url: `${origin}/product/${p.slug}`, name: p.name }))
+    };
+    let html = baseHtml(template, head, body);
+    html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(itemList)}</script>\n</head>`);
+    writeFileForRoute('/shop', html);
   }
 
   // Certification landing (static snapshot for SEO)

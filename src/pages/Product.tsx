@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { CreditCard, MessageCircle, Package, ShieldCheck } from 'lucide-react';
 import { ReviewsPreview } from '@/components/ui/reviews-preview';
 import { Finishes, FINISHES, type FinishKey } from '@/components/product/Finishes';
@@ -7,6 +7,9 @@ import { Helmet } from 'react-helmet-async';
 import { getOrigin, DEFAULTS } from '@/lib/seo';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import products from '@/content/products.json';
+import ShoprocketEmbed from '@/components/commerce21/ShoprocketEmbed';
+import Gallery21 from '@/components/commerce21/Gallery21';
+import { beginCheckout, viewItem } from '@/lib/shop/analytics';
 
 type Product = (typeof products)[number];
 
@@ -38,6 +41,11 @@ const ProductPage: React.FC = () => {
   if (!prod) return <Navigate to="/store" replace />;
 
   const url = `${origin}/product/${prod.slug}`;
+
+  useEffect(() => {
+    // Emit view_item on PDP load
+    viewItem(prod as any);
+  }, [prod?.slug]);
 
   const materials = finish === 'mycelium'
     ? ['cuero de micelio (sostenible)', 'madera de nogal', 'acero estructural']
@@ -109,13 +117,8 @@ const ProductPage: React.FC = () => {
     { '@type': 'PropertyValue', name: 'warranty', value: SPECS.warranty },
   ];
 
-  const embedHtml = `
-<div class="sr-element sr-products" data-embed="single_product_widget">
-  <script type="application/json" data-config="embed">{"publishable_key":"${prod.publishableKey}","options":{"product_to_display":"${prod.productId}","open_product_in":"popup","variation_style":"on_hover"},"includes":{"show_product_name":"0","show_product_price":"0","show_product_image":"0","show_product_summary":"0","open_modal_on_image_click":"0","show_view_product_button":"1","show_add_to_cart_button":"1","show_button_icons":"1"}}</script>
-</div>`;
-
   const openBuyModal = useCallback(() => {
-    const root = document.getElementById('buy-widget');
+    const root = document.getElementById('sr-embed-root');
     if (!root) return;
     const candidates = Array.from(root.querySelectorAll('button, a')) as HTMLElement[];
     const match = candidates.find((el) => /ver|view|producto|product|comprar|add to cart|agregar/i.test(el.textContent || ''));
@@ -174,7 +177,7 @@ const ProductPage: React.FC = () => {
       <section className="bg-background">
         <div className="container mx-auto px-4 py-16 grid md:grid-cols-2 gap-10 items-start">
           <div>
-            <img src={FINISHES[finish]?.img || prod.image} alt={`${prod.name} — ${FINISHES[finish]?.name || ''}`} className="w-full h-auto rounded-lg border border-border" loading="eager" onError={(e) => (e.currentTarget.src = prod.image)} />
+            <Gallery21 images={[FINISHES[finish]?.img || '', prod.image].filter(Boolean)} altPrefix={`${prod.name} — ${FINISHES[finish]?.name || ''}`} />
           </div>
           <div>
             {/* Region selector for delivery estimate */}
@@ -193,7 +196,7 @@ const ProductPage: React.FC = () => {
             <div className="mt-6 text-xl text-foreground font-semibold">$ {prod.price} {prod.currency}</div>
             {/* Desktop quick actions */}
             <div className="mt-3 hidden md:flex gap-2">
-              <button onClick={(e) => { e.preventDefault(); openBuyModal(); }} className="inline-flex items-center px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90">Comprar ahora</button>
+              <button onClick={(e) => { e.preventDefault(); beginCheckout({ product: prod as any }); openBuyModal(); }} className="inline-flex items-center px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90">Comprar ahora</button>
               <a href="tel:+523222787690" className="inline-flex items-center px-4 py-2 rounded-md border border-border text-foreground hover:bg-foreground hover:text-background">Llamar</a>
               <a href="https://wa.me/523222787690" className="inline-flex items-center px-4 py-2 rounded-md bg-green-600 text-white hover:bg-green-700">WhatsApp</a>
             </div>
@@ -259,7 +262,9 @@ const ProductPage: React.FC = () => {
                 </div>
               </dl>
             </div>
-            <div id="buy-widget" className="mt-8" dangerouslySetInnerHTML={{ __html: embedHtml }} />
+            <div className="mt-8">
+              <ShoprocketEmbed productId={prod.productId} publishableKey={prod.publishableKey} />
+            </div>
 
             <div className="mt-10">
               <h2 className="text-lg font-semibold text-foreground">Características</h2>
@@ -292,10 +297,37 @@ const ProductPage: React.FC = () => {
         </div>
       </div>
     </section>
+    {/* Cross-sell blocks: Accesorios y Guías */}
+    <section className="bg-background border-t border-border">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid md:grid-cols-2 gap-6">
+          <Link to="/accesorios" className="block group border border-border rounded-lg p-6 bg-card hover:border-primary/50 transition-colors">
+            <h2 className="text-xl font-semibold text-foreground group-hover:text-primary">Accesorios recomendados</h2>
+            <p className="text-sm text-muted-foreground mt-2">Cintas, cojines, limpia‑cuero y repuestos exprés para tu Reformer.</p>
+            <div className="mt-3 text-primary text-sm">Ver accesorios →</div>
+          </Link>
+          <div className="border border-border rounded-lg p-6 bg-card">
+            <h2 className="text-xl font-semibold text-foreground">Más guías útiles</h2>
+            <div className="mt-3 grid gap-3">
+              {[ 
+                { slug: 'cama-de-pilates-guia-de-compra', title: 'Cama de Pilates: Guía de compra 2025' },
+                { slug: 'precio-cama-de-pilates', title: 'Precio de Cama de Pilates' },
+                { slug: 'reformer-casa-vs-profesional', title: 'Reformer: casa vs profesional' },
+              ].map((g) => (
+                <Link key={g.slug} to={`/blog/${g.slug}`} className="block group rounded-md border border-border p-4 hover:border-primary/50 transition-colors">
+                  <div className="font-medium text-foreground group-hover:text-primary">{g.title}</div>
+                  <div className="text-xs text-muted-foreground">Leer guía →</div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     {/* Sticky mobile CTA bar */}
     <div className="fixed inset-x-0 bottom-0 z-40 md:hidden border-t border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-3">
-        <a href="#comprar" onClick={(e) => { e.preventDefault(); openBuyModal(); }} className="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-md bg-primary text-primary-foreground">Comprar</a>
+        <a href="#comprar" onClick={(e) => { e.preventDefault(); beginCheckout({ product: prod as any }); openBuyModal(); }} className="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-md bg-primary text-primary-foreground">Comprar</a>
         <a href="tel:+523222787690" className="inline-flex items-center justify-center px-4 py-2 rounded-md border border-border text-foreground">Llamar</a>
         <a href="https://wa.me/523222787690" className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-green-600 text-white">WhatsApp</a>
       </div>

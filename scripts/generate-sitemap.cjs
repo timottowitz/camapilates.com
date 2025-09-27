@@ -37,6 +37,7 @@ function build() {
     { loc: `${origin}/about`, lastmod: now, changefreq: 'monthly', priority: '0.8' },
     { loc: `${origin}/services`, lastmod: now, changefreq: 'monthly', priority: '0.9' },
     { loc: `${origin}/blog`, lastmod: now, changefreq: 'daily', priority: '0.9' },
+    { loc: `${origin}/shop`, lastmod: now, changefreq: 'weekly', priority: '0.8' },
     { loc: `${origin}/products`, lastmod: now, changefreq: 'weekly', priority: '0.8' },
     { loc: `${origin}/certificacion-pilates`, lastmod: now, changefreq: 'weekly', priority: '0.8' },
     { loc: `${origin}/certificacion-pilates/cdmx`, lastmod: now, changefreq: 'weekly', priority: '0.7' },
