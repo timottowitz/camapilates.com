@@ -16,4 +16,8 @@ export const ASSETS = {
 
   // Featured Product section image (override)
   featuredProducts: '/images/featured-products.webp',
+
+  // Mylo (Mycelium) assets
+  myloBadge: '/images/badges/mylo.svg',
+  myloSpecial: '/images/special/mylo-special.svg',
 } as const;

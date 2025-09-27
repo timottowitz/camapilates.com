@@ -11,6 +11,8 @@ import type { FinishKey, Product as PType } from '@/lib/shop/types';
 import ShoprocketBuyButton from '@/components/commerce21/ShoprocketBuyButton';
 import Gallery21 from '@/components/commerce21/Gallery21';
 import { beginCheckout, viewItem } from '@/lib/shop/analytics';
+import { Info } from 'lucide-react';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 type Product = (typeof products)[number] & PType;
 
@@ -130,6 +132,7 @@ const ProductPage: React.FC = () => {
     { '@type': 'PropertyValue', name: 'weight', value: SPECS.weight },
     { '@type': 'PropertyValue', name: 'warranty', value: SPECS.warranty },
     ...(activeVariant?.sku ? [{ '@type': 'PropertyValue', name: 'variant_sku', value: activeVariant.sku }] : []),
+    ...((finish === 'mycelium' || (prod.finishes||[]).includes('mycelium')) ? [{ '@type': 'PropertyValue', name: 'material_brand', value: 'Mylo (micelio)' }] : []),
   ];
 
   const openBuyModal = useCallback(() => {
@@ -223,6 +226,9 @@ const ProductPage: React.FC = () => {
                   {prod.isNew ? 'Nuevo' : 'Más vendido'}
                 </span>
               )}
+              {(/mycel/i.test(prod.name) || (prod.finishes||[]).includes('mycelium')) && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-700 text-white text-[10px] px-2 py-0.5">Mylo™</span>
+              )}
             </h1>
             {/* Breadcrumbs inline */}
             <div className="mt-1 text-xs text-muted-foreground flex items-center gap-2">
@@ -242,6 +248,28 @@ const ProductPage: React.FC = () => {
               <div className="text-xs text-muted-foreground">SKU: {displaySku}</div>
             </div>
             <div className="text-xs text-muted-foreground mt-1">Entrega {estimate} • Garantía 3 años</div>
+            {(finish === 'mycelium' || (prod.finishes||[]).includes('mycelium') || /mycel/i.test(prod.name)) && (
+              <div className="mt-2 text-xs text-emerald-900 flex items-center gap-2">
+                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2 py-1">Edición Mylo™ (micelio)</span>
+                <a
+                  href="https://boltthreads.com/technology/mylo/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ml-2 text-primary hover:underline"
+                  title="Material de micelio renovable (Mylo™)"
+                >Conocer Mylo</a>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button type="button" aria-label="¿Qué es Mylo?" className="text-emerald-800/80 hover:text-emerald-900">
+                      <Info className="h-4 w-4" />
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <span>Mylo™: material de micelio con tacto premium & menor impacto ambiental.</span>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
+            )}
             {/* Desktop quick actions */}
             <div className="mt-3 hidden md:flex gap-2">
               <button onClick={(e) => { e.preventDefault(); beginCheckout({ product: prod as any }); openBuyModal(); }} className="inline-flex items-center px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90">Comprar ahora</button>

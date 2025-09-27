@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
-const { marked } = require('marked');
+// Use dynamic import for marked ESM module
 
 const ROOT = path.resolve(__dirname, '..');
 const DIST = path.join(ROOT, 'dist');
@@ -97,7 +97,7 @@ function buildIndex(posts) {
       <p class="text-sm text-muted-foreground">${htmlEscape(p.description || '')}</p>
     </a>
   `).join('\n');
-  return `<div class="container mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-6">Blog de Pilates Reformer</h1><div class="grid md:grid-cols-2 gap-4">${items}</div></div>`;
+  return `<div class="container mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-6">Centro de Conocimiento</h1><div class="grid md:grid-cols-2 gap-4">${items}</div></div>`;
 }
 
 function buildProductsIndex(products) {
@@ -204,7 +204,9 @@ function writeFileForRoute(routePath, html) {
   fs.writeFileSync(path.join(targetDir, 'index.html'), html, 'utf8');
 }
 
-function main() {
+async function main() {
+  // Import marked dynamically
+  const { marked } = await import('marked');
   if (!fs.existsSync(DIST)) {
     console.error('dist/ not found. Run build first.');
     process.exit(1);
@@ -223,8 +225,8 @@ function main() {
 
   // Blog index
   const blogHead = {
-    title: 'Blog de Pilates Reformer | camadepilates.com',
-    description: 'Guías de compra, ejercicios y comparativas de camas de Pilates (Reformer).',
+    title: 'Centro de Conocimiento | camadepilates.com',
+    description: 'Centro de Conocimiento: guías de compra, ejercicios y comparativas de camas de Pilates (Reformer).',
     canonical: `${origin}/blog`,
     ogImage: `${origin}/og/${posts[0]?.slug || 'og'}.png`,
     ogType: 'website'
@@ -434,4 +436,4 @@ function main() {
   console.log('Static prerender complete.');
 }
 
-main();
+main().catch(console.error);

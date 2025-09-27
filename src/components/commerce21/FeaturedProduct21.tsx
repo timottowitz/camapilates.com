@@ -9,7 +9,10 @@ const FeaturedProduct21: React.FC<{ product: Product }> = ({ product }) => {
     <section className="mb-10">
       <h2 className="text-xl font-semibold text-foreground mb-3">Producto destacado</h2>
       <div className="grid md:grid-cols-2 gap-6 border border-border rounded-lg bg-card p-4">
-        <div className="aspect-video w-full bg-muted rounded overflow-hidden">
+        <div className="relative aspect-video w-full bg-muted rounded overflow-hidden">
+          {(((product as any).finishes || []).includes('mycelium') || /mycel/i.test(product?.name || '') || /mycel/i.test(product?.slug || '')) && (
+            <img src={ASSETS.myloBadge} alt="Mylo™" className="absolute top-3 left-3 h-7 w-auto drop-shadow" />
+          )}
           <img src={ASSETS.featuredProducts || product.image} alt={ASSETS.featuredProducts ? 'Productos destacados' : product.name} className="h-full w-full object-cover" loading="lazy" decoding="async" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
         </div>
         <div>

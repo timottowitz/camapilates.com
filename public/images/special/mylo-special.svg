@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="960" y2="540" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E6FFF4"/>
+      <stop offset="1" stop-color="#D1FAE5"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" fill="url(#bg)"/>
+  <circle cx="180" cy="160" r="90" fill="#34D399" opacity="0.15"/>
+  <circle cx="820" cy="420" r="120" fill="#10B981" opacity="0.12"/>
+  <text x="60" y="110" font-family="Georgia, serif" font-size="42" fill="#0F172A" font-weight="700">Edición Mycelium (Mylo™)</text>
+  <text x="60" y="160" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18" fill="#334155">Tacto refinado & origen renovable para tu Reformer.</text>
+  <rect x="60" y="200" width="360" height="220" rx="16" fill="#fff" stroke="#94A3B8"/>
+  <rect x="435" y="200" width="360" height="220" rx="16" fill="#fff" stroke="#94A3B8"/>
+  <text x="82" y="236" font-family="Inter, system-ui, -apple-system" font-size="14" fill="#0F172A" font-weight="600">Material</text>
+  <text x="82" y="260" font-family="Inter, system-ui, -apple-system" font-size="13" fill="#334155">Mylo™ (micelio) — alternativa no tóxica</text>
+  <text x="82" y="286" font-family="Inter, system-ui, -apple-system" font-size="14" fill="#0F172A" font-weight="600">Acabados compatibles</text>
+  <text x="82" y="310" font-family="Inter, system-ui, -apple-system" font-size="13" fill="#334155">Edición especial sobre estructura de nogal & acero</text>
+  <text x="82" y="336" font-family="Inter, system-ui, -apple-system" font-size="14" fill="#0F172A" font-weight="600">Suplemento</text>
+  <text x="82" y="360" font-family="Inter, system-ui, -apple-system" font-size="13" fill="#334155">+$6,000 MXN</text>
+  <text x="455" y="236" font-family="Inter, system-ui, -apple-system" font-size="14" fill="#0F172A" font-weight="600">Beneficios</text>
+  <text x="455" y="260" font-family="Inter, system-ui, -apple-system" font-size="13" fill="#334155">• Tacto cálido & estética refinada</text>
+  <text x="455" y="280" font-family="Inter, system-ui, -apple-system" font-size="13" fill="#334155">• Probado en flexión & abrasión</text>
+  <text x="455" y="300" font-family="Inter, system-ui, -apple-system" font-size="13" fill="#334155">• Fácil mantenimiento</text>
+</svg>
+

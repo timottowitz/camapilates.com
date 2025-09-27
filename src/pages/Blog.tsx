@@ -55,23 +55,23 @@ const Blog: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Blog de Pilates Reformer | {DEFAULTS.siteName}</title>
-        <meta name="description" content="Guías de compra de camas de Pilates, ejercicios con Reformer, mantenimiento y comparativas. Recomendaciones para casa y estudio." />
+        <title>Centro de Conocimiento | {DEFAULTS.siteName}</title>
+        <meta name="description" content="Centro de Conocimiento: guías de compra, ejercicios con Reformer, mantenimiento y comparativas. Recomendaciones para casa y estudio." />
         <meta name="robots" content="index,follow" />
         <link rel="canonical" href={`${getOrigin()}/blog`} />
 
         {/* Open Graph */}
         <meta property="og:site_name" content={DEFAULTS.siteName} />
         <meta property="og:locale" content="es_MX" />
-        <meta property="og:title" content="Blog de Pilates Reformer | Guías, ejercicios y equipo" />
-        <meta property="og:description" content="Guías de compra, ejercicios y comparativas de camas de Pilates (Reformer)." />
+        <meta property="og:title" content="Centro de Conocimiento | Guías, ejercicios y equipo" />
+        <meta property="og:description" content="Centro de Conocimiento: guías de compra, ejercicios y comparativas de camas de Pilates (Reformer)." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${getOrigin()}/blog`} />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Blog de Pilates Reformer | Guías, ejercicios y equipo" />
-        <meta name="twitter:description" content="Guías de compra, ejercicios y comparativas de camas de Pilates (Reformer)." />
+        <meta name="twitter:title" content="Centro de Conocimiento | Guías, ejercicios y equipo" />
+        <meta name="twitter:description" content="Centro de Conocimiento: guías de compra, ejercicios y comparativas de camas de Pilates (Reformer)." />
 
         {/* JSON-LD Structured Data */}
         <script type="application/ld+json">
@@ -98,8 +98,8 @@ const Blog: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Blog de Pilates Reformer</h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Guías de compra, ejercicios, mantenimiento y comparativas. Todo sobre la cama de Pilates (Reformer) para casa y estudio.</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Centro de Conocimiento</h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">Guías de compra, ejercicios, mantenimiento y comparativas. Todo sobre la cama de Pilates (Reformer) para casa y estudio.</p>
           </div>
 
           {/* Loading Notice */}
