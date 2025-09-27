@@ -40,3 +40,19 @@
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
+    <!-- Google tag (gtag.js) — GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RP5K1P8VKP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);} // minimal queue
+      // Consent Mode (default): analytics allowed, ads denied until updated
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'analytics_storage': 'granted',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-RP5K1P8VKP');
+    </script>

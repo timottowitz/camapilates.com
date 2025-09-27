@@ -36,6 +36,7 @@ import IdentifySolarScams from "./pages/resources/IdentifySolarScams";
 import LegalRights from "./pages/resources/LegalRights";
 import ReportingFraud from "./pages/resources/ReportingFraud";
 import PreventionGuide from "./pages/resources/PreventionGuide";
+import GAListener from "@/components/analytics/GAListener";
 import FloatingCart21 from "@/components/commerce21/FloatingCart21";
 
 const queryClient = new QueryClient();
@@ -48,6 +49,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Header />
+          <GAListener />
           {/* Shoprocket embeds are placed directly in pages via embed blocks */}
           <Routes>
             <Route path="/" element={<Index />} />

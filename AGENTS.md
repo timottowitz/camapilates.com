@@ -105,6 +105,31 @@ This agent mines Pilates books for expert insights, generates viral titles, and 
 - Local: `npm ci && npm run build` → prerender + OG + sitemap.
 - CF Pages: headers + functions incluidos; set `SITE_URL` y cron prewarm.
 
+## Analytics (Google tag)
+
+We use GA4 via the Google tag (gtag.js).
+
+Best practice adopted for this repo:
+- Install the global tag once in `index.html` immediately after `<head>`.
+- Send SPA pageviews on route changes using a listener.
+- Do NOT duplicate the tag per page; one tag per HTML document.
+
+Implementation details:
+- Global tag snippet in `index.html` (currently using `G-RP5K1P8VKP`). If you need to change it, set `VITE_GA_ID` and keep the snippet ID in sync.
+- Consent Mode default is set to grant analytics and deny ads until updated. If you add a cookie banner later, call `setConsent(...)` from `src/lib/analytics/ga.ts` after the user choice.
+- SPA pageviews: `src/components/analytics/GAListener.tsx` + `src/lib/analytics/ga.ts` track `page_path` on every React Router navigation. The component is mounted in `src/App.tsx`.
+- Static prerender preserves the tag because our prerenderer does not remove `<script>` tags from the head template.
+
+When adding new pages/components:
+- No extra work is required. Do not add additional GA tags. The listener covers route changes.
+- If a page triggers important events (e.g., purchases, form submits), prefer helpers in `src/lib/analytics/ga.ts`:
+  - `event(name, params)` generic emitter
+  - `beginCheckout(params)`
+  - `addToCart({ value, currency, items })`
+  - `purchase({ transaction_id, value, currency, items })`
+  - `viewItem({ item_id, item_name, value, currency, items })`
+- If you integrate Consent UI later, update consent with `setConsent({ analytics_storage: 'granted'|'denied', ad_storage: 'granted'|'denied', ... })` as needed.
+
 ## SEO Checklist por PR
 - [ ] Frontmatter completo; `description` única.
 - [ ] Título y slug reflejan intención de búsqueda.
