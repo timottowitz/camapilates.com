@@ -6,9 +6,10 @@ import { selectItem } from '@/lib/shop/analytics';
 
 type Props = {
   product: Product;
+  onQuickView?: (p: Product) => void;
 };
 
-const ProductCard21: React.FC<Props> = ({ product }) => {
+const ProductCard21: React.FC<Props> = ({ product, onQuickView }) => {
   return (
     <Link
       to={`/product/${product.slug}`}
@@ -16,7 +17,12 @@ const ProductCard21: React.FC<Props> = ({ product }) => {
       onClick={() => selectItem(product, 'shop')}
     >
       <div className="p-4">
-        <div className="aspect-square w-full overflow-hidden rounded-md border border-border bg-muted">
+        <div className="relative aspect-square w-full overflow-hidden rounded-md border border-border bg-muted">
+          {(product.isNew || product.bestSeller) && (
+            <div className="absolute top-2 left-2 z-10 inline-flex items-center gap-1 rounded-full bg-black/70 text-white text-[10px] px-2 py-0.5">
+              {product.isNew ? 'Nuevo' : 'Más vendido'}
+            </div>
+          )}
           <img
             src={product.image}
             alt={product.name}
@@ -34,6 +40,17 @@ const ProductCard21: React.FC<Props> = ({ product }) => {
             {product.description}
           </p>
           <div className="mt-2 text-sm font-semibold text-foreground">{formatPrice(product)}</div>
+          {onQuickView && (
+            <div className="mt-3">
+              <button
+                type="button"
+                onClick={(e) => { e.preventDefault(); onQuickView(product); }}
+                className="inline-flex items-center px-3 py-1.5 rounded-md border border-border text-foreground hover:bg-foreground hover:text-background text-xs"
+              >
+                Vista rápida
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </Link>

@@ -1,5 +1,5 @@
 import products from '@/content/products.json';
-import type { Product, Region } from './types';
+import type { Product, Region, FinishKey } from './types';
 
 export function allProducts(): Product[] {
   return products as Product[];
@@ -55,3 +55,47 @@ export function toItemListSchema(origin: string, list: Product[]) {
   } as const;
 }
 
+export function categoriesWithCounts(list: Product[] = allProducts()): { name: string; slug: string; count: number }[] {
+  const map = new Map<string, number>();
+  for (const p of list) {
+    const cat = (p.category || 'Otros').trim();
+    map.set(cat, (map.get(cat) || 0) + 1);
+  }
+  const items = Array.from(map.entries()).map(([name, count]) => ({ name, count, slug: toCategorySlug(name) }));
+  return items.sort((a, b) => a.name.localeCompare(b.name));
+}
+
+export function filterByCategory(list: Product[], cats: string[]): Product[] {
+  if (!cats?.length) return list;
+  const set = new Set(cats.map((c) => c.toLowerCase()));
+  return list.filter((p) => set.has((p.category || 'otros').toLowerCase()));
+}
+
+export function toCategorySlug(name: string): string {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+export function categoryFromSlug(slug: string): string | undefined {
+  const cats = categoriesWithCounts();
+  return cats.find((c) => c.slug === slug)?.name;
+}
+
+export function availableFinishes(list: Product[] = allProducts()): FinishKey[] {
+  const set = new Set<FinishKey>();
+  for (const p of list) {
+    (p.finishes || []).forEach((f) => set.add(f));
+  }
+  return Array.from(set);
+}
+
+export function filterByFinishes(list: Product[], fins: FinishKey[]): Product[] {
+  if (!fins?.length) return list;
+  const set = new Set(fins);
+  return list.filter((p) => (p.finishes || []).some((f) => set.has(f)));
+}
+
+export function filterByAvailability(list: Product[], statuses: string[]): Product[] {
+  if (!statuses?.length) return list;
+  const set = new Set(statuses.map((s) => s.toLowerCase()));
+  return list.filter((p) => set.has((p.availability || '').toLowerCase()));
+}

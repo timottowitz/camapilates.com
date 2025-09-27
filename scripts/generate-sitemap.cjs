@@ -69,12 +69,25 @@ function build() {
   try {
     const productsJson = fs.readFileSync(path.join(ROOT, 'src', 'content', 'products.json'), 'utf8');
     const prods = JSON.parse(productsJson);
+    const catMap = new Map();
     for (const p of prods) {
       urls.push({
         loc: `${origin}/product/${encodeURIComponent(p.slug)}`,
         lastmod: now,
         changefreq: 'weekly',
         priority: '0.7'
+      });
+      const cname = (p.category || 'Otros');
+      catMap.set(cname, true);
+    }
+    // Category pages
+    for (const name of Array.from(catMap.keys())) {
+      const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      urls.push({
+        loc: `${origin}/shop/category/${slug}`,
+        lastmod: now,
+        changefreq: 'weekly',
+        priority: '0.6'
       });
     }
   } catch (e) {

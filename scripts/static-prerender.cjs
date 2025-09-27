@@ -58,14 +58,12 @@ function baseHtml(template, headMeta, bodyHtml) {
       </a>
       <nav class="flex items-center gap-6 text-sm text-gray-700">
         <a href="/about" class="hover:text-black">Acerca de</a>
-        <a href="/store" class="hover:text-black">Tienda</a>
-        <a href="/shop" class="hover:text-black">Tienda (Nuevo)</a>
+        <a href="/shop" class="hover:text-black">Tienda</a>
         <a href="/acabados" class="hover:text-black">Acabados</a>
         <a href="/accesorios" class="hover:text-black">Accesorios</a>
         <a href="/blog" class="hover:text-black">Blog</a>
         <a href="/packs/estudio" class="hover:text-black">Paquete de Estudio (8+)</a>
         <a href="/certificacion-pilates" class="hover:text-black">Certificación</a>
-        <a href="#faq" class="hover:text-black">FAQ</a>
       </nav>
     </div>
   </header>`;
@@ -326,6 +324,35 @@ function main() {
     let html = baseHtml(template, head, body);
     html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(itemList)}</script>\n</head>`);
     writeFileForRoute('/shop', html);
+  }
+
+  // Shop categories (new)
+  if (prods.length) {
+    const catMap = new Map();
+    for (const p of prods) {
+      const c = (p.category || 'Otros');
+      catMap.set(c, true);
+    }
+    for (const name of Array.from(catMap.keys())) {
+      const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      const list = prods.filter(p => (p.category || 'Otros') === name);
+      const head = {
+        title: `Tienda — ${name} | camadepilates.com`,
+        description: `Productos en la categoría ${name}`,
+        canonical: `${origin}/shop/category/${slug}`,
+        ogImage: `${origin}${list[0]?.image || '/og/cama-de-pilates-venta-mexico.png'}`,
+        ogType: 'website'
+      };
+      const body = buildShopIndex(list);
+      const itemList = {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        itemListElement: list.map((p, idx) => ({ '@type': 'ListItem', position: idx + 1, url: `${origin}/product/${p.slug}`, name: p.name }))
+      };
+      let html = baseHtml(template, head, body);
+      html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(itemList)}</script>\n</head>`);
+      writeFileForRoute(`/shop/category/${slug}`, html);
+    }
   }
 
   // Certification landing (static snapshot for SEO)

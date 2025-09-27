@@ -1,6 +1,5 @@
 import React from 'react';
-
-export type FinishKey = 'walnut' | 'white' | 'black' | 'mycelium';
+import type { FinishKey } from '@/lib/shop/types';
 
 export const FINISHES: Record<FinishKey, { name: string; img: string; description: string; sustainable?: boolean; swatch?: string }> = {
   walnut: {

@@ -46,7 +46,10 @@ export const ReviewsPreview: React.FC<{ items?: ReviewItem[]; productSlug?: stri
   ];
 
   const avg = list.length ? list.reduce((a, r) => a + (r.rating || 5), 0) / list.length : 0;
-  React.useEffect(() => { if (onAggregate) onAggregate(avg, list.length); }, [avg, list.length, onAggregate]);
+  // Avoid infinite loops: do not depend on onAggregate identity
+  React.useEffect(() => {
+    if (onAggregate) onAggregate(avg, list.length);
+  }, [avg, list.length]);
 
   return (
     <div className="border border-border rounded-lg p-6 bg-card">

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ShoprocketCart from '@/components/commerce21/ShoprocketCart';
+import { allProducts } from '@/lib/shop/catalog';
 
 const Header: React.FC = () => {
   return (
@@ -11,15 +13,19 @@ const Header: React.FC = () => {
         </Link>
         <nav className="flex items-center gap-6 text-sm text-gray-700">
           <Link to="/about" className="hover:text-black">Acerca de</Link>
-          <Link to="/store" className="hover:text-black">Tienda</Link>
-          <Link to="/shop" className="hover:text-black">Tienda (Nuevo)</Link>
+          <Link to="/shop" className="hover:text-black">Tienda</Link>
           <Link to="/acabados" className="hover:text-black">Acabados</Link>
           <Link to="/accesorios" className="hover:text-black">Accesorios</Link>
           <Link to="/blog" className="hover:text-black">Blog</Link>
           <Link to="/packs/estudio" className="hover:text-black">Paquete de Estudio (8+)</Link>
           <Link to="/certificacion-pilates" className="hover:text-black">Certificación</Link>
-          <a href="#faq" className="hover:text-black">FAQ</a>
         </nav>
+        <div className="hidden md:block">
+          {(() => {
+            const p = allProducts()[0];
+            return p ? <ShoprocketCart publishableKey={p.publishableKey} /> : null;
+          })()}
+        </div>
       </div>
     </header>
   );

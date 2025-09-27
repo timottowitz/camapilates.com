@@ -14,6 +14,7 @@ import Services from "./pages/Services";
 import NotFound from "./pages/NotFound";
 import Store from "./pages/Store";
 import Shop from "./pages/Shop";
+import ShopCategory from "./pages/ShopCategory";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import BlogCategory from "./pages/BlogCategory";
@@ -35,6 +36,7 @@ import IdentifySolarScams from "./pages/resources/IdentifySolarScams";
 import LegalRights from "./pages/resources/LegalRights";
 import ReportingFraud from "./pages/resources/ReportingFraud";
 import PreventionGuide from "./pages/resources/PreventionGuide";
+import FloatingCart21 from "@/components/commerce21/FloatingCart21";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +54,7 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/store" element={<Store />} />
             <Route path="/shop" element={<Shop />} />
+            <Route path="/shop/category/:slug" element={<ShopCategory />} />
             <Route path="/products" element={<Products />} />
             <Route path="/cama-de-pilates/en-venta" element={<CamaDePilatesEnVenta />} />
             <Route path="/cama-de-pilates/precio" element={<CamaDePilatesPrecio />} />
@@ -81,6 +84,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
+          <FloatingCart21 />
           <ScrollToTop />
         </BrowserRouter>
       </TooltipProvider>

@@ -1,3 +1,14 @@
+export type FinishKey = 'walnut' | 'white' | 'black' | 'mycelium';
+
+export type ProductVariant = {
+  id: string;
+  name?: string;
+  sku?: string;
+  price?: string; // override
+  image?: string;
+  finish?: FinishKey;
+};
+
 export type Product = {
   slug: string;
   name: string;
@@ -10,7 +21,13 @@ export type Product = {
   availability: string; // schema URL
   productId: string; // Shoprocket product id
   publishableKey: string; // Shoprocket key
+  category?: string; // e.g., Reformers, Accesorios
+  finishes?: FinishKey[];
+  materials?: string[];
+  warranty?: string;
+  variants?: ProductVariant[];
+  bestSeller?: boolean;
+  isNew?: boolean;
 };
 
 export type Region = 'MX' | 'US' | 'DE';
-

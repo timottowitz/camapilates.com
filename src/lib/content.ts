@@ -25,6 +25,7 @@ export interface PostIndexItem {
   author: string;
   featured?: boolean;
   tags: string[];
+  heroImage?: string;
 }
 
 export interface PostFull extends PostIndexItem {
@@ -81,6 +82,7 @@ let INDEX: PostFull[] = Object.entries(files).map(([path, raw]) => {
     author,
     featured,
     tags,
+    heroImage: fm.heroImage,
     content: normalizedContent,
     updatedDate: fm.updatedDate,
     canonical: fm.canonical,

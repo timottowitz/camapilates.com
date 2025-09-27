@@ -7,11 +7,12 @@ import { Helmet } from 'react-helmet-async';
 import { getOrigin, DEFAULTS } from '@/lib/seo';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import products from '@/content/products.json';
-import ShoprocketEmbed from '@/components/commerce21/ShoprocketEmbed';
+import type { FinishKey, Product as PType } from '@/lib/shop/types';
+import ShoprocketBuyButton from '@/components/commerce21/ShoprocketBuyButton';
 import Gallery21 from '@/components/commerce21/Gallery21';
 import { beginCheckout, viewItem } from '@/lib/shop/analytics';
 
-type Product = (typeof products)[number];
+type Product = (typeof products)[number] & PType;
 
 const ProductPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -59,21 +60,34 @@ const ProductPage: React.FC = () => {
     warranty: '3 años',
   } as const;
 
+  const activeVariant = useMemo(() => {
+    return (prod.variants || []).find(v => v.finish === finish);
+  }, [finish, prod?.slug]);
+  const priceToShow = activeVariant?.price || prod.price;
+  const displaySku = activeVariant?.sku || prod.sku;
+
   const productSchema: any = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: prod.name,
     description: prod.description,
     brand: { '@type': 'Brand', name: prod.brand },
-    sku: prod.sku,
-    image: [origin + prod.image, '/images/finish-walnut.jpg', '/images/finish-white.jpg', '/images/finish-black.jpg', '/images/finish-mycelium.webp'],
+    sku: displaySku,
+    image: [
+      ...(activeVariant?.image ? [activeVariant.image] : []),
+      origin + prod.image,
+      '/images/finish-walnut.jpg',
+      '/images/finish-white.jpg',
+      '/images/finish-black.jpg',
+      '/images/finish-mycelium.webp'
+    ],
     material: materials,
     url,
     offers: {
       '@type': 'Offer',
       url,
       priceCurrency: prod.currency,
-      price: prod.price,
+      price: priceToShow,
       availability: prod.availability,
       itemCondition: 'https://schema.org/NewCondition',
       shippingDetails: [
@@ -115,10 +129,11 @@ const ProductPage: React.FC = () => {
     { '@type': 'PropertyValue', name: 'dimensions', value: SPECS.dimensions },
     { '@type': 'PropertyValue', name: 'weight', value: SPECS.weight },
     { '@type': 'PropertyValue', name: 'warranty', value: SPECS.warranty },
+    ...(activeVariant?.sku ? [{ '@type': 'PropertyValue', name: 'variant_sku', value: activeVariant.sku }] : []),
   ];
 
   const openBuyModal = useCallback(() => {
-    const root = document.getElementById('sr-embed-root');
+    const root = document.getElementById('sr-buy-pdp');
     if (!root) return;
     const candidates = Array.from(root.querySelectorAll('button, a')) as HTMLElement[];
     const match = candidates.find((el) => /ver|view|producto|product|comprar|add to cart|agregar/i.test(el.textContent || ''));
@@ -158,6 +173,16 @@ const ProductPage: React.FC = () => {
     ]
   };
 
+  const breadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Tienda', item: `${origin}/shop` },
+      ...(prod.category ? [{ '@type': 'ListItem', position: 2, name: prod.category, item: `${origin}/shop/category/${(prod.category || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}` }] : []),
+      { '@type': 'ListItem', position: prod.category ? 3 : 2, name: prod.name, item: url },
+    ]
+  };
+
   return (
     <>
       <Helmet>
@@ -171,13 +196,14 @@ const ProductPage: React.FC = () => {
         <meta property="og:image" content={`${origin}${prod.image}`} />
         <script type="application/ld+json">{JSON.stringify(productSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
       </Helmet>
 
       <RibbonBanner />
       <section className="bg-background">
         <div className="container mx-auto px-4 py-16 grid md:grid-cols-2 gap-10 items-start">
           <div>
-            <Gallery21 images={[FINISHES[finish]?.img || '', prod.image].filter(Boolean)} altPrefix={`${prod.name} — ${FINISHES[finish]?.name || ''}`} />
+            <Gallery21 images={[activeVariant?.image || '', FINISHES[finish]?.img || '', prod.image].filter(Boolean)} altPrefix={`${prod.name} — ${FINISHES[finish]?.name || ''}`} />
           </div>
           <div>
             {/* Region selector for delivery estimate */}
@@ -190,15 +216,37 @@ const ProductPage: React.FC = () => {
               </select>
               <span className="ml-3">Entrega estimada: {estimate}</span>
             </div>
-            <h1 className="text-3xl font-bold text-foreground">{prod.name}</h1>
+            <h1 className="text-3xl font-bold text-foreground flex items-center gap-2">
+              {prod.name}
+              {(prod.isNew || prod.bestSeller) && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-black/70 text-white text-[10px] px-2 py-0.5">
+                  {prod.isNew ? 'Nuevo' : 'Más vendido'}
+                </span>
+              )}
+            </h1>
+            {/* Breadcrumbs inline */}
+            <div className="mt-1 text-xs text-muted-foreground flex items-center gap-2">
+              <Link to="/shop" className="hover:underline">Tienda</Link>
+              {prod.category && (<>
+                <span>›</span>
+                <Link to={`/shop/category/${(prod.category || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`} className="hover:underline">{prod.category}</Link>
+              </>)}
+              <span>›</span>
+              <span className="text-foreground">{prod.name}</span>
+            </div>
             <p className="mt-2 text-sm text-foreground italic">El último Reformer que necesitarás. Desarrolla tu gracia con materiales nobles—solo lo mejor toca tu piel.</p>
             <p className="mt-4 text-muted-foreground">{prod.description}</p>
-            <div className="mt-6 text-xl text-foreground font-semibold">$ {prod.price} {prod.currency}</div>
+            <div className="mt-4 flex items-center gap-3">
+              <div className="text-xl text-foreground font-semibold">$ {priceToShow} {prod.currency}</div>
+              <div className="inline-flex items-center rounded-full border border-green-600/30 text-green-700 bg-green-50 px-2 py-0.5 text-xs">En stock</div>
+              <div className="text-xs text-muted-foreground">SKU: {displaySku}</div>
+            </div>
+            <div className="text-xs text-muted-foreground mt-1">Entrega {estimate} • Garantía 3 años</div>
             {/* Desktop quick actions */}
             <div className="mt-3 hidden md:flex gap-2">
               <button onClick={(e) => { e.preventDefault(); beginCheckout({ product: prod as any }); openBuyModal(); }} className="inline-flex items-center px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90">Comprar ahora</button>
-              <a href="tel:+523222787690" className="inline-flex items-center px-4 py-2 rounded-md border border-border text-foreground hover:bg-foreground hover:text-background">Llamar</a>
               <a href="https://wa.me/523222787690" className="inline-flex items-center px-4 py-2 rounded-md bg-green-600 text-white hover:bg-green-700">WhatsApp</a>
+              <a href="tel:+523222787690" className="inline-flex items-center px-4 py-2 rounded-md border border-border text-foreground hover:bg-foreground hover:text-background">Llamar</a>
             </div>
             <div className="mt-2 text-sm">
               <Link to="/packs/estudio" className="text-primary hover:underline">Pack para estudios (8+) — 20% de descuento</Link>
@@ -263,7 +311,7 @@ const ProductPage: React.FC = () => {
               </dl>
             </div>
             <div className="mt-8">
-              <ShoprocketEmbed productId={prod.productId} publishableKey={prod.publishableKey} />
+              <ShoprocketBuyButton rootId="sr-buy-pdp" productId={prod.productId} publishableKey={prod.publishableKey} onBeforeOpen={() => beginCheckout({ product: prod as any })} />
             </div>
 
             <div className="mt-10">
@@ -300,7 +348,7 @@ const ProductPage: React.FC = () => {
     {/* Cross-sell blocks: Accesorios y Guías */}
     <section className="bg-background border-t border-border">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-3 gap-6">
           <Link to="/accesorios" className="block group border border-border rounded-lg p-6 bg-card hover:border-primary/50 transition-colors">
             <h2 className="text-xl font-semibold text-foreground group-hover:text-primary">Accesorios recomendados</h2>
             <p className="text-sm text-muted-foreground mt-2">Cintas, cojines, limpia‑cuero y repuestos exprés para tu Reformer.</p>
@@ -321,6 +369,20 @@ const ProductPage: React.FC = () => {
               ))}
             </div>
           </div>
+          <div className="border border-border rounded-lg p-6 bg-card">
+            <h2 className="text-xl font-semibold text-foreground">Productos relacionados</h2>
+            <div className="mt-3 grid grid-cols-2 gap-3">
+              {products.filter(p => p.slug !== prod.slug && p.category === prod.category).slice(0, 2).map((p) => (
+                <Link key={p.slug} to={`/product/${p.slug}`} className="block group rounded-md border border-border p-3 hover:border-primary/50 transition-colors">
+                  <div className="aspect-square overflow-hidden rounded bg-muted border border-border">
+                    <img src={p.image} alt={p.name} loading="lazy" decoding="async" className="h-full w-full object-cover" />
+                  </div>
+                  <div className="mt-2 text-sm font-medium text-foreground group-hover:text-primary">{p.name}</div>
+                  <div className="text-xs text-muted-foreground">$ {p.price} {p.currency}</div>
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -328,8 +390,8 @@ const ProductPage: React.FC = () => {
     <div className="fixed inset-x-0 bottom-0 z-40 md:hidden border-t border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-3">
         <a href="#comprar" onClick={(e) => { e.preventDefault(); beginCheckout({ product: prod as any }); openBuyModal(); }} className="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-md bg-primary text-primary-foreground">Comprar</a>
-        <a href="tel:+523222787690" className="inline-flex items-center justify-center px-4 py-2 rounded-md border border-border text-foreground">Llamar</a>
         <a href="https://wa.me/523222787690" className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-green-600 text-white">WhatsApp</a>
+        <a href="tel:+523222787690" className="inline-flex items-center justify-center px-4 py-2 rounded-md border border-border text-foreground">Llamar</a>
       </div>
     </div>
     </>

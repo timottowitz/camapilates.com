@@ -9,6 +9,18 @@
     "price": "999.00",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
+    "category": "Reformers",
+    "finishes": ["walnut", "white", "black", "mycelium"],
+    "materials": ["cuero genuino", "madera de nogal", "acero estructural"],
+    "warranty": "3 años",
+    "variants": [
+      { "id": "var_home_walnut", "sku": "HOME-REFORMER-001-W", "finish": "walnut", "image": "/images/finish-walnut.jpg" },
+      { "id": "var_home_white", "sku": "HOME-REFORMER-001-WH", "finish": "white", "image": "/images/finish-white.jpg" },
+      { "id": "var_home_black", "sku": "HOME-REFORMER-001-BK", "finish": "black", "image": "/images/finish-black.jpg" },
+      { "id": "var_home_mycelium", "sku": "HOME-REFORMER-001-MY", "finish": "mycelium", "image": "/images/finish-mycelium.webp", "price": "1049.00" }
+    ],
+    "bestSeller": true,
+    "isNew": false,
     "productId": "prod_reformer_casa_placeholder",
     "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
   },
@@ -22,7 +34,37 @@
     "price": "1999.00",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
+    "category": "Reformers",
+    "finishes": ["walnut", "white", "black", "mycelium"],
+    "materials": ["cuero genuino", "madera de nogal", "acero estructural"],
+    "warranty": "3 años",
+    "variants": [
+      { "id": "var_pro_walnut", "sku": "PRO-REFORMER-001-W", "finish": "walnut", "image": "/images/finish-walnut.jpg" },
+      { "id": "var_pro_white", "sku": "PRO-REFORMER-001-WH", "finish": "white", "image": "/images/finish-white.jpg" },
+      { "id": "var_pro_black", "sku": "PRO-REFORMER-001-BK", "finish": "black", "image": "/images/finish-black.jpg" },
+      { "id": "var_pro_mycelium", "sku": "PRO-REFORMER-001-MY", "finish": "mycelium", "image": "/images/finish-mycelium.webp", "price": "2099.00" }
+    ],
+    "bestSeller": true,
+    "isNew": true,
     "productId": "prod_reformer_profesional_placeholder",
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+  },
+  {
+    "slug": "cintas-de-pilates",
+    "name": "Cintas de Pilates (Juego de 5)",
+    "description": "Cintas de diferentes resistencias para ejercicios y mantenimiento del Reformer.",
+    "brand": "CAMA Pilates",
+    "sku": "ACC-CINTAS-SET-5",
+    "image": "/og/cama-de-pilates-venta-mexico.png",
+    "price": "49.00",
+    "currency": "MXN",
+    "availability": "https://schema.org/InStock",
+    "category": "Accesorios",
+    "materials": ["caucho", "algodón"],
+    "warranty": "1 año",
+    "bestSeller": false,
+    "isNew": true,
+    "productId": "prod_accessorio_cintas_placeholder",
     "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
   }
 ]
