@@ -1,5 +1,5 @@
 ---
-title: "Guía completa del Reformer: Uso y beneficios"
+title: "Guía completa del Reformer: Uso y beneficios – reformer pilates"
 description: "Todo lo que necesitas saber del Reformer: cómo funciona, beneficios, ejercicios clave y recomendaciones para México."
 category: "Ejercicios y salud"
 tags: ["reformer pilates", "uso del reformer", "beneficios reformer"]
@@ -7,9 +7,7 @@ publishDate: "2025-09-27"
 author: "CAMA Pilates"
 slug: "guia-completa-reformer"
 featured: false
----
-
-# Guía completa del Reformer: Uso y beneficios
+---el Reformer: Uso y beneficios
 
 > Nota: Contenido informativo; no es asesoramiento médico.
 

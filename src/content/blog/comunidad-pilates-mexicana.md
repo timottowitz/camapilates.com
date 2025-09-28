@@ -1,6 +1,6 @@
 ---
 title: "Comunidad Pilates Mexicana: Conectando Instructores y Transformando Vidas en 2025"
-description: "Descubre la vibrante comunidad de Pilates en México: certificaciones reconocidas, eventos de networking, estudios destacados y oportunidades de crecimiento profesional para instructores."
+description: "Descubre la vibrante comunidad de Pilates en México: certificaciones reconocidas, eventos de networking, estudios destacados y oportunidades de crecimie…"
 category: "Comunidad Pilates México"
 tags: ["comunidad pilates", "networking instructores", "eventos pilates", "certificación pilates méxico", "estudios pilates cdmx"]
 publishDate: "2025-01-28"
@@ -9,6 +9,7 @@ slug: "comunidad-pilates-mexicana"
 featured: true
 hero: "estudio-pilates-mexico-comunidad.jpg"
 heroAlt: "Grupo de instructores de Pilates mexicanos en sesión de entrenamiento"
+---s en sesión de entrenamiento"
 ---
 
 > **Nota**: Este artículo es una guía completa sobre la comunidad de Pilates en México. Para asesoramiento médico específico, consulta a un profesional de la salud.

@@ -15,6 +15,14 @@
 - ✅ = Blog post completed
 - 🚫 = Skipped/Not relevant
 
+
+## CATEGORÍA: Entrenamientos y bienestar
+
+### 🔬 Pilates para deportistas de alto rendimiento
+**Research File:** [pilates-para-deportistas-de-alto-rendimiento.md](./research/pilates-para-deportistas-de-alto-rendimiento.md)
+**Target:** Público general interesado en Pilates
+**Keywords:** pilates deportivo, atletas pilates, rendimiento deportivo, entrenamiento funcional
+
 ---
 
 ## CATEGORÍA: Tips para Instructores de Pilates

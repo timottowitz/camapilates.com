@@ -1,6 +1,6 @@
 ---
 title: "El Boom del Pilates en México: Análisis del Crecimiento Exponencial 2024-2025"
-description: "Descubre cómo el mercado de Pilates en México alcanzará $5 mil millones USD para 2033. Análisis completo del crecimiento, oportunidades de negocio y tendencias que están transformando la industria del wellness."
+description: "Descubre cómo el mercado de Pilates en México alcanzará $5 mil millones USD para 2033. Análisis completo del crecimiento, oportunidades de negocio y ten…"
 category: "Comunidad Pilates México"
 tags: ["mercado pilates México", "oportunidades negocio", "tendencias fitness", "industria wellness", "franquicias pilates"]
 publishDate: "2025-01-28"
@@ -9,6 +9,7 @@ slug: "crecimiento-pilates-mexico"
 featured: true
 hero: "crecimiento-pilates-mexico-estadisticas.jpg"
 heroAlt: "Gráfica de crecimiento del mercado de Pilates en México con estudios modernos"
+---l mercado de Pilates en México con estudios modernos"
 ---
 
 > **Nota**: Este análisis está basado en datos de mercado y estadísticas oficiales. Para decisiones de inversión específicas, consulta con asesores profesionales.

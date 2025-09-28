@@ -20,6 +20,9 @@ const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const BlogCategory = lazy(() => import('./pages/BlogCategory'));
 const BlogTag = lazy(() => import('./pages/BlogTag'));
+const AdminBlogWriter = lazy(() => import('./pages/AdminBlogWriter'));
+const Admin = lazy(() => import('./pages/Admin'));
+const AdminSettings = lazy(() => import('./pages/AdminSettings'));
 const Product = lazy(() => import('./pages/Product'));
 const Products = lazy(() => import('./pages/Products'));
 const CamaDePilatesEnVenta = lazy(() => import('./pages/CamaDePilatesEnVenta'));
@@ -39,6 +42,7 @@ const ReportingFraud = lazy(() => import('./pages/resources/ReportingFraud'));
 const PreventionGuide = lazy(() => import('./pages/resources/PreventionGuide'));
 import GAListener from "@/components/analytics/GAListener";
 import FloatingCart21 from "@/components/commerce21/FloatingCart21";
+import AdminGuard from "@/components/auth/AdminGuard";
 
 const queryClient = new QueryClient();
 
@@ -76,6 +80,10 @@ const App = () => (
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/blog/category/:category" element={<BlogCategory />} />
             <Route path="/blog/tag/:tag" element={<BlogTag />} />
+            {/* Admin panel (dev/internal) */}
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/blog-writer" element={<AdminGuard><AdminBlogWriter /></AdminGuard>} />
+            <Route path="/admin/settings" element={<AdminGuard><AdminSettings /></AdminGuard>} />
             <Route path="/product/:slug" element={<Product />} />
             
             {/* Resource Pages */}

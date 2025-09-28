@@ -16,7 +16,10 @@
     "blog:production": "node scripts/run-batch-blogs.js production",
     "blog:auto": "node scripts/scheduled-blog-runner.js start",
     "blog:status": "node scripts/scheduled-blog-runner.js status",
-    "blog:pipeline": "node scripts/autonomous-blog-pipeline.js"
+    "blog:pipeline": "node scripts/improved-blog-pipeline.js",
+    "admin:seed": "node scripts/seed-admin.js",
+    "blog:patch-hero": "node scripts/patch-hero-frontmatter.js",
+    "blog:patch-hero:all": "node scripts/patch-hero-frontmatter-all.js"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",
@@ -51,6 +54,7 @@
     "@radix-ui/react-tooltip": "^1.1.4",
     "@resvg/resvg-js": "^2.6.2",
     "@tanstack/react-query": "^5.56.2",
+    "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",

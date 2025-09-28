@@ -5,7 +5,7 @@
  * Runs the blog pipeline on a schedule (cron-like) for fully autonomous operation
  */
 
-import { AutonomousBlogPipeline } from './autonomous-blog-pipeline.js';
+import { EnhancedBlogPipeline } from './improved-blog-pipeline.js';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import fs from 'fs/promises';
@@ -113,12 +113,15 @@ Press Ctrl+C to stop the scheduler
       console.log(`\n🚀 Starting scheduled pipeline run at ${new Date().toLocaleString()}`);
       console.log(`📊 Processing ${this.schedule.blogsPerRun} blogs...`);
 
-      const pipeline = new AutonomousBlogPipeline();
-
-      // Configure for scheduled run
       const { CONFIG } = await import('./autonomous-blog-pipeline.js');
       CONFIG.logLevel = 'detailed';
       CONFIG.qualityThreshold = 85;
+
+      const pipeline = new EnhancedBlogPipeline({
+        maxConcurrentBlogs: this.schedule.blogsPerRun,
+        maxConcurrentStages: 2,
+        retryAttempts: 3
+      });
 
       await pipeline.runBatch(this.schedule.blogsPerRun);
 

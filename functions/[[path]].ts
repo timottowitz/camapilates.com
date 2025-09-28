@@ -9,6 +9,14 @@ export const onRequest: PagesFunction = async (ctx) => {
     set('public, max-age=31536000, immutable');
   } else if (url.pathname.startsWith('/og/')) {
     set('public, max-age=31536000, immutable');
+  } else if (url.pathname.startsWith('/api/')) {
+    // APIs should not be cached by the edge
+    set('no-store');
+  } else if (
+    url.pathname === '/admin' || url.pathname.startsWith('/admin/')
+  ) {
+    // Avoid caching admin UI
+    set('no-store');
   } else if (
     url.pathname.startsWith('/blog/') ||
     url.pathname.startsWith('/blog/category/') ||

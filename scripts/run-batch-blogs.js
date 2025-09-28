@@ -5,7 +5,8 @@
  * Easy-to-use interface for running the autonomous blog pipeline
  */
 
-import { AutonomousBlogPipeline } from './autonomous-blog-pipeline.js';
+import { EnhancedBlogPipeline } from './improved-blog-pipeline.js';
+import { CONFIG } from './autonomous-blog-pipeline.js';
 
 const PRESETS = {
   quick: {
@@ -132,11 +133,15 @@ Press Ctrl+C to cancel in the next 5 seconds...
   console.log('\n');
 
   // Configure and run pipeline
-  const { CONFIG } = await import('./autonomous-blog-pipeline.js');
+  // Configure underlying base pipeline settings (used by Enhanced via super)
   CONFIG.logLevel = logLevel;
   CONFIG.qualityThreshold = qualityThreshold;
 
-  const pipeline = new AutonomousBlogPipeline();
+  const pipeline = new EnhancedBlogPipeline({
+    maxConcurrentBlogs: Math.min(3, blogCount),
+    maxConcurrentStages: 2,
+    retryAttempts: 3
+  });
 
   try {
     await pipeline.runBatch(blogCount);

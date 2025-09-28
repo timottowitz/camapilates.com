@@ -106,18 +106,57 @@ class AutonomousBlogPipeline {
     this.log(`⏱️  Max Processing Time: ${this.formatTime(PIPELINE_STAGES.reduce((sum, stage) => sum + stage.timeout, 0))}`, 'info');
   }
 
+  // Content quality detection functions
+  async isTemplateContent(filePath) {
+    try {
+      const content = await fs.readFile(filePath, 'utf-8');
+      const size = content.length;
+
+      // Template indicators
+      const templateIndicators = [
+        'Introducción breve al tema',
+        'Punto clave 1 con contexto mexicano',
+        'Situación local, disponibilidad, costos',
+        'Pendiente: investigación web',
+        'Creado automáticamente',
+        'requiere investigación web'
+      ];
+
+      const hasTemplateText = templateIndicators.some(indicator =>
+        content.includes(indicator));
+
+      // Size thresholds: < 3000 bytes likely template for blog, < 2000 for research
+      const isSmall = filePath.includes('research') ? size < 2000 : size < 3000;
+
+      return hasTemplateText || isSmall;
+    } catch (error) {
+      return true; // If file doesn't exist, consider it template/incomplete
+    }
+  }
+
+  async hasQualityContent(blogSlug) {
+    const blogPath = path.join(CONFIG.outputDir, `${blogSlug}.md`);
+    const researchPath = path.join(CONFIG.researchDir, `${blogSlug}.md`);
+
+    // Check if both files exist and contain quality content
+    const blogIsTemplate = await this.isTemplateContent(blogPath);
+    const researchIsTemplate = await this.isTemplateContent(researchPath);
+
+    return !blogIsTemplate && !researchIsTemplate;
+  }
+
   async getPendingBlogs(limit = 10) {
     try {
       const todoContent = await fs.readFile(CONFIG.todoFile, 'utf-8');
       const pendingBlogs = [];
 
-      // Parse TODO file for 🔬 (research needed) blogs
+      // Parse TODO file for 🔬 (research needed) and ✅ (completed but template) blogs
       const lines = todoContent.split('\n');
       for (let i = 0; i < lines.length && pendingBlogs.length < limit; i++) {
         const line = lines[i];
 
-        if (line.includes('🔬') && line.startsWith('###')) {
-          const titleMatch = line.match(/###\s+🔬\s+(.+)/);
+        if ((line.includes('🔬') || line.includes('✅')) && line.startsWith('###')) {
+          const titleMatch = line.match(/###\s+[🔬✅]\s+(.+)/);
 
           if (titleMatch) {
             const title = titleMatch[1].trim();
@@ -218,12 +257,25 @@ class AutonomousBlogPipeline {
     this.log(`   🔧 ${stage.description}`, 'detailed');
 
     try {
-      let parameters = { slug: blog.slug };
+      // Check if existing content is template and needs overwriting
+      const hasQuality = await this.hasQualityContent(blog.slug);
+      const forceOverwrite = !hasQuality;
+
+      if (forceOverwrite) {
+        this.log(`   🔄 Template content detected - forcing overwrite`, 'detailed');
+      }
+
+      let parameters = {
+        slug: blog.slug,
+        forceOverwrite: forceOverwrite
+      };
 
       // Stage-specific parameters
       switch (stage.name) {
         case 'web_research':
+          // Include slug so the CLI wrapper can append to the research file
           parameters = {
+            slug: blog.slug,
             topic: blog.title,
             data_types: ['statistics', 'studies', 'market_data']
           };
@@ -299,6 +351,16 @@ class AutonomousBlogPipeline {
         }
         this.log(`   🎯 Quality score: ${qualityScore}/100`, 'detailed');
       }
+    }
+
+    // Final content quality check before marking complete
+    const finalQualityCheck = await this.hasQualityContent(blog.slug);
+    if (!finalQualityCheck) {
+      this.log(`   ❌ Final quality check failed - content still appears to be template`, 'warning');
+      blog.status = 'quality_failed';
+      blog.endTime = Date.now();
+      this.failedBlogs.push(blog);
+      return false;
     }
 
     // Update TODO status to completed

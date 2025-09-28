@@ -47,6 +47,7 @@ const BlogPost = () => {
   const [content, setContent] = useState<string>("");
   const [postMeta, setPostMeta] = useState<BlogPostMeta | null>(null);
   const [loading, setLoading] = useState(true);
+  const [heroOverride, setHeroOverride] = useState<string | null>(null);
 
   useEffect(() => {
     const loadPost = async () => {
@@ -71,6 +72,20 @@ const BlogPost = () => {
     loadPost();
   }, [slug]);
 
+  useEffect(() => {
+    // If no heroImage in frontmatter, attempt to load dynamic mapping from API
+    (async () => {
+      try {
+        if (!postMeta || (postMeta as any)?.heroImage) { setHeroOverride(null); return; }
+        if (!safeSlug) return;
+        const resp = await fetch(`/api/images/meta?slug=${encodeURIComponent(safeSlug)}`);
+        if (!resp.ok) return;
+        const data = await resp.json();
+        if (data?.hero_url) setHeroOverride(data.hero_url);
+      } catch { /* ignore */ }
+    })();
+  }, [safeSlug, postMeta]);
+
   // Compute values/hooks unconditionally to keep hook order consistent
   const origin = getOrigin();
   const safeSlug = slug || '';
@@ -89,7 +104,7 @@ const BlogPost = () => {
   };
   const { prevPost, nextPost } = computePrevNext();
 
-  const ogImage = toAbsoluteUrl((postMeta as any)?.heroImage) || (postMeta ? `${origin}/og/${postMeta.slug}.png` : '');
+  const ogImage = heroOverride || toAbsoluteUrl((postMeta as any)?.heroImage) || (postMeta ? `${origin}/og/${postMeta.slug}.png` : '');
   const robots = (postMeta as any)?.noindex ? 'noindex,follow' : 'index,follow';
   const tags = (postMeta as any)?.tags || [];
   const keywords = tags.join(', ');
@@ -275,9 +290,9 @@ const BlogPost = () => {
               </p>
 
               {/* Hero image when provided */}
-              {postMeta.heroImage && (
+              {(postMeta.heroImage || heroOverride) && (
                 <img
-                  src={toAbsoluteUrl(postMeta.heroImage)!}
+                  src={toAbsoluteUrl(postMeta.heroImage as any) || heroOverride || ''}
                   alt={postMeta.title}
                   className="w-full h-auto rounded-lg border border-border mb-8"
                   loading="eager"

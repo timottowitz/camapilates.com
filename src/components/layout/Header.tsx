@@ -19,6 +19,9 @@ const Header: React.FC = () => {
           <Link to="/blog" className="hover:text-black">Blog</Link>
           <Link to="/packs/estudio" className="hover:text-black">Paquete de Estudio (8+)</Link>
           <Link to="/certificacion-pilates" className="hover:text-black">Certificación</Link>
+          {((import.meta as any).env?.DEV || (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname.endsWith('.local')))) && (
+            <Link to="/admin" className="hover:text-black">Admin</Link>
+          )}
         </nav>
         <div className="hidden md:block">
           {(() => {

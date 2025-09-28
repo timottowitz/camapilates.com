@@ -46,9 +46,11 @@ class EnhancedBlogPipeline extends AutonomousBlogPipeline {
     this.resourcePools.set('research', this.createWorkerPool('research', 2));
     this.resourcePools.set('web_research', this.createWorkerPool('web_research', 2));
     this.resourcePools.set('content_writing', this.createWorkerPool('content_writing', 1));
+    this.resourcePools.set('research_validation', this.createWorkerPool('research_validation', 1));
     this.resourcePools.set('seo_optimization', this.createWorkerPool('seo_optimization', 2));
     this.resourcePools.set('quality_review', this.createWorkerPool('quality_review', 1));
     this.resourcePools.set('image_enhancement', this.createWorkerPool('image_enhancement', 2));
+    this.resourcePools.set('final_validation', this.createWorkerPool('final_validation', 1));
     
     this.log('🏭 Resource pools initialized', 'info');
     this.statistics.totalStartTime = Date.now();
