@@ -152,6 +152,7 @@
         "npm:@calcom/embed-react@^1.5.3",
         "npm:@eslint/js@^9.9.0",
         "npm:@hookform/resolvers@^3.9.0",
+        "npm:@modelcontextprotocol/sdk@^1.18.2",
         "npm:@radix-ui/react-accordion@^1.2.0",
         "npm:@radix-ui/react-alert-dialog@^1.1.1",
         "npm:@radix-ui/react-aspect-ratio@^1.1.0",

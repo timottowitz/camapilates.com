@@ -9,11 +9,19 @@
     "build": "vite build && node scripts/static-prerender.cjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "blog:quick": "node scripts/run-batch-blogs.js quick",
+    "blog:standard": "node scripts/run-batch-blogs.js standard",
+    "blog:full": "node scripts/run-batch-blogs.js full",
+    "blog:production": "node scripts/run-batch-blogs.js production",
+    "blog:auto": "node scripts/scheduled-blog-runner.js start",
+    "blog:status": "node scripts/scheduled-blog-runner.js status",
+    "blog:pipeline": "node scripts/autonomous-blog-pipeline.js"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",
     "@hookform/resolvers": "^3.9.0",
+    "@modelcontextprotocol/sdk": "^1.18.2",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
     "@radix-ui/react-aspect-ratio": "^1.1.0",

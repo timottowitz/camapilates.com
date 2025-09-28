@@ -14,6 +14,7 @@ import ExploreTiles21 from '@/components/commerce21/ExploreTiles21';
 import ShopHeaderAddon from '@/components/commerce21/ShopHeaderAddon';
 import RibbonBanner from '@/components/ui/ribbon-banner';
 import { ASSETS } from '@/lib/assets';
+import TrustStrip from '@/components/ui/trust-strip';
 import QuickView21 from '@/components/commerce21/QuickView21';
 import type { Product as PType } from '@/lib/shop/types';
 import FilterBar21 from '@/components/commerce21/FilterBar21';
@@ -126,6 +127,7 @@ const Shop: React.FC = () => {
         <title>{title} | {DEFAULTS.siteName}</title>
         <meta name="description" content={desc} />
         <link rel="canonical" href={`${origin}/shop`} />
+        <link rel="preload" as="image" href={ASSETS.shopHero} />
         <meta property="og:site_name" content={DEFAULTS.siteName} />
         <meta property="og:locale" content={DEFAULTS.locale} />
         <meta property="og:title" content={title} />
@@ -207,6 +209,7 @@ const Shop: React.FC = () => {
                 if (search) chips.push({ label: `Buscar: ${search}`, onRemove: () => setSearch('') });
                 return chips;
               })()} onClearAll={() => { setActiveCats([]); setActiveFinishes([]); setActiveAvailability([]); setMinPrice(''); setMaxPrice(''); setSearch(''); }} />
+              <TrustStrip className="mt-2" />
             </div>
           </div>
 
@@ -288,8 +291,8 @@ const Shop: React.FC = () => {
               <ProductGrid21 products={products} onQuickView={(p) => setQuick(p as any)} />
               {/* Explore range blocks */}
               <ExploreTiles21 items={[
-                { label: 'Reformers', desc: 'Silenciosos y precisos para casa y estudio', href: '/shop/category/reformers', img: ASSETS.shopHero },
-                { label: 'Accesorios', desc: 'Cintas y mantenimiento para tu Reformer', href: '/shop/category/accesorios', img: DEFAULTS.ogImage },
+                { label: 'Reformers', desc: 'Silenciosos y precisos para casa y estudio', href: '/shop/category/reformers' },
+                { label: 'Accesorios', desc: 'Cintas y mantenimiento para tu Reformer', href: '/shop/category/accesorios' },
               ]} />
               {/* Help strip */}
               <section className="mt-8 border border-border rounded-lg p-4 bg-accent/5">

@@ -13,6 +13,7 @@ import Gallery21 from '@/components/commerce21/Gallery21';
 import { beginCheckout, viewItem } from '@/lib/shop/analytics';
 import { Info } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import TrustStrip from '@/components/ui/trust-strip';
 
 type Product = (typeof products)[number] & PType;
 
@@ -248,6 +249,7 @@ const ProductPage: React.FC = () => {
               <div className="text-xs text-muted-foreground">SKU: {displaySku}</div>
             </div>
             <div className="text-xs text-muted-foreground mt-1">Entrega {estimate} • Garantía 3 años</div>
+            <TrustStrip className="mt-2" />
             {(finish === 'mycelium' || (prod.finishes||[]).includes('mycelium') || /mycel/i.test(prod.name)) && (
               <div className="mt-2 text-xs text-emerald-900 flex items-center gap-2">
                 <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2 py-1">Edición Mylo™ (micelio)</span>

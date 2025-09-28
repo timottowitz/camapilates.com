@@ -274,6 +274,16 @@ const BlogPost = () => {
                 {postMeta.excerpt}
               </p>
 
+              {/* Hero image when provided */}
+              {postMeta.heroImage && (
+                <img
+                  src={toAbsoluteUrl(postMeta.heroImage)!}
+                  alt={postMeta.title}
+                  className="w-full h-auto rounded-lg border border-border mb-8"
+                  loading="eager"
+                />
+              )}
+
               {/* Author Byline */}
               <div className="flex items-start gap-4 py-6 border-y border-border bg-muted/30 rounded-lg px-6">
                 <Avatar className="h-12 w-12 flex-shrink-0">

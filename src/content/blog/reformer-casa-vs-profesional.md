@@ -1,3 +1,6 @@
+---
+heroImage: /images/blog/reformer-casa-vs-profesional/hero.jpg
+---
 
 ---
 title: "Reformer para casa vs profesional: Diferencias clave"
@@ -17,6 +20,10 @@ featured: false
 
 ## Comparativa rápida
 
+
+![Comparativa rápida](/images/blog/reformer-casa-vs-profesional/section-1.jpg)
+<small>Foto: Gordon Gerard McLean / Unsplash</small>
+
 | Aspecto | Reformer Casa | Reformer Profesional |
 |---|---|---|
 | Uso | Hogar, 1–2 personas | Estudio, uso continuo |
@@ -30,6 +37,10 @@ featured: false
 <see-also limit="3" />
 
 ## Qué hace “profesional” a un Reformer
+
+
+![Qué hace “profesional” a un Reformer](/images/blog/reformer-casa-vs-profesional/section-2.jpg)
+<small>Foto: Tim Mossholder / Unsplash</small>
 
 **Estructura y rigidez.** En un estudio, el aparato soporta cambios de carga, perfiles corporales diversos y rotación constante. La rigidez (menor torsión) mantiene el alineamiento del carro y la sensación de “solidez”.
 

@@ -21,3 +21,20 @@ export const ASSETS = {
   myloBadge: '/images/badges/mylo.svg',
   myloSpecial: '/images/special/mylo-special.svg',
 } as const;
+
+// Candidate images available in public for randomized visual fill
+export const ASSET_CANDIDATES: string[] = [
+  '/images/finish-walnut.jpg',
+  '/images/finish-white.jpg',
+  '/images/finish-black.jpg',
+  '/images/finish-mycelium.webp',
+  '/images/hero-shop.webp',
+  '/og/cama-de-pilates-venta-mexico.png',
+];
+
+export function pickImage(key: string): string {
+  let h = 0;
+  for (let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) | 0;
+  const idx = Math.abs(h) % ASSET_CANDIDATES.length;
+  return ASSET_CANDIDATES[idx];
+}

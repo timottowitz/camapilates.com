@@ -137,9 +137,8 @@ const Index = () => {
             <p className="mt-3 text-sm text-muted-foreground">Ingeniería alemana • Manufactura mexicana • Ajustada por instructoras</p>
             <p className="mt-4 text-base text-foreground italic">El último Reformer que necesitarás. Desarrolla tu gracia con materiales nobles—solo lo mejor toca tu piel.</p>
             <div className="mt-8 flex flex-wrap gap-3 items-center">
-              <Link to="/product/reformer-profesional" className="inline-flex items-center px-6 py-3 rounded-md bg-primary text-primary-foreground hover:bg-primary/90">Comprar Reformer de Estudio</Link>
-              <Link to="/product/reformer-casa" className="inline-flex items-center px-6 py-3 rounded-md border border-foreground text-foreground hover:bg-foreground hover:text-background">Comprar Reformer para Casa</Link>
-              <Link to="/packs/estudio" className="inline-flex items-center px-6 py-3 rounded-md bg-[#6B4F3B] text-white hover:bg-[#5f4636]">Paquete de Estudio (8+) <ArrowRight className="ml-1 h-4 w-4" /></Link>
+              <Link to="/shop" className="inline-flex items-center px-6 py-3 rounded-md bg-primary text-primary-foreground hover:bg-primary/90">Comprar ahora</Link>
+              <Link to="/store" className="inline-flex items-center px-6 py-3 rounded-md border border-foreground text-foreground hover:bg-foreground hover:text-background">Comparar modelos</Link>
             </div>
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="flex items-center gap-2 text-muted-foreground"><CheckCircle2 className="h-5 w-5 text-primary" /> Silencio total</div>

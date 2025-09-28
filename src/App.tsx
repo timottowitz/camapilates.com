@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Header from "@/components/layout/Header";
@@ -12,30 +13,30 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import NotFound from "./pages/NotFound";
-import Store from "./pages/Store";
-import Shop from "./pages/Shop";
-import ShopCategory from "./pages/ShopCategory";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
-import BlogCategory from "./pages/BlogCategory";
-import BlogTag from "./pages/BlogTag";
-import Product from "./pages/Product";
-import Products from "./pages/Products";
-import CamaDePilatesEnVenta from "./pages/CamaDePilatesEnVenta";
-import CamaDePilatesPrecio from "./pages/CamaDePilatesPrecio";
-import StudioPack from "./pages/StudioPack";
-import CamaDePilatesHub from "./pages/CamaDePilatesHub";
-import Accesorios from "./pages/Accesorios";
-import Acabados from "./pages/Acabados";
-import CertificacionPilates from "./pages/CertificacionPilates";
-import CertificacionPilatesCity from "./pages/CertificacionPilatesCity";
-import LegalTerms from "./pages/LegalTerms";
-import LegalPrivacy from "./pages/LegalPrivacy";
-import Support from "./pages/Support";
-import IdentifySolarScams from "./pages/resources/IdentifySolarScams";
-import LegalRights from "./pages/resources/LegalRights";
-import ReportingFraud from "./pages/resources/ReportingFraud";
-import PreventionGuide from "./pages/resources/PreventionGuide";
+const Store = lazy(() => import('./pages/Store'));
+const Shop = lazy(() => import('./pages/Shop'));
+const ShopCategory = lazy(() => import('./pages/ShopCategory'));
+const Blog = lazy(() => import('./pages/Blog'));
+const BlogPost = lazy(() => import('./pages/BlogPost'));
+const BlogCategory = lazy(() => import('./pages/BlogCategory'));
+const BlogTag = lazy(() => import('./pages/BlogTag'));
+const Product = lazy(() => import('./pages/Product'));
+const Products = lazy(() => import('./pages/Products'));
+const CamaDePilatesEnVenta = lazy(() => import('./pages/CamaDePilatesEnVenta'));
+const CamaDePilatesPrecio = lazy(() => import('./pages/CamaDePilatesPrecio'));
+const StudioPack = lazy(() => import('./pages/StudioPack'));
+const CamaDePilatesHub = lazy(() => import('./pages/CamaDePilatesHub'));
+const Accesorios = lazy(() => import('./pages/Accesorios'));
+const Acabados = lazy(() => import('./pages/Acabados'));
+const CertificacionPilates = lazy(() => import('./pages/CertificacionPilates'));
+const CertificacionPilatesCity = lazy(() => import('./pages/CertificacionPilatesCity'));
+const LegalTerms = lazy(() => import('./pages/LegalTerms'));
+const LegalPrivacy = lazy(() => import('./pages/LegalPrivacy'));
+const Support = lazy(() => import('./pages/Support'));
+const IdentifySolarScams = lazy(() => import('./pages/resources/IdentifySolarScams'));
+const LegalRights = lazy(() => import('./pages/resources/LegalRights'));
+const ReportingFraud = lazy(() => import('./pages/resources/ReportingFraud'));
+const PreventionGuide = lazy(() => import('./pages/resources/PreventionGuide'));
 import GAListener from "@/components/analytics/GAListener";
 import FloatingCart21 from "@/components/commerce21/FloatingCart21";
 
@@ -51,6 +52,7 @@ const App = () => (
           <Header />
           <GAListener />
           {/* Shoprocket embeds are placed directly in pages via embed blocks */}
+          <Suspense fallback={<div className="container mx-auto px-4 py-12 text-muted-foreground">Cargando…</div>}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
@@ -85,6 +87,7 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </Suspense>
           <Footer />
           <FloatingCart21 />
           <ScrollToTop />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { pickImage } from '@/lib/assets';
 import { Link } from 'react-router-dom';
 
 type Item = { label: string; desc: string; href: string; img?: string };
@@ -12,9 +13,7 @@ const ExploreTiles21: React.FC<{ items: Item[] }> = ({ items }) => {
         {items.map((it) => (
           <Link key={it.href} to={it.href} className="group border border-border rounded-lg overflow-hidden bg-card hover:border-primary/50">
             <div className="aspect-[16/7] w-full bg-muted overflow-hidden">
-              {it.img ? (
-                <img src={it.img} alt={it.label} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy" decoding="async" />
-              ) : null}
+              <img src={it.img || pickImage(it.label)} alt={it.label} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy" decoding="async" />
             </div>
             <div className="p-4">
               <div className="font-semibold text-foreground group-hover:text-primary">{it.label}</div>
@@ -28,4 +27,3 @@ const ExploreTiles21: React.FC<{ items: Item[] }> = ({ items }) => {
 };
 
 export default ExploreTiles21;
-

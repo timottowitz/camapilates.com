@@ -1,3 +1,6 @@
+---
+heroImage: /images/blog/mantenimiento-cama-de-pilates/hero.jpg
+---
 
 ---
 title: "Mantenimiento y cuidado de tu Reformer de Pilates (MX 2025)"
@@ -16,6 +19,10 @@ featured: false
 > Objetivo: mantener el recorrido silencioso y seguro, prolongar la vida útil y evitar paros. Esta guía resume rutinas simples y señales de recambio. Sigue siempre las indicaciones del fabricante.
 
 ## Rutina de limpieza y cuidado
+
+![Rutina de limpieza y cuidado](/images/blog/mantenimiento-cama-de-pilates/section-1.jpg)
+<small>Foto: Kanishk Jain / Unsplash</small>
+
 ### Diario (post‑sesión)
 - Tapizados/superficies: limpia con solución suave pH neutro y seca con microfibra.
 - Correas/manerales: desinfecta sin saturar; evita solventes agresivos.
@@ -95,3 +102,7 @@ Detecta el origen (polea vs riel/carro), limpia, verifica fijaciones y simetría
 Marca puntos de referencia y valida con una prueba balanceada de tracción izquierda/derecha.
 
 <see-also limit="3" />
+
+
+![Calibración práctica (consistencia entre sesiones)](/images/blog/mantenimiento-cama-de-pilates/section-2.jpg)
+<small>Foto: Mark Owen Wilkinson Hughes / Unsplash</small>

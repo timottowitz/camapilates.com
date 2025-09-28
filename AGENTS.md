@@ -63,6 +63,25 @@ Task: blog_writer - "Write next priority blog post"
 ```
 This agent automatically handles research, writing, and status tracking according to established patterns.
 
+### Blog Image Agent
+Automatically adds a hero image and 2–3 contextual images per post using Unsplash. Reads headings to decide placement.
+
+Usage:
+```
+deno task images              # all posts
+deno task images -- --slug slug1,slug2  # selected posts
+deno task images -- --force   # refresh hero/sections
+```
+
+Setup:
+- Set `UNSPLASH_ACCESS_KEY` in environment or `.env.mcp`.
+- Optional: run Unsplash MCP server (`npx mcp-unsplash`) if you prefer MCP. Current script uses REST directly.
+
+Implementation:
+- Script: `scripts/enrich-blog-images.ts`
+- Saves images under `public/images/blog/<slug>/` and sets `heroImage` in frontmatter.
+- `BlogPost.tsx` renders the hero image under title/excerpt automatically.
+
 ### Book Research Agent
 For discovering unique, viral-worthy topics from expert knowledge:
 ```
@@ -83,6 +102,7 @@ This agent mines Pilates books for expert insights, generates viral titles, and 
 - Include Mexican market focus and CAMA Pilates product connections
 - Add SEO keywords and references
 - Plan shortcode placement (see-also, hub-list, etc.)
+- Plan image placement (hero + 2 contextual images). Use the image agent when ready.
 - Structure content for automatic FAQ extraction (use ## FAQ section)
 - Mark as 📝 when research is complete
 
@@ -94,6 +114,7 @@ This agent mines Pilates books for expert insights, generates viral titles, and 
 - Add FAQ section (## FAQ) for automatic structured data
 - Include CAMA Pilates CTAs and product connections
 - Use correct frontmatter structure with all required fields
+- Add `heroImage` when available (image agent can set it).
 - Mark as ✅ when published
 
 ### File Locations

@@ -4,10 +4,85 @@
       "command": "npx",
       "args": ["mcp-unsplash"],
       "env": {
-        "UNSPLASH_ACCESS_KEY": "YOUR_UNSPLASH_ACCESS_KEY_HERE"
+        "UNSPLASH_ACCESS_KEY": "oZOMVabtA0VOo-8VMJrzwMFD98DEvdAD0RCzfjMulRg"
       },
       "disabled": false,
       "autoApprove": []
+    },
+    "blog-image-agent": {
+      "command": "node",
+      "args": ["scripts/mcp-image-agent.js"],
+      "env": {
+        "UNSPLASH_ACCESS_KEY": "oZOMVabtA0VOo-8VMJrzwMFD98DEvdAD0RCzfjMulRg"
+      },
+      "disabled": false,
+      "autoApprove": ["enrich_all_blogs", "enrich_specific_blogs", "list_blog_posts"]
+    }
+    ,
+    "blog-research-agent": {
+      "command": "node",
+      "args": ["scripts/mcp-research-agent.js"],
+      "env": {},
+      "disabled": false,
+      "autoApprove": [
+        "pick_next_topic",
+        "scaffold_next_topic",
+        "scaffold_research",
+        "validate_research",
+        "list_research_status",
+        "mark_todo_status",
+        "validate_and_mark",
+        "suggest_keywords",
+        "suggest_references",
+        "generate_image_queries",
+        "suggest_ctas",
+        "outline_template",
+        "enrich_research"
+      ]
+    },
+    "web-research-agent": {
+      "command": "node",
+      "args": ["scripts/mcp-web-research-agent.js"],
+      "env": {},
+      "disabled": false,
+      "autoApprove": [
+        "discover_trending_topics",
+        "gather_current_data",
+        "analyze_competitors",
+        "enrich_research_file",
+        "validate_mexican_market_data"
+      ]
+    },
+    "seo-optimization-agent": {
+      "command": "node",
+      "args": ["scripts/mcp-seo-agent.js"],
+      "env": {},
+      "disabled": false,
+      "autoApprove": [
+        "optimize_title_and_meta",
+        "generate_schema_markup",
+        "analyze_internal_linking",
+        "optimize_headings_structure",
+        "generate_meta_tags",
+        "audit_seo_compliance",
+        "optimize_for_featured_snippets"
+      ]
+    },
+    "quality-review-agent": {
+      "command": "node",
+      "args": ["scripts/mcp-quality-agent.js"],
+      "env": {},
+      "disabled": false,
+      "autoApprove": [
+        "review_content_quality",
+        "validate_template_compliance",
+        "check_mexican_market_relevance",
+        "verify_cama_product_integration",
+        "audit_content_accuracy",
+        "review_shortcode_usage",
+        "generate_quality_score",
+        "compare_with_research"
+      ]
     }
   }
 }

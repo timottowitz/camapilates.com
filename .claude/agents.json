@@ -1,0 +1,61 @@
+{
+  "agents": {
+    "blog_writer": {
+      "description": "Writes SEO-optimized blog posts for CAMA Pilates following the template system",
+      "file": ".claude/agents/blog_writer.md",
+      "auto_invoke": true,
+      "keywords": ["blog", "write", "post", "article", "content"],
+      "examples": [
+        "Use the blog_writer agent to write the next priority post",
+        "Have blog_writer create a new article about reformer maintenance"
+      ]
+    },
+    "blog_researcher": {
+      "description": "Conducts deep research for blog topics with Mexican market focus",
+      "file": ".claude/agents/blog_researcher.md",
+      "auto_invoke": false,
+      "keywords": ["research", "investigate", "study", "analyze"],
+      "examples": [
+        "Use blog_researcher to research pilates for seniors",
+        "Have the researcher investigate reformer pricing in Mexico"
+      ]
+    },
+    "book_researcher": {
+      "description": "Discovers unique viral topics from Pilates books for competitive advantage",
+      "file": ".claude/agents/book_researcher.md",
+      "auto_invoke": false,
+      "keywords": ["book", "viral", "unique", "discover", "expert"],
+      "examples": [
+        "Use book_researcher to find unique topics from our book library",
+        "Have book_researcher discover viral content ideas"
+      ]
+    },
+    "blog_enhancer": {
+      "description": "Enhances existing blog posts with fresh research and SEO optimization",
+      "file": ".claude/agents/blog_enhancer.md",
+      "auto_invoke": false,
+      "keywords": ["enhance", "improve", "update", "optimize", "expand"],
+      "examples": [
+        "Use blog_enhancer to improve the reformer buying guide",
+        "Have the enhancer update our top posts with 2025 data"
+      ]
+    },
+    "complete_pipeline": {
+      "description": "Orchestrates the complete content pipeline from discovery to publication",
+      "file": ".claude/agents/complete_content_pipeline.md",
+      "auto_invoke": true,
+      "keywords": ["pipeline", "complete", "full", "workflow", "autonomous"],
+      "examples": [
+        "Execute complete content pipeline",
+        "Run full autonomous blog creation workflow",
+        "Phase 1: Discovery and research planning"
+      ]
+    }
+  },
+  "settings": {
+    "default_timeout": 300000,
+    "parallel_execution": true,
+    "auto_delegation": true,
+    "require_confirmation": false
+  }
+}

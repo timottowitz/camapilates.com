@@ -19,27 +19,27 @@
 
 ## CATEGORÍA: Tips para Instructores de Pilates
 
-### 🔬 Ejercicios de Pilates de apoyo para madres lactantes
+### ✅ Ejercicios de Pilates de apoyo para madres lactantes
 **Research File:** [ejercicios-pilates-madres-lactantes.md](./research/ejercicios-pilates-madres-lactantes.md)
 **Target:** Instructores que trabajan con nuevas madres
 **Keywords:** pilates posparto, ejercicios lactancia, pilates para madres
 
-### 🔬 Ejercicio esencial para rehabilitación de cáncer de mama
+### ✅ Ejercicio esencial para rehabilitación de cáncer de mama
 **Research File:** [pilates-rehabilitacion-cancer-mama.md](./research/pilates-rehabilitacion-cancer-mama.md)
 **Target:** Instructores especializados en rehabilitación
 **Keywords:** pilates terapéutico, rehabilitación cáncer, ejercicios terapéuticos
 
-### 🔬 Construye estabilidad y velocidad en tenis con Pilates
+### ✅ Construye estabilidad y velocidad en tenis con Pilates
 **Research File:** [pilates-para-tenistas.md](./research/pilates-para-tenistas.md)
 **Target:** Atletas y entrenadores deportivos
 **Keywords:** pilates deportivo, entrenamiento tenis, estabilidad atlética
 
-### 🔬 Mejora tu swing de golf con Pilates
+### ✅ Mejora tu swing de golf con Pilates
 **Research File:** [pilates-para-golf.md](./research/pilates-para-golf.md)
 **Target:** Golfistas y entrenadores de golf
 **Keywords:** pilates golf, swing mejorado, entrenamiento deportivo
 
-### 🔬 Principios fundamentales de alineación en Pilates
+### ✅ Principios fundamentales de alineación en Pilates
 **Research File:** [principios-alineacion-pilates.md](./research/principios-alineacion-pilates.md)
 **Target:** Instructores principiantes y avanzados
 **Keywords:** alineación corporal, técnica pilates, fundamentos
@@ -154,12 +154,17 @@
 
 ## CATEGORÍA: Equipo y Reformer
 
-### 🔬 Guía completa del Reformer: Uso y beneficios
+### ✅ Guía completa del Reformer: Uso y beneficios
 **Research File:** [guia-completa-reformer.md](./research/guia-completa-reformer.md)
 **Target:** Principiantes en Reformer
 **Keywords:** reformer pilates, beneficios reformer, guía uso
 
-### 🔬 Mantenimiento y cuidado de tu Reformer de Pilates
+### 📝 Mejor Reformer para espacios pequeños
+**Research File:** [mejor-reformer-para-espacios-pequenos.md](./research/mejor-reformer-para-espacios-pequenos.md)
+**Target:** Hogares con espacio limitado
+**Keywords:** reformer pequeño, reformer espacios reducidos, reformer compacto
+
+### ✅ Mantenimiento y cuidado de tu Reformer de Pilates
 **Research File:** [mantenimiento-reformer-pilates.md](./research/mantenimiento-reformer-pilates.md)
 **Target:** Dueños de Reformer
 **Keywords:** mantenimiento reformer, cuidado equipo, durabilidad
@@ -174,10 +179,20 @@
 **Target:** Dueños de Reformer y estudios
 **Keywords:** accesorios reformer, complementos pilates, equipo adicional
 
-### 📝 Precio de la cama de Pilates en México (2025)
+### ✅ Precio de la cama de Pilates en México (2025)
 **Research File:** [precio-cama-de-pilates.md](./research/precio-cama-de-pilates.md)
 **Target:** Compradoras/es de hogar y dueñas/os de estudio en México
 **Keywords:** cama de pilates precio, reformer precio mexico, reformer profesional precio, financiación reformer, costo total de propiedad
+
+### ✅ Reformer para casa vs profesional (comparativa)
+**Research File:** [reformer-casa-vs-profesional.md](./research/reformer-casa-vs-profesional.md)
+**Target:** Hogar vs estudio (decisión de compra)
+**Keywords:** reformer casa vs profesional, cama de pilates casa vs profesional
+
+### ✅ Guía de compra de Cama de Pilates 2025 (MX)
+**Research File:** [cama-de-pilates-guia-de-compra.md](./research/cama-de-pilates-guia-de-compra.md)
+**Target:** Hogar y estudios en México
+**Keywords:** guia compra cama de pilates, comprar reformer mexico, mejor reformer 2025
 
 ---
 
@@ -212,6 +227,6 @@
 5. **Imágenes**: Cada blog necesita sugerencias de imágenes relevantes
 6. **Call-to-action**: Siempre incluir CTA hacia productos/servicios de CAMA Pilates
 
-**Última actualización**: 2025-01-26
-**Posts completados**: 0/32
-**Progreso**: 0%
+**Última actualización**: 2025-01-28
+**Posts completados**: 5/32
+**Progreso**: 15.6%

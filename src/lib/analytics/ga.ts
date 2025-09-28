@@ -37,6 +37,10 @@ export function viewItem(params: { item_id?: string; item_name?: string; value?:
   event('view_item', params as any);
 }
 
+export function viewItemList(params: { items: any[] }) {
+  event('view_item_list', params as any);
+}
+
 // Consent mode update helper (e.g., after user action)
 export function setConsent(consent: Partial<{ ad_storage: string; analytics_storage: string; ad_user_data: string; ad_personalization: string }>) {
   try {

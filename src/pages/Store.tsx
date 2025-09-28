@@ -204,6 +204,20 @@ const Store = () => {
           <div className="flex justify-center">
             <RegionNote />
           </div>
+          {/* Trust strip for legacy store */}
+          <div className="mt-4 flex justify-center">
+            <div className="bg-card/70 border border-border rounded-md px-3 py-2">
+              <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+                <span>Pago seguro</span>
+                <span>•</span>
+                <span>Entrega 7–14 días (MX)</span>
+                <span>•</span>
+                <span>Garantía 3 años</span>
+                <span>•</span>
+                <span>Repuestos exprés</span>
+              </div>
+            </div>
+          </div>
         </header>
 
         {/* Compare Casa vs Profesional */}

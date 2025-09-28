@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
-// Use dynamic import for marked ESM module
+const { marked } = require('marked');
 
 const ROOT = path.resolve(__dirname, '..');
 const DIST = path.join(ROOT, 'dist');

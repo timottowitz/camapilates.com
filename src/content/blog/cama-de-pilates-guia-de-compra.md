@@ -1,13 +1,22 @@
 ---
-title: "Guía de compra de Cama de Pilates (Reformer) 2025 — México"
-description: "Cómo elegir tu Reformer: tipos (casa vs profesional), materiales y silencio, accesorios, espacio, presupuesto y TCO. Rangos de precio en México y recomendaciones."
-category: "Guías de compra"
-tags: ["guia compra cama de pilates", "comprar reformer mexico", "mejor reformer 2025", "reformer casa vs profesional", "accesorios reformer"]
-publishDate: "2025-09-24"
-author: "CAMA Pilates"
-slug: "cama-de-pilates-guia-de-compra"
+title: Guía de compra de Cama de Pilates (Reformer) 2025 — México
+description: >-
+  Cómo elegir tu Reformer: tipos (casa vs profesional), materiales y silencio,
+  accesorios, espacio, presupuesto y TCO. Rangos de precio en México y
+  recomendaciones.
+category: Guías de compra
+tags:
+  - guia compra cama de pilates
+  - comprar reformer mexico
+  - mejor reformer 2025
+  - reformer casa vs profesional
+  - accesorios reformer
+publishDate: '2025-09-24'
+author: CAMA Pilates
+slug: cama-de-pilates-guia-de-compra
 featured: false
-updatedDate: "2025-09-26"
+updatedDate: '2025-09-26'
+heroImage: /images/blog/cama-de-pilates-guia-de-compra/hero.jpg
 ---
 
 # Guía de compra de Cama de Pilates (Reformer) 2025 — México
@@ -15,6 +24,10 @@ updatedDate: "2025-09-26"
 > Resumen: para elegir bien, prioriza estructura/estabilidad, silencio real del recorrido, ajustes seguros y servicio. Define si tu uso es doméstico (compacidad) o de estudio (durabilidad y cambios rápidos). Después piensa en accesorios.
 
 ## Tipos de Reformer
+
+![Tipos de Reformer](/images/blog/cama-de-pilates-guia-de-compra/section-1.jpg)
+<small>Foto: Ambitious Studio* | Rick Barrett / Unsplash</small>
+
 ### Reformer para casa
 - Compacto, estable y silencioso; accesorios de arranque (box/correas) y footprint contenido.
 - Ideal para 1–2 personas; enfoque en facilidad de uso y estética.
@@ -26,6 +39,10 @@ updatedDate: "2025-09-26"
 <see-also limit="3" />
 
 ## Materiales y acabados
+
+![Materiales y acabados](/images/blog/cama-de-pilates-guia-de-compra/section-2.jpg)
+<small>Foto: Elena Kloppenburg / Unsplash</small>
+
 - **Estructura:** acero estructural para rigidez y precisión.
 - **Madera:** nogal, estable y estética premium.
 - **Tapicería:** cuero genuino o micelio (opción sostenible), con densidad adecuada y doble costura.
