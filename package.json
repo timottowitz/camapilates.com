@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "prebuild": "node scripts/generate-og.cjs && node scripts/generate-sitemap.cjs",
-    "build": "vite build && node scripts/static-prerender.cjs",
+    "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
