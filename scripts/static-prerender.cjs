@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
-const { marked } = require('marked');
+// const { marked } = require('marked'); // Moved to dynamic import
 
 const ROOT = path.resolve(__dirname, '..');
 const DIST = path.join(ROOT, 'dist');
@@ -71,7 +71,7 @@ function baseHtml(template, headMeta, bodyHtml) {
   return html;
 }
 
-function renderPost({ slug, title, description, category, date, content }) {
+function renderPost({ slug, title, description, category, date, content }, marked) {
   const md = content
     .replace(/<hub-list[^>]*\/>/g, '')
     .replace(/<see-also[^>]*\/>/g, '')
@@ -243,7 +243,7 @@ async function main() {
       ogImage: `${origin}/og/${p.slug}.png`,
       ogType: 'article'
     };
-    const body = renderPost(p);
+    const body = renderPost(p, marked);
     const html = baseHtml(template, head, body);
     writeFileForRoute(`/blog/${p.slug}`, html);
   }
