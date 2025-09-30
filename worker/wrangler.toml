@@ -27,4 +27,4 @@ database_id = "6c4c290b-2269-4b4c-af7e-f7e82ca6f62b"
 [vars]
 ENVIRONMENT = "development"
 GITHUB_REPO = "timottowitz/camapilates.com"
-GITHUB_TOKEN = "your-github-token-here"
+GITHUB_TOKEN = "ghp_qQyX8h9kL2mN3pO4rS5tU6vW7xY8zA9b"
