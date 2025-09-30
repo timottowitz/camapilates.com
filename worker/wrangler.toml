@@ -10,10 +10,10 @@ binding = "DB"
 database_name = "camadepilates-production-db"
 database_id = "63831e40-3f9b-4d91-9a5d-857c16ffa295"
 
-[env.development]
+[env.preview]
 route = { pattern = "api-dev.camadepilates.com/*", zone_name = "camadepilates.com" }
 
-[[env.development.d1_databases]]
+[[env.preview.d1_databases]]
 binding = "DB"
 database_name = "camadepilates-development-db"
 database_id = "6c4c290b-2269-4b4c-af7e-f7e82ca6f62b"
@@ -25,6 +25,6 @@ database_name = "camadepilates-development-db"
 database_id = "6c4c290b-2269-4b4c-af7e-f7e82ca6f62b"
 
 [vars]
-ENVIRONMENT = "development"
+ENVIRONMENT = "preview"
 GITHUB_REPO = "timottowitz/camapilates.com"
 GITHUB_TOKEN = "ghp_qQyX8h9kL2mN3pO4rS5tU6vW7xY8zA9b"
