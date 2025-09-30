@@ -1,0 +1,757 @@
+{
+  "/brand/edelweiss.svg": {
+    "original": "/brand/edelweiss.svg",
+    "hashed": "/brand/edelweiss.12990923.svg",
+    "hash": "12990923"
+  },
+  "/images/badges/mylo.svg": {
+    "original": "/images/badges/mylo.svg",
+    "hashed": "/images/badges/mylo.0841b158.svg",
+    "hash": "0841b158"
+  },
+  "/images/blog/accesorios-cama-de-pilates-esenciales/hero.jpg": {
+    "original": "/images/blog/accesorios-cama-de-pilates-esenciales/hero.jpg",
+    "hashed": "/images/blog/accesorios-cama-de-pilates-esenciales/hero.cdd24b94.jpg",
+    "hash": "cdd24b94"
+  },
+  "/images/blog/accesorios-cama-de-pilates-esenciales/section-1.jpg": {
+    "original": "/images/blog/accesorios-cama-de-pilates-esenciales/section-1.jpg",
+    "hashed": "/images/blog/accesorios-cama-de-pilates-esenciales/section-1.cdd24b94.jpg",
+    "hash": "cdd24b94"
+  },
+  "/images/blog/accesorios-cama-de-pilates-esenciales/section-2.jpg": {
+    "original": "/images/blog/accesorios-cama-de-pilates-esenciales/section-2.jpg",
+    "hashed": "/images/blog/accesorios-cama-de-pilates-esenciales/section-2.e6b058d8.jpg",
+    "hash": "e6b058d8"
+  },
+  "/images/blog/cama-de-pilates-guia-de-compra/hero.jpg": {
+    "original": "/images/blog/cama-de-pilates-guia-de-compra/hero.jpg",
+    "hashed": "/images/blog/cama-de-pilates-guia-de-compra/hero.7d2c643c.jpg",
+    "hash": "7d2c643c"
+  },
+  "/images/blog/cama-de-pilates-guia-de-compra/section-1.jpg": {
+    "original": "/images/blog/cama-de-pilates-guia-de-compra/section-1.jpg",
+    "hashed": "/images/blog/cama-de-pilates-guia-de-compra/section-1.ed312fef.jpg",
+    "hash": "ed312fef"
+  },
+  "/images/blog/cama-de-pilates-guia-de-compra/section-2.jpg": {
+    "original": "/images/blog/cama-de-pilates-guia-de-compra/section-2.jpg",
+    "hashed": "/images/blog/cama-de-pilates-guia-de-compra/section-2.cdd24b94.jpg",
+    "hash": "cdd24b94"
+  },
+  "/images/blog/mantenimiento-cama-de-pilates/hero.jpg": {
+    "original": "/images/blog/mantenimiento-cama-de-pilates/hero.jpg",
+    "hashed": "/images/blog/mantenimiento-cama-de-pilates/hero.948b9a8d.jpg",
+    "hash": "948b9a8d"
+  },
+  "/images/blog/mantenimiento-cama-de-pilates/section-1.jpg": {
+    "original": "/images/blog/mantenimiento-cama-de-pilates/section-1.jpg",
+    "hashed": "/images/blog/mantenimiento-cama-de-pilates/section-1.ed4ce9b0.jpg",
+    "hash": "ed4ce9b0"
+  },
+  "/images/blog/mantenimiento-cama-de-pilates/section-2.jpg": {
+    "original": "/images/blog/mantenimiento-cama-de-pilates/section-2.jpg",
+    "hashed": "/images/blog/mantenimiento-cama-de-pilates/section-2.144da446.jpg",
+    "hash": "144da446"
+  },
+  "/images/blog/precio-cama-de-pilates-2025/hero.jpg": {
+    "original": "/images/blog/precio-cama-de-pilates-2025/hero.jpg",
+    "hashed": "/images/blog/precio-cama-de-pilates-2025/hero.b993ae62.jpg",
+    "hash": "b993ae62"
+  },
+  "/images/blog/precio-cama-de-pilates-2025/section-1.jpg": {
+    "original": "/images/blog/precio-cama-de-pilates-2025/section-1.jpg",
+    "hashed": "/images/blog/precio-cama-de-pilates-2025/section-1.4a40b857.jpg",
+    "hash": "4a40b857"
+  },
+  "/images/blog/precio-cama-de-pilates-2025/section-2.jpg": {
+    "original": "/images/blog/precio-cama-de-pilates-2025/section-2.jpg",
+    "hashed": "/images/blog/precio-cama-de-pilates-2025/section-2.ed312fef.jpg",
+    "hash": "ed312fef"
+  },
+  "/images/blog/reformer-casa-vs-profesional/hero.jpg": {
+    "original": "/images/blog/reformer-casa-vs-profesional/hero.jpg",
+    "hashed": "/images/blog/reformer-casa-vs-profesional/hero.e6b058d8.jpg",
+    "hash": "e6b058d8"
+  },
+  "/images/blog/reformer-casa-vs-profesional/section-1.jpg": {
+    "original": "/images/blog/reformer-casa-vs-profesional/section-1.jpg",
+    "hashed": "/images/blog/reformer-casa-vs-profesional/section-1.7b05b2fe.jpg",
+    "hash": "7b05b2fe"
+  },
+  "/images/blog/reformer-casa-vs-profesional/section-2.jpg": {
+    "original": "/images/blog/reformer-casa-vs-profesional/section-2.jpg",
+    "hashed": "/images/blog/reformer-casa-vs-profesional/section-2.9c2eb9f4.jpg",
+    "hash": "9c2eb9f4"
+  },
+  "/images/finish-mycelium.webp": {
+    "original": "/images/finish-mycelium.webp",
+    "hashed": "/images/finish-mycelium.a6de350d.webp",
+    "hash": "a6de350d"
+  },
+  "/images/special/mylo-special.svg": {
+    "original": "/images/special/mylo-special.svg",
+    "hashed": "/images/special/mylo-special.a89a3ad1.svg",
+    "hash": "a89a3ad1"
+  },
+  "/lovable-uploads/5c4a0ecb-2333-49fb-80e0-ac14b7e0892b.png": {
+    "original": "/lovable-uploads/5c4a0ecb-2333-49fb-80e0-ac14b7e0892b.png",
+    "hashed": "/lovable-uploads/5c4a0ecb-2333-49fb-80e0-ac14b7e0892b.76e5c267.png",
+    "hash": "76e5c267"
+  },
+  "/lovable-uploads/77fa516c-5dcc-4458-85cb-354052a73a84.png": {
+    "original": "/lovable-uploads/77fa516c-5dcc-4458-85cb-354052a73a84.png",
+    "hashed": "/lovable-uploads/77fa516c-5dcc-4458-85cb-354052a73a84.ae353153.png",
+    "hash": "ae353153"
+  },
+  "/lovable-uploads/b4023440-1afa-48f0-a8fc-91dbab310703.png": {
+    "original": "/lovable-uploads/b4023440-1afa-48f0-a8fc-91dbab310703.png",
+    "hashed": "/lovable-uploads/b4023440-1afa-48f0-a8fc-91dbab310703.59b6c6cc.png",
+    "hash": "59b6c6cc"
+  },
+  "/lovable-uploads/b9eed837-d3e3-4439-9e6d-a416f2c12d78.png": {
+    "original": "/lovable-uploads/b9eed837-d3e3-4439-9e6d-a416f2c12d78.png",
+    "hashed": "/lovable-uploads/b9eed837-d3e3-4439-9e6d-a416f2c12d78.fc8d45aa.png",
+    "hash": "fc8d45aa"
+  },
+  "/lovable-uploads/c2f6a088-e5ec-429d-aee4-419e9df7b8c2.png": {
+    "original": "/lovable-uploads/c2f6a088-e5ec-429d-aee4-419e9df7b8c2.png",
+    "hashed": "/lovable-uploads/c2f6a088-e5ec-429d-aee4-419e9df7b8c2.ae353153.png",
+    "hash": "ae353153"
+  },
+  "/lovable-uploads/cafd9240-68ad-4e1e-a695-6a0ba14f9afe.png": {
+    "original": "/lovable-uploads/cafd9240-68ad-4e1e-a695-6a0ba14f9afe.png",
+    "hashed": "/lovable-uploads/cafd9240-68ad-4e1e-a695-6a0ba14f9afe.ae353153.png",
+    "hash": "ae353153"
+  },
+  "/lovable-uploads/d7dff2f2-c2d6-4b50-a5bb-0266705d4bf9.png": {
+    "original": "/lovable-uploads/d7dff2f2-c2d6-4b50-a5bb-0266705d4bf9.png",
+    "hashed": "/lovable-uploads/d7dff2f2-c2d6-4b50-a5bb-0266705d4bf9.12a6ef98.png",
+    "hash": "12a6ef98"
+  },
+  "/og/accesorios-cama-de-pilates-esenciales.png": {
+    "original": "/og/accesorios-cama-de-pilates-esenciales.png",
+    "hashed": "/og/accesorios-cama-de-pilates-esenciales.875321a5.png",
+    "hash": "875321a5"
+  },
+  "/og/accesorios-cama-de-pilates.png": {
+    "original": "/og/accesorios-cama-de-pilates.png",
+    "hashed": "/og/accesorios-cama-de-pilates.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/accesorios-esenciales-reformer.png": {
+    "original": "/og/accesorios-esenciales-reformer.png",
+    "hashed": "/og/accesorios-esenciales-reformer.561b27b9.png",
+    "hash": "561b27b9"
+  },
+  "/og/american-solar-calls-scam.png": {
+    "original": "/og/american-solar-calls-scam.png",
+    "hashed": "/og/american-solar-calls-scam.04f601f7.png",
+    "hash": "04f601f7"
+  },
+  "/og/avoid-solar-scams.png": {
+    "original": "/og/avoid-solar-scams.png",
+    "hashed": "/og/avoid-solar-scams.02520d31.png",
+    "hash": "02520d31"
+  },
+  "/og/beneficios-pilates-en-cama.png": {
+    "original": "/og/beneficios-pilates-en-cama.png",
+    "hashed": "/og/beneficios-pilates-en-cama.c1c8ad25.png",
+    "hash": "c1c8ad25"
+  },
+  "/og/better-earth-solar-lawsuit.png": {
+    "original": "/og/better-earth-solar-lawsuit.png",
+    "hashed": "/og/better-earth-solar-lawsuit.a644ea8a.png",
+    "hash": "a644ea8a"
+  },
+  "/og/bright-planet-solar-lawsuit.png": {
+    "original": "/og/bright-planet-solar-lawsuit.png",
+    "hashed": "/og/bright-planet-solar-lawsuit.ad6e9cb3.png",
+    "hash": "ad6e9cb3"
+  },
+  "/og/calcetines-para-pilates-reformer.png": {
+    "original": "/og/calcetines-para-pilates-reformer.png",
+    "hashed": "/og/calcetines-para-pilates-reformer.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/cama-de-pilates-barata.png": {
+    "original": "/og/cama-de-pilates-barata.png",
+    "hashed": "/og/cama-de-pilates-barata.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/cama-de-pilates-guia-de-compra.png": {
+    "original": "/og/cama-de-pilates-guia-de-compra.png",
+    "hashed": "/og/cama-de-pilates-guia-de-compra.742b18be.png",
+    "hash": "742b18be"
+  },
+  "/og/cama-de-pilates-para-principiantes.png": {
+    "original": "/og/cama-de-pilates-para-principiantes.png",
+    "hashed": "/og/cama-de-pilates-para-principiantes.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/cama-de-pilates-plegable.png": {
+    "original": "/og/cama-de-pilates-plegable.png",
+    "hashed": "/og/cama-de-pilates-plegable.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/cama-de-pilates-reformer.png": {
+    "original": "/og/cama-de-pilates-reformer.png",
+    "hashed": "/og/cama-de-pilates-reformer.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/cama-de-pilates-segunda-mano.png": {
+    "original": "/og/cama-de-pilates-segunda-mano.png",
+    "hashed": "/og/cama-de-pilates-segunda-mano.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/cama-de-pilates-venta-mexico.png": {
+    "original": "/og/cama-de-pilates-venta-mexico.png",
+    "hashed": "/og/cama-de-pilates-venta-mexico.3f99b807.png",
+    "hash": "3f99b807"
+  },
+  "/og/cama-para-pilates.png": {
+    "original": "/og/cama-para-pilates.png",
+    "hashed": "/og/cama-para-pilates.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/cama-pilates.png": {
+    "original": "/og/cama-pilates.png",
+    "hashed": "/og/cama-pilates.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/certificacion-instructores-mexico.png": {
+    "original": "/og/certificacion-instructores-mexico.png",
+    "hashed": "/og/certificacion-instructores-mexico.e305f162.png",
+    "hash": "e305f162"
+  },
+  "/og/cleanchoice-energy-scam.png": {
+    "original": "/og/cleanchoice-energy-scam.png",
+    "hashed": "/og/cleanchoice-energy-scam.657efab8.png",
+    "hash": "657efab8"
+  },
+  "/og/community-solar-pyramid-scheme.png": {
+    "original": "/og/community-solar-pyramid-scheme.png",
+    "hashed": "/og/community-solar-pyramid-scheme.9b338c26.png",
+    "hash": "9b338c26"
+  },
+  "/og/complaints-against-solar-companies.png": {
+    "original": "/og/complaints-against-solar-companies.png",
+    "hashed": "/og/complaints-against-solar-companies.f20c949d.png",
+    "hash": "f20c949d"
+  },
+  "/og/comunidad-pilates-mexicana.png": {
+    "original": "/og/comunidad-pilates-mexicana.png",
+    "hashed": "/og/comunidad-pilates-mexicana.3de3344a.png",
+    "hash": "3de3344a"
+  },
+  "/og/crecimiento-pilates-mexico.png": {
+    "original": "/og/crecimiento-pilates-mexico.png",
+    "hashed": "/og/crecimiento-pilates-mexico.95e9993a.png",
+    "hash": "95e9993a"
+  },
+  "/og/delmar-energy-scam.png": {
+    "original": "/og/delmar-energy-scam.png",
+    "hashed": "/og/delmar-energy-scam.603ab4a6.png",
+    "hash": "603ab4a6"
+  },
+  "/og/dimensiones-cama-de-pilates.png": {
+    "original": "/og/dimensiones-cama-de-pilates.png",
+    "hashed": "/og/dimensiones-cama-de-pilates.0b3f5e71.png",
+    "hash": "0b3f5e71"
+  },
+  "/og/diseno-estudios-pilates.png": {
+    "original": "/og/diseno-estudios-pilates.png",
+    "hashed": "/og/diseno-estudios-pilates.2f0b5292.png",
+    "hash": "2f0b5292"
+  },
+  "/og/door-to-door-solar-scams.png": {
+    "original": "/og/door-to-door-solar-scams.png",
+    "hashed": "/og/door-to-door-solar-scams.3702a70c.png",
+    "hash": "3702a70c"
+  },
+  "/og/ejercicios-pilates-en-la-cama.png": {
+    "original": "/og/ejercicios-pilates-en-la-cama.png",
+    "hashed": "/og/ejercicios-pilates-en-la-cama.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/ejercicios-pilates-madres-lactantes.png": {
+    "original": "/og/ejercicios-pilates-madres-lactantes.png",
+    "hashed": "/og/ejercicios-pilates-madres-lactantes.be5cafa1.png",
+    "hash": "be5cafa1"
+  },
+  "/og/energy-investment-fraud-attorneys.png": {
+    "original": "/og/energy-investment-fraud-attorneys.png",
+    "hashed": "/og/energy-investment-fraud-attorneys.e46f69da.png",
+    "hash": "e46f69da"
+  },
+  "/og/estudios-pilates-reformer.png": {
+    "original": "/og/estudios-pilates-reformer.png",
+    "hashed": "/og/estudios-pilates-reformer.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/everbright-solar-lawsuit.png": {
+    "original": "/og/everbright-solar-lawsuit.png",
+    "hashed": "/og/everbright-solar-lawsuit.75c06a6e.png",
+    "hash": "75c06a6e"
+  },
+  "/og/fake-solar-panels-scam.png": {
+    "original": "/og/fake-solar-panels-scam.png",
+    "hashed": "/og/fake-solar-panels-scam.b1d8851d.png",
+    "hash": "b1d8851d"
+  },
+  "/og/financiacion-cama-de-pilates.png": {
+    "original": "/og/financiacion-cama-de-pilates.png",
+    "hashed": "/og/financiacion-cama-de-pilates.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/free-ebook-texas-solar-fraud-guide.png": {
+    "original": "/og/free-ebook-texas-solar-fraud-guide.png",
+    "hashed": "/og/free-ebook-texas-solar-fraud-guide.f421faf9.png",
+    "hash": "f421faf9"
+  },
+  "/og/free-solar-panel-scams.png": {
+    "original": "/og/free-solar-panel-scams.png",
+    "hashed": "/og/free-solar-panel-scams.c6629a56.png",
+    "hash": "c6629a56"
+  },
+  "/og/goodleap-complaints-solar.png": {
+    "original": "/og/goodleap-complaints-solar.png",
+    "hashed": "/og/goodleap-complaints-solar.92c0623d.png",
+    "hash": "92c0623d"
+  },
+  "/og/green-energy-group-calls-scam.png": {
+    "original": "/og/green-energy-group-calls-scam.png",
+    "hashed": "/og/green-energy-group-calls-scam.128d4332.png",
+    "hash": "128d4332"
+  },
+  "/og/guia-completa-reformer.png": {
+    "original": "/og/guia-completa-reformer.png",
+    "hashed": "/og/guia-completa-reformer.a7100316.png",
+    "hash": "a7100316"
+  },
+  "/og/historia-instructor-certificado.png": {
+    "original": "/og/historia-instructor-certificado.png",
+    "hashed": "/og/historia-instructor-certificado.15cd7373.png",
+    "hash": "15cd7373"
+  },
+  "/og/how-do-solar-companies-rip-you-off.png": {
+    "original": "/og/how-do-solar-companies-rip-you-off.png",
+    "hashed": "/og/how-do-solar-companies-rip-you-off.26dfec7e.png",
+    "hash": "26dfec7e"
+  },
+  "/og/how-to-make-related-articles-dynamic.png": {
+    "original": "/og/how-to-make-related-articles-dynamic.png",
+    "hashed": "/og/how-to-make-related-articles-dynamic.21cec47c.png",
+    "hash": "21cec47c"
+  },
+  "/og/how-to-report-solar-panel-fraud.png": {
+    "original": "/og/how-to-report-solar-panel-fraud.png",
+    "hashed": "/og/how-to-report-solar-panel-fraud.303e5eb3.png",
+    "hash": "303e5eb3"
+  },
+  "/og/how-to-spot-solar-panel-scams-texas.png": {
+    "original": "/og/how-to-spot-solar-panel-scams-texas.png",
+    "hashed": "/og/how-to-spot-solar-panel-scams-texas.e0ab2c50.png",
+    "hash": "e0ab2c50"
+  },
+  "/og/is-nexamp-a-scam.png": {
+    "original": "/og/is-nexamp-a-scam.png",
+    "hashed": "/og/is-nexamp-a-scam.01fe6b43.png",
+    "hash": "01fe6b43"
+  },
+  "/og/is-solar-a-scam.png": {
+    "original": "/og/is-solar-a-scam.png",
+    "hashed": "/og/is-solar-a-scam.dbc20c21.png",
+    "hash": "dbc20c21"
+  },
+  "/og/is-sun-run-a-scam.png": {
+    "original": "/og/is-sun-run-a-scam.png",
+    "hashed": "/og/is-sun-run-a-scam.24601e23.png",
+    "hash": "24601e23"
+  },
+  "/og/legal-rights-solar-companies.png": {
+    "original": "/og/legal-rights-solar-companies.png",
+    "hashed": "/og/legal-rights-solar-companies.6ff2d178.png",
+    "hash": "6ff2d178"
+  },
+  "/og/liderazgo-emprendedores-pilates.png": {
+    "original": "/og/liderazgo-emprendedores-pilates.png",
+    "hashed": "/og/liderazgo-emprendedores-pilates.ad387660.png",
+    "hash": "ad387660"
+  },
+  "/og/lumio-solar-pyramid-scheme.png": {
+    "original": "/og/lumio-solar-pyramid-scheme.png",
+    "hashed": "/og/lumio-solar-pyramid-scheme.0dbc3fc5.png",
+    "hash": "0dbc3fc5"
+  },
+  "/og/mantenimiento-cama-de-pilates.png": {
+    "original": "/og/mantenimiento-cama-de-pilates.png",
+    "hashed": "/og/mantenimiento-cama-de-pilates.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/mantenimiento-reformer-pilates.png": {
+    "original": "/og/mantenimiento-reformer-pilates.png",
+    "hashed": "/og/mantenimiento-reformer-pilates.684c68e4.png",
+    "hash": "684c68e4"
+  },
+  "/og/marketing-digital-estudios-pilates.png": {
+    "original": "/og/marketing-digital-estudios-pilates.png",
+    "hashed": "/og/marketing-digital-estudios-pilates.33191b42.png",
+    "hash": "33191b42"
+  },
+  "/og/mejor-cama-de-pilates-para-casa.png": {
+    "original": "/og/mejor-cama-de-pilates-para-casa.png",
+    "hashed": "/og/mejor-cama-de-pilates-para-casa.9700e072.png",
+    "hash": "9700e072"
+  },
+  "/og/mejor-cama-de-pilates-profesional.png": {
+    "original": "/og/mejor-cama-de-pilates-profesional.png",
+    "hashed": "/og/mejor-cama-de-pilates-profesional.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/mejor-reformer-espacios-pequenos.png": {
+    "original": "/og/mejor-reformer-espacios-pequenos.png",
+    "hashed": "/og/mejor-reformer-espacios-pequenos.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/mejores-marcas-cama-de-pilates.png": {
+    "original": "/og/mejores-marcas-cama-de-pilates.png",
+    "hashed": "/og/mejores-marcas-cama-de-pilates.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/modificaciones-pilates-lesiones.png": {
+    "original": "/og/modificaciones-pilates-lesiones.png",
+    "hashed": "/og/modificaciones-pilates-lesiones.ae069b85.png",
+    "hash": "ae069b85"
+  },
+  "/og/national-solar-savings-scam.png": {
+    "original": "/og/national-solar-savings-scam.png",
+    "hashed": "/og/national-solar-savings-scam.2746b47b.png",
+    "hash": "2746b47b"
+  },
+  "/og/networking-instructores-pilates.png": {
+    "original": "/og/networking-instructores-pilates.png",
+    "hashed": "/og/networking-instructores-pilates.13b38611.png",
+    "hash": "13b38611"
+  },
+  "/og/nordic-energy-calls-scam.png": {
+    "original": "/og/nordic-energy-calls-scam.png",
+    "hashed": "/og/nordic-energy-calls-scam.e576621d.png",
+    "hash": "e576621d"
+  },
+  "/og/nusun-power-pyramid-scheme.png": {
+    "original": "/og/nusun-power-pyramid-scheme.png",
+    "hashed": "/og/nusun-power-pyramid-scheme.fdbd0e7a.png",
+    "hash": "fdbd0e7a"
+  },
+  "/og/para-que-sirve-pilates-en-cama.png": {
+    "original": "/og/para-que-sirve-pilates-en-cama.png",
+    "hashed": "/og/para-que-sirve-pilates-en-cama.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/pilates-para-deportistas-de-alto-rendimiento.png": {
+    "original": "/og/pilates-para-deportistas-de-alto-rendimiento.png",
+    "hashed": "/og/pilates-para-deportistas-de-alto-rendimiento.d95ace1c.png",
+    "hash": "d95ace1c"
+  },
+  "/og/pilates-para-golf.png": {
+    "original": "/og/pilates-para-golf.png",
+    "hashed": "/og/pilates-para-golf.711b8358.png",
+    "hash": "711b8358"
+  },
+  "/og/pilates-para-tenistas.png": {
+    "original": "/og/pilates-para-tenistas.png",
+    "hashed": "/og/pilates-para-tenistas.4bb3e656.png",
+    "hash": "4bb3e656"
+  },
+  "/og/pilates-reformer-cdmx.png": {
+    "original": "/og/pilates-reformer-cdmx.png",
+    "hashed": "/og/pilates-reformer-cdmx.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/pilates-reformer-cerca-de-mi.png": {
+    "original": "/og/pilates-reformer-cerca-de-mi.png",
+    "hashed": "/og/pilates-reformer-cerca-de-mi.33aac0e8.png",
+    "hash": "33aac0e8"
+  },
+  "/og/pilates-reformer-para-espalda.png": {
+    "original": "/og/pilates-reformer-para-espalda.png",
+    "hashed": "/og/pilates-reformer-para-espalda.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/pilates-rehabilitacion-cancer-mama.png": {
+    "original": "/og/pilates-rehabilitacion-cancer-mama.png",
+    "hashed": "/og/pilates-rehabilitacion-cancer-mama.df4a6d69.png",
+    "hash": "df4a6d69"
+  },
+  "/og/precio-cama-de-pilates-2025.png": {
+    "original": "/og/precio-cama-de-pilates-2025.png",
+    "hashed": "/og/precio-cama-de-pilates-2025.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/precio-cama-de-pilates.png": {
+    "original": "/og/precio-cama-de-pilates.png",
+    "hashed": "/og/precio-cama-de-pilates.e051d5a6.png",
+    "hash": "e051d5a6"
+  },
+  "/og/principios-alineacion-pilates.png": {
+    "original": "/og/principios-alineacion-pilates.png",
+    "hashed": "/og/principios-alineacion-pilates.f86f2ef2.png",
+    "hash": "f86f2ef2"
+  },
+  "/og/prueba-automatizada-de-pipeline.png": {
+    "original": "/og/prueba-automatizada-de-pipeline.png",
+    "hashed": "/og/prueba-automatizada-de-pipeline.e3dd9813.png",
+    "hash": "e3dd9813"
+  },
+  "/og/ptm-solar-scam.png": {
+    "original": "/og/ptm-solar-scam.png",
+    "hashed": "/og/ptm-solar-scam.4b693e82.png",
+    "hash": "4b693e82"
+  },
+  "/og/qualified-solar-survey-scam.png": {
+    "original": "/og/qualified-solar-survey-scam.png",
+    "hashed": "/og/qualified-solar-survey-scam.dbf51ba3.png",
+    "hash": "dbf51ba3"
+  },
+  "/og/reformer-casa-vs-profesional.png": {
+    "original": "/og/reformer-casa-vs-profesional.png",
+    "hashed": "/og/reformer-casa-vs-profesional.874d56ce.png",
+    "hash": "874d56ce"
+  },
+  "/og/reformer-compacto.png": {
+    "original": "/og/reformer-compacto.png",
+    "hashed": "/og/reformer-compacto.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/reformer-vs-cadillac.png": {
+    "original": "/og/reformer-vs-cadillac.png",
+    "hashed": "/og/reformer-vs-cadillac.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/reformer-vs-mat-pilates.png": {
+    "original": "/og/reformer-vs-mat-pilates.png",
+    "hashed": "/og/reformer-vs-mat-pilates.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/reformer-vs-tower.png": {
+    "original": "/og/reformer-vs-tower.png",
+    "hashed": "/og/reformer-vs-tower.cbb81ba1.png",
+    "hash": "cbb81ba1"
+  },
+  "/og/renewable-energy-scam.png": {
+    "original": "/og/renewable-energy-scam.png",
+    "hashed": "/og/renewable-energy-scam.511fab47.png",
+    "hash": "511fab47"
+  },
+  "/og/residence-energy-scam.png": {
+    "original": "/og/residence-energy-scam.png",
+    "hashed": "/og/residence-energy-scam.bed8abff.png",
+    "hash": "bed8abff"
+  },
+  "/og/smart-energy-gift-card-scam.png": {
+    "original": "/og/smart-energy-gift-card-scam.png",
+    "hashed": "/og/smart-energy-gift-card-scam.23b62b64.png",
+    "hash": "23b62b64"
+  },
+  "/og/solar-attorney-california.png": {
+    "original": "/og/solar-attorney-california.png",
+    "hashed": "/og/solar-attorney-california.bd66add5.png",
+    "hash": "bd66add5"
+  },
+  "/og/solar-attorney-florida.png": {
+    "original": "/og/solar-attorney-florida.png",
+    "hashed": "/og/solar-attorney-florida.c4d27039.png",
+    "hash": "c4d27039"
+  },
+  "/og/solar-companies-to-avoid.png": {
+    "original": "/og/solar-companies-to-avoid.png",
+    "hashed": "/og/solar-companies-to-avoid.55a9b7b4.png",
+    "hash": "55a9b7b4"
+  },
+  "/og/solar-company-lawsuits.png": {
+    "original": "/og/solar-company-lawsuits.png",
+    "hashed": "/og/solar-company-lawsuits.d9e52090.png",
+    "hash": "d9e52090"
+  },
+  "/og/solar-contract-lawyer.png": {
+    "original": "/og/solar-contract-lawyer.png",
+    "hashed": "/og/solar-contract-lawyer.c744e84d.png",
+    "hash": "c744e84d"
+  },
+  "/og/solar-dealer-fees-explained.png": {
+    "original": "/og/solar-dealer-fees-explained.png",
+    "hashed": "/og/solar-dealer-fees-explained.6d190286.png",
+    "hash": "6d190286"
+  },
+  "/og/solar-financing-scams.png": {
+    "original": "/og/solar-financing-scams.png",
+    "hashed": "/og/solar-financing-scams.f7de2eb6.png",
+    "hash": "f7de2eb6"
+  },
+  "/og/solar-fraud-attorney.png": {
+    "original": "/og/solar-fraud-attorney.png",
+    "hashed": "/og/solar-fraud-attorney.f0b66a70.png",
+    "hash": "f0b66a70"
+  },
+  "/og/solar-fraud-crisis-2008-parallels.png": {
+    "original": "/og/solar-fraud-crisis-2008-parallels.png",
+    "hashed": "/og/solar-fraud-crisis-2008-parallels.5793aa76.png",
+    "hash": "5793aa76"
+  },
+  "/og/solar-installation-problems.png": {
+    "original": "/og/solar-installation-problems.png",
+    "hashed": "/og/solar-installation-problems.91da1ab1.png",
+    "hash": "91da1ab1"
+  },
+  "/og/solar-installer-ghosted-action-plan.png": {
+    "original": "/og/solar-installer-ghosted-action-plan.png",
+    "hashed": "/og/solar-installer-ghosted-action-plan.070c3088.png",
+    "hash": "070c3088"
+  },
+  "/og/solar-panel-fraud-7-red-flags-2025-guide.png": {
+    "original": "/og/solar-panel-fraud-7-red-flags-2025-guide.png",
+    "hashed": "/og/solar-panel-fraud-7-red-flags-2025-guide.e04e174d.png",
+    "hash": "e04e174d"
+  },
+  "/og/solar-panel-fraud-surge-protection-guide.png": {
+    "original": "/og/solar-panel-fraud-surge-protection-guide.png",
+    "hashed": "/og/solar-panel-fraud-surge-protection-guide.15757478.png",
+    "hash": "15757478"
+  },
+  "/og/solar-panel-scams-ripoffs.png": {
+    "original": "/og/solar-panel-scams-ripoffs.png",
+    "hashed": "/og/solar-panel-scams-ripoffs.35ecb166.png",
+    "hash": "35ecb166"
+  },
+  "/og/solar-panels-are-a-joke.png": {
+    "original": "/og/solar-panels-are-a-joke.png",
+    "hashed": "/og/solar-panels-are-a-joke.2e357436.png",
+    "hash": "2e357436"
+  },
+  "/og/solar-relief-center-reviews.png": {
+    "original": "/og/solar-relief-center-reviews.png",
+    "hashed": "/og/solar-relief-center-reviews.d7520c32.png",
+    "hash": "d7520c32"
+  },
+  "/og/solar-scams-arizona.png": {
+    "original": "/og/solar-scams-arizona.png",
+    "hashed": "/og/solar-scams-arizona.c7e7fca3.png",
+    "hash": "c7e7fca3"
+  },
+  "/og/solar-scams-california.png": {
+    "original": "/og/solar-scams-california.png",
+    "hashed": "/og/solar-scams-california.059c5128.png",
+    "hash": "059c5128"
+  },
+  "/og/solar-scams-florida.png": {
+    "original": "/og/solar-scams-florida.png",
+    "hashed": "/og/solar-scams-florida.f06984f6.png",
+    "hash": "f06984f6"
+  },
+  "/og/solar-scams-new-jersey.png": {
+    "original": "/og/solar-scams-new-jersey.png",
+    "hashed": "/og/solar-scams-new-jersey.a2bc4cd4.png",
+    "hash": "a2bc4cd4"
+  },
+  "/og/solar-scams-new-york.png": {
+    "original": "/og/solar-scams-new-york.png",
+    "hashed": "/og/solar-scams-new-york.f3e3cdd7.png",
+    "hash": "f3e3cdd7"
+  },
+  "/og/solar-scams-texas.png": {
+    "original": "/og/solar-scams-texas.png",
+    "hashed": "/og/solar-scams-texas.a2a3da04.png",
+    "hash": "a2a3da04"
+  },
+  "/og/solar-spam-calls-scams.png": {
+    "original": "/og/solar-spam-calls-scams.png",
+    "hashed": "/og/solar-spam-calls-scams.8a7b3162.png",
+    "hash": "8a7b3162"
+  },
+  "/og/solares-enterprises-charge.png": {
+    "original": "/og/solares-enterprises-charge.png",
+    "hashed": "/og/solares-enterprises-charge.0479471f.png",
+    "hash": "0479471f"
+  },
+  "/og/solarquote-org-reviews.png": {
+    "original": "/og/solarquote-org-reviews.png",
+    "hashed": "/og/solarquote-org-reviews.5abc5fbe.png",
+    "hash": "5abc5fbe"
+  },
+  "/og/stia-energy-scam.png": {
+    "original": "/og/stia-energy-scam.png",
+    "hashed": "/og/stia-energy-scam.744945ad.png",
+    "hash": "744945ad"
+  },
+  "/og/sun-run-scam.png": {
+    "original": "/og/sun-run-scam.png",
+    "hashed": "/og/sun-run-scam.b5d87ffa.png",
+    "hash": "b5d87ffa"
+  },
+  "/og/sunder-energy-pyramid-scheme.png": {
+    "original": "/og/sunder-energy-pyramid-scheme.png",
+    "hashed": "/og/sunder-energy-pyramid-scheme.c4354bed.png",
+    "hash": "c4354bed"
+  },
+  "/og/sunrun-scam-controversy.png": {
+    "original": "/og/sunrun-scam-controversy.png",
+    "hashed": "/og/sunrun-scam-controversy.27da67de.png",
+    "hash": "27da67de"
+  },
+  "/og/texas-homeowners-legal-rights-solar-fraud.png": {
+    "original": "/og/texas-homeowners-legal-rights-solar-fraud.png",
+    "hashed": "/og/texas-homeowners-legal-rights-solar-fraud.e49d3143.png",
+    "hash": "e49d3143"
+  },
+  "/og/texas-senate-bill-1036-solar-regulations.png": {
+    "original": "/og/texas-senate-bill-1036-solar-regulations.png",
+    "hashed": "/og/texas-senate-bill-1036-solar-regulations.1214c617.png",
+    "hash": "1214c617"
+  },
+  "/og/texas-solar-panel-boom-fraud-crisis.png": {
+    "original": "/og/texas-solar-panel-boom-fraud-crisis.png",
+    "hashed": "/og/texas-solar-panel-boom-fraud-crisis.5eda81f7.png",
+    "hash": "5eda81f7"
+  },
+  "/og/texas-solar-panel-financing-fraud-compensation.png": {
+    "original": "/og/texas-solar-panel-financing-fraud-compensation.png",
+    "hashed": "/og/texas-solar-panel-financing-fraud-compensation.81f8f6e5.png",
+    "hash": "81f8f6e5"
+  },
+  "/og/trinity-solar-pyramid-scheme.png": {
+    "original": "/og/trinity-solar-pyramid-scheme.png",
+    "hashed": "/og/trinity-solar-pyramid-scheme.bf0f89bc.png",
+    "hash": "bf0f89bc"
+  },
+  "/og/understanding-solar-panel-fraud-red-flags.png": {
+    "original": "/og/understanding-solar-panel-fraud-red-flags.png",
+    "hashed": "/og/understanding-solar-panel-fraud-red-flags.66a5d3f1.png",
+    "hash": "66a5d3f1"
+  },
+  "/og/vitl-power-pyramid-scheme.png": {
+    "original": "/og/vitl-power-pyramid-scheme.png",
+    "hashed": "/og/vitl-power-pyramid-scheme.cc600762.png",
+    "hash": "cc600762"
+  },
+  "/og/vivint-solar-fraud-texas.png": {
+    "original": "/og/vivint-solar-fraud-texas.png",
+    "hashed": "/og/vivint-solar-fraud-texas.295e3519.png",
+    "hash": "295e3519"
+  },
+  "/og/what-they-dont-tell-you-about-solar.png": {
+    "original": "/og/what-they-dont-tell-you-about-solar.png",
+    "hashed": "/og/what-they-dont-tell-you-about-solar.9d4509b5.png",
+    "hash": "9d4509b5"
+  },
+  "/og/yousign-scam.png": {
+    "original": "/og/yousign-scam.png",
+    "hashed": "/og/yousign-scam.1ec92916.png",
+    "hash": "1ec92916"
+  },
+  "/placeholder.svg": {
+    "original": "/placeholder.svg",
+    "hashed": "/placeholder.35707bd9.svg",
+    "hash": "35707bd9"
+  }
+}

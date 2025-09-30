@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "node scripts/generate-og.cjs && node scripts/generate-sitemap.cjs",
+    "prebuild": "node scripts/generate-og.cjs && node scripts/generate-sitemap.cjs && node scripts/generate-image-manifest.js",
     "build": "vite build",
+    "postbuild": "node scripts/generate-image-manifest.js",
     "build:dev": "vite build --mode development",
     "convex:dev": "convex dev",
     "convex:deploy": "convex deploy",
@@ -22,7 +23,9 @@
     "blog:pipeline": "node scripts/improved-blog-pipeline.js",
     "admin:seed": "node scripts/seed-admin.js",
     "blog:patch-hero": "node scripts/patch-hero-frontmatter.js",
-    "blog:patch-hero:all": "node scripts/patch-hero-frontmatter-all.js"
+    "blog:patch-hero:all": "node scripts/patch-hero-frontmatter-all.js",
+    "images:cache-bust": "node scripts/generate-image-manifest.js",
+    "cache:purge": "gh workflow run cloudflare-purge.yml"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",
