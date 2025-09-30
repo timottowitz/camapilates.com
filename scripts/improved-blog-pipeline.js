@@ -255,6 +255,24 @@ class EnhancedBlogPipeline extends AutonomousBlogPipeline {
       if (failedStages.length > 0) {
         throw new Error(`Stage failed: ${failedStages[0].error}`);
       }
+
+      // Quality gate after quality_review
+      const lastStage = group[group.length - 1]?.stage?.name;
+      if (lastStage === 'quality_review') {
+        const q = blog.stages['quality_review']?.result;
+        // Support both direct JSON and string outputs
+        let score = null;
+        if (q && typeof q === 'object' && 'overall_score' in q) score = q.overall_score;
+        try {
+          if (score == null && typeof q === 'string') {
+            const maybe = JSON.parse(q);
+            score = maybe?.overall_score ?? null;
+          }
+        } catch {}
+        if (typeof score === 'number' && score < (this.config?.qualityThreshold || 85)) {
+          throw new Error(`Quality score ${score} below threshold ${(this.config?.qualityThreshold || 85)}`);
+        }
+      }
     }
 
     blog.status = 'completed';
@@ -284,6 +302,8 @@ class EnhancedBlogPipeline extends AutonomousBlogPipeline {
         status: 'completed',
         duration: duration,
         result: result,
+        startTime: stageStartTime,
+        endTime: Date.now(),
         workerId: worker.id
       };
       
@@ -296,6 +316,8 @@ class EnhancedBlogPipeline extends AutonomousBlogPipeline {
         status: 'failed',
         duration: duration,
         error: error.message,
+        startTime: stageStartTime,
+        endTime: Date.now(),
         workerId: worker.id
       };
       
@@ -469,8 +491,20 @@ export { EnhancedBlogPipeline };
 // CLI Interface
 async function main() {
   const args = process.argv.slice(2);
-  const blogCount = parseInt(args[0]) || 10;
-  const maxConcurrent = parseInt(args[1]) || 3;
+  let blogCount = 10;
+  let maxConcurrent = 3;
+  for (const a of args) {
+    if (/^\d+$/.test(a)) {
+      if (blogCount === 10) blogCount = parseInt(a);
+      else if (maxConcurrent === 3) maxConcurrent = parseInt(a);
+      continue;
+    }
+    if (a.startsWith('--slugs=')) {
+      const slugs = a.split('=')[1] || '';
+      if (slugs) process.env.TARGET_SLUGS = slugs;
+      continue;
+    }
+  }
   
   const pipeline = new EnhancedBlogPipeline({
     maxConcurrentBlogs: maxConcurrent,

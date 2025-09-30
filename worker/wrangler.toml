@@ -1,0 +1,30 @@
+name = "camadepilates-api"
+main = "src/index.ts"
+compatibility_date = "2024-12-18"
+
+[env.production]
+route = { pattern = "api.camadepilates.com/*", zone_name = "camadepilates.com" }
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "camadepilates-production-db"
+database_id = "63831e40-3f9b-4d91-9a5d-857c16ffa295"
+
+[env.development]
+route = { pattern = "api-dev.camadepilates.com/*", zone_name = "camadepilates.com" }
+
+[[env.development.d1_databases]]
+binding = "DB"
+database_name = "camadepilates-development-db"
+database_id = "6c4c290b-2269-4b4c-af7e-f7e82ca6f62b"
+
+# Default environment (development)
+[[d1_databases]]
+binding = "DB"
+database_name = "camadepilates-development-db"
+database_id = "6c4c290b-2269-4b4c-af7e-f7e82ca6f62b"
+
+[vars]
+ENVIRONMENT = "development"
+GITHUB_REPO = "timottowitz/camapilates.com"
+GITHUB_TOKEN = "your-github-token-here"

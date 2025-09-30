@@ -381,31 +381,8 @@ export class KeywordManager {
    * Sync keywords with server API
    */
   async syncWithServer(): Promise<void> {
-    try {
-      // Save current keywords to server
-      const response = await fetch('/api/blog/keywords', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          keywords: Array.from(this.keywords.values()),
-          action: 'sync'
-        }),
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        if (result.keywords) {
-          // Update local keywords with server response
-          this.keywords.clear();
-          this.loadInitialKeywords(result.keywords);
-          this.saveToStorage();
-        }
-      }
-    } catch (error) {
-      console.error('Failed to sync keywords with server:', error);
-    }
+    // No-op: handled via Convex in callers
+    return;
   }
 
   /**

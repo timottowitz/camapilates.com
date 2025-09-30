@@ -149,6 +149,8 @@ class AutonomousBlogPipeline {
     try {
       const todoContent = await fs.readFile(CONFIG.todoFile, 'utf-8');
       const pendingBlogs = [];
+      const envTargets = (process.env.TARGET_SLUGS || '').split(',').map(s => s.trim()).filter(Boolean);
+      const targetSet = new Set(envTargets);
 
       // Parse TODO file for 🔬 (research needed) and ✅ (completed but template) blogs
       const lines = todoContent.split('\n');
@@ -174,6 +176,11 @@ class AutonomousBlogPipeline {
 
             if (researchFile) {
               const slug = researchFile.replace('.md', '');
+
+              // If targets are provided, skip non-targets
+              if (targetSet.size > 0 && !targetSet.has(slug)) {
+                continue;
+              }
 
               pendingBlogs.push({
                 title: title,

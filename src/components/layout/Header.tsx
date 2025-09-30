@@ -14,14 +14,9 @@ const Header: React.FC = () => {
         <nav className="flex items-center gap-6 text-sm text-gray-700">
           <Link to="/about" className="hover:text-black">Acerca de</Link>
           <Link to="/shop" className="hover:text-black">Tienda</Link>
-          <Link to="/acabados" className="hover:text-black">Acabados</Link>
-          <Link to="/accesorios" className="hover:text-black">Accesorios</Link>
           <Link to="/blog" className="hover:text-black">Blog</Link>
           <Link to="/packs/estudio" className="hover:text-black">Paquete de Estudio (8+)</Link>
           <Link to="/certificacion-pilates" className="hover:text-black">Certificación</Link>
-          {((import.meta as any).env?.DEV || (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname.endsWith('.local')))) && (
-            <Link to="/admin" className="hover:text-black">Admin</Link>
-          )}
         </nav>
         <div className="hidden md:block">
           {(() => {

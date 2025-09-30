@@ -7,8 +7,16 @@ import { componentTagger } from "lovable-tagger";
 export default defineConfig(({ mode }) => {
   const proxy: Record<string, any> = {};
   if (mode === 'development') {
-    proxy['/api'] = {
-      target: 'http://127.0.0.1:8000',
+    // Admin API points to local Cloudflare Worker with remote D1
+    proxy['/api/admin'] = {
+      target: 'http://localhost:8787',
+      changeOrigin: true,
+      secure: false,
+    };
+
+    // Blog API also points to local Cloudflare Worker with remote D1
+    proxy['/api/blog'] = {
+      target: 'http://localhost:8787',
       changeOrigin: true,
       secure: false,
     };

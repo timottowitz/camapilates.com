@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Local DB files (we only use Cloudflare D1)
+db/*.db
+db/*.sqlite
+
 # Environment files
 .env.mcp
 

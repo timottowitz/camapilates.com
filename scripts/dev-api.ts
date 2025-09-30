@@ -1,39 +1,62 @@
-// Deno local dev API server with SQLite storage in .data/app.db
-// Mirrors key Cloudflare routes for local development.
+// Deno local dev API server with D1 database connectivity
+// Connects to real Cloudflare D1 database for local development.
 
 // deno run --allow-net --allow-read --allow-write --allow-env scripts/dev-api.ts
 
-import { DB as Sqlite } from "https://deno.land/x/sqlite@v3.9.1/mod.ts";
+// D1 API wrapper for Cloudflare
+class D1Database {
+  constructor(
+    private apiToken: string,
+    private email: string,
+    private accountId: string,
+    private databaseId: string
+  ) {}
 
-const DATA_DIR = "db";
-await Deno.mkdir(DATA_DIR, { recursive: true }).catch(() => {});
-const DB_PATH = `${DATA_DIR}/app.db`;
-const db = new Sqlite(DB_PATH);
+  async query(sql: string, params: any[] = []): Promise<any[]> {
+    const response = await fetch(`https://api.cloudflare.com/client/v4/accounts/${this.accountId}/d1/database/${this.databaseId}/query`, {
+      method: 'POST',
+      headers: {
+        'X-Auth-Key': this.apiToken,
+        'X-Auth-Email': this.email,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        sql,
+        params
+      })
+    });
 
-db.execute(`
-CREATE TABLE IF NOT EXISTS users (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  username TEXT UNIQUE NOT NULL,
-  pass_hash TEXT NOT NULL,
-  salt TEXT NOT NULL
-);
-CREATE TABLE IF NOT EXISTS sessions (
-  token TEXT PRIMARY KEY,
-  user_id INTEGER NOT NULL,
-  expires INTEGER NOT NULL
-);
-CREATE TABLE IF NOT EXISTS blog_images (
-  slug TEXT PRIMARY KEY,
-  hero_url TEXT,
-  sections_json TEXT,
-  updated_at INTEGER
-);
-CREATE TABLE IF NOT EXISTS app_settings (
-  key TEXT PRIMARY KEY,
-  value TEXT,
-  updated_at INTEGER
-);
-`);
+    if (!response.ok) {
+      throw new Error(`D1 query failed: ${response.status} ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    if (!data.success) {
+      throw new Error(`D1 query error: ${JSON.stringify(data.errors)}`);
+    }
+
+    return data.result[0]?.results || [];
+  }
+
+  async execute(sql: string): Promise<void> {
+    await this.query(sql);
+  }
+}
+
+// Initialize D1 connection
+const API_TOKEN = Deno.env.get("CLOUDFLARE_API_TOKEN") || "ce6899f666d88b56d0f942b8f9d51bf70dd47";
+const EMAIL = Deno.env.get("CLOUDFLARE_EMAIL") || "tim.ottowitz@gmail.com";
+const ACCOUNT_ID = Deno.env.get("CLOUDFLARE_ACCOUNT_ID") || "b4d6686679f31f0d434d89cf5dfe0a2b";
+const DATABASE_ID = Deno.env.get("D1_DATABASE_ID") || "6c4c290b-2269-4b4c-af7e-f7e82ca6f62b"; // Development DB
+
+if (!API_TOKEN || !EMAIL || !ACCOUNT_ID || !DATABASE_ID) {
+  console.error("Missing D1 configuration. Please check your .env.local file.");
+  Deno.exit(1);
+}
+
+const db = new D1Database(API_TOKEN, EMAIL, ACCOUNT_ID, DATABASE_ID);
+
+console.log(`🚀 Local dev server starting with D1 database: ${DATABASE_ID}`);
 
 function json(body: unknown, init: ResponseInit = {}) {
   return new Response(JSON.stringify(body), { status: 200, headers: { "content-type": "application/json" }, ...init });
@@ -99,7 +122,7 @@ async function handleAdmin(req: Request, url: URL) {
     const salt = randToken();
     const pass_hash = await sha256Hex(`${salt}:${password}`);
     try {
-      db.query('INSERT INTO users (username, pass_hash, salt) VALUES (?, ?, ?)', [username, pass_hash, salt]);
+      await db.query('INSERT INTO users (username, pass_hash, salt) VALUES (?, ?, ?)', [username, pass_hash, salt]);
     } catch {}
     return json({ success: true });
   }
@@ -108,46 +131,49 @@ async function handleAdmin(req: Request, url: URL) {
     const { username, password } = await req.json().catch(() => ({}));
     if (!username || !password) return bad('username and password required');
     // seed default if empty
-    const count = Array.from(db.query('SELECT COUNT(*) FROM users'))[0][0] as number;
+    const countResults = await db.query('SELECT COUNT(*) as count FROM users');
+    const count = countResults[0]?.count || 0;
     if (count === 0) {
       const salt = randToken();
       const pass_hash = await sha256Hex(`${salt}:${password}`);
-      try { db.query('INSERT INTO users (username, pass_hash, salt) VALUES (?, ?, ?)', [username, pass_hash, salt]); } catch {}
+      try { await db.query('INSERT INTO users (username, pass_hash, salt) VALUES (?, ?, ?)', [username, pass_hash, salt]); } catch {}
     }
-    const row = Array.from(db.query('SELECT id, pass_hash, salt FROM users WHERE username = ?', [username]))[0] as any[] | undefined;
-    if (!row) return json({ error: 'Invalid credentials' }, { status: 401 });
-    const [user_id, pass_hash, salt] = [row[0], row[1], row[2]];
-    const hash = await sha256Hex(`${salt}:${password}`);
-    if (hash !== pass_hash) return json({ error: 'Invalid credentials' }, { status: 401 });
+    const userResults = await db.query('SELECT id, pass_hash, salt FROM users WHERE username = ?', [username]);
+    if (userResults.length === 0) return json({ error: 'Invalid credentials' }, { status: 401 });
+    const user = userResults[0];
+    const hash = await sha256Hex(`${user.salt}:${password}`);
+    if (hash !== user.pass_hash) return json({ error: 'Invalid credentials' }, { status: 401 });
     const token = randToken();
     const expires = Math.floor(Date.now() / 1000) + 86400;
-    db.query('INSERT INTO sessions (token, user_id, expires) VALUES (?, ?, ?)', [token, user_id, expires]);
+    await db.query('INSERT INTO sessions (token, user_id, expires) VALUES (?, ?, ?)', [token, user.id, expires]);
     return new Response(JSON.stringify({ success: true }), { status: 200, headers: { 'content-type': 'application/json', 'Set-Cookie': setCookie('admint', token) } });
   }
 
   if (p === 'health' && req.method === 'GET') {
     try {
-      const count = Array.from(db.query('SELECT COUNT(*) FROM users'))[0][0] as number;
+      const results = await db.query('SELECT COUNT(*) as count FROM users');
+      const count = results[0]?.count || 0;
       return json({ db: true, users: Number(count) });
-    } catch {
-      return json({ db: false, users: 0 }, { status: 500 });
+    } catch (error) {
+      console.error('Health check failed:', error);
+      return json({ db: false, users: 0, error: error.message }, { status: 500 });
     }
   }
 
   if (p === 'logout' && req.method === 'POST') {
     const token = getCookie(req, 'admint');
-    if (token) db.query('DELETE FROM sessions WHERE token = ?', [token]);
+    if (token) await db.query('DELETE FROM sessions WHERE token = ?', [token]);
     return new Response(JSON.stringify({ success: true }), { status: 200, headers: { 'content-type': 'application/json', 'Set-Cookie': setCookie('admint', 'deleted') + '; Max-Age=0' } });
   }
 
   if (p === 'session' && req.method === 'GET') {
     const token = getCookie(req, 'admint');
     if (!token) return json({ authenticated: false }, { status: 401 });
-    const row = Array.from(db.query('SELECT s.expires, u.username FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token = ?', [token]))[0] as any[] | undefined;
-    if (!row) return json({ authenticated: false }, { status: 401 });
-    const [expires, username] = [row[0], row[1]];
-    if (expires < Math.floor(Date.now() / 1000)) return json({ authenticated: false }, { status: 401 });
-    return json({ authenticated: true, user: username });
+    const sessionResults = await db.query('SELECT s.expires, u.username FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token = ?', [token]);
+    if (sessionResults.length === 0) return json({ authenticated: false }, { status: 401 });
+    const session = sessionResults[0];
+    if (session.expires < Math.floor(Date.now() / 1000)) return json({ authenticated: false }, { status: 401 });
+    return json({ authenticated: true, user: session.username });
   }
   return new Response('Not Found', { status: 404 });
 }
@@ -188,6 +214,149 @@ async function handleSettings(req: Request, url: URL) {
 async function handleBlogManagement(req: Request, url: URL) {
   const p = url.pathname.replace(/^\/api\/blog\/?/, '');
 
+  // Report per-slug status for Admin UI polling
+  if (p === 'status' && req.method === 'GET') {
+    const slug = url.searchParams.get('slug') || '';
+    if (!slug) return bad('slug required');
+
+    const researchPath = `blog-planning/research/${slug}.md`;
+    const blogPath = `src/content/blog/${slug}.md`;
+
+    let researchExists = false;
+    let blogExists = false;
+    try { await Deno.stat(researchPath); researchExists = true; } catch {}
+    try { await Deno.stat(blogPath); blogExists = true; } catch {}
+
+    // Best-effort quality checks if blog exists
+    let qualityScore: number | null = null;
+    let finalChecks: any = null;
+    if (blogExists) {
+      try {
+        const runNodeTool = async (file: string, payload: unknown) => {
+          const cmd = new Deno.Command('node', { args: [file], cwd: Deno.cwd(), stdin: 'piped', stdout: 'piped', stderr: 'piped' });
+          const child = cmd.spawn();
+          const enc = new TextEncoder();
+          const writer = child.stdin.getWriter();
+          await writer.write(enc.encode(JSON.stringify(payload)));
+          await writer.close();
+          const { stdout } = await child.output();
+          const outTxt = new TextDecoder().decode(stdout);
+          try { return JSON.parse(outTxt); } catch { return {}; }
+        };
+        const q1 = await runNodeTool('scripts/cli-quality-agent.js', { tool: 'generate_quality_score', parameters: { slug } });
+        qualityScore = typeof q1?.overall_score === 'number' ? q1.overall_score : null;
+        const q2 = await runNodeTool('scripts/cli-quality-agent.js', { tool: 'audit_seo_compliance', parameters: { slug } });
+        finalChecks = q2?.checks || null;
+      } catch {}
+    }
+
+    return json({ slug, researchExists, blogExists, qualityScore, finalChecks });
+  }
+
+  // Find new topic suggestions from web sources (Reddit, etc.) guided by a prompt
+  if (p === 'topics/find' && req.method === 'POST') {
+    const body = await req.json().catch(() => ({} as any));
+    const prompt = String(body.prompt || '').slice(0, 4000);
+    const limit = Math.min(30, Math.max(3, Number(body.limit || 10)));
+    const seeds = (Array.isArray(body.queries) ? body.queries : null) || Array.from(new Set([
+      'pilates reformer', 'cama de pilates', 'reformer pilates', 'pilates mexico', 'pilates casa', 'precio reformer'
+    ]));
+
+    async function fetchReddit(sub: string, q: string, t: string = 'year') {
+      try {
+        const u = new URL(`https://www.reddit.com/r/${sub}/search.json`);
+        u.searchParams.set('q', q);
+        u.searchParams.set('restrict_sr', '1');
+        u.searchParams.set('sort', 'top');
+        u.searchParams.set('t', t);
+        const resp = await fetch(u.toString(), { headers: { 'user-agent': 'CAMA-Pilates-TopicFinder/1.0' } });
+        if (!resp.ok) return [] as any[];
+        const data = await resp.json() as any;
+        return (data?.data?.children || []).map((c: any) => c?.data).filter(Boolean);
+      } catch { return [] as any[]; }
+    }
+
+    const subs = ['pilates', 'fitness', 'flexibility', 'physicaltherapy'];
+    const pool: Array<{ title: string; url: string; score: number; num_comments: number; sub: string }> = [];
+    for (const s of subs) {
+      for (const q of seeds) {
+        const rows = await fetchReddit(s, q);
+        rows.forEach((r) => {
+          const title = String(r?.title || '').trim();
+          if (!title || !/pilates|reformer|cama/i.test(title)) return;
+          pool.push({ title, url: `https://reddit.com${r?.permalink || ''}`.replace(/\/$/, ''), score: Number(r?.score || 0), num_comments: Number(r?.num_comments || 0), sub: s });
+        });
+      }
+    }
+
+    const norm = (s: string) => s.toLowerCase().replace(/\s+/g, ' ').replace(/[^a-z0-9\sáéíóúñü]/gi, '').trim();
+    const seen = new Set<string>();
+    const ranked = pool
+      .sort((a, b) => (b.score + b.num_comments * 2) - (a.score + a.num_comments * 2))
+      .filter((r) => { const k = norm(r.title); if (seen.has(k)) return false; seen.add(k); return true; })
+      .slice(0, limit);
+
+    const toSlug = (t: string) => t.toLowerCase()
+      .replace(/[áàäâã]/g, 'a').replace(/[éèëê]/g, 'e').replace(/[íìïî]/g, 'i').replace(/[óòöôõ]/g, 'o').replace(/[úùüû]/g, 'u').replace(/[ñ]/g, 'n')
+      .replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/--+/g, '-').replace(/^-+|-+$/g, '');
+
+    const guessCategory = (t: string) => {
+      const lc = t.toLowerCase();
+      if (/vs|contra|comparativa/.test(lc)) return 'Comparativas';
+      if (/precio|cost|comprar|guia/.test(lc)) return 'Guías de compra';
+      if (/mantenimiento|cuidado|accesorio|equipo/.test(lc)) return 'Equipo y mantenimiento';
+      if (/ejercicio|rutina|dolor|rehabilit|salud/.test(lc)) return 'Ejercicios y salud';
+      return 'Estudio';
+    };
+
+    const suggestions = ranked.map((r) => {
+      const title = /mexico|méxico/i.test(r.title) ? r.title : `${r.title} (México)`;
+      const slug = toSlug(title).slice(0, 80);
+      const category = guessCategory(title);
+      const keywords = Array.from(new Set(title.toLowerCase().split(/[^a-z0-9áéíóúñü]+/).filter(Boolean))).slice(0, 5);
+      return { title, slug, category, keywords, source: r.url };
+    });
+
+    const ts = Math.floor(Date.now() / 1000);
+    for (const s of suggestions) {
+      try {
+        db.query('INSERT INTO blog_suggestions (slug, title, category, keywords_json, source, status, created_at) VALUES (?, ?, ?, ?, ?, ?, ?) ON CONFLICT(slug) DO UPDATE SET title=?, category=?, keywords_json=?, source=?, status=?', [
+          s.slug, s.title, s.category, JSON.stringify(s.keywords), s.source, 'in_review', ts,
+          s.title, s.category, JSON.stringify(s.keywords), s.source, 'in_review'
+        ]);
+      } catch {}
+    }
+
+    return json({ prompt, suggestions });
+  }
+
+  if (p === 'suggestions' && req.method === 'GET') {
+    const rows = Array.from(db.query('SELECT slug, title, category, keywords_json, source, status, created_at FROM blog_suggestions ORDER BY created_at DESC LIMIT 100')) as any[];
+    const items = rows.map(r => ({ slug: r[0], title: r[1], category: r[2], keywords: JSON.parse(r[3] || '[]'), source: r[4], status: r[5], created_at: r[6] }));
+    return json({ items });
+  }
+
+  if (p === 'suggestions/accept' && req.method === 'POST') {
+    const body = await req.json().catch(() => ({} as any));
+    const { slug } = body;
+    if (!slug) return bad('slug required');
+    const row = Array.from(db.query('SELECT title, category, keywords_json FROM blog_suggestions WHERE slug=?', [slug]))[0] as any[] | undefined;
+    if (!row) return bad('not found', 404);
+    const [title, category, kj] = [row[0], row[1], row[2]];
+    const keywords = (() => { try { return JSON.parse(kj || '[]'); } catch { return []; } })();
+    const resp = await handleBlogManagement(new Request(url.toString(), { method: 'POST', body: JSON.stringify({ title, category, keywords, targetAudience: 'Público general' }), headers: { 'content-type': 'application/json' } }), new URL(url.toString().replace(/suggestions\/accept$/, 'topics')));
+    db.query('UPDATE blog_suggestions SET status=? WHERE slug=?', ['accepted', slug]);
+    return resp;
+  }
+
+  if (p === 'suggestions/decline' && req.method === 'POST') {
+    const body = await req.json().catch(() => ({} as any));
+    const { slug } = body;
+    if (!slug) return bad('slug required');
+    db.query('UPDATE blog_suggestions SET status=? WHERE slug=?', ['declined', slug]);
+    return json({ success: true });
+  }
+
   if (p === 'topics' && req.method === 'POST') {
     const body = await req.json().catch(() => ({}));
     const { title, category, keywords, targetAudience } = body;
@@ -214,6 +383,12 @@ async function handleBlogManagement(req: Request, url: URL) {
       todoContent = await Deno.readTextFile(todoPath);
     } catch {
       return bad('Could not read BLOG_TODO.md');
+    }
+
+    // Check for duplicates: if research link already present, skip insertion
+    const existsLink = todoContent.includes(`./research/${slug}.md`);
+    if (existsLink) {
+      return json({ success: true, slug, message: 'Topic already exists in BLOG_TODO.md', researchFile: `blog-planning/research/${slug}.md`, pipelineTriggered: false });
     }
 
     // Find the category section or create it
@@ -322,6 +497,7 @@ Creado automáticamente - requiere investigación web y validación mexicana.
       const command = new Deno.Command("node", {
         args: ["scripts/improved-blog-pipeline.js", "1"],
         cwd: Deno.cwd(),
+        env: {},
         stdout: "piped",
         stderr: "piped"
       });
@@ -379,98 +555,164 @@ Creado automáticamente - requiere investigación web y validación mexicana.
     return bad('Invalid keywords action');
   }
 
+  if (p === 'topics/update' && req.method === 'POST') {
+    const body = await req.json().catch(() => ({} as any));
+    const slug = String(body.slug || '');
+    if (!slug) return bad('slug required');
+    const newTitle = body.title ? String(body.title) : undefined;
+    const newCategory = body.category ? String(body.category) : undefined;
+    const newKeywords = Array.isArray(body.keywords) ? body.keywords as string[] : (body.keywords ? String(body.keywords).split(',').map(s => s.trim()).filter(Boolean) : undefined);
+    const newTarget = body.target ? String(body.target) : undefined;
+
+    const todoPath = 'blog-planning/BLOG_TODO.md';
+    let md = '';
+    try { md = await Deno.readTextFile(todoPath); } catch { return bad('Could not read BLOG_TODO.md'); }
+    const lines = md.split('\n');
+
+    // Find block by research file link
+    let rfIdx = -1;
+    for (let i = 0; i < lines.length; i++) {
+      if (new RegExp(`\\*\\*Research File:`, 'i').test(lines[i]) && lines[i].includes(`./research/${slug}.md`)) { rfIdx = i; break; }
+    }
+    if (rfIdx === -1) return bad('topic not found', 404);
+
+    // Find block start (heading) and end
+    let start = rfIdx;
+    for (let i = rfIdx; i >= 0; i--) { if (/^###\s+/.test(lines[i])) { start = i; break; } }
+    let end = lines.length;
+    for (let i = rfIdx + 1; i < lines.length; i++) {
+      if (/^###\s+/.test(lines[i]) || /^##\s+CATEGOR[ÍI]A:/.test(lines[i]) || /^---$/.test(lines[i])) { end = i; break; }
+    }
+    const block = lines.slice(start, end);
+
+    // Extract status symbol and current title
+    const head = block[0] || '';
+    const m = head.match(/^(###\s+)([🔬📝✅🚫])\s+(.+)$/);
+    const statusSym = m ? m[2] : '🔬';
+    const currTitle = m ? m[3] : '';
+    const updatedHead = newTitle ? `${m ? m[1] : '### '}${statusSym} ${newTitle}` : head;
+    block[0] = updatedHead;
+
+    // Update target and keywords lines
+    for (let i = 1; i < block.length; i++) {
+      if (newTarget && /^\*\*Target:\*\*/i.test(block[i])) block[i] = `**Target:** ${newTarget}`;
+      if (newKeywords && /^\*\*Keywords:\*\*/i.test(block[i])) block[i] = `**Keywords:** ${newKeywords.join(', ')}`;
+    }
+
+    // Replace block in current category
+    const newBlock = block.join('\n');
+    lines.splice(start, end - start, ...newBlock.split('\n'));
+
+    // If category changes, move block to that category
+    if (newCategory) {
+      // Remove again and insert under new category header
+      const blk = lines.splice(start, end - start);
+      const hdr = `## CATEGORÍA: ${newCategory}`;
+      let catIdx = lines.findIndex(l => l.startsWith('## CATEGORÍA:') && l.includes(newCategory));
+      if (catIdx === -1) {
+        // add before terminating '---' or at end
+        let ins = lines.findIndex(l => l.trim() === '---');
+        if (ins === -1) ins = lines.length;
+        lines.splice(ins, 0, '', hdr);
+        catIdx = ins + 1;
+      }
+      // find insertion after header until next category or '---'
+      let insertAt = catIdx + 1;
+      for (let i = catIdx + 1; i < lines.length; i++) {
+        if (lines[i].startsWith('## CATEGORÍA:') || lines[i].trim() === '---') { insertAt = i; break; }
+      }
+      lines.splice(insertAt, 0, ...blk);
+    }
+
+    try { await Deno.writeTextFile(todoPath, lines.join('\n')); } catch { return bad('Could not write BLOG_TODO.md'); }
+    return json({ success: true });
+  }
+
   if (p === 'pipeline' && req.method === 'POST') {
     const body = await req.json().catch(() => ({}));
     const { action, slug, type } = body;
 
     if (action === 'trigger' && slug) {
-      // Trigger research for a specific topic
+      // Targeted, fast pipeline execution using CLI wrappers
       try {
-        // Check if the research file exists and is empty/template
-        const researchPath = `blog-planning/research/${slug}.md`;
-        let needsResearch = false;
-
-        try {
-          const content = await Deno.readTextFile(researchPath);
-          // Check if it's still a template (contains placeholder text)
-          needsResearch = content.includes('🔬 Research needed') || content.includes('[Pendiente:');
-        } catch {
-          needsResearch = true; // File doesn't exist
+        // Helper: run a Node CLI wrapper with JSON stdin
+        async function runNodeTool(file: string, payload: unknown) {
+          const cmd = new Deno.Command('node', { args: [file], cwd: Deno.cwd(), stdin: 'piped', stdout: 'piped', stderr: 'piped' });
+          const child = cmd.spawn();
+          const enc = new TextEncoder();
+          const writer = child.stdin.getWriter();
+          await writer.write(enc.encode(JSON.stringify(payload)));
+          await writer.close();
+          const { code, stdout, stderr } = await child.output();
+          const outTxt = new TextDecoder().decode(stdout);
+          const errTxt = new TextDecoder().decode(stderr);
+          let jsonOut: any = null;
+          try { jsonOut = JSON.parse(outTxt); } catch { jsonOut = { raw: outTxt }; }
+          return { code, jsonOut, errTxt };
         }
 
-        if (needsResearch) {
-          // Actually run the autonomous blog pipeline for this specific topic
-          try {
-            console.log(`🚀 Triggering real pipeline for topic: ${slug}`);
+        // 1) Append structured web research to the research file
+        await runNodeTool('scripts/cli-web-research-agent.js', {
+          tool: 'gather_current_data',
+          parameters: { slug, topic: slug, data_types: ['statistics', 'studies', 'market_data'] }
+        });
 
-            // Use Deno.Command to run the pipeline script in the background
-            const command = new Deno.Command("node", {
-              args: ["scripts/improved-blog-pipeline.js", "1"],
-              cwd: Deno.cwd(),
-              stdout: "piped",
-              stderr: "piped"
-            });
+        // 2) Validate Mexican market context
+        const v1 = await runNodeTool('scripts/cli-quality-agent.js', { tool: 'validate_mexican_market_data', parameters: { slug } });
 
-            // Start the pipeline process without waiting for it to complete
-            const child = command.spawn();
+        // 3) Write blog post from research (idempotent if exists)
+        const w1 = await runNodeTool('scripts/blog-writer.js', { tool: 'write_blog_from_research', parameters: { slug } });
 
-            // Log that pipeline was triggered but don't wait for completion
-            console.log(`✅ Real pipeline process started for topic: ${slug}`);
+        // 4) SEO optimize
+        const s1 = await runNodeTool('scripts/cli-seo-agent.js', { tool: 'optimize_title_and_meta', parameters: { slug, target_keyword: slug, intent: 'informational' } });
 
-            // Let the process run in background - it will handle its own logging
-            child.status.then((status) => {
-              if (status.success) {
-                console.log(`✅ Pipeline completed successfully for topic: ${slug}`);
-              } else {
-                console.log(`❌ Pipeline failed for topic: ${slug}:`, status);
-              }
-            }).catch((error) => {
-              console.log(`❌ Pipeline error for topic: ${slug}:`, error);
-            });
+        // 5) Quality score + final SEO compliance audit
+        const q1 = await runNodeTool('scripts/cli-quality-agent.js', { tool: 'generate_quality_score', parameters: { slug } });
+        const q2 = await runNodeTool('scripts/cli-quality-agent.js', { tool: 'audit_seo_compliance', parameters: { slug } });
 
-            return json({
-              success: true,
-              slug,
-              message: `Real pipeline triggered for "${slug}" - processing in background`,
-              nextSteps: [
-                'Research file analysis started',
-                'Web search for Mexican market data',
-                'Content structure planning',
-                'Blog writing and SEO optimization'
-              ],
-              status: 'research_started'
-            });
-
-          } catch (pipelineError) {
-            console.log(`⚠️ Failed to trigger real pipeline for topic: ${slug}:`, pipelineError);
-            return json({
-              success: false,
-              slug,
-              message: `Failed to trigger pipeline: ${pipelineError.message}`,
-              error: pipelineError.message
-            }, { status: 500 });
-          }
-        } else {
-          return json({
-            success: true,
-            slug,
-            message: `Topic "${slug}" research already complete`,
-            status: 'research_complete'
-          });
-        }
+        return json({
+          success: true,
+          slug,
+          message: `Targeted pipeline completed for "${slug}"`,
+          research_valid: v1.jsonOut?.has_sufficient_context ?? null,
+          blog_created: !w1.jsonOut?.existed,
+          quality_score: q1.jsonOut?.overall_score ?? null,
+          final_checks: q2.jsonOut?.checks ?? null,
+          status: 'completed'
+        });
       } catch (error) {
-        return bad(`Failed to trigger pipeline: ${error.message}`);
+        return bad(`Failed to process slug: ${error.message}`);
       }
     }
 
     if (action === 'batch' && type) {
-      // Trigger batch processing
-      return json({
-        success: true,
-        type,
-        message: `Batch ${type} pipeline triggered`,
-        status: 'batch_started'
-      });
+      // Trigger batch processing in background with enhanced pipeline (supports explicit topics)
+      const preset = String(type);
+      const counts: Record<string, number> = { quick: 3, standard: 5, full: 10, production: 20 } as const;
+      const count = counts[preset] || 5;
+      const topics: string[] = Array.isArray((body as any).topics) ? (body as any).topics : [];
+      try {
+        const env: Record<string, string> = {};
+        const args = ["scripts/improved-blog-pipeline.js", String(count), "detailed"] as string[];
+        if (topics.length) {
+          env['TARGET_SLUGS'] = topics.join(',');
+          args.push(`--slugs=${topics.join(',')}`);
+        }
+        const command = new Deno.Command("node", {
+          args,
+          cwd: Deno.cwd(),
+          stdout: "piped",
+          stderr: "piped",
+          env
+        });
+        const child = command.spawn();
+        child.status.then((status) => {
+          console.log(`Batch ${preset} completed:`, status.success);
+        }).catch((error) => console.log('Batch error:', error));
+        return json({ success: true, type: preset, topics, message: `Batch ${preset} pipeline started`, status: 'batch_started' });
+      } catch (err) {
+        return bad(`Failed to start batch: ${err?.message || err}`);
+      }
     }
 
     return bad('Invalid pipeline action');
@@ -730,7 +972,7 @@ async function handleOAuth(req: Request, url: URL) {
   return new Response('Not Found', { status: 404 });
 }
 
-Deno.serve(async (req) => {
+Deno.serve({ port: 8081 }, async (req) => {
   try {
     const url = new URL(req.url);
     if (url.pathname.startsWith('/api/admin')) return await handleAdmin(req, url);

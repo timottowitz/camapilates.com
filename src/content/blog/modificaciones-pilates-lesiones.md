@@ -1,5 +1,5 @@
 ---
-title: "Modificaciones de Pilates para lesiones comunes"
+title: "Modificaciones de Pilates para lesiones comunes – modificaciones-pilates-lesiones"
 description: "Guía práctica sobre modificaciones de pilates para lesiones comunes con enfoque en México: consejos y pasos accionables."
 category: "Tips para Instructores de Pilates"
 tags: ["pilates terapéutico", "modificaciones ejercicios", "lesiones comunes"]
@@ -7,9 +7,7 @@ publishDate: "2025-09-28"
 author: "CAMA Pilates"
 slug: "modificaciones-pilates-lesiones"
 featured: false
----
-
-# Modificaciones de Pilates para lesiones comunes
+--- lesiones comunes
 
 > Nota: Contenido informativo; no es asesoramiento médico.
 

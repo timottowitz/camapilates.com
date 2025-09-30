@@ -29,8 +29,6 @@ const CamaDePilatesEnVenta = lazy(() => import('./pages/CamaDePilatesEnVenta'));
 const CamaDePilatesPrecio = lazy(() => import('./pages/CamaDePilatesPrecio'));
 const StudioPack = lazy(() => import('./pages/StudioPack'));
 const CamaDePilatesHub = lazy(() => import('./pages/CamaDePilatesHub'));
-const Accesorios = lazy(() => import('./pages/Accesorios'));
-const Acabados = lazy(() => import('./pages/Acabados'));
 const CertificacionPilates = lazy(() => import('./pages/CertificacionPilates'));
 const CertificacionPilatesCity = lazy(() => import('./pages/CertificacionPilatesCity'));
 const LegalTerms = lazy(() => import('./pages/LegalTerms'));
@@ -68,8 +66,6 @@ const App = () => (
             <Route path="/cama-de-pilates/precio" element={<CamaDePilatesPrecio />} />
             <Route path="/packs/estudio" element={<StudioPack />} />
             <Route path="/cama-de-pilates" element={<CamaDePilatesHub />} />
-            <Route path="/accesorios" element={<Accesorios />} />
-            <Route path="/acabados" element={<Acabados />} />
             <Route path="/certificacion-pilates" element={<CertificacionPilates />} />
             <Route path="/certificacion-pilates/:city" element={<CertificacionPilatesCity />} />
             <Route path="/legal/terminos" element={<LegalTerms />} />

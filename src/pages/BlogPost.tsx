@@ -72,6 +72,10 @@ const BlogPost = () => {
     loadPost();
   }, [slug]);
 
+  // Compute values/hooks unconditionally to keep hook order consistent
+  const origin = getOrigin();
+  const safeSlug = slug || '';
+
   useEffect(() => {
     // If no heroImage in frontmatter, attempt to load dynamic mapping from API
     (async () => {
@@ -85,10 +89,6 @@ const BlogPost = () => {
       } catch { /* ignore */ }
     })();
   }, [safeSlug, postMeta]);
-
-  // Compute values/hooks unconditionally to keep hook order consistent
-  const origin = getOrigin();
-  const safeSlug = slug || '';
   const articleUrl = (postMeta as any)?.canonical || (safeSlug ? `${origin}/blog/${safeSlug}` : `${origin}/blog`);
   const relatedPosts = postMeta ? getRelatedPosts(postMeta.slug, 3) : [];
 

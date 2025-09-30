@@ -1,0 +1,27 @@
+name = "cama-pilates-api"
+main = "src/index.ts"
+compatibility_date = "2024-09-28"
+account_id = "b4d6686679f31f0d434d89cf5dfe0a2b"
+
+[[d1_databases]]
+binding = "DB"            # available in env.DB
+database_name = "camadepilates-production-db"
+database_id = "63831e40-3f9b-4d91-9a5d-857c16ffa295"
+
+[vars]
+# Optional GitHub integration for content-as-code
+GITHUB_REPO = "owner/repo"     # e.g., "acme/cama-pilates"
+GITHUB_BRANCH = "main"
+# GITHUB_TOKEN will be configured as a secret: `wrangler secret put GITHUB_TOKEN`
+# BUILD_HOOK_URL optional: Cloudflare Pages build hook to trigger a rebuild
+TURNSTILE_SITE_KEY = "" # set your Cloudflare Turnstile site key here
+
+[[queues.producers]]
+queue = "blog-pipeline"
+binding = "PIPELINE"
+
+[[queues.consumers]]
+queue = "blog-pipeline"
+max_batch_size = 5
+max_batch_timeout = 5
+max_retries = 3

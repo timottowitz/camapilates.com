@@ -28,7 +28,9 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Plus, Trash2, Edit3, PlayCircle, Settings, Tag, FileText, Search, Filter, Target, TrendingUp, Brain, RefreshCw, Upload, Download, BarChart3, Eye } from 'lucide-react';
+import { Plus, Trash2, Edit3, PlayCircle, Settings, Tag, FileText, Search, Filter, Target, TrendingUp, Brain, RefreshCw, Upload, Download, BarChart3, Eye, Info, Zap } from 'lucide-react';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import TopicFinder from '@/components/blog/TopicFinder';
 import {
   KeywordManager,
   createPilatesKeywordManager,
@@ -37,17 +39,16 @@ import {
   ContentOptimizer
 } from '@/utils/keywordManager';
 import { BlogContentScanner, getBlogScanner, type KeywordUsageDetail } from '@/utils/blogContentScanner';
+import { useQuery, useMutation, useAction } from 'convex/react';
+import { api } from '../../convex/_generated/api';
 
-// Load TODO and research files at build-time (raw)
+// Load TODO at build-time as initial seed; avoid static research files snapshot to enable live updates
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import todoRaw from '/blog-planning/BLOG_TODO.md?raw';
 
-const researchFiles = import.meta.glob('/blog-planning/research/*.md', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
-
 // Types
 type BlogStatus = '🔬' | '📝' | '✅' | '🚫';
-type Priority = 'high' | 'medium' | 'low';
 
 interface BlogTopic {
   id: string;
@@ -56,12 +57,14 @@ interface BlogTopic {
   category: string;
   keywords: string[];
   status: BlogStatus;
-  priority: Priority;
   estimatedReadTime?: number;
   researchComplete: boolean;
+  hasResearchFile?: boolean;
+  researchIsTemplate?: boolean;
   createdAt: string;
   targetAudience?: string;
   isProcessing?: boolean; // Track if this topic is currently being processed by pipeline
+  isSuggestion?: boolean; // Newly discovered topic pending acceptance
 }
 
 interface Keyword {
@@ -113,7 +116,7 @@ function parsePendingFromTodo(todo: string): BlogTopic[] {
       }
 
       if (slug) {
-        const researchComplete = !!researchFiles[`/blog-planning/research/${slug}.md`];
+        // Do not rely on build-time glob here; we'll resolve researchComplete dynamically below
         topics.push({
           id: slug,
           title,
@@ -121,8 +124,7 @@ function parsePendingFromTodo(todo: string): BlogTopic[] {
           category: currentCategory,
           keywords,
           status,
-          priority: status === '🔬' ? 'high' : status === '📝' ? 'medium' : 'low',
-          researchComplete,
+          researchComplete: false,
           createdAt: new Date().toISOString(),
           targetAudience,
         });
@@ -131,6 +133,34 @@ function parsePendingFromTodo(todo: string): BlogTopic[] {
   }
 
   return topics;
+}
+
+// Dynamically check if research file exists for each topic
+async function resolveResearchCompletion(topics: BlogTopic[]): Promise<BlogTopic[]> {
+  const checks = await Promise.all(
+    topics.map(async (t) => {
+      try {
+        const resp = await fetch(`/blog-planning/research/${t.slug}.md`);
+        if (!resp.ok) return { slug: t.slug, has: false, templ: false, complete: false };
+        const txt = await resp.text();
+        const lc = txt.toLowerCase();
+        const wordCount = (txt.replace(/`{3}[\s\S]*?`{3}/g, '').match(/\b\w+\b/g) || []).length;
+        // Heuristics: not a template, has substantial content OR explicit complete status
+        const hasCompleteStatus = /\*\*status\*\*\s*:\s*📝/i.test(txt) || lc.includes('research completed') || lc.includes('## research completed');
+        const looksTemplate = lc.includes('🔬 research needed') || lc.includes('[pendiente:') || lc.includes('creado automáticamente') || lc.includes('## objetivo');
+        const complete = hasCompleteStatus || (!looksTemplate && wordCount >= 800);
+        return { slug: t.slug, has: true, templ: looksTemplate, complete };
+      } catch {
+        return { slug: t.slug, has: false, templ: false, complete: false };
+      }
+    })
+  );
+  const state = new Map<string, { has: boolean; templ: boolean; complete: boolean }>();
+  checks.forEach(c => state.set(c.slug, { has: c.has, templ: c.templ, complete: c.complete }));
+  return topics.map(t => {
+    const s = state.get(t.slug);
+    return { ...t, researchComplete: Boolean(s?.complete), hasResearchFile: Boolean(s?.has), researchIsTemplate: Boolean(s?.templ) };
+  });
 }
 
 // Extract all keywords from topics
@@ -173,6 +203,14 @@ const AdminBlogWriter: React.FC = () => {
   const [newTopicCategory, setNewTopicCategory] = useState('');
   const [newTopicKeywords, setNewTopicKeywords] = useState('');
   const [newTopicDescription, setNewTopicDescription] = useState('');
+  // Edit Topic modal state
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [editTopic, setEditTopic] = useState<BlogTopic | null>(null);
+  const [editTitle, setEditTitle] = useState('');
+  const [editCategory, setEditCategory] = useState('');
+  const [editKeywords, setEditKeywords] = useState('');
+  const [editTarget, setEditTarget] = useState('');
+  const categoriesList = ['Guías de compra', 'Comparativas', 'Ejercicios y salud', 'Equipo y mantenimiento', 'Estudio'];
   const [isSubmittingTopic, setIsSubmittingTopic] = useState(false);
 
   // CSV Import state
@@ -196,6 +234,25 @@ const AdminBlogWriter: React.FC = () => {
 
   // Filter state
   const [statusFilter, setStatusFilter] = useState<string | null>(null);
+  const [suggestions, setSuggestions] = useState<Array<{ slug: string; title: string; category: string; keywords: string[]; source?: string; status: string; created_at?: number }>>([]);
+  const [loadingSuggestions, setLoadingSuggestions] = useState(false);
+
+  // Convex hooks
+  const suggestionsData = useQuery(api.blog.listSuggestions, {} as any) as any[] | undefined;
+  const mutateAccept = useMutation(api.blog.acceptSuggestion);
+  const mutateDecline = useMutation(api.blog.declineSuggestion);
+  const mutateUpdateTopic = useMutation(api.blog.updateTopic);
+  const mutateQueueTopic = useMutation(api.pipeline.queueTopic);
+  const actionRunPipeline = useAction(api.pipeline.pipelineRun);
+  const actionRunBatch = useAction(api.pipeline.pipelineRunBatch);
+  const mutateSaveKeywords = useMutation(api.blog.saveKeywords);
+  const actionEnsureTodo = useAction(api.pipeline.ensureTodoEntry);
+
+  const toSlug = useCallback((t: string) => {
+    return t.toLowerCase()
+      .replace(/[áàäâã]/g, 'a').replace(/[éèëê]/g, 'e').replace(/[íìïî]/g, 'i').replace(/[óòöôõ]/g, 'o').replace(/[úùüû]/g, 'u').replace(/[ñ]/g, 'n')
+      .replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/--+/g, '-').replace(/^-+|-+$/g, '');
+  }, []);
 
   // Initialize keyword manager
   const [keywordManager] = useState(() => createPilatesKeywordManager());
@@ -219,7 +276,33 @@ const AdminBlogWriter: React.FC = () => {
       const response = await fetch('/blog-planning/BLOG_TODO.md');
       if (response.ok) {
         const updatedTodoContent = await response.text();
-        const updatedTopics = parsePendingFromTodo(updatedTodoContent);
+        let updatedTopics = parsePendingFromTodo(updatedTodoContent);
+
+        // Resolve research completion dynamically
+        updatedTopics = await resolveResearchCompletion(updatedTopics);
+
+        // Merge Convex suggestions (in_review and queued)
+        try {
+          const sj = suggestionsData || [];
+          setSuggestions(sj as any);
+          const existing = new Set(updatedTopics.map(t => t.slug));
+          const suggestionTopics: BlogTopic[] = (sj as any[])
+            .filter((it: any) => it.status === 'in_review' || it.status === 'queued')
+            .filter((it: any) => !existing.has(it.slug))
+            .map((it: any) => ({
+              id: it.slug,
+              title: it.title,
+              slug: it.slug,
+              category: it.category || 'General',
+              keywords: Array.isArray(it.keywords) ? it.keywords : [],
+              status: '🔬',
+              researchComplete: false,
+              createdAt: new Date().toISOString(),
+              targetAudience: 'Público general',
+              isSuggestion: it.status === 'in_review',
+            }));
+          updatedTopics = [...suggestionTopics, ...updatedTopics];
+        } catch {}
 
         // Update topics state
         setTopics(updatedTopics);
@@ -244,6 +327,17 @@ const AdminBlogWriter: React.FC = () => {
 
     return () => clearInterval(interval);
   }, [refreshTopics]);
+
+  // Resolve research completion on initial load
+  useEffect(() => {
+    (async () => {
+      try {
+        const withResolved = await resolveResearchCompletion(topics);
+        setTopics(withResolved);
+      } catch {}
+    })();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Core scanning logic - used by both manual and automatic scans
   const performScan = useCallback(async (isManual: boolean = false) => {
@@ -311,11 +405,19 @@ const AdminBlogWriter: React.FC = () => {
 
   // Helper function to determine proper research status
   const getResearchStatus = useCallback((topic: BlogTopic) => {
+    if (topic.isSuggestion) {
+      return { text: 'In Review', variant: 'secondary' as const };
+    }
     if (processingTopics.has(topic.slug)) {
       return { text: 'Processing', variant: 'secondary' as const };
     }
-    if (topic.researchComplete) {
+    // Complete only when content is substantial/marked complete
+    if (topic.researchComplete || topic.status === '📝' || topic.status === '✅') {
       return { text: 'Complete', variant: 'default' as const };
+    }
+    // Queued: has a research file scaffolded but it's still a template/incomplete
+    if (topic.hasResearchFile && (topic.researchIsTemplate || !topic.researchComplete)) {
+      return { text: 'Queued', variant: 'outline' as const };
     }
     return { text: 'Not Started', variant: 'outline' as const };
   }, [processingTopics]);
@@ -335,12 +437,14 @@ const AdminBlogWriter: React.FC = () => {
     const counts = {
       'Not Started': 0,
       'Processing': 0,
-      'Complete': 0
+      'Queued': 0,
+      'Complete': 0,
+      'In Review': 0
     };
 
     topics.forEach(topic => {
       const status = getResearchStatus(topic);
-      counts[status.text]++;
+      if (status.text in counts) counts[status.text as keyof typeof counts]++;
     });
 
     return counts;
@@ -371,6 +475,70 @@ const AdminBlogWriter: React.FC = () => {
     };
   }, [backgroundScan]); // Dependency on backgroundScan
 
+  // Load suggestions when Suggestions tab is active (Convex)
+  useEffect(() => {
+    if (activeTab === 'suggestions') {
+      setLoadingSuggestions(!suggestionsData);
+      if (suggestionsData) setSuggestions(suggestionsData as any);
+    }
+  }, [activeTab, suggestionsData]);
+
+  // Listen for TopicFinder batch accept to switch to Queued view and refresh
+  useEffect(() => {
+    const onAccepted = () => {
+      setStatusFilter('Queued');
+      refreshTopics();
+    };
+    window.addEventListener('topics:accepted', onAccepted as any);
+    return () => window.removeEventListener('topics:accepted', onAccepted as any);
+  }, [refreshTopics]);
+
+  const acceptSuggestion = useCallback(async (slug: string) => {
+    try {
+      await mutateAccept({ slug });
+      const s = (suggestions || []).find(x => x.slug === slug);
+      try {
+        await actionEnsureTodo({ slug, title: s?.title || slug.replace(/-/g,' '), category: s?.category || 'Estudio', keywords: s?.keywords || [] } as any);
+      } catch {}
+      await mutateQueueTopic({ slug, title: s?.title, category: s?.category, keywords: s?.keywords });
+      try { await actionRunPipeline({ slug }); } catch {}
+      setSuggestions(prev => prev.map(s => s.slug === slug ? { ...s, status: 'queued' } : s));
+      await refreshTopics();
+      setStatusFilter('Queued');
+    } catch (e) {
+      alert('Failed to accept: ' + ((e as any)?.message || e));
+    }
+  }, [mutateAccept, mutateQueueTopic, actionRunPipeline, suggestions, refreshTopics]);
+
+  const declineSuggestion = useCallback(async (slug: string) => {
+    try {
+      await mutateDecline({ slug });
+      setSuggestions(prev => prev.map(s => s.slug === slug ? { ...s, status: 'declined' } : s));
+    } catch (e) {
+      alert('Failed to decline: ' + ((e as any)?.message || e));
+    }
+  }, [mutateDecline]);
+
+  function openEditModal(t: BlogTopic) {
+    setEditTopic(t);
+    setEditTitle(t.title);
+    setEditCategory(t.category);
+    setEditKeywords(t.keywords.join(', '));
+    setEditTarget(t.targetAudience || '');
+    setIsEditOpen(true);
+  }
+
+  async function saveEdit() {
+    if (!editTopic) return;
+    try {
+      await mutateUpdateTopic({ slug: editTopic.slug, title: editTitle.trim(), category: editCategory.trim(), keywords: editKeywords.split(',').map(s => s.trim()).filter(Boolean) });
+      setIsEditOpen(false);
+      await refreshTopics();
+    } catch (e) {
+      alert('Failed to update: ' + (e as any)?.message || e);
+    }
+  }
+
   // Generate keyword strategy for selected topic
   const generateKeywordStrategy = useCallback((topic: BlogTopic) => {
     const strategy = keywordManager.generateStrategy(
@@ -386,6 +554,38 @@ const AdminBlogWriter: React.FC = () => {
   const getKeywordSuggestions = useCallback((topic: BlogTopic): Keyword[] => {
     return keywordManager.suggestKeywords(topic.title, topic.category);
   }, [keywordManager]);
+
+  // Inline status for queued topics
+  function QueuedStatus({ slug }: { slug: string }) {
+    const [state, setState] = useState<{ researchExists: boolean; blogExists: boolean }>({ researchExists: false, blogExists: false });
+    const s = useQuery(api.blog.status, { slug } as any) as any;
+    const statusAction = (useAction as any)(api.pipeline.contentStatus);
+    useEffect(() => {
+      let cancelled = false;
+      async function tick() {
+        try {
+          const j = await statusAction({ slug });
+          if (!cancelled) setState({ researchExists: Boolean(j?.researchExists), blogExists: Boolean(j?.blogExists) });
+        } catch {}
+      }
+      tick();
+      const id = setInterval(tick, 10000);
+      return () => { cancelled = true; clearInterval(id); };
+    }, [slug, statusAction]);
+    const tip = `Status: ${s?.status || '—'}\nResearch file: ${state.researchExists ? 'yes' : 'no'}\nBlog file: ${state.blogExists ? 'yes' : 'no'}`;
+    return (
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span className="ml-2 inline-flex items-center text-muted-foreground cursor-help" aria-label="Queued status details">
+            <Info className="h-3.5 w-3.5" />
+          </span>
+        </TooltipTrigger>
+        <TooltipContent>
+          <div className="text-xs whitespace-pre">{tip}</div>
+        </TooltipContent>
+      </Tooltip>
+    );
+  }
 
   // Generate SEO-optimized content structure
   const generateContentStructure = useCallback((topic: BlogTopic) => {
@@ -453,22 +653,10 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
     setProcessingTopics(prev => new Set([...prev, topic.slug]));
 
     try {
-      const response = await fetch('/api/blog/pipeline', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          action: 'trigger',
-          slug: topic.slug
-        }),
-      });
+      await actionRunPipeline({ slug: topic.slug });
 
-      if (response.ok) {
-        const result = await response.json();
-
-        // Show success feedback - no intrusive alert, just console log
-        console.log(`✅ Pipeline triggered for "${topic.title}":`, result.message);
+      // Show success feedback - no intrusive alert, just console log
+      console.log(`✅ Pipeline triggered for "${topic.title}"`);
 
         // Start polling to check if pipeline completed successfully
         const checkPipelineCompletion = async () => {
@@ -532,49 +720,18 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
         };
 
         checkPipelineCompletion();
-      } else {
-        // API call failed - remove from processing and show error
-        setProcessingTopics(prev => {
-          const newSet = new Set(prev);
-          newSet.delete(topic.slug);
-          return newSet;
-        });
-
-        let errorMessage = `Failed to trigger pipeline for "${topic.title}".`;
-        try {
-          const errorText = await response.text();
-          if (errorText) {
-            errorMessage += ` Server response: ${errorText}`;
-          }
-        } catch (e) {
-          // Ignore error parsing error
-        }
-
-        console.error('Pipeline API error:', {
-          status: response.status,
-          statusText: response.statusText,
-          topic: topic.title
-        });
-
-        alert(`${errorMessage}\n\nPlease check the console for details and try again.`);
-      }
     } catch (error) {
-      // Network or other error - remove from processing
+      // remove from processing
       setProcessingTopics(prev => {
         const newSet = new Set(prev);
         newSet.delete(topic.slug);
         return newSet;
       });
 
-      console.error('Pipeline trigger error:', {
-        error: error.message || error,
-        topic: topic.title,
-        slug: topic.slug
-      });
-
-      alert(`Network error triggering pipeline for "${topic.title}": ${error.message || error}\n\nPlease check your connection and try again.`);
+      console.error('Pipeline trigger error:', (error as any)?.message || error);
+      alert(`Error triggering pipeline for "${topic.title}": ${(error as any)?.message || error}`);
     }
-  }, [processingTopics, refreshTopics]);
+  }, [processingTopics, refreshTopics, actionRunPipeline]);
 
   const topicColumns = useMemo<ColumnDef<BlogTopic>[]>(() => [
     {
@@ -636,32 +793,56 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
       enableSorting: false,
       size: 200,
     }),
-    columnHelper.accessor('priority', {
-      header: 'Priority',
-      cell: info => {
-        const priority = info.getValue();
-        const colors = {
-          high: 'bg-red-100 text-red-800',
-          medium: 'bg-yellow-100 text-yellow-800',
-          low: 'bg-green-100 text-green-800',
-        };
-        return (
-          <Badge className={colors[priority]}>
-            {priority}
-          </Badge>
-        );
-      },
-      size: 100,
-    }),
     columnHelper.accessor('researchComplete', {
       header: 'Research',
       cell: info => {
         const topic = info.row.original;
         const status = getResearchStatus(topic);
+        const colorClass = (() => {
+          switch (status.text) {
+            case 'In Review':
+              return 'bg-amber-100 text-amber-800 border-amber-200';
+            case 'Not Started':
+              return 'bg-gray-100 text-gray-800 border-gray-200';
+            case 'Queued':
+              return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+            case 'Processing':
+              return 'bg-blue-600 text-white';
+            case 'Complete':
+              return 'bg-green-600 text-white';
+            default:
+              return '';
+          }
+        })();
         return (
-          <Badge variant={status.variant}>
-            {status.text}
-          </Badge>
+          <span className="inline-flex items-center">
+            <Badge variant={status.variant} className={colorClass}>
+              {status.text}
+              {status.text === 'Processing' && (
+                <RefreshCw className="ml-1 h-3 w-3 animate-spin" />
+              )}
+            </Badge>
+            {status.text === 'Queued' && (
+              <>
+                <QueuedStatus slug={topic.slug} />
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="h-6 ml-2 px-2"
+                  disabled={processingTopics.has(topic.slug)}
+                  title={processingTopics.has(topic.slug) ? 'Processing…' : 'Run now'}
+                  onClick={async () => {
+                    setProcessingTopics(prev => new Set([...prev, topic.slug]));
+                    try {
+                      await actionRunPipeline({ slug: topic.slug });
+                    } catch {}
+                  }}
+                >
+                  <Zap className={`h-3.5 w-3.5 ${processingTopics.has(topic.slug) ? 'animate-pulse' : ''}`} />
+                </Button>
+              </>
+            )}
+          </span>
         );
       },
       size: 100,
@@ -669,36 +850,47 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
     {
       id: 'actions',
       header: 'Actions',
-      cell: ({ row }) => (
-        <div className="flex gap-1">
-          <Button
-            size="sm"
-            variant="ghost"
-            className="h-8 w-8 p-0"
-            onClick={() => generateKeywordStrategy(row.original)}
-            title="Generate SEO Strategy"
-          >
-            <Target className="h-4 w-4" />
-          </Button>
-          <Button size="sm" variant="ghost" className="h-8 w-8 p-0" title="Edit Topic">
+      cell: ({ row }) => {
+        const t = row.original;
+        if (t.isSuggestion) {
+          return (
+            <div className="flex gap-1">
+              <Button size="sm" variant="outline" className="h-8 px-2" onClick={() => acceptSuggestion(t.slug)}>Accept</Button>
+              <Button size="sm" variant="ghost" className="h-8 px-2" onClick={() => declineSuggestion(t.slug)}>Decline</Button>
+            </div>
+          );
+        }
+        return (
+          <div className="flex gap-1">
+            <Button
+              size="sm"
+              variant="ghost"
+              className="h-8 w-8 p-0"
+              onClick={() => generateKeywordStrategy(row.original)}
+              title="Generate SEO Strategy"
+            >
+              <Target className="h-4 w-4" />
+            </Button>
+            <Button size="sm" variant="ghost" className="h-8 w-8 p-0" title="Edit Topic" onClick={() => openEditModal(row.original)}>
             <Edit3 className="h-4 w-4" />
           </Button>
-          <Button
-            size="sm"
-            variant="ghost"
-            className="h-8 w-8 p-0"
-            title={processingTopics.has(row.original.slug) ? "Processing..." : "Run Pipeline"}
-            onClick={() => triggerResearchForTopic(row.original)}
-            disabled={processingTopics.has(row.original.slug)}
-          >
-            <PlayCircle className={`h-4 w-4 ${processingTopics.has(row.original.slug) ? 'animate-spin' : ''}`} />
-          </Button>
-        </div>
-      ),
+            <Button
+              size="sm"
+              variant="ghost"
+              className="h-8 w-8 p-0"
+              title={processingTopics.has(row.original.slug) ? "Processing..." : "Run Pipeline"}
+              onClick={() => triggerResearchForTopic(row.original)}
+              disabled={processingTopics.has(row.original.slug)}
+            >
+              <PlayCircle className={`h-4 w-4 ${processingTopics.has(row.original.slug) ? 'animate-spin' : ''}`} />
+            </Button>
+          </div>
+        );
+      },
       enableSorting: false,
       size: 120,
     },
-  ], [generateKeywordStrategy, triggerResearchForTopic, processingTopics]);
+  ], [generateKeywordStrategy, triggerResearchForTopic, processingTopics, acceptSuggestion, declineSuggestion]);
 
   const table = useReactTable({
     data: filteredTopics,
@@ -945,91 +1137,41 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
 
     setIsSubmittingTopic(true);
     try {
-      const response = await fetch('/api/blog/topics', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          title: newTopicTitle.trim(),
-          category: newTopicCategory.trim(),
-          keywords: newTopicKeywords.split(',').map(k => k.trim()).filter(Boolean),
-          description: newTopicDescription.trim(),
-        }),
-      });
+      const slug = toSlug(newTopicTitle.trim());
+      const newKeywords = newTopicKeywords.split(',').map(k => k.trim()).filter(Boolean);
+      try {
+        await actionEnsureTodo({ slug, title: newTopicTitle.trim(), category: newTopicCategory.trim(), keywords: newKeywords } as any);
+      } catch {}
+      await mutateQueueTopic({ slug, title: newTopicTitle.trim(), category: newTopicCategory.trim(), keywords: newKeywords });
+      try { await actionRunPipeline({ slug }); } catch {}
 
-      if (response.ok) {
-        const result = await response.json();
-
-        // Add new keywords to the persistent manager
-        const newKeywords = newTopicKeywords.split(',').map(k => k.trim()).filter(Boolean);
-        if (newKeywords.length > 0) {
-          keywordManager.addKeywordsFromTopics([{
-            keywords: newKeywords,
-            category: newTopicCategory
-          }]);
-
-          // Update the keywords state
-          setKeywords(keywordManager.getKeywords());
-        }
-
-        // Sync with server (optional, for future server-side storage)
+      // Add new keywords to the persistent manager
+      if (newKeywords.length > 0) {
+        keywordManager.addKeywordsFromTopics([{ keywords: newKeywords, category: newTopicCategory }]);
+        setKeywords(keywordManager.getKeywords());
         try {
-          await keywordManager.syncWithServer();
-        } catch (error) {
-          console.warn('Failed to sync keywords with server:', error);
-        }
-
-        // Show success message with pipeline trigger info
-        if (result.pipelineTriggered) {
-          alert(`🎉 Topic "${newTopicTitle}" added successfully!\n\n` +
-                `✅ Research file created: ${result.researchFile}\n` +
-                `🚀 Autonomous pipeline triggered automatically\n\n` +
-                `The blog writer will now:\n` +
-                `• Research the topic\n` +
-                `• Write the full blog post\n` +
-                `• Optimize for SEO\n` +
-                `• Add images and finalize\n\n` +
-                `Check the topics table to monitor progress!`);
-        } else {
-          alert(`Topic "${newTopicTitle}" added successfully!\n\nSlug: ${result.slug}\nResearch file: ${result.researchFile}`);
-        }
-
-        // Store values before resetting form
-        const addedTitle = newTopicTitle;
-        const addedCategory = newTopicCategory;
-        const addedKeywords = newKeywords;
-        const addedDescription = newTopicDescription;
-
-        // Reset form and close modal
-        setNewTopicTitle('');
-        setNewTopicCategory('');
-        setNewTopicKeywords('');
-        setNewTopicDescription('');
-        setIsAddTopicModalOpen(false);
-
-        // Refresh topics dynamically instead of page reload
-        const refreshed = await refreshTopics();
-        if (!refreshed) {
-          // Fallback to creating the topic manually in the UI
-          const newTopic: BlogTopic = {
-            id: result.slug,
-            title: addedTitle,
-            slug: result.slug,
-            category: addedCategory,
-            keywords: addedKeywords,
-            status: '🔬',
-            priority: 'high',
-            researchComplete: false,
-            createdAt: new Date().toISOString(),
-            targetAudience: addedDescription || 'Público general interesado en Pilates'
-          };
-          setTopics(prev => [...prev, newTopic]);
-        }
-      } else {
-        const error = await response.text();
-        alert(`Failed to add topic: ${error}`);
+          const klist = keywordManager.getKeywords().map(k => ({
+            term: k.term,
+            category: k.category,
+            usageCount: k.usageCount,
+            lastUsed: k.lastUsed ? Date.parse(k.lastUsed) : undefined,
+          }));
+          await mutateSaveKeywords({ keywords: klist } as any);
+        } catch {}
       }
+
+      alert(`🎉 Topic "${newTopicTitle}" added and queued!\n\nSlug: ${slug}\nPipeline triggered in background.`);
+
+      // Reset form and close modal
+      setNewTopicTitle('');
+      setNewTopicCategory('');
+      setNewTopicKeywords('');
+      setNewTopicDescription('');
+      setIsAddTopicModalOpen(false);
+
+      // Refresh topics dynamically and show queued view
+      await refreshTopics();
+      setStatusFilter('Queued');
     } catch (error) {
       alert(`Error adding topic: ${error}`);
     } finally {
@@ -1054,14 +1196,7 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
     // Get topics that need processing (research not complete, status indicates ready to research)
     const availableTopics = topics
       .filter(topic => !topic.researchComplete && topic.status === '🔬')
-      .sort((a, b) => {
-        // Sort by priority: high -> medium -> low, then by creation date (newest first)
-        const priorityOrder = { high: 0, medium: 1, low: 2 };
-        if (priorityOrder[a.priority] !== priorityOrder[b.priority]) {
-          return priorityOrder[a.priority] - priorityOrder[b.priority];
-        }
-        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-      });
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
     if (availableTopics.length === 0) {
       setIsRunningPipeline(false);
@@ -1081,83 +1216,51 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
     setPipelineStatus(`Initializing ${topicsToProcess.length} topic${topicsToProcess.length > 1 ? 's' : ''}...`);
 
     try {
-      // For quick run, use the individual topic trigger approach
       if (type === 'quick') {
         const topic = topicsToProcess[0];
-        const response = await fetch('/api/blog/pipeline', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            action: 'trigger',
-            slug: topic.slug
-          }),
-        });
+        await actionRunPipeline({ slug: topic.slug });
+        setPipelineStatus(`Processing "${topic.title}" in background...`);
 
-        if (response.ok) {
-          const result = await response.json();
-          setPipelineStatus(`Processing "${topic.title}" in background...`);
-
-          // Auto-clear status after 15 seconds for individual topic
-          setTimeout(() => {
+        // Poll for research completion up to 10 minutes, then clear
+        let attempts = 0;
+        const maxAttempts = 20; // every 30s
+        const poll = async () => {
+          attempts++;
+          await refreshTopics();
+          try {
+            const r = await fetch(`/blog-planning/research/${topic.slug}.md`, { method: 'HEAD' });
+            if (r.ok) {
+              setProcessingTopics(new Set());
+              setIsRunningPipeline(false);
+              setPipelineStatus(null);
+              setPipelineType(null);
+              return;
+            }
+          } catch {}
+          if (attempts < maxAttempts) setTimeout(poll, 30000);
+          else {
+            setProcessingTopics(new Set());
             setIsRunningPipeline(false);
             setPipelineStatus(null);
             setPipelineType(null);
-            setProcessingTopics(new Set());
-            refreshTopics();
-          }, 15000);
-          return;
-        }
-      }
-
-      // For batch runs, use the batch endpoint
-      const response = await fetch('/api/blog/pipeline', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          action: 'batch',
-          type,
-          topics: topicsToProcess.map(t => t.slug)
-        }),
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        setPipelineStatus(`Processing ${topicsToProcess.length} topics in background...`);
-
-        // Auto-clear status after 10 seconds
-        setTimeout(() => {
-          setIsRunningPipeline(false);
-          setPipelineStatus(null);
-          setPipelineType(null);
-          setProcessingTopics(new Set()); // Clear processing topics
-          // Refresh topics to show new progress
-          refreshTopics();
-        }, 10000);
-      } else {
-        setPipelineStatus('API unavailable - command copied to clipboard');
-
-        // Fallback to the pipeline command
-        const commands = {
-          quick: 'npm run blog:pipeline',
-          standard: 'node scripts/run-batch-blogs.js 5',
-          full: 'node scripts/run-batch-blogs.js 10',
-          production: 'node scripts/run-batch-blogs.js 20',
+          }
         };
-
-        navigator.clipboard.writeText(commands[type]);
-
-        // Clear status after 5 seconds
-        setTimeout(() => {
-          setIsRunningPipeline(false);
-          setPipelineStatus(null);
-          setPipelineType(null);
-          setProcessingTopics(new Set()); // Clear processing topics
-        }, 5000);
+        setTimeout(poll, 30000);
+        return;
       }
+
+      // Batch run via Convex action
+      await actionRunBatch({ slugs: topicsToProcess.map(t => t.slug) });
+      setPipelineStatus(`Processing ${topicsToProcess.length} topics in background...`);
+
+      // Auto-clear status after 10 seconds
+      setTimeout(() => {
+        setIsRunningPipeline(false);
+        setPipelineStatus(null);
+        setPipelineType(null);
+        setProcessingTopics(new Set());
+        refreshTopics();
+      }, 10000);
     } catch (error) {
       setPipelineStatus('Error - command copied to clipboard');
 
@@ -1209,7 +1312,7 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="topics" className="flex items-center gap-2">
             <FileText className="h-4 w-4" />
             Blog Topics
@@ -1217,6 +1320,10 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
           <TabsTrigger value="keywords" className="flex items-center gap-2">
             <Tag className="h-4 w-4" />
             Keywords
+          </TabsTrigger>
+          <TabsTrigger value="suggestions" className="flex items-center gap-2">
+            <Search className="h-4 w-4" />
+            Suggestions
           </TabsTrigger>
           <TabsTrigger value="pipeline" className="flex items-center gap-2">
             <Settings className="h-4 w-4" />
@@ -1252,6 +1359,7 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
                     <RefreshCw className="h-4 w-4 mr-2" />
                     Refresh
                   </Button>
+                  <TopicFinder />
                   <Dialog open={isAddTopicModalOpen} onOpenChange={setIsAddTopicModalOpen}>
                     <DialogTrigger asChild>
                       <Button size="sm">
@@ -1375,6 +1483,44 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
+                {/* Edit Topic Modal */}
+                <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
+                  <DialogContent className="sm:max-w-[525px]">
+                    <DialogHeader>
+                      <DialogTitle>Edit Topic</DialogTitle>
+                      <DialogDescription>Update title, category, keywords and target. Slug remains unchanged.</DialogDescription>
+                    </DialogHeader>
+                    <div className="grid gap-4 py-4">
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label className="text-right">Title</Label>
+                        <Input className="col-span-3" value={editTitle} onChange={(e) => setEditTitle(e.target.value)} />
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label className="text-right">Category</Label>
+                        <Select value={editCategory} onValueChange={setEditCategory}>
+                          <SelectTrigger className="col-span-3">
+                            <SelectValue placeholder="Select a category" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {categoriesList.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label className="text-right">Keywords</Label>
+                        <Input className="col-span-3" value={editKeywords} onChange={(e) => setEditKeywords(e.target.value)} placeholder="comma,separated,keywords" />
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label className="text-right">Target</Label>
+                        <Input className="col-span-3" value={editTarget} onChange={(e) => setEditTarget(e.target.value)} placeholder="Público objetivo" />
+                      </div>
+                    </div>
+                    <DialogFooter>
+                      <Button variant="outline" onClick={() => setIsEditOpen(false)}>Cancel</Button>
+                      <Button onClick={saveEdit}>Save</Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
                 {/* Status filter buttons */}
                 <div className="flex gap-2 items-center">
                   <span className="text-sm font-medium">Filter by status:</span>
@@ -1391,6 +1537,20 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
                     onClick={() => setStatusFilter('Not Started')}
                   >
                     🔬 Not Started ({statusCounts['Not Started']})
+                  </Button>
+                  <Button
+                    variant={statusFilter === 'In Review' ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setStatusFilter('In Review')}
+                  >
+                    📝 In Review ({statusCounts['In Review']})
+                  </Button>
+                  <Button
+                    variant={statusFilter === 'Queued' ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setStatusFilter('Queued')}
+                  >
+                    ⏳ Queued ({statusCounts['Queued']})
                   </Button>
                   <Button
                     variant={statusFilter === 'Processing' ? "default" : "outline"}
@@ -1776,6 +1936,50 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
                   </div>
                   <div className="text-sm text-muted-foreground">Categories</div>
                 </Card>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Suggestions */}
+        <TabsContent value="suggestions" className="space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center justify-between">
+                <span>Topic Suggestions ({suggestions.length})</span>
+                <div className="flex gap-2">
+                  <Button size="sm" variant="outline" onClick={async () => {
+                    setLoadingSuggestions(true);
+                    try { if (suggestionsData) setSuggestions(suggestionsData as any); } catch {}
+                    setLoadingSuggestions(false);
+                  }}>{loadingSuggestions ? 'Refreshing…' : 'Refresh'}</Button>
+                </div>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {loadingSuggestions && <div className="text-sm text-muted-foreground">Loading suggestions…</div>}
+              {!loadingSuggestions && suggestions.length === 0 && <div className="text-sm text-muted-foreground">No suggestions yet. Use "Encontrar temas" in Blog to discover.</div>}
+              <div className="space-y-3">
+                {suggestions.map((s) => (
+                  <div key={s.slug} className="border rounded-md p-3">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="space-y-1">
+                        <div className="font-medium">{s.title}</div>
+                        <div className="text-xs text-muted-foreground">slug: {s.slug}</div>
+                        <div className="flex items-center gap-2 mt-1">
+                          <Badge variant="secondary">{s.category}</Badge>
+                          {s.keywords.slice(0, 4).map(k => <Badge key={k} variant="outline" className="text-xs">{k}</Badge>)}
+                          {s.source && <a href={s.source} target="_blank" rel="noreferrer" className="text-xs underline text-primary">fuente</a>}
+                          <Badge variant={s.status === 'accepted' ? 'default' : s.status === 'declined' ? 'destructive' : 'outline'} className="text-xs">{s.status}</Badge>
+                        </div>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button size="sm" onClick={() => acceptSuggestion(s.slug)} disabled={s.status === 'accepted'}>Accept</Button>
+                        <Button size="sm" variant="outline" onClick={() => declineSuggestion(s.slug)} disabled={s.status === 'declined'}>Decline</Button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>

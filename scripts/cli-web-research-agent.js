@@ -76,10 +76,21 @@ async function appendWebResearch(slug, topic, types) {
   if (!slug) return { success: true, note: 'No slug provided; skipping file write', topic, types };
   const file = path.join(ROOT, 'blog-planning', 'research', `${slug}.md`);
   try {
-    const exists = await fs.readFile(file, 'utf-8');
+    let exists = await fs.readFile(file, 'utf-8');
     const structured = buildStructuredData(topic, types);
     const block = `\n\n## Web Research Data\n\n> Fecha: ${structured.research_date}\n> Tema: ${structured.topic}\n\n### Datos recopilados\n${Object.entries(structured.data_collected).map(([k, arr]) => `- ${k}:\n${(arr||[]).map(i => `  - ${i}`).join('\n')}`).join('\n')}\n\n### Fuentes necesarias\n${structured.sources_needed.map(s => `- ${s}`).join('\n')}\n\n### Próximos pasos\n${structured.next_steps.map(s => `- ${s}`).join('\n')}\n`;
-    await fs.writeFile(file, exists + block, 'utf-8');
+    // Replace existing Web Research Data section if present to avoid duplication
+    if (/^##\s+Web Research Data/m.test(exists)) {
+      const start = exists.indexOf('## Web Research Data');
+      // Find next H2 or EOF
+      const after = exists.slice(start + '## Web Research Data'.length);
+      const nextIdxRel = after.search(/\n##\s+/);
+      const endIdx = nextIdxRel >= 0 ? start + '## Web Research Data'.length + nextIdxRel : exists.length;
+      exists = exists.slice(0, start) + block + exists.slice(endIdx);
+    } else {
+      exists = exists + block;
+    }
+    await fs.writeFile(file, exists, 'utf-8');
     return { success: true, slug, file };
   } catch {
     return { success: true, note: 'Research file not found; skipping', topic };

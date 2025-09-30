@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
@@ -6,28 +6,10 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import AdminBlogWriter from './AdminBlogWriter';
 import { Badge } from '@/components/ui/badge';
+import { useMutation, useQuery } from 'convex/react';
+import { api } from '../../convex/_generated/api';
 
 type Session = { authenticated: boolean; user?: string };
-
-async function fetchSession(): Promise<Session> {
-  const resp = await fetch('/api/admin/session', { credentials: 'include' });
-  if (!resp.ok) return { authenticated: false };
-  return resp.json();
-}
-
-async function login(username: string, password: string): Promise<boolean> {
-  const resp = await fetch('/api/admin/login', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ username, password }),
-    credentials: 'include'
-  });
-  return resp.ok;
-}
-
-async function logout(): Promise<void> {
-  await fetch('/api/admin/logout', { method: 'POST', credentials: 'include' });
-}
 
 const Admin: React.FC = () => {
   const [session, setSession] = useState<Session>({ authenticated: false });
@@ -36,39 +18,76 @@ const Admin: React.FC = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [health, setHealth] = useState<{ db: boolean; users: number } | null>(null);
+  const [siteKey, setSiteKey] = useState<string | null>(null);
+  const captchaRef = useRef<HTMLDivElement>(null);
 
+  const healthQuery = useQuery(api.admin.health as any, {} as any) as any;
+  useEffect(() => {
+    if (healthQuery) { setHealth(healthQuery); setLoading(false); }
+  }, [healthQuery]);
+
+  // Load Turnstile and render widget if site key provided
   useEffect(() => {
     (async () => {
       try {
-        const [s, h] = await Promise.all([
-          fetchSession(),
-          fetch('/api/admin/health', { credentials: 'include' }).then(r => r.ok ? r.json() : { db: false, users: 0 })
-        ]);
-        setSession(s); setHealth(h);
-      } catch {
-        setHealth({ db: false, users: 0 });
-      } finally {
-        setLoading(false);
-      }
+        // Attempt to read site key from global var set by server var (if proxied) or window.__TURNSTILE_SITE_KEY
+        const key = (window as any).__TURNSTILE_SITE_KEY || '';
+        if (key) setSiteKey(key);
+      } catch {}
     })();
   }, []);
+  useEffect(() => {
+    if (!siteKey || !captchaRef.current) return;
+    const s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+    s.async = true;
+    s.onload = () => {
+      try {
+        // @ts-ignore
+        window.turnstile.render(captchaRef.current, {
+          sitekey: siteKey,
+          callback: (token: string) => { (window as any).__turnstileToken = token; }
+        });
+      } catch {}
+    };
+    document.body.appendChild(s);
+    return () => { try { document.body.removeChild(s); } catch {} };
+  }, [siteKey]);
+
+  const mutateLogin = useMutation(api.admin.login as any);
+  const mutateLogout = useMutation(api.admin.logout as any);
+  const mutateInit = useMutation(api.admin.init as any);
+  const usersQuery = useQuery(api.admin.users as any, {} as any) as string[] | undefined;
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    const ok = await login(username, password);
-    if (ok) {
-      const s = await fetchSession();
-      setSession(s);
-    } else {
-      setError('Credenciales inválidas');
-    }
+    try {
+      const res = await mutateLogin({ username, password } as any);
+      if (res?.ok && res?.token) {
+        localStorage.setItem('admint', res.token);
+        setSession({ authenticated: true, user: res.username });
+      } else {
+        setError(res?.error || 'Credenciales inválidas');
+      }
+    } catch { setError('Credenciales inválidas'); }
   };
 
   const handleLogout = async () => {
-    await logout();
+    try {
+      const token = localStorage.getItem('admint') || '';
+      if (token) await mutateLogout({ token } as any);
+    } catch {}
+    localStorage.removeItem('admint');
     setSession({ authenticated: false });
   };
+
+  const token = typeof window !== 'undefined' ? (localStorage.getItem('admint') || '') : '';
+  const sessQuery = useQuery(api.admin.session as any, token ? ({ token } as any) : 'skip' as any) as any;
+  useEffect(() => {
+    if (token && sessQuery) setSession({ authenticated: Boolean(sessQuery?.authenticated), user: sessQuery?.user });
+    else setSession({ authenticated: false });
+  }, [token, sessQuery]);
 
   if (loading) return <div className="container mx-auto px-4 py-12">Cargando…</div>;
 
@@ -93,11 +112,34 @@ const Admin: React.FC = () => {
                   <label className="text-sm">Contraseña</label>
                   <Input type="password" value={password} onChange={e => setPassword(e.target.value)} />
                 </div>
+                {siteKey && (
+                  <div className="pt-1">
+                    <div ref={captchaRef} className="cf-turnstile" />
+                  </div>
+                )}
                 {error && <div className="text-sm text-red-600">{error}</div>}
                 <Button type="submit" className="w-full">Entrar</Button>
               </form>
               <div className="text-xs text-muted-foreground">
-                Si es la primera vez, configure credenciales en el entorno (D1 + ADMIN_USER/ADMIN_PASS) o inicialice vía API.
+                {Array.isArray(usersQuery) && usersQuery.length === 0 ? (
+                  <div className="space-y-2">
+                    <div>No hay usuarios aún. Inicializa credenciales:</div>
+                    <Button variant="outline" onClick={async ()=>{
+                      try {
+                        const res = await mutateInit({ username, password } as any);
+                        if (res?.ok) {
+                          const r = await mutateLogin({ username, password } as any);
+                          if (r?.ok && r?.token) {
+                            localStorage.setItem('admint', r.token);
+                            setSession({ authenticated: true, user: r.username });
+                          }
+                        } else setError(res?.error || 'No se pudo inicializar');
+                      } catch { setError('No se pudo inicializar'); }
+                    }}>Inicializar con estos datos</Button>
+                  </div>
+                ) : (
+                  <>Si es la primera vez, pida a un admin que le cree usuario en Configuración.</>
+                )}
               </div>
             </CardContent>
           </Card>
@@ -116,7 +158,7 @@ const Admin: React.FC = () => {
           <div className="mb-6 p-4 border rounded bg-muted/30 flex items-center gap-6">
             <div className="flex items-center gap-2">
               <span className={`inline-block w-2.5 h-2.5 rounded-full ${health?.db ? 'bg-green-500' : 'bg-red-500'}`} />
-              <span className="text-sm">D1: {health?.db ? 'Conectado' : 'Sin conexión'}</span>
+              <span className="text-sm">Convex: {health?.db ? 'Conectado' : 'Sin conexión'}</span>
             </div>
             <div className="text-sm text-muted-foreground">Usuarios: {health?.users ?? 0}</div>
             {session.user && <Badge variant="secondary">{session.user}</Badge>}

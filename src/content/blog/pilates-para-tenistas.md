@@ -1,5 +1,5 @@
 ---
-title: "Pilates Para Tenistas"
+title: "Pilates Para Tenistas – pilates-para-tenistas"
 description: "Guía práctica sobre pilates para tenistas con enfoque en México: consejos y pasos accionables."
 category: "Tips para Instructores de Pilates"
 tags: ["pilates deportivo", "entrenamiento tenis", "estabilidad atlética"]
@@ -7,9 +7,7 @@ publishDate: "2025-09-28"
 author: "CAMA Pilates"
 slug: "pilates-para-tenistas"
 featured: false
----
-
-# Pilates Para Tenistas
+---s
 
 > Nota: Contenido informativo; no es asesoramiento médico.
 
