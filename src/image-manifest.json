@@ -753,5 +753,10 @@
     "original": "/placeholder.svg",
     "hashed": "/placeholder.35707bd9.svg",
     "hash": "35707bd9"
+  },
+  "/powered-by-google.png": {
+    "original": "/powered-by-google.png",
+    "hashed": "/powered-by-google.00222585.png",
+    "hash": "00222585"
   }
 }

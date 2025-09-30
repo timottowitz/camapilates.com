@@ -17,6 +17,8 @@ db/*.db
 db/*.sqlite
 
 # Environment files
+.env
+.env.*
 .env.mcp
 
 # Editor directories and files

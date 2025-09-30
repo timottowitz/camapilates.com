@@ -47,6 +47,8 @@ function build() {
     { loc: `${origin}/certificacion-pilates/queretaro`, lastmod: now, changefreq: 'weekly', priority: '0.6' },
   ];
 
+  
+
   const files = walk(CONTENT_DIR);
   const categories = new Set();
   const tags = new Set();

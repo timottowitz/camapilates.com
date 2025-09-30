@@ -1,0 +1,73 @@
+Issue Type,Summary,Description,Priority,Story Points,Labels,Epic Link,Acceptance Criteria,Sprint
+Task,Install Project Dependencies,"Install all required npm packages for the Pilates studio directory project including Google Maps services, Playwright for scraping, sentiment analysis, and rate limiting",High,1,infrastructure;setup;sprint1,Foundation Setup,"- All npm packages installed
+- Package.json updated
+- No dependency conflicts",Sprint 1
+Task,Configure Environment Variables,"Set up environment variables for Google Maps API, Convex database, and scraping configuration",High,0.5,infrastructure;config;sprint1,Foundation Setup,"- .env.local file created
+- .env.example committed
+- All required vars documented",Sprint 1
+Task,Set Up Google Cloud Platform,"Create GCP account and configure Maps APIs with proper restrictions and billing alerts",High,3,infrastructure;gcp;api;sprint1,Foundation Setup,"- GCP account active
+- Maps/Places/Geocoding APIs enabled
+- API key restricted to domains
+- Billing alerts configured",Sprint 1
+Task,Create Convex Schema File,"Initialize Convex database schema with proper structure and imports",High,1,database;convex;sprint1,Foundation Setup,"- convex/schema.ts created
+- Schema validates
+- Can deploy to Convex",Sprint 1
+Task,Define Studios Table Schema,"Create comprehensive studios table with all fields, indexes, and proper data types",High,3,database;schema;sprint1,Foundation Setup,"- All studio fields defined
+- Indexes on city/rating/price
+- Types match TypeScript",Sprint 1
+Task,Create TypeScript Type Definitions,"Define all TypeScript interfaces for studios, locations, and scraping data",High,1,typescript;types;sprint1,Foundation Setup,"- types/studio.ts complete
+- All interfaces exported
+- No TypeScript errors",Sprint 1
+Task,Create Google Places Service,"Build service layer for Google Places API integration with search and details methods",High,4,scraping;api;google;sprint1,Foundation Setup,"- Can search for places
+- Can get place details
+- Error handling works
+- Rate limiting implemented",Sprint 1
+Task,Build Search Query Generator,"Create utility to generate search query variations for finding Pilates studios",High,1,scraping;search;sprint1,Foundation Setup,"- Generates 4 query variations
+- Includes Spanish terms
+- Works for all cities",Sprint 1
+Task,Implement Rate Limiter,"Add Bottleneck rate limiting to prevent API quota exhaustion",High,1,scraping;performance;sprint1,Foundation Setup,"- Limits to 10 req/sec
+- Implements backoff
+- No API quota errors",Sprint 1
+Task,Create Deduplication Logic,"Build deduplication system using place_id and similarity matching",High,2,scraping;data-quality;sprint1,Foundation Setup,"- Removes duplicate place_ids
+- Catches name variations
+- Handles chain locations",Sprint 1
+Task,Build Main Scraping Script,"Create comprehensive CLI script for scraping studios from any city",High,6,scraping;cli;sprint1,Foundation Setup,"- CLI arguments work
+- Scrapes full city
+- Exports to CSV
+- Handles errors gracefully",Sprint 1
+Task,Scrape Mexico City Studios,"Execute scraping for CDMX and prepare data for database import",High,3,execution;data;cdmx;sprint1,Data Collection,"- 50+ studios found
+- Data quality >70%
+- CSV exported
+- Ready for import",Sprint 1
+Story,Create Studio Card Component,"Build reusable studio card component with image, rating, price, and basic info",Medium,3,frontend;component;sprint2,Core Components,"- Responsive design
+- Loading states
+- Image fallbacks
+- Accessibility compliant",Sprint 2
+Story,Create Filter Panel Component,"Implement comprehensive filter panel with neighborhood, price, rating, and amenity filters",Medium,5,frontend;search;sprint2,Core Components,"- All filter types work
+- State management clean
+- Mobile responsive
+- Clear filters option",Sprint 2
+Story,Create City Directory Page,"Build main city directory page with search, filters, and studio listings",High,5,frontend;pages;sprint2,Page Templates,"- SEO optimized
+- Fast loading
+- Pagination works
+- Map view toggle",Sprint 2
+Story,Create Studio Detail Page,"Implement comprehensive studio detail page with all information sections",High,5,frontend;pages;sprint2,Page Templates,"- All sections render
+- Reviews displayed
+- Map integrated
+- Contact form works",Sprint 2
+Task,Create Daily Review Updater,"Build automated job to update review metrics daily",Medium,3,automation;cron;sprint3,Automation,"- Fetches new reviews
+- Updates averages
+- Logs changes
+- Error handling",Sprint 3
+Task,Implement SEO Metadata,"Add comprehensive SEO metadata generation for all pages",High,3,seo;performance;sprint3,SEO & Performance,"- Meta tags generated
+- Schema markup added
+- Sitemap created
+- Robots.txt configured",Sprint 3
+Task,Add Analytics Tracking,"Integrate Google Analytics with custom events",Medium,3,analytics;monitoring;sprint3,Monitoring,"- GA4 integrated
+- Events tracked
+- Conversions configured
+- Dashboard created",Sprint 3
+Task,Production Deployment,"Deploy complete application to production environment",High,4,deployment;launch;sprint4,Launch,"- Database migrated
+- Application deployed
+- All endpoints verified
+- Monitoring active",Sprint 4

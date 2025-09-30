@@ -1,0 +1,443 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2025-09-30T12:00:00Z",
+  "description": "Master list of Mexican cities for Pilates studio directory. Priority 1-7 are initial launch cities, 8-100 are expansion cities.",
+  "cities": [
+    {
+      "id": "cdmx-001",
+      "name": "Ciudad de México",
+      "slug": "ciudad-de-mexico",
+      "state": "Ciudad de México",
+      "population": 9209944,
+      "coordinates": {
+        "lat": 19.4326,
+        "lng": -99.1332
+      },
+      "priority": 1,
+      "timezone": "America/Mexico_City",
+      "neighborhoods": [
+        { "name": "Polanco", "slug": "polanco" },
+        { "name": "Condesa", "slug": "condesa" },
+        { "name": "Roma Norte", "slug": "roma-norte" },
+        { "name": "Roma Sur", "slug": "roma-sur" },
+        { "name": "Santa Fe", "slug": "santa-fe" },
+        { "name": "Coyoacán", "slug": "coyoacan" },
+        { "name": "Del Valle", "slug": "del-valle" },
+        { "name": "Nápoles", "slug": "napoles" },
+        { "name": "Lomas de Chapultepec", "slug": "lomas-de-chapultepec" },
+        { "name": "San Ángel", "slug": "san-angel" },
+        { "name": "Juárez", "slug": "juarez" },
+        { "name": "Cuauhtémoc", "slug": "cuauhtemoc" }
+      ],
+      "seo": {
+        "metaTitle": "Los Mejores Estudios de Pilates en Ciudad de México - Precios y Reseñas 2025",
+        "metaDescription": "Encuentra los mejores estudios de Pilates en CDMX. Compara precios, horarios, reseñas y ubicaciones en Polanco, Condesa, Roma y más. Lista actualizada 2025.",
+        "h1": "Estudios de Pilates en Ciudad de México"
+      }
+    },
+    {
+      "id": "qro-001",
+      "name": "Querétaro",
+      "slug": "queretaro",
+      "state": "Querétaro",
+      "population": 1049777,
+      "coordinates": {
+        "lat": 20.5888,
+        "lng": -100.3899
+      },
+      "priority": 2,
+      "timezone": "America/Mexico_City",
+      "neighborhoods": [
+        { "name": "Centro Histórico", "slug": "centro-historico" },
+        { "name": "Juriquilla", "slug": "juriquilla" },
+        { "name": "El Refugio", "slug": "el-refugio" },
+        { "name": "Milenio III", "slug": "milenio-iii" },
+        { "name": "Cimatario", "slug": "cimatario" }
+      ],
+      "seo": {
+        "metaTitle": "Estudios de Pilates en Querétaro - Precios, Horarios y Reseñas",
+        "metaDescription": "Descubre los mejores estudios de Pilates en Querétaro. Compara opciones en Juriquilla, Centro y más. Precios actualizados 2025.",
+        "h1": "Estudios de Pilates en Querétaro"
+      }
+    },
+    {
+      "id": "pue-001",
+      "name": "Puebla",
+      "slug": "puebla",
+      "state": "Puebla",
+      "population": 1692181,
+      "coordinates": {
+        "lat": 19.0414,
+        "lng": -98.2063
+      },
+      "priority": 3,
+      "timezone": "America/Mexico_City",
+      "neighborhoods": [
+        { "name": "Angelópolis", "slug": "angelopolis" },
+        { "name": "Centro Histórico", "slug": "centro-historico" },
+        { "name": "La Paz", "slug": "la-paz" },
+        { "name": "Cholula", "slug": "cholula" }
+      ],
+      "seo": {
+        "metaTitle": "Mejores Estudios de Pilates en Puebla - Guía Completa 2025",
+        "metaDescription": "Encuentra estudios de Pilates en Puebla. Angelópolis, Centro, Cholula. Compara precios, horarios y reseñas.",
+        "h1": "Estudios de Pilates en Puebla"
+      }
+    },
+    {
+      "id": "mty-001",
+      "name": "Monterrey",
+      "slug": "monterrey",
+      "state": "Nuevo León",
+      "population": 1142952,
+      "coordinates": {
+        "lat": 25.6866,
+        "lng": -100.3161
+      },
+      "priority": 4,
+      "timezone": "America/Monterrey",
+      "neighborhoods": [
+        { "name": "San Pedro Garza García", "slug": "san-pedro" },
+        { "name": "Valle Oriente", "slug": "valle-oriente" },
+        { "name": "Contry", "slug": "contry" },
+        { "name": "Residencial San Agustín", "slug": "san-agustin" },
+        { "name": "Centro", "slug": "centro" }
+      ],
+      "seo": {
+        "metaTitle": "Estudios de Pilates en Monterrey - San Pedro, Valle Oriente y más",
+        "metaDescription": "Los mejores estudios de Pilates en Monterrey y San Pedro. Compara precios, instructores y ubicaciones. Guía 2025.",
+        "h1": "Estudios de Pilates en Monterrey"
+      }
+    },
+    {
+      "id": "gdl-001",
+      "name": "Guadalajara",
+      "slug": "guadalajara",
+      "state": "Jalisco",
+      "population": 1495189,
+      "coordinates": {
+        "lat": 20.6597,
+        "lng": -103.3496
+      },
+      "priority": 5,
+      "timezone": "America/Mexico_City",
+      "neighborhoods": [
+        { "name": "Providencia", "slug": "providencia" },
+        { "name": "Chapalita", "slug": "chapalita" },
+        { "name": "Zapopan", "slug": "zapopan" },
+        { "name": "Puerta de Hierro", "slug": "puerta-de-hierro" },
+        { "name": "Centro", "slug": "centro" }
+      ],
+      "seo": {
+        "metaTitle": "Mejores Estudios de Pilates en Guadalajara - Providencia, Zapopan",
+        "metaDescription": "Encuentra estudios de Pilates en Guadalajara. Providencia, Chapalita, Zapopan. Precios y reseñas actualizadas.",
+        "h1": "Estudios de Pilates en Guadalajara"
+      }
+    },
+    {
+      "id": "mzt-001",
+      "name": "Mazatlán",
+      "slug": "mazatlan",
+      "state": "Sinaloa",
+      "population": 502547,
+      "coordinates": {
+        "lat": 23.2494,
+        "lng": -106.4111
+      },
+      "priority": 6,
+      "timezone": "America/Mazatlan",
+      "neighborhoods": [
+        { "name": "Zona Dorada", "slug": "zona-dorada" },
+        { "name": "Marina Mazatlán", "slug": "marina" },
+        { "name": "Centro", "slug": "centro" },
+        { "name": "Cerritos", "slug": "cerritos" }
+      ],
+      "seo": {
+        "metaTitle": "Estudios de Pilates en Mazatlán - Zona Dorada, Marina y más",
+        "metaDescription": "Descubre estudios de Pilates en Mazatlán. Zona Dorada, Marina, Cerritos. Precios y ubicaciones.",
+        "h1": "Estudios de Pilates en Mazatlán"
+      }
+    },
+    {
+      "id": "tjn-001",
+      "name": "Tijuana",
+      "slug": "tijuana",
+      "state": "Baja California",
+      "population": 1922523,
+      "coordinates": {
+        "lat": 32.5149,
+        "lng": -117.0382
+      },
+      "priority": 7,
+      "timezone": "America/Tijuana",
+      "neighborhoods": [
+        { "name": "Zona Río", "slug": "zona-rio" },
+        { "name": "Playas de Tijuana", "slug": "playas" },
+        { "name": "Otay", "slug": "otay" }
+      ],
+      "seo": {
+        "metaTitle": "Estudios de Pilates en Tijuana - Zona Río, Playas y más",
+        "metaDescription": "Los mejores estudios de Pilates en Tijuana. Compara opciones en Zona Río y más zonas.",
+        "h1": "Estudios de Pilates en Tijuana"
+      }
+    },
+    {
+      "id": "leo-001",
+      "name": "León",
+      "slug": "leon",
+      "state": "Guanajuato",
+      "population": 1579803,
+      "coordinates": {
+        "lat": 21.1236,
+        "lng": -101.6827
+      },
+      "priority": 8,
+      "timezone": "America/Mexico_City",
+      "neighborhoods": [],
+      "seo": {
+        "metaTitle": "Estudios de Pilates en León, Guanajuato - Guía 2025",
+        "metaDescription": "Encuentra los mejores estudios de Pilates en León. Precios, horarios y reseñas.",
+        "h1": "Estudios de Pilates en León"
+      }
+    },
+    {
+      "id": "jrz-001",
+      "name": "Juárez",
+      "slug": "ciudad-juarez",
+      "state": "Chihuahua",
+      "population": 1512450,
+      "coordinates": {
+        "lat": 31.6904,
+        "lng": -106.4245
+      },
+      "priority": 9,
+      "timezone": "America/Chihuahua",
+      "neighborhoods": [],
+      "seo": {
+        "metaTitle": "Estudios de Pilates en Ciudad Juárez - Precios y Ubicaciones",
+        "metaDescription": "Descubre estudios de Pilates en Ciudad Juárez. Compara precios y horarios.",
+        "h1": "Estudios de Pilates en Ciudad Juárez"
+      }
+    },
+    {
+      "id": "zap-001",
+      "name": "Zapopan",
+      "slug": "zapopan",
+      "state": "Jalisco",
+      "population": 1476491,
+      "coordinates": {
+        "lat": 20.7214,
+        "lng": -103.3918
+      },
+      "priority": 10,
+      "timezone": "America/Mexico_City",
+      "neighborhoods": [],
+      "seo": {
+        "metaTitle": "Estudios de Pilates en Zapopan, Jalisco - Guía Completa",
+        "metaDescription": "Los mejores estudios de Pilates en Zapopan. Precios y reseñas actualizadas.",
+        "h1": "Estudios de Pilates en Zapopan"
+      }
+    },
+    {
+      "id": "mxl-001",
+      "name": "Mexicali",
+      "slug": "mexicali",
+      "state": "Baja California",
+      "population": 1049792,
+      "coordinates": {
+        "lat": 32.6519,
+        "lng": -115.4683
+      },
+      "priority": 11,
+      "timezone": "America/Tijuana",
+      "neighborhoods": [],
+      "seo": {
+        "metaTitle": "Estudios de Pilates en Mexicali - Precios y Horarios",
+        "metaDescription": "Encuentra estudios de Pilates en Mexicali. Compara opciones y precios.",
+        "h1": "Estudios de Pilates en Mexicali"
+      }
+    },
+    {
+      "id": "cnc-001",
+      "name": "Cancún",
+      "slug": "cancun",
+      "state": "Quintana Roo",
+      "population": 966526,
+      "coordinates": {
+        "lat": 21.1619,
+        "lng": -86.8515
+      },
+      "priority": 12,
+      "timezone": "America/Cancun",
+      "neighborhoods": [
+        { "name": "Zona Hotelera", "slug": "zona-hotelera" },
+        { "name": "Puerto Cancún", "slug": "puerto-cancun" },
+        { "name": "Centro", "slug": "centro" }
+      ],
+      "seo": {
+        "metaTitle": "Estudios de Pilates en Cancún - Zona Hotelera y más",
+        "metaDescription": "Los mejores estudios de Pilates en Cancún. Zona Hotelera, Puerto Cancún y Centro.",
+        "h1": "Estudios de Pilates en Cancún"
+      }
+    },
+    {
+      "id": "mer-001",
+      "name": "Mérida",
+      "slug": "merida",
+      "state": "Yucatán",
+      "population": 921770,
+      "coordinates": {
+        "lat": 20.9674,
+        "lng": -89.5926
+      },
+      "priority": 13,
+      "timezone": "America/Merida",
+      "neighborhoods": [],
+      "seo": {
+        "metaTitle": "Estudios de Pilates en Mérida, Yucatán - Guía 2025",
+        "metaDescription": "Encuentra estudios de Pilates en Mérida. Precios, horarios y ubicaciones.",
+        "h1": "Estudios de Pilates en Mérida"
+      }
+    },
+    {
+      "id": "chi-001",
+      "name": "Chihuahua",
+      "slug": "chihuahua",
+      "state": "Chihuahua",
+      "population": 925762,
+      "coordinates": {
+        "lat": 28.6353,
+        "lng": -106.0889
+      },
+      "priority": 14,
+      "timezone": "America/Chihuahua",
+      "neighborhoods": [],
+      "seo": {
+        "metaTitle": "Estudios de Pilates en Chihuahua - Precios y Reseñas",
+        "metaDescription": "Descubre los mejores estudios de Pilates en Chihuahua.",
+        "h1": "Estudios de Pilates en Chihuahua"
+      }
+    },
+    {
+      "id": "slp-001",
+      "name": "San Luis Potosí",
+      "slug": "san-luis-potosi",
+      "state": "San Luis Potosí",
+      "population": 911183,
+      "coordinates": {
+        "lat": 22.1565,
+        "lng": -100.9855
+      },
+      "priority": 15,
+      "timezone": "America/Mexico_City",
+      "neighborhoods": [],
+      "seo": {
+        "metaTitle": "Estudios de Pilates en San Luis Potosí - Guía Completa",
+        "metaDescription": "Los mejores estudios de Pilates en San Luis Potosí. Precios y horarios.",
+        "h1": "Estudios de Pilates en San Luis Potosí"
+      }
+    },
+    {
+      "id": "agc-001",
+      "name": "Aguascalientes",
+      "slug": "aguascalientes",
+      "state": "Aguascalientes",
+      "population": 948990,
+      "coordinates": {
+        "lat": 21.8853,
+        "lng": -102.2916
+      },
+      "priority": 16,
+      "timezone": "America/Mexico_City",
+      "neighborhoods": [],
+      "seo": {
+        "metaTitle": "Estudios de Pilates en Aguascalientes - Precios 2025",
+        "metaDescription": "Encuentra estudios de Pilates en Aguascalientes. Compara precios y reseñas.",
+        "h1": "Estudios de Pilates en Aguascalientes"
+      }
+    },
+    {
+      "id": "mor-001",
+      "name": "Morelia",
+      "slug": "morelia",
+      "state": "Michoacán",
+      "population": 849954,
+      "coordinates": {
+        "lat": 19.7060,
+        "lng": -101.1949
+      },
+      "priority": 17,
+      "timezone": "America/Mexico_City",
+      "neighborhoods": [],
+      "seo": {
+        "metaTitle": "Estudios de Pilates en Morelia, Michoacán - Guía 2025",
+        "metaDescription": "Descubre estudios de Pilates en Morelia. Precios y ubicaciones.",
+        "h1": "Estudios de Pilates en Morelia"
+      }
+    },
+    {
+      "id": "tol-001",
+      "name": "Toluca",
+      "slug": "toluca",
+      "state": "México",
+      "population": 910608,
+      "coordinates": {
+        "lat": 19.2827,
+        "lng": -99.6557
+      },
+      "priority": 18,
+      "timezone": "America/Mexico_City",
+      "neighborhoods": [],
+      "seo": {
+        "metaTitle": "Estudios de Pilates en Toluca - Precios y Horarios",
+        "metaTitle": "Los mejores estudios de Pilates en Toluca. Compara opciones.",
+        "h1": "Estudios de Pilates en Toluca"
+      }
+    },
+    {
+      "id": "cul-001",
+      "name": "Culiacán",
+      "slug": "culiacan",
+      "state": "Sinaloa",
+      "population": 905265,
+      "coordinates": {
+        "lat": 24.8091,
+        "lng": -107.3940
+      },
+      "priority": 19,
+      "timezone": "America/Mazatlan",
+      "neighborhoods": [],
+      "seo": {
+        "metaTitle": "Estudios de Pilates en Culiacán, Sinaloa - Guía 2025",
+        "metaDescription": "Encuentra estudios de Pilates en Culiacán. Precios y reseñas.",
+        "h1": "Estudios de Pilates en Culiacán"
+      }
+    },
+    {
+      "id": "her-001",
+      "name": "Hermosillo",
+      "slug": "hermosillo",
+      "state": "Sonora",
+      "population": 936263,
+      "coordinates": {
+        "lat": 29.0892,
+        "lng": -110.9611
+      },
+      "priority": 20,
+      "timezone": "America/Hermosillo",
+      "neighborhoods": [],
+      "seo": {
+        "metaTitle": "Estudios de Pilates en Hermosillo, Sonora - Precios 2025",
+        "metaDescription": "Descubre los mejores estudios de Pilates en Hermosillo.",
+        "h1": "Estudios de Pilates en Hermosillo"
+      }
+    }
+  ],
+  "metadata": {
+    "totalCities": 20,
+    "priorityCities": 7,
+    "expansionCities": 13,
+    "targetCities": 100,
+    "coverage": "Top 20 cities by population as of 2025"
+  }
+}

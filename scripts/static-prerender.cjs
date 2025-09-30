@@ -150,6 +150,7 @@ function readProducts() {
   }
 }
 
+
 function renderProduct(p, origin) {
   const productSchema = {
     '@context': 'https://schema.org',
@@ -215,6 +216,7 @@ async function main() {
   const origin = process.env.SITE_ORIGIN || 'https://camadepilates.com';
   const posts = readPosts().sort((a,b) => new Date(b.date) - new Date(a.date));
   const prods = readProducts();
+  
   const certCities = [
     { key: 'cdmx', name: 'Ciudad de México (CDMX)' },
     { key: 'guadalajara', name: 'Guadalajara (Jalisco)' },
@@ -327,6 +329,8 @@ async function main() {
     html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(itemList)}</script>\n</head>`);
     writeFileForRoute('/shop', html);
   }
+
+  
 
   // Shop categories (new)
   if (prods.length) {

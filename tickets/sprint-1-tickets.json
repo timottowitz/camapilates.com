@@ -1,0 +1,289 @@
+{
+  "sprint": {
+    "number": 1,
+    "name": "Foundation Setup",
+    "duration": "1 week",
+    "goal": "Set up infrastructure and create working scraper for 1 city",
+    "deliverables": [
+      "Database schema deployed",
+      "Google API integration working",
+      "Basic scraping script functional",
+      "50+ studios scraped from CDMX"
+    ]
+  },
+  "tickets": [
+    {
+      "id": "INFRA-001",
+      "title": "Install Project Dependencies",
+      "type": "task",
+      "size": "S",
+      "priority": "P0",
+      "estimatedHours": 1,
+      "assignee": "developer",
+      "status": "todo",
+      "acceptance": [
+        "All npm packages installed",
+        "Package.json updated",
+        "No dependency conflicts"
+      ],
+      "subtasks": [
+        "npm install @googlemaps/google-maps-services-js",
+        "npm install playwright",
+        "npm install sentiment",
+        "npm install bottleneck",
+        "npm install uuid",
+        "Test all imports work"
+      ]
+    },
+    {
+      "id": "INFRA-002",
+      "title": "Configure Environment Variables",
+      "type": "task",
+      "size": "XS",
+      "priority": "P0",
+      "estimatedHours": 0.5,
+      "assignee": "developer",
+      "status": "todo",
+      "acceptance": [
+        ".env.local file created",
+        ".env.example committed",
+        "All required vars documented"
+      ],
+      "subtasks": [
+        "Add GOOGLE_MAPS_API_KEY",
+        "Add CONVEX_URL",
+        "Add CONVEX_DEPLOY_KEY",
+        "Create .env.example"
+      ]
+    },
+    {
+      "id": "INFRA-003",
+      "title": "Set Up Google Cloud Platform",
+      "type": "task",
+      "size": "M",
+      "priority": "P0",
+      "estimatedHours": 3,
+      "assignee": "developer",
+      "status": "todo",
+      "dependencies": [],
+      "acceptance": [
+        "GCP account active",
+        "APIs enabled",
+        "API key restricted",
+        "Billing alerts set"
+      ],
+      "subtasks": [
+        "Create GCP account",
+        "Enable Maps JavaScript API",
+        "Enable Places API",
+        "Enable Geocoding API",
+        "Set domain restrictions",
+        "Configure $300 billing alert"
+      ]
+    },
+    {
+      "id": "DB-001",
+      "title": "Create Convex Schema File",
+      "type": "task",
+      "size": "S",
+      "priority": "P0",
+      "estimatedHours": 1,
+      "assignee": "developer",
+      "status": "todo",
+      "dependencies": ["INFRA-002"],
+      "acceptance": [
+        "convex/schema.ts created",
+        "Schema validates",
+        "Can deploy to Convex"
+      ]
+    },
+    {
+      "id": "DB-002",
+      "title": "Define Studios Table Schema",
+      "type": "task",
+      "size": "M",
+      "priority": "P0",
+      "estimatedHours": 3,
+      "assignee": "developer",
+      "status": "todo",
+      "dependencies": ["DB-001"],
+      "acceptance": [
+        "All studio fields defined",
+        "Proper indexes added",
+        "Types match TypeScript interfaces"
+      ],
+      "fields": [
+        "id, slug, name",
+        "address object",
+        "contact object",
+        "metrics object",
+        "amenities array",
+        "timestamps"
+      ]
+    },
+    {
+      "id": "TYPE-001",
+      "title": "Create TypeScript Type Definitions",
+      "type": "task",
+      "size": "S",
+      "priority": "P0",
+      "estimatedHours": 1,
+      "assignee": "developer",
+      "status": "todo",
+      "acceptance": [
+        "types/studio.ts complete",
+        "All interfaces exported",
+        "No TypeScript errors"
+      ]
+    },
+    {
+      "id": "SCRAPE-001",
+      "title": "Create Google Places Service",
+      "type": "task",
+      "size": "M",
+      "priority": "P0",
+      "estimatedHours": 4,
+      "assignee": "developer",
+      "status": "todo",
+      "dependencies": ["INFRA-001", "INFRA-003"],
+      "acceptance": [
+        "Can search for places",
+        "Can get place details",
+        "Error handling works",
+        "Rate limiting implemented"
+      ],
+      "subtasks": [
+        "Initialize client",
+        "Implement search method",
+        "Implement details method",
+        "Add retry logic",
+        "Test with real API"
+      ]
+    },
+    {
+      "id": "SCRAPE-002",
+      "title": "Build Search Query Generator",
+      "type": "task",
+      "size": "S",
+      "priority": "P0",
+      "estimatedHours": 1,
+      "assignee": "developer",
+      "status": "todo",
+      "acceptance": [
+        "Generates 4 query variations",
+        "Includes Spanish terms",
+        "Works for all cities"
+      ],
+      "queries": [
+        "ciudad + pilates",
+        "ciudad + pilates reformer",
+        "ciudad + estudio pilates",
+        "ciudad + clases pilates"
+      ]
+    },
+    {
+      "id": "SCRAPE-003",
+      "title": "Implement Rate Limiter",
+      "type": "task",
+      "size": "S",
+      "priority": "P0",
+      "estimatedHours": 1,
+      "assignee": "developer",
+      "status": "todo",
+      "dependencies": ["INFRA-001"],
+      "acceptance": [
+        "Limits to 10 req/sec",
+        "Implements backoff",
+        "No API quota errors"
+      ]
+    },
+    {
+      "id": "SCRAPE-004",
+      "title": "Create Deduplication Logic",
+      "type": "task",
+      "size": "S",
+      "priority": "P0",
+      "estimatedHours": 2,
+      "assignee": "developer",
+      "status": "todo",
+      "acceptance": [
+        "Removes duplicate place_ids",
+        "Catches name variations",
+        "Handles chain locations"
+      ]
+    },
+    {
+      "id": "SCRAPE-005",
+      "title": "Build Main Scraping Script",
+      "type": "task",
+      "size": "L",
+      "priority": "P0",
+      "estimatedHours": 6,
+      "assignee": "developer",
+      "status": "todo",
+      "dependencies": [
+        "SCRAPE-001",
+        "SCRAPE-002",
+        "SCRAPE-003",
+        "SCRAPE-004"
+      ],
+      "acceptance": [
+        "CLI arguments work",
+        "Scrapes full city",
+        "Exports to CSV",
+        "Handles errors gracefully"
+      ],
+      "subtasks": [
+        "Parse command arguments",
+        "Load city data",
+        "Execute searches",
+        "Process results",
+        "Transform to studio format",
+        "Export CSV",
+        "Add logging"
+      ]
+    },
+    {
+      "id": "EXEC-001",
+      "title": "Scrape Mexico City Studios",
+      "type": "task",
+      "size": "M",
+      "priority": "P0",
+      "estimatedHours": 3,
+      "assignee": "developer",
+      "status": "todo",
+      "dependencies": ["SCRAPE-005"],
+      "acceptance": [
+        "50+ studios found",
+        "Data quality >70%",
+        "CSV exported",
+        "Ready for import"
+      ],
+      "subtasks": [
+        "Run scraper for CDMX",
+        "Review data quality",
+        "Fix parsing errors",
+        "Deduplicate results",
+        "Export final CSV"
+      ]
+    }
+  ],
+  "summary": {
+    "totalTickets": 12,
+    "totalHours": 28.5,
+    "byPriority": {
+      "P0": 12,
+      "P1": 0,
+      "P2": 0
+    },
+    "bySize": {
+      "XS": 1,
+      "S": 6,
+      "M": 4,
+      "L": 1
+    },
+    "byAssignee": {
+      "developer": 12
+    }
+  }
+}

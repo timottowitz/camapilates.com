@@ -28,6 +28,7 @@ const Header: React.FC = () => {
           <Link to="/about" className="hover:text-black transition-colors">Acerca de</Link>
           <Link to="/shop" className="hover:text-black transition-colors">Tienda</Link>
           <Link to="/blog" className="hover:text-black transition-colors">Blog</Link>
+          <Link to="/estudios-de-pilates" className="hover:text-black transition-colors">Estudios</Link>
           <Link to="/packs/estudio" className="hover:text-black transition-colors">Paquete de Estudio (8+)</Link>
           <Link to="/certificacion-pilates" className="hover:text-black transition-colors">Certificación</Link>
         </nav>
@@ -96,6 +97,13 @@ const Header: React.FC = () => {
               onClick={closeMenu}
             >
               Blog
+            </Link>
+            <Link
+              to="/estudios-de-pilates"
+              className="px-3 py-2 text-sm text-gray-700 hover:text-black hover:bg-gray-50 rounded-md transition-colors"
+              onClick={closeMenu}
+            >
+              Estudios
             </Link>
             <Link
               to="/packs/estudio"

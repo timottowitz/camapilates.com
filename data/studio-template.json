@@ -1,0 +1,324 @@
+{
+  "description": "Template studio with example data. Use this as reference for data structure.",
+  "id": "uuid-example-123",
+  "slug": "reforma-pilates-polanco",
+  "googlePlaceId": "ChIJExample123456789",
+  "name": "Reforma Pilates Studio",
+  "legalName": "Reforma Pilates Studio S.A. de C.V.",
+  "brand": null,
+  "address": {
+    "street": "Paseo de la Reforma 404, Piso 3",
+    "neighborhood": "Polanco",
+    "city": "Ciudad de México",
+    "state": "CDMX",
+    "postalCode": "11560",
+    "country": "México",
+    "coordinates": {
+      "lat": 19.4326,
+      "lng": -99.1332
+    },
+    "formattedAddress": "Paseo de la Reforma 404, Piso 3, Polanco, 11560 Ciudad de México, CDMX"
+  },
+  "contact": {
+    "phone": "+52 55 1234 5678",
+    "whatsapp": "+52 55 1234 5678",
+    "email": "contacto@reformapilates.mx",
+    "website": "https://www.reformapilates.mx",
+    "bookingUrl": "https://reformapilates.mindbodyonline.com"
+  },
+  "hours": {
+    "monday": [
+      { "open": "06:00", "close": "21:00", "is24Hours": false, "isClosed": false }
+    ],
+    "tuesday": [
+      { "open": "06:00", "close": "21:00", "is24Hours": false, "isClosed": false }
+    ],
+    "wednesday": [
+      { "open": "06:00", "close": "21:00", "is24Hours": false, "isClosed": false }
+    ],
+    "thursday": [
+      { "open": "06:00", "close": "21:00", "is24Hours": false, "isClosed": false }
+    ],
+    "friday": [
+      { "open": "06:00", "close": "21:00", "is24Hours": false, "isClosed": false }
+    ],
+    "saturday": [
+      { "open": "08:00", "close": "16:00", "is24Hours": false, "isClosed": false }
+    ],
+    "sunday": [
+      { "open": "09:00", "close": "14:00", "is24Hours": false, "isClosed": false }
+    ],
+    "timezone": "America/Mexico_City"
+  },
+  "reviews": {
+    "googleRating": 4.8,
+    "googleReviewCount": 127,
+    "googleReviewsUrl": "https://www.google.com/maps/place/...",
+    "lastScraped": "2025-09-30T10:00:00Z",
+    "ratingDistribution": {
+      "5": 95,
+      "4": 25,
+      "3": 5,
+      "2": 1,
+      "1": 1
+    },
+    "sentimentScores": {
+      "positive": 0.85,
+      "neutral": 0.10,
+      "negative": 0.05,
+      "overallSentiment": "positive"
+    },
+    "commonThemes": {
+      "instructorQuality": 0.82,
+      "cleanliness": 0.75,
+      "equipment": 0.68,
+      "atmosphere": 0.79,
+      "customerService": 0.80,
+      "pricingValue": 0.55
+    },
+    "recentReviews": [
+      {
+        "id": "review-1",
+        "author": "María G.",
+        "rating": 5,
+        "text": "Excelente estudio, instructores muy profesionales y atentos. El ambiente es muy agradable y el equipo está en perfectas condiciones.",
+        "date": "2025-09-25T14:30:00Z",
+        "helpful": 12,
+        "response": {
+          "text": "¡Muchas gracias María! Nos encanta tenerte en nuestras clases.",
+          "date": "2025-09-26T09:00:00Z"
+        },
+        "sentiment": "positive",
+        "themes": ["instructors", "equipment", "atmosphere"]
+      },
+      {
+        "id": "review-2",
+        "author": "Juan P.",
+        "rating": 4,
+        "text": "Muy buen estudio, solo que los precios son algo elevados. Pero la calidad de las clases lo vale.",
+        "date": "2025-09-20T11:15:00Z",
+        "helpful": 8,
+        "response": null,
+        "sentiment": "positive",
+        "themes": ["pricing", "quality"]
+      }
+    ]
+  },
+  "pricing": {
+    "currency": "MXN",
+    "dropInClass": 350,
+    "classPackages": [
+      { "size": 5, "price": 1600, "validityDays": 30 },
+      { "size": 10, "price": 3000, "validityDays": 60 },
+      { "size": 20, "price": 5600, "validityDays": 90 }
+    ],
+    "monthlyUnlimited": 3500,
+    "membershipOptions": ["Mensual", "Trimestral", "Anual"],
+    "promotions": [
+      {
+        "description": "20% de descuento en el primer mes para nuevos clientes",
+        "validUntil": "2025-12-31T23:59:59Z"
+      }
+    ],
+    "lastUpdated": "2025-09-15T10:00:00Z",
+    "source": "website"
+  },
+  "classes": {
+    "types": [
+      {
+        "name": "Reformer",
+        "description": "Clase de Pilates en reformer para todos los niveles",
+        "duration": 55,
+        "difficulty": "all-levels"
+      },
+      {
+        "name": "Mat Pilates",
+        "description": "Clase de Pilates en mat con accesorios",
+        "duration": 55,
+        "difficulty": "all-levels"
+      },
+      {
+        "name": "Pilates Prenatal",
+        "description": "Clase especializada para embarazadas",
+        "duration": 55,
+        "difficulty": "beginner"
+      },
+      {
+        "name": "Privados",
+        "description": "Sesiones privadas personalizadas",
+        "duration": 55,
+        "difficulty": null
+      }
+    ],
+    "schedule": null,
+    "levels": ["beginner", "intermediate", "advanced", "all-levels"],
+    "specialties": ["Pilates Clínico", "Rehabilitación", "Pilates Prenatal"],
+    "maxClassSize": 8
+  },
+  "equipment": {
+    "reformers": 12,
+    "cadillac": true,
+    "wundaChair": true,
+    "barrels": true,
+    "matOnly": false,
+    "brands": ["Balanced Body", "Stott Pilates"]
+  },
+  "instructors": {
+    "count": 8,
+    "headInstructor": "Ana María Rodríguez",
+    "certifications": ["Stott Pilates", "BASI Pilates", "Prenatal Pilates"],
+    "profiles": [
+      {
+        "name": "Ana María Rodríguez",
+        "bio": "Instructora certificada con 15 años de experiencia. Especialista en Pilates clínico y rehabilitación.",
+        "certifications": ["Stott Pilates Comprehensive", "BASI Pilates"],
+        "photoUrl": null,
+        "specialties": ["Pilates Clínico", "Rehabilitación"]
+      }
+    ]
+  },
+  "amenities": {
+    "parking": true,
+    "showers": true,
+    "lockers": true,
+    "wifi": true,
+    "airConditioning": true,
+    "changingRooms": true,
+    "waterStation": true,
+    "retailShop": false
+  },
+  "accessibility": {
+    "wheelchairAccessible": true,
+    "elevator": true,
+    "groundFloor": false,
+    "accessibleBathroom": true
+  },
+  "transportation": {
+    "nearbyMetro": [
+      {
+        "station": "Polanco",
+        "line": "Línea 7",
+        "walkingMinutes": 8
+      }
+    ],
+    "nearbyBusStops": ["Reforma - Horacio", "Polanco"],
+    "parkingInfo": "Estacionamiento en el edificio: $30 por hora, primeras 2 horas gratis con clase"
+  },
+  "media": {
+    "logo": "https://example.com/logos/reforma-pilates.png",
+    "photos": [
+      {
+        "url": "https://example.com/photos/studio-1.jpg",
+        "caption": "Sala principal con reformers",
+        "source": "website"
+      },
+      {
+        "url": "https://example.com/photos/studio-2.jpg",
+        "caption": "Área de mat pilates",
+        "source": "google"
+      }
+    ],
+    "virtualTour": null,
+    "videoUrl": "https://www.youtube.com/watch?v=example"
+  },
+  "social": {
+    "instagram": {
+      "handle": "@reformapilates",
+      "followers": 8500,
+      "posts": 324,
+      "lastUpdated": "2025-09-30T10:00:00Z"
+    },
+    "facebook": {
+      "url": "https://www.facebook.com/reformapilates",
+      "likes": 5200,
+      "lastUpdated": "2025-09-30T10:00:00Z"
+    },
+    "tiktok": "@reformapilates",
+    "youtube": null
+  },
+  "booking": {
+    "hasOnlineBooking": true,
+    "systems": ["mindbody"],
+    "requiresMembership": false,
+    "allowsDropIns": true
+  },
+  "metadata": {
+    "verified": true,
+    "featured": true,
+    "claimedByOwner": true,
+    "createdAt": "2025-09-01T10:00:00Z",
+    "updatedAt": "2025-09-30T10:00:00Z",
+    "lastVerified": "2025-09-15T10:00:00Z",
+    "dataQualityScore": 92,
+    "scrapingSources": ["google_places", "website", "instagram"],
+    "automationStatus": {
+      "basicInfo": "complete",
+      "reviews": "complete",
+      "pricing": "complete",
+      "schedule": "pending",
+      "media": "partial"
+    }
+  },
+  "seo": {
+    "metaTitle": "Reforma Pilates Studio - Pilates en Polanco, CDMX | Clases y Precios",
+    "metaDescription": "Reforma Pilates Studio en Polanco, CDMX. ⭐ 4.8 (127 reseñas). Clases desde $350. Reformer, Mat, Prenatal. 12 reformers Balanced Body. Reserva ahora.",
+    "keywords": [
+      "pilates polanco",
+      "pilates reforma",
+      "estudio pilates cdmx",
+      "pilates reformer polanco",
+      "clases pilates ciudad de mexico",
+      "pilates prenatal polanco"
+    ],
+    "schemaMarkup": {
+      "@context": "https://schema.org",
+      "@type": "SportsActivityLocation",
+      "name": "Reforma Pilates Studio",
+      "description": "Estudio de Pilates en Polanco con reformers Balanced Body y instructores certificados",
+      "image": "https://example.com/photos/studio-1.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Paseo de la Reforma 404, Piso 3",
+        "addressLocality": "Ciudad de México",
+        "addressRegion": "CDMX",
+        "postalCode": "11560",
+        "addressCountry": "MX"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 19.4326,
+        "longitude": -99.1332
+      },
+      "telephone": "+52 55 1234 5678",
+      "url": "https://www.reformapilates.mx",
+      "priceRange": "$350 - $3500",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": 4.8,
+        "reviewCount": 127,
+        "bestRating": 5,
+        "worstRating": 1
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "06:00",
+          "closes": "21:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "08:00",
+          "closes": "16:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "09:00",
+          "closes": "14:00"
+        }
+      ]
+    }
+  }
+}

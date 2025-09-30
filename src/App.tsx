@@ -38,11 +38,27 @@ const IdentifySolarScams = lazy(() => import('./pages/resources/IdentifySolarSca
 const LegalRights = lazy(() => import('./pages/resources/LegalRights'));
 const ReportingFraud = lazy(() => import('./pages/resources/ReportingFraud'));
 const PreventionGuide = lazy(() => import('./pages/resources/PreventionGuide'));
+
+// Studio Directory Pages
+const StudiosLanding = lazy(() => import('./pages/estudios-de-pilates/StudiosLanding'));
+const CityDirectory = lazy(() => import('./pages/estudios-de-pilates/CityDirectory'));
+const StudioDetail = lazy(() => import('./pages/estudios-de-pilates/StudioDetail'));
+
 import GAListener from "@/components/analytics/GAListener";
 import FloatingCart21 from "@/components/commerce21/FloatingCart21";
 import AdminGuard from "@/components/auth/AdminGuard";
 
 const queryClient = new QueryClient();
+
+// Loading fallback component
+const PageLoader = () => (
+  <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+    <div className="text-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
+      <p className="text-gray-600">Cargando...</p>
+    </div>
+  </div>
+);
 
 const App = () => (
   <HelmetProvider>
@@ -53,48 +69,51 @@ const App = () => (
         <BrowserRouter>
           <Header />
           <GAListener />
+          <ScrollToTop />
           {/* Shoprocket embeds are placed directly in pages via embed blocks */}
-          <Suspense fallback={<div className="container mx-auto px-4 py-12 text-muted-foreground">Cargando…</div>}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
-            <Route path="/store" element={<Store />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/shop/category/:slug" element={<ShopCategory />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/cama-de-pilates/en-venta" element={<CamaDePilatesEnVenta />} />
-            <Route path="/cama-de-pilates/precio" element={<CamaDePilatesPrecio />} />
-            <Route path="/packs/estudio" element={<StudioPack />} />
-            <Route path="/cama-de-pilates" element={<CamaDePilatesHub />} />
-            <Route path="/certificacion-pilates" element={<CertificacionPilates />} />
-            <Route path="/certificacion-pilates/:city" element={<CertificacionPilatesCity />} />
-            <Route path="/legal/terminos" element={<LegalTerms />} />
-            <Route path="/legal/privacidad" element={<LegalPrivacy />} />
-            <Route path="/soporte" element={<Support />} />
+            <Route path="/store" element={<Suspense fallback={<PageLoader />}><Store /></Suspense>} />
+            <Route path="/shop" element={<Suspense fallback={<PageLoader />}><Shop /></Suspense>} />
+            <Route path="/shop/category/:slug" element={<Suspense fallback={<PageLoader />}><ShopCategory /></Suspense>} />
+            <Route path="/products" element={<Suspense fallback={<PageLoader />}><Products /></Suspense>} />
+            <Route path="/cama-de-pilates/en-venta" element={<Suspense fallback={<PageLoader />}><CamaDePilatesEnVenta /></Suspense>} />
+            <Route path="/cama-de-pilates/precio" element={<Suspense fallback={<PageLoader />}><CamaDePilatesPrecio /></Suspense>} />
+            <Route path="/packs/estudio" element={<Suspense fallback={<PageLoader />}><StudioPack /></Suspense>} />
+            <Route path="/cama-de-pilates" element={<Suspense fallback={<PageLoader />}><CamaDePilatesHub /></Suspense>} />
+            <Route path="/certificacion-pilates" element={<Suspense fallback={<PageLoader />}><CertificacionPilates /></Suspense>} />
+            <Route path="/certificacion-pilates/:city" element={<Suspense fallback={<PageLoader />}><CertificacionPilatesCity /></Suspense>} />
+            <Route path="/legal/terminos" element={<Suspense fallback={<PageLoader />}><LegalTerms /></Suspense>} />
+            <Route path="/legal/privacidad" element={<Suspense fallback={<PageLoader />}><LegalPrivacy /></Suspense>} />
+            <Route path="/soporte" element={<Suspense fallback={<PageLoader />}><Support /></Suspense>} />
             <Route path="/services" element={<Services />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path="/blog/category/:category" element={<BlogCategory />} />
-            <Route path="/blog/tag/:tag" element={<BlogTag />} />
+            <Route path="/blog" element={<Suspense fallback={<PageLoader />}><Blog /></Suspense>} />
+            <Route path="/blog/:slug" element={<Suspense fallback={<PageLoader />}><BlogPost /></Suspense>} />
+            <Route path="/blog/category/:category" element={<Suspense fallback={<PageLoader />}><BlogCategory /></Suspense>} />
+            <Route path="/blog/tag/:tag" element={<Suspense fallback={<PageLoader />}><BlogTag /></Suspense>} />
             {/* Admin panel (dev/internal) */}
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/admin/blog-writer" element={<AdminGuard><AdminBlogWriter /></AdminGuard>} />
-            <Route path="/admin/settings" element={<AdminGuard><AdminSettings /></AdminGuard>} />
-            <Route path="/product/:slug" element={<Product />} />
-            
+            <Route path="/admin" element={<Suspense fallback={<PageLoader />}><Admin /></Suspense>} />
+            <Route path="/admin/blog-writer" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminBlogWriter /></AdminGuard></Suspense>} />
+            <Route path="/admin/settings" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminSettings /></AdminGuard></Suspense>} />
+            <Route path="/product/:slug" element={<Suspense fallback={<PageLoader />}><Product /></Suspense>} />
+
             {/* Resource Pages */}
-            <Route path="/identifying-solar-scams" element={<IdentifySolarScams />} />
-            <Route path="/legal-rights-protections" element={<LegalRights />} />
-            <Route path="/reporting-seeking-help" element={<ReportingFraud />} />
-            <Route path="/prevention-guide" element={<PreventionGuide />} />
-            
+            <Route path="/identifying-solar-scams" element={<Suspense fallback={<PageLoader />}><IdentifySolarScams /></Suspense>} />
+            <Route path="/legal-rights-protections" element={<Suspense fallback={<PageLoader />}><LegalRights /></Suspense>} />
+            <Route path="/reporting-seeking-help" element={<Suspense fallback={<PageLoader />}><ReportingFraud /></Suspense>} />
+            <Route path="/prevention-guide" element={<Suspense fallback={<PageLoader />}><PreventionGuide /></Suspense>} />
+
+            {/* Studio Directory Routes */}
+            <Route path="/estudios-de-pilates" element={<Suspense fallback={<PageLoader />}><StudiosLanding /></Suspense>} />
+            <Route path="/estudios-de-pilates/:city" element={<Suspense fallback={<PageLoader />}><CityDirectory /></Suspense>} />
+            <Route path="/estudios-de-pilates/:city/:studio" element={<Suspense fallback={<PageLoader />}><StudioDetail /></Suspense>} />
+
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-          </Suspense>
           <Footer />
           <FloatingCart21 />
-          <ScrollToTop />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

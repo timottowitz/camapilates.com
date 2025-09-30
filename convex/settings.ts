@@ -147,3 +147,41 @@ export const getDeepMode = query({
     return { mode: cfg?.mode === 'agent' ? 'agent' : 'direct' };
   }
 });
+
+// Rate limiting settings for Google Places API
+export const enableRateLimiting = mutation({
+  args: { enabled: v.boolean() },
+  handler: async (ctx, args) => {
+    const existing = await ctx.db
+      .query('settings')
+      .withIndex('by_key', (q) => q.eq('key', 'rateLimitingEnabled'))
+      .first();
+
+    if (existing) {
+      await ctx.db.patch(existing._id, {
+        value: args.enabled,
+        updatedAt: Date.now(),
+      });
+    } else {
+      await ctx.db.insert('settings', {
+        key: 'rateLimitingEnabled',
+        value: args.enabled,
+        updatedAt: Date.now(),
+      });
+    }
+
+    return { success: true };
+  },
+});
+
+export const isRateLimitingEnabled = query({
+  args: {},
+  handler: async (ctx) => {
+    const setting = await ctx.db
+      .query('settings')
+      .withIndex('by_key', (q) => q.eq('key', 'rateLimitingEnabled'))
+      .first();
+
+    return setting?.value ?? false;
+  },
+});
