@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram, Youtube, Mail } from 'lucide-react';
+import { getVersionedImageUrl } from '@/hooks/useVersionedImage';
 
 const Footer = () => {
   return (
@@ -10,7 +11,7 @@ const Footer = () => {
         {/* Brand */}
         <div>
           <Link to="/" className="inline-flex items-center gap-3">
-            <img src="/brand/edelweiss.svg" alt="Edelweiss Pilates" className="h-8 w-auto" />
+            <img src={getVersionedImageUrl('/brand/edelweiss.svg')} alt="Edelweiss Pilates" className="h-8 w-auto" />
             <span className="text-base font-semibold text-foreground">Edelweiss Pilates</span>
           </Link>
           <p className="mt-3 text-sm text-muted-foreground max-w-xs">

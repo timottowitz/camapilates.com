@@ -1,39 +1,44 @@
 import React from 'react';
 import type { FinishKey } from '@/lib/shop/types';
+import { getVersionedImageUrl } from '@/hooks/useVersionedImage';
 
-export const FINISHES: Record<FinishKey, { name: string; img: string; description: string; sustainable?: boolean; swatch?: string }> = {
+export const getFinishes = (): Record<FinishKey, { name: string; img: string; description: string; sustainable?: boolean; swatch?: string }> => ({
   walnut: {
     name: 'Nogal',
-    img: '/images/finish-walnut.jpg',
+    img: getVersionedImageUrl('/images/finish-walnut.jpg'),
     description: 'Madera de nogal con veta cálida y acabado protector que respira.',
     swatch: '#6B4F3B'
   },
   white: {
     name: 'Blanco',
-    img: '/images/finish-white.jpg',
+    img: getVersionedImageUrl('/images/finish-white.jpg'),
     description: 'Superficie limpia y luminosa que realza la luz del estudio.',
     swatch: '#F3F4F6'
   },
   black: {
     name: 'Negro',
-    img: '/images/finish-black.jpg',
+    img: getVersionedImageUrl('/images/finish-black.jpg'),
     description: 'Elegante y sobrio; oculta marcas de uso con facilidad.',
     swatch: '#111827'
   },
   mycelium: {
     name: 'Micelio (sostenible)',
-    img: '/images/finish-mycelium.webp',
+    img: getVersionedImageUrl('/images/finish-mycelium.webp'),
     description: 'Cuero de micelio: alternativa renovable con tacto cálido y alta resistencia en pruebas de flexión y abrasión.',
     sustainable: true,
     swatch: '#C8B9A6'
   },
-};
+});
+
+// For backward compatibility
+export const FINISHES = getFinishes();
 
 export const Finishes: React.FC<{
   value: FinishKey;
   onChange: (f: FinishKey) => void;
 }> = ({ value, onChange }) => {
   const [open, setOpen] = React.useState(false);
+  const FINISHES = getFinishes();
   const gallery = [FINISHES[value].img].filter(Boolean);
   return (
     <div>

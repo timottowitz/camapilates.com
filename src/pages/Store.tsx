@@ -3,6 +3,7 @@ import { DEFAULTS, getOrigin } from '@/lib/seo';
 import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MessageCircle, Package, ShieldCheck, Truck, CreditCard, CheckCircle, Phone, Star } from 'lucide-react';
+import { getVersionedImageUrl } from '@/hooks/useVersionedImage';
 
 const Store = () => {
   const origin = getOrigin();
@@ -16,7 +17,7 @@ const Store = () => {
     description: 'Reformer compacto para casa. Estabilidad, recorrido suave y accesorios básicos.',
     brand: { '@type': 'Brand', name: 'CAMA Pilates' },
     sku: 'HOME-REFORMER-001',
-    image: [`${origin}/og/cama-de-pilates-venta-mexico.png`],
+    image: [`${origin}${getVersionedImageUrl('/og/cama-de-pilates-venta-mexico.png')}`],
     url: `${origin}/store#casa`,
     offers: {
       '@type': 'Offer',
@@ -39,7 +40,7 @@ const Store = () => {
     description: 'Reformer profesional para estudio. Construcción robusta, accesorios y servicio.',
     brand: { '@type': 'Brand', name: 'CAMA Pilates' },
     sku: 'PRO-REFORMER-001',
-    image: [`${origin}/og/cama-de-pilates-venta-mexico.png`],
+    image: [`${origin}${getVersionedImageUrl('/og/cama-de-pilates-venta-mexico.png')}`],
     url: `${origin}/store#profesional`,
     offers: {
       '@type': 'Offer',

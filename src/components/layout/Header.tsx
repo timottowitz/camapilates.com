@@ -2,13 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ShoprocketCart from '@/components/commerce21/ShoprocketCart';
 import { allProducts } from '@/lib/shop/catalog';
+import { getVersionedImageUrl } from '@/hooks/useVersionedImage';
 
 const Header: React.FC = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
-          <img src="/brand/edelweiss.svg" alt="CAMA Pilates" className="h-7 w-auto" />
+          <img src={getVersionedImageUrl('/brand/edelweiss.svg')} alt="CAMA Pilates" className="h-7 w-auto" />
           <span className="text-sm md:text-base font-semibold tracking-tight text-gray-900">Edelweiss Pilates Reformer</span>
         </Link>
         <nav className="flex items-center gap-6 text-sm text-gray-700">
