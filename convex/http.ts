@@ -1,5 +1,6 @@
 import { httpRouter } from 'convex/server';
 import { httpAction } from './_generated/server';
+import { api } from './_generated/api';
 
 // Minimal helpers to read/write encrypted settings in Convex DB
 async function decryptConfig(b64: string, keyStr: string) {
@@ -144,6 +145,52 @@ http.route({
     const sep = redirectApp.includes('?') ? '&' : '?';
     const target = `${redirectApp}${sep}oauth=connected`;
     return new Response(null, { status: 302, headers: { Location: target } });
+  }),
+});
+
+/**
+ * Serve images with proper cache-control headers
+ * This endpoint allows Cloudflare to cache images properly
+ *
+ * Usage: GET /api/images/:name
+ * Example: GET /api/images/shopHero
+ */
+http.route({
+  path: '/api/images/:name',
+  method: 'GET',
+  handler: httpAction(async (ctx, request) => {
+    const url = new URL(request.url);
+    const name = url.pathname.split('/').pop();
+
+    if (!name) {
+      return new Response('Image name required', { status: 400 });
+    }
+
+    // Get image metadata from database
+    const image = await ctx.runQuery(api.siteImages.getByName, { name });
+
+    if (!image) {
+      return new Response('Image not found', { status: 404 });
+    }
+
+    // Get the actual file from storage
+    const blob = await ctx.storage.get(image.storageId);
+
+    if (!blob) {
+      return new Response('Image file not found', { status: 404 });
+    }
+
+    // Return image with cache headers
+    return new Response(blob, {
+      status: 200,
+      headers: {
+        'Content-Type': image.mimeType,
+        'Cache-Control': image.cacheControl,
+        'Access-Control-Allow-Origin': '*',
+        'X-Image-Name': image.name,
+        'X-Image-Size': image.size.toString(),
+      },
+    });
   }),
 });
 

@@ -288,5 +288,27 @@ export default defineSchema({
     updatedAt: v.number(),
   })
     .index('by_key', ['key']),
+
+  // Site Images (Hero, Featured, etc.)
+  site_images: defineTable({
+    name: v.string(), // e.g., "shopHero", "featuredProducts", "finishMycelium"
+    category: v.string(), // "hero" | "featured" | "icon" | "logo" | "blog"
+    storageId: v.id('_storage'),
+    mimeType: v.string(), // "image/webp", "image/jpeg", etc.
+    size: v.number(), // bytes
+    width: v.optional(v.number()),
+    height: v.optional(v.number()),
+    alt: v.optional(v.string()),
+    description: v.optional(v.string()),
+    uploadedBy: v.optional(v.id('users')),
+    isActive: v.boolean(),
+    cacheControl: v.string(), // e.g., "public, max-age=31536000, immutable"
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index('by_name', ['name'])
+    .index('by_category', ['category'])
+    .index('by_active', ['isActive'])
+    .index('by_created', ['createdAt']),
 });
 
