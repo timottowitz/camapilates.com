@@ -11,13 +11,17 @@ export const onRequest: PagesFunction = async (ctx) => {
     return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
   }
 
+  const isHashed = (p: string) => /\.[0-9a-f]{8}\.[^\/]+$/i.test(p);
+
   if (url.pathname.startsWith('/assets/')) {
     set('public, max-age=31536000, immutable');
   } else if (url.pathname.startsWith('/images/')) {
-    // All versioned images (hashed names) may be cached long-term
-    set('public, max-age=31536000, immutable');
+    // Only hashed images get immutable; originals use short TTL to allow updates
+    if (isHashed(url.pathname)) set('public, max-age=31536000, immutable');
+    else set('public, max-age=60, s-maxage=300, stale-while-revalidate=300');
   } else if (url.pathname.startsWith('/og/')) {
-    set('public, max-age=31536000, immutable');
+    if (isHashed(url.pathname)) set('public, max-age=31536000, immutable');
+    else set('public, max-age=60, s-maxage=300, stale-while-revalidate=300');
   } else if (url.pathname.startsWith('/api/')) {
     // APIs should not be cached by the edge
     set('no-store');
