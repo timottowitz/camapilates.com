@@ -1,0 +1,37 @@
+{
+  "name": "@autonomous-blog/writer",
+  "version": "1.0.0",
+  "description": "Portable LLM-powered autonomous blog content generation system",
+  "type": "module",
+  "main": "pipeline/run.js",
+  "scripts": {
+    "quick": "node pipeline/run.js quick",
+    "standard": "node pipeline/run.js standard",
+    "full": "node pipeline/run.js full",
+    "preview": "node pipeline/run.js preview",
+    "test": "node pipeline/run.js 1 detailed",
+    "config": "node -e \"import('./config.js').then(c => c.printConfig())\"",
+    "validate": "node -e \"import('./config.js').then(c => process.exit(c.validateConfig() ? 0 : 1))\""
+  },
+  "keywords": [
+    "blog",
+    "content-generation",
+    "llm",
+    "openai",
+    "autonomous",
+    "mcp",
+    "spanish",
+    "seo"
+  ],
+  "author": "CAMA Pilates",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "ai": "^4.0.36",
+    "@ai-sdk/openai": "^2.0.39",
+    "dotenv": "^16.4.7"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
