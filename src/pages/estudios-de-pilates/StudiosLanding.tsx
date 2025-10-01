@@ -15,9 +15,41 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import { MapPin, Users, Star, TrendingUp, Search, Building } from 'lucide-react';
+import { hasConvex } from '@/lib/convexProvider';
 
 const StudiosLanding: React.FC = () => {
-  // Fetch data from Convex
+  // SEO metadata
+  const pageTitle = 'Directorio de Estudios de Pilates en México';
+  const pageDescription = 'Encuentra los mejores estudios de Pilates en México. Directorio completo con reseñas, precios y horarios en Ciudad de México, Monterrey, Guadalajara y más ciudades.';
+
+  // If Convex isn’t configured, render a safe fallback (avoid calling hooks)
+  if (!hasConvex) {
+    return (
+      <>
+        <Helmet>
+          <title>{pageTitle}</title>
+          <meta name="description" content={pageDescription} />
+          <meta property="og:title" content={pageTitle} />
+          <meta property="og:description" content={pageDescription} />
+        </Helmet>
+        <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-gray-50">
+          <section className="py-16 lg:py-24">
+            <div className="container mx-auto px-4 text-center max-w-2xl">
+              <Badge className="mb-4" variant="secondary">Próximamente</Badge>
+              <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Estudios de Pilates</h1>
+              <p className="text-gray-600 mb-6">El directorio de estudios requiere conexión a datos. Por favor configura el backend o vuelve más tarde.</p>
+              <div className="flex gap-3 justify-center">
+                <Button asChild><Link to="/">Volver al inicio</Link></Button>
+                <Button variant="outline" asChild><Link to="/store">Ver tienda</Link></Button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </>
+    );
+  }
+
+  // Fetch data from Convex (only when provider exists)
   const cities = useQuery(api.cities.getPriority, { limit: 10 }) || [];
   const featuredStudios = useQuery(api.studios.getFeatured, { limit: 6 }) || [];
 
@@ -28,10 +60,6 @@ const StudiosLanding: React.FC = () => {
     avgRating: 4.7,
     totalReviews: 12500,
   };
-
-  // SEO metadata
-  const pageTitle = 'Directorio de Estudios de Pilates en México';
-  const pageDescription = 'Encuentra los mejores estudios de Pilates en México. Directorio completo con reseñas, precios y horarios en Ciudad de México, Monterrey, Guadalajara y más ciudades.';
 
   return (
     <>

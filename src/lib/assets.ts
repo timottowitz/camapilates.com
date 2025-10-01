@@ -1,25 +1,28 @@
 // Centralized asset paths for images used across the site.
-// All files should live under the public/images folder and be referenced as 
+// All files should live under the public/images folder and be referenced as
 // absolute paths like "/images/hero-shop.webp" so they work in dev and prod.
+//
+// Use hashed URLs for cache-busting in production to avoid stale images.
+import { getVersionedImageUrl as v } from '@/hooks/useVersionedImage';
 
 export const ASSETS = {
   // Shop hero background
-  shopHero: '/images/hero-shop.webp',
+  shopHero: v('/images/hero-shop.webp'),
 
   // Shop header addon (small promo/app graphic)
-  shopHeaderAddon: '/images/shop-addon.webp',
+  shopHeaderAddon: v('/images/shop-addon.webp'),
 
   // Category / explore imagery
   // Round category icons (user-provided circular-center images)
-  catReformers: '/images/reformers.webp',
-  catAccessories: '/images/accessories.webp',
+  catReformers: v('/images/reformers.webp'),
+  catAccessories: v('/images/accessories.webp'),
 
   // Featured Product section image (override)
-  featuredProducts: '/images/featured-products.webp',
+  featuredProducts: v('/images/featured-products.webp'),
 
   // Mylo (Mycelium) assets
-  myloBadge: '/images/badges/mylo.svg',
-  myloSpecial: '/images/special/mylo-special.svg',
+  myloBadge: v('/images/badges/mylo.svg'),
+  myloSpecial: v('/images/special/mylo-special.svg'),
 } as const;
 
 // Candidate images available in public for randomized visual fill

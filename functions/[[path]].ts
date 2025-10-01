@@ -7,6 +7,9 @@ export const onRequest: PagesFunction = async (ctx) => {
 
   if (url.pathname.startsWith('/assets/')) {
     set('public, max-age=31536000, immutable');
+  } else if (url.pathname.startsWith('/images/')) {
+    // All versioned images (hashed names) may be cached long-term
+    set('public, max-age=31536000, immutable');
   } else if (url.pathname.startsWith('/og/')) {
     set('public, max-age=31536000, immutable');
   } else if (url.pathname.startsWith('/api/')) {
@@ -28,6 +31,7 @@ export const onRequest: PagesFunction = async (ctx) => {
     url.pathname === '/' ||
     url.pathname === '/products' || url.pathname === '/products/' ||
     url.pathname.startsWith('/product/') ||
+    url.pathname === '/shop' || url.pathname === '/store' ||
     url.pathname.startsWith('/certificacion') ||
     url.pathname.startsWith('/cama-de-pilates') ||
     url.pathname.startsWith('/packs/') ||

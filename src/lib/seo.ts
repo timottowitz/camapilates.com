@@ -15,9 +15,11 @@ export function toAbsoluteUrl(maybePath: string | undefined | null): string | un
   return canonicalUrl(maybePath);
 }
 
+import { getVersionedImageUrl } from '@/hooks/useVersionedImage';
+
 export const DEFAULTS = {
   siteName: (import.meta as any).env?.VITE_SITE_NAME || 'CAMA Pilates',
   twitterSite: (import.meta as any).env?.VITE_TWITTER_SITE || '',
-  ogImage: '/og/cama-de-pilates-venta-mexico.png',
+  ogImage: getVersionedImageUrl('/og/cama-de-pilates-venta-mexico.png'),
   locale: 'es_MX'
 };
