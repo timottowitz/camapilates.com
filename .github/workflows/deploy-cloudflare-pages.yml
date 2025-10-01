@@ -21,6 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NODE_ENV: production
+      # Required secrets mapped into environment for validation and build
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       # Build-time env for Vite (make sure to set these in GitHub Secrets)
       VITE_CONVEX_URL: ${{ secrets.VITE_CONVEX_URL }}
       VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
@@ -34,6 +37,22 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
+
+      - name: Verify required secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+          missing=0
+          for v in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID VITE_CONVEX_URL VITE_GOOGLE_MAPS_API_KEY VITE_SITE_URL; do
+            if [ -z "${!v:-}" ]; then
+              echo "Missing required secret: $v" >&2
+              missing=1
+            fi
+          done
+          if [ "$missing" = "1" ]; then
+            echo "One or more required secrets are missing. Set them in GitHub → Settings → Secrets and variables → Actions." >&2
+            exit 1
+          fi
 
       - name: Install dependencies
         run: npm ci
@@ -56,6 +75,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NODE_ENV: production
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       VITE_CONVEX_URL: ${{ secrets.VITE_CONVEX_URL }}
       VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
       VITE_SITE_URL: ${{ secrets.VITE_SITE_URL }}
@@ -68,6 +89,22 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
+
+      - name: Verify required secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+          missing=0
+          for v in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID VITE_CONVEX_URL VITE_GOOGLE_MAPS_API_KEY VITE_SITE_URL; do
+            if [ -z "${!v:-}" ]; then
+              echo "Missing required secret: $v" >&2
+              missing=1
+            fi
+          done
+          if [ "$missing" = "1" ]; then
+            echo "One or more required secrets are missing. Set them in GitHub → Settings → Secrets and variables → Actions." >&2
+            exit 1
+          fi
 
       - name: Install dependencies
         run: npm ci
