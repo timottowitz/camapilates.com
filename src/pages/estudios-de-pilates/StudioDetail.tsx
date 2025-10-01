@@ -78,7 +78,7 @@ const StudioDetail: React.FC = () => {
 
   // Fetch studio data - Convex or local fallback
   const studioData = hasConvex
-    ? useQuery(api.studios.getBySlug, cityName && studio ? { city: cityName, slug: studio } : 'skip')
+    ? useQuery(api.studios.getBySlug, cityName && studio ? { city: cityName, slug: studio } : undefined)
     : (localData.studios as any[]).find((s: any) => (s.address?.city || '').toLowerCase() === (cityName || '').toLowerCase() && s.slug === studio) || null;
 
   // Debug data state
@@ -261,14 +261,14 @@ const StudioDetail: React.FC = () => {
                 </div>
 
                 {/* Rating */}
-                {studioData.metrics.googleRating && (
+                {studioData.metrics?.googleRating && (
                   <div className="flex items-center gap-4 mb-4">
                     <div className="flex items-center gap-1">
                       {[...Array(5)].map((_, i) => (
                         <Star
                           key={i}
                           className={`w-5 h-5 ${
-                            i < Math.floor(studioData.metrics.googleRating || 0)
+                            i < Math.floor(studioData.metrics?.googleRating || 0)
                               ? 'fill-yellow-400 text-yellow-400'
                               : 'text-gray-300'
                           }`}
@@ -276,10 +276,10 @@ const StudioDetail: React.FC = () => {
                       ))}
                     </div>
                     <span className="font-semibold">
-                      {studioData.metrics.googleRating.toFixed(1)}
+                      {(studioData.metrics?.googleRating || 0).toFixed(1)}
                     </span>
                     <span className="text-gray-500">
-                      ({studioData.metrics.googleReviewCount} reseñas)
+                      ({studioData.metrics?.googleReviewCount || 0} reseñas)
                     </span>
                   </div>
                 )}
@@ -288,13 +288,15 @@ const StudioDetail: React.FC = () => {
                 <div className="flex items-start gap-2 mb-4">
                   <MapPin className="w-5 h-5 text-gray-400 mt-0.5" />
                   <div>
-                    <p className="text-gray-700">
-                      {studioData.address.street}
-                    </p>
+                    {studioData.address?.street && (
+                      <p className="text-gray-700">
+                        {studioData.address.street}
+                      </p>
+                    )}
                     <p className="text-gray-600">
-                      {studioData.address.neighborhood && `${studioData.address.neighborhood}, `}
-                      {studioData.address.city}, {studioData.address.state}
-                      {studioData.address.postalCode && ` ${studioData.address.postalCode}`}
+                      {studioData.address?.neighborhood && `${studioData.address.neighborhood}, `}
+                      {studioData.address?.city}{studioData.address?.state ? `, ${studioData.address.state}` : ''}
+                      {studioData.address?.postalCode && ` ${studioData.address.postalCode}`}
                     </p>
                   </div>
                 </div>
@@ -306,25 +308,25 @@ const StudioDetail: React.FC = () => {
 
                 {/* Quick Actions */}
                 <div className="flex flex-wrap gap-3">
-                  {studioData.contact.phone && (
+                  {studioData.contact?.phone && (
                     <Button className="gap-2" onClick={() => window.open(`tel:${studioData.contact.phone}`, '_self')}>
                       <Phone className="w-4 h-4" />
                       Llamar
                     </Button>
                   )}
-                  {studioData.contact.whatsapp && (
+                  {studioData.contact?.whatsapp && (
                     <Button className="gap-2 bg-green-600 hover:bg-green-700" onClick={() => window.open(`https://wa.me/${studioData.contact.whatsapp}`, '_blank')}>
                       <MessageCircle className="w-4 h-4" />
                       WhatsApp
                     </Button>
                   )}
-                  {studioData.contact.website && (
+                  {studioData.contact?.website && (
                     <Button variant="outline" className="gap-2" onClick={() => window.open(studioData.contact.website, '_blank')}>
                       <Globe className="w-4 h-4" />
                       Sitio Web
                     </Button>
                   )}
-                  {studioData.contact.bookingUrl && (
+                  {studioData.contact?.bookingUrl && (
                     <Button variant="outline" className="gap-2" onClick={() => window.open(studioData.contact.bookingUrl, '_blank')}>
                       <Calendar className="w-4 h-4" />
                       Reservar Clase
@@ -333,7 +335,7 @@ const StudioDetail: React.FC = () => {
                   <Button
                     variant="outline"
                     className="gap-2"
-                    onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${studioData.address.coordinates.lat},${studioData.address.coordinates.lng}`, '_blank')}
+                    onClick={() => studioData.address?.coordinates && window.open(`https://www.google.com/maps/search/?api=1&query=${studioData.address.coordinates.lat},${studioData.address.coordinates.lng}`, '_blank')}
                   >
                     <Navigation className="w-4 h-4" />
                     Cómo Llegar
@@ -347,7 +349,7 @@ const StudioDetail: React.FC = () => {
                 <Card>
                   <CardContent className="p-0">
                     <GooglePlacesPhoto
-                      placeId={studioData.googlePlaceId || undefined}
+                      placeId={(studioData as any).googlePlaceId || (studioData as any).placeId || undefined}
                       studioName={studioData.name}
                       width={400}
                       height={300}
@@ -449,7 +451,7 @@ const StudioDetail: React.FC = () => {
                         <span>{studioData.contact.phone}</span>
                       </div>
                     )}
-                    {studioData.contact.email && (
+                    {studioData.contact?.email && (
                       <div className="flex items-center gap-3">
                         <Mail className="w-4 h-4 text-gray-400" />
                         <a href={`mailto:${studioData.contact.email}`} className="text-purple-600 hover:underline">
@@ -457,7 +459,7 @@ const StudioDetail: React.FC = () => {
                         </a>
                       </div>
                     )}
-                    {studioData.contact.website && (
+                    {studioData.contact?.website && (
                       <div className="flex items-center gap-3">
                         <Globe className="w-4 h-4 text-gray-400" />
                         <a
@@ -482,6 +484,7 @@ const StudioDetail: React.FC = () => {
                     <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
                       <MapPin className="w-8 h-8 text-gray-400" />
                     </div>
+                    {studioData.address?.coordinates && (
                     <Button
                       className="w-full mt-4"
                       variant="outline"
@@ -489,6 +492,7 @@ const StudioDetail: React.FC = () => {
                     >
                       Ver en Google Maps
                     </Button>
+                    )}
                   </CardContent>
                 </Card>
               </div>

@@ -186,10 +186,10 @@ const CityDirectory: React.FC = () => {
     // Sort
     switch (sortBy) {
       case 'rating':
-        result.sort((a, b) => (b.metrics.googleRating || 0) - (a.metrics.googleRating || 0));
+        result.sort((a, b) => (b.metrics?.googleRating || 0) - (a.metrics?.googleRating || 0));
         break;
       case 'reviews':
-        result.sort((a, b) => (b.metrics.googleReviewCount || 0) - (a.metrics.googleReviewCount || 0));
+        result.sort((a, b) => (b.metrics?.googleReviewCount || 0) - (a.metrics?.googleReviewCount || 0));
         break;
       case 'price-low':
         result.sort((a, b) => (a.pricing?.singleClassMin || 9999) - (b.pricing?.singleClassMin || 9999));

@@ -90,14 +90,14 @@ const StudioCard: React.FC<StudioCardProps> = ({ studio }) => {
         <h3 className="font-semibold text-lg mb-2 line-clamp-2">{studio.name}</h3>
 
         {/* Rating */}
-        {studio.metrics.googleRating && (
+        {studio.metrics?.googleRating && (
           <div className="flex items-center gap-2 mb-3">
             <div className="flex items-center">
               <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-              <span className="ml-1 font-semibold">{studio.metrics.googleRating.toFixed(1)}</span>
+              <span className="ml-1 font-semibold">{studio.metrics?.googleRating?.toFixed(1)}</span>
             </div>
             <span className="text-sm text-gray-500">
-              ({studio.metrics.googleReviewCount || 0} reseñas)
+              ({studio.metrics?.googleReviewCount || 0} reseñas)
             </span>
           </div>
         )}
@@ -144,7 +144,7 @@ const StudioCard: React.FC<StudioCardProps> = ({ studio }) => {
             Ver Detalles
           </Link>
         </Button>
-        {studio.contact.phone && (
+        {studio.contact?.phone && (
           <Button
             variant="outline"
             size="icon"
@@ -153,7 +153,7 @@ const StudioCard: React.FC<StudioCardProps> = ({ studio }) => {
             <Phone className="w-4 h-4" />
           </Button>
         )}
-        {studio.contact.website && (
+        {studio.contact?.website && (
           <Button
             variant="outline"
             size="icon"
