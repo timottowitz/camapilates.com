@@ -48,7 +48,9 @@ export const GooglePlacesPhoto: React.FC<GooglePlacesPhotoProps> = ({
   const [attribution, setAttribution] = useState<any>(null);
   const [isVisible, setIsVisible] = useState(priority === 'eager');
 
-  const fetchPhotoUrl = hasConvex ? useAction(api.googlePlaces.getStudioPhotoUrl) : null;
+  // Only call useAction if the action reference exists; otherwise avoid hook error
+  const hasActionRef = Boolean((api as any)?.googlePlaces?.getStudioPhotoUrl);
+  const fetchPhotoUrl = hasConvex && hasActionRef ? useAction(api.googlePlaces.getStudioPhotoUrl) : null;
 
   // Intersection Observer for lazy loading
   useEffect(() => {
