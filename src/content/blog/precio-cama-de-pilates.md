@@ -20,7 +20,7 @@ Si buscas una cama de Pilates (Reformer) en México, estos son los rangos de ref
 - Reformer para casa (compacto, accesorios básicos, silencio y estabilidad): $25,000–$45,000 MXN.
 - Reformer profesional (uso continuo en estudio, kit completo y servicio): $50,000–$95,000 MXN.
 
-Más allá del precio de etiqueta, considera el costo total de propiedad: garantía (ideal 3 años), repuestos exprés, tiempo de inactividad y valor de reventa.
+Más allá del precio de etiqueta, considera el costo total de propiedad: garantía (ideal 1 año), repuestos exprés, tiempo de inactividad y valor de reventa.
 
 <see-also limit="3" />
 
@@ -56,7 +56,7 @@ Prioriza: **box**, **correas cómodas**, **poleas suaves**, **protección tapiza
 
 <shoprocket-button product="prod_reformer_profesional_placeholder" pk="sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c" />
 
-## Costo total de propiedad (3 años)
+## Costo total de propiedad (1 año)
 Desglose típico:
 - Compra + envío.
 - Accesorios: $3k–$12k MXN según kit.

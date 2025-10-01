@@ -420,7 +420,7 @@ El Reformer de CAMA Pilates ofrece beneficios únicos para madres en período de
 **Análisis Costo-Beneficio:**
 - Clases regulares en estudio: $24,000-30,000 pesos anuales
 - Reformer CAMA para hogar: $45,000-65,000 pesos una vez
-- Retorno de inversión: 2-3 años con uso regular familiar
+- Retorno de inversión: 2-1 año con uso regular familiar
 
 **Valor Agregado:**
 - Uso por múltiples miembros de la familia

@@ -63,7 +63,7 @@ const Products: React.FC = () => {
             <div className="flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-primary"></span> Soporte en español</div>
             <div className="flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-primary"></span> Ensamblado en CDMX</div>
             <div className="flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-primary"></span> Repuestos exprés</div>
-            <div className="hidden lg:flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-primary"></span> Garantía 3 años</div>
+            <div className="hidden lg:flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-primary"></span> Garantía 1 año</div>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {products.map((p) => (

@@ -141,7 +141,7 @@ const Shop: React.FC = () => {
         <script type="application/ld+json">{JSON.stringify(itemList)}</script>
       </Helmet>
 
-      <RibbonBanner id="shop" text="Entrega 3 semanas en México • Garantía 3 años • Repuestos exprés" />
+      <RibbonBanner id="shop" text="Entrega 3 semanas en México • Garantía 1 año • Repuestos exprés" />
       <section className="bg-background">
         <div className="container mx-auto px-4 py-10 space-y-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">

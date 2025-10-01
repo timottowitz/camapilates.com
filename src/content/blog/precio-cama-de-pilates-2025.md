@@ -60,7 +60,7 @@ Ideales para uso semi-profesional y estudios pequeños:
 - Sistema de poleas mejorado
 - Cabecera ajustable
 - Incluye accesorios (box, jumping board)
-- Garantía extendida (2-3 años)
+- Garantía extendida (2-1 año)
 
 ### Equipos profesionales premium (MXN $35,000 - $80,000+)
 
@@ -90,13 +90,13 @@ Diseñados para estudios profesionales y uso intensivo:
 |-------|----------------------|---------------------------|----------|
 | **Merrithew** | $55,000 - $75,000 | Robustez excepcional, suavidad en movimiento | 5 años |
 | **Balanced Body** | $50,000 - $70,000 | Innovación en diseño, versatilidad | 3-5 años |
-| **Peak Pilates** | $45,000 - $65,000 | Diseño ergonómico avanzado | 3 años |
+| **Peak Pilates** | $45,000 - $65,000 | Diseño ergonómico avanzado | 1 año |
 
 ### Marcas nacionales mexicanas
 
 | Marca | Rango de precio (MXN) | Características destacadas | Garantía |
 |-------|----------------------|---------------------------|----------|
-| **Universo Pilates** | $20,000 - $35,000 | Madera de abedul blanco, fabricación local | 2-3 años |
+| **Universo Pilates** | $20,000 - $35,000 | Madera de abedul blanco, fabricación local | 2-1 año |
 | **OPI (Orozco Pilates)** | $30,700 | Modelo B con accesorios completos | No especificada |
 | **Metalife Pilates** | $25,000 - $40,000 | Financiamiento accesible | 2 años |
 
@@ -419,7 +419,7 @@ Como parte del ecosistema CAMA Pilates, ofrecemos las siguientes opciones compet
 - Construcción premium de aluminio
 - 5 resortes de alta durabilidad
 - Accesorios completos incluidos
-- Garantía extendida de 3 años
+- Garantía extendida de 1 año
 
 ### CAMA Pilates Studio
 **Precio:** $49,900 MXN

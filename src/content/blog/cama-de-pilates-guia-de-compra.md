@@ -63,7 +63,7 @@ heroImage: /images/blog/cama-de-pilates-guia-de-compra/hero.jpg
 - **Casa:** $25,000–$45,000 MXN.
 - **Profesional:** $50,000–$95,000 MXN.
 
-Consulta la **[guía de precios](/blog/precio-cama-de-pilates)** para el desglose por factores (estructura, carro/rodamientos, resortes, acabados, servicio) y TCO a 3 años.
+Consulta la **[guía de precios](/blog/precio-cama-de-pilates)** para el desglose por factores (estructura, carro/rodamientos, resortes, acabados, servicio) y TCO a 1 año.
 
 ## Checklist de compra (10 puntos)
 1) Recorrido del carro uniforme y silencioso.
@@ -73,9 +73,9 @@ Consulta la **[guía de precios](/blog/precio-cama-de-pilates)** para el desglos
 5) Tapicería con densidad y doble costura.
 6) Poleas con rodamientos sellados; giro suave.
 7) Accesorios base: box/correas/poleas.
-8) Garantía 3 años y repuestos exprés.
+8) Garantía 1 año y repuestos exprés.
 9) Entrega 3 semanas (MX) y soporte en español.
-10) Costo total en 3 años (mantenimiento + recambios + tiempo de inactividad).
+10) Costo total en 1 año (mantenimiento + recambios + tiempo de inactividad).
 
 ## Recomendaciones CAMA Pilates
 - **Reformer Casa** — compacto, estable, materiales nobles: [/product/reformer-casa](/product/reformer-casa)
@@ -92,4 +92,4 @@ Depende del uso (casa vs profesional), materiales y accesorios. Como orientació
 Un footprint cercano a 245 × 70 cm funciona en la mayoría de hogares; deja margen extra para cambios de footbar y movimientos laterales.
 
 ### ¿Vale la pena invertir en calidad?
-Sí: estructuras rígidas, rodamientos sellados y resortes consistentes evitan ruidos y recalibraciones, y el soporte local (3 años + repuestos exprés) reduce paros y costos en el tiempo.
+Sí: estructuras rígidas, rodamientos sellados y resortes consistentes evitan ruidos y recalibraciones, y el soporte local (1 año + repuestos exprés) reduce paros y costos en el tiempo.

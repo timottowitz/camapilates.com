@@ -10,7 +10,7 @@ const StudioPack: React.FC = () => {
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://camadepilates.com';
   const url = `${origin}/packs/estudio`;
   const title = 'Pack para Estudios: 8+ Camas de Pilates con 20% de Descuento';
-  const desc = 'Pack para estudios: a partir de 8 camas de Pilates (Reformer) obtén 20% de descuento. Instalación coordinada, garantía 3 años y repuestos exprés. Envío desde CDMX.';
+  const desc = 'Pack para estudios: a partir de 8 camas de Pilates (Reformer) obtén 20% de descuento. Instalación coordinada, garantía 1 año y repuestos exprés. Envío desde CDMX.';
 
   const [qty, setQty] = useState(8);
   const unitPrice = 50000; // MXN studio reformer base
@@ -31,7 +31,7 @@ const StudioPack: React.FC = () => {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: 'Pack de Estudio Edelweiss (8+ Reformers)',
-    description: 'Pack para estudios con descuento del 20% a partir de 8 unidades. Instalación coordinada y garantía de 3 años.',
+    description: 'Pack para estudios con descuento del 20% a partir de 8 unidades. Instalación coordinada y garantía de 1 año.',
     brand: { '@type': 'Brand', name: 'Edelweiss Pilates' },
     url,
     offers: {
@@ -74,7 +74,7 @@ const StudioPack: React.FC = () => {
       <section className="bg-background">
         <div className="container mx-auto px-4 py-12">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Pack para Estudios (8+)</h1>
-          <p className="text-lg text-muted-foreground max-w-3xl">20% de descuento a partir de 8 Reformers. Coordinamos instalación, ofrecemos garantía de 3 años y repuestos exprés. Envío desde CDMX.</p>
+          <p className="text-lg text-muted-foreground max-w-3xl">20% de descuento a partir de 8 Reformers. Coordinamos instalación, ofrecemos garantía de 1 año y repuestos exprés. Envío desde CDMX.</p>
 
           <div className="mt-8 grid lg:grid-cols-3 gap-8">
             {/* Pricing Block */}
@@ -105,7 +105,7 @@ const StudioPack: React.FC = () => {
                   <h3 className="font-semibold text-foreground">Incluye</h3>
                   <ul className="mt-2 list-disc pl-5 text-muted-foreground space-y-1">
                     <li>Reformers de estudio (cuero, nogal y acero)</li>
-                    <li>Garantía 3 años</li>
+                    <li>Garantía 1 año</li>
                     <li>Soporte y repuestos exprés</li>
                   </ul>
                 </div>
@@ -142,7 +142,7 @@ const StudioPack: React.FC = () => {
             <div className="mt-12 grid md:grid-cols-3 gap-6">
             <Link to="/product/reformer-profesional" className="block group border border-border rounded-lg p-6 bg-card hover:border-[#6B4F3B]/50 transition-colors">
               <h3 className="font-semibold text-foreground group-hover:text-primary">Ver Reformer de Estudio</h3>
-              <p className="text-sm text-muted-foreground mt-2">Tolerancias precisas, silencio total y garantía de 3 años.</p>
+              <p className="text-sm text-muted-foreground mt-2">Tolerancias precisas, silencio total y garantía de 1 año.</p>
             </Link>
             <Link to="/product/reformer-casa" className="block group border border-border rounded-lg p-6 bg-card hover:border-[#6B4F3B]/50 transition-colors">
               <h3 className="font-semibold text-foreground group-hover:text-primary">Ver Reformer de Casa</h3>
@@ -160,7 +160,7 @@ const StudioPack: React.FC = () => {
 
       <FeatureSplit
         title="Instalación coordinada y soporte en español"
-        copy="Acompañamos el crecimiento de tu estudio con entrega por lotes, instalación y capacitación básica. Repuestos exprés y garantía 3 años."
+        copy="Acompañamos el crecimiento de tu estudio con entrega por lotes, instalación y capacitación básica. Repuestos exprés y garantía 1 año."
         cta={{ href: '/product/reformer-profesional', label: 'Ver Reformer de Estudio' }}
         image={{ src: '/og/cama-de-pilates-venta-mexico.png', alt: 'Pack de estudio Edelweiss' }}
       />

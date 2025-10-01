@@ -17,7 +17,7 @@ const CamaDePilatesPrecio: React.FC = () => {
     '@type': 'FAQPage',
     mainEntity: [
       { '@type': 'Question', name: '¿Cuál es el precio de una cama de Pilates para casa?', acceptedAnswer: { '@type': 'Answer', text: 'Nuestras opciones para casa inician alrededor de MXN 25,000 según acabados y accesorios incluidos.' } },
-      { '@type': 'Question', name: '¿Cuál es el precio de una cama de Pilates de estudio?', acceptedAnswer: { '@type': 'Answer', text: 'El Reformer de estudio ronda MXN 50,000 con cuero genuino, nogal y acero estructural; garantía 3 años.' } },
+      { '@type': 'Question', name: '¿Cuál es el precio de una cama de Pilates de estudio?', acceptedAnswer: { '@type': 'Answer', text: 'El Reformer de estudio ronda MXN 50,000 con cuero genuino, nogal y acero estructural; garantía 1 año.' } },
       { '@type': 'Question', name: '¿Qué factores influyen en el precio?', acceptedAnswer: { '@type': 'Answer', text: 'Materiales (cuero real, maderas nobles, acero), tolerancias (silencio), muelles, garantía, servicio y tiempos de entrega.' } },
     ],
   };
@@ -61,7 +61,7 @@ const CamaDePilatesPrecio: React.FC = () => {
               <ul className="mt-3 list-disc pl-5 text-muted-foreground space-y-1">
                 <li>Cuero genuino, nogal y acero estructural</li>
                 <li>Tolerancias precisas: silencio total</li>
-                <li>Garantía 3 años • Repuestos exprés</li>
+                <li>Garantía 1 año • Repuestos exprés</li>
               </ul>
               <Link to="/product/reformer-profesional" className="inline-block mt-4 text-primary">Ver Reformer de Estudio →</Link>
             </div>
@@ -104,7 +104,7 @@ const CamaDePilatesPrecio: React.FC = () => {
             </div>
             <div className="border border-border rounded-lg p-4 bg-card">
               <h3 className="font-semibold text-foreground">Garantía y servicio</h3>
-              <p className="text-sm text-muted-foreground mt-1">3 años de garantía y repuestos exprés con soporte ES.</p>
+              <p className="text-sm text-muted-foreground mt-1">1 año de garantía y repuestos exprés con soporte ES.</p>
             </div>
           </div>
         </div>

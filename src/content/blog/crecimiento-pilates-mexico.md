@@ -227,7 +227,7 @@ En CAMA Pilates, hemos acompañado el crecimiento de más de **200 estudios exit
 
 ### 1. Equipo de Calidad Nacional
 - **Ahorro del 40%** vs importación
-- **Garantía de 3 años** en todos los Reformers
+- **Garantía de 1 año** en todos los Reformers
 - **Servicio técnico** en 15 ciudades
 - **Refacciones inmediatas** sin esperar importación
 

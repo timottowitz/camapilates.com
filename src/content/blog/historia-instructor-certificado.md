@@ -257,7 +257,7 @@ Medio tiempo no funciona en certificaciones. Es todo o nada.
 Instagram, TikTok, blog. Tu transformación es tu mejor marketing.
 
 ### 8. Encuentra Tu Mentor
-Alguien 2-3 años adelante en el camino. Págale si es necesario.
+Alguien 2-1 año adelante en el camino. Págale si es necesario.
 
 ### 9. Especialízate Desde el Día 1
 Generalista = Invisible. Especialista = Invaluable.

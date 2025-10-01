@@ -12,7 +12,7 @@
     "category": "Reformers",
     "finishes": ["walnut", "white", "black", "mycelium"],
     "materials": ["cuero genuino", "madera de nogal", "acero estructural"],
-    "warranty": "3 años",
+    "warranty": "1 año",
     "variants": [
       { "id": "var_home_walnut", "sku": "HOME-REFORMER-001-W", "finish": "walnut", "image": "/images/finish-walnut.jpg" },
       { "id": "var_home_white", "sku": "HOME-REFORMER-001-WH", "finish": "white", "image": "/images/finish-white.jpg" },
@@ -37,7 +37,7 @@
     "category": "Reformers",
     "finishes": ["walnut", "white", "black", "mycelium"],
     "materials": ["cuero genuino", "madera de nogal", "acero estructural"],
-    "warranty": "3 años",
+    "warranty": "1 año",
     "variants": [
       { "id": "var_pro_walnut", "sku": "PRO-REFORMER-001-W", "finish": "walnut", "image": "/images/finish-walnut.jpg" },
       { "id": "var_pro_white", "sku": "PRO-REFORMER-001-WH", "finish": "white", "image": "/images/finish-white.jpg" },
@@ -62,7 +62,7 @@
     "category": "Reformers",
     "finishes": ["mycelium"],
     "materials": ["Mylo (micelio)", "madera de nogal", "acero estructural"],
-    "warranty": "3 años",
+    "warranty": "1 año",
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_mycelium_placeholder",

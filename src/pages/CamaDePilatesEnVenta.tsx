@@ -10,7 +10,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
   const origin = getOrigin();
   const url = `${origin}/cama-de-pilates/en-venta`;
   const title = 'Cama de Pilates en Venta: Envío en México desde CDMX';
-  const desc = 'Cama de Pilates (Reformer) en venta con entrega 3 semanas en México. Materiales premium (cuero, nogal, acero), silencio total, garantía 3 años y repuestos exprés.';
+  const desc = 'Cama de Pilates (Reformer) en venta con entrega 3 semanas en México. Materiales premium (cuero, nogal, acero), silencio total, garantía 1 año y repuestos exprés.';
 
   const itemList = {
     '@context': 'https://schema.org',
@@ -26,7 +26,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
     '@type': 'FAQPage',
     mainEntity: [
       { '@type': 'Question', name: '¿Cuánto tarda el envío en México?', acceptedAnswer: { '@type': 'Answer', text: 'Desde CDMX entregamos en 3 semanas hábiles. Para pedidos por volumen (8+), coordinamos fechas de instalación.' } },
-      { '@type': 'Question', name: '¿Qué garantía ofrecen?', acceptedAnswer: { '@type': 'Answer', text: 'Garantía de 3 años. Repuestos exprés y soporte en español.' } },
+      { '@type': 'Question', name: '¿Qué garantía ofrecen?', acceptedAnswer: { '@type': 'Answer', text: 'Garantía de 1 año. Repuestos exprés y soporte en español.' } },
       { '@type': 'Question', name: '¿Hay descuento para estudios?', acceptedAnswer: { '@type': 'Answer', text: 'Sí. A partir de 8 unidades aplicamos 20% de descuento y podemos coordinar instalación.' } },
     ],
   };
@@ -53,7 +53,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
       <section className="bg-background">
         <div className="container mx-auto px-4 py-12">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Cama de Pilates en Venta</h1>
-          <p className="text-lg text-muted-foreground max-w-3xl">Compra tu cama de Pilates (Reformer) con <strong>silencio total</strong>, <strong>estabilidad sin vibraciones</strong> y acabados premium en cuero genuino, nogal y acero. Entrega <strong>3 semanas</strong> desde CDMX y <strong>garantía 3 años</strong>.</p>
+          <p className="text-lg text-muted-foreground max-w-3xl">Compra tu cama de Pilates (Reformer) con <strong>silencio total</strong>, <strong>estabilidad sin vibraciones</strong> y acabados premium en cuero genuino, nogal y acero. Entrega <strong>3 semanas</strong> desde CDMX y <strong>garantía 1 año</strong>.</p>
 
           <div className="mt-10 grid md:grid-cols-2 gap-6">
             <Link to="/product/reformer-profesional" className="block group border border-border rounded-lg p-6 bg-card hover:border-primary/50 transition-colors">
@@ -61,7 +61,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
               <ul className="mt-3 text-muted-foreground list-disc pl-5 space-y-1">
                 <li>Silencio total y estabilidad sin vibraciones</li>
                 <li>Cuero genuino, nogal y acero estructural</li>
-                <li>Garantía 3 años • Repuestos exprés</li>
+                <li>Garantía 1 año • Repuestos exprés</li>
               </ul>
               <span className="inline-block mt-4 text-primary">Ver detalles →</span>
             </Link>
@@ -113,7 +113,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
 
       <FeatureSplit
         title="Silencio y estabilidad para tu estudio"
-        copy="Tolerancias precisas, cuero genuino, madera de nogal y acero estructural. Garantía 3 años y repuestos exprés."
+        copy="Tolerancias precisas, cuero genuino, madera de nogal y acero estructural. Garantía 1 año y repuestos exprés."
         cta={{ href: '/packs/estudio', label: 'Pack para estudios (8+)' }}
         image={{ src: '/og/cama-de-pilates-venta-mexico.png', alt: 'Reformer de Estudio Edelweiss' }}
       />

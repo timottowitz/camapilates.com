@@ -138,7 +138,7 @@ En CAMA Pilates entendemos que el éxito de un instructor o estudio depende tant
 - **Asesoría gratuita** para nuevos estudios
 - **Planes de financiamiento** desde 12 meses sin intereses
 - **Capacitación técnica** incluida con cada Reformer
-- **Garantía extendida** de 3 años
+- **Garantía extendida** de 1 año
 - **Red de instructores CAMA**: Acceso exclusivo a nuestra comunidad de 500+ profesionales
 
 Nuestros Reformers están diseñados específicamente para el mercado mexicano, considerando espacios, clima y necesidades locales. Con envío gratis a toda la República y servicio técnico en las principales ciudades.

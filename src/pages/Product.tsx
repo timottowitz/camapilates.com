@@ -61,7 +61,7 @@ const ProductPage: React.FC = () => {
     dimensions: '~245 × 70 × 40 cm',
     weight: '~70–95 kg (según acabado)',
     carriage: 'Recorrido suave y silencioso',
-    warranty: '3 años',
+    warranty: '1 año',
   } as const;
 
   const activeVariant = useMemo(() => {
@@ -164,7 +164,7 @@ const ProductPage: React.FC = () => {
         name: '¿Qué garantía incluye?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Garantía de 3 años que cubre defectos de fabricación en estructura, muelles y accesorios básicos. Incluye repuestos exprés y soporte en español.'
+          text: 'Garantía de 1 año que cubre defectos de fabricación en estructura, muelles y accesorios básicos. Incluye repuestos exprés y soporte en español.'
         }
       },
       {
@@ -249,7 +249,7 @@ const ProductPage: React.FC = () => {
               <div className="inline-flex items-center rounded-full border border-green-600/30 text-green-700 bg-green-50 px-2 py-0.5 text-xs">En stock</div>
               <div className="text-xs text-muted-foreground">SKU: {displaySku}</div>
             </div>
-            <div className="text-xs text-muted-foreground mt-1">Entrega {estimate} • Garantía 3 años</div>
+            <div className="text-xs text-muted-foreground mt-1">Entrega {estimate} • Garantía 1 año</div>
             <TrustStrip className="mt-2" />
             {(finish === 'mycelium' || (prod.finishes||[]).includes('mycelium') || /mycel/i.test(prod.name)) && (
               <div className="mt-2 text-xs text-emerald-900 flex items-center gap-2">
@@ -287,7 +287,7 @@ const ProductPage: React.FC = () => {
               <div className="flex items-center gap-2"><CreditCard className="h-4 w-4 text-primary" /> Mercado Pago</div>
               <div className="flex items-center gap-2"><MessageCircle className="h-4 w-4 text-primary" /> Soporte en español</div>
               <div className="flex items-center gap-2"><Package className="h-4 w-4 text-primary" /> Repuestos exprés</div>
-              <div className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-primary" /> Garantía 3 años</div>
+              <div className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-primary" /> Garantía 1 año</div>
             </div>
             {/* Finishes selector */}
             <div className="mt-6">
@@ -362,7 +362,7 @@ const ProductPage: React.FC = () => {
                 <p className="mt-2 text-sm text-muted-foreground">México: 3 semanas. EE. UU.: 4–5 semanas (estimado). Europa: 4–6 semanas (estimado).</p>
               </details>
               <details className="mt-3 bg-card p-4 rounded-lg border border-border">
-                <summary className="font-medium text-foreground cursor-pointer">Garantía 3 años</summary>
+                <summary className="font-medium text-foreground cursor-pointer">Garantía 1 año</summary>
                 <p className="mt-2 text-sm text-muted-foreground">Cubre defectos de fabricación en estructura, muelles y accesorios básicos. Repuestos exprés y soporte en español.</p>
               </details>
               <details className="mt-3 bg-card p-4 rounded-lg border border-border">

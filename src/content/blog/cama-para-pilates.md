@@ -120,7 +120,7 @@ El Pilates ha demostrado efectividad en la recuperación funcional de pacientes 
   - Cabecera ajustable
   - 8 ruedas embaladas
   - Madera banak y primavera
-- **Garantía**: 3 años
+- **Garantía**: 1 año
 
 #### 2. Universo Pilates
 - **Experiencia**: 10 años en el mercado
@@ -218,7 +218,7 @@ El Pilates ha demostrado efectividad en la recuperación funcional de pacientes 
 
 ### 3. Garantía y Servicio Post-Venta
 
-- **Garantía estructural**: Mínimo 3 años, ideal 5+ años
+- **Garantía estructural**: Mínimo 1 año, ideal 5+ años
 - **Garantía en accesorios**: 1-2 años
 - **Servicio técnico**: Disponibilidad en México
 - **Repuestos**: Facilidad de obtención y costos

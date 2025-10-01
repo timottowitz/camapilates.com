@@ -57,7 +57,7 @@ const CamaDePilatesHub: React.FC = () => {
           <div className="mt-10 grid md:grid-cols-2 gap-6">
             <Link to="/cama-de-pilates/en-venta" className="block group border border-border rounded-lg p-6 bg-card hover:border-primary/50 transition-colors">
               <h2 className="text-xl font-semibold text-foreground group-hover:text-primary">Cama de Pilates en Venta</h2>
-              <p className="text-sm text-muted-foreground mt-2">Compra Reformers con entrega 3 semanas en México y garantía 3 años.</p>
+              <p className="text-sm text-muted-foreground mt-2">Compra Reformers con entrega 3 semanas en México y garantía 1 año.</p>
               <span className="inline-block mt-3 text-primary">Ver opciones →</span>
             </Link>
 
@@ -109,7 +109,7 @@ const CamaDePilatesHub: React.FC = () => {
             </div>
             <div className="border border-border rounded-lg p-4 bg-card">
               <h3 className="font-semibold text-foreground">Servicio</h3>
-              <p className="text-sm text-muted-foreground mt-1">Garantía 3 años y repuestos exprés con soporte en español.</p>
+              <p className="text-sm text-muted-foreground mt-1">Garantía 1 año y repuestos exprés con soporte en español.</p>
             </div>
           </div>
         </div>

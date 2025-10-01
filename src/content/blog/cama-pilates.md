@@ -118,7 +118,7 @@ El pilates requiere concentración y coordinación mente-cuerpo, lo que contribu
 - Estructura de madera básica
 - 4-5 resortes de tensión estándar
 - Accesorios básicos incluidos
-- Garantía de 1-3 años
+- Garantía de 1-1 año
 
 **$30,000 - $50,000 MXN:**
 - Madera de abedul o materiales premium
@@ -235,7 +235,7 @@ El pilates requiere concentración y coordinación mente-cuerpo, lo que contribu
 - Cama de calidad media: $35,000 MXN
 - Mantenimiento anual: $2,000 MXN
 - **Ahorro en año 1**: $6,200 MXN
-- **Ahorro acumulado en 3 años**: $94,600 MXN
+- **Ahorro acumulado en 1 año**: $94,600 MXN
 
 ### Factores de ROI Adicionales
 
@@ -279,7 +279,7 @@ El pilates requiere concentración y coordinación mente-cuerpo, lo que contribu
 ### Consejos para la Compra
 
 1. **Prueba antes de comprar**: Visita showrooms cuando sea posible
-2. **Verifica garantías**: Mínimo 3 años en partes principales
+2. **Verifica garantías**: Mínimo 1 año en partes principales
 3. **Considera el servicio**: Instalación y mantenimiento incluidos
 4. **Lee testimonios**: Experiencias de otros usuarios mexicanos
 5. **Planifica la entrega**: Coordina instalación profesional

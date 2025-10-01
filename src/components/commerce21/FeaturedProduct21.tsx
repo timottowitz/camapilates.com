@@ -20,7 +20,7 @@ const FeaturedProduct21: React.FC<{ product: Product }> = ({ product }) => {
           <Link to={`/product/${product.slug}`} className="text-2xl font-semibold text-foreground hover:text-primary">{product.name}</Link>
           <p className="mt-2 text-sm text-muted-foreground">{product.description}</p>
           <div className="mt-3 text-lg font-semibold text-foreground">$ {product.price} {product.currency}</div>
-          <div className="mt-1 text-xs text-muted-foreground">En stock • Entrega 3 semanas • Garantía 3 años</div>
+          <div className="mt-1 text-xs text-muted-foreground">En stock • Entrega 3 semanas • Garantía 1 año</div>
           <div className="mt-4 flex items-center gap-3">
             <ShoprocketBuyButton productId={product.productId} publishableKey={product.publishableKey} />
             <Link to={`/product/${product.slug}`} className="inline-flex items-center px-4 py-2 rounded-md border border-border text-foreground hover:bg-foreground hover:text-background">Ver detalles</Link>

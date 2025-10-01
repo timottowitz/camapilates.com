@@ -8,7 +8,7 @@ import { getVersionedImageUrl } from '@/hooks/useVersionedImage';
 const Store = () => {
   const origin = getOrigin();
   const title = 'Cama de Pilates (Reformer) en México — Tienda CAMA Pilates';
-  const desc = 'Compra tu cama de Pilates (Reformer) en México. Modelos para casa y estudio: silencio total, cuero genuino, nogal y acero. Envío 3 semanas y garantía de 3 años.';
+  const desc = 'Compra tu cama de Pilates (Reformer) en México. Modelos para casa y estudio: silencio total, cuero genuino, nogal y acero. Envío 3 semanas y garantía de 1 año.';
 
   const productCasa = {
     '@context': 'https://schema.org',
@@ -122,7 +122,7 @@ const Store = () => {
       },
       {
         '@type': 'Question',
-        name: '¿Qué incluye la garantía de 3 años?',
+        name: '¿Qué incluye la garantía de 1 año?',
         acceptedAnswer: {
           '@type': 'Answer',
           text: 'Nuestra garantía cubre defectos de fabricación en estructura, muelles y accesorios básicos. Incluye repuestos exprés y soporte técnico.'
@@ -192,7 +192,7 @@ const Store = () => {
               <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
                 <CheckCircle className="h-5 w-5 text-green-600" />
               </div>
-              <span className="font-medium">Garantía 3 años</span>
+              <span className="font-medium">Garantía 1 año</span>
             </div>
             <div className="flex items-center gap-2 text-foreground">
               <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
@@ -213,7 +213,7 @@ const Store = () => {
                 <span>•</span>
                 <span>Entrega 3 semanas (MX)</span>
                 <span>•</span>
-                <span>Garantía 3 años</span>
+                <span>Garantía 1 año</span>
                 <span>•</span>
                 <span>Repuestos exprés</span>
               </div>
@@ -256,8 +256,8 @@ const Store = () => {
                 </tr>
                 <tr>
                   <td className="p-4">Garantía</td>
-                  <td className="p-4">3 años</td>
-                  <td className="p-4">3 años</td>
+                  <td className="p-4">1 año</td>
+                  <td className="p-4">1 año</td>
                 </tr>
               </tbody>
             </table>
@@ -294,7 +294,7 @@ const Store = () => {
             </div>
             <div className="flex items-center gap-3">
               <ShieldCheck className="h-5 w-5 text-accent" />
-              <span className="text-foreground font-medium">Garantía 3 años</span>
+              <span className="text-foreground font-medium">Garantía 1 año</span>
             </div>
             <div className="flex items-center gap-3">
               <Package className="h-5 w-5 text-accent" />
@@ -443,7 +443,7 @@ const Store = () => {
 
             <details className="bg-card p-6 rounded-lg border border-border">
               <summary className="font-semibold text-foreground cursor-pointer hover:text-accent">
-                ¿Qué incluye la garantía de 3 años?
+                ¿Qué incluye la garantía de 1 año?
               </summary>
               <div className="mt-4 text-muted-foreground">
                 <p>

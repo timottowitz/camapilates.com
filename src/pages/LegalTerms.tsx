@@ -15,7 +15,7 @@ const LegalTerms: React.FC = () => {
       <section className="bg-background">
         <div className="container mx-auto px-4 py-12">
           <h1 className="text-3xl font-bold text-foreground mb-4">Términos y Condiciones</h1>
-          <p className="text-muted-foreground">Resumen: ventas en MX con pago seguro, tiempos de envío, garantía 3 años, repuestos exprés y políticas de devolución (14 días sin uso). Para detalles operativos o cotizaciones de estudio, contáctanos.</p>
+          <p className="text-muted-foreground">Resumen: ventas en MX con pago seguro, tiempos de envío, garantía 1 año, repuestos exprés y políticas de devolución (14 días sin uso). Para detalles operativos o cotizaciones de estudio, contáctanos.</p>
         </div>
       </section>
     </>

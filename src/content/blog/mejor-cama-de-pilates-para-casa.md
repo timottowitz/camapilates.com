@@ -39,7 +39,7 @@ Practicar Pilates en casa con tu propio reformer ofrece ventajas únicas que van
 - Madera de roble certificada FSC
 - Sistema de resistencia profesional con 5 resortes
 - Plegable para espacios reducidos
-- Garantía de 3 años
+- Garantía de 1 año
 - Incluye torre de extensión
 
 ### 2. **Universo Pilates Studio Reformer Clásico** - $48,000 MXN
@@ -234,10 +234,10 @@ Los **reformers plegables** han revolucionado el Pilates doméstico en México, 
 
 | Modelo | Precio | Plegable | Garantía | Peso Max | Puntuación |
 |--------|---------|----------|----------|-----------|------------|
-| **CAMA Professional** | $65,000 | ✅ | 3 años | 150kg | 9.5/10 |
+| **CAMA Professional** | $65,000 | ✅ | 1 año | 150kg | 9.5/10 |
 | **Universo Studio** | $48,000 | ❌ | 6 años | 120kg | 9.2/10 |
 | **UCAN U-Home** | $38,000 | ✅ | 2 años | 110kg | 8.8/10 |
-| **Peak Casa** | $55,000 | ❌ | 3 años | 140kg | 9.0/10 |
+| **Peak Casa** | $55,000 | ❌ | 1 año | 140kg | 9.0/10 |
 | **Balanced Allegro** | $72,000 | ❌ | 5 años | 160kg | 9.7/10 |
 
 ## Instalación y Configuración: Guía Paso a Paso
@@ -477,7 +477,7 @@ Los **reformers plegables** han revolucionado el Pilates doméstico en México, 
 **Respuesta:** Los resortes de calidad duran 2-5 años dependiendo del uso. Señales de cambio: pérdida de tensión, deformación visible, sonidos metálicos. El reemplazo cuesta $800-$1,500 por resorte. Marcas como CAMA incluyen un resorte de reemplazo gratuito el primer año.
 
 ### 7. ¿Vale la pena comprar usado o mejor nuevo?
-**Respuesta:** Un reformer usado puede ser buena opción si: tiene menos de 3 años, marca reconocida, historial de mantenimiento documentado, y precio 40-50% menor que nuevo. Evita equipos sin garantía, desgaste visible en madera, o resortes originales sin cambiar. CAMA ofrece programa de intercambio con descuentos del 20% al cambiar equipos usados por nuevos.
+**Respuesta:** Un reformer usado puede ser buena opción si: tiene menos de 1 año, marca reconocida, historial de mantenimiento documentado, y precio 40-50% menor que nuevo. Evita equipos sin garantía, desgaste visible en madera, o resortes originales sin cambiar. CAMA ofrece programa de intercambio con descuentos del 20% al cambiar equipos usados por nuevos.
 
 ## Conclusión: Tu Decisión Final
 

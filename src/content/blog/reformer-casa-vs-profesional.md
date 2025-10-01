@@ -28,7 +28,7 @@ featured: false
 | Silencio y estabilidad | Recorrido silencioso, juego lateral nulo | Silencio total con tolerancias más exigentes |
 | Ajustes | Básicos, suficientes para práctica personal | Footbar/gearbar robustos, cambios rápidos |
 | Accesorios | Kit de arranque | Kit completo para clases |
-| Servicio | Garantía 3 años, repuestos exprés | Idem, con respuesta prioritaria para estudio |
+| Servicio | Garantía 1 año, repuestos exprés | Idem, con respuesta prioritaria para estudio |
 | Precio (MXN) | $25k–$45k | $50k–$95k |
 
 <see-also limit="3" />

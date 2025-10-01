@@ -98,7 +98,7 @@ Estudios recientes han demostrado múltiples beneficios del Pilates Reformer:
 | **Universo Pilates** | $29,600 - $53,000 MXN | 6 años | Madera de abedul, sustentable |
 | **OPI (Orozco)** | $30,700 MXN | 5 años | Modelo B, aluminio y acero |
 | **UCAN** | $35,000 - $65,000 MXN | 2 años | Modelos Home y Professional |
-| **Merrithew** | $60,000 - $90,000 MXN | 3 años | Tecnología SPX, entrenamiento digital |
+| **Merrithew** | $60,000 - $90,000 MXN | 1 año | Tecnología SPX, entrenamiento digital |
 | **CAMA Pilates** | **Consultar** | **Extendida** | **Calidad premium, soporte local** |
 
 ### Factores que Influyen en el Precio
@@ -130,7 +130,7 @@ Estudios recientes han demostrado múltiples beneficios del Pilates Reformer:
 
 **Recomendaciones CAMA Pilates para Casa:**
 - Prioriza la **estabilidad del marco** sobre el peso ligero
-- Busca **garantía mínima de 3 años** en estructura
+- Busca **garantía mínima de 1 año** en estructura
 - Verifica la **disponibilidad de repuestos** en México
 - Considera modelos con **opciones de upgrade** futuro
 
@@ -215,7 +215,7 @@ Estudios recientes han demostrado múltiples beneficios del Pilates Reformer:
 
 **Estructura del Soporte:**
 - **Garantía de marco**: Mínimo 5 años
-- **Garantía de resortes**: 2-3 años
+- **Garantía de resortes**: 2-1 año
 - **Garantía de accesorios**: 1-2 años
 - **Servicio técnico**: Disponibilidad en México
 - **Repuestos**: Stock permanente y precios competitivos
@@ -408,7 +408,7 @@ Para **principiantes**, se recomienda **mínimo 10-15 sesiones con instructor ce
 
 **Garantías mínimas recomendadas**:
 - **Marco estructural**: 5-10 años
-- **Sistema de resortes**: 2-3 años
+- **Sistema de resortes**: 2-1 año
 - **Accesorios**: 1-2 años
 - **Servicio técnico**: Disponibilidad durante garantía
 

@@ -80,7 +80,7 @@ El mercado de camas de Pilates en México ha evolucionado significativamente. Mi
 **Características:**
 - Diseño ergonómico
 - Estructura robusta
-- Garantía de 3 años
+- Garantía de 1 año
 - Financiamiento disponible
 
 ### 8. Reformer plegable premium - $22,000 pesos
@@ -100,7 +100,7 @@ El mercado de camas de Pilates en México ha evolucionado significativamente. Mi
 ### 10. Reformer de estudio usado - $33,000 pesos
 **Características:**
 - Calidad profesional
-- Uso en estudio por 2-3 años
+- Uso en estudio por 2-1 año
 - Mantenimiento reciente
 - Garantía limitada de 6 meses
 
@@ -393,7 +393,7 @@ Una simple toalla puede imitar los deslizamientos del Reformer. Coloca la toalla
 **Respuesta:** El mantenimiento básico es simple: limpieza regular, lubricación semestral de rieles y revisión de tornillos. Las camas económicas pueden requerir más atención, pero nada complicado.
 
 ### 7. ¿Puedo usar una cama barata para dar clases?
-**Respuesta:** Para clases ocasionales sí, pero para uso comercial intensivo se recomienda invertir en equipo profesional. Una cama económica puede durar 2-3 años con uso comercial moderado.
+**Respuesta:** Para clases ocasionales sí, pero para uso comercial intensivo se recomienda invertir en equipo profesional. Una cama económica puede durar 2-1 año con uso comercial moderado.
 
 ## Recomendaciones finales de CAMA Pilates
 

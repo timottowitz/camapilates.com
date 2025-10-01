@@ -331,7 +331,7 @@ Los especialistas recomiendan practicar Mat Pilates durante al menos 3 meses ant
 - Ajustes precisos y suaves
 - Accesorios profesionales incluidos
 - Programa de actualización disponible
-- Garantía de 3 años
+- Garantía de 1 año
 
 **Precio:** $32,999 MXN
 **Ideal para:** Principiantes que planean uso a largo plazo
