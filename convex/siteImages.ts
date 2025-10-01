@@ -64,7 +64,7 @@ export const upload = mutation({
       alt: args.alt,
       description: args.description,
       isActive: true,
-      cacheControl: 'public, max-age=31536000, immutable',
+      cacheControl: 'no-store, no-cache, must-revalidate',
       createdAt: now,
       updatedAt: now,
     });
