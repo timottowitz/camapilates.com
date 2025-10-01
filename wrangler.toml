@@ -7,15 +7,5 @@ pages_build_output_dir = "dist"
 [env.production]
 vars = { NODE_ENV = "production", VITE_CONVEX_URL = "https://spotted-raven-102.convex.cloud" }
 
-[[env.production.d1_databases]]
-binding = "DB"
-database_name = "camadepilates-production-db"
-database_id = "63831e40-3f9b-4d91-9a5d-857c16ffa295"
-
 [env.preview]
 vars = { NODE_ENV = "development", VITE_CONVEX_URL = "https://spotted-raven-102.convex.cloud" }
-
-[[env.preview.d1_databases]]
-binding = "DB"
-database_name = "camadepilates-development-db"
-database_id = "6c4c290b-2269-4b4c-af7e-f7e82ca6f62b"
