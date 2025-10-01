@@ -46,3 +46,8 @@ export const onRequest: PagesFunction = async (ctx) => {
 
   return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
 };
+  } else if (
+    url.pathname.startsWith('/estudios-de-pilates')
+  ) {
+    // Studio directory routes: short browser TTL, revalidate at edge
+    set('public, max-age=60, s-maxage=300, stale-while-revalidate=300');
