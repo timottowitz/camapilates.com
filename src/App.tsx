@@ -47,6 +47,7 @@ const StudioDetail = lazy(() => import('./pages/estudios-de-pilates/StudioDetail
 import GAListener from "@/components/analytics/GAListener";
 import FloatingCart21 from "@/components/commerce21/FloatingCart21";
 import AdminGuard from "@/components/auth/AdminGuard";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 const queryClient = new QueryClient();
 
@@ -71,6 +72,7 @@ const App = () => (
           <GAListener />
           <ScrollToTop />
           {/* Shoprocket embeds are placed directly in pages via embed blocks */}
+          <ErrorBoundary>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
@@ -112,6 +114,7 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </ErrorBoundary>
           <Footer />
           <FloatingCart21 />
         </BrowserRouter>

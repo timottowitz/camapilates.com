@@ -83,29 +83,32 @@ export function StudioMap({
       setMapUnavailable(true);
       return;
     }
-    if (!window.google) {
-      const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${key}&libraries=places,visualization,geometry,drawing&callback=initMap`;
+    const SCRIPT_ID = 'google-maps-api';
+    const loadMap = () => initializeMap();
+
+    // Already loaded
+    if (window.google?.maps) {
+      loadMap();
+      return;
+    }
+
+    // Reuse existing script if present
+    let script = document.getElementById(SCRIPT_ID) as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement('script');
+      script.id = SCRIPT_ID;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${key}&libraries=places,visualization,geometry,drawing`;
       script.async = true;
       script.defer = true;
-
-      window.initMap = () => {
-        initializeMap();
-      };
-
       script.onerror = () => setMapUnavailable(true);
-
-      document.head.appendChild(script);
-
-      return () => {
-        delete window.initMap;
-        if (document.head.contains(script)) {
-          document.head.removeChild(script);
-        }
-      };
-    } else {
-      initializeMap();
+      document.body.appendChild(script);
     }
+    script.addEventListener('load', loadMap, { once: true });
+
+    return () => {
+      // Do not remove the script; keep it cached for the SPA lifetime.
+      script?.removeEventListener('load', loadMap);
+    };
   }, []);
 
   // Initialize map
