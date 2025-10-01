@@ -31,7 +31,6 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { hasConvex } from '@/lib/convexProvider';
 import localData from '@/data/studios.json';
 import { citySlug } from '@/utils/slug';
-import { citySlug } from '@/utils/slug';
 
 // City name mappings - normalize accents in slugs
 const cityNameMap: { [key: string]: string } = {
