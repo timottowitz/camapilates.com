@@ -15,6 +15,9 @@ import { beginCheckout, viewItem } from '@/lib/shop/analytics';
 import { Info } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import TrustStrip from '@/components/ui/trust-strip';
+import { EnhancedGallery } from '@/components/commerce21/EnhancedGallery';
+import { FinancingDisplay } from '@/components/commerce21/FinancingDisplay';
+import { StickyMobileCTA } from '@/components/commerce21/StickyMobileCTA';
 
 type Product = (typeof products)[number] & PType;
 
@@ -208,7 +211,30 @@ const ProductPage: React.FC = () => {
       <section className="bg-background">
         <div className="container mx-auto px-4 py-16 grid md:grid-cols-2 gap-10 items-start">
           <div>
-            <Gallery21 images={[activeVariant?.image || '', FINISHES[finish]?.img || '', prod.image].filter(Boolean)} altPrefix={`${prod.name} — ${FINISHES[finish]?.name || ''}`} />
+            {/* Enhanced Gallery with zoom and lightbox */}
+            <EnhancedGallery
+              images={[
+                {
+                  src: activeVariant?.image || prod.image,
+                  alt: `${prod.name} — ${FINISHES[finish]?.name || ''}`,
+                  type: 'main',
+                  label: 'Vista principal'
+                },
+                {
+                  src: FINISHES[finish]?.img || prod.image,
+                  alt: `Acabado ${FINISHES[finish]?.name || ''}`,
+                  type: 'detail',
+                  label: `Acabado ${FINISHES[finish]?.name || ''}`
+                },
+                {
+                  src: prod.image,
+                  alt: prod.name,
+                  type: 'lifestyle',
+                  label: 'En contexto'
+                }
+              ].filter(Boolean)}
+              showLabels={true}
+            />
           </div>
           <div>
             {/* Region selector for delivery estimate */}
@@ -251,6 +277,13 @@ const ProductPage: React.FC = () => {
             </div>
             <div className="text-xs text-muted-foreground mt-1">Entrega {estimate} • Garantía 1 año</div>
             <TrustStrip className="mt-2" />
+
+            {/* Financing Display */}
+            <FinancingDisplay
+              price={Number(priceToShow)}
+              currency={prod.currency}
+              variant="prominent"
+            />
             {(finish === 'mycelium' || (prod.finishes||[]).includes('mycelium') || /mycel/i.test(prod.name)) && (
               <div className="mt-2 text-xs text-emerald-900 flex items-center gap-2">
                 <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2 py-1">Edición Mylo™ (micelio)</span>
@@ -417,14 +450,17 @@ const ProductPage: React.FC = () => {
         </div>
       </div>
     </section>
-    {/* Sticky mobile CTA bar */}
-    <div className="fixed inset-x-0 bottom-0 z-40 md:hidden border-t border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-3">
-        <a href="#comprar" onClick={(e) => { e.preventDefault(); beginCheckout({ product: prod as any }); openBuyModal(); }} className="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-md bg-primary text-primary-foreground">Comprar</a>
-        <a href="https://wa.me/523222787690" className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-green-600 text-white">WhatsApp</a>
-        <a href="tel:+523222787690" className="inline-flex items-center justify-center px-4 py-2 rounded-md border border-border text-foreground">Llamar</a>
-      </div>
-    </div>
+    {/* Enhanced Sticky Mobile CTA */}
+    <StickyMobileCTA
+      productName={prod.name}
+      price={Number(priceToShow)}
+      currency={prod.currency}
+      onAddToCart={() => {
+        beginCheckout({ product: prod as any });
+        openBuyModal();
+      }}
+      productSlug={prod.slug}
+    />
     </>
   );
 };

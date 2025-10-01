@@ -21,6 +21,10 @@ import FilterBar21 from '@/components/commerce21/FilterBar21';
 import ActiveChips21, { Chip } from '@/components/commerce21/ActiveChips21';
 import { Link } from 'react-router-dom';
 import { viewItemList } from '@/lib/shop/analytics';
+import { EnhancedHero, FeatureHighlights } from '@/components/commerce21/EnhancedHero';
+import { LivePurchaseNotifications, CustomerReviewsPreview } from '@/components/commerce21/SocialProofWidget';
+import ExitIntentPopup, { useExitIntent } from '@/components/commerce21/ExitIntentPopup';
+import ProductCard21Enhanced from '@/components/commerce21/ProductCard21Enhanced';
 
 function getInitialRegion(): Region {
   if (typeof window === 'undefined') return 'MX';
@@ -45,6 +49,15 @@ const Shop: React.FC = () => {
   const [quick, setQuick] = useState<PType | null>(null);
   const [activeFinishes, setActiveFinishes] = useState<FinishKey[]>([]);
   const [activeAvailability, setActiveAvailability] = useState<string[]>([]);
+  const [showExitPopup, setShowExitPopup] = useState(false);
+
+  // Exit intent detection
+  useExitIntent(() => {
+    const hasSeenPopup = sessionStorage.getItem('exitPopupSeen');
+    if (!hasSeenPopup) {
+      setShowExitPopup(true);
+    }
+  });
 
   const products = useMemo(() => {
     let base = allProducts();
@@ -156,23 +169,18 @@ const Shop: React.FC = () => {
             </div>
           </div>
 
-          {/* Hero banner */}
-          <div className="rounded-lg overflow-hidden border border-border bg-muted">
-            <div className="relative aspect-[21/6] w-full bg-center bg-cover" style={{ backgroundImage: `url(${assets.shopHero || DEFAULTS.ogImage})` }}>
-              <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
-              <div className="absolute inset-0 p-6 md:p-10 flex items-center">
-                <div className="max-w-xl text-white">
-                  <div className="inline-block rounded-full bg-black/50 px-3 py-1 text-xs">Oferta</div>
-                  <h2 className="mt-3 text-2xl md:text-3xl font-semibold text-white">Redescubre tu gracia con Reformers Edelweiss y ropa de Pilates no tóxica</h2>
-                  <p className="mt-2 text-sm text-white/90">Tejidos no tóxicos & materiales premium (cuero genuino, nogal & acero). Pago seguro & entrega en 3 semanas en México.</p>
-                  <div className="mt-4 flex items-center gap-3">
-                    <Link to="/product/reformer-profesional" className="inline-flex items-center px-4 py-2 rounded-md bg-white text-black hover:bg-white/90">Ver promoción</Link>
-                    <Link to="/store" className="inline-flex items-center px-4 py-2 rounded-md border border-white/70 text-white hover:bg-white/10">Comparar modelos</Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* Enhanced Hero */}
+          <EnhancedHero
+            title="Redescubre tu gracia con Reformers Edelweiss"
+            subtitle="Tejidos no tóxicos & materiales premium (cuero genuino, nogal & acero). Pago seguro & entrega en 3 semanas."
+            backgroundImage={assets.shopHero || DEFAULTS.ogImage}
+            showTrustMetrics={true}
+            ctaPrimary={{ text: 'Ver promoción', href: '/product/reformer-profesional' }}
+            ctaSecondary={{ text: 'Comparar modelos', href: '/store' }}
+          />
+
+          {/* Feature Highlights */}
+          <FeatureHighlights className="my-8" />
 
           {/* Shop by category icons */}
           <div>
@@ -290,7 +298,22 @@ const Shop: React.FC = () => {
               </div>
             </aside>
             <div className="md:col-span-3">
-              <ProductGrid21 products={products} onQuickView={(p) => setQuick(p as any)} />
+              {/* Enhanced Product Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                {products.map((product) => (
+                  <ProductCard21Enhanced
+                    key={product.slug}
+                    product={product}
+                    onQuickView={(p) => setQuick(p)}
+                    showFinancing={true}
+                    showUrgency={true}
+                  />
+                ))}
+              </div>
+
+              {/* Customer Reviews Preview */}
+              <CustomerReviewsPreview className="my-12" />
+
               {/* Explore range blocks */}
               <ExploreTiles21 items={[
                 { label: 'Reformers', desc: 'Silenciosos y precisos para casa y estudio', href: '/shop/category/reformers' },
@@ -323,6 +346,24 @@ const Shop: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Live Purchase Notifications */}
+      <LivePurchaseNotifications />
+
+      {/* Exit Intent Popup */}
+      {showExitPopup && (
+        <ExitIntentPopup
+          onClose={() => {
+            setShowExitPopup(false);
+            sessionStorage.setItem('exitPopupSeen', 'true');
+          }}
+          onSubscribe={(email) => {
+            console.log('Subscribed:', email);
+            // TODO: Connect to email service
+          }}
+        />
+      )}
+
       {quick && <QuickView21 product={quick as any} onClose={() => setQuick(null)} />}
     </>
   );
