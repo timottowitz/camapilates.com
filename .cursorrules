@@ -1,0 +1,60 @@
+# Cursor AI Rules for CAMA Pilates
+
+## Deployment Protocol (CRITICAL)
+
+**ALWAYS follow this exact process when making changes:**
+
+### 1. Test Locally
+```bash
+npm run build  # Must succeed before committing
+```
+
+### 2. Commit Changes
+```bash
+git add .
+git commit -m "feat(scope): description
+
+Details...
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>"
+```
+
+### 3. Push & Verify
+```bash
+git push
+# Then check: https://github.com/timottowitz/camapilates.com/actions
+```
+
+## Project Context
+
+- **Stack**: React + Vite + TypeScript + Tailwind + shadcn/ui
+- **Deployment**: Cloudflare Pages (auto-deploy on push to main)
+- **Build**: Deno (`deno task build`)
+- **Blog**: Markdown files in `src/content/blog/*.md`
+
+## Code Style
+
+- TypeScript strict mode
+- ESM modules only (no `require()`)
+- Functional components with hooks
+- Tailwind for styling
+- shadcn/ui for components
+
+## Git Rules
+
+- Conventional commits (feat/fix/docs/refactor/etc)
+- Never commit secrets
+- Always include co-authorship
+- Test before push
+
+## Security
+
+- API keys in `.env` files only
+- Never commit `.env` (use `.env.example`)
+- Check `.gitignore` before committing
+
+## More Details
+
+See `AGENTS.md` and `.clinerules` for complete documentation.
