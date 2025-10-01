@@ -5,6 +5,12 @@ export const onRequest: PagesFunction = async (ctx) => {
 
   const set = (value: string) => headers.set('Cache-Control', value);
 
+  // Debug override to bypass caching when `?noCache=1` is present
+  if (url.searchParams.get('noCache') === '1') {
+    set('no-store');
+    return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
+  }
+
   if (url.pathname.startsWith('/assets/')) {
     set('public, max-age=31536000, immutable');
   } else if (url.pathname.startsWith('/images/')) {
