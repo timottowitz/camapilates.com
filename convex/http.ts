@@ -194,4 +194,56 @@ http.route({
   }),
 });
 
+/**
+ * Blog image metadata for a given slug
+ * GET /api/images/meta?slug=<slug>
+ */
+http.route({
+  path: '/api/images/meta',
+  method: 'GET',
+  handler: httpAction(async (ctx, request) => {
+    const url = new URL(request.url);
+    const slug = url.searchParams.get('slug') || '';
+    if (!slug) return new Response(JSON.stringify({ error: 'slug required' }), { status: 400, headers: { 'content-type': 'application/json' } });
+
+    const meta = await ctx.runQuery(api.images.getImageMeta, { slug });
+    // Map to stable keys expected by existing clients
+    const body = {
+      slug: meta.slug,
+      hero_url: meta.heroUrl,
+      sections: Array.isArray(meta.sections) ? meta.sections.map((s: any) => ({ heading: s.heading, url: (s as any).url })) : [],
+      updated_at: meta.updatedAt || undefined,
+    };
+    return new Response(JSON.stringify(body), {
+      status: 200,
+      headers: {
+        'content-type': 'application/json',
+        'cache-control': 'public, max-age=60, s-maxage=300, stale-while-revalidate=300',
+        'access-control-allow-origin': '*',
+      },
+    });
+  }),
+});
+
+/**
+ * List all blog images with hero URLs
+ * GET /api/images/list
+ */
+http.route({
+  path: '/api/images/list',
+  method: 'GET',
+  handler: httpAction(async (ctx) => {
+    const res = await ctx.runQuery(api.images.listImages, {});
+    const items = (res.items || []).map((it: any) => ({ slug: it.slug, hero_url: it.heroUrl, updated_at: it.updatedAt || undefined }));
+    return new Response(JSON.stringify({ items }), {
+      status: 200,
+      headers: {
+        'content-type': 'application/json',
+        'cache-control': 'public, max-age=60, s-maxage=300, stale-while-revalidate=300',
+        'access-control-allow-origin': '*',
+      },
+    });
+  }),
+});
+
 export default http;

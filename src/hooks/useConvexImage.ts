@@ -1,6 +1,7 @@
 import { useQuery } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import { useMemo } from 'react';
+import { hasConvex } from '@/lib/convexProvider';
 
 /**
  * Hook to get a Convex-stored image by name
@@ -14,7 +15,8 @@ import { useMemo } from 'react';
  * const heroUrl = useConvexImage('shopHero', '/og/fallback.png');
  */
 export function useConvexImage(name: string, fallback?: string): string | undefined {
-  const image = useQuery(api.siteImages.getByName, { name });
+  // Skip query entirely if Convex is not configured to avoid provider errors
+  const image = useQuery(api.siteImages.getByName, hasConvex ? { name } : undefined);
 
   return useMemo(() => {
     if (image?.url) return image.url;
@@ -29,7 +31,7 @@ export function useConvexImage(name: string, fallback?: string): string | undefi
  * @returns Array of images with URLs
  */
 export function useConvexImagesByCategory(category: string) {
-  const images = useQuery(api.siteImages.listByCategory, { category });
+  const images = useQuery(api.siteImages.listByCategory, hasConvex ? { category } : undefined);
   return images || [];
 }
 
@@ -38,6 +40,6 @@ export function useConvexImagesByCategory(category: string) {
  * Useful for admin/management interfaces
  */
 export function useAllConvexImages() {
-  const images = useQuery(api.siteImages.listActive, {});
+  const images = useQuery(api.siteImages.listActive, hasConvex ? {} : undefined as any);
   return images || [];
 }
