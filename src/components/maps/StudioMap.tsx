@@ -101,13 +101,21 @@ export function StudioMap({
       script.async = true;
       script.defer = true;
       script.onerror = () => setMapUnavailable(true);
-      document.body.appendChild(script);
+      // Append to head instead of body to avoid React hydration conflicts
+      document.head.appendChild(script);
     }
-    script.addEventListener('load', loadMap, { once: true });
+
+    // Only add listener if script is not yet loaded
+    if (!window.google?.maps) {
+      script.addEventListener('load', loadMap, { once: true });
+    }
 
     return () => {
       // Do not remove the script; keep it cached for the SPA lifetime.
-      script?.removeEventListener('load', loadMap);
+      // Only remove listener if it was added
+      if (!window.google?.maps) {
+        script?.removeEventListener('load', loadMap);
+      }
     };
   }, []);
 
