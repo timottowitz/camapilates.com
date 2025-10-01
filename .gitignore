@@ -20,6 +20,7 @@ db/*.sqlite
 .env
 .env.*
 .env.mcp
+!.env.example
 
 # Editor directories and files
 .vscode/*
