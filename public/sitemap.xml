@@ -289,6 +289,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://camadepilates.com/blog/pilates-has-changed-my-life-mexico</loc>
+    <lastmod>2025-10-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://camadepilates.com/blog/pilates-para-deportistas-de-alto-rendimiento</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -469,13 +475,13 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/category/Entrenamientos%20y%20bienestar</loc>
+    <loc>https://camadepilates.com/blog/category/Estudio</loc>
     <lastmod>2025-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/category/Estudio</loc>
+    <loc>https://camadepilates.com/blog/category/Entrenamientos%20y%20bienestar</loc>
     <lastmod>2025-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -890,6 +896,36 @@
   </url>
   <url>
     <loc>https://camadepilates.com/blog/tag/crecimiento%20carrera</loc>
+    <lastmod>2025-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/blog/tag/pilates</loc>
+    <lastmod>2025-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/blog/tag/has</loc>
+    <lastmod>2025-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/blog/tag/changed</loc>
+    <lastmod>2025-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/blog/tag/my</loc>
+    <lastmod>2025-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/blog/tag/life</loc>
     <lastmod>2025-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

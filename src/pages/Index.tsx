@@ -129,21 +129,37 @@ const Index = () => {
       <RibbonBanner />
 
       {/* Hero */}
-      <section className="bg-background">
-        <div className="container mx-auto px-4 py-20">
+      <section className="relative isolate overflow-hidden bg-background text-white">
+        <div className="absolute inset-0 -z-20 overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 w-[177.78vh] min-w-full h-[56.25vw] min-h-full -translate-x-1/2 -translate-y-1/2">
+            <iframe
+              className="h-full w-full"
+              src="https://www.youtube.com/embed/rK0LmTxNcsM?autoplay=1&mute=1&playsinline=1&controls=0&loop=1&playlist=rK0LmTxNcsM&modestbranding=1&rel=0"
+              title="Pilates Reformer en movimiento"
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              aria-hidden="true"
+              tabIndex={-1}
+            ></iframe>
+          </div>
+        </div>
+        <div className="absolute inset-0 -z-10 bg-black/60" aria-hidden="true" />
+        <div className="relative z-10 container mx-auto px-4 py-24 md:py-32">
           <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-foreground">Cama de Pilates (Reformer)</h1>
-            <p className="mt-6 text-xl text-muted-foreground">Cama de Pilates para casa y estudio con <strong>silencio total</strong> y <strong>estabilidad sin vibraciones</strong>. Acabados premium en <strong>cuero genuino</strong>, <strong>madera de nogal</strong> y <strong>acero estructural</strong>. Entrega <strong>3 semanas</strong> desde CDMX y <strong>garantía 1 año</strong>.</p>
-            <p className="mt-3 text-sm text-muted-foreground">Ingeniería alemana • Manufactura mexicana • Ajustada por instructoras</p>
-            <p className="mt-4 text-base text-foreground italic">El último Reformer que necesitarás. Desarrolla tu gracia con materiales nobles—solo lo mejor toca tu piel.</p>
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white drop-shadow-lg">Cama de Pilates (Reformer)</h1>
+            <p className="mt-6 text-xl text-white/80">Cama de Pilates para casa y estudio con <strong>silencio total</strong> y <strong>estabilidad sin vibraciones</strong>. Acabados premium en <strong>cuero genuino</strong>, <strong>madera de nogal</strong> y <strong>acero estructural</strong>. Entrega <strong>3 semanas</strong> desde CDMX y <strong>garantía 1 año</strong>.</p>
+            <p className="mt-3 text-sm text-white/70">Ingeniería alemana • Manufactura mexicana • Ajustada por instructoras</p>
+            <p className="mt-4 text-base text-white/85 italic">El último Reformer que necesitarás. Desarrolla tu gracia con materiales nobles—solo lo mejor toca tu piel.</p>
             <div className="mt-8 flex flex-wrap gap-3 items-center">
               <Link to="/shop" className="inline-flex items-center px-6 py-3 rounded-md bg-primary text-primary-foreground hover:bg-primary/90">Comprar ahora</Link>
-              <Link to="/store" className="inline-flex items-center px-6 py-3 rounded-md border border-foreground text-foreground hover:bg-foreground hover:text-background">Comparar modelos</Link>
+              <Link to="/store" className="inline-flex items-center px-6 py-3 rounded-md border border-white/70 text-white hover:bg-white hover:text-background">Comparar modelos</Link>
             </div>
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="flex items-center gap-2 text-muted-foreground"><CheckCircle2 className="h-5 w-5 text-primary" /> Silencio total</div>
-              <div className="flex items-center gap-2 text-muted-foreground"><Truck className="h-5 w-5 text-primary" /> Envío MX 3 semanas</div>
-              <div className="flex items-center gap-2 text-muted-foreground"><ShieldCheck className="h-5 w-5 text-primary" /> Garantía 1 año</div>
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 text-white/80">
+              <div className="flex items-center gap-2"><CheckCircle2 className="h-5 w-5 text-primary" /> Silencio total</div>
+              <div className="flex items-center gap-2"><Truck className="h-5 w-5 text-primary" /> Envío MX 3 semanas</div>
+              <div className="flex items-center gap-2"><ShieldCheck className="h-5 w-5 text-primary" /> Garantía 1 año</div>
             </div>
           </div>
         </div>
