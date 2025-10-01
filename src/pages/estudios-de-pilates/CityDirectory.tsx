@@ -31,6 +31,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { hasConvex } from '@/lib/convexProvider';
 import localData from '@/data/studios.json';
 import { citySlug } from '@/utils/slug';
+import { citySlug } from '@/utils/slug';
 
 // City name mappings - normalize accents in slugs
 const cityNameMap: { [key: string]: string } = {
@@ -233,6 +234,7 @@ const CityDirectory: React.FC = () => {
   // SEO metadata
   const pageTitle = `Estudios de Pilates en ${cityName} - ${filteredStudios.length} Opciones`;
   const pageDescription = `Encuentra los mejores estudios de Pilates en ${cityName}. Compara ${filteredStudios.length} estudios con reseñas, precios y ubicaciones. Clases de reformer, mat y más.`;
+  const citySlugNormalized = citySlug(cityName);
 
   return (
     <>
@@ -247,7 +249,7 @@ const CityDirectory: React.FC = () => {
             '@type': 'CollectionPage',
             name: pageTitle,
             description: pageDescription,
-            url: `https://camadepilates.com/estudios-de-pilates/${city}`,
+            url: `https://camadepilates.com/estudios-de-pilates/${citySlugNormalized}`,
             numberOfItems: filteredStudios.length,
           })}
         </script>
@@ -453,7 +455,7 @@ const CityDirectory: React.FC = () => {
                     enableHeatmap={true}
                     enableStreetView={true}
                     onStudioClick={(studio) => {
-                      navigate(`/estudios-de-pilates/${city}/${studio.slug}`);
+                      navigate(`/estudios-de-pilates/${citySlugNormalized}/${studio.slug}`);
                     }}
                   />
                 </TabsContent>

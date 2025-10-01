@@ -14,6 +14,7 @@
     "convex:codegen": "convex codegen",
     "lint": "eslint .",
     "preview": "vite preview",
+    "test:e2e": "playwright test",
     "blog:quick": "node scripts/run-batch-blogs.js quick",
     "blog:standard": "node scripts/run-batch-blogs.js standard",
     "blog:full": "node scripts/run-batch-blogs.js full",

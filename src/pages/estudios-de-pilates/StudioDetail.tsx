@@ -224,9 +224,7 @@ const StudioDetail: React.FC = () => {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href={`/estudios-de-pilates/${city}`}>
-                    {cityName}
-                  </BreadcrumbLink>
+                  <BreadcrumbLink href={`/estudios-de-pilates/${citySlug(cityName)}`}>{cityName}</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
