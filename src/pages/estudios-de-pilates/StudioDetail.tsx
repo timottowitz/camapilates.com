@@ -193,15 +193,15 @@ const StudioDetail: React.FC = () => {
             '@type': 'HealthClub',
             name: studioData.name,
             description: pageDescription,
-            address: {
+            address: studioData.address ? {
               '@type': 'PostalAddress',
-              streetAddress: studioData.address.street,
-              addressLocality: studioData.address.city,
-              addressRegion: studioData.address.state || 'Ciudad de México',
-              postalCode: studioData.address.postalCode || '',
+              streetAddress: studioData.address?.street,
+              addressLocality: studioData.address?.city,
+              addressRegion: studioData.address?.state || 'Ciudad de México',
+              postalCode: studioData.address?.postalCode || '',
               addressCountry: 'MX',
-            },
-            geo: studioData.address.coordinates ? {
+            } : undefined,
+            geo: studioData.address?.coordinates ? {
               '@type': 'GeoCoordinates',
               latitude: studioData.address.coordinates.lat,
               longitude: studioData.address.coordinates.lng,
@@ -211,8 +211,8 @@ const StudioDetail: React.FC = () => {
             aggregateRating: studioData.metrics?.googleRating
               ? {
                   '@type': 'AggregateRating',
-                  ratingValue: studioData.metrics.googleRating,
-                  reviewCount: studioData.metrics.googleReviewCount || 0,
+                  ratingValue: studioData.metrics?.googleRating,
+                  reviewCount: studioData.metrics?.googleReviewCount || 0,
                 }
               : undefined,
           })}
