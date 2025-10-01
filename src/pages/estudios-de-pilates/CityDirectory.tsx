@@ -29,6 +29,7 @@ import {
 import { MapPin, Filter, X, Map, List } from 'lucide-react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { hasConvex } from '@/lib/convexProvider';
+import localData from '@/data/studios.json';
 
 // City name mappings - normalize accents in slugs
 const cityNameMap: { [key: string]: string } = {
@@ -49,33 +50,13 @@ const CityDirectory: React.FC = () => {
   const navigate = useNavigate();
   const cityName = city ? cityNameMap[city.toLowerCase()] || city : '';
 
-  // If Convex isn’t configured, render a safe fallback (avoid calling hooks below)
-  if (!hasConvex) {
-    const pageTitle = `Estudios de Pilates en ${cityName || 'tu ciudad'}`;
-    const pageDescription = `Explora estudios de Pilates. El directorio estará disponible pronto en ${cityName || 'tu ciudad'}.`;
-    return (
-      <>
-        <Helmet>
-          <title>{pageTitle}</title>
-          <meta name="description" content={pageDescription} />
-        </Helmet>
-        <div className="min-h-screen bg-gray-50">
-          <div className="container mx-auto px-4 py-16 text-center max-w-2xl">
-            <h1 className="text-3xl font-bold text-gray-900 mb-3">Estudios de Pilates en {cityName || '—'}</h1>
-            <p className="text-gray-600 mb-6">Estamos preparando el directorio para esta ciudad. Vuelve pronto.</p>
-            <div className="flex gap-3 justify-center">
-              <Button asChild><a href="/estudios-de-pilates">Ver ciudades</a></Button>
-              <Button variant="outline" asChild><a href="/">Inicio</a></Button>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  }
-
-  // Fetch data from Convex
-  const studios = useQuery(api.studios.getByCity, { city: cityName });
-  const cityData = useQuery(api.cities.getBySlug, { slug: city || '' });
+  // Fetch data from Convex or local fallback dataset
+  const studios = hasConvex
+    ? useQuery(api.studios.getByCity, { city: cityName })
+    : (localData.studios as any[]).filter((s: any) => (s.address?.city || '').toLowerCase() === (cityName || '').toLowerCase());
+  const cityData = hasConvex
+    ? useQuery(api.cities.getBySlug, { slug: city || '' })
+    : (localData.cities as any[]).find((c: any) => c.slug === (city || ''));
 
   // Loading state
   const isLoading = studios === undefined;

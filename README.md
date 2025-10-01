@@ -92,8 +92,27 @@ If you proxy a separate origin through Cloudflare (non-Pages):
 
 
 ## How can I deploy this project?
+You can publish via Lovable, or use the included GitHub Actions workflow to deploy to Cloudflare Pages.
 
-Simply open [Lovable](https://lovable.dev/projects/daa6e9d0-74c1-491c-a49d-5a687a3d9dde) and click on Share -> Publish.
+### Deploy to Cloudflare Pages (CI/CD)
+
+This repo includes `.github/workflows/deploy-cloudflare-pages.yml` which:
+- Builds with Node 22
+- Deploys to Cloudflare Pages project `camadepilates`
+- Runs on push to `main` (production) and on pull requests (preview)
+
+Set these GitHub Actions secrets (Repository → Settings → Secrets and variables → Actions):
+- `CLOUDFLARE_API_TOKEN` — API token with Pages write access
+- `CLOUDFLARE_ACCOUNT_ID` — Your Cloudflare account id
+- `VITE_CONVEX_URL` — e.g. `https://<your-convex>.convex.cloud`
+- `VITE_GOOGLE_MAPS_API_KEY` — Browser API key (restrict to localhost, *.pages.dev and your prod domain)
+- `VITE_SITE_URL` — e.g. `https://camadepilates.com`
+
+Optional: Also mirror these variables in Cloudflare Pages Project → Settings → Environment variables to keep build/runtime parity.
+
+Caching notes:
+- Images under `/images` and `/og` are versioned and served with `immutable` cache.
+- HTML routes use `s-maxage=300, stale-while-revalidate=300` to prevent stale bundles after deploy.
 
 ## Can I connect a custom domain to my Lovable project?
 
@@ -102,3 +121,14 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+## Studios Directory: Convex + Cloudflare
+
+- Convex URL is read from `VITE_CONVEX_URL`. If unset, the app uses a local dataset (`src/data/studios.json`) so dev and prod render identically without crashes.
+- You can temporarily override via `?convexUrl=https://...` (stored in localStorage) for quick testing.
+- Google Maps requires `VITE_GOOGLE_MAPS_API_KEY`. If missing or domain not authorized, the map shows a friendly placeholder instead of breaking.
+
+Best practices:
+- Keep `VITE_CONVEX_URL` and `VITE_GOOGLE_MAPS_API_KEY` set for both preview and production.
+- Cache-bust images with the included manifest generator (`npm run build` runs it automatically).
+- Avoid caching APIs at the edge (`functions/[[path]].ts` already sets `no-store` for `/api/*`).

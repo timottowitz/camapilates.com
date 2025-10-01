@@ -33,6 +33,7 @@ import {
 } from 'lucide-react';
 import { GooglePlacesPhoto } from '@/components/studio/GooglePlacesPhoto';
 import { hasConvex } from '@/lib/convexProvider';
+import localData from '@/data/studios.json';
 
 const StudioDetail: React.FC = () => {
   const { city, studio } = useParams<{ city: string; studio: string }>();
@@ -53,31 +54,6 @@ const StudioDetail: React.FC = () => {
 
   const cityName = city ? cityNameMap[city.toLowerCase()] || city : '';
 
-  // If Convex isn’t configured, render a safe fallback before any data hooks
-  if (!hasConvex) {
-    const title = 'Estudio de Pilates';
-    const desc = 'Detalle de estudio no disponible temporalmente.';
-    return (
-      <>
-        <Helmet>
-          <title>{title}</title>
-          <meta name="description" content={desc} />
-        </Helmet>
-        <div className="container mx-auto px-4 py-12">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold mb-4">Estudio de Pilates</h1>
-            <p className="text-gray-600 mb-8">El detalle del estudio requiere conexión a datos. Por favor vuelve más tarde.</p>
-            <Button asChild>
-              <Link to={city ? `/estudios-de-pilates/${city}` : '/estudios-de-pilates'}>
-                Ver directorio
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </>
-    );
-  }
-
   // Debug logging
   React.useEffect(() => {
     if (city && studio) {
@@ -89,11 +65,10 @@ const StudioDetail: React.FC = () => {
     }
   }, [city, studio, cityName]);
 
-  // Fetch studio data - only fetch if we have valid params
-  const studioData = useQuery(
-    api.studios.getBySlug,
-    cityName && studio ? { city: cityName, slug: studio } : 'skip'
-  );
+  // Fetch studio data - Convex or local fallback
+  const studioData = hasConvex
+    ? useQuery(api.studios.getBySlug, cityName && studio ? { city: cityName, slug: studio } : 'skip')
+    : (localData.studios as any[]).find((s: any) => (s.address?.city || '').toLowerCase() === (cityName || '').toLowerCase() && s.slug === studio) || null;
 
   // Debug data state
   React.useEffect(() => {

@@ -1,66 +1,87 @@
-name: Deploy (Cloudflare Pages)
+name: Deploy to Cloudflare Pages
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch: {}
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
 
-env:
-  # Set these as GitHub Variables (Repository settings → Variables)
-  CF_PAGES_PROJECT_NAME: ${{ vars.CF_PAGES_PROJECT_NAME }}
-  SITE_URL: ${{ vars.SITE_URL }}
-  NODE_VERSION: ${{ vars.NODE_VERSION || '20' }}
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: cloudflare-pages-deploy
+  cancel-in-progress: true
 
 jobs:
-  build-deploy:
-    name: Build and Deploy
+  build-and-deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: camapilates.com
+    env:
+      NODE_ENV: production
+      # Build-time env for Vite (make sure to set these in GitHub Secrets)
+      VITE_CONVEX_URL: ${{ secrets.VITE_CONVEX_URL }}
+      VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
+      VITE_SITE_URL: ${{ secrets.VITE_SITE_URL }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: npm
-          cache-dependency-path: camapilates.com/package-lock.json
+          node-version: '22'
+          cache: 'npm'
 
-      - name: Install deps
+      - name: Install dependencies
         run: npm ci
 
-      - name: Build (with prerender)
+      - name: Build site
         run: npm run build
-        env:
-          SITE_ORIGIN: ${{ env.SITE_URL }}
-          VITE_SITE_URL: ${{ env.SITE_URL }}
 
-      - name: Upload to Cloudflare Pages
+      - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: ${{ env.CF_PAGES_PROJECT_NAME }}
-          directory: camapilates.com/dist
+          projectName: camadepilates
+          directory: dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          wranglerVersion: '3'
 
-  purge-cache:
-    name: Purge Cloudflare Cache (optional)
-    needs: build-deploy
+  preview:
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == false }}
     runs-on: ubuntu-latest
-    if: ${{ secrets.CLOUDFLARE_ZONE_ID != '' && secrets.CLOUDFLARE_API_TOKEN != '' }}
+    env:
+      NODE_ENV: production
+      VITE_CONVEX_URL: ${{ secrets.VITE_CONVEX_URL }}
+      VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
+      VITE_SITE_URL: ${{ secrets.VITE_SITE_URL }}
     steps:
-      - name: Purge everything
-        env:
-          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CF_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-        run: |
-          curl -sS -X POST \
-            -H "Authorization: Bearer ${CF_API_TOKEN}" \
-            -H "Content-Type: application/json" \
-            "https://api.cloudflare.com/client/v4/zones/${CF_ZONE_ID}/purge_cache" \
-            --data '{"purge_everything":true}'
+      - name: Checkout
+        uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Deploy Preview to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: camadepilates
+          directory: dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          wranglerVersion: '3'
+          branch: ${{ github.head_ref || github.ref_name }}

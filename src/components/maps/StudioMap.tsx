@@ -74,18 +74,26 @@ export function StudioMap({
   const [markerClusterer, setMarkerClusterer] = useState<any>(null);
   const [directionsService, setDirectionsService] = useState<any>(null);
   const [directionsRenderer, setDirectionsRenderer] = useState<any>(null);
+  const [mapUnavailable, setMapUnavailable] = useState<boolean>(false);
 
   // Load Google Maps script
   useEffect(() => {
+    const key = (import.meta as any).env?.VITE_GOOGLE_MAPS_API_KEY || '';
+    if (!key) {
+      setMapUnavailable(true);
+      return;
+    }
     if (!window.google) {
       const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ''}&libraries=places,visualization,geometry,drawing&callback=initMap`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${key}&libraries=places,visualization,geometry,drawing&callback=initMap`;
       script.async = true;
       script.defer = true;
 
       window.initMap = () => {
         initializeMap();
       };
+
+      script.onerror = () => setMapUnavailable(true);
 
       document.head.appendChild(script);
 
@@ -401,6 +409,17 @@ export function StudioMap({
 
     setSelectedStudio(nearest);
   }, [userLocation, studios, map, markers]);
+
+  if (mapUnavailable) {
+    return (
+      <Card className="w-full h-[400px] grid place-content-center text-center text-sm text-muted-foreground">
+        <div>
+          <p>Mapa no disponible.</p>
+          <p>Configura VITE_GOOGLE_MAPS_API_KEY y autoriza tu dominio para habilitarlo.</p>
+        </div>
+      </Card>
+    );
+  }
 
   return (
     <div className="relative">

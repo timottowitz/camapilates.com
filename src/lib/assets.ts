@@ -6,16 +6,16 @@
 import { getVersionedImageUrl as v } from '@/hooks/useVersionedImage';
 
 export const ASSETS = {
-  // Shop hero background
-  shopHero: v('/images/hero-shop.webp'),
+  // Shop hero background (use known present OG image to avoid 404s)
+  shopHero: v('/og/cama-de-pilates-venta-mexico.png'),
 
-  // Shop header addon (small promo/app graphic)
-  shopHeaderAddon: v('/images/shop-addon.webp'),
+  // Shop header addon (use present brand asset)
+  shopHeaderAddon: v('/brand/edelweiss.svg'),
 
   // Category / explore imagery
-  // Round category icons (user-provided circular-center images)
-  catReformers: v('/images/reformers.webp'),
-  catAccessories: v('/images/accessories.webp'),
+  // Round category icons (use present OG images to avoid 404)
+  catReformers: v('/og/reformer-compacto.png'),
+  catAccessories: v('/og/accesorios-cama-de-pilates-esenciales.png'),
 
   // Featured Product section image (override)
   featuredProducts: v('/images/featured-products.webp'),
@@ -27,12 +27,11 @@ export const ASSETS = {
 
 // Candidate images available in public for randomized visual fill
 export const ASSET_CANDIDATES: string[] = [
-  '/images/finish-walnut.jpg',
-  '/images/finish-white.jpg',
-  '/images/finish-black.jpg',
   '/images/finish-mycelium.webp',
-  '/images/hero-shop.webp',
+  '/og/reformer-compacto.png',
+  '/og/cama-de-pilates-reformer.png',
   '/og/cama-de-pilates-venta-mexico.png',
+  '/brand/edelweiss.svg',
 ];
 
 export function pickImage(key: string): string {

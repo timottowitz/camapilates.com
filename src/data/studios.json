@@ -1,0 +1,55 @@
+{
+  "cities": [
+    {
+      "_id": "city_cdmx",
+      "name": "Ciudad de México",
+      "state": "CDMX",
+      "slug": "ciudad-de-mexico",
+      "studioCount": 2,
+      "averageRating": 4.8,
+      "neighborhoods": ["Polanco", "Condesa", "Roma Norte"]
+    }
+  ],
+  "studios": [
+    {
+      "_id": "studio_eq",
+      "slug": "equilibrium-pilates",
+      "name": "Equilibrium Pilates",
+      "address": {
+        "street": "Av. Presidente Masaryk 123",
+        "neighborhood": "Polanco",
+        "city": "Ciudad de México",
+        "coordinates": { "lat": 19.433, "lng": -99.196 }
+      },
+      "metrics": { "googleRating": 4.8, "googleReviewCount": 120 },
+      "classTypes": ["Reformer", "Mat"],
+      "equipment": ["Reformer", "Tower"],
+      "amenities": ["Vestidores", "Estacionamiento"],
+      "isVerified": true,
+      "dataQualityScore": 90,
+      "pricing": { "singleClassMin": 350, "singleClassMax": 500 },
+      "placeId": null
+    },
+    {
+      "_id": "studio_fm",
+      "slug": "flow-motion-pilates",
+      "name": "Flow Motion Pilates",
+      "address": {
+        "street": "Av. Insurgentes Sur 456",
+        "neighborhood": "Roma Norte",
+        "city": "Ciudad de México",
+        "coordinates": { "lat": 19.417, "lng": -99.163 }
+      },
+      "metrics": { "googleRating": 4.7, "googleReviewCount": 85 },
+      "classTypes": ["Reformer", "Mat", "Privadas"],
+      "equipment": ["Reformer"],
+      "amenities": ["Duchas", "Lockers"],
+      "isVerified": false,
+      "dataQualityScore": 82,
+      "pricing": { "singleClassMin": 300, "singleClassMax": 450 },
+      "placeId": null
+    }
+  ],
+  "featured": ["studio_eq", "studio_fm"]
+}
+

@@ -26,7 +26,7 @@ export const onRequest: PagesFunction = async (ctx) => {
     url.pathname.startsWith('/blog/tag/')
   ) {
     // Short browser TTL, long edge TTL semantics
-    set('public, max-age=60, s-maxage=86400, stale-while-revalidate=3600');
+    set('public, max-age=60, s-maxage=300, stale-while-revalidate=300');
   } else if (
     url.pathname === '/' ||
     url.pathname === '/products' || url.pathname === '/products/' ||
@@ -39,7 +39,7 @@ export const onRequest: PagesFunction = async (ctx) => {
     url.pathname.startsWith('/acabados')
   ) {
     // Edge cache primary marketing routes and product pages
-    set('public, max-age=60, s-maxage=86400, stale-while-revalidate=3600');
+    set('public, max-age=60, s-maxage=300, stale-while-revalidate=300');
   } else if (url.pathname === '/sitemap.xml') {
     set('public, max-age=0, s-maxage=3600');
   }

@@ -10,6 +10,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { getPlaceholderImage, getStudioColor, getInitials } from '@/utils/studio-helpers';
+import { hasConvex } from '@/lib/convexProvider';
 
 interface GooglePlacesPhotoProps {
   placeId?: string;
@@ -47,7 +48,7 @@ export const GooglePlacesPhoto: React.FC<GooglePlacesPhotoProps> = ({
   const [attribution, setAttribution] = useState<any>(null);
   const [isVisible, setIsVisible] = useState(priority === 'eager');
 
-  const fetchPhotoUrl = useAction(api.googlePlaces.getStudioPhotoUrl);
+  const fetchPhotoUrl = hasConvex ? useAction(api.googlePlaces.getStudioPhotoUrl) : null;
 
   // Intersection Observer for lazy loading
   useEffect(() => {
@@ -78,9 +79,9 @@ export const GooglePlacesPhoto: React.FC<GooglePlacesPhotoProps> = ({
 
   // Fetch photo when visible
   useEffect(() => {
-    if (!isVisible || !placeId) {
+    if (!isVisible || !placeId || !hasConvex || !fetchPhotoUrl) {
       // No place_id, use fallback immediately
-      if (!placeId) {
+      if (!placeId || !hasConvex || !fetchPhotoUrl) {
         setImageSrc(getPlaceholderImage(fallbackIndex));
         setImageState('fallback');
       }
@@ -207,12 +208,7 @@ export const GooglePlacesPhoto: React.FC<GooglePlacesPhotoProps> = ({
         </TooltipProvider>
       )}
 
-      {/* Fallback indicator for debugging (remove in production) */}
-      {process.env.NODE_ENV === 'development' && imageState === 'fallback' && (
-        <div className="absolute top-2 left-2 bg-yellow-500 text-white text-xs px-2 py-1 rounded">
-          Fallback Image
-        </div>
-      )}
+      {/* (Removed debug-only fallback label to keep dev/prod identical) */}
 
       {/* "Powered by Google" attribution (required when not showing a map) */}
       <img
