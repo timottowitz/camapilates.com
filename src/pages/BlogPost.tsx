@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Calendar, Clock, ArrowLeft, User, Phone, MessageCircle } from 'lucide-react';
 import { loadBlogPost, getRelatedPosts } from '@/utils/blogUtils';
+import { slugify } from '@/utils/slug';
 import CTASection from '@/components/ui/cta-section';
 import AudioStory from '@/components/ui/audio-story';
 import TableOfContents from '@/components/blog/TableOfContents';
@@ -273,7 +274,7 @@ const BlogPost = () => {
                 {(Array.isArray((postMeta as any).tags) && (postMeta as any).tags.length > 0) && (
                   <div className="flex flex-wrap items-center gap-2">
                     {(postMeta as any).tags.map((tag: string) => (
-                      <Link key={tag} to={`/blog/tag/${encodeURIComponent(tag)}`} className="text-xs px-2 py-1 bg-muted rounded hover:bg-accent">
+                      <Link key={tag} to={`/blog/tag/${slugify(tag)}`} className="text-xs px-2 py-1 bg-muted rounded hover:bg-accent">
                         #{tag}
                       </Link>
                     ))}

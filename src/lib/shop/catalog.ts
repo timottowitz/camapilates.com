@@ -1,5 +1,6 @@
 import products from '@/content/products.json';
 import type { Product, Region, FinishKey } from './types';
+import { slugify } from '@/utils/slug';
 
 export function allProducts(): Product[] {
   return products as Product[];
@@ -72,7 +73,7 @@ export function filterByCategory(list: Product[], cats: string[]): Product[] {
 }
 
 export function toCategorySlug(name: string): string {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  return slugify(name);
 }
 
 export function categoryFromSlug(slug: string): string | undefined {

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import BlogList from '@/components/blog/BlogList';
 import { getAllPostsMeta, getPostsByTag } from '@/lib/content';
+import { slugify } from '@/utils/slug';
 
 interface BlogPostMeta {
   slug: string;
@@ -16,18 +17,29 @@ interface BlogPostMeta {
 }
 
 const BlogTag: React.FC = () => {
+  const navigate = useNavigate();
   const { tag } = useParams<{ tag: string }>();
   const [posts, setPosts] = useState<BlogPostMeta[]>([]);
   const [loading, setLoading] = useState(true);
+  const normalized = slugify(tag || '');
 
   useEffect(() => {
     setLoading(true);
-    const filtered = tag ? getPostsByTag(tag) : getAllPostsMeta();
+    const filtered = tag ? getPostsByTag(normalized) : getAllPostsMeta();
     setPosts(filtered);
     setLoading(false);
-  }, [tag]);
+  }, [normalized]);
 
-  const title = `Etiqueta: ${tag}`;
+  // Normalize URL to ASCII slug
+  useEffect(() => {
+    if (!tag) return;
+    if (tag !== normalized) {
+      navigate(`/blog/tag/${normalized}`, { replace: true });
+    }
+  }, [tag, normalized]);
+
+  const displayTag = posts[0]?.tags?.find(t => slugify(t) === normalized) || (tag || '').replace(/-/g, ' ');
+  const title = `Etiqueta: ${displayTag}`;
 
   if (loading) return <div className="container mx-auto px-4 py-8">Loading…</div>;
 
@@ -35,22 +47,22 @@ const BlogTag: React.FC = () => {
     <>
       <Helmet>
         <title>{title} | Edelweiss Pilates</title>
-        <meta name="description" content={`Artículos con la etiqueta ${tag}`} />
+        <meta name="description" content={`Artículos con la etiqueta ${displayTag}`} />
         <meta name="robots" content="index,follow" />
-        <link rel="canonical" href={`${window.location.origin}/blog/tag/${tag}`} />
+        <link rel="canonical" href={`${window.location.origin}/blog/tag/${normalized}`} />
         <meta property="og:site_name" content="Edelweiss Pilates" />
         <meta property="og:locale" content="es_MX" />
         <meta property="og:title" content={title} />
-        <meta property="og:description" content={`Artículos con la etiqueta ${tag}`} />
+        <meta property="og:description" content={`Artículos con la etiqueta ${displayTag}`} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`${window.location.origin}/blog/tag/${tag}`} />
+        <meta property="og:url" content={`${window.location.origin}/blog/tag/${normalized}`} />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "CollectionPage",
             "name": title,
-            "description": `Artículos con la etiqueta ${tag}`,
-            "url": `${window.location.origin}/blog/tag/${tag}`,
+            "description": `Artículos con la etiqueta ${displayTag}`,
+            "url": `${window.location.origin}/blog/tag/${normalized}`,
             "mainEntity": {
               "@type": "ItemList",
               "itemListElement": (posts || []).slice(0, 20).map((p, idx) => ({

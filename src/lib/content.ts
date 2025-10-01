@@ -1,4 +1,5 @@
 import matter from 'gray-matter';
+import { slugify } from '@/utils/slug';
 
 export interface Frontmatter {
   title: string;
@@ -110,8 +111,8 @@ export function getPostBySlug(slug: string): PostFull | undefined {
 }
 
 export function getPostsByCategory(category: string): PostIndexItem[] {
-  const lc = category.toLowerCase();
-  return getAllPostsMeta().filter(p => p.category.toLowerCase() === lc);
+  const sc = slugify(category);
+  return getAllPostsMeta().filter(p => slugify(p.category) === sc);
 }
 
 export function getAllTags(): string[] {
@@ -121,8 +122,8 @@ export function getAllTags(): string[] {
 }
 
 export function getPostsByTag(tag: string): PostIndexItem[] {
-  const lt = tag.toLowerCase();
-  return getAllPostsMeta().filter(p => p.tags.map(t => t.toLowerCase()).includes(lt));
+  const st = slugify(tag);
+  return getAllPostsMeta().filter(p => p.tags.some(t => slugify(t) === st));
 }
 
 export function getAllCategories(): string[] {

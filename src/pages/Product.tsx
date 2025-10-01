@@ -8,6 +8,7 @@ import { getOrigin, DEFAULTS } from '@/lib/seo';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import products from '@/content/products.json';
 import type { FinishKey, Product as PType } from '@/lib/shop/types';
+import { toCategorySlug } from '@/lib/shop/catalog';
 import ShoprocketBuyButton from '@/components/commerce21/ShoprocketBuyButton';
 import Gallery21 from '@/components/commerce21/Gallery21';
 import { beginCheckout, viewItem } from '@/lib/shop/analytics';
@@ -182,7 +183,7 @@ const ProductPage: React.FC = () => {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Tienda', item: `${origin}/shop` },
-      ...(prod.category ? [{ '@type': 'ListItem', position: 2, name: prod.category, item: `${origin}/shop/category/${(prod.category || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}` }] : []),
+      ...(prod.category ? [{ '@type': 'ListItem', position: 2, name: prod.category, item: `${origin}/shop/category/${toCategorySlug(prod.category || '')}` }] : []),
       { '@type': 'ListItem', position: prod.category ? 3 : 2, name: prod.name, item: url },
     ]
   };
@@ -236,7 +237,7 @@ const ProductPage: React.FC = () => {
               <Link to="/shop" className="hover:underline">Tienda</Link>
               {prod.category && (<>
                 <span>›</span>
-                <Link to={`/shop/category/${(prod.category || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`} className="hover:underline">{prod.category}</Link>
+                <Link to={`/shop/category/${toCategorySlug(prod.category || '')}`} className="hover:underline">{prod.category}</Link>
               </>)}
               <span>›</span>
               <span className="text-foreground">{prod.name}</span>

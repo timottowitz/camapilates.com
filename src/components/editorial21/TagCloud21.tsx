@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { slugify } from '@/utils/slug';
 
 type TagItem = { tag: string; count: number };
 
@@ -16,7 +17,7 @@ const TagCloud21: React.FC<{ tags: TagItem[] }> = ({ tags }) => {
       {tags.map((t) => (
         <Link
           key={t.tag}
-          to={`/blog/tag/${encodeURIComponent(t.tag)}`}
+          to={`/blog/tag/${slugify(t.tag)}`}
           style={{ fontSize: `${scale(t.count)}em` }}
           className="text-foreground/80 hover:text-primary"
           title={`${t.tag} (${t.count})`}
@@ -29,4 +30,3 @@ const TagCloud21: React.FC<{ tags: TagItem[] }> = ({ tags }) => {
 };
 
 export default TagCloud21;
-

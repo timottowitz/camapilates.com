@@ -32,7 +32,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
           <Card className="card-hover group max-w-3xl">
             <CardHeader className="pb-4">
               <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-                <Link to={`/blog/category/${encodeURIComponent(featuredPost.category)}`}>
+                <Link to={`/blog/category/${slugify(featuredPost.category)}`}>
                   <Badge variant="secondary">{featuredPost.category}</Badge>
                 </Link>
                 <div className="flex items-center gap-1">
@@ -111,7 +111,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
                   </Link>
                 </div>
                 <div className="mt-3">
-                  <Link to={`/blog/category/${encodeURIComponent(post.category)}`} className="text-xs text-muted-foreground hover:text-primary">
+                  <Link to={`/blog/category/${slugify(post.category)}`} className="text-xs text-muted-foreground hover:text-primary">
                     #{post.category}
                   </Link>
                 </div>
