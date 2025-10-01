@@ -183,9 +183,9 @@ const StudioDetail: React.FC = () => {
   // SEO metadata
   const pageTitle = `${studioData.name} - Estudio de Pilates en ${cityName}`;
   const pageDescription = studioData.description ||
-    `${studioData.name} es un estudio de Pilates en ${studioData.address.neighborhood || cityName}. ${
-      studioData.metrics.googleRating
-        ? `Calificación: ${studioData.metrics.googleRating} estrellas con ${studioData.metrics.googleReviewCount} reseñas.`
+    `${studioData.name} es un estudio de Pilates en ${studioData.address?.neighborhood || cityName}. ${
+      (studioData.metrics?.googleRating ?? 0) > 0
+        ? `Calificación: ${studioData.metrics?.googleRating} estrellas con ${studioData.metrics?.googleReviewCount || 0} reseñas.`
         : ''
     }`;
 
