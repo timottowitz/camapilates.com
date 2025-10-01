@@ -466,7 +466,7 @@ const StudioDetail: React.FC = () => {
                     <CardTitle>Información de Contacto</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
-                    {studioData.contact.phone && (
+                    {studioData.contact?.phone && (
                       <div className="flex items-center gap-3">
                         <Phone className="w-4 h-4 text-gray-400" />
                         <span>{studioData.contact.phone}</span>
