@@ -106,44 +106,7 @@ class AutonomousBlogPipeline {
     this.log(`⏱️  Max Processing Time: ${this.formatTime(PIPELINE_STAGES.reduce((sum, stage) => sum + stage.timeout, 0))}`, 'info');
   }
 
-  // Content quality detection functions
-  async isTemplateContent(filePath) {
-    try {
-      const content = await fs.readFile(filePath, 'utf-8');
-      const size = content.length;
-
-      // Template indicators
-      const templateIndicators = [
-        'Introducción breve al tema',
-        'Punto clave 1 con contexto mexicano',
-        'Situación local, disponibilidad, costos',
-        'Pendiente: investigación web',
-        'Creado automáticamente',
-        'requiere investigación web'
-      ];
-
-      const hasTemplateText = templateIndicators.some(indicator =>
-        content.includes(indicator));
-
-      // Size thresholds: < 3000 bytes likely template for blog, < 2000 for research
-      const isSmall = filePath.includes('research') ? size < 2000 : size < 3000;
-
-      return hasTemplateText || isSmall;
-    } catch (error) {
-      return true; // If file doesn't exist, consider it template/incomplete
-    }
-  }
-
-  async hasQualityContent(blogSlug) {
-    const blogPath = path.join(CONFIG.outputDir, `${blogSlug}.md`);
-    const researchPath = path.join(CONFIG.researchDir, `${blogSlug}.md`);
-
-    // Check if both files exist and contain quality content
-    const blogIsTemplate = await this.isTemplateContent(blogPath);
-    const researchIsTemplate = await this.isTemplateContent(researchPath);
-
-    return !blogIsTemplate && !researchIsTemplate;
-  }
+  // Note: Quality checking removed - we trust the TODO file status (🔬 = needs work)
 
   async getPendingBlogs(limit = 10) {
     try {
@@ -152,13 +115,14 @@ class AutonomousBlogPipeline {
       const envTargets = (process.env.TARGET_SLUGS || '').split(',').map(s => s.trim()).filter(Boolean);
       const targetSet = new Set(envTargets);
 
-      // Parse TODO file for 🔬 (research needed) and ✅ (completed but template) blogs
+      // Parse TODO file for 🔬 (research needed) blogs only
       const lines = todoContent.split('\n');
       for (let i = 0; i < lines.length && pendingBlogs.length < limit; i++) {
         const line = lines[i];
 
-        if ((line.includes('🔬') || line.includes('✅')) && line.startsWith('###')) {
-          const titleMatch = line.match(/###\s+[🔬✅]\s+(.+)/);
+        // ONLY select 🔬 (research needed) blogs - trust TODO file as source of truth
+        if (line.includes('🔬') && line.startsWith('###')) {
+          const titleMatch = line.match(/###\s+🔬\s+(.+)/);
 
           if (titleMatch) {
             const title = titleMatch[1].trim();
@@ -182,6 +146,7 @@ class AutonomousBlogPipeline {
                 continue;
               }
 
+              // Add blog without quality check - trust TODO status
               pendingBlogs.push({
                 title: title,
                 slug: slug,
