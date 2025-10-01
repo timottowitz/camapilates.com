@@ -7,7 +7,7 @@ import { getVersionedImageUrl as v } from '@/hooks/useVersionedImage';
 
 export const ASSETS = {
   // Shop hero background (use known present OG image to avoid 404s)
-  shopHero: v('/og/cama-de-pilates-venta-mexico.png'),
+  shopHero: v('/images/featured-products.webp'),
 
   // Shop header addon (use present brand asset)
   shopHeaderAddon: v('/brand/edelweiss.svg'),

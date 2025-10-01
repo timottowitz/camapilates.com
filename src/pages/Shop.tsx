@@ -156,7 +156,6 @@ const Shop: React.FC = () => {
           {/* Hero banner */}
           <div className="rounded-lg overflow-hidden border border-border bg-muted">
             <div className="relative aspect-[21/6] w-full bg-center bg-cover" style={{ backgroundImage: `url(${ASSETS.shopHero || DEFAULTS.ogImage})` }}>
-              <ShopHeaderAddon src={ASSETS.shopHeaderAddon} />
               <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
               <div className="absolute inset-0 p-6 md:p-10 flex items-center">
                 <div className="max-w-xl text-white">
