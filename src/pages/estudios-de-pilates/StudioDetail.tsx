@@ -83,6 +83,9 @@ const StudioDetail: React.FC = () => {
   const convexCityStudios = hasConvex
     ? useQuery(api.studios.getByCity, cityName ? { city: cityName } : undefined)
     : undefined;
+  const convexSearch = hasConvex
+    ? useQuery(api.studios.search, studio ? { query: studio.replace(/-/g, ' '), limit: 10 } : undefined)
+    : undefined;
 
   // Failover to local data after a short timeout
   const [failover, setFailover] = React.useState(false);
@@ -93,7 +96,10 @@ const StudioDetail: React.FC = () => {
   }, [cityName, studio]);
 
   const studioData = hasConvex && !failover
-    ? (convexStudio || (convexCityStudios || [])?.find((s: any) => s.slug === studio))
+    ? (convexStudio
+        || (convexCityStudios || [])?.find((s: any) => s.slug === studio)
+        || (convexSearch || [])?.find((s: any) => s.slug === studio)
+        || (convexSearch || [])[0])
     : (localData.studios as any[]).find((s: any) => (s.address?.city || '').toLowerCase() === (cityName || '').toLowerCase() && s.slug === studio) || null;
 
   // Debug data state
