@@ -354,7 +354,7 @@ const StudioDetail: React.FC = () => {
                       width={400}
                       height={300}
                       className="w-full h-48 object-cover rounded-lg"
-                      priority="high"
+                      priority="eager"
                       showAttribution={true}
                       fallbackIndex={0}
                     />
