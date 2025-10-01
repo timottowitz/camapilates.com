@@ -12,7 +12,7 @@ import RibbonBanner from '@/components/ui/ribbon-banner';
 const Index = () => {
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://camadepilates.com';
   const title = 'Cama de Pilates (Reformer) en México — Casa y Estudio';
-  const desc = 'Cama de Pilates en venta: Reformers silenciosos con cuero genuino, madera de nogal y acero. Precios 2025, entrega 5–7 días desde CDMX y garantía 3 años.';
+  const desc = 'Cama de Pilates en venta: Reformers silenciosos con cuero genuino, madera de nogal y acero. Precios 2025, entrega 3 semanas desde CDMX y garantía 3 años.';
 
   const productPk = 'sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c'; // TODO: replace with real key
   const productId = 'prod_6569ddc31c17b221072732'; // TODO: replace with real product id
@@ -133,7 +133,7 @@ const Index = () => {
         <div className="container mx-auto px-4 py-20">
           <div className="max-w-4xl">
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-foreground">Cama de Pilates (Reformer)</h1>
-            <p className="mt-6 text-xl text-muted-foreground">Cama de Pilates para casa y estudio con <strong>silencio total</strong> y <strong>estabilidad sin vibraciones</strong>. Acabados premium en <strong>cuero genuino</strong>, <strong>madera de nogal</strong> y <strong>acero estructural</strong>. Entrega <strong>5–7 días</strong> desde CDMX y <strong>garantía 3 años</strong>.</p>
+            <p className="mt-6 text-xl text-muted-foreground">Cama de Pilates para casa y estudio con <strong>silencio total</strong> y <strong>estabilidad sin vibraciones</strong>. Acabados premium en <strong>cuero genuino</strong>, <strong>madera de nogal</strong> y <strong>acero estructural</strong>. Entrega <strong>3 semanas</strong> desde CDMX y <strong>garantía 3 años</strong>.</p>
             <p className="mt-3 text-sm text-muted-foreground">Ingeniería alemana • Manufactura mexicana • Ajustada por instructoras</p>
             <p className="mt-4 text-base text-foreground italic">El último Reformer que necesitarás. Desarrolla tu gracia con materiales nobles—solo lo mejor toca tu piel.</p>
             <div className="mt-8 flex flex-wrap gap-3 items-center">
@@ -142,7 +142,7 @@ const Index = () => {
             </div>
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="flex items-center gap-2 text-muted-foreground"><CheckCircle2 className="h-5 w-5 text-primary" /> Silencio total</div>
-              <div className="flex items-center gap-2 text-muted-foreground"><Truck className="h-5 w-5 text-primary" /> Envío MX 5–7 días</div>
+              <div className="flex items-center gap-2 text-muted-foreground"><Truck className="h-5 w-5 text-primary" /> Envío MX 3 semanas</div>
               <div className="flex items-center gap-2 text-muted-foreground"><ShieldCheck className="h-5 w-5 text-primary" /> Garantía 3 años</div>
             </div>
           </div>
@@ -222,7 +222,7 @@ const Index = () => {
               <li><strong>Silencio total</strong> gracias a tolerancias precisas: sin crujidos, sin distracciones.</li>
               <li>Estética que eleva tu espacio: cuero genuino, nogal y acero con líneas limpias.</li>
               <li>Construcción DE/MX y <strong>garantía 3 años</strong> con repuestos exprés en español.</li>
-              <li>Entrega nacional <strong>5–7 días</strong> desde CDMX y soporte cercano.</li>
+              <li>Entrega nacional <strong>3 semanas</strong> desde CDMX y soporte cercano.</li>
               <li>Para estudios: <strong>Pack 8+ con 20% descuento</strong> e instalación coordinada.</li>
             </ul>
             <div className="mt-4 flex flex-wrap gap-3">
@@ -254,7 +254,7 @@ const Index = () => {
       <section className="bg-background">
         <div className="container mx-auto px-4 py-12 grid md:grid-cols-3 gap-8">
           {[
-            { t: 'Cama de Pilates para Casa', d: 'Compacta y silenciosa. Cuero genuino, estructura de madera y entrega 5–7 días.', link: '/product/reformer-casa' },
+            { t: 'Cama de Pilates para Casa', d: 'Compacta y silenciosa. Cuero genuino, estructura de madera y entrega 3 semanas.', link: '/product/reformer-casa' },
             { t: 'Cama de Pilates de Estudio', d: 'Silencio total y tolerancias precisas. Cuero, nogal y acero estructural.', link: '/product/reformer-profesional' },
             { t: 'Cama de Pilates en Venta', d: 'Compra con garantía 3 años y repuestos exprés. Ver disponibilidad en México.', link: '/cama-de-pilates/en-venta' }
           ].map((x) => (

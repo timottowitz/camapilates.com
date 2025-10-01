@@ -33,9 +33,9 @@ const ProductPage: React.FC = () => {
   const [agg, setAgg] = useState<{ ratingValue: string; reviewCount: number } | undefined>(undefined);
 
   const estimate = useMemo(() => {
-    if (region === 'MX') return '5–7 días';
-    if (region === 'US') return '12–18 días (estimado)';
-    return '12–21 días (estimado)';
+    if (region === 'MX') return '3 semanas';
+    if (region === 'US') return '4–5 semanas (estimado)';
+    return '4–6 semanas (estimado)';
   }, [region]);
 
   const onChangeRegion = (value: 'MX' | 'US' | 'DE') => {
@@ -101,7 +101,7 @@ const ProductPage: React.FC = () => {
           deliveryTime: {
             '@type': 'ShippingDeliveryTime',
             handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 2, unitCode: 'DAY' },
-            transitTime: { '@type': 'QuantitativeValue', minValue: 5, maxValue: 7, unitCode: 'DAY' }
+            transitTime: { '@type': 'QuantitativeValue', minValue: 19, maxValue: 21, unitCode: 'DAY' }
           }
         },
         {
@@ -110,7 +110,7 @@ const ProductPage: React.FC = () => {
           deliveryTime: {
             '@type': 'ShippingDeliveryTime',
             handlingTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 4, unitCode: 'DAY' },
-            transitTime: { '@type': 'QuantitativeValue', minValue: 10, maxValue: 14, unitCode: 'DAY' }
+            transitTime: { '@type': 'QuantitativeValue', minValue: 26, maxValue: 35, unitCode: 'DAY' }
           }
         },
         {
@@ -119,7 +119,7 @@ const ProductPage: React.FC = () => {
           deliveryTime: {
             '@type': 'ShippingDeliveryTime',
             handlingTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 5, unitCode: 'DAY' },
-            transitTime: { '@type': 'QuantitativeValue', minValue: 10, maxValue: 16, unitCode: 'DAY' }
+            transitTime: { '@type': 'QuantitativeValue', minValue: 26, maxValue: 42, unitCode: 'DAY' }
           }
         }
       ]
@@ -156,7 +156,7 @@ const ProductPage: React.FC = () => {
         name: '¿Cuánto tarda la entrega?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'En México la entrega estimada es de 5–7 días hábiles. Envíos a EE. UU. y Europa entre 12–21 días.'
+          text: 'En México la entrega estimada es de 3 semanas. Envíos a EE. UU. y Europa entre 4–6 semanas.'
         }
       },
       {
@@ -359,7 +359,7 @@ const ProductPage: React.FC = () => {
               <h2 className="text-lg font-semibold text-foreground">Entrega y garantía</h2>
               <details className="mt-3 bg-card p-4 rounded-lg border border-border">
                 <summary className="font-medium text-foreground cursor-pointer">Tiempos de entrega</summary>
-                <p className="mt-2 text-sm text-muted-foreground">México: 5–7 días hábiles. EE. UU.: 12–18 días (estimado). Europa: 12–21 días (estimado).</p>
+                <p className="mt-2 text-sm text-muted-foreground">México: 3 semanas. EE. UU.: 4–5 semanas (estimado). Europa: 4–6 semanas (estimado).</p>
               </details>
               <details className="mt-3 bg-card p-4 rounded-lg border border-border">
                 <summary className="font-medium text-foreground cursor-pointer">Garantía 3 años</summary>

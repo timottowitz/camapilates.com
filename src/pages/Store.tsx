@@ -8,7 +8,7 @@ import { getVersionedImageUrl } from '@/hooks/useVersionedImage';
 const Store = () => {
   const origin = getOrigin();
   const title = 'Cama de Pilates (Reformer) en México — Tienda CAMA Pilates';
-  const desc = 'Compra tu cama de Pilates (Reformer) en México. Modelos para casa y estudio: silencio total, cuero genuino, nogal y acero. Envío 5–7 días y garantía de 3 años.';
+  const desc = 'Compra tu cama de Pilates (Reformer) en México. Modelos para casa y estudio: silencio total, cuero genuino, nogal y acero. Envío 3 semanas y garantía de 3 años.';
 
   const productCasa = {
     '@context': 'https://schema.org',
@@ -27,8 +27,8 @@ const Store = () => {
       availability: 'https://schema.org/InStock',
       itemCondition: 'https://schema.org/NewCondition',
       shippingDetails: [
-        { '@type': 'OfferShippingDetails', shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'MX' }, deliveryTime: { '@type': 'ShippingDeliveryTime', handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 2, unitCode: 'DAY' }, transitTime: { '@type': 'QuantitativeValue', minValue: 5, maxValue: 7, unitCode: 'DAY' } } },
-        { '@type': 'OfferShippingDetails', shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'US' }, deliveryTime: { '@type': 'ShippingDeliveryTime', handlingTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 4, unitCode: 'DAY' }, transitTime: { '@type': 'QuantitativeValue', minValue: 10, maxValue: 14, unitCode: 'DAY' } } },
+        { '@type': 'OfferShippingDetails', shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'MX' }, deliveryTime: { '@type': 'ShippingDeliveryTime', handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 2, unitCode: 'DAY' }, transitTime: { '@type': 'QuantitativeValue', minValue: 19, maxValue: 21, unitCode: 'DAY' } } },
+        { '@type': 'OfferShippingDetails', shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'US' }, deliveryTime: { '@type': 'ShippingDeliveryTime', handlingTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 4, unitCode: 'DAY' }, transitTime: { '@type': 'QuantitativeValue', minValue: 26, maxValue: 35, unitCode: 'DAY' } } },
         { '@type': 'OfferShippingDetails', shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'DE' }, deliveryTime: { '@type': 'ShippingDeliveryTime', handlingTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 5, unitCode: 'DAY' }, transitTime: { '@type': 'QuantitativeValue', minValue: 10, maxValue: 16, unitCode: 'DAY' } } }
       ]
     }
@@ -50,8 +50,8 @@ const Store = () => {
       availability: 'https://schema.org/InStock',
       itemCondition: 'https://schema.org/NewCondition',
       shippingDetails: [
-        { '@type': 'OfferShippingDetails', shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'MX' }, deliveryTime: { '@type': 'ShippingDeliveryTime', handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 2, unitCode: 'DAY' }, transitTime: { '@type': 'QuantitativeValue', minValue: 5, maxValue: 7, unitCode: 'DAY' } } },
-        { '@type': 'OfferShippingDetails', shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'US' }, deliveryTime: { '@type': 'ShippingDeliveryTime', handlingTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 4, unitCode: 'DAY' }, transitTime: { '@type': 'QuantitativeValue', minValue: 10, maxValue: 14, unitCode: 'DAY' } } },
+        { '@type': 'OfferShippingDetails', shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'MX' }, deliveryTime: { '@type': 'ShippingDeliveryTime', handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 2, unitCode: 'DAY' }, transitTime: { '@type': 'QuantitativeValue', minValue: 19, maxValue: 21, unitCode: 'DAY' } } },
+        { '@type': 'OfferShippingDetails', shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'US' }, deliveryTime: { '@type': 'ShippingDeliveryTime', handlingTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 4, unitCode: 'DAY' }, transitTime: { '@type': 'QuantitativeValue', minValue: 26, maxValue: 35, unitCode: 'DAY' } } },
         { '@type': 'OfferShippingDetails', shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'DE' }, deliveryTime: { '@type': 'ShippingDeliveryTime', handlingTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 5, unitCode: 'DAY' }, transitTime: { '@type': 'QuantitativeValue', minValue: 10, maxValue: 16, unitCode: 'DAY' } } }
       ]
     }
@@ -101,7 +101,7 @@ const Store = () => {
         name: '¿Cómo funciona la entrega y armado?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Ofrecemos entrega en todo México en 5–7 días hábiles. Tu reformer llega con instructivo y herramientas para armado fácil, y nuestro equipo de soporte está listo para ayudar si lo necesitas.'
+          text: 'Ofrecemos entrega en todo México en 3 semanas hábiles. Tu reformer llega con instructivo y herramientas para armado fácil, y nuestro equipo de soporte está listo para ayudar si lo necesitas.'
         }
       },
       {
@@ -159,7 +159,7 @@ const Store = () => {
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
             Reformers silenciosos y precisos con cuero genuino, madera de nogal y acero.
-            Entrega 5–7 días en México y soporte en español.
+            Entrega 3 semanas en México y soporte en español.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 text-sm mb-6">
@@ -198,7 +198,7 @@ const Store = () => {
               <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
                 <Truck className="h-5 w-5 text-primary" />
               </div>
-              <span className="font-medium">Entrega 5–7 días</span>
+              <span className="font-medium">Entrega 3 semanas</span>
             </div>
           </div>
 
@@ -211,7 +211,7 @@ const Store = () => {
               <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
                 <span>Pago seguro</span>
                 <span>•</span>
-                <span>Entrega 7–14 días (MX)</span>
+                <span>Entrega 3 semanas (MX)</span>
                 <span>•</span>
                 <span>Garantía 3 años</span>
                 <span>•</span>
@@ -290,7 +290,7 @@ const Store = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 text-sm">
             <div className="flex items-center gap-3">
               <Truck className="h-5 w-5 text-accent" />
-              <span className="text-foreground font-medium">Entrega en 5–7 días en MX</span>
+              <span className="text-foreground font-medium">Entrega en 3 semanas en MX</span>
             </div>
             <div className="flex items-center gap-3">
               <ShieldCheck className="h-5 w-5 text-accent" />
@@ -410,7 +410,7 @@ const Store = () => {
               </summary>
               <div className="mt-4 text-muted-foreground">
                 <p>
-                  Ofrecemos entrega en todo México en 5–7 días hábiles. Tu reformer llega con instructivo y herramientas
+                  Ofrecemos entrega en todo México en 3 semanas. Tu reformer llega con instructivo y herramientas
                   para armado fácil, y nuestro equipo de soporte está listo para ayudar si lo necesitas.
                   Para más información sobre <Link to="/cama-de-pilates/precio" className="text-accent hover:underline">precios y envío</Link>.
                 </p>
@@ -519,9 +519,9 @@ function getInitialRegion(): 'MX' | 'US' | 'DE' {
 function useRegion() {
   const [region, setRegion] = useState<'MX' | 'US' | 'DE'>(getInitialRegion());
   const estimate = useMemo(() => {
-    if (region === 'MX') return 'Entrega estimada: 5–7 días';
-    if (region === 'US') return 'Entrega estimada: 12–18 días (estimado)';
-    return 'Entrega estimada: 12–21 días (estimado)';
+    if (region === 'MX') return 'Entrega estimada: 3 semanas';
+    if (region === 'US') return 'Entrega estimada: 4–5 semanas (estimado)';
+    return 'Entrega estimada: 4–6 semanas (estimado)';
   }, [region]);
   const change = (val: 'MX' | 'US' | 'DE') => {
     setRegion(val);

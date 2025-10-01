@@ -35,7 +35,7 @@ Más allá del precio de etiqueta, considera el costo total de propiedad: garant
 
 **Garantía y soporte.** Tres años de garantía, repuestos exprés y soporte en español reducen el costo de fallos y paros.
 
-**Logística en México.** Envíos 5–7 días desde CDMX implican costos por región. Un precio “bajo” sin logística confiable puede salir caro si el equipo queda parado semanas.
+**Logística en México.** Envíos 3 semanas desde CDMX implican costos por región. Un precio "bajo" sin logística confiable puede salir caro si el equipo queda parado semanas.
 
 ## Rangos orientativos en México (2025)
 - **Reformer para casa:** $25,000–$45,000 MXN. Ideal para 1–2 personas; tramo compacto, foco en silencio y estabilidad.

@@ -71,7 +71,7 @@ Recomendación CAMA: [/product/reformer-profesional](/product/reformer-profesion
 ## Espacio y logística (MX)
 - Verifica huella (largo × ancho) y altura libre; deja margen para cambios de posición de footbar/gearbar.
 - Considera acceso a domicilio/estudio para el equipo embalado.
-- Envío nacional 5–7 días desde CDMX; coordina recepción y, si procede, instalación.
+- Envío nacional 3 semanas desde CDMX; coordina recepción y, si procede, instalación.
 
 ## Precio y costo total de propiedad (TCO)
 **Casa (MXN 25k–45k)**: compra + envío + accesorios de arranque + mantenimiento ligero.

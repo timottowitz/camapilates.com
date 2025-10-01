@@ -51,7 +51,7 @@ const About = () => {
           src: "https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
           alt: "Logo Edelweiss",
           title: "Hecho en CDMX, probado por instructoras",
-          description: "Entrega nacional 5–7 días, garantía 3 años y repuestos exprés. Silencio total y estabilidad sin vibraciones.",
+          description: "Entrega nacional 3 semanas, garantía 3 años y repuestos exprés. Silencio total y estabilidad sin vibraciones.",
           buttonText: "Ver nuestros productos",
           buttonUrl: "/store"
         }}

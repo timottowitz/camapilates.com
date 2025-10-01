@@ -141,7 +141,7 @@ const Shop: React.FC = () => {
         <script type="application/ld+json">{JSON.stringify(itemList)}</script>
       </Helmet>
 
-      <RibbonBanner id="shop" text="Entrega 5–7 días en México • Garantía 3 años • Repuestos exprés" />
+      <RibbonBanner id="shop" text="Entrega 3 semanas en México • Garantía 3 años • Repuestos exprés" />
       <section className="bg-background">
         <div className="container mx-auto px-4 py-10 space-y-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
@@ -164,7 +164,7 @@ const Shop: React.FC = () => {
                 <div className="max-w-xl text-white">
                   <div className="inline-block rounded-full bg-black/50 px-3 py-1 text-xs">Oferta</div>
                   <h2 className="mt-3 text-2xl md:text-3xl font-semibold text-white">Redescubre tu gracia con Reformers Edelweiss y ropa de Pilates no tóxica</h2>
-                  <p className="mt-2 text-sm text-white/90">Tejidos no tóxicos & materiales premium (cuero genuino, nogal & acero). Pago seguro & entrega en 7–14 días en México.</p>
+                  <p className="mt-2 text-sm text-white/90">Tejidos no tóxicos & materiales premium (cuero genuino, nogal & acero). Pago seguro & entrega en 3 semanas en México.</p>
                   <div className="mt-4 flex items-center gap-3">
                     <Link to="/product/reformer-profesional" className="inline-flex items-center px-4 py-2 rounded-md bg-white text-black hover:bg-white/90">Ver promoción</Link>
                     <Link to="/store" className="inline-flex items-center px-4 py-2 rounded-md border border-white/70 text-white hover:bg-white/10">Comparar modelos</Link>

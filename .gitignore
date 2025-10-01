@@ -31,3 +31,5 @@ db/*.sqlite
 *.njsproj
 *.sln
 *.sw?
+data/*.csv
+*.csv

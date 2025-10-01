@@ -43,7 +43,7 @@ const CamaDePilatesPrecio: React.FC = () => {
       <section className="bg-background">
         <div className="container mx-auto px-4 py-12">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Precio de Cama de Pilates (2025)</h1>
-          <p className="text-lg text-muted-foreground max-w-3xl">Rangos de referencia en México y qué incluye realmente el precio: <strong>materiales</strong> (cuero, nogal, acero), <strong>tolerancias</strong> para el <strong>silencio</strong>, muelles, garantía y servicio. Entrega 5–7 días desde CDMX.</p>
+          <p className="text-lg text-muted-foreground max-w-3xl">Rangos de referencia en México y qué incluye realmente el precio: <strong>materiales</strong> (cuero, nogal, acero), <strong>tolerancias</strong> para el <strong>silencio</strong>, muelles, garantía y servicio. Entrega 3 semanas desde CDMX.</p>
 
           <div className="mt-8 grid md:grid-cols-2 gap-6">
             <div className="border border-border rounded-lg p-6 bg-card">
@@ -51,7 +51,7 @@ const CamaDePilatesPrecio: React.FC = () => {
               <ul className="mt-3 list-disc pl-5 text-muted-foreground space-y-1">
                 <li>Estructura de madera con cuero genuino</li>
                 <li>Recorrido suave y silencioso</li>
-                <li>Entrega 5–7 días en México</li>
+                <li>Entrega 3 semanas en México</li>
               </ul>
               <Link to="/product/reformer-casa" className="inline-block mt-4 text-primary">Ver Reformer de Casa →</Link>
             </div>

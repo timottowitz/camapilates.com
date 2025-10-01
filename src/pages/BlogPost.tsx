@@ -541,7 +541,7 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
                 <CTASection
                   variant="compact"
                   title="¿Lista para tu Reformer?"
-                  description="Asesoría personalizada para elegir tu cama de Pilates. Entrega 5–7 días desde CDMX, garantía 3 años y soporte en español."
+                  description="Asesoría personalizada para elegir tu cama de Pilates. Entrega 3 semanas desde CDMX, garantía 3 años y soporte en español."
                 />
               </div>
             )}

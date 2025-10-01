@@ -74,7 +74,7 @@ Consulta la **[guía de precios](/blog/precio-cama-de-pilates)** para el desglos
 6) Poleas con rodamientos sellados; giro suave.
 7) Accesorios base: box/correas/poleas.
 8) Garantía 3 años y repuestos exprés.
-9) Entrega 5–7 días (MX) y soporte en español.
+9) Entrega 3 semanas (MX) y soporte en español.
 10) Costo total en 3 años (mantenimiento + recambios + tiempo de inactividad).
 
 ## Recomendaciones CAMA Pilates

@@ -114,9 +114,9 @@ function getInitialRegion(): 'MX' | 'US' | 'DE' {
 function useRegion() {
   const [region, setRegion] = useState<'MX' | 'US' | 'DE'>(getInitialRegion());
   const estimate = useMemo(() => {
-    if (region === 'MX') return 'Entrega estimada: 5–7 días';
-    if (region === 'US') return 'Entrega estimada: 12–18 días (estimado)';
-    return 'Entrega estimada: 12–21 días (estimado)';
+    if (region === 'MX') return 'Entrega estimada: 3 semanas';
+    if (region === 'US') return 'Entrega estimada: 4–5 semanas (estimado)';
+    return 'Entrega estimada: 4–6 semanas (estimado)';
   }, [region]);
   const change = (val: 'MX' | 'US' | 'DE') => {
     setRegion(val);

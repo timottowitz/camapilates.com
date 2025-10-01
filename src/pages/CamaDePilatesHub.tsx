@@ -52,12 +52,12 @@ const CamaDePilatesHub: React.FC = () => {
       <section className="bg-background">
         <div className="container mx-auto px-4 py-12">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Cama de Pilates (Reformer)</h1>
-          <p className="text-lg text-muted-foreground max-w-3xl">Guía de compra, precios, dimensiones y dónde comprar tu cama de Pilates. Reformers silenciosos y precisos en cuero genuino, madera de nogal y acero. Envío 5–7 días en México y soporte en español.</p>
+          <p className="text-lg text-muted-foreground max-w-3xl">Guía de compra, precios, dimensiones y dónde comprar tu cama de Pilates. Reformers silenciosos y precisos en cuero genuino, madera de nogal y acero. Envío 3 semanas en México y soporte en español.</p>
 
           <div className="mt-10 grid md:grid-cols-2 gap-6">
             <Link to="/cama-de-pilates/en-venta" className="block group border border-border rounded-lg p-6 bg-card hover:border-primary/50 transition-colors">
               <h2 className="text-xl font-semibold text-foreground group-hover:text-primary">Cama de Pilates en Venta</h2>
-              <p className="text-sm text-muted-foreground mt-2">Compra Reformers con entrega 5–7 días en México y garantía 3 años.</p>
+              <p className="text-sm text-muted-foreground mt-2">Compra Reformers con entrega 3 semanas en México y garantía 3 años.</p>
               <span className="inline-block mt-3 text-primary">Ver opciones →</span>
             </Link>
 
@@ -75,7 +75,7 @@ const CamaDePilatesHub: React.FC = () => {
 
             <Link to="/product/reformer-casa" className="block group border border-border rounded-lg p-6 bg-card hover:border-primary/50 transition-colors">
               <h2 className="text-xl font-semibold text-foreground group-hover:text-primary">Para Casa</h2>
-              <p className="text-sm text-muted-foreground mt-2">Reformer compacto y silencioso con cuero genuino. Entrega 5–7 días.</p>
+              <p className="text-sm text-muted-foreground mt-2">Reformer compacto y silencioso con cuero genuino. Entrega 3 semanas.</p>
               <span className="inline-block mt-3 text-primary">Ver Reformer para Casa →</span>
             </Link>
 

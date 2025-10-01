@@ -23,7 +23,7 @@ const StudioPack: React.FC = () => {
     mainEntity: [
       { '@type': 'Question', name: '¿Cuál es el descuento para estudios?', acceptedAnswer: { '@type': 'Answer', text: '20% de descuento a partir de 8 unidades.' } },
       { '@type': 'Question', name: '¿Coordinan instalación?', acceptedAnswer: { '@type': 'Answer', text: 'Sí. Coordinamos entrega por lotes e instalación según agenda del estudio.' } },
-      { '@type': 'Question', name: '¿Cuánto tarda la entrega?', acceptedAnswer: { '@type': 'Answer', text: 'Entregas desde CDMX en 5–7 días dentro de México. Para pedidos voluminosos, confirmamos fecha de instalación.' } },
+      { '@type': 'Question', name: '¿Cuánto tarda la entrega?', acceptedAnswer: { '@type': 'Answer', text: 'Entregas desde CDMX en 3 semanas dentro de México. Para pedidos voluminosos, confirmamos fecha de instalación.' } },
     ],
   };
 
@@ -150,7 +150,7 @@ const StudioPack: React.FC = () => {
             </Link>
             <Link to="/cama-de-pilates/en-venta" className="block group border border-border rounded-lg p-6 bg-card hover:border-[#6B4F3B]/50 transition-colors">
               <h3 className="font-semibold text-foreground group-hover:text-primary">Cama de Pilates en Venta</h3>
-              <p className="text-sm text-muted-foreground mt-2">Envío 5–7 días en México desde CDMX.</p>
+              <p className="text-sm text-muted-foreground mt-2">Envío 3 semanas en México desde CDMX.</p>
             </Link>
           </div>
         </div>

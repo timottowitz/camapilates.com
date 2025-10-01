@@ -129,7 +129,7 @@ Para encontrar los mejores accesorios para tu cama de Pilates:
 - Evita genéricos “fitness” no certificados para Reformer
 
 ### Catálogo CAMA
-Explora accesorios y repuestos con envío 5–7 días: [/accesorios](/accesorios)
+Explora accesorios y repuestos con envío 3 semanas: [/accesorios](/accesorios)
 
 <see-also limit="3" />
 

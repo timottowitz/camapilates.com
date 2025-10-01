@@ -55,7 +55,7 @@ const Footer = () => {
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
             <li><a href="mailto:ventas@camadepilates.com" className="hover:text-primary">ventas@camadepilates.com</a></li>
             <li><a href="https://wa.me/5210000000000" className="hover:text-primary">WhatsApp</a></li>
-            <li>CDMX • Envío nacional 5–7 días</li>
+            <li>CDMX • Envío nacional 3 semanas</li>
           </ul>
           <div className="mt-4">
             <Link to="/packs/estudio" className="inline-flex items-center px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 text-sm">Cotizar pack de estudio</Link>

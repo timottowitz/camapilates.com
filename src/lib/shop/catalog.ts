@@ -27,9 +27,9 @@ export function availabilityLabel(avail: string): string {
 }
 
 export function regionEstimate(region: Region): string {
-  if (region === 'MX') return 'Entrega estimada: 5–7 días';
-  if (region === 'US') return 'Entrega estimada: 12–18 días (estimado)';
-  return 'Entrega estimada: 12–21 días (estimado)';
+  if (region === 'MX') return 'Entrega estimada: 3 semanas';
+  if (region === 'US') return 'Entrega estimada: 4–5 semanas (estimado)';
+  return 'Entrega estimada: 4–6 semanas (estimado)';
 }
 
 export function toItemListSchema(origin: string, list: Product[]) {
