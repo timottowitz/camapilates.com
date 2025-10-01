@@ -6,7 +6,7 @@
     "brand": "CAMA Pilates",
     "sku": "HOME-REFORMER-001",
     "image": "/og/cama-de-pilates-venta-mexico.png",
-    "price": "999.00",
+    "price": "35000.00",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -17,7 +17,7 @@
       { "id": "var_home_walnut", "sku": "HOME-REFORMER-001-W", "finish": "walnut", "image": "/images/finish-walnut.jpg" },
       { "id": "var_home_white", "sku": "HOME-REFORMER-001-WH", "finish": "white", "image": "/images/finish-white.jpg" },
       { "id": "var_home_black", "sku": "HOME-REFORMER-001-BK", "finish": "black", "image": "/images/finish-black.jpg" },
-      { "id": "var_home_mycelium", "sku": "HOME-REFORMER-001-MY", "finish": "mycelium", "image": "/images/finish-mycelium.webp", "price": "6999.00" }
+      { "id": "var_home_mycelium", "sku": "HOME-REFORMER-001-MY", "finish": "mycelium", "image": "/images/finish-mycelium.webp", "price": "38000.00" }
     ],
     "bestSeller": true,
     "isNew": false,
@@ -31,7 +31,7 @@
     "brand": "CAMA Pilates",
     "sku": "PRO-REFORMER-001",
     "image": "/og/cama-de-pilates-venta-mexico.png",
-    "price": "1999.00",
+    "price": "50000.00",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -42,7 +42,7 @@
       { "id": "var_pro_walnut", "sku": "PRO-REFORMER-001-W", "finish": "walnut", "image": "/images/finish-walnut.jpg" },
       { "id": "var_pro_white", "sku": "PRO-REFORMER-001-WH", "finish": "white", "image": "/images/finish-white.jpg" },
       { "id": "var_pro_black", "sku": "PRO-REFORMER-001-BK", "finish": "black", "image": "/images/finish-black.jpg" },
-      { "id": "var_pro_mycelium", "sku": "PRO-REFORMER-001-MY", "finish": "mycelium", "image": "/images/finish-mycelium.webp", "price": "7999.00" }
+      { "id": "var_pro_mycelium", "sku": "PRO-REFORMER-001-MY", "finish": "mycelium", "image": "/images/finish-mycelium.webp", "price": "55000.00" }
     ],
     "bestSeller": true,
     "isNew": true,
@@ -56,7 +56,7 @@
     "brand": "CAMA Pilates",
     "sku": "PRO-REFORMER-001-MY-ED",
     "image": "/images/finish-mycelium.webp",
-    "price": "7999.00",
+    "price": "52000.00",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -75,7 +75,7 @@
     "brand": "CAMA Pilates",
     "sku": "ACC-CINTAS-SET-5",
     "image": "/og/cama-de-pilates-venta-mexico.png",
-    "price": "49.00",
+    "price": "1200.00",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Accesorios",
