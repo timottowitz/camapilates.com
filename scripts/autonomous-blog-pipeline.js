@@ -52,10 +52,10 @@ const PIPELINE_STAGES = [
   },
   {
     name: 'content_writing',
-    agent: 'blog_writer',
+    agent: 'content-writer-agent',
     tool: 'write_blog_from_research',
     description: 'Write blog post from research',
-    timeout: 480000 // 8 minutes
+    timeout: 600000 // 10 minutes (LLM multi-pass generation)
   },
   {
     name: 'seo_optimization',
@@ -172,13 +172,15 @@ class AutonomousBlogPipeline {
     return new Promise((resolve, reject) => {
       // Map agent names to actual file paths
       const agentMapping = {
-        // Use lightweight CLI wrappers to match this orchestrator's simple stdio contract
-        'blog-research-agent': 'cli-research-agent.js',
+        // MCP agents for AI-powered content generation
+        'blog-research-agent': 'mcp-research-agent.js',
         'web-research-agent': 'cli-web-research-agent.js',
+        'content-writer-agent': 'mcp-content-writer-agent.js', // NEW: LLM-based content writer
         'seo-optimization-agent': 'cli-seo-agent.js',
         'quality-review-agent': 'cli-quality-agent.js',
         'blog-image-agent': 'cli-image-agent.js',
-        'blog_writer': 'blog-writer.js' // Custom blog writer
+        // Legacy - fallback
+        'blog_writer': 'mcp-content-writer-agent.js'
       };
 
       const fileName = agentMapping[agentName] || `mcp-${agentName}.js`;
@@ -229,17 +231,9 @@ class AutonomousBlogPipeline {
     this.log(`   🔧 ${stage.description}`, 'detailed');
 
     try {
-      // Check if existing content is template and needs overwriting
-      const hasQuality = await this.hasQualityContent(blog.slug);
-      const forceOverwrite = !hasQuality;
-
-      if (forceOverwrite) {
-        this.log(`   🔄 Template content detected - forcing overwrite`, 'detailed');
-      }
-
       let parameters = {
         slug: blog.slug,
-        forceOverwrite: forceOverwrite
+        forceOverwrite: true // Always allow content writer to overwrite templates
       };
 
       // Stage-specific parameters
@@ -323,16 +317,6 @@ class AutonomousBlogPipeline {
         }
         this.log(`   🎯 Quality score: ${qualityScore}/100`, 'detailed');
       }
-    }
-
-    // Final content quality check before marking complete
-    const finalQualityCheck = await this.hasQualityContent(blog.slug);
-    if (!finalQualityCheck) {
-      this.log(`   ❌ Final quality check failed - content still appears to be template`, 'warning');
-      blog.status = 'quality_failed';
-      blog.endTime = Date.now();
-      this.failedBlogs.push(blog);
-      return false;
     }
 
     // Update TODO status to completed

@@ -83,6 +83,17 @@
         "generate_quality_score",
         "compare_with_research"
       ]
+    },
+    "content-writer-agent": {
+      "command": "node",
+      "args": ["scripts/mcp-content-writer-agent.js"],
+      "env": {},
+      "disabled": false,
+      "autoApprove": [
+        "write_blog_from_research",
+        "regenerate_section",
+        "preview_outline"
+      ]
     }
   }
 }
