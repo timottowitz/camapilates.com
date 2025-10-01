@@ -5,7 +5,7 @@ compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "dist"
 
 [env.production]
-vars = { NODE_ENV = "production" }
+vars = { NODE_ENV = "production", VITE_CONVEX_URL = "https://scintillating-hornet-482.convex.cloud" }
 
 [[env.production.d1_databases]]
 binding = "DB"
@@ -13,7 +13,7 @@ database_name = "camadepilates-production-db"
 database_id = "63831e40-3f9b-4d91-9a5d-857c16ffa295"
 
 [env.preview]
-vars = { NODE_ENV = "development" }
+vars = { NODE_ENV = "development", VITE_CONVEX_URL = "https://scintillating-hornet-482.convex.cloud" }
 
 [[env.preview.d1_databases]]
 binding = "DB"
