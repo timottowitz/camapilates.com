@@ -28,6 +28,11 @@ export const onRequest: PagesFunction = async (ctx) => {
     // Short browser TTL, long edge TTL semantics
     set('public, max-age=60, s-maxage=300, stale-while-revalidate=300');
   } else if (
+    url.pathname.startsWith('/estudios-de-pilates')
+  ) {
+    // Studio directory routes: short browser TTL, revalidate at edge
+    set('public, max-age=60, s-maxage=300, stale-while-revalidate=300');
+  } else if (
     url.pathname === '/' ||
     url.pathname === '/products' || url.pathname === '/products/' ||
     url.pathname.startsWith('/product/') ||
@@ -44,10 +49,16 @@ export const onRequest: PagesFunction = async (ctx) => {
     set('public, max-age=0, s-maxage=3600');
   }
 
+  // SPA fallback: serve index.html on 404 for HTML navigations
+  const accept = ctx.request.headers.get('Accept') || '';
+  const isHtmlNav = ctx.request.method === 'GET' && accept.includes('text/html');
+  const isAsset = url.pathname.startsWith('/assets/') || url.pathname.startsWith('/images/') || url.pathname.startsWith('/og/') || url.pathname.startsWith('/api/');
+  if (res.status === 404 && isHtmlNav && !isAsset) {
+    const indexResp = await fetch(new URL('/index.html', ctx.request.url));
+    const ih = new Headers(indexResp.headers);
+    ih.set('Cache-Control', headers.get('Cache-Control') || 'public, max-age=60, s-maxage=300, stale-while-revalidate=300');
+    return new Response(indexResp.body, { status: 200, headers: ih });
+  }
+
   return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
 };
-  } else if (
-    url.pathname.startsWith('/estudios-de-pilates')
-  ) {
-    // Studio directory routes: short browser TTL, revalidate at edge
-    set('public, max-age=60, s-maxage=300, stale-while-revalidate=300');
