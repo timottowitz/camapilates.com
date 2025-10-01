@@ -123,8 +123,80 @@ This agent mines Pilates books for expert insights, generates viral titles, and 
 - **Published Blogs**: `/src/content/blog/[slug].md`
 
 ## Build & Deploy
-- Local: `npm ci && npm run build` → prerender + OG + sitemap.
-- CF Pages: headers + functions incluidos; set `SITE_URL` y cron prewarm.
+
+### Local Development
+```bash
+npm ci && npm run build  # prerender + OG + sitemap
+npm run dev              # local dev server
+```
+
+### Deployment to Cloudflare Pages
+
+**CRITICAL: Always use this exact process when pushing to main**
+
+#### Step 1: Commit Changes
+```bash
+# Stage your changes
+git add .
+
+# Create commit with descriptive message
+git commit -m "feat(scope): description
+
+Details about changes...
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>"
+```
+
+#### Step 2: Push to GitHub
+```bash
+git push
+```
+
+#### Step 3: Verify Deployment
+1. **GitHub Actions**: https://github.com/timottowitz/camapilates.com/actions
+   - Look for "Deploy to Cloudflare Pages" workflow
+   - Should show green checkmark when successful
+   - Click workflow to see build logs
+
+2. **Cloudflare Dashboard**: https://dash.cloudflare.com/
+   - Navigate to **Workers & Pages** → **camadepilates**
+   - Check deployment status and logs
+   - View deployment URL
+
+3. **Live Site**: Visit production URL to verify changes
+
+#### Common Deployment Issues
+
+**Build Failures:**
+- Check GitHub Actions logs for errors
+- Common issues: TypeScript errors, missing dependencies, ESM/CommonJS conflicts
+- Fix locally, commit, and push again
+
+**Deno vs Node.js:**
+- Workflow uses Deno for builds (`deno task build`)
+- Ensure all imports are ESM compatible
+- Use `import` not `require()` in config files
+
+**Environment Variables:**
+- Set in Cloudflare Pages dashboard: **Settings** → **Environment variables**
+- Required: `SITE_URL`, `VITE_GA_ID`, etc.
+- Secrets are encrypted and not visible in logs
+
+**Cache Issues:**
+- Purge Cloudflare cache if changes don't appear
+- Cache prewarm runs via cron (see `/functions/cron-prewarm.js`)
+
+#### Deployment Checklist
+- [ ] Local build succeeds (`npm run build`)
+- [ ] No TypeScript errors
+- [ ] Git status clean (all changes committed)
+- [ ] Commit message follows convention
+- [ ] Pushed to main branch
+- [ ] GitHub Actions workflow passes
+- [ ] Cloudflare deployment succeeds
+- [ ] Live site updated and working
 
 ## Analytics (Google tag)
 

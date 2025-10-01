@@ -1,0 +1,200 @@
+# Claude Code Rules for CAMA Pilates
+
+## Deployment Protocol
+
+**CRITICAL: ALWAYS follow this exact process when making changes to be deployed**
+
+### Pre-Deployment Checklist
+1. ✅ Test locally: `npm run build` succeeds
+2. ✅ No TypeScript errors
+3. ✅ All files saved
+4. ✅ Changes are intentional and reviewed
+
+### Deployment Steps (MANDATORY)
+
+#### 1. Stage Changes
+```bash
+git add .
+```
+
+#### 2. Create Commit
+Use conventional commits format with co-authorship:
+```bash
+git commit -m "feat(scope): brief description
+
+Detailed explanation of changes:
+- Change 1
+- Change 2
+- Change 3
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>"
+```
+
+**Commit Types:**
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation only
+- `style`: Formatting, missing semi colons, etc
+- `refactor`: Code restructuring
+- `perf`: Performance improvements
+- `test`: Adding tests
+- `chore`: Maintenance tasks
+
+#### 3. Push to Main
+```bash
+git push
+```
+
+#### 4. Verify Deployment
+Check these URLs in order:
+
+1. **GitHub Actions** (build logs):
+   https://github.com/timottowitz/camapilates.com/actions
+
+2. **Cloudflare Pages** (deployment status):
+   https://dash.cloudflare.com/ → Workers & Pages → camadepilates
+
+3. **Live Site** (verify changes):
+   Visit production URL
+
+### Common Issues & Fixes
+
+#### Build Fails
+- Check GitHub Actions logs
+- Look for TypeScript errors
+- Check for ESM/CommonJS conflicts
+- Verify all imports use ESM syntax (`import` not `require()`)
+
+#### Deno Build Requirements
+- All config files must use ESM syntax
+- No `require()` statements
+- Use `.js` extensions in imports where needed
+
+#### Deployment Not Updating
+- Check GitHub Actions for errors
+- Verify push was successful
+- Purge Cloudflare cache if needed
+- Wait 1-2 minutes for deployment to propagate
+
+## Git Workflow Rules
+
+### NEVER:
+- ❌ Push without testing locally first
+- ❌ Commit sensitive data (API keys, secrets)
+- ❌ Use `git push --force` on main
+- ❌ Skip commit messages
+- ❌ Commit node_modules or build artifacts
+
+### ALWAYS:
+- ✅ Use descriptive commit messages
+- ✅ Include co-authorship attribution
+- ✅ Test build before pushing
+- ✅ Check git status before committing
+- ✅ Review changes with `git diff`
+
+## File Modification Rules
+
+### Protected Files (Ask Before Modifying)
+- `.env` files (contain secrets)
+- `package.json` (dependencies)
+- `deno.json` (Deno configuration)
+- `wrangler.toml` (Cloudflare config)
+- GitHub Actions workflows (`.github/workflows/`)
+
+### Auto-Generated Files (Don't Commit)
+- `node_modules/`
+- `dist/`
+- `.deno/`
+- `*.log`
+- Build artifacts
+
+## Security Rules
+
+### API Keys & Secrets
+- **NEVER** commit `.env` files
+- **NEVER** expose API keys in code
+- **ALWAYS** use environment variables
+- **VERIFY** `.gitignore` excludes secrets
+
+### Verification Command
+```bash
+# Before committing, always run:
+git status
+git diff --staged
+
+# Check for accidentally staged secrets:
+git diff --staged | grep -i "api.*key\|secret\|token\|password"
+```
+
+## Project-Specific Rules
+
+### Blog Posts
+- Research files: `blog-planning/research/*.md`
+- Published blogs: `src/content/blog/*.md`
+- Always check `blog-planning/BLOG_TODO.md` before writing
+- Use status emojis: 🔬 (research) → 📝 (writing) → ✅ (published)
+
+### Autonomous Blog Writer
+- Location: `autonomous-blog-writer/`
+- Has own `.env` file (separate from main project)
+- API key: Use OpenAI key from `autonomous-blog-writer/.env`
+- Don't commit `autonomous-blog-writer/.env`
+
+### Components & Styling
+- Use existing components from `src/components/`
+- Follow shadcn/ui patterns
+- Tailwind CSS for styling
+- Maintain responsive design
+
+## Deployment Monitoring
+
+After pushing, monitor in this order:
+
+1. **GitHub Actions** (~2-3 minutes)
+   - Wait for green checkmark
+   - If red X, click to view logs
+   - Fix issues and re-commit
+
+2. **Cloudflare Deployment** (~1 minute after GitHub success)
+   - Check deployment list
+   - View deployment logs if needed
+
+3. **Live Site** (~1-2 minutes after deployment)
+   - Clear browser cache
+   - Test changed functionality
+   - Verify mobile/desktop views
+
+## Quick Reference
+
+### Check Deployment Status
+```bash
+# GitHub CLI (if installed)
+gh run list --workflow "cloudflare-pages.yml" --limit 1
+
+# Or visit:
+# https://github.com/timottowitz/camapilates.com/actions
+```
+
+### View Recent Commits
+```bash
+git log --oneline -5
+```
+
+### Undo Last Commit (Before Push)
+```bash
+git reset --soft HEAD~1  # Keep changes staged
+git reset HEAD~1         # Unstage changes
+```
+
+### Emergency Rollback (After Push)
+```bash
+# DON'T DO THIS - Contact team lead instead
+# Rollback requires coordination with Cloudflare deployment
+```
+
+---
+
+**Remember**: Every push to `main` triggers automatic deployment to production.
+Test thoroughly before pushing!
