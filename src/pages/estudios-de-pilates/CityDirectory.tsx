@@ -61,12 +61,23 @@ const CityDirectory: React.FC = () => {
     }
   }, [city, cityName, navigate]);
 
-  // Fetch data from Convex or local fallback dataset
-  const studios = hasConvex
-    ? useQuery(api.studios.getByCity, { city: cityName })
+  // Fetch data from Convex
+  const convexStudios = hasConvex ? useQuery(api.studios.getByCity, { city: cityName }) : undefined;
+  const convexCity = hasConvex ? useQuery(api.cities.getBySlug, { slug: city || '' }) : undefined;
+
+  // Failover to local data if Convex is slow/unavailable
+  const [failover, setFailover] = useState(false);
+  useEffect(() => {
+    setFailover(false);
+    const t = setTimeout(() => setFailover(true), 3000);
+    return () => clearTimeout(t);
+  }, [cityName]);
+
+  const studios = hasConvex && !failover
+    ? convexStudios
     : (localData.studios as any[]).filter((s: any) => (s.address?.city || '').toLowerCase() === (cityName || '').toLowerCase());
-  const cityData = hasConvex
-    ? useQuery(api.cities.getBySlug, { slug: city || '' })
+  const cityData = hasConvex && !failover
+    ? convexCity
     : (localData.cities as any[]).find((c: any) => c.slug === (city || ''));
 
   // Loading state
@@ -158,7 +169,7 @@ const CityDirectory: React.FC = () => {
     // Rating filter
     if (filters.rating > 0) {
       result = result.filter(studio =>
-        (studio.metrics.googleRating || 0) >= filters.rating
+        ((studio.metrics?.googleRating || 0) as number) >= filters.rating
       );
     }
 
