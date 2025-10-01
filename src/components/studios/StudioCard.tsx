@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { MapPin, Phone, Globe, Star, Clock, DollarSign } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { citySlug } from '@/utils/slug';
 import { GooglePlacesPhoto } from '@/components/studio/GooglePlacesPhoto';
 import {
   getStudioColor,
@@ -139,7 +140,7 @@ const StudioCard: React.FC<StudioCardProps> = ({ studio }) => {
 
       <CardFooter className="p-4 pt-0 flex gap-2">
         <Button asChild className="flex-1">
-          <Link to={`/estudios-de-pilates/${studio.address.city.toLowerCase().replace(/\s+/g, '-')}/${studio.slug}`}>
+          <Link to={`/estudios-de-pilates/${citySlug(studio.address.city)}/${studio.slug}`}>
             Ver Detalles
           </Link>
         </Button>

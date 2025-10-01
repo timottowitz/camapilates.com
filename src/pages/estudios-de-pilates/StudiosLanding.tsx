@@ -17,6 +17,7 @@ import {
 import { MapPin, Users, Star, TrendingUp, Search, Building } from 'lucide-react';
 import { hasConvex } from '@/lib/convexProvider';
 import localData from '@/data/studios.json';
+import { citySlug } from '@/utils/slug';
 
 const StudiosLanding: React.FC = () => {
   // SEO metadata
@@ -231,7 +232,7 @@ const StudiosLanding: React.FC = () => {
                 {featuredStudios.map((studio) => (
                   <Link
                     key={studio._id}
-                    to={`/estudios-de-pilates/${studio.address.city.toLowerCase().replace(/\s+/g, '-')}/${studio.slug}`}
+                    to={`/estudios-de-pilates/${citySlug(studio.address.city)}/${studio.slug}`}
                     className="group"
                   >
                     <Card className="h-full hover:shadow-lg transition-all duration-200">

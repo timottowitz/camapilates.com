@@ -30,6 +30,7 @@ import { MapPin, Filter, X, Map, List } from 'lucide-react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { hasConvex } from '@/lib/convexProvider';
 import localData from '@/data/studios.json';
+import { citySlug } from '@/utils/slug';
 
 // City name mappings - normalize accents in slugs
 const cityNameMap: { [key: string]: string } = {
@@ -49,6 +50,15 @@ const CityDirectory: React.FC = () => {
   const { city } = useParams<{ city: string }>();
   const navigate = useNavigate();
   const cityName = city ? cityNameMap[city.toLowerCase()] || city : '';
+
+  // Normalize city slug to ASCII (avoid diacritics in URL)
+  React.useEffect(() => {
+    if (!cityName) return;
+    const normalized = citySlug(cityName);
+    if (city && normalized && city !== normalized) {
+      navigate(`/estudios-de-pilates/${normalized}` as any, { replace: true });
+    }
+  }, [city, cityName, navigate]);
 
   // Fetch data from Convex or local fallback dataset
   const studios = hasConvex

@@ -34,6 +34,7 @@ import {
 import { GooglePlacesPhoto } from '@/components/studio/GooglePlacesPhoto';
 import { hasConvex } from '@/lib/convexProvider';
 import localData from '@/data/studios.json';
+import { citySlug } from '@/utils/slug';
 
 const StudioDetail: React.FC = () => {
   const { city, studio } = useParams<{ city: string; studio: string }>();
@@ -53,6 +54,16 @@ const StudioDetail: React.FC = () => {
   };
 
   const cityName = city ? cityNameMap[city.toLowerCase()] || city : '';
+
+  // Normalize city slug in URL to canonical ASCII form
+  React.useEffect(() => {
+    if (!cityName || !city || !studio) return;
+    const normalized = citySlug(cityName);
+    if (normalized && city !== normalized) {
+      // Preserve studio segment while normalizing city segment
+      window.history.replaceState({}, document.title, `/estudios-de-pilates/${normalized}/${studio}`);
+    }
+  }, [city, studio, cityName]);
 
   // Debug logging
   React.useEffect(() => {
