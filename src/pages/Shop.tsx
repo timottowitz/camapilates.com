@@ -13,7 +13,7 @@ import ProductRail21 from '@/components/commerce21/ProductRail21';
 import ExploreTiles21 from '@/components/commerce21/ExploreTiles21';
 import ShopHeaderAddon from '@/components/commerce21/ShopHeaderAddon';
 import RibbonBanner from '@/components/ui/ribbon-banner';
-import { ASSETS } from '@/lib/assets';
+import { useConvexAssets } from '@/lib/convexAssets';
 import TrustStrip from '@/components/ui/trust-strip';
 import QuickView21 from '@/components/commerce21/QuickView21';
 import type { Product as PType } from '@/lib/shop/types';
@@ -32,6 +32,9 @@ const Shop: React.FC = () => {
   const origin = getOrigin();
   const title = 'Tienda — Camas de Pilates y Accesorios';
   const desc = 'Compra tu Cama de Pilates (Reformer) y accesorios. Modelos para casa y estudio con envío en México.';
+
+  // Load images from Convex
+  const assets = useConvexAssets();
 
   const [region, setRegion] = useState<Region>(getInitialRegion());
   const [sort, setSort] = useState<'relevance' | 'price_asc' | 'price_desc'>('relevance');
@@ -127,7 +130,7 @@ const Shop: React.FC = () => {
         <title>{title} | {DEFAULTS.siteName}</title>
         <meta name="description" content={desc} />
         <link rel="canonical" href={`${origin}/shop`} />
-        <link rel="preload" as="image" href={ASSETS.shopHero} />
+        {assets.shopHero && <link rel="preload" as="image" href={assets.shopHero} />}
         <meta property="og:site_name" content={DEFAULTS.siteName} />
         <meta property="og:locale" content={DEFAULTS.locale} />
         <meta property="og:title" content={title} />
@@ -155,7 +158,7 @@ const Shop: React.FC = () => {
 
           {/* Hero banner */}
           <div className="rounded-lg overflow-hidden border border-border bg-muted">
-            <div className="relative aspect-[21/6] w-full bg-center bg-cover" style={{ backgroundImage: `url(${ASSETS.shopHero || DEFAULTS.ogImage})` }}>
+            <div className="relative aspect-[21/6] w-full bg-center bg-cover" style={{ backgroundImage: `url(${assets.shopHero || DEFAULTS.ogImage})` }}>
               <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
               <div className="absolute inset-0 p-6 md:p-10 flex items-center">
                 <div className="max-w-xl text-white">
@@ -178,7 +181,7 @@ const Shop: React.FC = () => {
               label: c.name,
               href: `/shop/category/${c.slug}`,
               count: c.count,
-              img: c.slug === 'reformers' ? ASSETS.catReformers : (c.slug === 'accesorios' ? ASSETS.catAccessories : undefined),
+              img: c.slug === 'reformers' ? assets.catReformers : (c.slug === 'accesorios' ? assets.catAccessories : undefined),
               emoji: c.slug === 'reformers' ? '🛏️' : '🧰'
             }))} />
           </div>

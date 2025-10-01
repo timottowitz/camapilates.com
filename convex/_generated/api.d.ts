@@ -27,6 +27,7 @@ import type * as llm from "../llm.js";
 import type * as pipeline from "../pipeline.js";
 import type * as places from "../places.js";
 import type * as settings from "../settings.js";
+import type * as siteImages from "../siteImages.js";
 import type * as stats from "../stats.js";
 import type * as studios from "../studios.js";
 import type * as testGooglePlaces from "../testGooglePlaces.js";
@@ -55,6 +56,7 @@ declare const fullApi: ApiFromModules<{
   pipeline: typeof pipeline;
   places: typeof places;
   settings: typeof settings;
+  siteImages: typeof siteImages;
   stats: typeof stats;
   studios: typeof studios;
   testGooglePlaces: typeof testGooglePlaces;

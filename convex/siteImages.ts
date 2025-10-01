@@ -2,7 +2,19 @@ import { v } from 'convex/values';
 import { mutation, query } from './_generated/server';
 
 /**
+ * Generate upload URL for image
+ * Call this first to get a URL, then POST the file to that URL
+ */
+export const generateUploadUrl = mutation({
+  args: {},
+  handler: async (ctx) => {
+    return await ctx.storage.generateUploadUrl();
+  },
+});
+
+/**
  * Upload a new site image
+ * After uploading file to URL from generateUploadUrl, call this with the storageId
  */
 export const upload = mutation({
   args: {

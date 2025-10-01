@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import type { Product } from '@/lib/shop/types';
 import { formatPrice } from '@/lib/shop/catalog';
 import { selectItem } from '@/lib/shop/analytics';
-import { ASSETS } from '@/lib/assets';
+import { useConvexAssets } from '@/lib/convexAssets';
 import { Info } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
@@ -13,6 +13,7 @@ type Props = {
 };
 
 const ProductCard21: React.FC<Props> = ({ product, onQuickView }) => {
+  const assets = useConvexAssets();
   const isMylo = ((product as any).finishes || []).includes('mycelium') || /mycel/i.test(product?.name || '') || /mycel/i.test(product?.slug || '');
   return (
     <Link
@@ -23,8 +24,8 @@ const ProductCard21: React.FC<Props> = ({ product, onQuickView }) => {
       <div className="p-4">
         <div className="relative aspect-square w-full overflow-hidden rounded-md border border-border bg-muted">
           <div className="absolute top-2 left-2 z-10 space-y-1">
-            {isMylo && (
-              <img src={ASSETS.myloBadge} alt="Mylo™" className="h-6 w-auto drop-shadow" />
+            {isMylo && assets.myloBadge && (
+              <img src={assets.myloBadge} alt="Mylo™" className="h-6 w-auto drop-shadow" />
             )}
             {(product.isNew || product.bestSeller) && (
               <div className="inline-flex items-center gap-1 rounded-full bg-black/70 text-white text-[10px] px-2 py-0.5">
