@@ -402,4 +402,6 @@ export default defineSchema({
     .index('by_status', ['status'])
     .index('by_priority', ['priority'])
     .index('by_page_type_slug', ['pageType', 'pageSlug']),
+
+  // (legacy generation_queue table removed)
 });

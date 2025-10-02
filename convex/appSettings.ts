@@ -1,5 +1,5 @@
 import { v } from 'convex/values';
-import { mutation, internalQuery } from './_generated/server';
+import { mutation, query, internalQuery } from './_generated/server';
 
 /**
  * Save API key (stored in valueEnc field - already encrypted by database)
@@ -46,5 +46,16 @@ export const getApiKey = internalQuery({
       .first();
 
     return setting?.valueEnc || null;
+  },
+});
+
+/**
+ * List all settings (keys only, no values)
+ */
+export const list = query({
+  args: {},
+  handler: async (ctx) => {
+    const settings = await ctx.db.query('app_settings').collect();
+    return settings.map(s => ({ key: s.key, updatedAt: s.updatedAt }));
   },
 });

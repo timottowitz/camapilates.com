@@ -1,5 +1,5 @@
 import { v } from 'convex/values';
-import { mutation, query } from './_generated/server';
+import { mutation, query, internalQuery } from './_generated/server';
 import { internal } from './_generated/api';
 
 /**
@@ -64,6 +64,16 @@ export const register = mutation({
         updatedAt: now,
         // Keep existing status/assignment fields
       });
+      // Auto-trigger: if still pending or only prompt exists, schedule prompt/gen pipeline
+      try {
+        const status = (existing as any).status;
+        const hasPrompt = Boolean((existing as any).generatedPrompt);
+        if (status === 'pending' || (status === 'prompt_generated' && hasPrompt)) {
+          await ctx.scheduler.runAfter(0, internal.placeholderGeneration.generatePrompt, {
+            placeholderId: args.placeholderId,
+          });
+        }
+      } catch {}
       return existing._id;
     }
 
@@ -90,6 +100,12 @@ export const register = mutation({
       updatedAt: now,
       isActive: true,
     });
+    // Auto-trigger: schedule prompt generation (which will schedule image generation)
+    try {
+      await ctx.scheduler.runAfter(0, internal.placeholderGeneration.generatePrompt, {
+        placeholderId: args.placeholderId,
+      });
+    } catch {}
 
     return id;
   },
@@ -250,4 +266,18 @@ export const assignLatest = mutation({
       updatedAt: Date.now(),
     });
   }
+});
+
+/**
+ * INTERNAL: Get placeholder by ID (for use in actions)
+ */
+export const getByIdInternal = internalQuery({
+  args: { placeholderId: v.string() },
+  handler: async (ctx, args) => {
+    const row = await ctx.db
+      .query('image_placeholders')
+      .withIndex('by_placeholder_id', q => q.eq('placeholderId', args.placeholderId))
+      .first();
+    return row || null;
+  },
 });

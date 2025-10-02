@@ -45,28 +45,42 @@ async function getOpenAIKey(ctx: any): Promise<string | null> {
 export const generatePrompt = internalAction({
   args: { placeholderId: v.string() },
   handler: async (ctx, args) => {
-    const row = await ctx.runQuery(internal.placeholders.getById, { placeholderId: args.placeholderId });
-    if (!row) throw new Error('Placeholder not found');
+    try {
+      const row = await ctx.runQuery(internal.placeholders.getByIdInternal, { placeholderId: args.placeholderId });
+      if (!row) throw new Error('Placeholder not found');
 
-    const OPENAI_API_KEY = await getOpenAIKey(ctx);
-    if (!OPENAI_API_KEY) throw new Error('OPENAI_API_KEY not configured');
+      const OPENAI_API_KEY = await getOpenAIKey(ctx);
+      if (!OPENAI_API_KEY) throw new Error('OPENAI_API_KEY not configured');
 
-    const prompt = buildPromptFromContext(row);
-    // Minimal call to OpenAI text endpoint using Responses-compatible API via fetch for simplicity
-    const resp = await fetch('https://api.openai.com/v1/responses', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${OPENAI_API_KEY}` },
-      body: JSON.stringify({
-        model: process.env.OPENAI_MODEL || 'gpt-4o-mini',
-        input: [{ role: 'user', content: prompt }],
-      })
-    });
-    if (!resp.ok) throw new Error(`Prompt gen failed: ${resp.status}`);
-    const data = await resp.json();
-    const text = String(data?.output_text || data?.choices?.[0]?.message?.content || '').trim() || prompt;
+      const prompt = buildPromptFromContext(row);
+      // Call OpenAI chat completions API
+      const resp = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${OPENAI_API_KEY}` },
+        body: JSON.stringify({
+          model: 'gpt-4o-mini',
+          messages: [{ role: 'user', content: prompt }],
+          temperature: 0.7,
+        })
+      });
+      if (!resp.ok) {
+        const errorText = await resp.text();
+        throw new Error(`Prompt gen failed: ${resp.status} - ${errorText}`);
+      }
+      const data = await resp.json();
+      const text = String(data?.choices?.[0]?.message?.content || '').trim() || prompt;
 
-    await ctx.runMutation(internal.placeholders.updatePrompt, { placeholderId: args.placeholderId, prompt: text });
-    return { prompt: text };
+      await ctx.runMutation(internal.placeholders.updatePrompt, { placeholderId: args.placeholderId, prompt: text });
+
+      // Schedule image generation
+      await ctx.scheduler.runAfter(0, internal.placeholderGeneration.generateImage, {
+        placeholderId: args.placeholderId,
+      });
+
+      return { prompt: text };
+    } catch (error) {
+      throw error;
+    }
   }
 });
 
@@ -80,85 +94,90 @@ function sizeForAspect(aspect?: string): '1024x1024' | '1792x1024' | '1024x1792'
 export const generateImage = internalAction({
   args: { placeholderId: v.string() },
   handler: async (ctx, args) => {
-    // Get placeholder row
-    const row = await ctx.runQuery(internal.placeholders.getById, { placeholderId: args.placeholderId });
-    if (!row) throw new Error('Placeholder not found');
+    try {
+      // Get placeholder row
+      const row = await ctx.runQuery(internal.placeholders.getByIdInternal, { placeholderId: args.placeholderId });
+      if (!row) throw new Error('Placeholder not found');
 
-    const OPENAI_API_KEY = await getOpenAIKey(ctx);
-    if (!OPENAI_API_KEY) throw new Error('OPENAI_API_KEY not configured');
+      const OPENAI_API_KEY = await getOpenAIKey(ctx);
+      if (!OPENAI_API_KEY) throw new Error('OPENAI_API_KEY not configured');
 
-    // Ensure we have a prompt
-    let prompt = row.generatedPrompt;
-    if (!prompt) {
-      const p = await generatePrompt.handler(ctx, { placeholderId: args.placeholderId });
-      prompt = p.prompt;
+      // Ensure we have a prompt
+      let prompt = row.generatedPrompt;
+      if (!prompt) {
+        const p = await generatePrompt.handler(ctx, { placeholderId: args.placeholderId });
+        prompt = p.prompt;
+      }
+
+      const size = sizeForAspect(row.preferredAspectRatio);
+      const response = await fetch('https://api.openai.com/v1/images/generations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${OPENAI_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: 'dall-e-3',
+          prompt,
+          n: 1,
+          size,
+          quality: 'hd',
+          style: 'natural',
+        }),
+      });
+      if (!response.ok) throw new Error(`DALL-E error: ${await response.text()}`);
+      const result = await response.json();
+      const imageUrl = result.data[0].url as string;
+      const revisedPrompt = result.data[0].revised_prompt as string | undefined;
+
+      // Download generated image
+      const imageResponse = await fetch(imageUrl);
+      if (!imageResponse.ok) throw new Error('Failed to download generated image');
+      const imageBuffer = await imageResponse.arrayBuffer();
+
+      // Upload to Convex storage
+      const storageId = await ctx.storage.store(new Blob([imageBuffer], { type: 'image/png' }));
+
+      // Create ai_images row (minimal)
+      const now = Date.now();
+      const aiId = await ctx.db.insert('ai_images', {
+        fileName: `${args.placeholderId}.png`,
+        storageId,
+        mimeType: 'image/png',
+        size: (imageBuffer as any).byteLength || 0,
+        dimensions: { width: size.includes('1792') ? (size === '1792x1024' ? 1792 : 1024) : 1024, height: size.includes('1792') ? (size === '1024x1792' ? 1792 : 1024) : 1024 },
+        aiDescription: {
+          scene: row.headingAbove || 'Pilates scene',
+          subjects: row.requiredSubjects || ['reformer', 'pilates'],
+          activity: undefined,
+          mood: row.preferredStyle || 'professional',
+          colors: ['neutral'],
+          composition: 'Clean, centered subject',
+          lighting: 'natural',
+          setting: 'indoor studio',
+          useCases: ['blog', 'feature', 'hero'],
+          tags: ['pilates', 'reformer', 'studio'],
+          quality: 'Excellent',
+        },
+        generatedStorageId: storageId,
+        generationPrompt: revisedPrompt || prompt,
+        generatedDimensions: { width: 1024, height: 1024 },
+        generatedAt: now,
+        generationStatus: 'completed',
+        generationError: undefined,
+        category: 'blog',
+        isActive: true,
+        uploadedAt: now,
+        analyzedAt: now,
+      });
+
+      // Assign to placeholder
+      await ctx.runMutation(internal.placeholders.assignImage, { placeholderId: args.placeholderId, imageId: aiId, activate: true });
+
+      return { ok: true, imageId: aiId };
+    } catch (error) {
+      throw error;
     }
-
-    const size = sizeForAspect(row.preferredAspectRatio);
-    const response = await fetch('https://api.openai.com/v1/images/generations', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: 'dall-e-3',
-        prompt,
-        n: 1,
-        size,
-        quality: 'hd',
-        style: 'natural',
-      }),
-    });
-    if (!response.ok) throw new Error(`DALL-E error: ${await response.text()}`);
-    const result = await response.json();
-    const imageUrl = result.data[0].url as string;
-    const revisedPrompt = result.data[0].revised_prompt as string | undefined;
-
-    // Download generated image
-    const imageResponse = await fetch(imageUrl);
-    if (!imageResponse.ok) throw new Error('Failed to download generated image');
-    const imageBuffer = await imageResponse.arrayBuffer();
-
-    // Upload to Convex storage
-    const storageId = await ctx.storage.store(new Blob([imageBuffer], { type: 'image/png' }));
-
-    // Create ai_images row (minimal)
-    const now = Date.now();
-    const aiId = await ctx.db.insert('ai_images', {
-      fileName: `${args.placeholderId}.png`,
-      storageId,
-      mimeType: 'image/png',
-      size: (imageBuffer as any).byteLength || 0,
-      dimensions: { width: size.includes('1792') ? (size === '1792x1024' ? 1792 : 1024) : 1024, height: size.includes('1792') ? (size === '1024x1792' ? 1792 : 1024) : 1024 },
-      aiDescription: {
-        scene: row.headingAbove || 'Pilates scene',
-        subjects: row.requiredSubjects || ['reformer', 'pilates'],
-        activity: undefined,
-        mood: row.preferredStyle || 'professional',
-        colors: ['neutral'],
-        composition: 'Clean, centered subject',
-        lighting: 'natural',
-        setting: 'indoor studio',
-        useCases: ['blog', 'feature', 'hero'],
-        tags: ['pilates', 'reformer', 'studio'],
-        quality: 'Excellent',
-      },
-      generatedStorageId: storageId,
-      generationPrompt: revisedPrompt || prompt,
-      generatedDimensions: { width: 1024, height: 1024 },
-      generatedAt: now,
-      generationStatus: 'completed',
-      generationError: undefined,
-      category: 'blog',
-      isActive: true,
-      uploadedAt: now,
-      analyzedAt: now,
-    });
-
-    // Assign to placeholder
-    await ctx.runMutation(internal.placeholders.assignImage, { placeholderId: args.placeholderId, imageId: aiId, activate: true });
-    return { ok: true, imageId: aiId };
   }
 });
 
@@ -166,7 +185,8 @@ export const generateImage = internalAction({
 export const queue = action({
   args: { placeholderId: v.string() },
   handler: async (ctx, args) => {
-    await ctx.scheduler.runAfter(0, internal.placeholderGeneration.generateImage, { placeholderId: args.placeholderId });
+    // Start with prompt generation (which will check if prompt exists)
+    await ctx.scheduler.runAfter(0, internal.placeholderGeneration.generatePrompt, { placeholderId: args.placeholderId });
     return { queued: true };
   }
 });

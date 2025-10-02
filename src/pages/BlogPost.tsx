@@ -21,8 +21,6 @@ import HubList from '@/components/blog/HubList';
 import SeeAlso from '@/components/blog/SeeAlso';
 import { ContextualImage } from '@/components/ContextualImage';
 import { hasConvex } from '@/lib/convexProvider';
-import { useAction, useQuery } from 'convex/react';
-import { api } from '../../convex/_generated/api';
 
 interface BlogPostMeta {
   slug: string;
@@ -412,20 +410,6 @@ const BlogPost = () => {
 // Component to inject CTAs strategically within article content
 const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: string }) => {
   const sections = content.split(/\n## /); // Split by main headings
-  const queue = hasConvex ? (useAction(api.placeholderGeneration.queue) as any) : null;
-  const placeholders = hasConvex ? useQuery(api.placeholders.listByPage, { pageType: 'blog', pageSlug: slug }) as any[] | undefined : undefined;
-
-  // Auto-queue generation for this blog's placeholders when present
-  useEffect(() => {
-    if (!hasConvex || !queue || !placeholders) return;
-    const pending = placeholders.filter(p => p.status === 'pending' || p.status === 'prompt_generated');
-    (async () => {
-      for (const p of pending.slice(0, 6)) {
-        try { await queue({ placeholderId: p.placeholderId }); } catch {}
-      }
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [placeholders?.length]);
 
   // Function to process content and replace shortcodes
   const processContent = (text: string) => {
