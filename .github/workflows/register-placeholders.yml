@@ -5,6 +5,21 @@ on:
     branches: [ main ]
     paths:
       - 'src/content/blog/**.md'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Run mode: changed (default) or all'
+        required: true
+        default: 'changed'
+        type: choice
+        options:
+          - changed
+          - all
+      inline:
+        description: 'Inline placeholders per blog (default 3)'
+        required: false
+        default: '3'
+        type: string
 
 jobs:
   register:
@@ -17,19 +32,39 @@ jobs:
         with:
           node-version: '20'
       - run: npm ci
-      - name: Determine changed blog files
+      - name: Determine changed blog files (push events)
+        if: github.event_name == 'push'
         id: changed
         run: |
           set -e
-          BEFORE=$(git rev-parse HEAD^)
-          AFTER=$(git rev-parse HEAD)
+          BEFORE=${{ github.event.before }}
+          AFTER=${{ github.event.after }}
+          if [ -z "$BEFORE" ] || [ -z "$AFTER" ]; then
+            BEFORE=$(git rev-parse HEAD^)
+            AFTER=$(git rev-parse HEAD)
+          fi
           CHANGED=$(git diff --name-only "$BEFORE" "$AFTER" | grep '^src/content/blog/.*\.md$' || true)
           echo "changed=$CHANGED" >> $GITHUB_OUTPUT
-      - name: Register placeholders for changed blogs
-        if: steps.changed.outputs.changed != ''
+
+      - name: Register placeholders (push: changed only)
+        if: github.event_name == 'push' && steps.changed.outputs.changed != ''
         env:
           CONVEX_URL: https://spotted-raven-102.convex.cloud
           CHANGED_FILES: ${{ steps.changed.outputs.changed }}
         run: |
-          node scripts/register-released-blogs.js --changed="$CHANGED_FILES"
+          node scripts/register-released-blogs.js --changed="$CHANGED_FILES" --inline=3
 
+      - name: Register placeholders (manual: changed)
+        if: github.event_name == 'workflow_dispatch' && inputs.mode == 'changed'
+        env:
+          CONVEX_URL: https://spotted-raven-102.convex.cloud
+        run: |
+          echo "Manual dispatch (changed): computing diff not supported; processing all changed not available. Falling back to all."
+          node scripts/register-released-blogs.js --inline=${{ inputs.inline }}
+
+      - name: Register placeholders (manual: all)
+        if: github.event_name == 'workflow_dispatch' && inputs.mode == 'all'
+        env:
+          CONVEX_URL: https://spotted-raven-102.convex.cloud
+        run: |
+          node scripts/register-released-blogs.js --inline=${{ inputs.inline }}
