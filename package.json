@@ -31,6 +31,8 @@
     "placeholders:report": "node scripts/placeholder-report.js",
     "placeholders:queue-gen": "node scripts/queue-placeholder-generation.js",
     "placeholders:apply-preferences": "node scripts/apply-blog-placeholder-preferences.js",
+    "placeholders:register-blog-inline": "node scripts/register-blog-inline-placeholders.js",
+    "placeholders:register-one": "node scripts/register-one-blog.js",
     "cache:purge": "gh workflow run cloudflare-purge.yml",
     "directory:import-cities": "tsx scripts/import-cities.ts"
   },

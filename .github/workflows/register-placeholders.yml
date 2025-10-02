@@ -1,0 +1,35 @@
+name: Register placeholders for released blogs
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/content/blog/**.md'
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - name: Determine changed blog files
+        id: changed
+        run: |
+          set -e
+          BEFORE=$(git rev-parse HEAD^)
+          AFTER=$(git rev-parse HEAD)
+          CHANGED=$(git diff --name-only "$BEFORE" "$AFTER" | grep '^src/content/blog/.*\.md$' || true)
+          echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+      - name: Register placeholders for changed blogs
+        if: steps.changed.outputs.changed != ''
+        env:
+          CONVEX_URL: https://spotted-raven-102.convex.cloud
+          CHANGED_FILES: ${{ steps.changed.outputs.changed }}
+        run: |
+          node scripts/register-released-blogs.js --changed="$CHANGED_FILES"
+
