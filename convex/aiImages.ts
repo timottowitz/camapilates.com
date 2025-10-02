@@ -350,6 +350,30 @@ export const listAllWithGenerated = query({
 });
 
 /**
+ * List all images associated with a placeholder (by fileName)
+ * Uses the convention fileName = `${placeholderId}.png`
+ */
+export const listByPlaceholder = query({
+  args: { placeholderId: v.string() },
+  handler: async (ctx, args) => {
+    const fileName = `${args.placeholderId}.png`;
+    const rows = await ctx.db
+      .query('ai_images')
+      .withIndex('by_file', q => q.eq('fileName', fileName))
+      .collect();
+    // order by generatedAt or uploadedAt desc
+    rows.sort((a, b) => (b.generatedAt || b.uploadedAt || 0) - (a.generatedAt || a.uploadedAt || 0));
+    const withUrls = await Promise.all(rows.map(async (img) => {
+      const sid = img.generatedStorageId || img.storageId;
+      const url = await ctx.storage.getUrl(sid);
+      const originalUrl = img.generatedStorageId ? await ctx.storage.getUrl(img.storageId) : null;
+      return { ...img, url, originalUrl, isGenerated: !!img.generatedStorageId };
+    }));
+    return withUrls;
+  }
+});
+
+/**
  * INTERNAL: Get image by ID (for generation trigger)
  */
 export const getById = internalQuery({
