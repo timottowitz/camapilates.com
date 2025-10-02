@@ -220,3 +220,34 @@ export const assignImage = mutation({
     });
   },
 });
+
+/** Assign latest generated/original image for a placeholder */
+export const assignLatest = mutation({
+  args: {
+    placeholderId: v.string(),
+    activate: v.optional(v.boolean()),
+  },
+  handler: async (ctx, args) => {
+    const row = await ctx.db
+      .query('image_placeholders')
+      .withIndex('by_placeholder_id', q => q.eq('placeholderId', args.placeholderId))
+      .first();
+    if (!row) throw new Error('Placeholder not found');
+
+    const fileName = `${args.placeholderId}.png`;
+    const items = await ctx.db
+      .query('ai_images')
+      .withIndex('by_file', q => q.eq('fileName', fileName))
+      .collect();
+    if (!items.length) throw new Error('No images found for placeholder');
+    items.sort((a, b) => (b.generatedAt || b.uploadedAt || 0) - (a.generatedAt || a.uploadedAt || 0));
+    const latest = items[0];
+
+    await ctx.db.patch(row._id, {
+      assignedImageId: latest._id,
+      assignedAt: Date.now(),
+      status: args.activate ? 'active' : 'image_assigned',
+      updatedAt: Date.now(),
+    });
+  }
+});

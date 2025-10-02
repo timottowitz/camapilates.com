@@ -17,6 +17,7 @@ const AdminPlaceholders: React.FC = () => {
   const rows = useQuery(api.placeholders.listWithPreview, status ? { status } as any : {} as any) as any[] | undefined;
   const queue = useAction(api.placeholderGeneration.queue) as any;
   const assignImage = useMutation(api.placeholders.assignImage) as any;
+  const assignLatest = useMutation(api.placeholders.assignLatest) as any;
   const updatePrompt = useMutation(api.placeholders.updatePrompt) as any;
 
   // History drawer
@@ -35,6 +36,10 @@ const AdminPlaceholders: React.FC = () => {
     for (const r of filtered) c[r.status] = (c[r.status] || 0) + 1;
     return c;
   }, [filtered]);
+
+  // Selection and working states
+  const [selected, setSelected] = useState<Record<string, boolean>>({});
+  const [working, setWorking] = useState<Record<string, boolean>>({});
 
   async function queueAllPending() {
     const pending = filtered.filter(r => r.status === 'pending' || r.status === 'prompt_generated');
@@ -57,12 +62,47 @@ const AdminPlaceholders: React.FC = () => {
           <option value="active">active</option>
         </select>
         <button onClick={queueAllPending} className="ml-auto bg-primary text-white px-3 py-1 rounded">Queue generation</button>
+        <div className="ml-4 flex items-center gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={async ()=>{
+              const ids = Object.keys(selected).filter(k => selected[k]);
+              if (!ids.length) return toast('No items selected');
+              let ok = 0;
+              for (const id of ids) { try { await queue({ placeholderId: id }); ok++; } catch {} }
+              toast.success(`Queued ${ok} selected`);
+            }}
+          >Queue selected</Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={async ()=>{
+              const ids = Object.keys(selected).filter(k => selected[k]);
+              if (!ids.length) return toast('No items selected');
+              let ok = 0;
+              for (const id of ids) { try { await assignLatest({ placeholderId: id, activate: true }); ok++; } catch {} }
+              toast.success(`Assigned latest for ${ok} selected`);
+            }}
+          >Assign latest (selected)</Button>
+        </div>
       </div>
       <div className="text-sm text-muted-foreground mb-4">Totals: {Object.entries(counts).map(([k,v]) => `${k}: ${v}`).join(' · ') || '—'}</div>
       <div className="overflow-auto border rounded">
         <table className="min-w-full text-sm">
           <thead className="bg-muted">
             <tr>
+              <th className="px-3 py-2">
+                <input
+                  type="checkbox"
+                  onChange={(e)=>{
+                    const on = e.currentTarget.checked;
+                    const next: Record<string, boolean> = {};
+                    for (const r of filtered) next[r.placeholderId] = on;
+                    setSelected(next);
+                  }}
+                />
+              </th>
               <th className="text-left px-3 py-2">Preview</th>
               <th className="text-left px-3 py-2">Placeholder</th>
               <th className="text-left px-3 py-2">Page</th>
@@ -78,6 +118,13 @@ const AdminPlaceholders: React.FC = () => {
             {(filtered || []).map((r) => (
               <tr key={r.placeholderId} className="border-t">
                 <td className="px-3 py-2">
+                  <input
+                    type="checkbox"
+                    checked={Boolean(selected[r.placeholderId])}
+                    onChange={(e)=> setSelected(prev => ({ ...prev, [r.placeholderId]: e.currentTarget.checked }))}
+                  />
+                </td>
+                <td className="px-3 py-2">
                   <div className="relative group h-14 w-24 rounded border overflow-hidden">
                     {r.previewUrl ? (
                       <img src={r.previewUrl} alt={r.headingAbove || r.placeholderId} className="h-full w-full object-cover" />
@@ -86,9 +133,19 @@ const AdminPlaceholders: React.FC = () => {
                     )}
                     <button
                       className="absolute inset-0 hidden group-hover:flex items-center justify-center bg-black/50 text-white text-xs"
-                      onClick={async ()=>{ try { await queue({ placeholderId: r.placeholderId }); toast('Generation queued'); } catch { toast.error('Failed to queue'); } }}
+                      onClick={async ()=>{
+                        setWorking(prev => ({ ...prev, [r.placeholderId]: true }));
+                        try { await queue({ placeholderId: r.placeholderId }); toast('Generation queued'); }
+                        catch { toast.error('Failed to queue'); }
+                        finally { setWorking(prev => { const n = { ...prev }; delete n[r.placeholderId]; return n; }); }
+                      }}
                       title="Cycle (regenerate)"
                     >Cycle</button>
+                    {working[r.placeholderId] && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      </div>
+                    )}
                   </div>
                 </td>
                 <td className="px-3 py-2 font-mono text-xs">{r.placeholderId}</td>
@@ -117,7 +174,7 @@ const AdminPlaceholders: React.FC = () => {
           <div className="mt-4 grid grid-cols-2 gap-3">
             {(historyItems || []).map((img) => (
               <div key={img._id} className="border rounded overflow-hidden">
-                <img src={img.url} className="w-full h-28 object-cover" />
+                <HistoryCard img={img} />
                 <div className="p-2 text-xs text-muted-foreground">
                   {(img.generatedAt || img.uploadedAt) && new Date(img.generatedAt || img.uploadedAt).toLocaleString()}
                 </div>
@@ -168,6 +225,22 @@ const AdminPlaceholders: React.FC = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+    </div>
+  );
+};
+
+const HistoryCard: React.FC<{ img: any }> = ({ img }) => {
+  const [mode, setMode] = React.useState<'gen' | 'orig'>(img.isGenerated ? 'gen' : 'orig');
+  const showUrl = mode === 'orig' && img.originalUrl ? img.originalUrl : img.url;
+  return (
+    <div>
+      <img src={showUrl} className="w-full h-28 object-cover" />
+      {img.originalUrl && img.isGenerated && (
+        <div className="flex gap-2 p-2">
+          <button className={`text-xs px-2 py-1 rounded border ${mode==='gen' ? 'bg-primary text-white' : ''}`} onClick={()=>setMode('gen')}>Generated</button>
+          <button className={`text-xs px-2 py-1 rounded border ${mode==='orig' ? 'bg-primary text-white' : ''}`} onClick={()=>setMode('orig')}>Original</button>
+        </div>
+      )}
     </div>
   );
 };
