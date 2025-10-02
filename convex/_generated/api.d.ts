@@ -14,17 +14,22 @@ import type {
   FunctionReference,
 } from "convex/server";
 import type * as admin from "../admin.js";
+import type * as aiImages from "../aiImages.js";
+import type * as appSettings from "../appSettings.js";
 import type * as blog from "../blog.js";
 import type * as cache from "../cache.js";
 import type * as cities from "../cities.js";
 import type * as crons from "../crons.js";
 import type * as googlePlaces from "../googlePlaces.js";
 import type * as http from "../http.js";
+import type * as imageGeneration from "../imageGeneration.js";
 import type * as images from "../images.js";
 import type * as lib_crypto from "../lib/crypto.js";
 import type * as lib_github from "../lib/github.js";
 import type * as llm from "../llm.js";
 import type * as pipeline from "../pipeline.js";
+import type * as placeholderGeneration from "../placeholderGeneration.js";
+import type * as placeholders from "../placeholders.js";
 import type * as places from "../places.js";
 import type * as settings from "../settings.js";
 import type * as siteImages from "../siteImages.js";
@@ -43,17 +48,22 @@ import type * as topics from "../topics.js";
  */
 declare const fullApi: ApiFromModules<{
   admin: typeof admin;
+  aiImages: typeof aiImages;
+  appSettings: typeof appSettings;
   blog: typeof blog;
   cache: typeof cache;
   cities: typeof cities;
   crons: typeof crons;
   googlePlaces: typeof googlePlaces;
   http: typeof http;
+  imageGeneration: typeof imageGeneration;
   images: typeof images;
   "lib/crypto": typeof lib_crypto;
   "lib/github": typeof lib_github;
   llm: typeof llm;
   pipeline: typeof pipeline;
+  placeholderGeneration: typeof placeholderGeneration;
+  placeholders: typeof placeholders;
   places: typeof places;
   settings: typeof settings;
   siteImages: typeof siteImages;

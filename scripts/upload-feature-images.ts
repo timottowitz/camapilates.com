@@ -61,13 +61,26 @@ async function uploadImage(params: {
 
 async function main() {
   try {
-    // Upload Feature Image 1 - Silence card (use optimized WebP)
+    // Get image path from command line args, or use default
+    const imagePath = process.argv[2];
+
+    if (!imagePath) {
+      console.error('❌ Please provide image path as argument');
+      console.log('\nUsage:');
+      console.log('  deno run --allow-all scripts/upload-feature-images.ts /path/to/image.jpg');
+      process.exit(1);
+    }
+
+    // Determine image name based on path
+    const fileName = path.basename(imagePath, path.extname(imagePath));
+
+    // Upload the image
     await uploadImage({
-      filePath: path.join(__dirname, '../public/images/feature_1.webp'),
-      name: 'featureSilence',
+      filePath: imagePath,
+      name: 'featureStudioClass',
       category: 'feature',
-      alt: 'Silence that is felt in each repetition',
-      description: 'Feature section showing premium silence and craftsmanship with card layout',
+      alt: 'Pilates instructor teaching reformer class',
+      description: 'Feature section showing professional instruction and studio environment',
     });
 
     console.log('\n🎉 Image uploaded successfully to Convex!');

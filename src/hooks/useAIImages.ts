@@ -2,6 +2,14 @@ import { useQuery } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 
 /**
+ * Hook for getting all AI images with generated versions
+ * PREFERS GENERATED IMAGES - Returns copyright-free AI-generated versions when available
+ */
+export function useAllAIImages(limit?: number) {
+  return useQuery(api.aiImages.listAllWithGenerated, { limit });
+}
+
+/**
  * Hook for searching AI-analyzed images by description
  */
 export function useAIImageSearch(query: string, limit?: number) {
@@ -32,10 +40,10 @@ export function useAIImagesByMood(mood: string, limit?: number) {
 }
 
 /**
- * Hook for getting all AI images
+ * Hook for getting images pending generation
  */
-export function useAllAIImages(limit?: number) {
-  return useQuery(api.aiImages.listAll, { limit });
+export function usePendingGeneration(limit?: number) {
+  return useQuery(api.aiImages.getPendingGeneration, { limit });
 }
 
 /**

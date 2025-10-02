@@ -19,6 +19,10 @@ import { DEFAULTS, getOrigin, toAbsoluteUrl } from '@/lib/seo';
 import { getAllPostsMeta } from '@/lib/content';
 import HubList from '@/components/blog/HubList';
 import SeeAlso from '@/components/blog/SeeAlso';
+import { ContextualImage } from '@/components/ContextualImage';
+import { hasConvex } from '@/lib/convexProvider';
+import { useAction, useQuery } from 'convex/react';
+import { api } from '../../convex/_generated/api';
 
 interface BlogPostMeta {
   slug: string;
@@ -290,15 +294,19 @@ const BlogPost = () => {
                 {postMeta.excerpt}
               </p>
 
-              {/* Hero image when provided */}
-              {(postMeta.heroImage || heroOverride) && (
-                <img
-                  src={toAbsoluteUrl(postMeta.heroImage as any) || heroOverride || ''}
+              {/* Contextual hero image with fallback to frontmatter/override */}
+              <div className="mb-8">
+                <ContextualImage
+                  placeholderId={`blog-${postMeta.slug}-hero-1`}
+                  pageType="blog"
+                  pageSlug={postMeta.slug}
+                  location="hero"
+                  aspectRatio="16:9"
                   alt={postMeta.title}
-                  className="w-full h-auto rounded-lg border border-border mb-8"
-                  loading="eager"
+                  fallbackSrc={toAbsoluteUrl(postMeta.heroImage as any) || heroOverride || ''}
+                  className="w-full"
                 />
-              )}
+              </div>
 
               {/* Author Byline */}
               <div className="flex items-start gap-4 py-6 border-y border-border bg-muted/30 rounded-lg px-6">
@@ -404,6 +412,20 @@ const BlogPost = () => {
 // Component to inject CTAs strategically within article content
 const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: string }) => {
   const sections = content.split(/\n## /); // Split by main headings
+  const queue = hasConvex ? (useAction(api.placeholderGeneration.queue) as any) : null;
+  const placeholders = hasConvex ? useQuery(api.placeholders.listByPage, { pageType: 'blog', pageSlug: slug }) as any[] | undefined : undefined;
+
+  // Auto-queue generation for this blog's placeholders when present
+  useEffect(() => {
+    if (!hasConvex || !queue || !placeholders) return;
+    const pending = placeholders.filter(p => p.status === 'pending' || p.status === 'prompt_generated');
+    (async () => {
+      for (const p of pending.slice(0, 6)) {
+        try { await queue({ placeholderId: p.placeholderId }); } catch {}
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [placeholders?.length]);
 
   // Function to process content and replace shortcodes
   const processContent = (text: string) => {
@@ -422,6 +444,8 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
       if (s) res.push({ type: 'see', m: s, absIndex: cursor + s.index });
       const b = /<shoprocket-button\s+([^\/>]*)\/>/.exec(slice);
       if (b) res.push({ type: 'srbtn', m: b, absIndex: cursor + b.index });
+      const c = /<contextual-image\s+([^\/>]*)\/>/.exec(slice);
+      if (c) res.push({ type: 'ctximg', m: c, absIndex: cursor + c.index });
       if (res.length === 0) return null;
       res.sort((x, y) => x.absIndex - y.absIndex);
       return res[0];
@@ -516,6 +540,27 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
             <div key={`srbtn-${m.index}`} className="not-prose my-6" dangerouslySetInnerHTML={{ __html: html }} />
           );
         }
+      } else if (type === 'ctximg') {
+        const attr = m[1] || '';
+        const attrs: Record<string,string> = {};
+        attr.replace(/(\w+)="([^"]*)"/g, (_: any, k: string, v: string) => { attrs[k] = v; return ''; });
+        const placeholder = attrs['placeholder'] || '';
+        const aspect = (attrs['aspect'] || '16:9') as any;
+        const alt = attrs['alt'] || undefined;
+        const phId = placeholder || `blog-${slug}-inline-custom-${absIndex}`;
+        elements.push(
+          <div key={`ctximg-${m.index}`} className="not-prose my-6">
+            <ContextualImage
+              placeholderId={phId}
+              pageType="blog"
+              pageSlug={slug}
+              location={placeholder ? 'inline' : `inline-${absIndex}`}
+              aspectRatio={aspect}
+              alt={alt}
+              className="w-full"
+            />
+          </div>
+        );
       }
     }
     
@@ -527,12 +572,35 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
       {processContent(sections[0])}
 
       {sections.slice(1).map((section, index) => {
+        const maxImages = Math.min(3, sections.length - 1);
+        const insertImage = index < maxImages;
         const shouldShowCTA = index === Math.floor((sections.length - 1) * 0.3) ||
                              index === Math.floor((sections.length - 1) * 0.7);
 
+        // Derive a heading text for alt/context
+        const headingMatch = section.match(/^[^\n]+/);
+        const headingText = headingMatch ? headingMatch[0].trim() : undefined;
+        const aspect = index === 0 ? '16:9' : '4:3';
+        const phId = `blog-${slug}-inline-${index + 1}`;
         return (
           <div key={index}>
             {processContent('## ' + section)}
+
+            {/* Auto contextual image for first sections */}
+            {insertImage && (
+              <div className="not-prose my-6">
+                <ContextualImage
+                  placeholderId={phId}
+                  pageType="blog"
+                  pageSlug={slug}
+                  location={`inline-${index + 1}`}
+                  aspectRatio={aspect as any}
+                  alt={headingText}
+                  className="w-full"
+                />
+              </div>
+            )}
+
             {/* Mid-article See Also after first section */}
             {index === 0 && <SeeAlso slug={slug} limit={3} />}
 

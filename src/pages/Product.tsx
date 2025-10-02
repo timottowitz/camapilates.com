@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet-async';
 import { getOrigin, DEFAULTS } from '@/lib/seo';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import products from '@/content/products.json';
+import { ContextualImage } from '@/components/ContextualImage';
 import type { FinishKey, Product as PType } from '@/lib/shop/types';
 import { toCategorySlug } from '@/lib/shop/catalog';
 import ShoprocketBuyButton from '@/components/commerce21/ShoprocketBuyButton';
@@ -235,6 +236,17 @@ const ProductPage: React.FC = () => {
               ].filter(Boolean)}
               showLabels={true}
             />
+            <div className="mt-4">
+              <ContextualImage
+                placeholderId={`product-${prod.slug}-hero-1`}
+                pageType="shop"
+                pageSlug={prod.slug}
+                location="hero"
+                aspectRatio="1:1"
+                alt={prod.name}
+                fallbackSrc={activeVariant?.image || prod.image}
+              />
+            </div>
           </div>
           <div>
             {/* Region selector for delivery estimate */}

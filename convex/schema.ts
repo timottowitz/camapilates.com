@@ -314,7 +314,7 @@ export default defineSchema({
   // AI-Described Images for Smart Selection
   ai_images: defineTable({
     fileName: v.string(), // Original filename
-    storageId: v.id('_storage'), // Convex storage ID
+    storageId: v.id('_storage'), // Convex storage ID (original image)
     mimeType: v.string(),
     size: v.number(),
     dimensions: v.object({
@@ -337,6 +337,17 @@ export default defineSchema({
       quality: v.optional(v.string()), // Image quality assessment
     }),
 
+    // AI-Generated Similar Image (copyright-free alternative)
+    generatedStorageId: v.optional(v.id('_storage')), // Generated image ID
+    generationPrompt: v.optional(v.string()), // DALL-E prompt used
+    generatedDimensions: v.optional(v.object({
+      width: v.number(),
+      height: v.number(),
+    })),
+    generatedAt: v.optional(v.number()), // When image was generated
+    generationStatus: v.optional(v.string()), // 'pending' | 'generating' | 'completed' | 'failed'
+    generationError: v.optional(v.string()), // Error message if generation failed
+
     // Metadata
     category: v.optional(v.string()), // Auto-detected or manual
     isActive: v.boolean(),
@@ -346,6 +357,49 @@ export default defineSchema({
     .index('by_file', ['fileName'])
     .index('by_category', ['category'])
     .index('by_active', ['isActive'])
-    .index('by_uploaded', ['uploadedAt']),
-});
+    .index('by_uploaded', ['uploadedAt'])
+    .index('by_generation_status', ['generationStatus']),
 
+  // Image Placeholders registry for contextual image generation
+  image_placeholders: defineTable({
+    // Identity
+    placeholderId: v.string(), // Unique key like "blog-slug-hero-1"
+    pageType: v.string(), // "blog" | "home" | "shop" | "studios" | "about" | etc.
+    pageSlug: v.optional(v.string()), // For dynamic pages (blog slug, studio slug)
+    location: v.string(), // "hero" | "section-1" | "inline-3" | "gallery-2"
+
+    // Context snapshot
+    contextBefore: v.optional(v.string()), // up to ~500 chars
+    contextAfter: v.optional(v.string()), // up to ~500 chars
+    headingAbove: v.optional(v.string()),
+    altText: v.optional(v.string()),
+    figCaption: v.optional(v.string()),
+
+    // Generation prompt
+    generatedPrompt: v.optional(v.string()),
+    promptGeneratedAt: v.optional(v.number()),
+
+    // Assignment
+    assignedImageId: v.optional(v.id('ai_images')),
+    assignedAt: v.optional(v.number()),
+
+    // Requirements/preferences
+    preferredAspectRatio: v.string(), // e.g., "16:9" | "1:1" | "4:3"
+    preferredStyle: v.optional(v.string()), // e.g., "professional" | "lifestyle"
+    requiredSubjects: v.optional(v.array(v.string())),
+
+    // Status & priority
+    status: v.string(), // "pending" | "prompt_generated" | "image_assigned" | "active"
+    priority: v.number(), // 1-100
+
+    // Metadata
+    createdAt: v.number(),
+    updatedAt: v.number(),
+    isActive: v.boolean(),
+  })
+    .index('by_placeholder_id', ['placeholderId'])
+    .index('by_page_slug', ['pageSlug'])
+    .index('by_status', ['status'])
+    .index('by_priority', ['priority'])
+    .index('by_page_type_slug', ['pageType', 'pageSlug']),
+});

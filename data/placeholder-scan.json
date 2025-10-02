@@ -1,0 +1,710 @@
+{
+  "generatedAt": "2025-10-02T02:22:41.414Z",
+  "placeholders": [
+    {
+      "placeholderId": "home-src-pages-index-inline-1",
+      "pageType": "home",
+      "location": "inline-1",
+      "filePath": "src/pages/Index.tsx",
+      "line": 325,
+      "contextBefore": "   {/* Featured Products */}\n      <section className=\"bg-background\">\n        <div className=\"container mx-auto px-4 py-12\">\n          <h2 className=\"text-2xl font-bold text-foreground mb-6\">Camas de Pilates destacadas</h2>\n          <div className=\"grid md:grid-cols-2 gap-6\">\n            {featured.map((p) => (\n              <Link key={p.slug} to={`/product/${p.slug}`} className=\"block group border border-border rounded-lg p-6 bg-card hover:border-primary/50 transition-colors\">\n                ",
+      "contextAfter": "<img src={p.image} alt={p.name} className=\"w-full h-auto rounded mb-4 border border-border\" />\n                <h3 className=\"font-semibold text-foreground group-hover:text-primary\">{p.name}</h3>\n                <p className=\"text-sm text-muted-foreground mt-2\">{p.description}</p>\n                <div className=\"mt-3 font-semibold text-foreground\">$ {p.price} {p.currency}</div>\n              </Link>\n            ))}\n          </div>\n          <div className=\"mt-6\">\n            <Link to=\"/products",
+      "headingAbove": "Camas de Pilates destacadas",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-pages-product-inline-1",
+      "pageType": "page",
+      "location": "inline-1",
+      "filePath": "src/pages/Product.tsx",
+      "line": 454,
+      "contextBefore": "oreground\">Productos relacionados</h2>\n            <div className=\"mt-3 grid grid-cols-2 gap-3\">\n              {products.filter(p => p.slug !== prod.slug && p.category === prod.category).slice(0, 2).map((p) => (\n                <Link key={p.slug} to={`/product/${p.slug}`} className=\"block group rounded-md border border-border p-3 hover:border-primary/50 transition-colors\">\n                  <div className=\"aspect-square overflow-hidden rounded bg-muted border border-border\">\n                    ",
+      "contextAfter": "<img src={p.image} alt={p.name} loading=\"lazy\" decoding=\"async\" className=\"h-full w-full object-cover\" />\n                  </div>\n                  <div className=\"mt-2 text-sm font-medium text-foreground group-hover:text-primary\">{p.name}</div>\n                  <div className=\"text-xs text-muted-foreground\">$ {p.price} {p.currency}</div>\n                </Link>\n              ))}\n            </div>\n          </div>\n        </div>\n      </div>\n    </section>\n    {/* Enhanced Sticky Mobile CTA *",
+      "headingAbove": "Productos relacionados",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-pages-products-inline-1",
+      "pageType": "page",
+      "location": "inline-1",
+      "filePath": "src/pages/Products.tsx",
+      "line": 81,
+      "contextBefore": "nded-full bg-primary\"></span> Repuestos exprés</div>\n            <div className=\"hidden lg:flex items-center gap-2\"><span className=\"inline-block h-2 w-2 rounded-full bg-primary\"></span> Garantía 1 año</div>\n          </div>\n          <div className=\"grid md:grid-cols-3 gap-6\">\n            {products.map((p) => (\n              <Link key={p.slug} to={`/product/${p.slug}`} className=\"block group border border-border rounded-lg p-6 hover:border-primary/50 transition-colors bg-card\">\n                ",
+      "contextAfter": "<img src={p.image} alt={p.name} className=\"w-full h-auto rounded mb-4 border border-border\" />\n                <h2 className=\"font-semibold text-foreground group-hover:text-primary\">{p.name}</h2>\n                <p className=\"text-sm text-muted-foreground mt-2\">{p.description}</p>\n                <div className=\"mt-3 font-semibold text-foreground\">$ {p.price} {p.currency}</div>\n                <div className=\"mt-1 text-xs text-muted-foreground\"><RegionSmall /></div>\n              </Link>\n       ",
+      "headingAbove": "Todos los productos",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-contextualimage-hero-1",
+      "pageType": "page",
+      "location": "hero",
+      "filePath": "src/components/ContextualImage.tsx",
+      "line": 117,
+      "contextBefore": "eholderId, pageType, pageSlug, location, aspectRatio, alt]);\n\n  const paddingTop = useMemo(() => aspectToPadding(aspectRatio), [aspectRatio]);\n  const url = data?.imageUrl || fallbackSrc;\n\n  // If no image yet and no fallback, register silently without visual placeholder\n  if (!url) {\n    return <div ref={ref} style={{ display: 'contents' }} />;\n  }\n\n  return (\n    <div ref={ref} className={className} style={style}>\n      <div style={{ position: 'relative', width: '100%', paddingTop }}>\n        ",
+      "contextAfter": "<img\n          src={url}\n          alt={alt || data?.headingAbove || ''}\n          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', borderRadius: 8 }}\n          loading={location.includes('hero') ? 'eager' : 'lazy'}\n          decoding=\"async\"\n        />\n      </div>\n    </div>\n  );\n};\n\nexport default ContextualImage;\n",
+      "preferredAspectRatio": "16:9",
+      "priority": 100
+    },
+    {
+      "placeholderId": "page-src-components-versionedimage-hero-1",
+      "pageType": "page",
+      "location": "hero",
+      "filePath": "src/components/VersionedImage.tsx",
+      "line": 28,
+      "contextBefore": "ages/hero.jpg') */\n  src: string;\n  /** Alt text for the image */\n  alt: string;\n}\n\n/**\n * VersionedImage component that automatically uses cache-busted image URLs\n *\n * Usage:\n * <VersionedImage src=\"/images/hero.jpg\" alt=\"Hero image\" />\n *\n * This will automatically resolve to the hashed version like:\n * \"/images/hero.a1b2c3d4.jpg\"\n */\nexport const VersionedImage: React.FC<VersionedImageProps> = ({\n  src,\n  alt,\n  ...props\n}) => {\n  const versionedSrc = useVersionedImage(src);\n\n  return (\n    ",
+      "contextAfter": "<img\n      {...props}\n      src={versionedSrc}\n      alt={alt}\n      loading=\"lazy\"\n    />\n  );\n};\n\nexport default VersionedImage;",
+      "preferredAspectRatio": "16:9",
+      "priority": 100
+    },
+    {
+      "placeholderId": "page-src-components-commerce21-categoryicons21-inline-1",
+      "pageType": "page",
+      "location": "inline-1",
+      "filePath": "src/components/commerce21/CategoryIcons21.tsx",
+      "line": 9,
+      "contextBefore": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\ntype Cat = { label: string; href: string; img?: string; emoji?: string; count?: number };\n\nconst Circle: React.FC<{ img?: string; emoji?: string; alt: string }> = ({ img, emoji, alt }) => (\n  <div className=\"h-16 w-16 rounded-full border border-border bg-card grid place-content-center overflow-hidden\">\n    {img ? (\n      ",
+      "contextAfter": "<img\n        src={img}\n        alt={alt}\n        className=\"h-full w-full object-cover scale-[1.9]\"\n        loading=\"lazy\"\n        decoding=\"async\"\n        onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}\n      />\n    ) : (\n      <span className=\"text-xl\" aria-hidden>{emoji || '🛍️'}</span>\n    )}\n  </div>\n);\n\nconst CategoryIcons21: React.FC<{ items: Cat[] }> = ({ items }) => {\n  if (!items?.length) return null;\n  return (\n    <div className=\"flex flex-wrap item",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-commerce21-enhancedgallery-inline-1",
+      "pageType": "page",
+      "location": "inline-1",
+      "filePath": "src/components/commerce21/EnhancedGallery.tsx",
+      "line": 80,
+      "contextBefore": "           onMouseLeave={() => setIsZoomed(false)}\n            onMouseMove={handleMouseMove}\n          >\n            {/* Image Type Badge */}\n            {showLabels && selectedImage.type && (\n              <div className=\"absolute top-4 left-4 z-10\">\n                <Badge variant=\"secondary\" className=\"backdrop-blur-sm bg-white/90\">\n                  {getImageTypeLabel(selectedImage.type)}\n                </Badge>\n              </div>\n            )}\n\n            {/* Main Image */}\n            ",
+      "contextAfter": "<img\n              src={selectedImage.src}\n              alt={selectedImage.alt}\n              className={`\n                w-full h-full object-cover transition-transform duration-300\n                ${isZoomed ? 'scale-150 cursor-zoom-in' : 'scale-100'}\n              `}\n              style={isZoomed ? {\n                transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`\n              } : undefined}\n            />\n\n            {/* Zoom Hint */}\n            {!isZoomed && (\n              <di",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-commerce21-enhancedgallery-inline-2",
+      "pageType": "page",
+      "location": "inline-2",
+      "filePath": "src/components/commerce21/EnhancedGallery.tsx",
+      "line": 160,
+      "contextBefore": "es.map((image, index) => (\n              <button\n                key={index}\n                onClick={() => setSelectedIndex(index)}\n                className={`\n                  relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all\n                  ${index === selectedIndex\n                    ? 'border-primary shadow-md scale-105'\n                    : 'border-border hover:border-primary/50'\n                  }\n                `}\n              >\n                ",
+      "contextAfter": "<img\n                  src={image.src}\n                  alt={image.alt}\n                  className=\"w-full h-full object-cover\"\n                />\n                {image.type && (\n                  <div className=\"absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity\">\n                    <span className=\"text-white text-[10px] font-medium\">\n                      {getImageTypeLabel(image.type)}\n                    </span>\n                 ",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-commerce21-enhancedgallery-inline-3",
+      "pageType": "page",
+      "location": "inline-3",
+      "filePath": "src/components/commerce21/EnhancedGallery.tsx",
+      "line": 211,
+      "contextBefore": "boxOpen && (\n        <div className=\"fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 animate-in fade-in duration-200\">\n          <button\n            onClick={() => setIsLightboxOpen(false)}\n            className=\"absolute top-4 right-4 p-2 rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors\"\n            aria-label=\"Cerrar\"\n          >\n            <X className=\"h-6 w-6\" />\n          </button>\n\n          <div className=\"relative max-w-6xl w-full\">\n            ",
+      "contextAfter": "<img\n              src={selectedImage.src}\n              alt={selectedImage.alt}\n              className=\"w-full h-auto max-h-[85vh] object-contain\"\n            />\n\n            {images.length > 1 && (\n              <>\n                <button\n                  onClick={handlePrevious}\n                  className=\"absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors\"\n                  aria-label=\"Imagen anterior\"\n                >\n   ",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-commerce21-enhancedhero-bg-1",
+      "pageType": "page",
+      "location": "bg-1",
+      "filePath": "src/components/commerce21/EnhancedHero.tsx",
+      "line": 49,
+      "contextBefore": "   <div className=\"relative aspect-[21/6] w-full\">\n        {/* Video Background (if provided) */}\n        {videoUrl && isVideoPlaying ? (\n          <video\n            src={videoUrl}\n            autoPlay\n            muted\n            loop\n            playsInline\n            className=\"absolute inset-0 w-full h-full object-cover\"\n          />\n        ) : (\n          /* Image Background */\n          <div\n            className=\"absolute inset-0 bg-cover bg-center\"\n            style={{\n              ",
+      "contextAfter": "backgroundImage: `url(${backgroundImage || '/og/cama-de-pilates-venta-mexico.png'})`\n            }}\n          />\n        )}\n\n        {/* Gradient Overlay */}\n        <div className=\"absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent\" />\n\n        {/* Content */}\n        <div className=\"absolute inset-0 flex items-center\">\n          <div className=\"container mx-auto px-4 md:px-6\">\n            <div className=\"max-w-2xl space-y-6\">\n              {/* Badge */}\n              <",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-commerce21-exploretiles21-inline-1",
+      "pageType": "page",
+      "location": "inline-1",
+      "filePath": "src/components/commerce21/ExploreTiles21.tsx",
+      "line": 16,
+      "contextBefore": " = ({ items }) => {\n  if (!items?.length) return null;\n  return (\n    <section className=\"mt-10\">\n      <h2 className=\"text-xl font-semibold text-foreground mb-3\">Explora nuestra gama</h2>\n      <div className=\"grid sm:grid-cols-2 gap-4\">\n        {items.map((it) => (\n          <Link key={it.href} to={it.href} className=\"group border border-border rounded-lg overflow-hidden bg-card hover:border-primary/50\">\n            <div className=\"aspect-[16/7] w-full bg-muted overflow-hidden\">\n              ",
+      "contextAfter": "<img src={it.img || pickImage(it.label)} alt={it.label} className=\"h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]\" loading=\"lazy\" decoding=\"async\" />\n            </div>\n            <div className=\"p-4\">\n              <div className=\"font-semibold text-foreground group-hover:text-primary\">{it.label}</div>\n              <p className=\"text-sm text-muted-foreground mt-1\">{it.desc}</p>\n            </div>\n          </Link>\n        ))}\n      </div>\n    </section>\n",
+      "headingAbove": "Explora nuestra gama",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-commerce21-featuredproduct21-inline-1",
+      "pageType": "page",
+      "location": "inline-1",
+      "filePath": "src/components/commerce21/FeaturedProduct21.tsx",
+      "line": 15,
+      "contextBefore": "s();\n  return (\n    <section className=\"mb-10\">\n      <h2 className=\"text-xl font-semibold text-foreground mb-3\">Producto destacado</h2>\n      <div className=\"grid md:grid-cols-2 gap-6 border border-border rounded-lg bg-card p-4\">\n        <div className=\"relative aspect-video w-full bg-muted rounded overflow-hidden\">\n          {(((product as any).finishes || []).includes('mycelium') || /mycel/i.test(product?.name || '') || /mycel/i.test(product?.slug || '')) && assets.myloBadge && (\n            ",
+      "contextAfter": "<img src={assets.myloBadge} alt=\"Mylo™\" className=\"absolute top-3 left-3 h-7 w-auto drop-shadow\" />\n          )}\n          <img src={assets.featuredProducts || product.image} alt={assets.featuredProducts ? 'Productos destacados' : product.name} className=\"h-full w-full object-cover\" loading=\"lazy\" decoding=\"async\" onError={(e) => { e.currentTarget.style.display = 'none'; }} />\n        </div>\n        <div>\n          <Link to={`/product/${product.slug}`} className=\"text-2xl font-semibold text-fore",
+      "headingAbove": "Producto destacado",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-commerce21-featuredproduct21-inline-2",
+      "pageType": "page",
+      "location": "inline-2",
+      "filePath": "src/components/commerce21/FeaturedProduct21.tsx",
+      "line": 17,
+      "contextBefore": "estacado</h2>\n      <div className=\"grid md:grid-cols-2 gap-6 border border-border rounded-lg bg-card p-4\">\n        <div className=\"relative aspect-video w-full bg-muted rounded overflow-hidden\">\n          {(((product as any).finishes || []).includes('mycelium') || /mycel/i.test(product?.name || '') || /mycel/i.test(product?.slug || '')) && assets.myloBadge && (\n            <img src={assets.myloBadge} alt=\"Mylo™\" className=\"absolute top-3 left-3 h-7 w-auto drop-shadow\" />\n          )}\n          ",
+      "contextAfter": "<img src={assets.featuredProducts || product.image} alt={assets.featuredProducts ? 'Productos destacados' : product.name} className=\"h-full w-full object-cover\" loading=\"lazy\" decoding=\"async\" onError={(e) => { e.currentTarget.style.display = 'none'; }} />\n        </div>\n        <div>\n          <Link to={`/product/${product.slug}`} className=\"text-2xl font-semibold text-foreground hover:text-primary\">{product.name}</Link>\n          <p className=\"mt-2 text-sm text-muted-foreground\">{product.descr",
+      "headingAbove": "Producto destacado",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-commerce21-gallery21-inline-1",
+      "pageType": "page",
+      "location": "inline-1",
+      "filePath": "src/components/commerce21/Gallery21.tsx",
+      "line": 19,
+      "contextBefore": "ges?.[idx] || images?.[0];\n  const onKey = (e: React.KeyboardEvent<HTMLDivElement>) => {\n    if (e.key === 'ArrowRight') setIdx((i) => Math.min((images.length - 1), i + 1));\n    if (e.key === 'ArrowLeft') setIdx((i) => Math.max(0, i - 1));\n  };\n  return (\n    <div className=\"w-full\" onKeyDown={onKey} tabIndex={0} aria-label=\"Galería de imágenes del producto\">\n      <div className=\"aspect-video w-full overflow-hidden rounded-lg border border-border bg-muted mb-3\">\n        {current && (\n          ",
+      "contextAfter": "<img\n            src={current}\n            alt={`${altPrefix} - imagen ${idx + 1}`}\n            className=\"h-full w-full object-cover\"\n            loading=\"eager\"\n            onError={(e) => { e.currentTarget.style.display = 'none'; }}\n          />\n        )}\n      </div>\n      <div className=\"grid grid-cols-4 sm:grid-cols-6 gap-2\">\n        {images.map((src, i) => (\n          <button\n            key={i}\n            type=\"button\"\n            onClick={() => setIdx(i)}\n            aria-pressed={idx",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-commerce21-gallery21-inline-2",
+      "pageType": "page",
+      "location": "inline-2",
+      "filePath": "src/components/commerce21/Gallery21.tsx",
+      "line": 38,
+      "contextBefore": "style.display = 'none'; }}\n          />\n        )}\n      </div>\n      <div className=\"grid grid-cols-4 sm:grid-cols-6 gap-2\">\n        {images.map((src, i) => (\n          <button\n            key={i}\n            type=\"button\"\n            onClick={() => setIdx(i)}\n            aria-pressed={idx === i}\n            className={`aspect-square overflow-hidden rounded-md border ${idx === i ? 'border-foreground' : 'border-border'} bg-card`}\n            title={`Ver imagen ${i + 1}`}\n          >\n            ",
+      "contextAfter": "<img src={src} alt={`${altPrefix} miniatura ${i + 1}`} className=\"h-full w-full object-cover\" loading=\"lazy\" onError={(e) => { e.currentTarget.style.display = 'none'; }} />\n          </button>\n        ))}\n      </div>\n    </div>\n  );\n};\n\nexport default Gallery21;\n\n",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-commerce21-productcard21-inline-1",
+      "pageType": "page",
+      "location": "inline-1",
+      "filePath": "src/components/commerce21/ProductCard21.tsx",
+      "line": 28,
+      "contextBefore": "|| '');\n  return (\n    <Link\n      to={`/product/${product.slug}`}\n      className=\"block group rounded-lg border border-border bg-card hover:border-primary/50 transition-colors\"\n      onClick={() => selectItem(product, 'shop')}\n    >\n      <div className=\"p-4\">\n        <div className=\"relative aspect-square w-full overflow-hidden rounded-md border border-border bg-muted\">\n          <div className=\"absolute top-2 left-2 z-10 space-y-1\">\n            {isMylo && assets.myloBadge && (\n              ",
+      "contextAfter": "<img src={assets.myloBadge} alt=\"Mylo™\" className=\"h-6 w-auto drop-shadow\" />\n            )}\n            {(product.isNew || product.bestSeller) && (\n              <div className=\"inline-flex items-center gap-1 rounded-full bg-black/70 text-white text-[10px] px-2 py-0.5\">\n                {product.isNew ? 'Nuevo' : 'Más vendido'}\n              </div>\n            )}\n          </div>\n          <img\n            src={product.image}\n            alt={product.name}\n            loading=\"lazy\"\n            ",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-commerce21-productcard21-inline-2",
+      "pageType": "page",
+      "location": "inline-2",
+      "filePath": "src/components/commerce21/ProductCard21.tsx",
+      "line": 36,
+      "contextBefore": "assName=\"absolute top-2 left-2 z-10 space-y-1\">\n            {isMylo && assets.myloBadge && (\n              <img src={assets.myloBadge} alt=\"Mylo™\" className=\"h-6 w-auto drop-shadow\" />\n            )}\n            {(product.isNew || product.bestSeller) && (\n              <div className=\"inline-flex items-center gap-1 rounded-full bg-black/70 text-white text-[10px] px-2 py-0.5\">\n                {product.isNew ? 'Nuevo' : 'Más vendido'}\n              </div>\n            )}\n          </div>\n          ",
+      "contextAfter": "<img\n            src={product.image}\n            alt={product.name}\n            loading=\"lazy\"\n            decoding=\"async\"\n            className=\"h-full w-full object-cover group-hover:scale-[1.02] transition-transform\"\n            onError={(e) => { e.currentTarget.style.display = 'none'; }}\n          />\n        </div>\n        <div className=\"mt-3\">\n          <h3 className=\"font-semibold text-foreground group-hover:text-primary\">\n            {product.name}\n          </h3>\n          <p className",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-commerce21-productcard21enhanced-inline-1",
+      "pageType": "page",
+      "location": "inline-1",
+      "filePath": "src/components/commerce21/ProductCard21Enhanced.tsx",
+      "line": 53,
+      "contextBefore": "sHovered(true)}\n      onMouseLeave={() => setIsHovered(false)}\n    >\n      <div className=\"p-4\">\n        {/* Image Section with Badges */}\n        <div className=\"relative aspect-square w-full overflow-hidden rounded-lg border border-border bg-muted mb-3\">\n          {/* Top Badges */}\n          <div className=\"absolute top-2 left-2 z-10 space-y-1.5\">\n            {isMylo && assets.myloBadge && (\n              <div className=\"backdrop-blur-sm bg-white/90 rounded-md p-1 shadow-sm\">\n                ",
+      "contextAfter": "<img src={assets.myloBadge} alt=\"Mylo™\" className=\"h-5 w-auto\" />\n              </div>\n            )}\n            {product.bestSeller && (\n              <Badge className=\"bg-gradient-to-r from-amber-500 to-orange-500 text-white border-0 shadow-lg\">\n                <TrendingUp className=\"h-3 w-3 mr-1\" />\n                Más vendido\n              </Badge>\n            )}\n            {product.isNew && (\n              <Badge className=\"bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-0",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-commerce21-productcard21enhanced-inline-2",
+      "pageType": "page",
+      "location": "inline-2",
+      "filePath": "src/components/commerce21/ProductCard21Enhanced.tsx",
+      "line": 81,
+      "contextBefore": "r-1\" />\n                Nuevo\n              </Badge>\n            )}\n          </div>\n\n          {/* Urgency Badge - Top Right */}\n          {showUrgency && stock <= 5 && (\n            <div className=\"absolute top-2 right-2 z-10\">\n              <Badge variant=\"destructive\" className=\"shadow-lg animate-pulse\">\n                <Clock className=\"h-3 w-3 mr-1\" />\n                Solo {stock} disponibles\n              </Badge>\n            </div>\n          )}\n\n          {/* Product Image */}\n          ",
+      "contextAfter": "<img\n            src={product.image}\n            alt={product.name}\n            loading=\"lazy\"\n            decoding=\"async\"\n            className={`h-full w-full object-cover transition-transform duration-500 ${\n              isHovered ? 'scale-110' : 'scale-100'\n            }`}\n            onError={(e) => { e.currentTarget.style.display = 'none'; }}\n          />\n\n          {/* Overlay on Hover */}\n          {isHovered && onQuickView && (\n            <div className=\"absolute inset-0 bg-black/50 ",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-commerce21-productrail21-inline-1",
+      "pageType": "page",
+      "location": "inline-1",
+      "filePath": "src/components/commerce21/ProductRail21.tsx",
+      "line": 26,
+      "contextBefore": "-mandatory\" tabIndex={0} onKeyDown={onKey} role=\"region\" aria-label={title}>\n          <div className=\"flex gap-4 min-w-max pr-6\">\n            {products.map((p) => (\n            <Link key={p.slug} to={`/product/${p.slug}`} className=\"w-56 shrink-0 border border-border rounded-lg bg-card hover:border-primary/50 transition-colors snap-start focus:outline-none focus:ring-1 focus:ring-primary\">\n              <div className=\"aspect-video w-full bg-muted rounded-t-lg overflow-hidden\">\n                ",
+      "contextAfter": "<img src={p.image} alt={p.name} className=\"h-full w-full object-cover\" loading=\"lazy\" decoding=\"async\" onError={(e) => { e.currentTarget.style.display = 'none'; }} />\n              </div>\n              <div className=\"p-3\">\n                <div className=\"text-sm font-medium text-foreground line-clamp-2\">{p.name}</div>\n                <div className=\"text-xs text-muted-foreground mt-1\">$ {p.price} {p.currency}</div>\n              </div>\n            </Link>\n          ))}\n          </div>\n        ",
+      "headingAbove": "{title}",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-commerce21-shopheaderaddon-inline-1",
+      "pageType": "page",
+      "location": "inline-1",
+      "filePath": "src/components/commerce21/ShopHeaderAddon.tsx",
+      "line": 6,
+      "contextBefore": "import React from 'react';\n\nconst ShopHeaderAddon: React.FC<{ src?: string; alt?: string; href?: string }>\n  = ({ src = '/images/store-addon.png', alt = 'Promoción', href }) => {\n  const img = (\n    ",
+      "contextAfter": "<img\n      src={src}\n      alt={alt}\n      className=\"h-16 w-auto md:h-20 shadow-sm rounded\"\n      loading=\"lazy\"\n      decoding=\"async\"\n      onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}\n    />\n  );\n  return (\n    <div className=\"absolute right-3 top-3 md:right-6 md:top-6\">\n      {href ? <a href={href} target=\"_blank\" rel=\"noopener noreferrer\">{img}</a> : img}\n    </div>\n  );\n};\n\nexport default ShopHeaderAddon;\n\n",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-editorial21-blogcard21-hero-1",
+      "pageType": "page",
+      "location": "hero",
+      "filePath": "src/components/editorial21/BlogCard21.tsx",
+      "line": 23,
+      "contextBefore": "{ post: BlogMeta; large?: boolean }> = ({ post, large = false }) => {\n  const origin = getOrigin();\n  const img = toAbsoluteUrl(post.heroImage) || `${origin}/og/${post.slug}.png`;\n  return (\n    <Reveal>\n    <Link to={`/blog/${post.slug}`} className={`group block rounded-xl overflow-hidden border border-border bg-card hover:border-primary/50 transition-colors ${large ? 'md:col-span-2' : ''}`}>\n      <div className={`relative w-full ${large ? 'aspect-[2/1]' : 'aspect-[4/3]'} bg-muted`}> \n        ",
+      "contextAfter": "<img src={img} alt={post.title} loading=\"lazy\" decoding=\"async\" className=\"h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]\" onError={(e) => { e.currentTarget.style.display = 'none'; }} />\n        <div className=\"absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent\" />\n        <div className=\"absolute inset-x-0 bottom-0 p-4\">\n          <div className=\"inline-flex items-center rounded-md bg-black/60 text-white text-xs px-2 py",
+      "preferredAspectRatio": "16:9",
+      "priority": 100
+    },
+    {
+      "placeholderId": "page-src-components-layout-footer-inline-1",
+      "pageType": "page",
+      "location": "inline-1",
+      "filePath": "src/components/layout/Footer.tsx",
+      "line": 14,
+      "contextBefore": "\nimport React from 'react';\nimport { Link } from 'react-router-dom';\nimport { Instagram, Youtube, Mail } from 'lucide-react';\nimport { getVersionedImageUrl } from '@/hooks/useVersionedImage';\n\nconst Footer = () => {\n  return (\n    <footer className=\"border-t bg-background\">\n      <div className=\"container mx-auto px-4 py-12 grid md:grid-cols-4 gap-10\">\n        {/* Brand */}\n        <div>\n          <Link to=\"/\" className=\"inline-flex items-center gap-3\">\n            ",
+      "contextAfter": "<img src={getVersionedImageUrl('/brand/edelweiss.svg')} alt=\"Edelweiss Pilates\" className=\"h-8 w-auto\" />\n            <span className=\"text-base font-semibold text-foreground\">Edelweiss Pilates</span>\n          </Link>\n          <p className=\"mt-3 text-sm text-muted-foreground max-w-xs\">\n            Reformers silenciosos y precisos con cuero genuino, madera de nogal y acero. Ingeniería alemana, manufactura mexicana.\n          </p>\n          <div className=\"mt-4 flex items-center gap-3 text-muted",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-layout-header-inline-1",
+      "pageType": "page",
+      "location": "inline-1",
+      "filePath": "src/components/layout/Header.tsx",
+      "line": 19,
+      "contextBefore": ".FC = () => {\n  const [isMenuOpen, setIsMenuOpen] = useState(false);\n\n  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);\n  const closeMenu = () => setIsMenuOpen(false);\n\n  return (\n    <header className=\"sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60\">\n      <div className=\"container flex h-16 items-center justify-between\">\n        {/* Logo */}\n        <Link to=\"/\" className=\"flex items-center gap-2 md:gap-3\" onClick={closeMenu}>\n          ",
+      "contextAfter": "<img src={getVersionedImageUrl('/brand/edelweiss.svg')} alt=\"CAMA Pilates\" className=\"h-6 w-auto md:h-7\" />\n          <span className=\"text-xs sm:text-sm md:text-base font-semibold tracking-tight text-gray-900\">\n            <span className=\"hidden sm:inline\">Edelweiss Pilates</span>\n            <span className=\"sm:hidden\">Edelweiss</span>\n          </span>\n        </Link>\n\n        {/* Desktop Navigation */}\n        <nav className=\"hidden lg:flex items-center gap-6 text-sm text-gray-700\">\n       ",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-layout-standardhero-bg-1",
+      "pageType": "page",
+      "location": "bg-1",
+      "filePath": "src/components/layout/StandardHero.tsx",
+      "line": 73,
+      "contextBefore": "sName=\"absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,rgba(59,130,246,0.1)_0%,transparent_60%)]\"></div>\n          <div className=\"absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px]\"></div>\n        </div>\n      )}\n\n      {backgroundImage && (\n        <div \n          className=\"absolute inset-0 bg-cover bg-center opacity-10\"\n          style={{ ",
+      "contextAfter": "backgroundImage: `url(${backgroundImage})` }}\n        />\n      )}\n      \n      <div className=\"relative container mx-auto px-4 py-20\">\n        <div className=\"max-w-6xl mx-auto\">\n          <div className={cn(\n            \"grid gap-16 items-center\",\n            stats ? \"grid-cols-1 lg:grid-cols-2\" : \"grid-cols-1 text-center\"\n          )}>\n            {/* Content */}\n            <div className=\"space-y-8\">\n              {/* Trust Badge */}\n              {trustBadge && (\n                <div classN",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-product-finishes-inline-1",
+      "pageType": "page",
+      "location": "inline-1",
+      "filePath": "src/components/product/Finishes.tsx",
+      "line": 78,
+      "contextBefore": "  className={`rounded-md border px-3 py-2 text-sm ${\n              value === key ? 'border-foreground' : 'border-border'\n            }`}\n            aria-pressed={value === key}\n          >\n            {FINISHES[key].name}\n          </button>\n        ))}\n      </div>\n      <div className=\"mt-4 grid sm:grid-cols-2 gap-4\">\n        <div className=\"rounded-lg border border-border bg-card overflow-hidden\">\n          <div className=\"aspect-video w-full bg-muted grid place-content-center\">\n            ",
+      "contextAfter": "<img src={FINISHES[value].img} alt={FINISHES[value].name} className=\"h-full w-full object-cover cursor-zoom-in\" loading=\"lazy\" onClick={() => setOpen(true)} onError={(e) => ((e.currentTarget.style.display = 'none'))} />\n            {/* if image missing, keep neutral background */}\n          </div>\n        </div>\n        <div className=\"text-sm text-muted-foreground\">\n          <p>{FINISHES[value].description}</p>\n          {FINISHES[value].sustainable && (\n            <p className=\"mt-2\"><strong",
+      "headingAbove": "Acabados disponibles",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-product-finishes-inline-2",
+      "pageType": "page",
+      "location": "inline-2",
+      "filePath": "src/components/product/Finishes.tsx",
+      "line": 100,
+      "contextBefore": "  <div className=\"flex items-center justify-between px-4 py-3 border-b border-border\">\n                <div className=\"text-sm font-semibold text-foreground\">{FINISHES[value].name}</div>\n                <button type=\"button\" className=\"text-sm text-muted-foreground hover:text-foreground\" onClick={() => setOpen(false)} aria-label=\"Cerrar\">Cerrar</button>\n              </div>\n              <div className=\"p-4 grid gap-4 sm:grid-cols-2\">\n                {gallery.map((src, i) => (\n                  ",
+      "contextAfter": "<img key={i} src={src} alt={`${FINISHES[value].name} ${i+1}`} className=\"w-full h-auto rounded-md border border-border\" loading=\"lazy\" />\n                ))}\n              </div>\n            </div>\n          </div>\n        </div>\n      )}\n    </div>\n  );\n};\n",
+      "headingAbove": "Acabados disponibles",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-studio-googleplacesphoto-inline-1",
+      "pageType": "page",
+      "location": "inline-1",
+      "filePath": "src/components/studio/GooglePlacesPhoto.tsx",
+      "line": 164,
+      "contextBefore": "full h-full flex items-center justify-center bg-gradient-to-br ${studioColor.bg}`}\n        >\n          <span className={`text-6xl font-bold ${studioColor.text} opacity-20`}>\n            {initials}\n          </span>\n        </div>\n\n        {/* Loading skeleton overlay */}\n        <Skeleton className=\"absolute inset-0\" />\n      </div>\n    );\n  }\n\n  return (\n    <div\n      id={`photo-${placeId}-${fallbackIndex}`}\n      className={`relative ${className}`}\n      style={{ width, height }}\n    >\n      ",
+      "contextAfter": "<img\n        src={imageSrc}\n        alt={studioName}\n        className=\"w-full h-full object-cover\"\n        loading={priority === 'eager' ? 'eager' : 'lazy'}\n        onError={(e) => {\n          // Final fallback if even the placeholder fails\n          const target = e.target as HTMLImageElement;\n          target.src = getPlaceholderImage(fallbackIndex);\n          setImageState('fallback');\n        }}\n      />\n\n      {/* Attribution overlay (required by Google ToS) */}\n      {attribution && showA",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-studio-googleplacesphoto-inline-2",
+      "pageType": "page",
+      "location": "inline-2",
+      "filePath": "src/components/studio/GooglePlacesPhoto.tsx",
+      "line": 189,
+      "contextBefore": "    <TooltipProvider>\n          <Tooltip>\n            <TooltipTrigger asChild>\n              <div className=\"absolute bottom-2 right-2 bg-black/60 text-white p-1 rounded-md cursor-pointer hover:bg-black/80 transition-colors\">\n                <Info className=\"w-4 h-4\" />\n              </div>\n            </TooltipTrigger>\n            <TooltipContent side=\"left\" className=\"max-w-xs\">\n              <div className=\"flex items-start gap-2\">\n                {attribution.photoUri && (\n                  ",
+      "contextAfter": "<img\n                    src={attribution.photoUri}\n                    alt={attribution.displayName}\n                    className=\"w-8 h-8 rounded-full\"\n                  />\n                )}\n                <div className=\"flex-1\">\n                  <p className=\"text-sm font-medium\">Photo by</p>\n                  <a\n                    href={attribution.uri}\n                    target=\"_blank\"\n                    rel=\"noopener noreferrer\"\n                    className=\"text-sm text-blue-500",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-studio-googleplacesphoto-inline-3",
+      "pageType": "page",
+      "location": "inline-3",
+      "filePath": "src/components/studio/GooglePlacesPhoto.tsx",
+      "line": 216,
+      "contextBefore": "sm text-blue-500 hover:underline flex items-center gap-1\"\n                  >\n                    {attribution.displayName}\n                    <ExternalLink className=\"w-3 h-3\" />\n                  </a>\n                </div>\n              </div>\n            </TooltipContent>\n          </Tooltip>\n        </TooltipProvider>\n      )}\n\n      {/* (Removed debug-only fallback label to keep dev/prod identical) */}\n\n      {/* \"Powered by Google\" attribution (required when not showing a map) */}\n      ",
+      "contextAfter": "<img\n        src=\"/powered-by-google.png\"\n        alt=\"Powered by Google\"\n        className=\"absolute bottom-2 left-2 h-4\"\n      />\n    </div>\n  );\n};\n\n/**\n * Gallery component for displaying multiple photos\n */\ninterface PhotoGalleryProps {\n  placeId?: string;\n  studioName: string;\n  photoCount?: number;\n  className?: string;\n}\n\nexport const GooglePlacesPhotoGallery: React.FC<PhotoGalleryProps> = ({\n  placeId,\n  studioName,\n  photoCount = 5,\n  className = '',\n}) => {\n  return (\n    <div classNa",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-ui-about-3-inline-1",
+      "pageType": "page",
+      "location": "inline-1",
+      "filePath": "src/components/ui/about-3.tsx",
+      "line": 103,
+      "contextBefore": "to improve workflows, boost efficiency, and encourage growth.\",\n  achievements = defaultAchievements,\n}: About3Props = {}) => {\n  return (\n    <section className=\"py-32\">\n      <div className=\"container mx-auto\">\n        <div className=\"mb-14 grid gap-5 text-center md:grid-cols-2 md:text-left\">\n          <h1 className=\"text-5xl font-semibold\">{title}</h1>\n          <p className=\"text-muted-foreground\">{description}</p>\n        </div>\n        <div className=\"grid gap-7 lg:grid-cols-3\">\n          ",
+      "contextAfter": "<img\n            src={mainImage.src}\n            alt={mainImage.alt}\n            className=\"size-full max-h-[620px] rounded-xl object-cover lg:col-span-2\"\n          />\n          <div className=\"flex flex-col gap-7 md:flex-row lg:flex-col\">\n            <div className=\"flex flex-col justify-between gap-6 rounded-xl bg-muted p-7 md:w-1/2 lg:w-auto\">\n              <img\n                src={breakout.src}\n                alt={breakout.alt}\n                className=\"mr-auto h-12\"\n              />\n    ",
+      "headingAbove": "{title}",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-ui-about-3-inline-2",
+      "pageType": "page",
+      "location": "inline-2",
+      "filePath": "src/components/ui/about-3.tsx",
+      "line": 110,
+      "contextBefore": "     <p className=\"text-muted-foreground\">{description}</p>\n        </div>\n        <div className=\"grid gap-7 lg:grid-cols-3\">\n          <img\n            src={mainImage.src}\n            alt={mainImage.alt}\n            className=\"size-full max-h-[620px] rounded-xl object-cover lg:col-span-2\"\n          />\n          <div className=\"flex flex-col gap-7 md:flex-row lg:flex-col\">\n            <div className=\"flex flex-col justify-between gap-6 rounded-xl bg-muted p-7 md:w-1/2 lg:w-auto\">\n              ",
+      "contextAfter": "<img\n                src={breakout.src}\n                alt={breakout.alt}\n                className=\"mr-auto h-12\"\n              />\n              <div>\n                <p className=\"mb-2 text-lg font-semibold\">{breakout.title}</p>\n                <p className=\"text-muted-foreground\">{breakout.description}</p>\n              </div>\n              <Button variant=\"outline\" className=\"mr-auto\" asChild>\n                <a href={breakout.buttonUrl} target=\"_blank\">\n                  {breakout.buttonTe",
+      "headingAbove": "{title}",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-ui-about-3-inline-3",
+      "pageType": "page",
+      "location": "inline-3",
+      "filePath": "src/components/ui/about-3.tsx",
+      "line": 125,
+      "contextBefore": "           className=\"mr-auto h-12\"\n              />\n              <div>\n                <p className=\"mb-2 text-lg font-semibold\">{breakout.title}</p>\n                <p className=\"text-muted-foreground\">{breakout.description}</p>\n              </div>\n              <Button variant=\"outline\" className=\"mr-auto\" asChild>\n                <a href={breakout.buttonUrl} target=\"_blank\">\n                  {breakout.buttonText}\n                </a>\n              </Button>\n            </div>\n            ",
+      "contextAfter": "<img\n              src={secondaryImage.src}\n              alt={secondaryImage.alt}\n              className=\"grow basis-0 rounded-xl object-cover md:w-1/2 lg:min-h-0 lg:w-auto\"\n            />\n          </div>\n        </div>\n        <div className=\"py-32\">\n          <p className=\"text-center\">{companiesTitle} </p>\n          <div className=\"mt-8 flex flex-wrap justify-center gap-8\">\n            {companies.map((company, idx) => (\n              <div className=\"flex items-center gap-3\" key={company.sr",
+      "headingAbove": "{title}",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-ui-about-3-inline-4",
+      "pageType": "page",
+      "location": "inline-4",
+      "filePath": "src/components/ui/about-3.tsx",
+      "line": 137,
+      "contextBefore": "condaryImage.src}\n              alt={secondaryImage.alt}\n              className=\"grow basis-0 rounded-xl object-cover md:w-1/2 lg:min-h-0 lg:w-auto\"\n            />\n          </div>\n        </div>\n        <div className=\"py-32\">\n          <p className=\"text-center\">{companiesTitle} </p>\n          <div className=\"mt-8 flex flex-wrap justify-center gap-8\">\n            {companies.map((company, idx) => (\n              <div className=\"flex items-center gap-3\" key={company.src + idx}>\n                ",
+      "contextAfter": "<img\n                  src={company.src}\n                  alt={company.alt}\n                  className=\"h-6 w-auto md:h-8\"\n                />\n              </div>\n            ))}\n          </div>\n        </div>\n        <div className=\"relative overflow-hidden rounded-xl bg-muted p-10 md:p-16\">\n          <div className=\"flex flex-col gap-4 text-center md:text-left\">\n            <h2 className=\"text-4xl font-semibold\">{achievementsTitle}</h2>\n            <p className=\"max-w-screen-sm text-muted-f",
+      "headingAbove": "{title}",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-ui-feature-split-inline-1",
+      "pageType": "page",
+      "location": "inline-1",
+      "filePath": "src/components/ui/feature-split.tsx",
+      "line": 29,
+      "contextBefore": "opy}</p>\n            {cta && (\n              <Link to={cta.href} className=\"inline-flex items-center px-5 py-3 rounded-md bg-primary text-primary-foreground hover:bg-primary/90\">\n                {cta.label}\n              </Link>\n            )}\n          </div>\n          <div className=\"order-1 md:order-2\">\n            <div className=\"relative overflow-hidden rounded-xl border border-border bg-card\">\n              <div className=\"aspect-video w-full\">\n                {image ? (\n                  ",
+      "contextAfter": "<img src={image.src} alt={image.alt} className=\"h-full w-full object-cover\" loading=\"lazy\" />\n                ) : (\n                  <div className=\"grid place-content-center h-full w-full text-sm text-muted-foreground\">Imagen del Reformer</div>\n                )}\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </section>\n  );\n};\n",
+      "headingAbove": "{title}",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-ui-quality-section-inline-1",
+      "pageType": "page",
+      "location": "inline-1",
+      "filePath": "src/components/ui/quality-section.tsx",
+      "line": 94,
+      "contextBefore": "garantías extensas y certificaciones internacionales.\",\n  achievements = defaultAchievements,\n}: QualitySectionProps = {}) => {\n  return (\n    <section className=\"py-32\">\n      <div className=\"container mx-auto\">\n        <div className=\"mb-14 grid gap-5 text-center md:grid-cols-2 md:text-left\">\n          <h1 className=\"text-5xl font-semibold\">{title}</h1>\n          <p className=\"text-muted-foreground\">{description}</p>\n        </div>\n        <div className=\"grid gap-7 lg:grid-cols-3\">\n          ",
+      "contextAfter": "<img\n            src={mainImage.src}\n            alt={mainImage.alt}\n            className=\"size-full max-h-[620px] rounded-xl object-cover lg:col-span-2\"\n          />\n          <div className=\"flex flex-col gap-7 md:flex-row lg:flex-col\">\n            <div className=\"flex flex-col justify-between gap-6 rounded-xl bg-muted p-7 md:w-1/2 lg:w-auto\">\n              <img\n                src={breakout.src}\n                alt={breakout.alt}\n                className=\"mr-auto h-12\"\n              />\n    ",
+      "headingAbove": "{title}",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-ui-quality-section-inline-2",
+      "pageType": "page",
+      "location": "inline-2",
+      "filePath": "src/components/ui/quality-section.tsx",
+      "line": 101,
+      "contextBefore": "     <p className=\"text-muted-foreground\">{description}</p>\n        </div>\n        <div className=\"grid gap-7 lg:grid-cols-3\">\n          <img\n            src={mainImage.src}\n            alt={mainImage.alt}\n            className=\"size-full max-h-[620px] rounded-xl object-cover lg:col-span-2\"\n          />\n          <div className=\"flex flex-col gap-7 md:flex-row lg:flex-col\">\n            <div className=\"flex flex-col justify-between gap-6 rounded-xl bg-muted p-7 md:w-1/2 lg:w-auto\">\n              ",
+      "contextAfter": "<img\n                src={breakout.src}\n                alt={breakout.alt}\n                className=\"mr-auto h-12\"\n              />\n              <div>\n                <p className=\"mb-2 text-lg font-semibold\">{breakout.title}</p>\n                <p className=\"text-muted-foreground\">{breakout.description}</p>\n              </div>\n              <Button variant=\"outline\" className=\"mr-auto\" asChild>\n                <a href={breakout.buttonUrl}>\n                  {breakout.buttonText}\n            ",
+      "headingAbove": "{title}",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-ui-quality-section-inline-3",
+      "pageType": "page",
+      "location": "inline-3",
+      "filePath": "src/components/ui/quality-section.tsx",
+      "line": 116,
+      "contextBefore": "akout.alt}\n                className=\"mr-auto h-12\"\n              />\n              <div>\n                <p className=\"mb-2 text-lg font-semibold\">{breakout.title}</p>\n                <p className=\"text-muted-foreground\">{breakout.description}</p>\n              </div>\n              <Button variant=\"outline\" className=\"mr-auto\" asChild>\n                <a href={breakout.buttonUrl}>\n                  {breakout.buttonText}\n                </a>\n              </Button>\n            </div>\n            ",
+      "contextAfter": "<img\n              src={secondaryImage.src}\n              alt={secondaryImage.alt}\n              className=\"grow basis-0 rounded-xl object-cover md:w-1/2 lg:min-h-0 lg:w-auto\"\n            />\n          </div>\n        </div>\n        <div className=\"py-32\">\n          <p className=\"text-center text-xl font-semibold mb-8\">{materialsTitle}</p>\n          <div className=\"mt-8 flex flex-wrap justify-center gap-12\">\n            {materials.map((material, idx) => (\n              <div className=\"flex flex-co",
+      "headingAbove": "{title}",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-ui-quality-section-inline-4",
+      "pageType": "page",
+      "location": "inline-4",
+      "filePath": "src/components/ui/quality-section.tsx",
+      "line": 128,
+      "contextBefore": "econdaryImage.alt}\n              className=\"grow basis-0 rounded-xl object-cover md:w-1/2 lg:min-h-0 lg:w-auto\"\n            />\n          </div>\n        </div>\n        <div className=\"py-32\">\n          <p className=\"text-center text-xl font-semibold mb-8\">{materialsTitle}</p>\n          <div className=\"mt-8 flex flex-wrap justify-center gap-12\">\n            {materials.map((material, idx) => (\n              <div className=\"flex flex-col items-center gap-4\" key={material.src + idx}>\n                ",
+      "contextAfter": "<img\n                  src={material.src}\n                  alt={material.alt}\n                  className=\"h-24 w-24 rounded-full object-cover border-4 border-primary/20\"\n                />\n                <span className=\"text-sm font-medium text-center\">{material.name}</span>\n              </div>\n            ))}\n          </div>\n        </div>\n        <div className=\"relative overflow-hidden rounded-xl bg-muted p-10 md:p-16\">\n          <div className=\"flex flex-col gap-4 text-center md:text-l",
+      "headingAbove": "{title}",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "page-src-components-ui-trusted-by-inline-1",
+      "pageType": "page",
+      "location": "inline-1",
+      "filePath": "src/components/ui/trusted-by.tsx",
+      "line": 15,
+      "contextBefore": "'Puebla', 'Mérida'];\n  return (\n    <section className=\"bg-background\">\n      <div className=\"container mx-auto px-4 py-10\">\n        <p className=\"text-center text-sm text-muted-foreground mb-6\">{title}</p>\n        {logos && logos.length > 0 ? (\n          <div className=\"grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4\">\n            {logos.map((l, i) => (\n              <div key={i} className=\"rounded-xl bg-white border border-border shadow-sm py-6 grid place-content-center\">\n                ",
+      "contextAfter": "<img src={l.src} alt={l.alt} className=\"h-6 w-auto opacity-80\" />\n              </div>\n            ))}\n          </div>\n        ) : (\n          <div className=\"grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4\">\n            {list.map((x) => (\n              <div key={x} className=\"rounded-xl bg-white border border-border shadow-sm py-6 text-center text-sm font-medium text-foreground\">\n                {x}\n              </div>\n            ))}\n          </div>\n        )}\n      </div>\n    </sectio",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "blog-accesorios-cama-de-pilates-esenciales-hero-1",
+      "pageType": "blog",
+      "pageSlug": "accesorios-cama-de-pilates-esenciales",
+      "location": "hero",
+      "filePath": "src/content/blog/accesorios-cama-de-pilates-esenciales.md",
+      "line": 9,
+      "contextBefore": " \n# Accesorios para Cama de Pilates: Esenciales\n\nLos accesorios adecuados pueden transformar tu experiencia con el Reformer de Pilates, mejorando tanto la seguridad como la efectividad del entrenamiento. Esta guía completa cubre los accesorios esenciales que todo entusiasta de Pilates debe considerar.\n\n## Accesorios Esenciales\n\n\n",
+      "contextAfter": "![Accesorios Esenciales](/images/blog/accesorios-cama-de-pilates-esenciales/section-1.jpg)\n<small>Foto: Elena Kloppenburg / Unsplash</small>\n\n### Box y Correas para Pies\n\nEl box del Reformer es fundamental para numerosos ejercicios, proporcionando soporte y permitiendo la alineación adecuada durante los movimientos. Las correas de calidad aseguran un posicionamiento seguro y permiten ejercicios más dinámicos.\n\n**Beneficios del Box:**\n- Soporte para ejercicios de extensión de columna\n- Base estab",
+      "headingAbove": "Accesorios Esenciales",
+      "preferredAspectRatio": "16:9",
+      "priority": 100
+    },
+    {
+      "placeholderId": "blog-accesorios-cama-de-pilates-esenciales-inline-2",
+      "pageType": "blog",
+      "pageSlug": "accesorios-cama-de-pilates-esenciales",
+      "location": "inline-2",
+      "filePath": "src/content/blog/accesorios-cama-de-pilates-esenciales.md",
+      "line": 43,
+      "contextBefore": "istencia = mejor control.\n\n### Poleas de Calidad\n\nLas poleas suaves y duraderas son cruciales para el sistema de resistencia del Reformer. Deben operar silenciosamente y proporcionar tensión constante durante todo el entrenamiento.\n\n**Qué Buscar en las Poleas:**\n- Rodamientos de alta calidad\n- Operación silenciosa\n- Resistencia a la corrosión\n- Mantenimiento mínimo requerido\n\nSeñal de reemplazo: ruidos intermitentes o sensación “arenosa” al tirar de las correas.\n\n## Accesorios Complementarios\n\n\n",
+      "contextAfter": "![Accesorios Complementarios](/images/blog/accesorios-cama-de-pilates-esenciales/section-2.jpg)\n<small>Foto: Simeon Galabov / Unsplash</small>\n\n### Almohadillas y Cojines\n\nEl confort durante la práctica es esencial para mantener la concentración y evitar lesiones.\n\n- **Almohadilla para cabeza**: Soporte cervical durante ejercicios supinos\n- **Cojines para rodillas**: Protección en ejercicios de rodillas\n- **Pad para hombros**: Comodidad adicional en ejercicios de empuje\n - **Protecciones tapizad",
+      "headingAbove": "Accesorios Complementarios",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "blog-cama-de-pilates-guia-de-compra-hero-1",
+      "pageType": "blog",
+      "pageSlug": "cama-de-pilates-guia-de-compra",
+      "location": "hero",
+      "filePath": "src/content/blog/cama-de-pilates-guia-de-compra.md",
+      "line": 8,
+      "contextBefore": "\n# Guía de compra de Cama de Pilates (Reformer) 2025 — México\n\n> Resumen: para elegir bien, prioriza estructura/estabilidad, silencio real del recorrido, ajustes seguros y servicio. Define si tu uso es doméstico (compacidad) o de estudio (durabilidad y cambios rápidos). Después piensa en accesorios.\n\n## Tipos de Reformer\n\n",
+      "contextAfter": "![Tipos de Reformer](/images/blog/cama-de-pilates-guia-de-compra/section-1.jpg)\n<small>Foto: Ambitious Studio* | Rick Barrett / Unsplash</small>\n\n### Reformer para casa\n- Compacto, estable y silencioso; accesorios de arranque (box/correas) y footprint contenido.\n- Ideal para 1–2 personas; enfoque en facilidad de uso y estética.\n\n### Reformer profesional\n- Estructura reforzada para uso continuo, ajustes rápidos (footbar/gearbar), kit completo y servicio para estudio.\n- Mantiene silencio y alineam",
+      "headingAbove": "Tipos de Reformer",
+      "preferredAspectRatio": "16:9",
+      "priority": 100
+    },
+    {
+      "placeholderId": "blog-cama-de-pilates-guia-de-compra-inline-2",
+      "pageType": "blog",
+      "pageSlug": "cama-de-pilates-guia-de-compra",
+      "location": "inline-2",
+      "filePath": "src/content/blog/cama-de-pilates-guia-de-compra.md",
+      "line": 23,
+      "contextBefore": "g)\n<small>Foto: Ambitious Studio* | Rick Barrett / Unsplash</small>\n\n### Reformer para casa\n- Compacto, estable y silencioso; accesorios de arranque (box/correas) y footprint contenido.\n- Ideal para 1–2 personas; enfoque en facilidad de uso y estética.\n\n### Reformer profesional\n- Estructura reforzada para uso continuo, ajustes rápidos (footbar/gearbar), kit completo y servicio para estudio.\n- Mantiene silencio y alineamiento bajo rotación alta.\n\n<see-also limit=\"3\" />\n\n## Materiales y acabados\n\n",
+      "contextAfter": "![Materiales y acabados](/images/blog/cama-de-pilates-guia-de-compra/section-2.jpg)\n<small>Foto: Elena Kloppenburg / Unsplash</small>\n\n- **Estructura:** acero estructural para rigidez y precisión.\n- **Madera:** nogal, estable y estética premium.\n- **Tapicería:** cuero genuino o micelio (opción sostenible), con densidad adecuada y doble costura.\n- **Silencio:** tolerancias de riel/carro y rodamientos sellados de calidad reducen juego lateral y crujidos.\n\n## Accesorios esenciales\n- **Box** para am",
+      "headingAbove": "Materiales y acabados",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "blog-mantenimiento-cama-de-pilates-hero-1",
+      "pageType": "blog",
+      "pageSlug": "mantenimiento-cama-de-pilates",
+      "location": "hero",
+      "filePath": "src/content/blog/mantenimiento-cama-de-pilates.md",
+      "line": 20,
+      "contextBefore": "nto reformer\", \"limpieza reformer\", \"resortes\", \"cuerdas\", \"seguridad\"]\npublishDate: \"2025-09-24\"\nupdatedDate: \"2025-09-26\"\nauthor: \"CAMA Pilates\"\nslug: \"mantenimiento-cama-de-pilates\"\nfeatured: false\n---\n\n# Mantenimiento y cuidado de tu Reformer de Pilates (MX 2025)\n\n> Objetivo: mantener el recorrido silencioso y seguro, prolongar la vida útil y evitar paros. Esta guía resume rutinas simples y señales de recambio. Sigue siempre las indicaciones del fabricante.\n\n## Rutina de limpieza y cuidado\n\n",
+      "contextAfter": "![Rutina de limpieza y cuidado](/images/blog/mantenimiento-cama-de-pilates/section-1.jpg)\n<small>Foto: Kanishk Jain / Unsplash</small>\n\n### Diario (post‑sesión)\n- Tapizados/superficies: limpia con solución suave pH neutro y seca con microfibra.\n- Correas/manerales: desinfecta sin saturar; evita solventes agresivos.\n\n### Semanal\n- Rieles y carro: limpia según recomienda el fabricante (muchos rieles no se lubrican; solo limpieza).\n- Poleas: escucha ruidos inusuales; comprueba giro suave y sin holg",
+      "headingAbove": "Rutina de limpieza y cuidado",
+      "preferredAspectRatio": "16:9",
+      "priority": 100
+    },
+    {
+      "placeholderId": "blog-mantenimiento-cama-de-pilates-inline-2",
+      "pageType": "blog",
+      "pageSlug": "mantenimiento-cama-de-pilates",
+      "location": "inline-2",
+      "filePath": "src/content/blog/mantenimiento-cama-de-pilates.md",
+      "line": 104,
+      "contextBefore": "bricación; una limpieza adecuada suele ser suficiente.\n\n### ¿Cada cuándo cambio resortes?\nDepende del uso. Señales: oxidación, deformación, pérdida de consistencia o pintura dañada.\n\n### ¿Cómo elimino ruidos?\nDetecta el origen (polea vs riel/carro), limpia, verifica fijaciones y simetría de cuerdas. Si persiste, solicita servicio.\n\n### ¿Cómo ajustar cuerdas a la misma longitud?\nMarca puntos de referencia y valida con una prueba balanceada de tracción izquierda/derecha.\n\n<see-also limit=\"3\" />\n\n\n",
+      "contextAfter": "![Calibración práctica (consistencia entre sesiones)](/images/blog/mantenimiento-cama-de-pilates/section-2.jpg)\n<small>Foto: Mark Owen Wilkinson Hughes / Unsplash</small>\n",
+      "headingAbove": "¿Cómo ajustar cuerdas a la misma longitud?",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "blog-precio-cama-de-pilates-2025-hero-1",
+      "pageType": "blog",
+      "pageSlug": "precio-cama-de-pilates-2025",
+      "location": "hero",
+      "filePath": "src/content/blog/precio-cama-de-pilates-2025.md",
+      "line": 22,
+      "contextBefore": " de Pilates 2025: Guía completa de precios en México\n\nEl mercado de camas de Pilates (reformers) en México ha experimentado un crecimiento significativo en 2025, impulsado por la creciente demanda de equipos de entrenamiento en casa y la profesionalización de estudios de Pilates. Esta guía completa te ayudará a entender todos los aspectos relacionados con los precios, desde opciones económicas hasta equipos profesionales de alta gama.\n\n## Panorama del mercado mexicano de camas de Pilates 2025\n\n\n",
+      "contextAfter": "![Panorama del mercado mexicano de camas de Pilates 2025](/images/blog/precio-cama-de-pilates-2025/section-1.jpg)\n<small>Foto: Jeton Bajrami / Unsplash</small>\n\nEl mercado mexicano de equipos de Pilates ha madurado considerablemente, con una oferta diversificada que incluye desde fabricantes locales hasta importadores de marcas internacionales premium. La inflación proyectada del 3.5% para 2025 ha influido moderadamente en los precios, pero la competencia entre proveedores ha mantenido opciones ",
+      "headingAbove": "Panorama del mercado mexicano de camas de Pilates 2025",
+      "preferredAspectRatio": "16:9",
+      "priority": 100
+    },
+    {
+      "placeholderId": "blog-precio-cama-de-pilates-2025-inline-2",
+      "pageType": "blog",
+      "pageSlug": "precio-cama-de-pilates-2025",
+      "location": "inline-2",
+      "filePath": "src/content/blog/precio-cama-de-pilates-2025.md",
+      "line": 81,
+      "contextBefore": "0+)\n\nDiseñados para estudios profesionales y uso intensivo:\n\n- **Marcas internacionales premium**: $45,000 - $65,000 MXN\n- **Equipos con tecnología avanzada**: $55,000 - $80,000+ MXN\n- **Reformers personalizados**: $60,000 - $100,000+ MXN\n\n**Características típicas:**\n- Construcción de materiales premium\n- Sistemas de resistencia avanzados\n- Ergonomía optimizada\n- Accesorios completos incluidos\n- Garantía extendida (5+ años)\n- Soporte técnico especializado\n\n## Comparación detallada por marcas\n\n\n",
+      "contextAfter": "![Comparación detallada por marcas](/images/blog/precio-cama-de-pilates-2025/section-2.jpg)\n<small>Foto: Ambitious Studio* | Rick Barrett / Unsplash</small>\n\n### Marcas premium internacionales\n\n| Marca | Rango de precio (MXN) | Características destacadas | Garantía |\n|-------|----------------------|---------------------------|----------|\n| **Merrithew** | $55,000 - $75,000 | Robustez excepcional, suavidad en movimiento | 5 años |\n| **Balanced Body** | $50,000 - $70,000 | Innovación en diseño, ve",
+      "headingAbove": "Comparación detallada por marcas",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "blog-reformer-casa-vs-profesional-hero-1",
+      "pageType": "blog",
+      "pageSlug": "reformer-casa-vs-profesional",
+      "location": "hero",
+      "filePath": "src/content/blog/reformer-casa-vs-profesional.md",
+      "line": 18,
+      "contextBefore": "-24\"\nupdatedDate: \"2025-09-26\"\nauthor: \"CAMA Pilates\"\nslug: \"reformer-casa-vs-profesional\"\nfeatured: false\n---\n\n# Reformer para casa vs profesional: Guía definitiva (México 2025)\n\n> Resumen: ¿practicar en casa o montar/operar un estudio? La diferencia no es solo “tamaño”. Un Reformer profesional prioriza rigidez, ajustes rápidos y durabilidad para uso continuo. El de casa optimiza compacidad y silencio en espacios domésticos, manteniendo estabilidad y materiales nobles.\n\n## Comparativa rápida\n\n\n",
+      "contextAfter": "![Comparativa rápida](/images/blog/reformer-casa-vs-profesional/section-1.jpg)\n<small>Foto: Gordon Gerard McLean / Unsplash</small>\n\n| Aspecto | Reformer Casa | Reformer Profesional |\n|---|---|---|\n| Uso | Hogar, 1–2 personas | Estudio, uso continuo |\n| Estructura | Acero + nogal (compacto) | Acero reforzado + nogal |\n| Silencio y estabilidad | Recorrido silencioso, juego lateral nulo | Silencio total con tolerancias más exigentes |\n| Ajustes | Básicos, suficientes para práctica personal | Footb",
+      "headingAbove": "Comparativa rápida",
+      "preferredAspectRatio": "16:9",
+      "priority": 100
+    },
+    {
+      "placeholderId": "blog-reformer-casa-vs-profesional-inline-2",
+      "pageType": "blog",
+      "pageSlug": "reformer-casa-vs-profesional",
+      "location": "inline-2",
+      "filePath": "src/content/blog/reformer-casa-vs-profesional.md",
+      "line": 36,
+      "contextBefore": "forzado + nogal |\n| Silencio y estabilidad | Recorrido silencioso, juego lateral nulo | Silencio total con tolerancias más exigentes |\n| Ajustes | Básicos, suficientes para práctica personal | Footbar/gearbar robustos, cambios rápidos |\n| Accesorios | Kit de arranque | Kit completo para clases |\n| Servicio | Garantía 1 año, repuestos exprés | Idem, con respuesta prioritaria para estudio |\n| Precio (MXN) | $25k–$45k | $50k–$95k |\n\n<see-also limit=\"3\" />\n\n## Qué hace “profesional” a un Reformer\n\n\n",
+      "contextAfter": "![Qué hace “profesional” a un Reformer](/images/blog/reformer-casa-vs-profesional/section-2.jpg)\n<small>Foto: Tim Mossholder / Unsplash</small>\n\n**Estructura y rigidez.** En un estudio, el aparato soporta cambios de carga, perfiles corporales diversos y rotación constante. La rigidez (menor torsión) mantiene el alineamiento del carro y la sensación de “solidez”.\n\n**Carro, rieles y rodamientos.** La calidad del recorrido depende de tolerancias y rodamientos sellados. Menos fricción parásita y jue",
+      "headingAbove": "Qué hace “profesional” a un Reformer",
+      "preferredAspectRatio": "4:3",
+      "priority": 60
+    },
+    {
+      "placeholderId": "site-shopHero",
+      "pageType": "site",
+      "location": "named",
+      "filePath": "src/lib/convexAssets.ts",
+      "line": 0,
+      "preferredAspectRatio": "16:9",
+      "priority": 90,
+      "meta": {
+        "nameKey": "SHOP_HERO",
+        "name": "shopHero"
+      }
+    },
+    {
+      "placeholderId": "site-featuredProducts",
+      "pageType": "site",
+      "location": "named",
+      "filePath": "src/lib/convexAssets.ts",
+      "line": 0,
+      "preferredAspectRatio": "16:9",
+      "priority": 90,
+      "meta": {
+        "nameKey": "FEATURED_PRODUCTS",
+        "name": "featuredProducts"
+      }
+    },
+    {
+      "placeholderId": "site-catReformers",
+      "pageType": "site",
+      "location": "named",
+      "filePath": "src/lib/convexAssets.ts",
+      "line": 0,
+      "preferredAspectRatio": "16:9",
+      "priority": 90,
+      "meta": {
+        "nameKey": "CAT_REFORMERS",
+        "name": "catReformers"
+      }
+    },
+    {
+      "placeholderId": "site-catAccessories",
+      "pageType": "site",
+      "location": "named",
+      "filePath": "src/lib/convexAssets.ts",
+      "line": 0,
+      "preferredAspectRatio": "16:9",
+      "priority": 90,
+      "meta": {
+        "nameKey": "CAT_ACCESSORIES",
+        "name": "catAccessories"
+      }
+    },
+    {
+      "placeholderId": "site-finishMycelium",
+      "pageType": "site",
+      "location": "named",
+      "filePath": "src/lib/convexAssets.ts",
+      "line": 0,
+      "preferredAspectRatio": "16:9",
+      "priority": 90,
+      "meta": {
+        "nameKey": "FINISH_MYCELIUM",
+        "name": "finishMycelium"
+      }
+    },
+    {
+      "placeholderId": "site-myloBadge",
+      "pageType": "site",
+      "location": "named",
+      "filePath": "src/lib/convexAssets.ts",
+      "line": 0,
+      "preferredAspectRatio": "16:9",
+      "priority": 90,
+      "meta": {
+        "nameKey": "MYLO_BADGE",
+        "name": "myloBadge"
+      }
+    },
+    {
+      "placeholderId": "site-myloSpecial",
+      "pageType": "site",
+      "location": "named",
+      "filePath": "src/lib/convexAssets.ts",
+      "line": 0,
+      "preferredAspectRatio": "16:9",
+      "priority": 90,
+      "meta": {
+        "nameKey": "MYLO_SPECIAL",
+        "name": "myloSpecial"
+      }
+    },
+    {
+      "placeholderId": "site-edelweissLogo",
+      "pageType": "site",
+      "location": "named",
+      "filePath": "src/lib/convexAssets.ts",
+      "line": 0,
+      "preferredAspectRatio": "16:9",
+      "priority": 90,
+      "meta": {
+        "nameKey": "EDELWEISS_LOGO",
+        "name": "edelweissLogo"
+      }
+    },
+    {
+      "placeholderId": "site-featureSilence",
+      "pageType": "site",
+      "location": "named",
+      "filePath": "src/lib/convexAssets.ts",
+      "line": 0,
+      "preferredAspectRatio": "16:9",
+      "priority": 90,
+      "meta": {
+        "nameKey": "FEATURE_SILENCE",
+        "name": "featureSilence"
+      }
+    }
+  ]
+}

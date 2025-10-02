@@ -31,6 +31,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { hasConvex } from '@/lib/convexProvider';
 import localData from '@/data/studios.json';
 import { citySlug } from '@/utils/slug';
+import { ContextualImage } from '@/components/ContextualImage';
 
 // City name mappings - normalize accents in slugs
 const cityNameMap: { [key: string]: string } = {
@@ -300,6 +301,16 @@ const CityDirectory: React.FC = () => {
                 Encuentra el estudio perfecto para tu práctica de Pilates.
                 {cityData && ` ${cityData.studioCount} estudios disponibles en ${cityData.neighborhoods.length} colonias.`}
               </p>
+              <div className="not-prose mt-6">
+                <ContextualImage
+                  placeholderId={`studios-${city}-hero-1`}
+                  pageType="studios"
+                  pageSlug={city || ''}
+                  location="hero"
+                  aspectRatio="16:9"
+                  alt={`Estudios de Pilates en ${cityName}`}
+                />
+              </div>
             </div>
 
             {/* Search Bar */}

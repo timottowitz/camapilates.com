@@ -33,6 +33,7 @@ import {
 } from 'lucide-react';
 import { GooglePlacesPhoto } from '@/components/studio/GooglePlacesPhoto';
 import { hasConvex } from '@/lib/convexProvider';
+import { ContextualImage } from '@/components/ContextualImage';
 import localData from '@/data/studios.json';
 import { citySlug } from '@/utils/slug';
 
@@ -279,6 +280,16 @@ const StudioDetail: React.FC = () => {
                       </Badge>
                     </div>
                   </div>
+                </div>
+                <div className="not-prose mt-4">
+                  <ContextualImage
+                    placeholderId={`studio-${studio}-hero-1`}
+                    pageType="studios"
+                    pageSlug={studio || ''}
+                    location="hero"
+                    aspectRatio="16:9"
+                    alt={studioData?.name || 'Estudio de Pilates'}
+                  />
                 </div>
 
                 {/* Rating */}

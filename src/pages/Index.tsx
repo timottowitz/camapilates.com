@@ -8,6 +8,7 @@ import { CheckCircle2, Truck, ShieldCheck, ArrowRight, CreditCard, MessageCircle
 import { TrustedBy } from '@/components/ui/trusted-by';
 import { FeatureSplit } from '@/components/ui/feature-split';
 import RibbonBanner from '@/components/ui/ribbon-banner';
+import { ContextualImage } from '@/components/ContextualImage';
 
 const Index = () => {
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://camadepilates.com';
@@ -171,6 +172,15 @@ const Index = () => {
       <section className="bg-background">
         <div className="container mx-auto px-4 py-12">
           <h2 className="text-2xl font-bold text-foreground mb-6">Materiales y acabados que perduran</h2>
+          <div className="not-prose mb-6">
+            <ContextualImage
+              placeholderId="home-materials-inline-1"
+              pageType="home"
+              location="inline-1"
+              aspectRatio="4:3"
+              alt="Materiales y acabados"
+            />
+          </div>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="border border-border rounded-lg p-6 bg-card">
               <h3 className="font-semibold text-foreground">Cuero genuino</h3>

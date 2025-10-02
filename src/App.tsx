@@ -22,6 +22,7 @@ const BlogCategory = lazy(() => import('./pages/BlogCategory'));
 const BlogTag = lazy(() => import('./pages/BlogTag'));
 const AdminBlogWriter = lazy(() => import('./pages/AdminBlogWriter'));
 const Admin = lazy(() => import('./pages/Admin'));
+const AdminPlaceholders = lazy(() => import('./pages/AdminPlaceholders'));
 const AdminSettings = lazy(() => import('./pages/AdminSettings'));
 const Product = lazy(() => import('./pages/Product'));
 const Products = lazy(() => import('./pages/Products'));
@@ -98,6 +99,7 @@ const App = () => (
             <Route path="/admin" element={<Suspense fallback={<PageLoader />}><Admin /></Suspense>} />
             <Route path="/admin/blog-writer" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminBlogWriter /></AdminGuard></Suspense>} />
             <Route path="/admin/settings" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminSettings /></AdminGuard></Suspense>} />
+            <Route path="/admin/placeholders" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminPlaceholders /></AdminGuard></Suspense>} />
             <Route path="/product/:slug" element={<Suspense fallback={<PageLoader />}><Product /></Suspense>} />
 
             {/* Resource Pages */}

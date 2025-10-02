@@ -1,8 +1,8 @@
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { createOpenAI } from '@ai-sdk/openai';
 import { generateObject } from 'ai';
 import { z } from 'zod';
@@ -34,12 +34,12 @@ const visionSchema = z.object({
 /**
  * Analyze image using GPT-4 Vision
  */
-async function analyzeImage(imagePath) {
+async function analyzeImage(imagePath: string) {
   console.log(`🔍 Analyzing: ${path.basename(imagePath)}`);
 
   // Read image as base64
-  const imageBuffer = fs.readFileSync(imagePath);
-  const base64Image = imageBuffer.toString('base64');
+  const imageBytes = new Uint8Array(fs.readFileSync(imagePath));
+  const base64Image = btoa(String.fromCharCode(...imageBytes));
   const mimeType = imagePath.endsWith('.png') ? 'image/png' :
                    imagePath.endsWith('.webp') ? 'image/webp' : 'image/jpeg';
 
@@ -82,9 +82,14 @@ Be specific and detailed for accurate search later.`,
 /**
  * Upload image to Convex with AI description
  */
-async function uploadToConvex(client, imagePath, aiDescription) {
+async function uploadToConvex(
+  client: ConvexHttpClient,
+  imagePath: string,
+  aiDescription: z.infer<typeof visionSchema>
+) {
   const fileName = path.basename(imagePath);
   const buffer = fs.readFileSync(imagePath);
+  const blob = new Blob([buffer]);
   const mimeType = imagePath.endsWith('.png') ? 'image/png' :
                    imagePath.endsWith('.webp') ? 'image/webp' : 'image/jpeg';
 
@@ -96,11 +101,11 @@ async function uploadToConvex(client, imagePath, aiDescription) {
   // Generate upload URL
   const uploadUrl = await client.mutation(api.aiImages.generateUploadUrl);
 
-  // Upload file using Buffer directly
+  // Upload file
   const response = await fetch(uploadUrl, {
     method: 'POST',
     headers: { 'Content-Type': mimeType },
-    body: buffer,
+    body: blob,
   });
 
   if (!response.ok) {
@@ -114,7 +119,7 @@ async function uploadToConvex(client, imagePath, aiDescription) {
     fileName,
     storageId,
     mimeType,
-    size: buffer.length,
+    size: blob.size,
     dimensions: {
       width: dimensions.width || 0,
       height: dimensions.height || 0,
@@ -166,7 +171,7 @@ async function main() {
     } catch (error) {
       failed++;
       console.error(`❌ Failed: ${path.basename(imagePath)}`);
-      console.error(`   Error: ${error.message}`);
+      console.error(`   Error: ${error}`);
       console.log();
     }
   }

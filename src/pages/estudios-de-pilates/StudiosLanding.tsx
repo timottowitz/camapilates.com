@@ -18,6 +18,7 @@ import { MapPin, Users, Star, TrendingUp, Search, Building } from 'lucide-react'
 import { hasConvex } from '@/lib/convexProvider';
 import localData from '@/data/studios.json';
 import { citySlug } from '@/utils/slug';
+import { ContextualImage } from '@/components/ContextualImage';
 
 const StudiosLanding: React.FC = () => {
   // SEO metadata
@@ -140,6 +141,15 @@ const StudiosLanding: React.FC = () => {
               <p className="text-gray-600">
                 Selecciona tu ciudad para explorar los estudios disponibles
               </p>
+              <div className="not-prose mt-6">
+                <ContextualImage
+                  placeholderId="studios-landing-hero-1"
+                  pageType="studios"
+                  location="hero"
+                  aspectRatio="16:9"
+                  alt="Estudios de Pilates en México"
+                />
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

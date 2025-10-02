@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
 import products from '@/content/products.json';
+import { ContextualImage } from '@/components/ContextualImage';
 
 const Products: React.FC = () => {
   const origin = getOrigin();
@@ -57,6 +58,15 @@ const Products: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
             <h1 className="text-3xl font-bold text-foreground">Todos los productos</h1>
             <RegionNote />
+          </div>
+          <div className="not-prose mb-6">
+            <ContextualImage
+              placeholderId="products-hero-1"
+              pageType="shop"
+              location="hero"
+              aspectRatio="16:9"
+              alt="Catálogo de productos"
+            />
           </div>
           <div className="mb-6 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-4 text-xs text-muted-foreground">
             <div className="flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-primary"></span> Mercado Pago</div>

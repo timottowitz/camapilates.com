@@ -3,7 +3,7 @@ import { ConvexReactClient, ConvexProvider } from 'convex/react';
 
 // Default production Convex URL to ensure live builds always connect
 // when VITE_CONVEX_URL wasn't injected at build time.
-const DEFAULT_PROD_CONVEX_URL = 'https://scintillating-hornet-482.convex.cloud';
+const DEFAULT_PROD_CONVEX_URL = 'https://spotted-raven-102.convex.cloud';
 
 function resolveConvexUrl(): string | null {
   try {

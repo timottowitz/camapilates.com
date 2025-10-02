@@ -220,6 +220,7 @@
         "npm:globals@^15.9.0",
         "npm:gray-matter@^4.0.3",
         "npm:hono@^4.6.3",
+        "npm:image-size@^2.0.2",
         "npm:input-otp@^1.2.4",
         "npm:lovable-tagger@^1.1.7",
         "npm:lucide-react@0.462",
@@ -254,7 +255,7 @@
         "npm:uuid@13",
         "npm:vaul@~0.9.3",
         "npm:vite@^5.4.1",
-        "npm:zod@^3.23.8"
+        "npm:zod@^3.25.76"
       ]
     }
   }
