@@ -1,10 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "node:path";
-import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
+export default defineConfig(async ({ mode }) => {
   const proxy: Record<string, any> = {};
   if (mode === 'development') {
     // Admin API points to local Cloudflare Worker with remote D1
@@ -21,17 +20,23 @@ export default defineConfig(({ mode }) => {
       secure: false,
     };
   }
+  const plugins: any[] = [react()];
+  if (mode === 'development') {
+    try {
+      const mod: any = await import('lovable-tagger');
+      if (mod?.componentTagger) plugins.push(mod.componentTagger());
+    } catch {
+      // lovable-tagger not installed in prod builds; ignore
+    }
+  }
+
   return {
     server: {
       host: "::",
       port: 8081,
       proxy,
     },
-    plugins: [
-      react(),
-      mode === 'development' &&
-      componentTagger(),
-    ].filter(Boolean),
+    plugins,
     resolve: {
       alias: {
         "@": path.resolve(process.cwd(), "./src"),
