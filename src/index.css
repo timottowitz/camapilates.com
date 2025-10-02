@@ -16,21 +16,21 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* Brand palette from screenshot (teal + terracotta + cream) */
-    /* Primary: deep teal */
-    --primary: 194 34% 26%; /* #2C4F59 */
+    /* Brand palette updated to screenshot purple */
+    /* Primary: vibrant violet */
+    --primary: 262 83% 58%; /* #7C3AED */
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary surfaces: warm cream */
+    /* Secondary surfaces: keep calm neutrals */
     --secondary: 36 64% 92%; /* ~#F6E7C9 */
     --secondary-foreground: 210 15% 20%;
 
-    /* Muted: light mint/blue */
+    /* Muted: soft background tint */
     --muted: 190 30% 90%; /* ~#CFE2DE */
     --muted-foreground: 205 16% 40%;
 
-    /* Accent: terracotta */
-    --accent: 20 62% 60%; /* #D9865B */
+    /* Accent: lighter violet to complement primary */
+    --accent: 262 83% 70%; /* ~#A78BFA */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
