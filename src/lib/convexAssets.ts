@@ -37,6 +37,9 @@ export const CONVEX_IMAGE_NAMES = {
 
   // Brand
   EDELWEISS_LOGO: 'edelweissLogo',
+
+  // Feature sections
+  FEATURE_SILENCE: 'featureSilence',
 } as const;
 
 /**
@@ -52,6 +55,7 @@ const FALLBACKS = {
   myloBadge: '/images/badges/mylo.svg',
   myloSpecial: '/images/special/mylo-special.svg',
   edelweissLogo: '/brand/edelweiss.svg',
+  featureSilence: '/images/feature_1.webp',
 } as const;
 
 /**
@@ -67,6 +71,7 @@ export function useConvexAssets() {
   const myloBadge = useConvexImage(CONVEX_IMAGE_NAMES.MYLO_BADGE, getVersionedImageUrl(FALLBACKS.myloBadge));
   const myloSpecial = useConvexImage(CONVEX_IMAGE_NAMES.MYLO_SPECIAL, getVersionedImageUrl(FALLBACKS.myloSpecial));
   const edelweissLogo = useConvexImage(CONVEX_IMAGE_NAMES.EDELWEISS_LOGO, getVersionedImageUrl(FALLBACKS.edelweissLogo));
+  const featureSilence = useConvexImage(CONVEX_IMAGE_NAMES.FEATURE_SILENCE, getVersionedImageUrl(FALLBACKS.featureSilence));
 
   return {
     shopHero,
@@ -76,6 +81,7 @@ export function useConvexAssets() {
     finishMycelium,
     myloBadge,
     myloSpecial,
+    featureSilence,
     shopHeaderAddon: edelweissLogo, // Alias for compatibility
   };
 }
