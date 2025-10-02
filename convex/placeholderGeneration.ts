@@ -21,13 +21,34 @@ function buildPromptFromContext(p: any): string {
   ].join('\n');
 }
 
+async function getOpenAIKey(ctx: any): Promise<string | null> {
+  // 1) Direct key stored via appSettings.saveApiKey('OPENAI_API_KEY')
+  const direct = await ctx.runQuery(internal.appSettings.getApiKey, { key: 'OPENAI_API_KEY' });
+  if (direct) return direct as string;
+  // 2) Provider key fallback: app_settings key `provider_key_openai` (encrypted)
+  const row = await ctx.db.query('app_settings').withIndex('by_key', (q: any) => q.eq('key', 'provider_key_openai')).unique();
+  if (!row?.valueEnc) return null;
+  try {
+    const cfgKey = process.env.CONFIG_ENC_KEY || '';
+    if (!cfgKey) return null;
+    const bin = Uint8Array.from(Buffer.from(row.valueEnc, 'base64'));
+    const iv = bin.slice(0, 12); const ct = bin.slice(12);
+    const enc = new TextEncoder().encode(cfgKey);
+    const hash = await crypto.subtle.digest('SHA-256', enc) as ArrayBuffer;
+    const key = await crypto.subtle.importKey('raw', hash, { name: 'AES-GCM' }, false, ['decrypt']);
+    const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ct) as ArrayBuffer;
+    const obj = JSON.parse(new TextDecoder().decode(new Uint8Array(pt)));
+    return obj?.key || null;
+  } catch { return null; }
+}
+
 export const generatePrompt = internalAction({
   args: { placeholderId: v.string() },
   handler: async (ctx, args) => {
     const row = await ctx.runQuery(internal.placeholders.getById, { placeholderId: args.placeholderId });
     if (!row) throw new Error('Placeholder not found');
 
-    const OPENAI_API_KEY = await ctx.runQuery(internal.appSettings.getApiKey, { key: 'OPENAI_API_KEY' });
+    const OPENAI_API_KEY = await getOpenAIKey(ctx);
     if (!OPENAI_API_KEY) throw new Error('OPENAI_API_KEY not configured');
 
     const prompt = buildPromptFromContext(row);
@@ -63,7 +84,7 @@ export const generateImage = internalAction({
     const row = await ctx.runQuery(internal.placeholders.getById, { placeholderId: args.placeholderId });
     if (!row) throw new Error('Placeholder not found');
 
-    const OPENAI_API_KEY = await ctx.runQuery(internal.appSettings.getApiKey, { key: 'OPENAI_API_KEY' });
+    const OPENAI_API_KEY = await getOpenAIKey(ctx);
     if (!OPENAI_API_KEY) throw new Error('OPENAI_API_KEY not configured');
 
     // Ensure we have a prompt

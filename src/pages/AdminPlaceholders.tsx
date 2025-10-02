@@ -9,7 +9,7 @@ const StatusBadge: React.FC<{ s: string }> = ({ s }) => {
 
 const AdminPlaceholders: React.FC = () => {
   const [status, setStatus] = useState<string>('');
-  const rows = useQuery(api.placeholders.list, status ? { status } as any : {} as any) as any[] | undefined;
+  const rows = useQuery(api.placeholders.listWithPreview, status ? { status } as any : {} as any) as any[] | undefined;
   const queue = useAction(api.placeholderGeneration.queue) as any;
 
   const filtered = rows || [];
@@ -46,6 +46,7 @@ const AdminPlaceholders: React.FC = () => {
         <table className="min-w-full text-sm">
           <thead className="bg-muted">
             <tr>
+              <th className="text-left px-3 py-2">Preview</th>
               <th className="text-left px-3 py-2">Placeholder</th>
               <th className="text-left px-3 py-2">Page</th>
               <th className="text-left px-3 py-2">Location</th>
@@ -58,6 +59,19 @@ const AdminPlaceholders: React.FC = () => {
           <tbody>
             {(filtered || []).map((r) => (
               <tr key={r.placeholderId} className="border-t">
+                <td className="px-3 py-2">
+                  {r.previewUrl ? (
+                    <img
+                      src={r.previewUrl}
+                      alt={r.headingAbove || r.placeholderId}
+                      className="h-14 w-24 object-cover rounded cursor-pointer border"
+                      title="Click to cycle (regenerate)"
+                      onClick={async ()=>{ try { await queue({ placeholderId: r.placeholderId }); alert('Regeneration queued'); } catch {} }}
+                    />
+                  ) : (
+                    <div className="h-14 w-24 bg-muted rounded border" />
+                  )}
+                </td>
                 <td className="px-3 py-2 font-mono text-xs">{r.placeholderId}</td>
                 <td className="px-3 py-2">{r.pageType}{r.pageSlug ? `/${r.pageSlug}` : ''}</td>
                 <td className="px-3 py-2">{r.location}</td>
@@ -75,4 +89,3 @@ const AdminPlaceholders: React.FC = () => {
 };
 
 export default AdminPlaceholders;
-

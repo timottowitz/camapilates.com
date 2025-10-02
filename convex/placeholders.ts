@@ -1,5 +1,6 @@
 import { v } from 'convex/values';
 import { mutation, query } from './_generated/server';
+import { internal } from './_generated/api';
 
 /**
  * Register or update an image placeholder
@@ -145,6 +146,32 @@ export const listByPage = query({
       .collect();
     return rows;
   },
+});
+
+/**
+ * List placeholders with preview URL (if assigned)
+ */
+export const listWithPreview = query({
+  args: { status: v.optional(v.string()) },
+  handler: async (ctx, args) => {
+    const q = ctx.db.query('image_placeholders');
+    const rows = args.status
+      ? await q.withIndex('by_status', ix => ix.eq('status', args.status!)).collect()
+      : await q.collect();
+
+    const out = await Promise.all(rows.map(async (row) => {
+      let previewUrl: string | undefined;
+      if (row.assignedImageId) {
+        const img = await ctx.db.get(row.assignedImageId);
+        if (img) {
+          const sid = img.generatedStorageId || img.storageId;
+          try { previewUrl = await ctx.storage.getUrl(sid); } catch {}
+        }
+      }
+      return { ...row, previewUrl };
+    }));
+    return out;
+  }
 });
 
 /**
