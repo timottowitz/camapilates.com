@@ -20,6 +20,11 @@ on:
         required: false
         default: '3'
         type: string
+      changed_files:
+        description: 'Changed blog files (optional). Newline or comma-separated list of src/content/blog/*.md to process when mode=changed.'
+        required: false
+        default: ''
+        type: string
 
 jobs:
   register:
@@ -54,12 +59,23 @@ jobs:
         run: |
           node scripts/register-released-blogs.js --changed="$CHANGED_FILES" --inline=3
 
-      - name: Register placeholders (manual: changed)
-        if: github.event_name == 'workflow_dispatch' && inputs.mode == 'changed'
+      - name: Register placeholders (manual: changed with provided list)
+        if: github.event_name == 'workflow_dispatch' && inputs.mode == 'changed' && inputs.changed_files != ''
         env:
           CONVEX_URL: https://spotted-raven-102.convex.cloud
         run: |
-          echo "Manual dispatch (changed): computing diff not supported; processing all changed not available. Falling back to all."
+          LIST="${{ inputs.changed_files }}"
+          # Normalize to comma-separated
+          CHANGED=$(printf "%s" "$LIST" | tr '\n' ',' | sed 's/,,*/,/g' | sed 's/,\s*/,/g' | sed 's/,$//')
+          echo "Changed files: $CHANGED"
+          node scripts/register-released-blogs.js --changed="$CHANGED" --inline=${{ inputs.inline }}
+
+      - name: Register placeholders (manual: changed fallback to all)
+        if: github.event_name == 'workflow_dispatch' && inputs.mode == 'changed' && inputs.changed_files == ''
+        env:
+          CONVEX_URL: https://spotted-raven-102.convex.cloud
+        run: |
+          echo "Manual dispatch (changed): no changed_files provided; falling back to all released posts."
           node scripts/register-released-blogs.js --inline=${{ inputs.inline }}
 
       - name: Register placeholders (manual: all)
