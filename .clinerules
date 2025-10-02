@@ -196,5 +196,51 @@ git reset HEAD~1         # Unstage changes
 
 ---
 
+## Image Upload Rules
+
+**CRITICAL: We ONLY use Convex for ALL images. No public folder images.**
+
+**When user drops an image:**
+
+### Protocol
+1. **Ask where it goes** (hero, product, blog, feature, logo, badge)
+2. **Optimize:** WebP, correct size
+3. **Upload to Convex:** Run upload script
+4. **Update code:** convexAssets.ts
+5. **Test:** `npm run build` must pass
+6. **Commit & push**
+
+### Convex Upload (ONLY Method)
+```typescript
+// Create script: scripts/upload-{name}.ts
+import { ConvexHttpClient } from 'convex/browser';
+import { api } from '../convex/_generated/api';
+
+const client = new ConvexHttpClient(process.env.CONVEX_URL!);
+const uploadUrl = await client.mutation(api.siteImages.generateUploadUrl);
+// POST file to uploadUrl, get storageId
+await client.mutation(api.siteImages.upload, {
+  name: 'heroHomepage',
+  category: 'hero',
+  storageId,
+  mimeType: 'image/webp',
+  size: blob.size,
+  alt: 'Homepage hero',
+  description: 'Hero image for homepage'
+});
+```
+
+### Categories (ALL in Convex)
+- `hero` - 1920x1080 WebP
+- `product` - 1000x1000 WebP
+- `feature` - 800x600 WebP
+- `logo` - SVG preferred
+- `badge` - SVG or WebP
+- `blog` - 1200x630 PNG/JPEG
+
+**See:** `IMAGE_UPLOAD_GUIDE.md` for complete guide
+
+---
+
 **Remember**: Every push to `main` triggers automatic deployment to production.
 Test thoroughly before pushing!

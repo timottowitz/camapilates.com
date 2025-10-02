@@ -300,3 +300,69 @@ Explicación sobre relación calidad-precio...
   "publishableKey": "sr_live_pk_xxx"
 }
 ```
+
+---
+
+## Image Upload Workflow
+
+**CRITICAL: We ONLY use Convex for ALL images. No public folder images.**
+
+**When user drops an image in chat:**
+
+### Quick Steps
+1. **Identify area** - Where does it go? (hero, product, blog, feature, logo, badge)
+2. **Optimize** - WebP, correct size, compressed
+3. **Upload to Convex** - Run upload script
+4. **Update convexAssets.ts** - Add image name constant and hook
+5. **Test** - `npm run build` must succeed
+6. **Deploy** - Commit and push
+
+### Convex Storage (ONLY Method)
+
+**Use for:** ALL images (hero, product, blog, feature, logo, badge, finish, etc.)
+
+**Process:**
+1. Save image temporarily
+2. Create upload script in `scripts/upload-{name}.ts`
+3. Upload via Convex client: `generateUploadUrl` → POST file → `siteImages.upload`
+4. Update `src/lib/convexAssets.ts` with new image name
+5. Use `useConvexAssets()` hook in component
+
+**Categories:** `hero`, `product`, `feature`, `logo`, `badge`, `finish`, `blog`
+
+### Image Sizes
+- **Hero:** 1920x1080 (16:9), WebP
+- **Product:** 1000x1000 (1:1), WebP
+- **Feature:** 800x600 (4:3), WebP
+- **Blog/OG Image:** 1200x630, PNG/JPEG
+- **Logo:** SVG preferred, or 2x PNG
+
+### Example
+
+**User drops image:** "Add this as homepage hero"
+
+**You:**
+```bash
+# 1. Save image temporarily
+cp user-image.webp /tmp/hero-homepage.webp
+
+# 2. Create upload script
+scripts/upload-hero-homepage.ts
+
+# 3. Run upload to Convex
+deno run --allow-all scripts/upload-hero-homepage.ts
+
+# 4. Update convexAssets.ts
+Add HERO_HOMEPAGE constant and hook
+
+# 5. Update Index.tsx
+Use assets.heroHomepage
+
+# 6. Test & commit
+npm run build
+git add .
+git commit -m "feat(hero): add homepage hero image via Convex"
+git push
+```
+
+**See:** `IMAGE_UPLOAD_GUIDE.md` for complete documentation

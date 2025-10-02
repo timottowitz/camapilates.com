@@ -384,10 +384,147 @@ Before every commit:
 
 ---
 
+## 🖼️ Image Upload Protocol
+
+**CRITICAL: We ONLY use Convex for ALL images. No public folder images.**
+
+**When user drops an image in chat:**
+
+### Quick Reference
+1. **Identify area** (hero, product, blog, feature, logo, badge)
+2. **Optimize** (WebP, correct size, compressed)
+3. **Upload to Convex** (run upload script)
+4. **Update convexAssets.ts** (add image name and hook)
+5. **Test** (`npm run build`)
+6. **Commit and push**
+
+### Convex Storage (ONLY Method)
+
+**For:** ALL images (hero, product, blog, feature, logo, badge, etc.)
+
+**Process:**
+```typescript
+// 1. Create upload script: scripts/upload-{name}.ts
+import { ConvexHttpClient } from 'convex/browser';
+import { api } from '../convex/_generated/api';
+import fs from 'fs';
+
+async function uploadImage({
+  filePath,
+  name,        // e.g., 'heroHomepage'
+  category,    // e.g., 'hero', 'product', 'blog', 'feature'
+  alt,
+  description
+}) {
+  const client = new ConvexHttpClient(process.env.CONVEX_URL!);
+  const buffer = fs.readFileSync(filePath);
+  const blob = new Blob([buffer]);
+
+  // Get upload URL
+  const uploadUrl = await client.mutation(api.siteImages.generateUploadUrl);
+
+  // Upload file
+  const response = await fetch(uploadUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': blob.type || 'image/webp' },
+    body: blob,
+  });
+
+  const { storageId } = await response.json();
+
+  // Save metadata to Convex
+  await client.mutation(api.siteImages.upload, {
+    name,
+    category,
+    storageId,
+    mimeType: blob.type || 'image/webp',
+    size: blob.size,
+    alt,
+    description,
+  });
+}
+
+// 2. Run upload
+uploadImage({
+  filePath: '/tmp/hero-homepage.webp',
+  name: 'heroHomepage',
+  category: 'hero',
+  alt: 'Homepage hero image',
+  description: 'Hero background for homepage'
+});
+
+// 3. Update convexAssets.ts
+export const CONVEX_IMAGE_NAMES = {
+  HERO_HOMEPAGE: 'heroHomepage',
+  // ... add new image
+};
+
+const FALLBACKS = {
+  heroHomepage: '/images/fallback-hero.webp',
+  // ... add fallback
+};
+
+export function useConvexAssets() {
+  const heroHomepage = useConvexImage(
+    CONVEX_IMAGE_NAMES.HERO_HOMEPAGE,
+    getVersionedImageUrl(FALLBACKS.heroHomepage)
+  );
+
+  return { heroHomepage, ... };
+}
+
+// 4. Use in component
+const assets = useConvexAssets();
+<img src={assets.heroHomepage} alt="Hero" />
+```
+
+### Categories (ALL in Convex)
+
+- **`hero`** - Hero/header images (1920x1080, WebP)
+- **`product`** - Product images (1000x1000, WebP)
+- **`feature`** - Feature sections (800x600, WebP)
+- **`logo`** - Brand logos (SVG preferred)
+- **`badge`** - Badges and icons (SVG or WebP)
+- **`finish`** - Material/finish images (800x800, WebP)
+- **`blog`** - Blog OG images (1200x630, PNG/JPEG)
+
+### Checklist
+
+When user drops image:
+- [ ] Identify area and category
+- [ ] Save image temporarily
+- [ ] Optimize (WebP, correct size)
+- [ ] Create upload script in `scripts/`
+- [ ] Run upload to Convex
+- [ ] Update `convexAssets.ts` (name + hook + fallback)
+- [ ] Update component to use asset
+- [ ] Test: `npm run build`
+- [ ] Commit: code changes only (image is in Convex)
+- [ ] Push to deploy
+
+### Example
+
+**User:** "Add this as homepage hero" *[drops image]*
+
+**You:**
+1. Save to `/tmp/hero-homepage.webp`
+2. Create `scripts/upload-hero-homepage.ts`
+3. Run: `deno run --allow-all scripts/upload-hero-homepage.ts`
+4. Update `convexAssets.ts`: Add `HERO_HOMEPAGE` constant + hook + fallback
+5. Update `Index.tsx`: Use `assets.heroHomepage`
+6. Test: `npm run build` ✅
+7. Commit: `git add . && git commit -m "feat(hero): add homepage hero image via Convex"`
+8. Push: `git push`
+9. Confirm: "✅ Hero image uploaded to Convex and deployed"
+
+**See:** `IMAGE_UPLOAD_GUIDE.md` for complete documentation
+
+---
+
 **Remember**: You're deploying to production with every push.
 Test thoroughly and follow the process! 🚀
 
 ---
 
 *Last updated: October 2025*
-*For questions or issues, check AGENTS.md or .clinerules*
+*For questions or issues, check AGENTS.md, .clinerules, or IMAGE_UPLOAD_GUIDE.md*

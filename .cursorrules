@@ -55,6 +55,26 @@ git push
 - Never commit `.env` (use `.env.example`)
 - Check `.gitignore` before committing
 
+## Image Uploads
+
+**CRITICAL: ONLY use Convex for ALL images**
+
+**User drops image:**
+1. Ask where (hero, product, blog, feature, logo, badge)
+2. Optimize (WebP, correct size)
+3. Upload to Convex via script
+4. Update convexAssets.ts
+5. Test `npm run build`
+6. Commit & push
+
+**Sizes (ALL in Convex):**
+- Hero: 1920x1080 WebP
+- Product: 1000x1000 WebP
+- Blog/OG: 1200x630 PNG/JPEG
+- Feature: 800x600 WebP
+
+See `IMAGE_UPLOAD_GUIDE.md`
+
 ## More Details
 
-See `AGENTS.md` and `.clinerules` for complete documentation.
+See `AGENTS.md`, `.clinerules`, and `IMAGE_UPLOAD_GUIDE.md` for complete documentation.
