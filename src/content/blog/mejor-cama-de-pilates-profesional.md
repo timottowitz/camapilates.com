@@ -1,3 +1,6 @@
+---
+publishDate: '2025-10-01'
+---
 
 ---
 title: "Mejor cama de Pilates profesional: Qué mirar"

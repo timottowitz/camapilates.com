@@ -1,3 +1,6 @@
+---
+publishDate: '2025-10-01'
+---
 
 ---
 title: "Ejercicios de Pilates en la cama (Reformer): Rutina inicial"

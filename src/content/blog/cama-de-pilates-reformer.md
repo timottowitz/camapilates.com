@@ -1,3 +1,6 @@
+---
+publishDate: '2025-10-01'
+---
 
 ---
 title: "Cama de Pilates Reformer: Guía Completa 2025 para Elegir la Mejor"

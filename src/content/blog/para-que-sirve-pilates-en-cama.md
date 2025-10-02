@@ -1,3 +1,6 @@
+---
+publishDate: '2025-10-01'
+---
 
 ---
 title: "¿Para qué sirve el Pilates en cama (Reformer)?"

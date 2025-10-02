@@ -1,3 +1,6 @@
+---
+publishDate: '2025-10-01'
+---
 
 ---
 title: "Mejores marcas de cama de Pilates: Criterios y selección"

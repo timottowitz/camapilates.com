@@ -1,3 +1,6 @@
+---
+publishDate: '2025-10-01'
+---
 
 ---
 title: "Cama de Pilates Plegable: Guía Completa 2024 para Espacios Reducidos en México"

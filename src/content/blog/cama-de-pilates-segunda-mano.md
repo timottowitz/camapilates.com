@@ -1,3 +1,6 @@
+---
+publishDate: '2025-10-01'
+---
 
 ---
 title: "Cama de Pilates de segunda mano: Qué revisar"

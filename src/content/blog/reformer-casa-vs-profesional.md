@@ -1,7 +1,9 @@
 ---
-description: "Artículo sobre reformer-casa-vs-profesional para el público de México."
+description: Artículo sobre reformer-casa-vs-profesional para el público de México.
 heroImage: /images/blog/reformer-casa-vs-profesional/hero.jpg
----arativa 2025: Reformer para casa vs profesional en México. Estructura, silencio, ajustes, accesorios, precio y costo total de propiedad."
+publishDate: '2025-10-01'
+---
+arativa 2025: Reformer para casa vs profesional en México. Estructura, silencio, ajustes, accesorios, precio y costo total de propiedad."
 category: "Comparativas"
 tags: ["reformer casa vs profesional", "cama de pilates casa", "reformer profesional", "comparativa"]
 publishDate: "2025-09-24"

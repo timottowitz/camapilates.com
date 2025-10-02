@@ -1,3 +1,6 @@
+---
+publishDate: '2025-10-01'
+---
 
 ---
 title: "Accesorios para cama de Pilates: Imprescindibles"

@@ -1,5 +1,6 @@
 ---
 heroImage: /images/blog/mantenimiento-cama-de-pilates/hero.jpg
+publishDate: '2025-10-01'
 ---
 
 ---

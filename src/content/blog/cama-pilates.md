@@ -1,3 +1,6 @@
+---
+publishDate: '2025-10-01'
+---
 
 ---
 title: "Cama Pilates México 2024: Guía Completa de Compra, Beneficios y Ejercicios"

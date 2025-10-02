@@ -1,5 +1,6 @@
 ---
 heroImage: /images/blog/precio-cama-de-pilates-2025/hero.jpg
+publishDate: '2025-10-01'
 ---
 
 ---

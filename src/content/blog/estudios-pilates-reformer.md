@@ -1,3 +1,6 @@
+---
+publishDate: '2025-10-01'
+---
 
 ---
 title: "Estudios de Pilates Reformer: Guía de selección"

@@ -1,3 +1,6 @@
+---
+publishDate: '2025-10-01'
+---
 
 ---
 title: "Reformer compacto: Solución para espacios muy pequeños"

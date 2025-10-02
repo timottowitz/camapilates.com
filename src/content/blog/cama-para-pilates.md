@@ -1,3 +1,6 @@
+---
+publishDate: '2025-10-01'
+---
 
 ---
 title: "Cama para Pilates: Guía Completa 2024-2025 para México"

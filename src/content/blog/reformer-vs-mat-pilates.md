@@ -1,3 +1,6 @@
+---
+publishDate: '2025-10-01'
+---
 
 ---
 title: "Reformer vs Mat Pilates: Diferencias y cuándo elegir cada uno"
