@@ -310,5 +310,42 @@ export default defineSchema({
     .index('by_category', ['category'])
     .index('by_active', ['isActive'])
     .index('by_created', ['createdAt']),
+
+  // AI-Described Images for Smart Selection
+  ai_images: defineTable({
+    fileName: v.string(), // Original filename
+    storageId: v.id('_storage'), // Convex storage ID
+    mimeType: v.string(),
+    size: v.number(),
+    dimensions: v.object({
+      width: v.number(),
+      height: v.number(),
+    }),
+
+    // AI Vision Analysis (GPT-4 Vision)
+    aiDescription: v.object({
+      scene: v.string(), // Main scene description
+      subjects: v.array(v.string()), // People, objects detected
+      activity: v.optional(v.string()), // What's happening
+      mood: v.string(), // Atmosphere/feeling
+      colors: v.array(v.string()), // Dominant colors
+      composition: v.string(), // Layout/framing
+      lighting: v.optional(v.string()), // Lighting quality
+      setting: v.optional(v.string()), // Indoor/outdoor, location type
+      useCases: v.array(v.string()), // Suggested use: hero, feature, blog, etc.
+      tags: v.array(v.string()), // Searchable keywords
+      quality: v.optional(v.string()), // Image quality assessment
+    }),
+
+    // Metadata
+    category: v.optional(v.string()), // Auto-detected or manual
+    isActive: v.boolean(),
+    uploadedAt: v.number(),
+    analyzedAt: v.optional(v.number()),
+  })
+    .index('by_file', ['fileName'])
+    .index('by_category', ['category'])
+    .index('by_active', ['isActive'])
+    .index('by_uploaded', ['uploadedAt']),
 });
 
