@@ -13,7 +13,7 @@ function buildPromptFromContext(p: any): string {
   const subjects = Array.isArray(p.requiredSubjects) && p.requiredSubjects.length ? `Subjects: ${p.requiredSubjects.join(', ')}` : '';
   const framing = p.preferredAspectRatio || '16:9';
   return [
-    'Create a DALL-E 3 prompt for a photorealistic image related to Pilates/Reformer.',
+    'Create a detailed prompt for a photorealistic image related to Pilates/Reformer that will be used with Google Gemini Flash image generation.',
     'Make the prompt specific, coherent, and brand-safe (no logos/text in image).',
     `Aspect: ${framing}. Style: ${style}. ${subjects}`,
     base,
@@ -21,25 +21,56 @@ function buildPromptFromContext(p: any): string {
   ].join('\n');
 }
 
-async function getOpenAIKey(ctx: any): Promise<string | null> {
-  // 1) Direct key stored via appSettings.saveApiKey('OPENAI_API_KEY')
-  const direct = await ctx.runQuery(internal.appSettings.getApiKey, { key: 'OPENAI_API_KEY' });
-  if (direct) return direct as string;
-  // 2) Provider key fallback: app_settings key `provider_key_openai` (encrypted)
-  const row = await ctx.db.query('app_settings').withIndex('by_key', (q: any) => q.eq('key', 'provider_key_openai')).unique();
+async function getGeminiKey(ctx: any): Promise<string | null> {
+  const envKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
+  if (envKey) return envKey;
+
+  const stored = await ctx.runQuery(internal.appSettings.getApiKey, { key: 'GEMINI_API_KEY' });
+  if (stored) return stored as string;
+
+  const row = await ctx.db.query('app_settings').withIndex('by_key', (q: any) => q.eq('key', 'provider_key_gemini')).unique();
   if (!row?.valueEnc) return null;
   try {
     const cfgKey = process.env.CONFIG_ENC_KEY || '';
     if (!cfgKey) return null;
     const bin = Uint8Array.from(Buffer.from(row.valueEnc, 'base64'));
-    const iv = bin.slice(0, 12); const ct = bin.slice(12);
+    const iv = bin.slice(0, 12);
+    const ct = bin.slice(12);
     const enc = new TextEncoder().encode(cfgKey);
     const hash = await crypto.subtle.digest('SHA-256', enc) as ArrayBuffer;
     const key = await crypto.subtle.importKey('raw', hash, { name: 'AES-GCM' }, false, ['decrypt']);
     const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ct) as ArrayBuffer;
     const obj = JSON.parse(new TextDecoder().decode(new Uint8Array(pt)));
     return obj?.key || null;
-  } catch { return null; }
+  } catch {
+    return null;
+  }
+}
+
+async function getOpenAIKey(ctx: any): Promise<string | null> {
+  const envKey = process.env.OPENAI_API_KEY;
+  if (envKey) return envKey;
+
+  const direct = await ctx.runQuery(internal.appSettings.getApiKey, { key: 'OPENAI_API_KEY' });
+  if (direct) return direct as string;
+
+  const row = await ctx.db.query('app_settings').withIndex('by_key', (q: any) => q.eq('key', 'provider_key_openai')).unique();
+  if (!row?.valueEnc) return null;
+  try {
+    const cfgKey = process.env.CONFIG_ENC_KEY || '';
+    if (!cfgKey) return null;
+    const bin = Uint8Array.from(Buffer.from(row.valueEnc, 'base64'));
+    const iv = bin.slice(0, 12);
+    const ct = bin.slice(12);
+    const enc = new TextEncoder().encode(cfgKey);
+    const hash = await crypto.subtle.digest('SHA-256', enc) as ArrayBuffer;
+    const key = await crypto.subtle.importKey('raw', hash, { name: 'AES-GCM' }, false, ['decrypt']);
+    const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ct) as ArrayBuffer;
+    const obj = JSON.parse(new TextDecoder().decode(new Uint8Array(pt)));
+    return obj?.key || null;
+  } catch {
+    return null;
+  }
 }
 
 export const generatePrompt = internalAction({
@@ -87,7 +118,7 @@ export const generatePrompt = internalAction({
 function sizeForAspect(aspect?: string): '1024x1024' | '1792x1024' | '1024x1792' {
   const a = (aspect || '').toLowerCase();
   if (a === '16:9' || a === 'landscape') return '1792x1024';
-  if (a === 'portrait') return '1024x1792';
+  if (a === 'portrait' || a === '3:4' || a === '9:16') return '1024x1792';
   return '1024x1024';
 }
 
@@ -97,11 +128,62 @@ function dimensionsFromAspect(aspect?: string) {
   return {
     width: Number.isFinite(w) ? w : 1024,
     height: Number.isFinite(h) ? h : 1024,
-    sizeLabel: size,
   };
 }
 
-function buildFallbackPrompt(row: any): string {
+const PHOTOREALISTIC_DIRECTIVES = `**--- Photorealistic Image Directives ---**
+
+**Style:** Strive for absolute photorealism. The final image should be indistinguishable from a high-resolution photograph. Avoid any artistic, painterly, or stylized effects.
+
+**Camera and Lens:**
+* Shot Type: Choose the shot type that best suits the contextual prompt (close-up, medium, wide, or macro).
+* Camera: Full-frame DSLR with a high-resolution sensor.
+* Lens: Select a realistic lens for the scene (for example, 50mm prime, 85mm portrait, or 24-70mm zoom).
+* Aperture: Use an aperture appropriate for the desired depth of field (e.g., f/1.8 for shallow focus, f/8 for full-scene sharpness).
+* Shutter Speed: Use a natural shutter speed (around 1/250s for static scenes, faster for motion).
+* ISO: Keep ISO low (around ISO 100) to avoid noise.
+
+**Lighting:**
+* Light Source: Choose believable lighting such as soft natural daylight, golden-hour sun, or realistic studio softboxes.
+* Light Quality: Ensure natural highlights and shadows that wrap around subjects and create depth.
+
+**Details and Texture:**
+* Focus: Keep the main subject tack-sharp.
+* Texture: Render surfaces with realistic texture (wood grain, skin, fabric, metal, etc.).
+* Imperfections: Include subtle real-world imperfections like minor wrinkles, stray hairs, or light dust to enhance authenticity.
+
+**Color:**
+* Color Palette: Natural, lifelike color grading without oversaturation or unnatural color casts.
+* White Balance: Neutral unless the context suggests a warm or cool mood.
+
+**Composition:**
+* Framing: Apply photographic composition techniques (rule of thirds, leading lines, symmetry) when fitting for the scene.
+
+**Negative Prompt:** Exclude: cartoon, anime, illustration, painting, digital art, unrealistic, fake, CGI, 3D render, oversaturated, watermark, signature, text.`;
+
+function appendPhotorealisticDirectives(basePrompt: string): string {
+  const trimmed = basePrompt?.trim() ?? '';
+  if (!trimmed.includes('Photorealistic Image Directives')) {
+    return `${trimmed}
+
+${PHOTOREALISTIC_DIRECTIVES}`.trim();
+  }
+  return trimmed;
+}
+
+const GEMINI_IMAGE_MODEL = 'gemini-2.0-flash-exp';
+const GEMINI_IMAGE_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_IMAGE_MODEL}:generateImage`;
+const GEMINI_ASPECT_MAP: Record<string, string> = {
+  '16:9': '16:9',
+  '4:3': '4:3',
+  '3:4': '3:4',
+  '9:16': '9:16',
+  '1:1': '1:1',
+  'portrait': '3:4',
+  'landscape': '16:9',
+};
+
+function buildFallbackPromptBase(row: any): string {
   const heading = row?.headingAbove || 'Pilates reformer scene';
   const aspect = row?.preferredAspectRatio || 'landscape';
   const subjects = Array.isArray(row?.requiredSubjects) && row.requiredSubjects.length
@@ -112,13 +194,16 @@ function buildFallbackPrompt(row: any): string {
     `Highlight clean architectural lines, warm natural light, premium materials, and a calm, welcoming atmosphere.`,
     `Focus on the reformer setup inspired by "${heading}".`,
     `No text, no logos, no people, no NSFW content.`,
-    `Aspect ratio ${aspect}. Ensure the image complies with all OpenAI content policies.`
+    `Aspect ratio ${aspect}. Ensure the image complies with safety policies.`
   ].join(' ');
 }
 
 function isContentFilterError(error: any): boolean {
   const message = (error?.message || '').toString().toLowerCase();
-  return message.includes('content_policy_violation') || message.includes('blocked by our content filters');
+  return message.includes('content_policy_violation')
+    || message.includes('blocked by our content filters')
+    || message.includes('safety')
+    || message.includes('blocked');
 }
 
 export const generateImage = internalAction({
@@ -129,57 +214,64 @@ export const generateImage = internalAction({
       const row = await ctx.runQuery(internal.placeholders.getByIdInternal, { placeholderId: args.placeholderId });
       if (!row) throw new Error('Placeholder not found');
 
-      const OPENAI_API_KEY = await getOpenAIKey(ctx);
-      if (!OPENAI_API_KEY) throw new Error('OPENAI_API_KEY not configured');
+      const GEMINI_API_KEY = await getGeminiKey(ctx);
+      if (!GEMINI_API_KEY) throw new Error('GEMINI_API_KEY not configured');
 
       // Ensure we have a prompt
-      let prompt = row.generatedPrompt;
-      if (!prompt) {
+      let basePrompt = row.generatedPrompt;
+      if (!basePrompt) {
         const p = await generatePrompt.handler(ctx, { placeholderId: args.placeholderId });
-        prompt = p.prompt;
+        basePrompt = p.prompt;
       }
 
-      const { width, height, sizeLabel } = dimensionsFromAspect(row.preferredAspectRatio);
+      const { width, height } = dimensionsFromAspect(row.preferredAspectRatio);
 
-      let promptToUse = prompt;
-      let revisedPrompt: string | undefined;
-      let imageUrl: string | undefined;
+      let promptToUse = appendPhotorealisticDirectives(basePrompt);
       let lastError: any;
+      let imageBuffer: Buffer | null = null;
 
       for (let attempt = 0; attempt < 2; attempt += 1) {
         try {
-          const response = await fetch('https://api.openai.com/v1/images/generations', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${OPENAI_API_KEY}`,
+          const aspectPref = (row.preferredAspectRatio || '').toLowerCase();
+          const body: Record<string, any> = {
+            prompt: {
+              text: promptToUse,
             },
-            body: JSON.stringify({
-              model: 'dall-e-3',
-              prompt: promptToUse,
-              n: 1,
-              size: sizeLabel,
-              quality: 'hd',
-              style: 'natural',
-            }),
+          };
+          if (GEMINI_ASPECT_MAP[aspectPref]) {
+            body.aspectRatio = GEMINI_ASPECT_MAP[aspectPref];
+          }
+
+          const url = new URL(GEMINI_IMAGE_ENDPOINT);
+          url.searchParams.set('key', GEMINI_API_KEY);
+
+          const response = await fetch(url.toString(), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
           });
 
           if (!response.ok) {
             const errorText = await response.text();
-            throw new Error(`DALL-E error: ${errorText}`);
+            throw new Error(`Gemini error: ${response.status} - ${errorText}`);
           }
 
           const result = await response.json();
-          imageUrl = result.data[0].url as string;
-          revisedPrompt = result.data[0].revised_prompt as string | undefined;
+          const base64 = result?.images?.[0]?.image?.bytesBase64;
+          if (!base64) {
+            throw new Error('Gemini response missing image data');
+          }
+
+          imageBuffer = Buffer.from(base64, 'base64');
           break;
         } catch (err) {
           lastError = err;
           if (attempt === 0 && isContentFilterError(err)) {
-            promptToUse = buildFallbackPrompt(row);
+            const fallbackBase = buildFallbackPromptBase(row);
+            promptToUse = appendPhotorealisticDirectives(fallbackBase);
             await ctx.runMutation(internal.placeholders.updatePrompt, {
               placeholderId: args.placeholderId,
-              prompt: promptToUse,
+              prompt: fallbackBase,
             });
             continue;
           }
@@ -187,14 +279,9 @@ export const generateImage = internalAction({
         }
       }
 
-      if (!imageUrl) {
-        throw lastError || new Error('Failed to obtain generated image URL');
+      if (!imageBuffer) {
+        throw lastError || new Error('Failed to obtain generated image');
       }
-
-      // Download generated image
-      const imageResponse = await fetch(imageUrl);
-      if (!imageResponse.ok) throw new Error('Failed to download generated image');
-      const imageBuffer = await imageResponse.arrayBuffer();
 
       // Upload to Convex storage
       const storageId = await ctx.storage.store(new Blob([imageBuffer], { type: 'image/png' }));
@@ -228,7 +315,7 @@ export const generateImage = internalAction({
       await ctx.runMutation(internal.aiImages.updateGeneratedImage, {
         imageId,
         generatedStorageId: storageId,
-        generationPrompt: revisedPrompt || prompt,
+        generationPrompt: promptToUse,
         dimensions: { width, height },
       });
 

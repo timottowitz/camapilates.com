@@ -7,32 +7,41 @@ function resolveConvexUrl() {
     || 'https://spotted-raven-102.convex.cloud';
 }
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
 
 /**
- * Store OpenAI API key in Convex database (encrypted)
- * This enables automatic image generation from within Convex actions
+ * Store available API keys in Convex database (encrypted)
+ * Supports OpenAI (prompt generation) and Gemini (image generation)
  */
 async function main() {
-  if (!OPENAI_API_KEY) {
-    console.error('\n❌ OPENAI_API_KEY environment variable not set');
-    console.error('   Run: export OPENAI_API_KEY="sk-proj-..."');
+  if (!OPENAI_API_KEY && !GEMINI_API_KEY) {
+    console.error('\n❌ No API keys found to store');
+    console.error('   Set OPENAI_API_KEY and/or GEMINI_API_KEY (or GOOGLE_API_KEY) before running this script.');
     process.exit(1);
   }
 
-  console.log('\n🔐 Storing OpenAI API Key in Convex Database\n');
+  console.log('\n🔐 Storing API keys in Convex Database\n');
 
   const client = new ConvexHttpClient(resolveConvexUrl());
 
   try {
-    // Save encrypted API key
-    await client.mutation(api.appSettings.saveApiKey, {
-      key: 'OPENAI_API_KEY',
-      value: OPENAI_API_KEY,
-    });
+    if (OPENAI_API_KEY) {
+      await client.mutation(api.appSettings.saveApiKey, {
+        key: 'OPENAI_API_KEY',
+        value: OPENAI_API_KEY,
+      });
+      console.log('✅ Stored OPENAI_API_KEY (encrypted)');
+    }
 
-    console.log('✅ API key stored successfully (encrypted)');
-    console.log('✅ Automatic image generation is now enabled!');
-    console.log('\n💡 Test it with: node scripts/test-auto-generation.js\n');
+    if (GEMINI_API_KEY) {
+      await client.mutation(api.appSettings.saveApiKey, {
+        key: 'GEMINI_API_KEY',
+        value: GEMINI_API_KEY,
+      });
+      console.log('✅ Stored GEMINI_API_KEY (encrypted)');
+    }
+
+    console.log('\n💡 Keys stored successfully.\n');
 
   } catch (error) {
     console.error('\n❌ Failed to store API key:', error.message);
