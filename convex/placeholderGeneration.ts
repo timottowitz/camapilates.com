@@ -91,6 +91,36 @@ function sizeForAspect(aspect?: string): '1024x1024' | '1792x1024' | '1024x1792'
   return '1024x1024';
 }
 
+function dimensionsFromAspect(aspect?: string) {
+  const size = sizeForAspect(aspect);
+  const [w, h] = size.split('x').map((v) => parseInt(v, 10));
+  return {
+    width: Number.isFinite(w) ? w : 1024,
+    height: Number.isFinite(h) ? h : 1024,
+    sizeLabel: size,
+  };
+}
+
+function buildFallbackPrompt(row: any): string {
+  const heading = row?.headingAbove || 'Pilates reformer scene';
+  const aspect = row?.preferredAspectRatio || 'landscape';
+  const subjects = Array.isArray(row?.requiredSubjects) && row.requiredSubjects.length
+    ? row.requiredSubjects.join(', ')
+    : 'modern pilates reformer equipment';
+  return [
+    `Photorealistic interior photograph of a high-end Pilates studio in Mexico with ${subjects}.`,
+    `Highlight clean architectural lines, warm natural light, premium materials, and a calm, welcoming atmosphere.`,
+    `Focus on the reformer setup inspired by "${heading}".`,
+    `No text, no logos, no people, no NSFW content.`,
+    `Aspect ratio ${aspect}. Ensure the image complies with all OpenAI content policies.`
+  ].join(' ');
+}
+
+function isContentFilterError(error: any): boolean {
+  const message = (error?.message || '').toString().toLowerCase();
+  return message.includes('content_policy_violation') || message.includes('blocked by our content filters');
+}
+
 export const generateImage = internalAction({
   args: { placeholderId: v.string() },
   handler: async (ctx, args) => {
@@ -109,26 +139,57 @@ export const generateImage = internalAction({
         prompt = p.prompt;
       }
 
-      const size = sizeForAspect(row.preferredAspectRatio);
-      const response = await fetch('https://api.openai.com/v1/images/generations', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${OPENAI_API_KEY}`,
-        },
-        body: JSON.stringify({
-          model: 'dall-e-3',
-          prompt,
-          n: 1,
-          size,
-          quality: 'hd',
-          style: 'natural',
-        }),
-      });
-      if (!response.ok) throw new Error(`DALL-E error: ${await response.text()}`);
-      const result = await response.json();
-      const imageUrl = result.data[0].url as string;
-      const revisedPrompt = result.data[0].revised_prompt as string | undefined;
+      const { width, height, sizeLabel } = dimensionsFromAspect(row.preferredAspectRatio);
+
+      let promptToUse = prompt;
+      let revisedPrompt: string | undefined;
+      let imageUrl: string | undefined;
+      let lastError: any;
+
+      for (let attempt = 0; attempt < 2; attempt += 1) {
+        try {
+          const response = await fetch('https://api.openai.com/v1/images/generations', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${OPENAI_API_KEY}`,
+            },
+            body: JSON.stringify({
+              model: 'dall-e-3',
+              prompt: promptToUse,
+              n: 1,
+              size: sizeLabel,
+              quality: 'hd',
+              style: 'natural',
+            }),
+          });
+
+          if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`DALL-E error: ${errorText}`);
+          }
+
+          const result = await response.json();
+          imageUrl = result.data[0].url as string;
+          revisedPrompt = result.data[0].revised_prompt as string | undefined;
+          break;
+        } catch (err) {
+          lastError = err;
+          if (attempt === 0 && isContentFilterError(err)) {
+            promptToUse = buildFallbackPrompt(row);
+            await ctx.runMutation(internal.placeholders.updatePrompt, {
+              placeholderId: args.placeholderId,
+              prompt: promptToUse,
+            });
+            continue;
+          }
+          throw err;
+        }
+      }
+
+      if (!imageUrl) {
+        throw lastError || new Error('Failed to obtain generated image URL');
+      }
 
       // Download generated image
       const imageResponse = await fetch(imageUrl);
@@ -138,44 +199,51 @@ export const generateImage = internalAction({
       // Upload to Convex storage
       const storageId = await ctx.storage.store(new Blob([imageBuffer], { type: 'image/png' }));
 
-      // Create ai_images row (minimal)
-      const now = Date.now();
-      const aiId = await ctx.db.insert('ai_images', {
+      const sizeBytes = imageBuffer.byteLength || 0;
+      const aiDescription = {
+        scene: row.headingAbove || 'Pilates scene',
+        subjects: row.requiredSubjects || ['reformer', 'pilates'],
+        activity: undefined,
+        mood: row.preferredStyle || 'professional',
+        colors: ['neutral'],
+        composition: 'Clean, centered subject',
+        lighting: 'natural',
+        setting: 'indoor studio',
+        useCases: ['blog', 'feature', 'hero'],
+        tags: ['pilates', 'reformer', 'studio'],
+        quality: 'Excellent',
+      } as const;
+
+      const imageId = await ctx.runMutation(internal.aiImages.upload, {
         fileName: `${args.placeholderId}.png`,
         storageId,
         mimeType: 'image/png',
-        size: (imageBuffer as any).byteLength || 0,
-        dimensions: { width: size.includes('1792') ? (size === '1792x1024' ? 1792 : 1024) : 1024, height: size.includes('1792') ? (size === '1024x1792' ? 1792 : 1024) : 1024 },
-        aiDescription: {
-          scene: row.headingAbove || 'Pilates scene',
-          subjects: row.requiredSubjects || ['reformer', 'pilates'],
-          activity: undefined,
-          mood: row.preferredStyle || 'professional',
-          colors: ['neutral'],
-          composition: 'Clean, centered subject',
-          lighting: 'natural',
-          setting: 'indoor studio',
-          useCases: ['blog', 'feature', 'hero'],
-          tags: ['pilates', 'reformer', 'studio'],
-          quality: 'Excellent',
-        },
+        size: sizeBytes,
+        dimensions: { width, height },
+        aiDescription,
+        category: 'blog',
+        autoGenerate: false,
+      });
+
+      await ctx.runMutation(internal.aiImages.updateGeneratedImage, {
+        imageId,
         generatedStorageId: storageId,
         generationPrompt: revisedPrompt || prompt,
-        generatedDimensions: { width: 1024, height: 1024 },
-        generatedAt: now,
-        generationStatus: 'completed',
-        generationError: undefined,
-        category: 'blog',
-        isActive: true,
-        uploadedAt: now,
-        analyzedAt: now,
+        dimensions: { width, height },
       });
 
       // Assign to placeholder
-      await ctx.runMutation(internal.placeholders.assignImage, { placeholderId: args.placeholderId, imageId: aiId, activate: true });
+      await ctx.runMutation(internal.placeholders.assignImage, { placeholderId: args.placeholderId, imageId, activate: true });
 
-      return { ok: true, imageId: aiId };
+      return { ok: true, imageId };
     } catch (error) {
+      const message = (error as Error)?.message || String(error);
+      console.error(`placeholderGeneration.generateImage failed for ${args.placeholderId}: ${message}`);
+      await ctx.runMutation(internal.placeholders.markStatus, {
+        placeholderId: args.placeholderId,
+        status: 'error',
+        error: message,
+      });
       throw error;
     }
   }

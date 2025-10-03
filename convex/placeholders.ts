@@ -1,5 +1,5 @@
 import { v } from 'convex/values';
-import { mutation, query, internalQuery } from './_generated/server';
+import { mutation, query, internalQuery, internalMutation } from './_generated/server';
 import { internal } from './_generated/api';
 
 /**
@@ -62,6 +62,7 @@ export const register = mutation({
         requiredSubjects: args.requiredSubjects,
         priority: args.priority ?? existing.priority ?? defaultPriority,
         updatedAt: now,
+        generationError: undefined,
         // Keep existing status/assignment fields
       });
       // Auto-trigger: if still pending or only prompt exists, schedule prompt/gen pipeline
@@ -99,6 +100,7 @@ export const register = mutation({
       createdAt: now,
       updatedAt: now,
       isActive: true,
+      generationError: undefined,
     });
     // Auto-trigger: schedule prompt generation (which will schedule image generation)
     try {
@@ -233,6 +235,7 @@ export const assignImage = mutation({
       assignedAt: Date.now(),
       status: args.activate ? 'active' : 'image_assigned',
       updatedAt: Date.now(),
+      generationError: undefined,
     });
   },
 });
@@ -264,8 +267,29 @@ export const assignLatest = mutation({
       assignedAt: Date.now(),
       status: args.activate ? 'active' : 'image_assigned',
       updatedAt: Date.now(),
+      generationError: undefined,
     });
   }
+});
+
+export const markStatus = internalMutation({
+  args: {
+    placeholderId: v.string(),
+    status: v.string(),
+    error: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const row = await ctx.db
+      .query('image_placeholders')
+      .withIndex('by_placeholder_id', q => q.eq('placeholderId', args.placeholderId))
+      .first();
+    if (!row) return;
+    await ctx.db.patch(row._id, {
+      status: args.status,
+      generationError: args.error,
+      updatedAt: Date.now(),
+    });
+  },
 });
 
 /**

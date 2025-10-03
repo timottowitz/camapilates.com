@@ -391,6 +391,7 @@ export default defineSchema({
     // Status & priority
     status: v.string(), // "pending" | "prompt_generated" | "image_assigned" | "active"
     priority: v.number(), // 1-100
+    generationError: v.optional(v.string()),
 
     // Metadata
     createdAt: v.number(),
