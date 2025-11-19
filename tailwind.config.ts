@@ -1,5 +1,7 @@
 
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
+import tailwindcssTypography from "@tailwindcss/typography";
 
 export default {
 	darkMode: ["class"],
@@ -109,26 +111,26 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out'
 			},
 			fontFamily: {
-				serif: ['Georgia', 'Cambria', 'serif'],
-				sans: ['Inter', 'system-ui', 'sans-serif'],
+				serif: ['"Playfair Display"', 'Georgia', 'serif'],
+				sans: ['Manrope', 'system-ui', 'sans-serif'],
 			},
 			typography: {
 				DEFAULT: {
 					css: {
 						maxWidth: '100ch',
 						h1: {
-							fontFamily: 'Georgia, serif',
+							fontFamily: '"Playfair Display", Georgia, serif',
 						},
 						h2: {
-							fontFamily: 'Georgia, serif',
+							fontFamily: '"Playfair Display", Georgia, serif',
 						},
 						h3: {
-							fontFamily: 'Georgia, serif',
+							fontFamily: '"Playfair Display", Georgia, serif',
 						},
 					},
 				},
 			},
 		}
 	},
-	plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+	plugins: [tailwindcssAnimate, tailwindcssTypography],
 } satisfies Config;
