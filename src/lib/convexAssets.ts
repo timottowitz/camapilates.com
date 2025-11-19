@@ -40,6 +40,9 @@ export const CONVEX_IMAGE_NAMES = {
 
   // Feature sections
   FEATURE_SILENCE: 'featureSilence',
+
+  // Videos
+  HERO_VIDEO: 'heroVideo',
 } as const;
 
 /**
@@ -56,6 +59,7 @@ const FALLBACKS = {
   myloSpecial: '/images/special/mylo-special.svg',
   edelweissLogo: '/brand/edelweiss.svg',
   featureSilence: '/images/feature_1.webp',
+  heroVideo: '', // No local fallback for video
 } as const;
 
 /**
@@ -72,6 +76,7 @@ export function useConvexAssets() {
   const myloSpecial = useConvexImage(CONVEX_IMAGE_NAMES.MYLO_SPECIAL, getVersionedImageUrl(FALLBACKS.myloSpecial));
   const edelweissLogo = useConvexImage(CONVEX_IMAGE_NAMES.EDELWEISS_LOGO, getVersionedImageUrl(FALLBACKS.edelweissLogo));
   const featureSilence = useConvexImage(CONVEX_IMAGE_NAMES.FEATURE_SILENCE, getVersionedImageUrl(FALLBACKS.featureSilence));
+  const heroVideo = useConvexImage(CONVEX_IMAGE_NAMES.HERO_VIDEO, FALLBACKS.heroVideo);
 
   return {
     shopHero,
@@ -82,6 +87,7 @@ export function useConvexAssets() {
     myloBadge,
     myloSpecial,
     featureSilence,
+    heroVideo,
     shopHeaderAddon: edelweissLogo, // Alias for compatibility
   };
 }

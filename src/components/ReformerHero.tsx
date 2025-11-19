@@ -4,6 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CheckCircle2, Truck, ShieldCheck } from 'lucide-react';
+import { useConvexAssets } from '@/lib/convexAssets';
 
 const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: number }) => (
   <motion.div
@@ -16,29 +17,32 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: nu
 );
 
 const ReformerHero = () => {
+  const assets = useConvexAssets();
+
   return (
     <section className="relative h-screen min-h-[800px] w-full overflow-hidden bg-[#2A2624] text-[#EAE8E4]">
-      {/* Video Background - 21:9 Aspect Ratio */}
+      {/* Video Background - Native 96:35 (1920x700) Aspect Ratio */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-black/40 z-10" /> {/* Refined Overlay */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" style={{ width: '100vw', height: '100vh' }}>
-          <iframe
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-            style={{
-              width: '100vw',
-              height: '42.857vw',      // 21:9 aspect ratio (9/21)
-              minWidth: '233.33vh',    // 21:9 aspect ratio (21/9)
-              minHeight: '100vh'
-            }}
-            src="https://www.youtube.com/embed/irOmsZZHcIs?autoplay=1&mute=1&playsinline=1&controls=0&loop=1&playlist=irOmsZZHcIs&modestbranding=1&rel=0"
-            title="Pilates Reformer en movimiento"
-            frameBorder="0"
-            allow="autoplay; fullscreen; picture-in-picture"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-            aria-hidden="true"
-            tabIndex={-1}
-          ></iframe>
+          {assets.heroVideo && (
+            <video
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+              style={{
+                width: '100vw',
+                height: '36.458vw',      // 96:35 aspect ratio (700/1920 = 0.36458)
+                minWidth: '274.29vh',    // 96:35 aspect ratio (1920/700 = 2.7429)
+                minHeight: '100vh'
+              }}
+              autoPlay
+              muted
+              loop
+              playsInline
+              aria-hidden="true"
+            >
+              <source src={assets.heroVideo} type="video/quicktime" />
+            </video>
+          )}
         </div>
       </div>
 
