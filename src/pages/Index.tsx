@@ -1,22 +1,14 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { DEFAULTS } from '@/lib/seo';
-import { Link } from 'react-router-dom';
 import products from '@/content/products.json';
-import { QualitySection } from '@/components/ui/quality-section';
-import { CheckCircle2, Truck, ShieldCheck, ArrowRight, CreditCard, MessageCircle, Package, Building2 } from 'lucide-react';
-import { TrustedBy } from '@/components/ui/trusted-by';
-import { FeatureSplit } from '@/components/ui/feature-split';
-import RibbonBanner from '@/components/ui/ribbon-banner';
-import { ContextualImage } from '@/components/ContextualImage';
+import ReformerHero from '@/components/ReformerHero';
+import LuxuryContent from '@/components/LuxuryContent';
 
 const Index = () => {
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://camadepilates.com';
   const title = 'Cama de Pilates (Reformer) en México — Casa y Estudio';
   const desc = 'Cama de Pilates en venta: Reformers silenciosos con cuero genuino, madera de nogal y acero. Precios 2025, entrega 3 semanas desde CDMX y garantía 1 año.';
-
-  const productPk = 'sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c'; // TODO: replace with real key
-  const productId = 'prod_6569ddc31c17b221072732'; // TODO: replace with real product id
 
   const orgSchema = {
     '@context': 'https://schema.org',
@@ -127,216 +119,13 @@ const Index = () => {
         <script type="application/ld+json">{JSON.stringify(guidesListSchema)}</script>
       </Helmet>
 
-      <RibbonBanner />
-
-      {/* Hero */}
-      <section className="relative isolate overflow-hidden bg-background text-white">
-        <div className="absolute inset-0 -z-20 overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 w-[177.78vh] min-w-full h-[56.25vw] min-h-full -translate-x-1/2 -translate-y-1/2">
-            <iframe
-              className="h-full w-full"
-              src="https://www.youtube.com/embed/irOmsZZHcIs?autoplay=1&mute=1&playsinline=1&controls=0&loop=1&playlist=irOmsZZHcIs&modestbranding=1&rel=0"
-              title="Pilates Reformer en movimiento"
-              frameBorder="0"
-              allow="autoplay; fullscreen; picture-in-picture"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-              aria-hidden="true"
-              tabIndex={-1}
-            ></iframe>
-          </div>
-        </div>
-        <div className="absolute inset-0 -z-10 bg-black/60" aria-hidden="true" />
-        <div className="relative z-10 container mx-auto px-4 py-24 md:py-32">
-          <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white drop-shadow-lg">Cama de Pilates (Reformer)</h1>
-            <p className="mt-6 text-xl text-white/80">Cama de Pilates para casa y estudio con <strong>silencio total</strong> y <strong>estabilidad sin vibraciones</strong>. Acabados premium en <strong>cuero genuino</strong>, <strong>madera de nogal</strong> y <strong>acero estructural</strong>. Entrega <strong>3 semanas</strong> desde CDMX y <strong>garantía 1 año</strong>.</p>
-            <p className="mt-3 text-sm text-white/70">Ingeniería alemana • Manufactura mexicana • Ajustada por instructoras</p>
-            <p className="mt-4 text-base text-white/85 italic">El último Reformer que necesitarás. Desarrolla tu gracia con materiales nobles—solo lo mejor toca tu piel.</p>
-            <div className="mt-8 flex flex-wrap gap-3 items-center">
-              <Link to="/shop" className="inline-flex items-center px-6 py-3 rounded-md bg-primary text-primary-foreground hover:bg-primary/90">Comprar ahora</Link>
-              <Link to="/store" className="inline-flex items-center px-6 py-3 rounded-md border border-white/70 text-white hover:bg-white hover:text-background">Comparar modelos</Link>
-            </div>
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 text-white/80">
-              <div className="flex items-center gap-2"><CheckCircle2 className="h-5 w-5 text-primary" /> Silencio total</div>
-              <div className="flex items-center gap-2"><Truck className="h-5 w-5 text-primary" /> Envío MX 3 semanas</div>
-              <div className="flex items-center gap-2"><ShieldCheck className="h-5 w-5 text-primary" /> Garantía 1 año</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <TrustedBy items={["CDMX","Guadalajara","Monterrey","Querétaro","Puebla","Mérida"]} />
-
-      {/* Materials grid */}
-      <section className="bg-background">
-        <div className="container mx-auto px-4 py-12">
-          <h2 className="text-2xl font-bold text-foreground mb-6">Materiales y acabados que perduran</h2>
-          <div className="not-prose mb-6">
-            <ContextualImage
-              placeholderId="home-materials-inline-1"
-              pageType="home"
-              location="inline-1"
-              aspectRatio="4:3"
-              alt="Materiales y acabados"
-            />
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="border border-border rounded-lg p-6 bg-card">
-              <h3 className="font-semibold text-foreground">Cuero genuino</h3>
-              <p className="text-sm text-muted-foreground mt-2">Contacto agradable y resistente. Mantiene agarre y color con el uso.</p>
-            </div>
-            <div className="border border-border rounded-lg p-6 bg-card">
-              <h3 className="font-semibold text-foreground">Madera de nogal</h3>
-              <p className="text-sm text-muted-foreground mt-2">Cálida y elegante. Acabado protector que respira y luce mejor con el tiempo.</p>
-            </div>
-            <div className="border border-border rounded-lg p-6 bg-card">
-              <h3 className="font-semibold text-foreground">Acero estructural</h3>
-              <p className="text-sm text-muted-foreground mt-2">Rigidez y precisión para un recorrido estable y silencioso.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Sustainable leather option */}
-      <FeatureSplit
-        title="Nuevo acabado: cuero de micelio (sostenible)"
-        copy="Incorporamos una opción de cuero a base de micelio —una alternativa de origen renovable— con tacto cálido y estética refinada. Diseñada para uso intensivo en estudio: sometida a pruebas de flexión y abrasión, resistente a la decoloración y fácil de mantener. Un material alineado con una energía femenina de protección y gracia: sin plásticos en contacto directo con la piel y con menor impacto ambiental."
-        cta={{ href: '/product/reformer-profesional', label: 'Ver acabados disponibles' }}
-        image={{ src: '/images/finish-mycelium.webp', alt: 'Acabado de cuero de micelio en Reformer' }}
-      />
-
-      {/* Trust badges */}
-      <section className="bg-background border-t border-border/60">
-        <div className="container mx-auto px-4 py-6 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-4 text-sm text-muted-foreground">
-          <div className="flex items-center gap-2"><CreditCard className="h-4 w-4 text-primary" /> Mercado Pago</div>
-          <div className="flex items-center gap-2"><MessageCircle className="h-4 w-4 text-primary" /> Soporte en español</div>
-          <div className="flex items-center gap-2"><Building2 className="h-4 w-4 text-primary" /> Ensamblado en CDMX</div>
-          <div className="flex items-center gap-2"><Package className="h-4 w-4 text-primary" /> Repuestos exprés</div>
-          <div className="hidden lg:flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-primary" /> Garantía 1 año</div>
-        </div>
-      </section>
-
-      {/* Top Guides */}
-      <section className="bg-background border-t border-border">
-        <div className="container mx-auto px-4 py-12">
-          <h2 className="text-2xl font-bold text-foreground mb-6">Top guías sobre Cama de Pilates</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {guides.map((g) => (
-              <Link key={g.slug} to={`/blog/${g.slug}`} className="block group border border-border rounded-lg p-6 bg-card hover:border-primary/50 transition-colors">
-                <h3 className="font-semibold text-foreground group-hover:text-primary">{g.title}</h3>
-                <p className="text-sm text-muted-foreground mt-2">Lee nuestra guía sobre {g.title.toLowerCase()} y elige tu cama de Pilates con seguridad.</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <FeatureSplit
-        title="Silencio que se siente en cada repetición"
-        copy="Nuestras tolerancias precisas eliminan crujidos y vibraciones para una experiencia de estudio impecable. Cuero genuino y madera de nogal que elevan tu espacio."
-        cta={{ href: '/cama-de-pilates/en-venta', label: 'Cama de Pilates en venta' }}
-        image={{ src: '/og/cama-de-pilates-venta-mexico.png', alt: 'Cama de Pilates Edelweiss' }}
-      />
-
-      {/* Why Edelweiss */}
-      <section className="bg-background border-t border-border">
-        <div className="container mx-auto px-4 py-12 grid md:grid-cols-2 gap-8 items-start">
-          <div>
-            <h2 className="text-2xl font-bold text-foreground mb-3">¿Por qué elegir Edelweiss?</h2>
-            <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
-              <li><strong>Silencio total</strong> gracias a tolerancias precisas: sin crujidos, sin distracciones.</li>
-              <li>Estética que eleva tu espacio: cuero genuino, nogal y acero con líneas limpias.</li>
-              <li>Construcción DE/MX y <strong>garantía 1 año</strong> con repuestos exprés en español.</li>
-              <li>Entrega nacional <strong>3 semanas</strong> desde CDMX y soporte cercano.</li>
-              <li>Para estudios: <strong>Pack 8+ con 20% descuento</strong> e instalación coordinada.</li>
-            </ul>
-            <div className="mt-4 flex flex-wrap gap-3">
-              <Link to="/product/reformer-profesional" className="inline-flex items-center px-5 py-3 rounded-md bg-primary text-primary-foreground hover:bg-primary/90">Ver Reformer de Estudio</Link>
-              <Link to="/packs/estudio" className="inline-flex items-center px-5 py-3 rounded-md border border-foreground text-foreground hover:bg-foreground hover:text-background">Pack para estudios (8+)</Link>
-            </div>
-          </div>
-          {/* Decibel "silence test" placeholder */}
-          <div className="relative overflow-hidden rounded-lg border border-border bg-card">
-            <div className="aspect-video w-full">
-              <video
-                className="h-full w-full object-cover"
-                src="/videos/silence-test.mp4"
-                poster="/og/cama-de-pilates-venta-mexico.png"
-                muted
-                loop
-                playsInline
-                autoPlay
-                controls
-              >
-                Tu navegador no soporta video HTML5.
-              </video>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Highlights */}
-      <section className="bg-background">
-        <div className="container mx-auto px-4 py-12 grid md:grid-cols-3 gap-8">
-          {[
-            { t: 'Cama de Pilates para Casa', d: 'Compacta y silenciosa. Cuero genuino, estructura de madera y entrega 3 semanas.', link: '/product/reformer-casa' },
-            { t: 'Cama de Pilates de Estudio', d: 'Silencio total y tolerancias precisas. Cuero, nogal y acero estructural.', link: '/product/reformer-profesional' },
-            { t: 'Cama de Pilates en Venta', d: 'Compra con garantía 1 año y repuestos exprés. Ver disponibilidad en México.', link: '/cama-de-pilates/en-venta' }
-          ].map((x) => (
-            <Link key={x.t} to={x.link} className="border border-border rounded-lg p-6 hover:border-primary/50 transition-colors bg-card block group">
-              <h3 className="font-semibold text-lg text-foreground group-hover:text-primary">{x.t}</h3>
-              <p className="text-muted-foreground mt-2">{x.d}</p>
-              <span className="inline-block mt-3 text-primary">Ver más →</span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Buyer guide block */}
-      <section className="bg-background border-t border-border">
-        <div className="container mx-auto px-4 py-12 grid md:grid-cols-2 gap-8 items-center">
-          <div>
-            <h2 className="text-2xl font-bold text-foreground mb-3">Guía de compra de Cama de Pilates</h2>
-            <p className="text-muted-foreground mb-6">Cómo elegir tu cama de Pilates: dimensiones y espacios, estabilidad (tolerancias), materiales (cuero/nogal/acero), muelles y garantía. Consulta <Link to="/cama-de-pilates/precio" className="text-primary hover:underline">precios</Link> y <Link to="/blog/cama-de-pilates-guia-de-compra" className="text-primary hover:underline">guía completa</Link>.</p>
-            <div className="flex gap-3">
-              <Link to="/cama-de-pilates/en-venta" className="inline-flex items-center px-5 py-3 rounded-md bg-primary text-primary-foreground hover:bg-primary/90">Cama de Pilates en venta</Link>
-              <Link to="/cama-de-pilates/precio" className="inline-flex items-center px-5 py-3 rounded-md border border-foreground text-foreground hover:bg-foreground hover:text-background">Precios</Link>
-            </div>
-          </div>
-          <div className="border border-border rounded-lg p-6 bg-card">
-            <h3 className="font-semibold text-foreground">Preguntas frecuentes</h3>
-            <ul className="mt-3 space-y-2 text-muted-foreground">
-              <li>• ¿Cuál es la mejor cama de Pilates para casa?</li>
-              <li>• ¿Cuánto espacio necesito?</li>
-              <li>• ¿Qué accesorios son imprescindibles?</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Products */}
-      <section className="bg-background">
-        <div className="container mx-auto px-4 py-12">
-          <h2 className="text-2xl font-bold text-foreground mb-6">Camas de Pilates destacadas</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {featured.map((p) => (
-              <Link key={p.slug} to={`/product/${p.slug}`} className="block group border border-border rounded-lg p-6 bg-card hover:border-primary/50 transition-colors">
-                <img src={p.image} alt={p.name} className="w-full h-auto rounded mb-4 border border-border" />
-                <h3 className="font-semibold text-foreground group-hover:text-primary">{p.name}</h3>
-                <p className="text-sm text-muted-foreground mt-2">{p.description}</p>
-                <div className="mt-3 font-semibold text-foreground">$ {p.price} {p.currency}</div>
-              </Link>
-            ))}
-          </div>
-          <div className="mt-6">
-            <Link to="/products" className="inline-flex items-center px-5 py-3 rounded-md bg-primary text-primary-foreground hover:bg-primary/90">Ver todos los productos</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Quality Section */}
-      <QualitySection />
+      <main className="flex min-h-screen flex-col items-center justify-between bg-[#EAE8E4]">
+        {/* 3D Hero Section */}
+        <ReformerHero />
+        
+        {/* Editorial Content Sections */}
+        <LuxuryContent />
+      </main>
     </>
   );
 };
