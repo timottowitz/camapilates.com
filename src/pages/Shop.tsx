@@ -25,7 +25,7 @@ import { EnhancedHero } from '@/components/commerce21/EnhancedHero';
 import { LivePurchaseNotifications, CustomerReviewsPreview } from '@/components/commerce21/SocialProofWidget';
 import ExitIntentPopup, { useExitIntent } from '@/components/commerce21/ExitIntentPopup';
 import ProductCard21Enhanced from '@/components/commerce21/ProductCard21Enhanced';
-import LuxuryLayout from '@/components/layout/LuxuryLayout';
+import LuxuryLayout from '@/components/layout/LuxuryLayout.tsx';
 
 function getInitialRegion(): Region {
   if (typeof window === 'undefined') return 'MX';
