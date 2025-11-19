@@ -288,8 +288,8 @@ const Shop: React.FC = () => {
 
             {/* Explore range blocks */}
             <ExploreTiles21 items={[
-              { label: 'Reformers', desc: 'Silenciosos y precisos para casa y estudio', href: '/shop/category/reformers', img: '/images/grace_1.webp' },
-              { label: 'Accesorios', desc: 'Cintas y mantenimiento para tu Reformer', href: '/shop/category/accesorios', img: '/images/grace2.webp' },
+              { label: 'Reformers', desc: 'Silenciosos y precisos para casa y estudio', href: '/shop/category/reformers', img: '/images/explore-reformers.png' },
+              { label: 'Accesorios', desc: 'Cintas y mantenimiento para tu Reformer', href: '/shop/category/accesorios', img: '/images/explore-accessories.png' },
             ]} />
 
             {/* Newsletter stub */}

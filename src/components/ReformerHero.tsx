@@ -20,7 +20,7 @@ const ReformerHero = () => {
   const assets = useConvexAssets();
 
   return (
-    <section className="relative h-screen min-h-[800px] w-full overflow-hidden bg-[#2A2624] text-[#EAE8E4]">
+    <section className="relative w-full overflow-hidden bg-[#2A2624] text-[#EAE8E4]">
       {/* Video Background - Native 1920x700 */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-black/40 z-10" /> {/* Refined Overlay */}
@@ -39,7 +39,7 @@ const ReformerHero = () => {
       </div>
 
       {/* Content Container */}
-      <div className="relative z-20 h-full container mx-auto px-8 md:px-24 flex flex-col justify-center">
+      <div className="relative z-20 container mx-auto px-8 md:px-24 py-20 md:py-28">
         <div className="max-w-3xl">
 
           {/* Super-title */}
