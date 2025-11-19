@@ -14,10 +14,6 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: nu
     </motion.div>
 );
 
-const Separator = () => (
-    <div className="w-full h-[1px] bg-[#2A2624] opacity-10 my-4" />
-);
-
 export default function LuxuryContent() {
     return (
         <div className="bg-[#EAE8E4] text-[#2A2624] min-h-screen w-full selection:bg-[#3E2723] selection:text-white">
@@ -135,45 +131,6 @@ export default function LuxuryContent() {
                     </blockquote>
                 </FadeIn>
             </section>
-
-            {/* --- SECTION 4: CTA / FOOTER --- */}
-            <footer className="bg-[#2A2624] text-[#EAE8E4] pt-32 pb-12 px-8 md:px-24">
-                <div className="max-w-[1800px] mx-auto">
-                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24">
-                        <div>
-                            <h2 className="text-5xl md:text-8xl font-serif italic mb-6">
-                                Begin your <br />
-                                <span className="font-sans not-italic font-light">Practice.</span>
-                            </h2>
-                            <button className="mt-8 bg-[#EAE8E4] text-[#2A2624] px-10 py-4 rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white transition-colors">
-                                Shop the Reformer
-                            </button>
-                        </div>
-                        <div className="mt-12 md:mt-0 text-right hidden md:block">
-                            <p className="text-xs uppercase tracking-widest opacity-50 mb-2">Crafted in</p>
-                            <p className="text-xl font-serif italic">Los Angeles, CA</p>
-                        </div>
-                    </div>
-
-                    <Separator />
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8 text-xs uppercase tracking-[0.15em] opacity-60 font-sans">
-                        <div className="flex flex-col gap-4">
-                            <a href="#" className="hover:opacity-100 transition-opacity">Shop</a>
-                            <a href="#" className="hover:opacity-100 transition-opacity">About</a>
-                            <a href="#" className="hover:opacity-100 transition-opacity">Journal</a>
-                        </div>
-                        <div className="flex flex-col gap-4">
-                            <a href="#" className="hover:opacity-100 transition-opacity">Instagram</a>
-                            <a href="#" className="hover:opacity-100 transition-opacity">Pinterest</a>
-                            <a href="#" className="hover:opacity-100 transition-opacity">Contact</a>
-                        </div>
-                        <div className="col-span-2 md:text-right flex flex-col justify-end">
-                            <p>&copy; 2024 AeroPilates. All Rights Reserved.</p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     );
 }
