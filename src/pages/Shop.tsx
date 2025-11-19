@@ -21,10 +21,11 @@ import FilterBar21 from '@/components/commerce21/FilterBar21';
 import ActiveChips21, { Chip } from '@/components/commerce21/ActiveChips21';
 import { Link } from 'react-router-dom';
 import { viewItemList } from '@/lib/shop/analytics';
-import { EnhancedHero, FeatureHighlights } from '@/components/commerce21/EnhancedHero';
+import { EnhancedHero } from '@/components/commerce21/EnhancedHero';
 import { LivePurchaseNotifications, CustomerReviewsPreview } from '@/components/commerce21/SocialProofWidget';
 import ExitIntentPopup, { useExitIntent } from '@/components/commerce21/ExitIntentPopup';
 import ProductCard21Enhanced from '@/components/commerce21/ProductCard21Enhanced';
+import LuxuryLayout from '@/components/layout/LuxuryLayout';
 
 function getInitialRegion(): Region {
   if (typeof window === 'undefined') return 'MX';
@@ -138,7 +139,7 @@ const Shop: React.FC = () => {
   }, [search, sort, minPrice, maxPrice, activeCats, activeFinishes, activeAvailability, region]);
 
   return (
-    <>
+    <LuxuryLayout>
       <Helmet>
         <title>{title} | {DEFAULTS.siteName}</title>
         <meta name="description" content={desc} />
@@ -154,198 +155,159 @@ const Shop: React.FC = () => {
         <script type="application/ld+json">{JSON.stringify(itemList)}</script>
       </Helmet>
 
-      <RibbonBanner id="shop" text="Entrega 3 semanas en México • Garantía 1 año • Repuestos exprés" />
-      <section className="bg-background">
-        <div className="container mx-auto px-4 py-10 space-y-6">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-            <h1 className="text-3xl font-bold text-foreground">Tienda</h1>
-            <div className="flex items-center gap-3 text-sm">
-              <a href="https://wa.me/523222787690" className="inline-flex items-center px-3 py-1.5 rounded-md bg-green-600 text-white hover:bg-green-700">WhatsApp</a>
-              <a href="tel:+523222787690" className="inline-flex items-center px-3 py-1.5 rounded-md border border-border text-foreground hover:bg-foreground hover:text-background">Llamar</a>
-              <div className="hidden sm:block text-muted-foreground">
-                <span className="hidden sm:inline">¿Buscas comparar modelos? </span>
-                <Link to="/store" className="text-primary hover:underline">Ver comparación Casa vs Profesional</Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Enhanced Hero */}
-          <EnhancedHero
-            title="Redescubre tu gracia con Reformers Edelweiss"
-            subtitle="Tejidos no tóxicos & materiales premium (cuero genuino, nogal & acero). Pago seguro & entrega en 3 semanas."
-            backgroundImage={assets.shopHero || DEFAULTS.ogImage}
-            showTrustMetrics={true}
-            ctaPrimary={{ text: 'Ver promoción', href: '/product/reformer-profesional' }}
-            ctaSecondary={{ text: 'Comparar modelos', href: '/store' }}
-          />
-
-          {/* Feature Highlights */}
-          <FeatureHighlights className="my-8" />
-
-          {/* Shop by category icons */}
-          <div>
-            <h2 className="text-xl font-semibold text-foreground mb-3">Compra por categoría</h2>
-            <CategoryIcons21 items={cats.map(c => ({
-              label: c.name,
-              href: `/shop/category/${c.slug}`,
-              count: c.count,
-              img: c.slug === 'reformers' ? assets.catReformers : (c.slug === 'accesorios' ? assets.catAccessories : undefined),
-              emoji: c.slug === 'reformers' ? '🛏️' : '🧰'
-            }))} />
-          </div>
-
-          {/* Featured product (curated) */}
-          {getBySlug ? (getBySlug('reformer-profesional') ? <FeaturedProduct21 product={getBySlug('reformer-profesional') as any} /> : null) : (products[0] && <FeaturedProduct21 product={products[0] as any} />)}
-
-          {/* Best sellers and newest rails */}
-          <ProductRail21 title="Más vendidos" products={(allProducts() as any).filter((p: any) => p.bestSeller).slice(0, 8)} />
-          <ProductRail21 title="Novedades" products={(allProducts() as any).filter((p: any) => p.isNew).slice(0, 8)} />
-
-          {/* Sticky listing header */}
-          <div className="sticky top-16 z-20 bg-background/95 backdrop-blur border-b border-border py-3">
-            <div className="flex items-center justify-between gap-3 text-sm mb-2">
-              <div className="text-muted-foreground">{products.length} resultado{products.length === 1 ? '' : 's'}</div>
-              <FilterBar21 sort={sort} onSort={(v) => setSort(v as any)} region={region} onRegion={(v) => { setRegion(v); try { window.localStorage.setItem('regionPref', v); } catch {} }} search={search} onSearch={setSearch} />
-            </div>
-            <div className="text-xs text-muted-foreground" aria-live="polite">{regionEstimate(region)}</div>
-            <div className="mt-2">
-              <ActiveChips21 chips={((): Chip[] => {
-                const chips: Chip[] = [];
-                activeCats.forEach((c) => chips.push({ label: `Categoría: ${c}` , onRemove: () => setActiveCats((prev) => prev.filter(x => x !== c)) }));
-                activeFinishes.forEach((f) => chips.push({ label: `Acabado: ${f}`, onRemove: () => setActiveFinishes((prev) => prev.filter(x => x !== f)) }));
-                activeAvailability.forEach((a) => chips.push({ label: a.includes('InStock') ? 'En stock' : 'Preorden', onRemove: () => setActiveAvailability((prev) => prev.filter(x => x !== a)) }));
-                if (minPrice) chips.push({ label: `≥ $${minPrice}`, onRemove: () => setMinPrice('') });
-                if (maxPrice) chips.push({ label: `≤ $${maxPrice}`, onRemove: () => setMaxPrice('') });
-                if (search) chips.push({ label: `Buscar: ${search}`, onRemove: () => setSearch('') });
-                return chips;
-              })()} onClearAll={() => { setActiveCats([]); setActiveFinishes([]); setActiveAvailability([]); setMinPrice(''); setMaxPrice(''); setSearch(''); }} />
-              <TrustStrip className="mt-2" />
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-6">
-            <aside className="md:col-span-1 space-y-4">
-              <div className="rounded-lg border border-border bg-card p-4">
-                <h2 className="font-semibold text-foreground">Categorías</h2>
-                <ul className="mt-2 space-y-2 text-sm text-muted-foreground">
-                  {cats.map((c) => (
-                    <li key={c.slug} className="flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-foreground">
-                        <input
-                          id={`cat-${c.slug}`}
-                          type="checkbox"
-                          checked={activeCats.includes(c.name)}
-                          onChange={(e) => {
-                            setActiveCats((prev) => e.target.checked ? Array.from(new Set([...prev, c.name])) : prev.filter((x) => x !== c.name));
-                          }}
-                        />
-                        <label htmlFor={`cat-${c.slug}`}>{c.name}</label>
-                      </div>
-                      <span className="text-xs text-muted-foreground" aria-label={`Cantidad en ${c.name}`}>{c.count}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="rounded-lg border border-border bg-card p-4">
-                <h2 className="font-semibold text-foreground">Ayuda</h2>
-                <ul className="mt-2 space-y-2 text-sm">
-                  <li><Link to="/cama-de-pilates/precio" className="text-primary hover:underline">Precio de la Cama de Pilates</Link></li>
-                  <li><Link to="/blog/reformer-casa-vs-profesional" className="text-primary hover:underline">Casa vs Profesional</Link></li>
-                </ul>
-              </div>
-              <div className="rounded-lg border border-border bg-card p-4">
-                <h2 className="font-semibold text-foreground">Acabados</h2>
-                <ul className="mt-2 space-y-2 text-sm">
-                  {finishes.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-foreground">
-                      <input id={`fin-${f}`} type="checkbox" checked={activeFinishes.includes(f)} onChange={(e) => setActiveFinishes((prev) => e.target.checked ? [...prev, f] : prev.filter((x) => x !== f))} />
-                      <label htmlFor={`fin-${f}`}>{f}</label>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="rounded-lg border border-border bg-card p-4">
-                <h2 className="font-semibold text-foreground">Disponibilidad</h2>
-                <ul className="mt-2 space-y-2 text-sm">
-                  {[
-                    { key: 'https://schema.org/InStock', label: 'En stock' },
-                    { key: 'https://schema.org/PreOrder', label: 'Preorden' },
-                  ].map((s) => (
-                    <li key={s.key} className="flex items-center gap-2 text-foreground">
-                      <input id={`avl-${s.label}`} type="checkbox" checked={activeAvailability.includes(s.key)} onChange={(e) => setActiveAvailability((prev) => e.target.checked ? [...prev, s.key] : prev.filter((x) => x !== s.key))} />
-                      <label htmlFor={`avl-${s.label}`}>{s.label}</label>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="rounded-lg border border-border bg-card p-4">
-                <h2 className="font-semibold text-foreground">Precio</h2>
-                <div className="mt-2 grid grid-cols-2 gap-2 text-sm">
-                  <div>
-                    <label htmlFor="minp" className="block text-xs text-muted-foreground">Mín</label>
-                    <input id="minp" type="number" inputMode="numeric" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="w-full rounded-md border border-border bg-background px-2 py-1" placeholder="0" />
-                  </div>
-                  <div>
-                    <label htmlFor="maxp" className="block text-xs text-muted-foreground">Máx</label>
-                    <input id="maxp" type="number" inputMode="numeric" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="w-full rounded-md border border-border bg-background px-2 py-1" placeholder="" />
-                  </div>
-                </div>
-                {/* Simple dual range sliders (optional to use) */}
-                <PriceSliders minPrice={minPrice} maxPrice={maxPrice} onMin={(v) => setMinPrice(String(v))} onMax={(v) => setMaxPrice(String(v))} />
-                <div className="mt-2 flex gap-2">
-                  <button type="button" className="text-xs underline text-primary" onClick={() => { setMinPrice(''); setMaxPrice(''); }}>Limpiar</button>
-                </div>
-              </div>
-            </aside>
-            <div className="md:col-span-3">
-              {/* Enhanced Product Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-                {products.map((product) => (
-                  <ProductCard21Enhanced
-                    key={product.slug}
-                    product={product}
-                    onQuickView={(p) => setQuick(p)}
-                    showFinancing={true}
-                    showUrgency={true}
-                  />
-                ))}
-              </div>
-
-              {/* Customer Reviews Preview */}
-              <CustomerReviewsPreview className="my-12" />
-
-              {/* Explore range blocks */}
-              <ExploreTiles21 items={[
-                { label: 'Reformers', desc: 'Silenciosos y precisos para casa y estudio', href: '/shop/category/reformers' },
-                { label: 'Accesorios', desc: 'Cintas y mantenimiento para tu Reformer', href: '/shop/category/accesorios' },
-              ]} />
-              {/* Help strip */}
-              <section className="mt-8 border border-border rounded-lg p-4 bg-accent/5">
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <div className="text-sm text-muted-foreground">¿Necesitas ayuda para elegir? Estamos para ayudarte.</div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <a href="https://wa.me/523222787690" className="inline-flex items-center px-3 py-1.5 rounded-md bg-green-600 text-white hover:bg-green-700">WhatsApp</a>
-                    <a href="tel:+523222787690" className="inline-flex items-center px-3 py-1.5 rounded-md border border-border text-foreground hover:bg-foreground hover:text-background">Llamar</a>
-                  </div>
-                </div>
-              </section>
-              {/* Newsletter stub */}
-              <section className="mt-6 border border-border rounded-lg p-4 bg-card">
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <div>
-                    <div className="font-semibold text-foreground">Recibe novedades por correo</div>
-                    <div className="text-sm text-muted-foreground">Promociones y nuevas piezas, 1–2 veces al mes.</div>
-                  </div>
-                  <form action="mailto:valery@camadepilates.com" method="post" className="flex items-center gap-2">
-                    <input type="email" required placeholder="tu@email.com" className="rounded-md border border-border bg-background px-3 py-2 text-sm" />
-                    <button className="inline-flex items-center px-3 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 text-sm" type="submit">Suscribirme</button>
-                  </form>
-                </div>
-              </section>
+      <div className="container mx-auto px-8 md:px-24 py-12 space-y-12">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <h1 className="text-4xl md:text-6xl font-serif italic text-[#2A2624]">Colección</h1>
+          <div className="flex items-center gap-4 text-xs uppercase tracking-[0.15em]">
+            <a href="https://wa.me/523222787690" className="hover:text-[#3E2723] transition-colors">WhatsApp</a>
+            <a href="tel:+523222787690" className="hover:text-[#3E2723] transition-colors">Llamar</a>
+            <div className="hidden sm:block text-[#5D5550]">
+              <Link to="/store" className="hover:text-[#3E2723] transition-colors">Comparar Modelos</Link>
             </div>
           </div>
         </div>
-      </section>
+
+        {/* Enhanced Hero */}
+        <EnhancedHero
+          title="Redescubre tu gracia"
+          subtitle="Tejidos no tóxicos & materiales premium (cuero genuino, nogal & acero). Pago seguro & entrega en 3 semanas."
+          backgroundImage={assets.shopHero || DEFAULTS.ogImage}
+          showTrustMetrics={false}
+          ctaPrimary={{ text: 'Ver promoción', href: '/product/reformer-profesional' }}
+          ctaSecondary={{ text: 'Comparar modelos', href: '/store' }}
+        />
+
+        {/* Shop by category icons */}
+        <div>
+          <h2 className="text-2xl font-serif italic text-[#2A2624] mb-6">Categorías</h2>
+          <CategoryIcons21 items={cats.map(c => ({
+            label: c.name,
+            href: `/shop/category/${c.slug}`,
+            count: c.count,
+            img: c.slug === 'reformers' ? assets.catReformers : (c.slug === 'accesorios' ? assets.catAccessories : undefined),
+            emoji: c.slug === 'reformers' ? '🛏️' : '🧰'
+          }))} />
+        </div>
+
+        {/* Featured product (curated) */}
+        {getBySlug ? (getBySlug('reformer-profesional') ? <FeaturedProduct21 product={getBySlug('reformer-profesional') as any} /> : null) : (products[0] && <FeaturedProduct21 product={products[0] as any} />)}
+
+        {/* Best sellers and newest rails */}
+        <ProductRail21 title="Más vendidos" products={(allProducts() as any).filter((p: any) => p.bestSeller).slice(0, 8)} />
+        <ProductRail21 title="Novedades" products={(allProducts() as any).filter((p: any) => p.isNew).slice(0, 8)} />
+
+        {/* Sticky listing header */}
+        <div className="sticky top-0 z-40 bg-[#EAE8E4]/95 backdrop-blur border-b border-[#2A2624]/10 py-4 -mx-8 px-8 md:-mx-24 md:px-24">
+          <div className="flex items-center justify-between gap-3 text-sm mb-2">
+            <div className="text-[#5D5550] font-sans text-xs tracking-widest uppercase">{products.length} Resultados</div>
+            <FilterBar21 sort={sort} onSort={(v) => setSort(v as any)} region={region} onRegion={(v) => { setRegion(v); try { window.localStorage.setItem('regionPref', v); } catch { } }} search={search} onSearch={setSearch} />
+          </div>
+          <div className="text-[10px] uppercase tracking-widest text-[#5D5550]" aria-live="polite">{regionEstimate(region)}</div>
+          <div className="mt-2">
+            <ActiveChips21 chips={((): Chip[] => {
+              const chips: Chip[] = [];
+              activeCats.forEach((c) => chips.push({ label: `Categoría: ${c}`, onRemove: () => setActiveCats((prev) => prev.filter(x => x !== c)) }));
+              activeFinishes.forEach((f) => chips.push({ label: `Acabado: ${f}`, onRemove: () => setActiveFinishes((prev) => prev.filter(x => x !== f)) }));
+              activeAvailability.forEach((a) => chips.push({ label: a.includes('InStock') ? 'En stock' : 'Preorden', onRemove: () => setActiveAvailability((prev) => prev.filter(x => x !== a)) }));
+              if (minPrice) chips.push({ label: `≥ $${minPrice}`, onRemove: () => setMinPrice('') });
+              if (maxPrice) chips.push({ label: `≤ $${maxPrice}`, onRemove: () => setMaxPrice('') });
+              if (search) chips.push({ label: `Buscar: ${search}`, onRemove: () => setSearch('') });
+              return chips;
+            })()} onClearAll={() => { setActiveCats([]); setActiveFinishes([]); setActiveAvailability([]); setMinPrice(''); setMaxPrice(''); setSearch(''); }} />
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-4 gap-12">
+          <aside className="hidden md:block md:col-span-1 space-y-8">
+            <div className="border-b border-[#2A2624]/10 pb-8">
+              <h2 className="font-serif italic text-xl text-[#2A2624] mb-4">Filtros</h2>
+
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-xs uppercase tracking-widest text-[#5D5550] mb-3">Categorías</h3>
+                  <ul className="space-y-2 text-sm text-[#2A2624]">
+                    {cats.map((c) => (
+                      <li key={c.slug} className="flex items-center justify-between group cursor-pointer">
+                        <div className="flex items-center gap-2">
+                          <input
+                            id={`cat-${c.slug}`}
+                            type="checkbox"
+                            checked={activeCats.includes(c.name)}
+                            onChange={(e) => {
+                              setActiveCats((prev) => e.target.checked ? Array.from(new Set([...prev, c.name])) : prev.filter((x) => x !== c.name));
+                            }}
+                            className="accent-[#3E2723]"
+                          />
+                          <label htmlFor={`cat-${c.slug}`} className="cursor-pointer group-hover:text-[#3E2723] transition-colors">{c.name}</label>
+                        </div>
+                        <span className="text-xs text-[#5D5550]">{c.count}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-xs uppercase tracking-widest text-[#5D5550] mb-3">Acabados</h3>
+                  <ul className="space-y-2 text-sm text-[#2A2624]">
+                    {finishes.map((f) => (
+                      <li key={f} className="flex items-center gap-2 group cursor-pointer">
+                        <input id={`fin-${f}`} type="checkbox" checked={activeFinishes.includes(f)} onChange={(e) => setActiveFinishes((prev) => e.target.checked ? [...prev, f] : prev.filter((x) => x !== f))} className="accent-[#3E2723]" />
+                        <label htmlFor={`fin-${f}`} className="cursor-pointer group-hover:text-[#3E2723] transition-colors">{f}</label>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-xs uppercase tracking-widest text-[#5D5550] mb-3">Precio</h3>
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    <input type="number" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="w-full bg-transparent border-b border-[#2A2624]/20 py-1 px-0 focus:outline-none focus:border-[#3E2723]" placeholder="Min" />
+                    <input type="number" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="w-full bg-transparent border-b border-[#2A2624]/20 py-1 px-0 focus:outline-none focus:border-[#3E2723]" placeholder="Max" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <div className="md:col-span-3">
+            {/* Enhanced Product Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+              {products.map((product) => (
+                <ProductCard21Enhanced
+                  key={product.slug}
+                  product={product}
+                  onQuickView={(p) => setQuick(p)}
+                  showFinancing={true}
+                  showUrgency={true}
+                />
+              ))}
+            </div>
+
+            {/* Customer Reviews Preview */}
+            <CustomerReviewsPreview className="my-12" />
+
+            {/* Explore range blocks */}
+            <ExploreTiles21 items={[
+              { label: 'Reformers', desc: 'Silenciosos y precisos para casa y estudio', href: '/shop/category/reformers' },
+              { label: 'Accesorios', desc: 'Cintas y mantenimiento para tu Reformer', href: '/shop/category/accesorios' },
+            ]} />
+
+            {/* Newsletter stub */}
+            <section className="mt-12 border-t border-[#2A2624]/10 pt-8">
+              <div className="flex flex-wrap items-center justify-between gap-6">
+                <div>
+                  <div className="font-serif italic text-xl text-[#2A2624]">Join the Community</div>
+                  <div className="text-sm text-[#5D5550] mt-1">Updates, promotions, and pilates tips.</div>
+                </div>
+                <form action="mailto:valery@camadepilates.com" method="post" className="flex items-center gap-4 w-full md:w-auto">
+                  <input type="email" required placeholder="email@example.com" className="flex-1 md:w-64 bg-transparent border-b border-[#2A2624]/20 py-2 px-0 focus:outline-none focus:border-[#3E2723]" />
+                  <button className="text-xs uppercase tracking-widest text-[#3E2723] hover:opacity-70 transition-opacity" type="submit">Subscribe</button>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
 
       {/* Live Purchase Notifications */}
       <LivePurchaseNotifications />
@@ -365,7 +327,7 @@ const Shop: React.FC = () => {
       )}
 
       {quick && <QuickView21 product={quick as any} onClose={() => setQuick(null)} />}
-    </>
+    </LuxuryLayout>
   );
 };
 
@@ -408,7 +370,7 @@ function PriceSliders({
           value={minVal}
           onChange={(e) => onMin(Math.min(Number(e.target.value), maxVal))}
           aria-label="Precio mínimo"
-          className="w-full"
+          className="w-full accent-[#3E2723]"
         />
         <input
           type="range"
@@ -418,7 +380,7 @@ function PriceSliders({
           value={maxVal}
           onChange={(e) => onMax(Math.max(Number(e.target.value), minVal))}
           aria-label="Precio máximo"
-          className="w-full"
+          className="w-full accent-[#3E2723]"
         />
       </div>
     </div>
