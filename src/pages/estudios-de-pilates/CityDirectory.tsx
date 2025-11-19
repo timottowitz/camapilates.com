@@ -9,7 +9,6 @@ import StudioSearch from '@/components/studios/StudioSearch';
 import { StudioMap } from '@/components/maps/StudioMap';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   Select,
@@ -18,20 +17,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
-import { MapPin, Filter, X, Map, List } from 'lucide-react';
+import { Filter, X, Map, List, ArrowLeft } from 'lucide-react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { hasConvex } from '@/lib/convexProvider';
 import localData from '@/data/studios.json';
 import { citySlug } from '@/utils/slug';
 import { ContextualImage } from '@/components/ContextualImage';
+import LuxuryLayout from '@/components/layout/LuxuryLayout';
 
 // City name mappings - normalize accents in slugs
 const cityNameMap: { [key: string]: string } = {
@@ -73,12 +65,38 @@ const CityDirectory: React.FC = () => {
     return () => clearTimeout(t);
   }, [cityName]);
 
-  const studios = hasConvex && !failover
-    ? convexStudios
-    : (localData.studios as any[]).filter((s: any) => (s.address?.city || '').toLowerCase() === (cityName || '').toLowerCase());
-  const cityData = hasConvex && !failover
-    ? convexCity
-    : (localData.cities as any[]).find((c: any) => c.slug === (city || ''));
+  const fallbackStudios = (localData.studios as any[]).filter(
+    (s: any) => (s.address?.city || '').toLowerCase() === (cityName || '').toLowerCase()
+  );
+  const fallbackCityData = (localData.cities as any[]).find((c: any) => c.slug === (city || ''));
+
+  const remoteStudios = Array.isArray(convexStudios) ? convexStudios : undefined;
+  const remoteCity = convexCity ?? null;
+
+  const studios = hasConvex
+    ? (remoteStudios && remoteStudios.length > 0
+        ? remoteStudios
+        : failover
+          ? fallbackStudios
+          : undefined)
+    : fallbackStudios;
+
+  const mergedRemoteCity = remoteCity
+    ? {
+        ...remoteCity,
+        neighborhoods: remoteCity.neighborhoods?.length
+          ? remoteCity.neighborhoods
+          : fallbackCityData?.neighborhoods ?? [],
+      }
+    : null;
+
+  const cityData = hasConvex
+    ? (mergedRemoteCity
+        ? mergedRemoteCity
+        : failover
+          ? fallbackCityData
+          : undefined)
+    : fallbackCityData;
 
   // Loading state
   const isLoading = studios === undefined;
@@ -137,7 +155,18 @@ const CityDirectory: React.FC = () => {
   // Filter studios
   const filteredStudios = useMemo(() => {
     if (!studios) return [];
-    let result = [...studios];
+
+    // Deduplicate studios by ID/slug to prevent duplicate rendering
+    const uniqueStudios = Array.from(
+      new Map(
+        studios.map(studio => [
+          studio._id || studio.id || studio.slug,
+          studio
+        ])
+      ).values()
+    );
+
+    let result = [...uniqueStudios];
 
     // Search filter
     if (searchTerm) {
@@ -248,7 +277,7 @@ const CityDirectory: React.FC = () => {
   const citySlugNormalized = citySlug(cityName);
 
   return (
-    <>
+    <LuxuryLayout>
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
@@ -266,208 +295,206 @@ const CityDirectory: React.FC = () => {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-gray-50">
-        {/* Header */}
-        <div className="bg-white border-b">
-          <div className="container mx-auto px-4 py-4">
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="/">Inicio</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="/estudios-de-pilates">
-                    Estudios de Pilates
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>{cityName}</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-          </div>
+      <section className="relative pt-32 pb-12 px-8 md:px-24 max-w-[1800px] mx-auto">
+        {/* Atmospheric background elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-[#3E2723]/5 to-transparent rounded-full blur-3xl -z-10" />
+        <div className="absolute bottom-20 left-0 w-64 h-64 bg-gradient-to-tr from-[#D9865B]/5 to-transparent rounded-full blur-3xl -z-10" />
+
+        <button onClick={() => navigate('/estudios-de-pilates')} className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#5D5550] hover:text-[#2A2624] mb-12 transition-all hover:gap-3 group">
+          <ArrowLeft className="w-3 h-3 transition-transform group-hover:-translate-x-1" />
+          <span>Directorio</span>
+        </button>
+
+        <div className="text-center mb-16 relative">
+          {/* Asymmetric decorative element */}
+          <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-[#3E2723] to-transparent" />
+
+          <span className="inline-block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-8 px-4 py-1.5 bg-[#EAE8E4]/50 rounded-full">
+            Guía de la Ciudad
+          </span>
+
+          <h1 className="text-5xl md:text-7xl font-serif italic text-[#2A2624] leading-[0.9] mb-8 tracking-tight">
+            {cityName}
+          </h1>
+
+          <p className="text-lg md:text-xl text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed mb-6">
+            Encuentra el estudio perfecto para tu práctica de Pilates.
+          </p>
+
+          {cityData && (
+            <div className="flex items-center justify-center gap-8 text-sm text-[#5D5550]">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-[#3E2723] rounded-full" />
+                <span className="font-medium">{cityData.studioCount} estudios</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-[#D9865B] rounded-full" />
+                <span className="font-medium">{cityData.neighborhoods.length} colonias</span>
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Hero Section */}
-        <div className="bg-gradient-to-b from-purple-50 to-white py-12">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-8">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                Estudios de Pilates en {cityName}
-              </h1>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Encuentra el estudio perfecto para tu práctica de Pilates.
-                {cityData && ` ${cityData.studioCount} estudios disponibles en ${cityData.neighborhoods.length} colonias.`}
-              </p>
-              <div className="not-prose mt-6">
-                <ContextualImage
-                  placeholderId={`studios-${city}-hero-1`}
-                  pageType="studios"
-                  pageSlug={city || ''}
-                  location="hero"
-                  aspectRatio="16:9"
-                  alt={`Estudios de Pilates en ${cityName}`}
-                />
+        <div className="max-w-3xl mx-auto mb-16">
+          <StudioSearch
+            value={searchTerm}
+            onChange={setSearchTerm}
+            placeholder={`Buscar en ${cityName}...`}
+            suggestions={[
+              'Pilates reformer',
+              'Pilates mat',
+              'Clases grupales',
+              'Clases privadas',
+              ...availableOptions.neighborhoods.slice(0, 3),
+            ]}
+          />
+        </div>
+
+        <div className="lg:grid lg:grid-cols-4 lg:gap-12">
+          {/* Desktop Filters */}
+          <div className="hidden lg:block">
+            <StudioFilters
+              filters={filters}
+              onChange={setFilters}
+              availableOptions={availableOptions}
+              activeCount={activeFilterCount}
+              onReset={resetFilters}
+            />
+          </div>
+
+          {/* Studios List */}
+          <div className="lg:col-span-3">
+            {/* Results Header */}
+            <div className="flex items-center justify-between mb-8 pb-6 border-b-2 border-[#2A2624]/10 relative">
+              {/* Decorative accent */}
+              <div className="absolute bottom-0 left-0 w-24 h-0.5 bg-gradient-to-r from-[#3E2723] to-transparent" />
+
+              <div className="flex items-center gap-4">
+                <h2 className="text-2xl font-serif italic text-[#2A2624] tracking-tight">
+                  <span className="font-bold">{filteredStudios.length}</span> {filteredStudios.length === 1 ? 'Estudio' : 'Estudios'}
+                </h2>
+
+                {/* Mobile Filter Button */}
+                <Sheet open={mobileFiltersOpen} onOpenChange={setMobileFiltersOpen}>
+                  <SheetTrigger asChild>
+                    <Button variant="outline" size="sm" className="lg:hidden">
+                      <Filter className="w-4 h-4 mr-2" />
+                      Filtros
+                      {activeFilterCount > 0 && (
+                        <Badge variant="secondary" className="ml-2">
+                          {activeFilterCount}
+                        </Badge>
+                      )}
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+                    <SheetHeader>
+                      <SheetTitle>Filtros</SheetTitle>
+                    </SheetHeader>
+                    <div className="mt-6">
+                      <StudioFilters
+                        filters={filters}
+                        onChange={setFilters}
+                        availableOptions={availableOptions}
+                        activeCount={activeFilterCount}
+                        onReset={resetFilters}
+                      />
+                    </div>
+                  </SheetContent>
+                </Sheet>
+              </div>
+
+              {/* Sort Dropdown */}
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-[#5D5550] hidden sm:inline uppercase tracking-widest">Ordenar:</span>
+                <Select value={sortBy} onValueChange={setSortBy}>
+                  <SelectTrigger className="w-[180px] border-[#2A2624]/20 bg-white hover:bg-[#EAE8E4]/30 transition-colors">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="rating">⭐ Mejor calificación</SelectItem>
+                    <SelectItem value="reviews">💬 Más reseñas</SelectItem>
+                    <SelectItem value="price-low">💰 Precio: menor a mayor</SelectItem>
+                    <SelectItem value="price-high">💎 Precio: mayor a menor</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
 
-            {/* Search Bar */}
-            <div className="max-w-3xl mx-auto">
-              <StudioSearch
-                value={searchTerm}
-                onChange={setSearchTerm}
-                placeholder={`Buscar en ${cityName}...`}
-                suggestions={[
-                  'Pilates reformer',
-                  'Pilates mat',
-                  'Clases grupales',
-                  'Clases privadas',
-                  ...availableOptions.neighborhoods.slice(0, 3),
-                ]}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Main Content */}
-        <div className="container mx-auto px-4 py-8">
-          <div className="lg:grid lg:grid-cols-4 lg:gap-8">
-            {/* Desktop Filters */}
-            <div className="hidden lg:block">
-              <StudioFilters
-                filters={filters}
-                onChange={setFilters}
-                availableOptions={availableOptions}
-                activeCount={activeFilterCount}
-                onReset={resetFilters}
-              />
-            </div>
-
-            {/* Studios List */}
-            <div className="lg:col-span-3">
-              {/* Results Header */}
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center gap-4">
-                  <h2 className="text-lg font-semibold">
-                    {filteredStudios.length} estudios encontrados
-                  </h2>
-
-                  {/* Mobile Filter Button */}
-                  <Sheet open={mobileFiltersOpen} onOpenChange={setMobileFiltersOpen}>
-                    <SheetTrigger asChild>
-                      <Button variant="outline" size="sm" className="lg:hidden">
-                        <Filter className="w-4 h-4 mr-2" />
-                        Filtros
-                        {activeFilterCount > 0 && (
-                          <Badge variant="secondary" className="ml-2">
-                            {activeFilterCount}
-                          </Badge>
-                        )}
-                      </Button>
-                    </SheetTrigger>
-                    <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-                      <SheetHeader>
-                        <SheetTitle>Filtros</SheetTitle>
-                      </SheetHeader>
-                      <div className="mt-6">
-                        <StudioFilters
-                          filters={filters}
-                          onChange={setFilters}
-                          availableOptions={availableOptions}
-                          activeCount={activeFilterCount}
-                          onReset={resetFilters}
-                        />
-                      </div>
-                    </SheetContent>
-                  </Sheet>
-                </div>
-
-                {/* Sort Dropdown */}
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-gray-500 hidden sm:inline">Ordenar por:</span>
-                  <Select value={sortBy} onValueChange={setSortBy}>
-                    <SelectTrigger className="w-[140px]">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="rating">Mejor calificación</SelectItem>
-                      <SelectItem value="reviews">Más reseñas</SelectItem>
-                      <SelectItem value="price-low">Precio: menor a mayor</SelectItem>
-                      <SelectItem value="price-high">Precio: mayor a menor</SelectItem>
-                      <SelectItem value="quality">Calidad de datos</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+            {/* Active Filters Display */}
+            {activeFilterCount > 0 && (
+              <div className="flex flex-wrap gap-2 mb-6">
+                {filters.neighborhoods.map(n => (
+                  <Badge key={n} variant="secondary" className="bg-[#2A2624]/5 text-[#2A2624] hover:bg-[#2A2624]/10">
+                    {n}
+                    <button
+                      onClick={() => setFilters({
+                        ...filters,
+                        neighborhoods: filters.neighborhoods.filter(x => x !== n)
+                      })}
+                      className="ml-1"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </Badge>
+                ))}
+                {filters.rating > 0 && (
+                  <Badge variant="secondary" className="bg-[#2A2624]/5 text-[#2A2624] hover:bg-[#2A2624]/10">
+                    {filters.rating}+ ⭐
+                    <button
+                      onClick={() => setFilters({ ...filters, rating: 0 })}
+                      className="ml-1"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </Badge>
+                )}
               </div>
+            )}
 
-              {/* Active Filters Display */}
-              {activeFilterCount > 0 && (
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {filters.neighborhoods.map(n => (
-                    <Badge key={n} variant="secondary">
-                      {n}
-                      <button
-                        onClick={() => setFilters({
-                          ...filters,
-                          neighborhoods: filters.neighborhoods.filter(x => x !== n)
-                        })}
-                        className="ml-1"
-                      >
-                        <X className="w-3 h-3" />
-                      </button>
-                    </Badge>
-                  ))}
-                  {filters.rating > 0 && (
-                    <Badge variant="secondary">
-                      {filters.rating}+ ⭐
-                      <button
-                        onClick={() => setFilters({ ...filters, rating: 0 })}
-                        className="ml-1"
-                      >
-                        <X className="w-3 h-3" />
-                      </button>
-                    </Badge>
-                  )}
-                </div>
-              )}
+            {/* View Tabs */}
+            <Tabs value={viewTab} onValueChange={(value: any) => setViewTab(value)} className="w-full">
+              <TabsList className="grid w-full max-w-md grid-cols-2 mb-12 bg-gradient-to-r from-[#2A2624]/5 to-[#3E2723]/5 p-1 rounded-lg">
+                <TabsTrigger
+                  value="list"
+                  className="data-[state=active]:bg-white data-[state=active]:shadow-lg data-[state=active]:shadow-[#3E2723]/10 rounded-md transition-all duration-300 font-sans"
+                >
+                  <List className="w-4 h-4 mr-2" />
+                  Lista
+                </TabsTrigger>
+                <TabsTrigger
+                  value="map"
+                  className="data-[state=active]:bg-white data-[state=active]:shadow-lg data-[state=active]:shadow-[#3E2723]/10 rounded-md transition-all duration-300 font-sans"
+                >
+                  <Map className="w-4 h-4 mr-2" />
+                  Mapa
+                </TabsTrigger>
+              </TabsList>
 
-              {/* View Tabs */}
-              <Tabs value={viewTab} onValueChange={(value: any) => setViewTab(value)} className="w-full">
-                <TabsList className="grid w-full max-w-md grid-cols-2 mb-6">
-                  <TabsTrigger value="list" className="flex items-center gap-2">
-                    <List className="w-4 h-4" />
-                    Lista
-                  </TabsTrigger>
-                  <TabsTrigger value="map" className="flex items-center gap-2">
-                    <Map className="w-4 h-4" />
-                    Mapa
-                  </TabsTrigger>
-                </TabsList>
-
-                <TabsContent value="list" className="mt-0">
-                  {/* Studios Grid */}
+              {/* Only render active tab content to prevent duplication */}
+              {viewTab === 'list' && (
+                <div className="mt-0">
                   <StudioList
                     studios={filteredStudios}
                     viewMode={viewMode}
                     onViewModeChange={setViewMode}
                     loading={isLoading}
                   />
-                </TabsContent>
+                </div>
+              )}
 
-                <TabsContent value="map" className="mt-0">
-                  {/* Studios Map */}
+              {viewTab === 'map' && (
+                <div className="mt-0">
                   <StudioMap
                     studios={filteredStudios}
                     center={
                       cityName === 'Ciudad de México'
                         ? { lat: 19.4326, lng: -99.1332 }
                         : cityName === 'Guadalajara'
-                        ? { lat: 20.6597, lng: -103.3496 }
-                        : cityName === 'Monterrey'
-                        ? { lat: 25.6866, lng: -100.3161 }
-                        : { lat: 19.4326, lng: -99.1332 }
+                          ? { lat: 20.6597, lng: -103.3496 }
+                          : cityName === 'Monterrey'
+                            ? { lat: 25.6866, lng: -100.3161 }
+                            : { lat: 19.4326, lng: -99.1332 }
                     }
                     height="700px"
                     showControls={true}
@@ -479,15 +506,13 @@ const CityDirectory: React.FC = () => {
                       navigate(`/estudios-de-pilates/${citySlugNormalized}/${studio.slug}`);
                     }}
                   />
-                </TabsContent>
-              </Tabs>
-
-              {/* Load More / Pagination would go here */}
-            </div>
+                </div>
+              )}
+            </Tabs>
           </div>
         </div>
-      </div>
-    </>
+      </section>
+    </LuxuryLayout>
   );
 };
 

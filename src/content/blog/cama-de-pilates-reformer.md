@@ -1,8 +1,4 @@
 ---
-publishDate: '2025-10-01'
----
-
----
 title: "Cama de Pilates Reformer: Guía Completa 2025 para Elegir la Mejor"
 description: "Guía definitiva sobre camas de Pilates Reformer: qué es, beneficios científicos, precios en México 2025, comparativas y cómo elegir la ideal para casa o estudio profesional."
 category: "Guías de compra"

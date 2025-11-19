@@ -7,7 +7,9 @@ publishDate: "2025-09-27"
 author: "CAMA Pilates"
 slug: "guia-completa-reformer"
 featured: false
----el Reformer: Uso y beneficios
+---
+
+# Guía completa del Reformer: Uso y beneficios – reformer pilates
 
 > Nota: Contenido informativo; no es asesoramiento médico.
 
@@ -94,4 +96,3 @@ Si haces hasta 3–4 sesiones al día, el modelo Casa es suficiente. Para estudi
 - Joseph Pilates (2011). Return to Life.
 - Karen E. Wells (2018). Online Foundation Course in Pilates.
 - Sandee Lea (2012). Essential Training for the Athlete.
-

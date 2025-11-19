@@ -25,7 +25,7 @@ import { EnhancedHero } from '@/components/commerce21/EnhancedHero';
 import { LivePurchaseNotifications, CustomerReviewsPreview } from '@/components/commerce21/SocialProofWidget';
 import ExitIntentPopup, { useExitIntent } from '@/components/commerce21/ExitIntentPopup';
 import ProductCard21Enhanced from '@/components/commerce21/ProductCard21Enhanced';
-import LuxuryLayout from '@/components/layout/LuxuryLayout.tsx';
+import LuxuryLayout from '@/components/layout/LuxuryLayout';
 
 function getInitialRegion(): Region {
   if (typeof window === 'undefined') return 'MX';
@@ -288,8 +288,8 @@ const Shop: React.FC = () => {
 
             {/* Explore range blocks */}
             <ExploreTiles21 items={[
-              { label: 'Reformers', desc: 'Silenciosos y precisos para casa y estudio', href: '/shop/category/reformers' },
-              { label: 'Accesorios', desc: 'Cintas y mantenimiento para tu Reformer', href: '/shop/category/accesorios' },
+              { label: 'Reformers', desc: 'Silenciosos y precisos para casa y estudio', href: '/shop/category/reformers', img: '/images/grace_1.webp' },
+              { label: 'Accesorios', desc: 'Cintas y mantenimiento para tu Reformer', href: '/shop/category/accesorios', img: '/images/grace2.webp' },
             ]} />
 
             {/* Newsletter stub */}

@@ -1,8 +1,4 @@
 ---
-publishDate: '2025-10-01'
----
-
----
 title: "Cama de Pilates barata: Guía completa para comprar en México 2024"
 description: "Todo lo que necesitas saber para comprar una cama de Pilates barata en México: comparativas, precios, financiamiento y opciones desde $5,000 pesos."
 category: "Guías de compra"

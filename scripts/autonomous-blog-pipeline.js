@@ -175,12 +175,12 @@ class AutonomousBlogPipeline {
         // MCP agents for AI-powered content generation
         'blog-research-agent': 'mcp-research-agent.js',
         'web-research-agent': 'cli-web-research-agent.js',
-        'content-writer-agent': 'mcp-content-writer-agent.js', // NEW: LLM-based content writer
+        'content-writer-agent': 'cli-content-writer-agent.js', // NEW: LLM-based content writer
         'seo-optimization-agent': 'cli-seo-agent.js',
         'quality-review-agent': 'cli-quality-agent.js',
         'blog-image-agent': 'cli-image-agent.js',
         // Legacy - fallback
-        'blog_writer': 'mcp-content-writer-agent.js'
+        'blog_writer': 'cli-content-writer-agent.js'
       };
 
       const fileName = agentMapping[agentName] || `mcp-${agentName}.js`;

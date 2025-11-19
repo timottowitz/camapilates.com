@@ -5,9 +5,8 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { Calendar, Clock, ArrowLeft, User, Phone, MessageCircle } from 'lucide-react';
+import { Calendar, Clock, ArrowLeft, User } from 'lucide-react';
 import { loadBlogPost, getRelatedPosts } from '@/utils/blogUtils';
 import { slugify } from '@/utils/slug';
 import CTASection from '@/components/ui/cta-section';
@@ -20,7 +19,7 @@ import { getAllPostsMeta } from '@/lib/content';
 import HubList from '@/components/blog/HubList';
 import SeeAlso from '@/components/blog/SeeAlso';
 import { ContextualImage } from '@/components/ContextualImage';
-import { hasConvex } from '@/lib/convexProvider';
+import LuxuryLayout from '@/components/layout/LuxuryLayout';
 
 interface BlogPostMeta {
   slug: string;
@@ -38,11 +37,10 @@ interface BlogPostMeta {
   heroImage?: string;
 }
 
-// Author/brand info
 const AUTHOR_INFO = {
   name: "CAMA Pilates",
   bio: "Recursos y guías sobre camas de Pilates (Reformer) para casa y estudio: compra, ejercicios y mantenimiento.",
-  url: window.location.origin
+  url: getOrigin(),
 };
 
 const BlogPost = () => {
@@ -75,12 +73,10 @@ const BlogPost = () => {
     loadPost();
   }, [slug]);
 
-  // Compute values/hooks unconditionally to keep hook order consistent
   const origin = getOrigin();
   const safeSlug = slug || '';
 
   useEffect(() => {
-    // If no heroImage in frontmatter, attempt to load dynamic mapping from API
     (async () => {
       try {
         if (!postMeta || (postMeta as any)?.heroImage) { setHeroOverride(null); return; }
@@ -92,10 +88,10 @@ const BlogPost = () => {
       } catch { /* ignore */ }
     })();
   }, [safeSlug, postMeta]);
+
   const articleUrl = (postMeta as any)?.canonical || (safeSlug ? `${origin}/blog/${safeSlug}` : `${origin}/blog`);
   const relatedPosts = postMeta ? getRelatedPosts(postMeta.slug, 3) : [];
 
-  // Prev/Next by publish date (newest first index) — compute without hooks
   const computePrevNext = () => {
     if (!postMeta) return { prevPost: null as any, nextPost: null as any };
     const all = getAllPostsMeta();
@@ -112,12 +108,8 @@ const BlogPost = () => {
   const tags = (postMeta as any)?.tags || [];
   const keywords = tags.join(', ');
 
-  // (articleSchema removed) — build structured data inline in Helmet below
-
-  // Normalize content to ensure a top-level H1 exists for all posts
   const normalizedContent = /^\s*#\s+/.test(content) ? content : `# ${postMeta?.title || ''}\n\n${content}`;
 
-  // Extract FAQ from content when a section starts with ## FAQ(S) — compute without hooks
   const parseFaqs = (text: string) => {
     const m = text.match(/\n##\s*FAQ[s]?\s*\n([\s\S]*)/i);
     if (!m) return [] as { q: string; a: string }[];
@@ -135,14 +127,13 @@ const BlogPost = () => {
   };
   const faqs = parseFaqs(normalizedContent);
 
-  // Early returns after hooks to preserve consistent hook order
   if (loading) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold">Loading...</h1>
+      <LuxuryLayout>
+        <div className="container mx-auto px-4 py-8 text-center">
+          <h1 className="text-2xl font-serif italic text-[#2A2624]">Loading...</h1>
         </div>
-      </div>
+      </LuxuryLayout>
     );
   }
 
@@ -151,7 +142,7 @@ const BlogPost = () => {
   }
 
   return (
-    <>
+    <LuxuryLayout>
       <Helmet>
         <title>{postMeta.title} | {DEFAULTS.siteName}</title>
         <meta name="description" content={postMeta.excerpt} />
@@ -159,8 +150,6 @@ const BlogPost = () => {
         <meta name="author" content={AUTHOR_INFO.name} />
         <meta name="robots" content={robots} />
         <link rel="canonical" href={articleUrl} />
-
-        {/* Open Graph */}
         <meta property="og:site_name" content={DEFAULTS.siteName} />
         <meta property="og:locale" content={DEFAULTS.locale} />
         <meta property="og:title" content={postMeta.title} />
@@ -168,9 +157,6 @@ const BlogPost = () => {
         <meta property="og:type" content="article" />
         <meta property="og:url" content={articleUrl} />
         <meta property="og:image" content={ogImage} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content={postMeta.title} />
         <meta property="article:published_time" content={postMeta.date} />
         <meta property="article:modified_time" content={(postMeta as any).updatedDate || postMeta.date} />
         <meta property="article:author" content={postMeta.author} />
@@ -178,16 +164,6 @@ const BlogPost = () => {
         {tags.map((t: string) => (
           <meta key={t} property="article:tag" content={t} />
         ))}
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        {DEFAULTS.twitterSite && <meta name="twitter:site" content={DEFAULTS.twitterSite} />}
-        <meta name="twitter:title" content={postMeta.title} />
-        <meta name="twitter:description" content={postMeta.excerpt} />
-        <meta name="twitter:image" content={ogImage} />
-        <meta name="twitter:image:alt" content={postMeta.title} />
-
-        {/* Structured Data: Article */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -217,83 +193,38 @@ const BlogPost = () => {
             "url": articleUrl
           })}
         </script>
-
-        {/* Structured Data: Breadcrumbs */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Home", "item": origin },
-              { "@type": "ListItem", "position": 2, "name": "Blog", "item": `${origin}/blog` },
-              { "@type": "ListItem", "position": 3, "name": postMeta.title, "item": articleUrl }
-            ]
-          })}
-        </script>
-        {faqs.length > 0 && (
-          <script type="application/ld+json">
-            {JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              "mainEntity": faqs.map(f => ({
-                "@type": "Question",
-                "name": f.q,
-                "acceptedAnswer": { "@type": "Answer", "text": f.a }
-              }))
-            })}
-          </script>
-        )}
-        {/* Prev/Next link tags */}
-        {prevPost && <link rel="prev" href={`${origin}/blog/${prevPost.slug}`} />}
-        {nextPost && <link rel="next" href={`${origin}/blog/${nextPost.slug}`} />}
       </Helmet>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-8 md:px-24 py-12">
         <div className="max-w-4xl mx-auto">
-          {/* Back to Blog */}
-          <Link to="/blog" className="inline-flex items-center text-primary hover:text-primary/80 mb-8 group">
-            <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-            Back to Blog
+          <Link to="/blog" className="inline-flex items-center text-[#3E2723] hover:text-[#2A2624] mb-8 group text-xs uppercase tracking-widest transition-colors">
+            <ArrowLeft className="mr-2 h-3 w-3 group-hover:-translate-x-1 transition-transform" />
+            Back to Journal
           </Link>
 
-          {/* Article Header */}
           <article>
-            <header className="mb-8">
-              <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
-                <Badge variant="secondary">{postMeta.category}</Badge>
+            <header className="mb-12 text-center">
+              <div className="flex flex-wrap justify-center items-center gap-4 text-xs uppercase tracking-widest text-[#5D5550] mb-6">
+                <span className="px-3 py-1 border border-[#2A2624]/10 rounded-full">{postMeta.category}</span>
                 <div className="flex items-center gap-1">
-                  <Calendar className="h-4 w-4" />
-                  <span>{new Date(postMeta.date).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}</span>
+                  <Calendar className="h-3 w-3" />
+                  <span>{new Date(postMeta.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <Clock className="h-4 w-4" />
+                  <Clock className="h-3 w-3" />
                   <span>{postMeta.readTime}</span>
                 </div>
-                {(Array.isArray((postMeta as any).tags) && (postMeta as any).tags.length > 0) && (
-                  <div className="flex flex-wrap items-center gap-2">
-                    {(postMeta as any).tags.map((tag: string) => (
-                      <Link key={tag} to={`/blog/tag/${slugify(tag)}`} className="text-xs px-2 py-1 bg-muted rounded hover:bg-accent">
-                        #{tag}
-                      </Link>
-                    ))}
-                  </div>
-                )}
               </div>
 
-              <h1 className="text-4xl font-bold text-foreground mb-6">
+              <h1 className="text-4xl md:text-6xl font-serif italic text-[#2A2624] mb-8 leading-tight">
                 {postMeta.title}
               </h1>
 
-              <p className="text-xl text-muted-foreground mb-8">
+              <p className="text-xl text-[#5D5550] font-light leading-relaxed max-w-2xl mx-auto mb-12">
                 {postMeta.excerpt}
               </p>
 
-              {/* Contextual hero image with fallback to frontmatter/override */}
-              <div className="mb-8">
+              <div className="mb-12">
                 <ContextualImage
                   placeholderId={`blog-${postMeta.slug}-hero-1`}
                   pageType="blog"
@@ -302,50 +233,38 @@ const BlogPost = () => {
                   aspectRatio="16:9"
                   alt={postMeta.title}
                   fallbackSrc={toAbsoluteUrl(postMeta.heroImage as any) || heroOverride || ''}
-                  className="w-full"
+                  className="w-full rounded-sm shadow-sm"
                 />
               </div>
 
-              {/* Author Byline */}
-              <div className="flex items-start gap-4 py-6 border-y border-border bg-muted/30 rounded-lg px-6">
-                <Avatar className="h-12 w-12 flex-shrink-0">
-                  <AvatarFallback className="bg-primary/10 text-primary border border-primary/20">
-                    <User className="h-6 w-6" />
+              <div className="flex items-center justify-center gap-4 py-6 border-y border-[#2A2624]/10">
+                <Avatar className="h-10 w-10">
+                  <AvatarFallback className="bg-[#EAE8E4] text-[#2A2624] border border-[#2A2624]/10">
+                    <User className="h-5 w-5" />
                   </AvatarFallback>
                 </Avatar>
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-2">
-                    <h3 className="font-semibold text-foreground text-base">{postMeta.author}</h3>
-                    <span className="hidden sm:inline text-sm text-muted-foreground">•</span>
-                    <Link to="/products" className="text-sm text-primary hover:text-primary/80 font-medium transition-colors">Ver productos</Link>
-                  </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {AUTHOR_INFO.bio}
-                  </p>
+                <div className="text-left">
+                  <div className="font-serif italic text-[#2A2624]">{postMeta.author}</div>
+                  <div className="text-xs text-[#5D5550] uppercase tracking-widest">Editor</div>
                 </div>
               </div>
             </header>
 
-            {/* Article Content and Sidebar */}
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-              {/* Main Content */}
               <article className="lg:col-span-3">
-                <div className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-li:text-foreground prose-blockquote:text-muted-foreground prose-blockquote:border-l-primary prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
+                <div className="prose prose-lg max-w-none prose-headings:font-serif prose-headings:italic prose-headings:text-[#2A2624] prose-p:text-[#5D5550] prose-p:font-light prose-strong:text-[#2A2624] prose-li:text-[#5D5550] prose-blockquote:text-[#3E2723] prose-blockquote:border-l-[#3E2723] prose-a:text-[#3E2723] prose-a:no-underline hover:prose-a:underline">
                   <ArticleContentWithCTAs content={normalizedContent} slug={postMeta.slug} />
                 </div>
               </article>
 
-              {/* Sidebar */}
               <aside className="lg:col-span-1">
                 <div className="sticky top-24 space-y-8">
                   <TableOfContents content={normalizedContent} />
-
-                  {/* Share Card */}
-                  <Card>
+                  <Card className="bg-[#EAE8E4] border border-[#2A2624]/10 shadow-none">
                     <CardContent className="p-6">
-                      <h3 className="text-lg font-semibold text-foreground mb-4">Share This Article</h3>
-                      <ShareButtons 
-                        url={`${window.location.origin}/blog/${postMeta.slug}`}
+                      <h3 className="font-serif italic text-lg text-[#2A2624] mb-4">Share</h3>
+                      <ShareButtons
+                        url={`${getOrigin()}/blog/${postMeta.slug}`}
                         title={postMeta.title}
                         description={postMeta.excerpt}
                       />
@@ -356,46 +275,44 @@ const BlogPost = () => {
             </div>
           </article>
 
-          {/* Enhanced CTA Section */}
-          <CTASection />
+          <div className="mt-24 pt-12 border-t border-[#2A2624]/10">
+            <CTASection
+              variant="compact"
+              title="Elevate your Practice"
+              description="Discover our collection of professional reformers, crafted with German engineering and Mexican soul."
+            />
+          </div>
 
-          {/* Related Articles */}
-          <div className="mt-12">
-            <h3 className="text-2xl font-semibold mb-6 text-foreground">Artículos relacionados</h3>
-            <div className="grid md:grid-cols-2 gap-6">
+          <div className="mt-16">
+            <h3 className="text-3xl font-serif italic text-[#2A2624] mb-8 text-center">Related Stories</h3>
+            <div className="grid md:grid-cols-2 gap-8">
               {relatedPosts.map((p) => (
                 <Link key={p.slug} to={`/blog/${p.slug}`} className="block group">
-                  <div className="border rounded-lg p-6 hover:border-primary/50 transition-colors">
-                    <Badge variant="outline" className="mb-3">{p.category}</Badge>
-                    <h4 className="font-semibold group-hover:text-primary transition-colors mb-2">{p.title}</h4>
-                    <p className="text-sm text-muted-foreground">{p.excerpt}</p>
+                  <div className="border border-[#2A2624]/10 rounded-sm p-8 hover:bg-white transition-colors duration-500">
+                    <div className="text-xs uppercase tracking-widest text-[#5D5550] mb-4">{p.category}</div>
+                    <h4 className="font-serif italic text-xl text-[#2A2624] group-hover:text-[#3E2723] transition-colors mb-2">{p.title}</h4>
+                    <p className="text-sm text-[#5D5550] font-light line-clamp-2">{p.excerpt}</p>
                   </div>
                 </Link>
               ))}
-              {relatedPosts.length === 0 && (
-                <p className="text-sm text-muted-foreground">No related articles yet.</p>
-              )}
             </div>
           </div>
 
-          {/* Prev / Next Navigation */}
           {(prevPost || nextPost) && (
             <div className="mt-12 grid md:grid-cols-2 gap-6">
               {prevPost && (
-                <Link to={`/blog/${prevPost.slug}`} className="block group">
-                  <div className="border rounded-lg p-6 hover:border-primary/50 transition-colors">
-                    <p className="text-xs text-muted-foreground mb-2">Anterior</p>
-                    <h4 className="font-semibold group-hover:text-primary transition-colors mb-1">{prevPost.title}</h4>
-                    <p className="text-sm text-muted-foreground">{prevPost.excerpt}</p>
+                <Link to={`/blog/${prevPost.slug}`} className="block group text-left">
+                  <div className="p-6 border border-[#2A2624]/10 rounded-sm hover:bg-white transition-colors">
+                    <p className="text-xs uppercase tracking-widest text-[#5D5550] mb-2">Previous</p>
+                    <h4 className="font-serif italic text-lg text-[#2A2624] group-hover:text-[#3E2723]">{prevPost.title}</h4>
                   </div>
                 </Link>
               )}
               {nextPost && (
-                <Link to={`/blog/${nextPost.slug}`} className="block group md:text-right">
-                  <div className="border rounded-lg p-6 hover:border-primary/50 transition-colors">
-                    <p className="text-xs text-muted-foreground mb-2">Siguiente</p>
-                    <h4 className="font-semibold group-hover:text-primary transition-colors mb-1">{nextPost.title}</h4>
-                    <p className="text-sm text-muted-foreground">{nextPost.excerpt}</p>
+                <Link to={`/blog/${nextPost.slug}`} className="block group text-right">
+                  <div className="p-6 border border-[#2A2624]/10 rounded-sm hover:bg-white transition-colors">
+                    <p className="text-xs uppercase tracking-widest text-[#5D5550] mb-2">Next</p>
+                    <h4 className="font-serif italic text-lg text-[#2A2624] group-hover:text-[#3E2723]">{nextPost.title}</h4>
                   </div>
                 </Link>
               )}
@@ -403,20 +320,17 @@ const BlogPost = () => {
           )}
         </div>
       </div>
-    </>
+    </LuxuryLayout>
   );
 };
 
-// Component to inject CTAs strategically within article content
 const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: string }) => {
-  const sections = content.split(/\n## /); // Split by main headings
+  const sections = content.split(/\n## /);
 
-  // Function to process content and replace shortcodes
   const processContent = (text: string) => {
     const elements: React.ReactNode[] = [];
     let cursor = 0;
 
-    // Find next shortcode after current cursor without relying on sticky/global regex state
     const findNext = () => {
       const slice = text.slice(cursor);
       const res: any[] = [];
@@ -436,12 +350,7 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
     };
 
     const slugify = (raw: string) =>
-      raw
-        .toLowerCase()
-        .trim()
-        .replace(/[^a-z0-9\s-]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-');
+      raw.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
 
     const getText = (children: any): string => {
       return React.Children.toArray(children)
@@ -453,7 +362,7 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
         })
         .join('');
     };
-    
+
     while (true) {
       const next = findNext();
       const nextIndex = next ? next.absIndex : -1;
@@ -462,7 +371,7 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
         elements.push(
           <ReactMarkdown
             key={`md-${cursor}`}
-            remarkPlugins={[remarkGfm]} 
+            remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeHighlight]}
             components={{
               h1: ({ children, ...props }) => {
@@ -484,7 +393,6 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
 
       if (!next) break;
       const { type, m, absIndex } = next as any;
-      // advance cursor past this match
       cursor = absIndex + m[0].length;
       if (type === 'audio') {
         const [, audioUrl, title, description] = m;
@@ -495,7 +403,7 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
         );
       } else if (type === 'hub') {
         const attr = m[1] || '';
-        const attrs: Record<string,string> = {};
+        const attrs: Record<string, string> = {};
         attr.replace(/(\w+)="([^"]*)"/g, (_: any, k: string, v: string) => { attrs[k] = v; return ''; });
         const tags = attrs['tags'] ? attrs['tags'].split(',').map(s => s.trim()).filter(Boolean) : undefined;
         const category = attrs['category'];
@@ -505,13 +413,13 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
         );
       } else if (type === 'see') {
         const attr = m[1] || '';
-        const attrs: Record<string,string> = {};
+        const attrs: Record<string, string> = {};
         attr.replace(/(\w+)="([^"]*)"/g, (_: any, k: string, v: string) => { attrs[k] = v; return ''; });
         const limit = attrs['limit'] ? parseInt(attrs['limit'], 10) : 3;
         elements.push(<SeeAlso key={`see-${m.index}`} slug={slug} limit={limit} />);
       } else if (type === 'srbtn') {
         const attr = m[1] || '';
-        const attrs: Record<string,string> = {};
+        const attrs: Record<string, string> = {};
         attr.replace(/(\w+)="([^"]*)"/g, (_: any, k: string, v: string) => { attrs[k] = v; return ''; });
         const pk = attrs['pk'] || 'sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c';
         const product = attrs['product'] || '';
@@ -526,7 +434,7 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
         }
       } else if (type === 'ctximg') {
         const attr = m[1] || '';
-        const attrs: Record<string,string> = {};
+        const attrs: Record<string, string> = {};
         attr.replace(/(\w+)="([^"]*)"/g, (_: any, k: string, v: string) => { attrs[k] = v; return ''; });
         const placeholder = attrs['placeholder'] || '';
         const aspect = (attrs['aspect'] || '16:9') as any;
@@ -541,13 +449,13 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
               location={placeholder ? 'inline' : `inline-${absIndex}`}
               aspectRatio={aspect}
               alt={alt}
-              className="w-full"
+              className="w-full rounded-sm"
             />
           </div>
         );
       }
     }
-    
+
     return elements;
   };
 
@@ -559,9 +467,8 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
         const maxImages = Math.min(3, sections.length - 1);
         const insertImage = index < maxImages;
         const shouldShowCTA = index === Math.floor((sections.length - 1) * 0.3) ||
-                             index === Math.floor((sections.length - 1) * 0.7);
+          index === Math.floor((sections.length - 1) * 0.7);
 
-        // Derive a heading text for alt/context
         const headingMatch = section.match(/^[^\n]+/);
         const headingText = headingMatch ? headingMatch[0].trim() : undefined;
         const aspect = index === 0 ? '16:9' : '4:3';
@@ -570,9 +477,8 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
           <div key={index}>
             {processContent('## ' + section)}
 
-            {/* Auto contextual image for first sections */}
             {insertImage && (
-              <div className="not-prose my-6">
+              <div className="not-prose my-8">
                 <ContextualImage
                   placeholderId={phId}
                   pageType="blog"
@@ -580,20 +486,19 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
                   location={`inline-${index + 1}`}
                   aspectRatio={aspect as any}
                   alt={headingText}
-                  className="w-full"
+                  className="w-full rounded-sm"
                 />
               </div>
             )}
 
-            {/* Mid-article See Also after first section */}
             {index === 0 && <SeeAlso slug={slug} limit={3} />}
 
             {shouldShowCTA && (
-              <div className="not-prose">
+              <div className="not-prose my-12">
                 <CTASection
                   variant="compact"
-                  title="¿Lista para tu Reformer?"
-                  description="Asesoría personalizada para elegir tu cama de Pilates. Entrega 3 semanas desde CDMX, garantía 1 año y soporte en español."
+                  title="Ready for your Reformer?"
+                  description="Professional guidance to choose your Pilates bed. 3-week delivery, 1-year warranty, and Spanish support."
                 />
               </div>
             )}

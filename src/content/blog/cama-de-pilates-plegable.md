@@ -1,8 +1,4 @@
 ---
-publishDate: '2025-10-01'
----
-
----
 title: "Cama de Pilates Plegable: Guía Completa 2024 para Espacios Reducidos en México"
 description: "Guía completa de camas de Pilates plegables: mejores marcas, dimensiones, comparativas y consejos para departamentos pequeños en México. Incluye top 10 modelos y FAQ."
 category: "Guías de compra"

@@ -404,5 +404,31 @@ export default defineSchema({
     .index('by_priority', ['priority'])
     .index('by_page_type_slug', ['pageType', 'pageSlug']),
 
+  // Certification Pre-Registration (Lead Generation)
+  certificationPreRegistrations: defineTable({
+    // Personal Information
+    fullName: v.string(),
+    email: v.string(),
+    phone: v.string(),
+
+    // Preferences
+    city: v.string(), // Which city they're interested in
+    experienceLevel: v.string(), // 'beginner' | 'some-experience' | 'advanced'
+    preferredTimeline: v.string(), // 'asap' | '1-3-months' | '3-6-months' | 'flexible'
+
+    // Metadata
+    source: v.string(), // Which page they came from
+    status: v.string(), // 'new' | 'contacted' | 'enrolled' | 'not-interested'
+    notes: v.optional(v.string()), // Admin notes
+
+    // Timestamps
+    submittedAt: v.number(),
+    lastContactedAt: v.optional(v.number()),
+  })
+    .index('by_email', ['email'])
+    .index('by_city', ['city'])
+    .index('by_status', ['status'])
+    .index('by_submitted', ['submittedAt']),
+
   // (legacy generation_queue table removed)
 });

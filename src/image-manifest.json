@@ -4,10 +4,20 @@
     "hashed": "/brand/edelweiss.0a59ec3f.svg",
     "hash": "0a59ec3f"
   },
+  "/images/about-hero.webp": {
+    "original": "/images/about-hero.webp",
+    "hashed": "/images/about-hero.2adbc6fd.webp",
+    "hash": "2adbc6fd"
+  },
+  "/images/accessories.webp": {
+    "original": "/images/accessories.webp",
+    "hashed": "/images/accessories.7849486b.webp",
+    "hash": "7849486b"
+  },
   "/images/badges/mylo.svg": {
     "original": "/images/badges/mylo.svg",
-    "hashed": "/images/badges/mylo.0841b158.svg",
-    "hash": "0841b158"
+    "hashed": "/images/badges/mylo.502ba47e.svg",
+    "hash": "502ba47e"
   },
   "/images/blog/accesorios-cama-de-pilates-esenciales/hero.jpg": {
     "original": "/images/blog/accesorios-cama-de-pilates-esenciales/hero.jpg",
@@ -84,6 +94,11 @@
     "hashed": "/images/blog/reformer-casa-vs-profesional/section-2.9c2eb9f4.jpg",
     "hash": "9c2eb9f4"
   },
+  "/images/certification-hero.webp": {
+    "original": "/images/certification-hero.webp",
+    "hashed": "/images/certification-hero.8452b436.webp",
+    "hash": "8452b436"
+  },
   "/images/feature_1.png": {
     "original": "/images/feature_1.png",
     "hashed": "/images/feature_1.d823aef4.png",
@@ -104,10 +119,60 @@
     "hashed": "/images/finish-mycelium.a6de350d.webp",
     "hash": "a6de350d"
   },
+  "/images/grace2.webp": {
+    "original": "/images/grace2.webp",
+    "hashed": "/images/grace2.105e59f2.webp",
+    "hash": "105e59f2"
+  },
+  "/images/grace_1.webp": {
+    "original": "/images/grace_1.webp",
+    "hashed": "/images/grace_1.5a292765.webp",
+    "hash": "5a292765"
+  },
+  "/images/hero-shop.webp": {
+    "original": "/images/hero-shop.webp",
+    "hashed": "/images/hero-shop.0df59086.webp",
+    "hash": "0df59086"
+  },
+  "/images/homepage-hero.webp": {
+    "original": "/images/homepage-hero.webp",
+    "hashed": "/images/homepage-hero.36b26b1d.webp",
+    "hash": "36b26b1d"
+  },
+  "/images/pilates-straps.png": {
+    "original": "/images/pilates-straps.png",
+    "hashed": "/images/pilates-straps.f0c77e92.png",
+    "hash": "f0c77e92"
+  },
+  "/images/reformer-home.png": {
+    "original": "/images/reformer-home.png",
+    "hashed": "/images/reformer-home.98388696.png",
+    "hash": "98388696"
+  },
+  "/images/reformer-mycelium.png": {
+    "original": "/images/reformer-mycelium.png",
+    "hashed": "/images/reformer-mycelium.cc3bb996.png",
+    "hash": "cc3bb996"
+  },
+  "/images/reformer-pro.png": {
+    "original": "/images/reformer-pro.png",
+    "hashed": "/images/reformer-pro.5271ac68.png",
+    "hash": "5271ac68"
+  },
+  "/images/reformers.webp": {
+    "original": "/images/reformers.webp",
+    "hashed": "/images/reformers.5e3e8348.webp",
+    "hash": "5e3e8348"
+  },
   "/images/special/mylo-special.svg": {
     "original": "/images/special/mylo-special.svg",
     "hashed": "/images/special/mylo-special.a89a3ad1.svg",
     "hash": "a89a3ad1"
+  },
+  "/images/studios-hero.webp": {
+    "original": "/images/studios-hero.webp",
+    "hashed": "/images/studios-hero.ff924ffc.webp",
+    "hash": "ff924ffc"
   },
   "/lovable-uploads/5c4a0ecb-2333-49fb-80e0-ac14b7e0892b.png": {
     "original": "/lovable-uploads/5c4a0ecb-2333-49fb-80e0-ac14b7e0892b.png",
@@ -151,8 +216,8 @@
   },
   "/og/accesorios-cama-de-pilates.png": {
     "original": "/og/accesorios-cama-de-pilates.png",
-    "hashed": "/og/accesorios-cama-de-pilates.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/accesorios-cama-de-pilates.51a95db1.png",
+    "hash": "51a95db1"
   },
   "/og/accesorios-esenciales-reformer.png": {
     "original": "/og/accesorios-esenciales-reformer.png",
@@ -171,8 +236,8 @@
   },
   "/og/beneficios-pilates-en-cama.png": {
     "original": "/og/beneficios-pilates-en-cama.png",
-    "hashed": "/og/beneficios-pilates-en-cama.c1c8ad25.png",
-    "hash": "c1c8ad25"
+    "hashed": "/og/beneficios-pilates-en-cama.c087a27f.png",
+    "hash": "c087a27f"
   },
   "/og/better-earth-solar-lawsuit.png": {
     "original": "/og/better-earth-solar-lawsuit.png",
@@ -186,13 +251,13 @@
   },
   "/og/calcetines-para-pilates-reformer.png": {
     "original": "/og/calcetines-para-pilates-reformer.png",
-    "hashed": "/og/calcetines-para-pilates-reformer.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/calcetines-para-pilates-reformer.2fcf09b3.png",
+    "hash": "2fcf09b3"
   },
   "/og/cama-de-pilates-barata.png": {
     "original": "/og/cama-de-pilates-barata.png",
-    "hashed": "/og/cama-de-pilates-barata.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/cama-de-pilates-barata.f93cb2a7.png",
+    "hash": "f93cb2a7"
   },
   "/og/cama-de-pilates-guia-de-compra.png": {
     "original": "/og/cama-de-pilates-guia-de-compra.png",
@@ -201,38 +266,38 @@
   },
   "/og/cama-de-pilates-para-principiantes.png": {
     "original": "/og/cama-de-pilates-para-principiantes.png",
-    "hashed": "/og/cama-de-pilates-para-principiantes.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/cama-de-pilates-para-principiantes.ae8e0c2c.png",
+    "hash": "ae8e0c2c"
   },
   "/og/cama-de-pilates-plegable.png": {
     "original": "/og/cama-de-pilates-plegable.png",
-    "hashed": "/og/cama-de-pilates-plegable.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/cama-de-pilates-plegable.2b47cab2.png",
+    "hash": "2b47cab2"
   },
   "/og/cama-de-pilates-reformer.png": {
     "original": "/og/cama-de-pilates-reformer.png",
-    "hashed": "/og/cama-de-pilates-reformer.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/cama-de-pilates-reformer.d8fce75f.png",
+    "hash": "d8fce75f"
   },
   "/og/cama-de-pilates-segunda-mano.png": {
     "original": "/og/cama-de-pilates-segunda-mano.png",
-    "hashed": "/og/cama-de-pilates-segunda-mano.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/cama-de-pilates-segunda-mano.b9c093e4.png",
+    "hash": "b9c093e4"
   },
   "/og/cama-de-pilates-venta-mexico.png": {
     "original": "/og/cama-de-pilates-venta-mexico.png",
-    "hashed": "/og/cama-de-pilates-venta-mexico.3f99b807.png",
-    "hash": "3f99b807"
+    "hashed": "/og/cama-de-pilates-venta-mexico.a3e0e5a0.png",
+    "hash": "a3e0e5a0"
   },
   "/og/cama-para-pilates.png": {
     "original": "/og/cama-para-pilates.png",
-    "hashed": "/og/cama-para-pilates.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/cama-para-pilates.4ecf9e8b.png",
+    "hash": "4ecf9e8b"
   },
   "/og/cama-pilates.png": {
     "original": "/og/cama-pilates.png",
-    "hashed": "/og/cama-pilates.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/cama-pilates.d832f761.png",
+    "hash": "d832f761"
   },
   "/og/certificacion-instructores-mexico.png": {
     "original": "/og/certificacion-instructores-mexico.png",
@@ -286,8 +351,8 @@
   },
   "/og/ejercicios-pilates-en-la-cama.png": {
     "original": "/og/ejercicios-pilates-en-la-cama.png",
-    "hashed": "/og/ejercicios-pilates-en-la-cama.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/ejercicios-pilates-en-la-cama.3966c84d.png",
+    "hash": "3966c84d"
   },
   "/og/ejercicios-pilates-madres-lactantes.png": {
     "original": "/og/ejercicios-pilates-madres-lactantes.png",
@@ -301,8 +366,8 @@
   },
   "/og/estudios-pilates-reformer.png": {
     "original": "/og/estudios-pilates-reformer.png",
-    "hashed": "/og/estudios-pilates-reformer.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/estudios-pilates-reformer.536f2bc0.png",
+    "hash": "536f2bc0"
   },
   "/og/everbright-solar-lawsuit.png": {
     "original": "/og/everbright-solar-lawsuit.png",
@@ -316,8 +381,8 @@
   },
   "/og/financiacion-cama-de-pilates.png": {
     "original": "/og/financiacion-cama-de-pilates.png",
-    "hashed": "/og/financiacion-cama-de-pilates.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/financiacion-cama-de-pilates.9bb42da5.png",
+    "hash": "9bb42da5"
   },
   "/og/free-ebook-texas-solar-fraud-guide.png": {
     "original": "/og/free-ebook-texas-solar-fraud-guide.png",
@@ -421,18 +486,18 @@
   },
   "/og/mejor-cama-de-pilates-profesional.png": {
     "original": "/og/mejor-cama-de-pilates-profesional.png",
-    "hashed": "/og/mejor-cama-de-pilates-profesional.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/mejor-cama-de-pilates-profesional.150257e9.png",
+    "hash": "150257e9"
   },
   "/og/mejor-reformer-espacios-pequenos.png": {
     "original": "/og/mejor-reformer-espacios-pequenos.png",
-    "hashed": "/og/mejor-reformer-espacios-pequenos.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/mejor-reformer-espacios-pequenos.569b176e.png",
+    "hash": "569b176e"
   },
   "/og/mejores-marcas-cama-de-pilates.png": {
     "original": "/og/mejores-marcas-cama-de-pilates.png",
-    "hashed": "/og/mejores-marcas-cama-de-pilates.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/mejores-marcas-cama-de-pilates.ba39d0e8.png",
+    "hash": "ba39d0e8"
   },
   "/og/modificaciones-pilates-lesiones.png": {
     "original": "/og/modificaciones-pilates-lesiones.png",
@@ -461,8 +526,8 @@
   },
   "/og/para-que-sirve-pilates-en-cama.png": {
     "original": "/og/para-que-sirve-pilates-en-cama.png",
-    "hashed": "/og/para-que-sirve-pilates-en-cama.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/para-que-sirve-pilates-en-cama.b01a31d2.png",
+    "hash": "b01a31d2"
   },
   "/og/pilates-has-changed-my-life-mexico.png": {
     "original": "/og/pilates-has-changed-my-life-mexico.png",
@@ -486,18 +551,18 @@
   },
   "/og/pilates-reformer-cdmx.png": {
     "original": "/og/pilates-reformer-cdmx.png",
-    "hashed": "/og/pilates-reformer-cdmx.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/pilates-reformer-cdmx.b6fb5120.png",
+    "hash": "b6fb5120"
   },
   "/og/pilates-reformer-cerca-de-mi.png": {
     "original": "/og/pilates-reformer-cerca-de-mi.png",
-    "hashed": "/og/pilates-reformer-cerca-de-mi.33aac0e8.png",
-    "hash": "33aac0e8"
+    "hashed": "/og/pilates-reformer-cerca-de-mi.5e0d6e77.png",
+    "hash": "5e0d6e77"
   },
   "/og/pilates-reformer-para-espalda.png": {
     "original": "/og/pilates-reformer-para-espalda.png",
-    "hashed": "/og/pilates-reformer-para-espalda.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/pilates-reformer-para-espalda.657fd5c8.png",
+    "hash": "657fd5c8"
   },
   "/og/pilates-rehabilitacion-cancer-mama.png": {
     "original": "/og/pilates-rehabilitacion-cancer-mama.png",
@@ -541,23 +606,23 @@
   },
   "/og/reformer-compacto.png": {
     "original": "/og/reformer-compacto.png",
-    "hashed": "/og/reformer-compacto.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/reformer-compacto.b63d058b.png",
+    "hash": "b63d058b"
   },
   "/og/reformer-vs-cadillac.png": {
     "original": "/og/reformer-vs-cadillac.png",
-    "hashed": "/og/reformer-vs-cadillac.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/reformer-vs-cadillac.05b49a83.png",
+    "hash": "05b49a83"
   },
   "/og/reformer-vs-mat-pilates.png": {
     "original": "/og/reformer-vs-mat-pilates.png",
-    "hashed": "/og/reformer-vs-mat-pilates.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/reformer-vs-mat-pilates.5673352d.png",
+    "hash": "5673352d"
   },
   "/og/reformer-vs-tower.png": {
     "original": "/og/reformer-vs-tower.png",
-    "hashed": "/og/reformer-vs-tower.220cf1e6.png",
-    "hash": "220cf1e6"
+    "hashed": "/og/reformer-vs-tower.4520b2c0.png",
+    "hash": "4520b2c0"
   },
   "/og/renewable-energy-scam.png": {
     "original": "/og/renewable-energy-scam.png",

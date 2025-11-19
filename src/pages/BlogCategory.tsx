@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet-async';
 import BlogList from '@/components/blog/BlogList';
 import { loadAllBlogPosts } from '@/utils/blogUtils';
 import { slugify } from '@/utils/slug';
+import LuxuryLayout from '@/components/layout/LuxuryLayout';
+import { ArrowLeft } from 'lucide-react';
 
 interface BlogPostMeta {
   slug: string;
@@ -45,10 +47,21 @@ const BlogCategory: React.FC = () => {
   const displayCategory = posts[0]?.category || (category || '').replace(/-/g, ' ');
   const title = `Categoría: ${displayCategory}`;
 
-  if (loading) return <div className="container mx-auto px-4 py-8">Loading…</div>;
+  if (loading) {
+    return (
+      <LuxuryLayout>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="animate-pulse space-y-6 text-center">
+            <div className="h-4 bg-gray-200 rounded w-64 mx-auto"></div>
+            <div className="h-10 bg-gray-300 rounded w-96 mx-auto"></div>
+          </div>
+        </div>
+      </LuxuryLayout>
+    );
+  }
 
   return (
-    <>
+    <LuxuryLayout>
       <Helmet>
         <title>{title} | Edelweiss Pilates</title>
         <meta name="description" content={`Artículos en la categoría ${displayCategory}`} />
@@ -79,20 +92,30 @@ const BlogCategory: React.FC = () => {
           })}
         </script>
       </Helmet>
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-8 flex items-center justify-between">
-            <h1 className="text-3xl font-bold">{title}</h1>
-            <Link to="/blog" className="text-primary">Ver todos</Link>
-          </div>
-          {posts.length > 0 ? (
-            <BlogList posts={posts} />
-          ) : (
-            <p className="text-muted-foreground">Aún no hay artículos en esta categoría.</p>
-          )}
+
+      <section className="relative pt-32 pb-20 px-8 md:px-24 max-w-[1800px] mx-auto">
+        <Link to="/blog" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#5D5550] hover:text-[#2A2624] mb-8 transition-colors">
+          <ArrowLeft className="w-3 h-3" /> Back to Journal
+        </Link>
+
+        <div className="mb-16">
+          <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-6">
+            Category
+          </span>
+          <h1 className="text-4xl md:text-6xl font-serif italic text-[#2A2624] leading-[0.9]">
+            {displayCategory}
+          </h1>
         </div>
-      </div>
-    </>
+
+        {posts.length > 0 ? (
+          <BlogList posts={posts} />
+        ) : (
+          <div className="text-center py-24 border border-dashed border-[#2A2624]/20 rounded-sm bg-[#2A2624]/5">
+            <p className="text-[#5D5550] font-light">Aún no hay artículos en esta categoría.</p>
+          </div>
+        )}
+      </section>
+    </LuxuryLayout>
   );
 };
 

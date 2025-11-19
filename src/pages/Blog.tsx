@@ -6,7 +6,8 @@ import TagCloud21 from '@/components/editorial21/TagCloud21';
 import FeaturedRow21 from '@/components/editorial21/FeaturedRow21';
 import { loadAllBlogPosts } from '@/utils/blogUtils';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
-import { getAllCategories, getAllTags } from '@/lib/content';
+import { getAllCategories } from '@/lib/content';
+import LuxuryLayout from '@/components/layout/LuxuryLayout';
 
 interface BlogPostMeta {
   slug: string;
@@ -40,7 +41,6 @@ const Blog: React.FC = () => {
     loadPosts();
   }, []);
 
-  // Hooks must remain in stable order; avoid early returns before hooks
   const categories = useMemo(() => ['Todos', ...getAllCategories()], []);
   const filtered = useMemo(() => (cat === 'Todos' ? posts : posts.filter(p => p.category === cat)), [cat, posts]);
   const featured = useMemo(() => filtered.filter(p => p.featured), [filtered]);
@@ -53,27 +53,18 @@ const Blog: React.FC = () => {
   }, [posts]);
 
   return (
-    <>
+    <LuxuryLayout>
       <Helmet>
         <title>Centro de Conocimiento | {DEFAULTS.siteName}</title>
         <meta name="description" content="Centro de Conocimiento: guías de compra, ejercicios con Reformer, mantenimiento y comparativas. Recomendaciones para casa y estudio." />
         <meta name="robots" content="index,follow" />
         <link rel="canonical" href={`${getOrigin()}/blog`} />
-
-        {/* Open Graph */}
         <meta property="og:site_name" content={DEFAULTS.siteName} />
         <meta property="og:locale" content="es_MX" />
         <meta property="og:title" content="Centro de Conocimiento | Guías, ejercicios y equipo" />
         <meta property="og:description" content="Centro de Conocimiento: guías de compra, ejercicios y comparativas de camas de Pilates (Reformer)." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${getOrigin()}/blog`} />
-
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Centro de Conocimiento | Guías, ejercicios y equipo" />
-        <meta name="twitter:description" content="Centro de Conocimiento: guías de compra, ejercicios y comparativas de camas de Pilates (Reformer)." />
-
-        {/* JSON-LD Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -93,22 +84,24 @@ const Blog: React.FC = () => {
           })}
         </script>
       </Helmet>
-      
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-6xl mx-auto">
+
+      <div className="container mx-auto px-8 md:px-24 py-12">
+        <div className="max-w-[1800px] mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Centro de Conocimiento</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">Guías de compra, ejercicios, mantenimiento y comparativas. Todo sobre la cama de Pilates (Reformer) para casa y estudio.</p>
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-6xl font-serif italic text-[#2A2624] mb-6">The Journal</h1>
+            <p className="text-lg text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed">
+              Guías de compra, ejercicios, mantenimiento y comparativas. Todo sobre la cama de Pilates (Reformer) para casa y estudio.
+            </p>
           </div>
 
           {/* Loading Notice */}
           {loading && (
-            <div className="mb-6 text-center text-sm text-muted-foreground">Cargando artículos…</div>
+            <div className="mb-6 text-center text-xs uppercase tracking-widest text-[#5D5550]">Loading articles...</div>
           )}
 
           {/* Category filter chips */}
-          <div className="mb-6">
+          <div className="mb-12 flex justify-center">
             <FilterChips21 items={categories.map(c => ({ label: c, value: c, count: c === 'Todos' ? posts.length : posts.filter(p => p.category === c).length }))} value={cat} onChange={(v) => { setCat(v); setVisible(9); }} />
           </div>
 
@@ -116,27 +109,39 @@ const Blog: React.FC = () => {
           <FeaturedRow21 posts={featured as any} />
 
           {/* Content + Sidebar */}
-          <div className="grid lg:grid-cols-4 gap-8">
+          <div className="grid lg:grid-cols-4 gap-12 mt-12">
             <div className="lg:col-span-3">
               <BlogGrid21 posts={visiblePosts as any} />
               {visible < nonFeatured.length && (
-                <div className="mt-8 flex justify-center">
-                  <button onClick={() => setVisible(v => v + 9)} className="inline-flex items-center px-5 py-3 rounded-md border border-border text-foreground hover:bg-foreground hover:text-background">Cargar más</button>
+                <div className="mt-16 flex justify-center">
+                  <button
+                    onClick={() => setVisible(v => v + 9)}
+                    className="px-8 py-4 bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white transition-colors"
+                  >
+                    Load More
+                  </button>
                 </div>
               )}
             </div>
             <aside className="lg:col-span-1">
-              <div className="sticky top-24 space-y-6">
+              <div className="sticky top-24 space-y-8">
                 <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">Etiquetas</h3>
+                  <h3 className="font-serif italic text-xl text-[#2A2624] mb-4">Topics</h3>
                   <TagCloud21 tags={tagCounts} />
+                </div>
+
+                <div className="p-6 bg-[#2A2624] text-[#EAE8E4] rounded-sm">
+                  <h3 className="font-serif italic text-xl mb-2">Newsletter</h3>
+                  <p className="text-xs font-light text-white/60 mb-4">Get the latest guides and pilates tips.</p>
+                  <input type="email" placeholder="Email" className="w-full bg-transparent border-b border-white/20 py-2 text-white text-sm focus:outline-none mb-4" />
+                  <button className="w-full py-2 bg-[#EAE8E4] text-[#2A2624] text-xs uppercase tracking-widest hover:bg-white transition-colors">Subscribe</button>
                 </div>
               </div>
             </aside>
           </div>
         </div>
       </div>
-    </>
+    </LuxuryLayout>
   );
 };
 

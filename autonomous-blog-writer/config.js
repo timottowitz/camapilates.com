@@ -33,6 +33,9 @@ const PROJECT_ROOT = process.env.PROJECT_ROOT || resolve(__dirname, '..');
  * Configuration object
  * All paths are resolved relative to PROJECT_ROOT
  */
+const DEFAULT_PROVIDER = process.env.LLM_PROVIDER
+  || (process.env.OPENAI_API_KEY ? 'openai' : (process.env.GEMINI_API_KEY ? 'gemini' : 'openai'));
+
 export const CONFIG = {
   // ============================================================================
   // Paths
@@ -46,11 +49,15 @@ export const CONFIG = {
   LOGS_DIR: join(WRITER_DIR, 'logs'),
 
   // ============================================================================
-  // OpenAI API
+  // LLM Providers
   // ============================================================================
+  LLM_PROVIDER: DEFAULT_PROVIDER,
   OPENAI_API_KEY: process.env.OPENAI_API_KEY,
   OPENAI_MODEL: process.env.OPENAI_MODEL || 'gpt-4o',
   OPENAI_MODEL_FAST: process.env.OPENAI_MODEL_FAST || 'gpt-4o-mini',
+  GEMINI_API_KEY: process.env.GEMINI_API_KEY,
+  GEMINI_MODEL: process.env.GEMINI_MODEL || 'gemini-1.5-flash',
+  GEMINI_MODEL_FAST: process.env.GEMINI_MODEL_FAST || 'gemini-1.5-flash',
 
   // ============================================================================
   // Content Generation
@@ -160,12 +167,19 @@ export const CONFIG = {
 export function validateConfig() {
   const errors = [];
 
-  if (!CONFIG.OPENAI_API_KEY) {
-    errors.push('OPENAI_API_KEY is required in .env');
-  }
-
-  if (!CONFIG.OPENAI_API_KEY?.startsWith('sk-')) {
-    errors.push('OPENAI_API_KEY appears invalid (should start with sk-)');
+  if (CONFIG.LLM_PROVIDER === 'openai') {
+    if (!CONFIG.OPENAI_API_KEY) {
+      errors.push('OPENAI_API_KEY is required when LLM_PROVIDER=openai');
+    }
+    if (CONFIG.OPENAI_API_KEY && !CONFIG.OPENAI_API_KEY.startsWith('sk-')) {
+      errors.push('OPENAI_API_KEY appears invalid (should start with sk-)');
+    }
+  } else if (CONFIG.LLM_PROVIDER === 'gemini') {
+    if (!CONFIG.GEMINI_API_KEY) {
+      errors.push('GEMINI_API_KEY is required when LLM_PROVIDER=gemini');
+    }
+  } else {
+    errors.push(`Unsupported LLM_PROVIDER: ${CONFIG.LLM_PROVIDER}`);
   }
 
   if (errors.length > 0) {
@@ -186,8 +200,15 @@ export function printConfig() {
   console.error(`   Project Root: ${CONFIG.PROJECT_ROOT}`);
   console.error(`   Blog Output: ${CONFIG.BLOG_OUTPUT_DIR}`);
   console.error(`   Research Dir: ${CONFIG.RESEARCH_DIR}`);
-  console.error(`   Model (Main): ${CONFIG.OPENAI_MODEL}`);
-  console.error(`   Model (Fast): ${CONFIG.OPENAI_MODEL_FAST}`);
+  if (CONFIG.LLM_PROVIDER === 'gemini') {
+    console.error(`   Provider: Gemini`);
+    console.error(`   Model (Main): ${CONFIG.GEMINI_MODEL}`);
+    console.error(`   Model (Fast): ${CONFIG.GEMINI_MODEL_FAST}`);
+  } else {
+    console.error(`   Provider: OpenAI`);
+    console.error(`   Model (Main): ${CONFIG.OPENAI_MODEL}`);
+    console.error(`   Model (Fast): ${CONFIG.OPENAI_MODEL_FAST}`);
+  }
   console.error(`   Word Target: ${CONFIG.WORD_TARGET}`);
   console.error(`   Language: ${CONFIG.LANGUAGE}`);
   console.error(`   Markets: ${CONFIG.MARKETS.join(', ')}`);

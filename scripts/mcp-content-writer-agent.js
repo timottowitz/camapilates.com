@@ -20,28 +20,46 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import { generateText } from 'ai';
 import { createOpenAI } from '@ai-sdk/openai';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import CONFIG from '../autonomous-blog-writer/config.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = path.resolve(__dirname, '..');
-const RESEARCH_DIR = path.join(ROOT, 'blog-planning', 'research');
-const BLOG_DIR = path.join(ROOT, 'src', 'content', 'blog');
-const TODO_FILE = path.join(ROOT, 'blog-planning', 'BLOG_TODO.md');
+const ROOT = CONFIG.PROJECT_ROOT;
+const RESEARCH_DIR = CONFIG.RESEARCH_DIR;
+const BLOG_DIR = CONFIG.BLOG_OUTPUT_DIR;
+const TODO_FILE = CONFIG.TODO_FILE;
 
-// Configuration
-const CONFIG = {
-  MODEL_MAIN: process.env.OPENAI_MODEL || 'gpt-4o',
-  MODEL_FAST: process.env.OPENAI_MODEL_FAST || 'gpt-4o-mini',
-  WORD_TARGET: parseInt(process.env.CONTENT_WORD_TARGET || '1800'),
-  TEMPERATURE_CREATIVE: parseFloat(process.env.CONTENT_TEMPERATURE || '0.7'),
-  TEMPERATURE_STRUCTURED: 0.3,
-  MIN_WORD_COUNT: 1200,
-  MAX_WORD_COUNT: 2500,
-  MIN_FAQS: 5,
-  MAX_FAQS: 8
-};
+let openaiClient = null;
+let geminiClient = null;
+
+function getModel(kind = 'main') {
+  if (CONFIG.LLM_PROVIDER === 'gemini') {
+    if (!geminiClient) {
+      geminiClient = createGoogleGenerativeAI({ apiKey: CONFIG.GEMINI_API_KEY });
+    }
+    const modelName = kind === 'fast' ? CONFIG.GEMINI_MODEL_FAST : CONFIG.GEMINI_MODEL;
+    return geminiClient(modelName);
+  }
+
+  if (!openaiClient) {
+    openaiClient = createOpenAI({ apiKey: CONFIG.OPENAI_API_KEY });
+  }
+  const modelName = kind === 'fast' ? CONFIG.OPENAI_MODEL_FAST : CONFIG.OPENAI_MODEL;
+  return openaiClient(modelName);
+}
+
+function extractJsonPayload(text) {
+  if (!text) return '';
+  const trimmed = text.trim();
+  const fenceMatch = trimmed.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (fenceMatch) {
+    return fenceMatch[1].trim();
+  }
+  return trimmed;
+}
 
 const server = new Server(
   {
@@ -226,7 +244,7 @@ Next steps in pipeline:
 // ============================================================================
 
 async function generateOutline(researchContent, metadata) {
-  const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const model = getModel('fast');
 
   const systemPrompt = `Eres un estratega de contenido senior para CAMA Pilates, fabricante premium de Reformers en México.
 
@@ -285,7 +303,7 @@ FORMATO DE RESPUESTA (JSON):
 }`;
 
   const result = await generateText({
-    model: openai(CONFIG.MODEL_FAST),
+    model,
     messages: [
       { role: 'system', content: systemPrompt },
       { role: 'user', content: userPrompt }
@@ -294,8 +312,9 @@ FORMATO DE RESPUESTA (JSON):
     maxTokens: 2500
   });
 
+  const payload = extractJsonPayload(result.text);
   try {
-    return JSON.parse(result.text);
+    return JSON.parse(payload);
   } catch (e) {
     throw new Error(`Failed to parse outline JSON: ${e.message}\n\nResponse: ${result.text}`);
   }
@@ -306,7 +325,7 @@ FORMATO DE RESPUESTA (JSON):
 // ============================================================================
 
 async function generateSection(sectionPlan, researchContent, metadata, outline) {
-  const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const model = getModel('main');
 
   const systemPrompt = `Eres un experto redactor de contenido Pilates para el mercado mexicano.
 
@@ -356,7 +375,7 @@ ${sectionPlan.include_shortcode ? `\n⚠️ IMPORTANTE: Termina esta sección co
 ESCRIBE SOLO EL CONTENIDO DE ESTA SECCIÓN (sin heading H2):`;
 
   const result = await generateText({
-    model: openai(CONFIG.MODEL_MAIN),
+    model,
     messages: [
       { role: 'system', content: systemPrompt },
       { role: 'user', content: userPrompt }
@@ -380,7 +399,7 @@ ESCRIBE SOLO EL CONTENIDO DE ESTA SECCIÓN (sin heading H2):`;
 // ============================================================================
 
 async function generateFAQs(researchContent, metadata, outline) {
-  const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const model = getModel('fast');
 
   // Extract FAQ candidates from research
   const faqSection = extractSection(researchContent, /^##\s*(FAQ|Preguntas)/im);
@@ -426,7 +445,7 @@ FORMATO JSON:
 }`;
 
   const result = await generateText({
-    model: openai(CONFIG.MODEL_FAST),
+    model,
     messages: [
       { role: 'system', content: systemPrompt },
       { role: 'user', content: userPrompt }
@@ -435,8 +454,9 @@ FORMATO JSON:
     maxTokens: 1500
   });
 
+  const payload = extractJsonPayload(result.text);
   try {
-    const parsed = JSON.parse(result.text);
+    const parsed = JSON.parse(payload);
     return parsed.faqs || [];
   } catch (e) {
     // Fallback: try to extract FAQs from text
@@ -450,7 +470,7 @@ FORMATO JSON:
 // ============================================================================
 
 async function polishContent(fullContent, researchContent, metadata) {
-  const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const model = getModel('fast');
 
   const systemPrompt = `Eres un editor de contenido senior para CAMA Pilates.
 
@@ -482,7 +502,7 @@ TAREA:
 DEVUELVE EL CONTENIDO COMPLETO PULIDO (Markdown, sin frontmatter):`;
 
   const result = await generateText({
-    model: openai(CONFIG.MODEL_FAST),
+    model,
     messages: [
       { role: 'system', content: systemPrompt },
       { role: 'user', content: userPrompt }
@@ -500,8 +520,13 @@ DEVUELVE EL CONTENIDO COMPLETO PULIDO (Markdown, sin frontmatter):`;
 
 async function parseMetadata(slug, researchContent) {
   // Parse research file for title, category, keywords
-  const titleMatch = researchContent.match(/^#\s*(.+?)(?:\s*—\s*Research|\s*\(MX)?$/m);
-  const title = titleMatch ? titleMatch[1].trim() : slug.replace(/-/g, ' ');
+  const titleMatch = researchContent.match(/^#\s*(.+)$/m);
+  let title = titleMatch ? titleMatch[1].trim() : slug.replace(/-/g, ' ');
+  title = title
+    .replace(/^RESEARCH:\s*/i, '')
+    .replace(/—\s*Research.*$/i, '')
+    .replace(/\(MX[^)]*\)$/i, '')
+    .trim();
 
   // Get category from TODO file
   const todoContent = await fs.readFile(TODO_FILE, 'utf-8');
@@ -764,8 +789,16 @@ async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
   console.error('Content Writer Agent MCP server running on stdio');
-  console.error(`Model: ${CONFIG.MODEL_MAIN} (main), ${CONFIG.MODEL_FAST} (fast)`);
+  const modelSummary = CONFIG.LLM_PROVIDER === 'gemini'
+    ? `${CONFIG.GEMINI_MODEL} (main), ${CONFIG.GEMINI_MODEL_FAST} (fast)`
+    : `${CONFIG.OPENAI_MODEL} (main), ${CONFIG.OPENAI_MODEL_FAST} (fast)`;
+  console.error(`Provider: ${CONFIG.LLM_PROVIDER}`);
+  console.error(`Model: ${modelSummary}`);
   console.error(`Target word count: ${CONFIG.WORD_TARGET}`);
 }
 
-main().catch(console.error);
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch(console.error);
+}
+
+export { writeBlogFromResearch, regenerateSection, previewOutline };

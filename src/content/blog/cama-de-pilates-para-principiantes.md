@@ -1,8 +1,4 @@
 ---
-publishDate: '2025-10-01'
----
-
----
 title: "Cama de Pilates para principiantes: Guía completa 2025"
 description: "Guía definitiva para principiantes: cómo elegir tu primera cama de Pilates Reformer, ejercicios básicos, errores a evitar y plan progresivo de 8 semanas."
 category: "Guías de compra"

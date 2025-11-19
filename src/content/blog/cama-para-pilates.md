@@ -1,8 +1,4 @@
 ---
-publishDate: '2025-10-01'
----
-
----
 title: "Cama para Pilates: Guía Completa 2024-2025 para México"
 description: "Guía definitiva sobre camas para Pilates en México: precios, marcas, beneficios científicos, comparativas y testimonios. Todo lo que necesitas saber antes de comprar tu reformer."
 category: "Guías de compra"

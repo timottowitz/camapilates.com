@@ -1,8 +1,4 @@
 ---
-publishDate: '2025-10-01'
----
-
----
 title: "Cama Pilates México 2024: Guía Completa de Compra, Beneficios y Ejercicios"
 description: "Guía definitiva de cama Pilates en México 2024: precios, marcas, beneficios para la salud, ejercicios básicos y comparativa entre uso doméstico vs profesional."
 category: "Guías de compra"

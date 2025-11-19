@@ -50,7 +50,7 @@ async function generateQualityScore(slug) {
   const contentOnly = txt.replace(/^---[\s\S]*?---/, '');
   const words = countWords(contentOnly);
   const hasH1 = /^\s*#\s+/m.test(contentOnly);
-  const hasFAQ = /\n##\s*FAQ\b/i.test(contentOnly);
+  const hasFAQ = /\n##[^\n]*faq/i.test(contentOnly);
   const hasSeeAlso = /<see-also\b[^>]*\/>/i.test(contentOnly);
   const hasHubList = /<hub-list\b[^>]*\/>/i.test(contentOnly);
   const hasDisclaimer = />\s*Nota: Contenido informativo/i.test(contentOnly);
@@ -92,7 +92,7 @@ async function auditSeoCompliance(slug) {
     slug: hasKey('slug')
   };
   const ok = hasFM && Object.values(checksByField).every(Boolean);
-  const faq = /\n##\s*FAQ\b/.test(txt);
+  const faq = /\n##[^\n]*faq/i.test(txt);
   const seeAlso = /<see-also\b[^>]*\/>/.test(txt);
   // Stricter gate: require FAQ + seeAlso + core frontmatter
   const result = {

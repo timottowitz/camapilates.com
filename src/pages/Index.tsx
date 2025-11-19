@@ -4,6 +4,7 @@ import { DEFAULTS } from '@/lib/seo';
 import products from '@/content/products.json';
 import ReformerHero from '@/components/ReformerHero';
 import LuxuryContent from '@/components/LuxuryContent';
+import LuxuryLayout from '@/components/layout/LuxuryLayout';
 
 const Index = () => {
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://camadepilates.com';
@@ -119,13 +120,13 @@ const Index = () => {
         <script type="application/ld+json">{JSON.stringify(guidesListSchema)}</script>
       </Helmet>
 
-      <main className="flex min-h-screen flex-col items-center justify-between bg-[#EAE8E4]">
+      <LuxuryLayout noPadding>
         {/* 3D Hero Section */}
         <ReformerHero />
-        
+
         {/* Editorial Content Sections */}
         <LuxuryContent />
-      </main>
+      </LuxuryLayout>
     </>
   );
 };

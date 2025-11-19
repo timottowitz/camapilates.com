@@ -18,6 +18,7 @@ import type * as aiImages from "../aiImages.js";
 import type * as appSettings from "../appSettings.js";
 import type * as blog from "../blog.js";
 import type * as cache from "../cache.js";
+import type * as certificationPreRegistrations from "../certificationPreRegistrations.js";
 import type * as cities from "../cities.js";
 import type * as crons from "../crons.js";
 import type * as googlePlaces from "../googlePlaces.js";
@@ -52,6 +53,7 @@ declare const fullApi: ApiFromModules<{
   appSettings: typeof appSettings;
   blog: typeof blog;
   cache: typeof cache;
+  certificationPreRegistrations: typeof certificationPreRegistrations;
   cities: typeof cities;
   crons: typeof crons;
   googlePlaces: typeof googlePlaces;

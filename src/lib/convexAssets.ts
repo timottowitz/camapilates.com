@@ -47,10 +47,10 @@ export const CONVEX_IMAGE_NAMES = {
  * These are the current local image paths
  */
 const FALLBACKS = {
-  shopHero: '/images/featured-products.webp',
+  shopHero: '/images/hero-shop.webp',
   featuredProducts: '/images/featured-products.webp',
-  catReformers: '/og/reformer-compacto.png',
-  catAccessories: '/og/accesorios-cama-de-pilates-esenciales.png',
+  catReformers: '/images/reformers.webp',
+  catAccessories: '/images/accessories.webp',
   finishMycelium: '/images/finish-mycelium.webp',
   myloBadge: '/images/badges/mylo.svg',
   myloSpecial: '/images/special/mylo-special.svg',

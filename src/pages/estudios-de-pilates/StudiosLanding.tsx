@@ -3,35 +3,57 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useQuery } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
-import { MapPin, Users, Star, TrendingUp, Search, Building } from 'lucide-react';
+import { MapPin, Star, ArrowRight, Search, Building } from 'lucide-react';
 import { hasConvex } from '@/lib/convexProvider';
 import localData from '@/data/studios.json';
 import { citySlug } from '@/utils/slug';
-import { ContextualImage } from '@/components/ContextualImage';
+import LuxuryLayout from '@/components/layout/LuxuryLayout';
 
 const StudiosLanding: React.FC = () => {
   // SEO metadata
   const pageTitle = 'Directorio de Estudios de Pilates en México';
   const pageDescription = 'Encuentra los mejores estudios de Pilates en México. Directorio completo con reseñas, precios y horarios en Ciudad de México, Monterrey, Guadalajara y más ciudades.';
 
-  // Data source: Convex if available, otherwise local JSON (parity fallback)
-  const cities = hasConvex
-    ? useQuery(api.cities.getPriority, { limit: 10 }) || []
-    : (localData.cities as any[]);
-  const featuredStudios = hasConvex
-    ? useQuery(api.studios.getFeatured, { limit: 6 }) || []
-    : (localData.featured.map(id => (localData.studios as any[]).find(s => s._id === id)).filter(Boolean) as any[]);
+  // Observability for Convex fetches - fall back after grace period
+  const [failover, setFailover] = React.useState(false);
+  React.useEffect(() => {
+    if (!hasConvex) return;
+    setFailover(false);
+    const timer = setTimeout(() => setFailover(true), 3000);
+    return () => clearTimeout(timer);
+  }, [hasConvex]);
+
+  const fallbackCities = localData.cities as any[];
+  const fallbackFeatured = localData.featured
+    .map((id) => (localData.studios as any[]).find((s) => s._id === id))
+    .filter(Boolean) as any[];
+
+  const remoteCities = hasConvex ? useQuery(api.cities.getPriority, { limit: 10 }) : undefined;
+  const remoteFeatured = hasConvex ? useQuery(api.studios.getFeatured, { limit: 6 }) : undefined;
+
+  const cities = React.useMemo(() => {
+    if (!hasConvex) return fallbackCities;
+    if (Array.isArray(remoteCities) && remoteCities.length > 0) {
+      return remoteCities.map((city: any) => {
+        if (Array.isArray(city.neighborhoods) && city.neighborhoods.length > 0) {
+          return city;
+        }
+        const fallbackMatch = fallbackCities.find((fallback) => fallback.slug === city.slug);
+        return fallbackMatch?.neighborhoods?.length
+          ? { ...city, neighborhoods: fallbackMatch.neighborhoods }
+          : { ...city, neighborhoods: [] };
+      });
+    }
+    return failover ? fallbackCities : [];
+  }, [hasConvex, remoteCities, fallbackCities, failover]);
+
+  const featuredStudios = React.useMemo(() => {
+    if (!hasConvex) return fallbackFeatured;
+    if (Array.isArray(remoteFeatured) && remoteFeatured.length > 0) {
+      return remoteFeatured;
+    }
+    return failover ? fallbackFeatured : [];
+  }, [hasConvex, remoteFeatured, fallbackFeatured, failover]);
 
   // Statistics (calculated)
   const stats = {
@@ -42,7 +64,7 @@ const StudiosLanding: React.FC = () => {
   };
 
   return (
-    <>
+    <LuxuryLayout>
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
@@ -59,300 +81,187 @@ const StudiosLanding: React.FC = () => {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-gray-50">
-        {/* Header */}
-        <div className="bg-white border-b">
-          <div className="container mx-auto px-4 py-4">
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="/">Inicio</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Estudios de Pilates</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+      <section className="relative pt-32 pb-20 px-8 md:px-24 max-w-[1800px] mx-auto text-center overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-20">
+          <img
+            src="/images/studios-hero.webp"
+            alt="Pilates Studio Interior"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-white/80" />
+        </div>
+        <div className="relative z-10">
+          <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-6">
+            National Directory
+          </span>
+          <h1 className="text-5xl md:text-7xl font-serif italic text-[#2A2624] leading-[0.9] mb-8">
+            Find Your Studio
+          </h1>
+          <p className="text-lg text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed mb-12">
+            Descubre y compara los mejores estudios de Pilates cerca de ti. Reseñas verificadas, precios transparentes y toda la información que necesitas.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-4 mb-16">
+            <Link to="/estudios-de-pilates/ciudad-de-mexico" className="inline-flex items-center px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors">
+              <Search className="w-4 h-4 mr-2" /> Buscar en CDMX
+            </Link>
+            <a href="#cities" className="inline-flex items-center px-8 py-4 border border-[#2A2624]/20 text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#EAE8E4] transition-colors">
+              Ver Ciudades
+            </a>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-y border-[#2A2624]/10 py-12">
+            <div>
+              <div className="text-3xl font-serif italic text-[#2A2624]">{stats.totalCities}</div>
+              <div className="text-xs uppercase tracking-widest text-[#5D5550] mt-1">Ciudades</div>
+            </div>
+            <div>
+              <div className="text-3xl font-serif italic text-[#2A2624]">{stats.totalStudios}+</div>
+              <div className="text-xs uppercase tracking-widest text-[#5D5550] mt-1">Estudios</div>
+            </div>
+            <div>
+              <div className="text-3xl font-serif italic text-[#2A2624]">{stats.avgRating}</div>
+              <div className="text-xs uppercase tracking-widest text-[#5D5550] mt-1">Calificación</div>
+            </div>
+            <div>
+              <div className="text-3xl font-serif italic text-[#2A2624]">{stats.totalReviews.toLocaleString()}</div>
+              <div className="text-xs uppercase tracking-widest text-[#5D5550] mt-1">Reseñas</div>
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* Hero Section */}
-        <section className="py-16 lg:py-24">
-          <div className="container mx-auto px-4">
-            <div className="text-center max-w-4xl mx-auto">
-              <Badge className="mb-4" variant="secondary">
-                Directorio Nacional
-              </Badge>
-              <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                Encuentra tu Estudio de Pilates Ideal en México
-              </h1>
-              <p className="text-lg lg:text-xl text-gray-600 mb-8">
-                Descubre y compara los mejores estudios de Pilates cerca de ti.
-                Reseñas verificadas, precios transparentes y toda la información que necesitas.
+      <section id="cities" className="py-24 px-8 md:px-24 bg-white/40 border-t border-[#2A2624]/10">
+        <div className="max-w-[1800px] mx-auto">
+          <h2 className="text-3xl font-serif italic text-[#2A2624] mb-12 text-center">Browse by City</h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {cities.map((city) => (
+              <Link
+                key={city._id}
+                to={`/estudios-de-pilates/${city.slug}`}
+                className="group block p-8 border border-[#2A2624]/10 rounded-sm bg-white/50 hover:bg-white transition-colors"
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-xl font-serif italic text-[#2A2624] group-hover:text-[#3E2723] transition-colors">
+                      {city.name}
+                    </h3>
+                    <p className="text-xs uppercase tracking-widest text-[#5D5550] mt-1">{city.state}</p>
+                  </div>
+                  <span className="px-3 py-1 bg-[#2A2624]/5 text-[#2A2624] text-[10px] uppercase tracking-widest rounded-full">
+                    {city.studioCount} estudios
+                  </span>
+                </div>
+
+                <div className="space-y-2 mb-6">
+                  <div className="flex items-center gap-2 text-sm text-[#5D5550] font-light">
+                    <MapPin className="w-4 h-4 text-[#3E2723]" />
+                    <span>{city.neighborhoods.length} colonias</span>
+                  </div>
+                  {city.averageRating && (
+                    <div className="flex items-center gap-2 text-sm text-[#5D5550] font-light">
+                      <Star className="w-4 h-4 text-[#3E2723]" />
+                      <span>{city.averageRating.toFixed(1)} calificación promedio</span>
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {city.neighborhoods.slice(0, 3).map((neighborhood) => (
+                    <span key={neighborhood} className="px-2 py-1 border border-[#2A2624]/10 text-[#5D5550] text-[10px] uppercase tracking-widest rounded-sm">
+                      {neighborhood}
+                    </span>
+                  ))}
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <div className="inline-block p-8 border border-dashed border-[#2A2624]/20 rounded-sm bg-[#2A2624]/5">
+              <Building className="w-8 h-8 mx-auto mb-4 text-[#3E2723]" />
+              <h3 className="text-lg font-serif italic text-[#2A2624] mb-2">More Cities Coming Soon</h3>
+              <p className="text-sm text-[#5D5550] font-light mb-6">
+                Estamos expandiendo nuestro directorio a más ciudades de México
               </p>
-
-              {/* Search CTA */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                <Button size="lg" className="gap-2" asChild>
-                  <Link to="/estudios-de-pilates/ciudad-de-mexico">
-                    <Search className="w-5 h-5" />
-                    Buscar en CDMX
-                  </Link>
-                </Button>
-                <Button size="lg" variant="outline" className="gap-2" asChild>
-                  <Link to="#cities">
-                    <MapPin className="w-5 h-5" />
-                    Ver Todas las Ciudades
-                  </Link>
-                </Button>
-              </div>
-
-              {/* Statistics */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-600">{stats.totalCities}</div>
-                  <div className="text-sm text-gray-600 mt-1">Ciudades</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-600">{stats.totalStudios}+</div>
-                  <div className="text-sm text-gray-600 mt-1">Estudios</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-600">{stats.avgRating}</div>
-                  <div className="text-sm text-gray-600 mt-1">Calificación Promedio</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-600">{stats.totalReviews.toLocaleString()}</div>
-                  <div className="text-sm text-gray-600 mt-1">Reseñas</div>
-                </div>
-              </div>
+              <a href="mailto:soporte@camadepilates.com" className="text-xs uppercase tracking-widest text-[#2A2624] border-b border-[#2A2624] pb-1 hover:opacity-70 transition-opacity">
+                Solicitar mi ciudad
+              </a>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Cities Grid */}
-        <section id="cities" className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Estudios de Pilates por Ciudad
-              </h2>
-              <p className="text-gray-600">
-                Selecciona tu ciudad para explorar los estudios disponibles
-              </p>
-              <div className="not-prose mt-6">
-                <ContextualImage
-                  placeholderId="studios-landing-hero-1"
-                  pageType="studios"
-                  location="hero"
-                  aspectRatio="16:9"
-                  alt="Estudios de Pilates en México"
-                />
-              </div>
-            </div>
+      {featuredStudios.length > 0 && (
+        <section className="py-24 px-8 md:px-24 border-t border-[#2A2624]/10">
+          <div className="max-w-[1800px] mx-auto">
+            <h2 className="text-3xl font-serif italic text-[#2A2624] mb-12 text-center">Featured Studios</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {cities.map((city) => (
+              {featuredStudios.map((studio) => (
                 <Link
-                  key={city._id}
-                  to={`/estudios-de-pilates/${city.slug}`}
-                  className="group"
+                  key={studio._id}
+                  to={`/estudios-de-pilates/${citySlug(studio.address.city)}/${studio.slug}`}
+                  className="group block p-8 border border-[#2A2624]/10 rounded-sm bg-white hover:shadow-sm transition-all"
                 >
-                  <Card className="h-full hover:shadow-lg transition-all duration-200 group-hover:-translate-y-1">
-                    <CardContent className="p-6">
-                      <div className="flex items-start justify-between mb-4">
-                        <div>
-                          <h3 className="text-xl font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">
-                            {city.name}
-                          </h3>
-                          <p className="text-sm text-gray-500">{city.state}</p>
-                        </div>
-                        <Badge variant="secondary">
-                          {city.studioCount} estudios
-                        </Badge>
-                      </div>
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="font-serif italic text-xl text-[#2A2624] group-hover:text-[#3E2723] transition-colors line-clamp-2">
+                      {studio.name}
+                    </h3>
+                    {studio.isVerified && (
+                      <span className="w-2 h-2 rounded-full bg-[#3E2723]" title="Verificado"></span>
+                    )}
+                  </div>
 
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2 text-sm text-gray-600">
-                          <MapPin className="w-4 h-4" />
-                          <span>{city.neighborhoods.length} colonias</span>
-                        </div>
-                        {city.averageRating && (
-                          <div className="flex items-center gap-2 text-sm text-gray-600">
-                            <Star className="w-4 h-4" />
-                            <span>{city.averageRating.toFixed(1)} calificación promedio</span>
-                          </div>
-                        )}
-                      </div>
+                  <p className="text-sm text-[#5D5550] font-light mb-4">
+                    {studio.address.neighborhood && `${studio.address.neighborhood}, `}
+                    {studio.address.city}
+                  </p>
 
-                      {/* Top neighborhoods */}
-                      <div className="mt-4 flex flex-wrap gap-1">
-                        {city.neighborhoods.slice(0, 3).map((neighborhood) => (
-                          <Badge key={neighborhood} variant="outline" className="text-xs">
-                            {neighborhood}
-                          </Badge>
-                        ))}
-                        {city.neighborhoods.length > 3 && (
-                          <Badge variant="outline" className="text-xs">
-                            +{city.neighborhoods.length - 3} más
-                          </Badge>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <div className="flex items-center gap-2 text-sm mb-6">
+                    {studio.metrics.googleRating && (
+                      <>
+                        <Star className="w-4 h-4 text-[#3E2723] fill-[#3E2723]" />
+                        <span className="font-medium text-[#2A2624]">{studio.metrics.googleRating.toFixed(1)}</span>
+                        <span className="text-[#5D5550] font-light">({studio.metrics.googleReviewCount})</span>
+                      </>
+                    )}
+                  </div>
+
+                  {studio.classTypes && studio.classTypes.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {studio.classTypes.slice(0, 2).map((type) => (
+                        <span key={type} className="px-2 py-1 bg-[#2A2624]/5 text-[#5D5550] text-[10px] uppercase tracking-widest rounded-sm">
+                          {type}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </Link>
               ))}
             </div>
-
-            {/* More Cities Coming Soon */}
-            <div className="mt-12 text-center">
-              <Card className="border-dashed">
-                <CardContent className="py-12">
-                  <Building className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-                  <h3 className="text-lg font-semibold mb-2">Más Ciudades Próximamente</h3>
-                  <p className="text-gray-600 mb-4">
-                    Estamos expandiendo nuestro directorio a más ciudades de México
-                  </p>
-                  <Button variant="outline" asChild>
-                    <a href="mailto:soporte@camadepilates.com">
-                      Solicitar mi ciudad
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
           </div>
         </section>
+      )}
 
-        {/* Featured Studios */}
-        {featuredStudios.length > 0 && (
-          <section className="py-16">
-            <div className="container mx-auto px-4">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                  Estudios Destacados
-                </h2>
-                <p className="text-gray-600">
-                  Los estudios mejor calificados en nuestro directorio
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {featuredStudios.map((studio) => (
-                  <Link
-                    key={studio._id}
-                    to={`/estudios-de-pilates/${citySlug(studio.address.city)}/${studio.slug}`}
-                    className="group"
-                  >
-                    <Card className="h-full hover:shadow-lg transition-all duration-200">
-                      <CardContent className="p-6">
-                        <div className="flex items-start justify-between mb-3">
-                          <h3 className="font-semibold text-lg group-hover:text-purple-600 transition-colors line-clamp-2">
-                            {studio.name}
-                          </h3>
-                          {studio.isVerified && (
-                            <Badge className="bg-green-500">
-                              Verificado
-                            </Badge>
-                          )}
-                        </div>
-
-                        <p className="text-sm text-gray-600 mb-3">
-                          {studio.address.neighborhood && `${studio.address.neighborhood}, `}
-                          {studio.address.city}
-                        </p>
-
-                        <div className="flex items-center gap-4 text-sm">
-                          {studio.metrics.googleRating && (
-                            <div className="flex items-center gap-1">
-                              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                              <span className="font-semibold">{studio.metrics.googleRating.toFixed(1)}</span>
-                              <span className="text-gray-500">
-                                ({studio.metrics.googleReviewCount})
-                              </span>
-                            </div>
-                          )}
-                        </div>
-
-                        {studio.classTypes && studio.classTypes.length > 0 && (
-                          <div className="mt-3 flex flex-wrap gap-1">
-                            {studio.classTypes.slice(0, 2).map((type) => (
-                              <Badge key={type} variant="secondary" className="text-xs">
-                                {type}
-                              </Badge>
-                            ))}
-                          </div>
-                        )}
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* CTA Section */}
-        <section className="py-16 bg-gradient-to-r from-purple-600 to-pink-600">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              ¿Tienes un Estudio de Pilates?
-            </h2>
-            <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-              Añade tu estudio a nuestro directorio de forma gratuita y conecta con nuevos clientes
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" asChild>
-                <a href="mailto:soporte@camadepilates.com">
-                  Registrar mi Estudio
-                </a>
-              </Button>
-              <Button size="lg" variant="outline" className="bg-white/10 text-white border-white/30 hover:bg-white/20">
-                Más Información
-              </Button>
-            </div>
+      <section className="py-24 px-8 md:px-24 bg-[#2A2624] text-[#EAE8E4]">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-serif italic mb-6">Own a Pilates Studio?</h2>
+          <p className="text-lg text-white/70 font-light mb-8 max-w-2xl mx-auto">
+            Añade tu estudio a nuestro directorio de forma gratuita y conecta con nuevos clientes.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a href="mailto:soporte@camadepilates.com" className="inline-flex items-center px-8 py-4 bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white transition-colors">
+              Registrar mi Estudio
+            </a>
+            <a href="#" className="inline-flex items-center px-8 py-4 border border-[#EAE8E4]/20 text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#EAE8E4]/10 transition-colors">
+              Más Información
+            </a>
           </div>
-        </section>
-
-        {/* Features */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Search className="w-8 h-8 text-purple-600" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2">Búsqueda Inteligente</h3>
-                <p className="text-gray-600">
-                  Encuentra estudios por ubicación, tipo de clase, precio y más
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Star className="w-8 h-8 text-purple-600" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2">Reseñas Verificadas</h3>
-                <p className="text-gray-600">
-                  Lee opiniones reales de otros practicantes de Pilates
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="w-8 h-8 text-purple-600" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2">Comparación Fácil</h3>
-                <p className="text-gray-600">
-                  Compara precios, horarios y servicios de diferentes estudios
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </>
+        </div>
+      </section>
+    </LuxuryLayout>
   );
 };
 

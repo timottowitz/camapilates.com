@@ -8,14 +8,47 @@ const ROOT = path.resolve(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT, 'src', 'content', 'blog');
 const OUT_DIR = path.join(ROOT, 'public', 'og');
 
+const DEFAULT_FONT_URL = 'https://github.com/google/fonts/raw/main/ofl/inter/static/Inter-Bold.ttf';
+
+function encodeFont(buffer) {
+  return `data:font/ttf;base64,${Buffer.from(buffer).toString('base64')}`;
+}
+
+function tryLocalFont() {
+  const explicitPath = process.env.OG_FONT_PATH
+    ? path.resolve(ROOT, process.env.OG_FONT_PATH)
+    : null;
+  const candidates = [
+    explicitPath,
+    path.join(ROOT, 'public', 'fonts', 'Inter-Bold.ttf'),
+    path.join(ROOT, 'src', 'assets', 'fonts', 'Inter-Bold.ttf'),
+  ].filter(Boolean);
+
+  for (const candidate of candidates) {
+    if (!fs.existsSync(candidate)) continue;
+    try {
+      const buffer = fs.readFileSync(candidate);
+      if (buffer.length) {
+        console.log(`OG: using local font ${candidate}`);
+        return encodeFont(buffer);
+      }
+    } catch (err) {
+      console.warn(`OG: failed to read local font ${candidate}`, err.message);
+    }
+  }
+  return null;
+}
+
 async function fetchFontDataUrl() {
-  const url = 'https://github.com/google/fonts/raw/main/ofl/inter/Inter-Bold.ttf';
+  const localFont = tryLocalFont();
+  if (localFont) return localFont;
+
+  const url = process.env.OG_FONT_URL || DEFAULT_FONT_URL;
   try {
     const res = await fetch(url);
     if (!res.ok) throw new Error(`Failed to fetch font: ${res.status}`);
     const buf = new Uint8Array(await res.arrayBuffer());
-    const b64 = Buffer.from(buf).toString('base64');
-    return `data:font/ttf;base64,${b64}`;
+    return encodeFont(buf);
   } catch (e) {
     console.warn('OG: font fetch failed, falling back to system fonts', e.message);
     return null;
