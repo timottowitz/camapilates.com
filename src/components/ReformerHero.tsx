@@ -21,29 +21,21 @@ const ReformerHero = () => {
 
   return (
     <section className="relative h-screen min-h-[800px] w-full overflow-hidden bg-[#2A2624] text-[#EAE8E4]">
-      {/* Video Background - Native 96:35 (1920x700) Aspect Ratio */}
+      {/* Video Background - Native 1920x700 */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-black/40 z-10" /> {/* Refined Overlay */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" style={{ width: '100vw', height: '100vh' }}>
-          {assets.heroVideo && (
-            <video
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-              style={{
-                width: '100vw',
-                height: '36.458vw',      // 96:35 aspect ratio (700/1920 = 0.36458)
-                minWidth: '274.29vh',    // 96:35 aspect ratio (1920/700 = 2.7429)
-                minHeight: '100vh'
-              }}
-              autoPlay
-              muted
-              loop
-              playsInline
-              aria-hidden="true"
-            >
-              <source src={assets.heroVideo} type="video/quicktime" />
-            </video>
-          )}
-        </div>
+        {assets.heroVideo && (
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-hidden="true"
+          >
+            <source src={assets.heroVideo} type="video/quicktime" />
+          </video>
+        )}
       </div>
 
       {/* Content Container */}
