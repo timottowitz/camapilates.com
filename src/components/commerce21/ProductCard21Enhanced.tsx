@@ -54,13 +54,13 @@ const ProductCard21Enhanced: React.FC<Props> = ({
               </div>
             )}
             {product.bestSeller && (
-              <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white border-0 shadow-lg">
+              <Badge className="bg-gradient-to-r from-[#B8735F] to-[#A0593D] text-white border-0 shadow-lg">
                 <TrendingUp className="h-3 w-3 mr-1" />
                 Más vendido
               </Badge>
             )}
             {product.isNew && (
-              <Badge className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-0 shadow-lg">
+              <Badge className="bg-gradient-to-r from-[#8B9A7A] to-[#6B7D5C] text-white border-0 shadow-lg">
                 <Flame className="h-3 w-3 mr-1" />
                 Nuevo
               </Badge>
@@ -70,7 +70,7 @@ const ProductCard21Enhanced: React.FC<Props> = ({
           {/* Urgency Badge - Top Right */}
           {showUrgency && stock <= 5 && (
             <div className="absolute top-2 right-2 z-10">
-              <Badge variant="destructive" className="shadow-lg animate-pulse">
+              <Badge className="bg-[#A45A3E] text-white border-0 shadow-lg animate-pulse">
                 <Clock className="h-3 w-3 mr-1" />
                 Solo {stock} disponibles
               </Badge>
@@ -158,13 +158,13 @@ const ProductCard21Enhanced: React.FC<Props> = ({
               {viewingNow > 3 && (
                 <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                   <div className="flex items-center gap-1">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                    <div className="w-2 h-2 bg-[#7A8A6F] rounded-full animate-pulse" />
                     <span>{viewingNow} personas viendo ahora</span>
                   </div>
                 </div>
               )}
               {soldRecently > 10 && (
-                <div className="flex items-center gap-1.5 text-xs text-orange-600">
+                <div className="flex items-center gap-1.5 text-xs text-[#A45A3E]">
                   <Flame className="h-3 w-3" />
                   <span>{soldRecently} vendidos esta semana</span>
                 </div>
@@ -176,7 +176,7 @@ const ProductCard21Enhanced: React.FC<Props> = ({
           {isMylo && (
             <TooltipProvider>
               <div className="pt-2 flex items-center gap-1.5 text-xs">
-                <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200">
+                <Badge variant="outline" className="bg-[#F5EFE6] text-[#B08D5B] border-[#C9A875]/30">
                   <a
                     href="https://boltthreads.com/technology/mylo/"
                     target="_blank"
