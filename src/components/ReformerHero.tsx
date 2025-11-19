@@ -17,18 +17,9 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: nu
 
 const ReformerHero = () => {
   return (
-    <section className="relative h-screen min-h-[800px] w-full overflow-hidden bg-[#2A2624] text-[#EAE8E4]">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/images/homepage-hero.webp')" }}
-        />
-        <div className="absolute inset-0 bg-black/40 z-10" /> {/* Refined Overlay */}
-      </div>
-
+    <section className="relative w-full bg-[#2A2624] text-[#EAE8E4]">
       {/* Content Container */}
-      <div className="relative z-20 h-full container mx-auto px-8 md:px-24 flex flex-col justify-center">
+      <div className="container mx-auto px-8 md:px-24 py-24 md:py-32">
         <div className="max-w-3xl">
 
           {/* Super-title */}
