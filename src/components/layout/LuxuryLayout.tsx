@@ -101,7 +101,7 @@ const LuxuryLayout = ({ children, className = "", noPadding = false }: LuxuryLay
                             <h4 className="text-xs uppercase tracking-[0.2em] mb-6 text-white/40">Explore</h4>
                             <ul className="space-y-4 text-sm font-light text-white/80">
                                 <li><Link to="/shop" className="hover:text-white transition-colors">Shop Collection</Link></li>
-                                <li><Link to="/store" className="hover:text-white transition-colors">Compare Models</Link></li>
+                                <li><Link to="/compare" className="hover:text-white transition-colors">Compare Models</Link></li>
                                 <li><Link to="/about" className="hover:text-white transition-colors">Our Story</Link></li>
                             </ul>
                         </div>

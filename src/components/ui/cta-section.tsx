@@ -32,9 +32,9 @@ const CTASection = ({
             </Link>
           </Button>
           <Button asChild variant="outline" size="sm">
-            <Link to="/store">
+            <Link to="/compare">
               <ArrowRight className="mr-2 h-4 w-4" />
-              Ir a la tienda
+              Comparar Modelos
             </Link>
           </Button>
         </div>
@@ -92,9 +92,9 @@ const CTASection = ({
           {/* Call Button */}
           <div className="text-center">
             <Button size="lg" variant="outline" className="w-full mb-2" asChild>
-              <Link to="/store">
+              <Link to="/compare">
                 <ArrowRight className="mr-2 h-4 w-4" />
-                Ir a la tienda
+                Comparar Modelos
               </Link>
             </Button>
             <p className="text-sm text-muted-foreground">Compra con envío en México</p>

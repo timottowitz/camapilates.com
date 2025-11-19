@@ -45,7 +45,7 @@ const ProductPage: React.FC = () => {
     try { if (typeof window !== 'undefined') window.localStorage.setItem('regionPref', value); } catch { /* ignore */ }
   };
 
-  if (!prod) return <Navigate to="/store" replace />;
+  if (!prod) return <Navigate to="/compare" replace />;
 
   const url = `${origin}/product/${prod.slug}`;
 

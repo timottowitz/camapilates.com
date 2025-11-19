@@ -79,7 +79,7 @@ const ReformerHero = () => {
                 Shop Collection
               </Link>
               <Link
-                to="/store"
+                to="/compare"
                 className="px-8 py-4 border border-white/30 text-white rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white/10 transition-colors duration-300 backdrop-blur-sm"
               >
                 Compare Models

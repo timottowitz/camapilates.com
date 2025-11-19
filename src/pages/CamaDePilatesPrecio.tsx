@@ -46,7 +46,7 @@ const CamaDePilatesPrecio: React.FC = () => {
               Rangos de referencia en México y qué incluye realmente el precio: materiales (cuero, nogal, acero), tolerancias para el silencio, muelles, garantía y servicio.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link to="/store" className="inline-flex items-center px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors">
+              <Link to="/compare" className="inline-flex items-center px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors">
                 Ver Modelos
               </Link>
               <Link to="/cama-de-pilates/en-venta" className="inline-flex items-center px-8 py-4 border border-[#2A2624]/20 text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#EAE8E4] transition-colors">

@@ -7,7 +7,7 @@ import { Check, ArrowRight, Star, Shield, Truck, Clock } from 'lucide-react';
 import { ContextualImage } from '@/components/ContextualImage';
 import { motion } from 'framer-motion';
 
-const Store = () => {
+const Compare = () => {
   const origin = getOrigin();
   const title = 'The Collection | Edelweiss Pilates';
   const desc = 'Compare our professional and home reformer models. German engineering, Mexican soul. 3-week delivery.';
@@ -19,7 +19,7 @@ const Store = () => {
       <Helmet>
         <title>{title} | {DEFAULTS.siteName}</title>
         <meta name="description" content={desc} />
-        <link rel="canonical" href={`${origin}/store`} />
+        <link rel="canonical" href={`${origin}/compare`} />
       </Helmet>
 
       {/* Hero Section */}
@@ -42,8 +42,8 @@ const Store = () => {
           <div className="group relative bg-[#EAE8E4] rounded-sm overflow-hidden border border-[#2A2624]/10 hover:border-[#2A2624]/30 transition-colors duration-500">
             <div className="aspect-[4/3] overflow-hidden">
               <ContextualImage
-                placeholderId="store-home-reformer"
-                pageType="store"
+                placeholderId="compare-home-reformer"
+                pageType="compare"
                 pageSlug="home"
                 location="split-left"
                 aspectRatio="4:3"
@@ -86,8 +86,8 @@ const Store = () => {
           <div className="group relative bg-[#2A2624] text-[#EAE8E4] rounded-sm overflow-hidden">
             <div className="aspect-[4/3] overflow-hidden opacity-90 group-hover:opacity-100 transition-opacity">
               <ContextualImage
-                placeholderId="store-pro-reformer"
-                pageType="store"
+                placeholderId="compare-pro-reformer"
+                pageType="compare"
                 pageSlug="pro"
                 location="split-right"
                 aspectRatio="4:3"
@@ -228,4 +228,4 @@ const Store = () => {
   );
 };
 
-export default Store;
+export default Compare;

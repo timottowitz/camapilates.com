@@ -11,7 +11,7 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import NotFound from "./pages/NotFound";
-const Store = lazy(() => import('./pages/Store'));
+const Compare = lazy(() => import('./pages/Compare'));
 const Shop = lazy(() => import('./pages/Shop'));
 const ShopCategory = lazy(() => import('./pages/ShopCategory'));
 const Blog = lazy(() => import('./pages/Blog'));
@@ -70,7 +70,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
-              <Route path="/store" element={<Suspense fallback={<PageLoader />}><Store /></Suspense>} />
+              <Route path="/compare" element={<Suspense fallback={<PageLoader />}><Compare /></Suspense>} />
               <Route path="/shop" element={<Suspense fallback={<PageLoader />}><Shop /></Suspense>} />
               <Route path="/shop/category/:slug" element={<Suspense fallback={<PageLoader />}><ShopCategory /></Suspense>} />
               <Route path="/products" element={<Suspense fallback={<PageLoader />}><Products /></Suspense>} />

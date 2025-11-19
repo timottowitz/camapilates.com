@@ -162,7 +162,7 @@ const Shop: React.FC = () => {
             <a href="https://wa.me/523222787690" className="hover:text-[#3E2723] transition-colors">WhatsApp</a>
             <a href="tel:+523222787690" className="hover:text-[#3E2723] transition-colors">Llamar</a>
             <div className="hidden sm:block text-[#5D5550]">
-              <Link to="/store" className="hover:text-[#3E2723] transition-colors">Comparar Modelos</Link>
+              <Link to="/compare" className="hover:text-[#3E2723] transition-colors">Comparar Modelos</Link>
             </div>
           </div>
         </div>

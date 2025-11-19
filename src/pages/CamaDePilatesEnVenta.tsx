@@ -82,7 +82,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
             <p className="text-muted-foreground">A partir de 8 unidades aplicamos <strong>20% de descuento</strong>. Coordinamos instalación y entrega por lotes. </p>
             <div className="mt-4 flex flex-wrap gap-3">
               <Link to="/products" className="inline-flex items-center px-5 py-3 rounded-md bg-[#6B4F3B] text-white hover:bg-[#5f4636]">Ver todos los productos</Link>
-              <Link to="/store" className="inline-flex items-center px-5 py-3 rounded-md border border-foreground text-foreground hover:bg-foreground hover:text-background">Ir a la tienda</Link>
+              <Link to="/compare" className="inline-flex items-center px-5 py-3 rounded-md border border-foreground text-foreground hover:bg-foreground hover:text-background">Comparar Modelos</Link>
             </div>
           </div>
         </div>
