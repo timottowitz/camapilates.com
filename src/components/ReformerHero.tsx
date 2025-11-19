@@ -25,10 +25,10 @@ const ReformerHero = () => {
           <iframe
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
             style={{
-              width: '200vw',
-              height: '200vh',
-              minWidth: '200vw',
-              minHeight: '200vh'
+              width: '177.78vh',
+              height: '100vh',
+              minWidth: '100vw',
+              minHeight: '56.25vw'
             }}
             src="https://www.youtube.com/embed/irOmsZZHcIs?autoplay=1&mute=1&playsinline=1&controls=0&loop=1&playlist=irOmsZZHcIs&modestbranding=1&rel=0"
             title="Pilates Reformer en movimiento"
@@ -43,7 +43,7 @@ const ReformerHero = () => {
       </div>
 
       {/* Content Container */}
-      <div className="relative z-20 h-full container mx-auto px-8 md:px-24 flex flex-col justify-end pb-32">
+      <div className="relative z-20 h-full container mx-auto px-8 md:px-24 flex flex-col justify-center">
         <div className="max-w-3xl">
           
           {/* Super-title */}
