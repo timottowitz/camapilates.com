@@ -61,6 +61,7 @@
     "cmdk": "npm:cmdk@^1.0.0",
     "date-fns": "npm:date-fns@^3.6.0",
     "embla-carousel-react": "npm:embla-carousel-react@^8.3.0",
+    "framer-motion": "npm:framer-motion@^12.23.24",
     "gray-matter": "npm:gray-matter@^4.0.3",
     "input-otp": "npm:input-otp@^1.2.4",
     "next-themes": "npm:next-themes@^0.3.0",
