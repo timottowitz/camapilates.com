@@ -23,8 +23,8 @@ jobs:
         with:
           deno-version: v2.x
 
-      # Deno will resolve npm dependencies declared in deno.json automatically
-      # No separate install step is required
+      - name: Install dependencies
+        run: deno install
 
       - name: Build
         run: deno task build
