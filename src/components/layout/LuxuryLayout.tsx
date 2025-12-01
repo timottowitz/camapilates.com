@@ -24,7 +24,7 @@ const LuxuryLayout = ({ children, className = "", noPadding = false }: LuxuryLay
 
     const navLinks = [
         { to: '/shop', label: 'Shop' },
-        { to: '/store', label: 'Compare' },
+        { to: '/compare', label: 'Compare' },
         { to: '/blog', label: 'Blog' },
         { to: '/estudios-de-pilates', label: 'Studios' },
         { to: '/certificacion-pilates', label: 'Certification' },

@@ -19,7 +19,7 @@ export function EnhancedHero({
   title,
   subtitle,
   ctaPrimary = { text: 'Ver promoción', href: '/product/reformer-profesional' },
-  ctaSecondary = { text: 'Comparar modelos', href: '/store' },
+  ctaSecondary = { text: 'Comparar modelos', href: '/compare' },
   backgroundImage,
   videoUrl,
   showTrustMetrics = true,

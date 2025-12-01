@@ -174,7 +174,7 @@ const Shop: React.FC = () => {
           backgroundImage={assets.shopHero || DEFAULTS.ogImage}
           showTrustMetrics={false}
           ctaPrimary={{ text: 'Ver promoción', href: '/product/reformer-profesional' }}
-          ctaSecondary={{ text: 'Comparar modelos', href: '/store' }}
+          ctaSecondary={{ text: 'Comparar modelos', href: '/compare' }}
         />
 
         {/* Shop by category icons */}

@@ -59,10 +59,10 @@ const Index = () => {
     brand: { '@type': 'Brand', name: 'CAMA Pilates' },
     sku: 'HOME-REFORMER-001',
     image: [`${origin}/og/cama-de-pilates-venta-mexico.png`],
-    url: `${origin}/store#casa`,
+    url: `${origin}/compare#casa`,
     offers: {
       '@type': 'Offer',
-      url: `${origin}/store#casa`,
+      url: `${origin}/compare#casa`,
       priceCurrency: 'MXN',
       price: '999.00',
       availability: 'https://schema.org/InStock',
