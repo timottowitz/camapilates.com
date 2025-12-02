@@ -128,7 +128,7 @@ export const GooglePlacesPhoto: React.FC<GooglePlacesPhotoProps> = ({
     return () => {
       mounted = false;
     };
-  }, [isVisible, placeId, width, height, fallbackIndex, showAttribution]);
+  }, [isVisible, placeId, width, height, fallbackIndex, showAttribution, fetchPhotoUrl]);
 
   // Generate deterministic placeholder while loading
   const studioColor = getStudioColor(studioName);
