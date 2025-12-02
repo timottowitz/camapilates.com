@@ -198,73 +198,27 @@ export function StudioMap({
         animation: window.google.maps.Animation.DROP,
       });
 
-      // Create info window
-      const infoContent = `
-        <div style="padding: 12px; max-width: 300px;">
-          <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 8px;">${studio.name}</h3>
-          <p style="font-size: 14px; color: #666; margin-bottom: 8px;">${studio.address.street}</p>
-          ${studio.address.neighborhood ? `<p style="font-size: 12px; color: #888;">${studio.address.neighborhood}</p>` : ''}
-          ${studio.metrics?.googleRating ? `
-            <div style="margin-top: 8px; display: flex; align-items: center; gap: 8px;">
-              <span style="font-size: 14px; font-weight: 500;">⭐ ${studio.metrics.googleRating}</span>
-              <span style="font-size: 12px; color: #888;">(${studio.metrics.googleReviewCount} reviews)</span>
-            </div>
-          ` : ''}
-          ${studio.amenities && studio.amenities.length > 0 ? `
-            <div style="margin-top: 8px;">
-              ${studio.amenities.slice(0, 3).map(a => `
-                <span style="display: inline-block; padding: 2px 8px; margin: 2px; background: #f3f4f6; border-radius: 4px; font-size: 11px;">${a}</span>
-              `).join('')}
-            </div>
-          ` : ''}
-          ${enableGeolocation && userLocation ? `
-            <button
-              onclick="window.getDirectionsToStudio('${studio._id}')"
-              style="margin-top: 12px; padding: 6px 12px; background: #8B5CF6; color: white; border: none; border-radius: 6px; font-size: 12px; cursor: pointer; width: 100%;"
-            >
-              Get Directions
-            </button>
-          ` : ''}
-        </div>
-      `;
-
-      const infoWindow = new window.google.maps.InfoWindow({
-        content: infoContent,
-      });
-
-      marker.addListener('click', (event: any) => {
-        // Prevent any default scroll behavior
-        if (event?.domEvent) {
-          event.domEvent.preventDefault();
-          event.domEvent.stopPropagation();
-        }
-
-        // Save current scroll position to restore after state change
+      // Click handler - show React preview card instead of Google InfoWindow
+      marker.addListener('click', () => {
+        // Save scroll position before any state change
         const scrollY = window.scrollY;
-        const scrollX = window.scrollX;
-
-        // Close all other info windows
-        newMarkers.forEach(m => m.infoWindow?.close());
 
         // Pan map to center the marker with offset for the card
         const latLng = marker.getPosition();
         if (latLng) {
-          // Offset the center slightly up so the card doesn't cover the marker
-          const offsetLat = latLng.lat() - 0.008; // Shift down so marker appears above card
+          const offsetLat = latLng.lat() - 0.008;
           map.panTo({ lat: offsetLat, lng: latLng.lng() });
         }
 
-        // Set selected studio to show the preview card (don't navigate yet)
-        // Use requestAnimationFrame to ensure scroll position is preserved
+        // Show the preview card
         setSelectedStudio(studio);
 
-        // Restore scroll position after React re-render
+        // Restore scroll position after render
         requestAnimationFrame(() => {
-          window.scrollTo(scrollX, scrollY);
+          window.scrollTo(0, scrollY);
         });
       });
 
-      marker.infoWindow = infoWindow;
       newMarkers.push(marker);
       bounds.extend(position);
     });
@@ -438,12 +392,7 @@ export function StudioMap({
     map.setCenter(nearest.address.coordinates);
     map.setZoom(16);
 
-    // Open its info window
-    const marker = markers.find(m => m.getTitle() === nearest.name);
-    if (marker && marker.infoWindow) {
-      marker.infoWindow.open(map, marker);
-    }
-
+    // Show the preview card for the nearest studio
     setSelectedStudio(nearest);
   }, [userLocation, studios, map, markers]);
 
