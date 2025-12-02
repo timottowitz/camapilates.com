@@ -24,15 +24,9 @@ interface GooglePlacesPhotoProps {
 }
 
 /**
- * Stored Photo Component
- *
- * This component displays photos from Convex storage (pre-downloaded from Google Places):
- * 1. Fetches stored photo from studioPhotos table
- * 2. Falls back to placeholder if no stored photo exists
- * 3. No live API calls - all data comes from Convex
- * 4. Properly displays stored attribution
+ * Inner component that uses Convex hooks (only rendered when Convex is available)
  */
-export const GooglePlacesPhoto: React.FC<GooglePlacesPhotoProps> = ({
+const GooglePlacesPhotoWithConvex: React.FC<GooglePlacesPhotoProps & { placeId: string }> = ({
   placeId,
   studioName,
   width = 800,
@@ -43,13 +37,13 @@ export const GooglePlacesPhoto: React.FC<GooglePlacesPhotoProps> = ({
   fallbackIndex = 0,
 }) => {
   const [isVisible, setIsVisible] = useState(priority === 'eager');
+  const [imgError, setImgError] = useState(false);
 
-  // Fetch stored photo from Convex (no live API call)
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const storedPhoto = hasConvex && placeId ? useQuery(
+  // Always call hook unconditionally, use 'skip' for conditional fetching
+  const storedPhoto = useQuery(
     api.studioEnrichment.getStoredPhoto,
     isVisible ? { googlePlaceId: placeId, photoIndex: fallbackIndex } : 'skip'
-  ) : null;
+  );
 
   // Intersection Observer for lazy loading
   useEffect(() => {
@@ -65,7 +59,7 @@ export const GooglePlacesPhoto: React.FC<GooglePlacesPhotoProps> = ({
         });
       },
       {
-        rootMargin: '100px', // Start loading 100px before entering viewport
+        rootMargin: '100px',
         threshold: 0.01,
       }
     );
@@ -78,17 +72,15 @@ export const GooglePlacesPhoto: React.FC<GooglePlacesPhotoProps> = ({
     return () => observer.disconnect();
   }, [placeId, fallbackIndex, priority]);
 
-  // Determine image state based on query result
+  // Determine image state
   const imageState = storedPhoto === undefined
     ? 'loading'
-    : storedPhoto?.url
+    : (storedPhoto?.url && !imgError)
       ? 'success'
       : 'fallback';
 
-  const imageSrc = storedPhoto?.url || getPlaceholderImage(fallbackIndex);
+  const imageSrc = (storedPhoto?.url && !imgError) ? storedPhoto.url : getPlaceholderImage(fallbackIndex);
   const attribution = storedPhoto?.attribution || null;
-
-  // Generate deterministic placeholder while loading
   const studioColor = getStudioColor(studioName);
   const initials = getInitials(studioName);
 
@@ -99,16 +91,11 @@ export const GooglePlacesPhoto: React.FC<GooglePlacesPhotoProps> = ({
         className={`relative ${className}`}
         style={{ width, height }}
       >
-        {/* Initial placeholder with studio initials */}
-        <div
-          className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${studioColor.bg}`}
-        >
+        <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${studioColor.bg}`}>
           <span className={`text-6xl font-bold ${studioColor.text} opacity-20`}>
             {initials}
           </span>
         </div>
-
-        {/* Loading skeleton overlay */}
         <Skeleton className="absolute inset-0" />
       </div>
     );
@@ -125,15 +112,9 @@ export const GooglePlacesPhoto: React.FC<GooglePlacesPhotoProps> = ({
         alt={studioName}
         className="w-full h-full object-cover"
         loading={priority === 'eager' ? 'eager' : 'lazy'}
-        onError={(e) => {
-          // Final fallback if even the placeholder fails
-          const target = e.target as HTMLImageElement;
-          target.src = getPlaceholderImage(fallbackIndex);
-          setImageState('fallback');
-        }}
+        onError={() => setImgError(true)}
       />
 
-      {/* Attribution overlay (required by Google ToS) */}
       {attribution && showAttribution && imageState === 'success' && (
         <TooltipProvider>
           <Tooltip>
@@ -169,9 +150,6 @@ export const GooglePlacesPhoto: React.FC<GooglePlacesPhotoProps> = ({
         </TooltipProvider>
       )}
 
-      {/* (Removed debug-only fallback label to keep dev/prod identical) */}
-
-      {/* "Powered by Google" attribution (required when not showing a map) */}
       <img
         src="/powered-by-google.png"
         alt="Powered by Google"
@@ -179,6 +157,52 @@ export const GooglePlacesPhoto: React.FC<GooglePlacesPhotoProps> = ({
       />
     </div>
   );
+};
+
+/**
+ * Fallback component when Convex is not available
+ */
+const GooglePlacesPhotoFallback: React.FC<GooglePlacesPhotoProps> = ({
+  placeId,
+  studioName,
+  width = 800,
+  height = 600,
+  className = '',
+  fallbackIndex = 0,
+}) => {
+  const imageSrc = getPlaceholderImage(fallbackIndex);
+
+  return (
+    <div
+      id={`photo-${placeId}-${fallbackIndex}`}
+      className={`relative ${className}`}
+      style={{ width, height }}
+    >
+      <img
+        src={imageSrc}
+        alt={studioName}
+        className="w-full h-full object-cover"
+        loading="lazy"
+      />
+      <img
+        src="/powered-by-google.png"
+        alt="Powered by Google"
+        className="absolute bottom-2 left-2 h-4"
+      />
+    </div>
+  );
+};
+
+/**
+ * Main component - wrapper that checks Convex availability
+ */
+export const GooglePlacesPhoto: React.FC<GooglePlacesPhotoProps> = (props) => {
+  // If no Convex or no placeId, use fallback
+  if (!hasConvex || !props.placeId) {
+    return <GooglePlacesPhotoFallback {...props} />;
+  }
+
+  return <GooglePlacesPhotoWithConvex {...props} placeId={props.placeId} />;
 };
 
 /**
@@ -208,7 +232,7 @@ export const GooglePlacesPhotoGallery: React.FC<PhotoGalleryProps> = ({
           height={300}
           fallbackIndex={index}
           priority={index === 0 ? 'eager' : 'lazy'}
-          showAttribution={index === 0} // Only show on first image
+          showAttribution={index === 0}
           className="rounded-lg overflow-hidden"
         />
       ))}

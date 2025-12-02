@@ -104,17 +104,15 @@ const ReviewCard = ({ review }: { review: Review }) => {
   );
 };
 
-export const GoogleReviews: React.FC<GoogleReviewsProps> = ({
+// Inner component that uses hooks (only rendered when Convex is available)
+const GoogleReviewsInner: React.FC<{ googlePlaceId: string; maxReviews: number }> = ({
   googlePlaceId,
-  studioName,
-  maxReviews = 5,
+  maxReviews,
 }) => {
-  // Fetch reviews from Convex
-  const reviews = hasConvex && googlePlaceId
-    ? useQuery(api.studioEnrichment.getStudioReviews, { googlePlaceId })
-    : null;
+  // Always call hook unconditionally
+  const reviews = useQuery(api.studioEnrichment.getStudioReviews, { googlePlaceId });
 
-  // Don't render anything if no reviews
+  // Don't render anything if loading or no reviews
   if (!reviews || reviews.length === 0) {
     return null;
   }
@@ -153,6 +151,25 @@ export const GoogleReviews: React.FC<GoogleReviewsProps> = ({
         <span>Reviews from Google</span>
       </div>
     </section>
+  );
+};
+
+// Wrapper component that checks Convex availability before rendering hooks
+export const GoogleReviews: React.FC<GoogleReviewsProps> = ({
+  googlePlaceId,
+  studioName,
+  maxReviews = 5,
+}) => {
+  // Early return before any hooks if Convex isn't available or no placeId
+  if (!hasConvex || !googlePlaceId) {
+    return null;
+  }
+
+  return (
+    <GoogleReviewsInner
+      googlePlaceId={googlePlaceId}
+      maxReviews={maxReviews}
+    />
   );
 };
 
