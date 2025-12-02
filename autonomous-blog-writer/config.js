@@ -56,8 +56,8 @@ export const CONFIG = {
   OPENAI_MODEL: process.env.OPENAI_MODEL || 'gpt-4o',
   OPENAI_MODEL_FAST: process.env.OPENAI_MODEL_FAST || 'gpt-4o-mini',
   GEMINI_API_KEY: process.env.GEMINI_API_KEY,
-  GEMINI_MODEL: process.env.GEMINI_MODEL || 'gemini-1.5-flash',
-  GEMINI_MODEL_FAST: process.env.GEMINI_MODEL_FAST || 'gemini-1.5-flash',
+  GEMINI_MODEL: process.env.GEMINI_MODEL || 'gemini-2.5-flash-preview-09-2025',
+  GEMINI_MODEL_FAST: process.env.GEMINI_MODEL_FAST || 'gemini-2.5-flash-preview-09-2025',
 
   // ============================================================================
   // Content Generation

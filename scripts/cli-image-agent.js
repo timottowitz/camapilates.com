@@ -6,17 +6,24 @@
  * Registers blog placeholders, queues Convex generation, and waits for images.
  */
 
-import fs from 'node:fs';
+import dotenv from 'dotenv';
 import path from 'node:path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.resolve(__dirname, '../autonomous-blog-writer/.env') });
+
+import fs from 'node:fs';
 import matter from 'gray-matter';
-import { fileURLToPath } from 'node:url';
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { generateText } from 'ai';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
 const BLOG_DIR = path.join(ROOT, 'src', 'content', 'blog');
+const GEMINI_TEXT_MODEL = process.env.GEMINI_TEXT_MODEL || 'gemini-3-pro-preview';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || '';
 
 function resolveConvexUrl(preference) {
   const prodUrl = process.env.CONVEX_PROD_URL || 'https://spotted-raven-102.convex.cloud';
@@ -95,6 +102,63 @@ function extractInlineSections(content, limit = 3) {
     sections.push({ heading, index });
   }
   return sections;
+}
+
+function normalizeHeading(str = '') {
+  return str.trim().toLowerCase().replace(/\s+/g, ' ');
+}
+
+async function reviewImagePlacements(slug, title, content) {
+  if (!GEMINI_API_KEY) return null;
+  try {
+    const prompt = `Analiza el siguiente artículo de blog sobre Pilates y propone hasta 3 lugares donde una imagen agregaría valor visual.
+Devuelve un JSON con este formato exacto:
+[
+  {
+    "heading": "Texto exacto del H2",
+    "reason": "Por qué ayuda",
+    "preferredStyle": "lifestyle | studio | technical | product",
+    "subjects": ["persona", "reformer"],
+    "aspectRatio": "16:9" (opcional)
+  }
+]
+Solo sugiere headings que existan en el Markdown. Contexto:
+Titulo: ${title}
+Slug: ${slug}
+Contenido:
+${content.slice(0, 8000)}
+`;
+
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_TEXT_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+    const resp = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { temperature: 0.3 }
+      })
+    });
+    if (!resp.ok) {
+      throw new Error(`Gemini reviewer error: ${resp.status}`);
+    }
+    const data = await resp.json();
+    const text = String(data?.candidates?.[0]?.content?.parts?.map((p) => p.text).join('\n') || '').trim();
+    if (!text) return null;
+    const jsonMatch = text.match(/```json\s*([\s\S]*?)```/i);
+    const payload = jsonMatch ? jsonMatch[1] : text;
+    const parsed = JSON.parse(payload);
+    if (!Array.isArray(parsed)) return null;
+    return parsed.slice(0, 3).map((item) => ({
+      heading: String(item.heading || '').trim(),
+      reason: String(item.reason || '').trim(),
+      preferredStyle: String(item.preferredStyle || '').trim(),
+      subjects: Array.isArray(item.subjects) ? item.subjects.map((s) => String(s)) : [],
+      aspectRatio: item.aspectRatio ? String(item.aspectRatio) : undefined,
+    })).filter((s) => s.heading);
+  } catch (err) {
+    console.error('⚠️  Reviewer failed, falling back to default sections:', err?.message || err);
+    return null;
+  }
 }
 
 async function withRetries(fn, options = {}) {
@@ -210,12 +274,26 @@ async function processSlug(client, slug, options) {
     console.error('   ↳ hero: using existing image');
   }
 
-  const sections = extractInlineSections(content, options.inlineLimit);
-  for (let i = 0; i < sections.length; i += 1) {
-    const { heading, index } = sections[i];
+  const baseSections = extractInlineSections(content, options.inlineLimit + 2);
+  const normalizedMap = new Map(baseSections.map((s) => [normalizeHeading(s.heading), s]));
+  const reviewerSuggestions = await reviewImagePlacements(slug, frontmatter?.title || slug, content);
+  const mergedTargets = reviewerSuggestions && reviewerSuggestions.length
+    ? reviewerSuggestions
+      .map((s) => {
+        const exact = normalizedMap.get(normalizeHeading(s.heading));
+        return exact ? { ...exact, meta: s } : null;
+      })
+      .filter(Boolean)
+    : baseSections.slice(0, options.inlineLimit).map((s) => ({ ...s, meta: null }));
+
+  for (let i = 0; i < mergedTargets.length; i += 1) {
+    const { heading, index, meta } = mergedTargets[i];
     const { before, after } = contextAround(content, index);
     const placeholderId = `blog-${slug}-inline-${i + 1}`;
-    const { preferredStyle, requiredSubjects } = classify(heading, i);
+    const classified = classify(heading, i);
+    const preferredStyle = meta?.preferredStyle || classified.preferredStyle;
+    const requiredSubjects = meta?.subjects?.length ? meta.subjects : classified.requiredSubjects;
+    const preferredAspectRatio = meta?.aspectRatio || (i === 0 ? '16:9' : '4:3');
 
     const inlinePlaceholder = await ensurePlaceholder(client, {
       placeholderId,
@@ -225,7 +303,7 @@ async function processSlug(client, slug, options) {
       contextBefore: before,
       contextAfter: after,
       headingAbove: heading,
-      preferredAspectRatio: i === 0 ? '16:9' : '4:3',
+      preferredAspectRatio,
       preferredStyle,
       requiredSubjects,
       altText: heading,
@@ -236,7 +314,7 @@ async function processSlug(client, slug, options) {
     if (needsGeneration) {
       await queueGeneration(client, placeholderId);
       const result = await pollPlaceholder(client, placeholderId, options.waitMs);
-      summary.push({ placeholderId, heading, ...result });
+      summary.push({ placeholderId, heading, reason: meta?.reason, ...result });
       console.error(`   ↳ ${placeholderId}: ${result.status}${result.imageUrl ? ' (image ready)' : ''}${result.error ? ` - ${result.error}` : ''}`);
     } else {
       summary.push({ placeholderId, heading, status: inlinePlaceholder.status, imageUrl: inlinePlaceholder.imageUrl, skipped: true });
@@ -244,7 +322,61 @@ async function processSlug(client, slug, options) {
     }
   }
 
+  // Update the blog file with the images
+  updateBlogContent(slug, content, frontmatter, summary);
+
   return summary;
+}
+
+function updateBlogContent(slug, content, frontmatter, summary) {
+  const file = path.join(BLOG_DIR, `${slug}.md`);
+  let newContent = content;
+  let newFrontmatter = { ...frontmatter };
+  let hasChanges = false;
+
+  // 1. Update Hero Image in Frontmatter
+  const hero = summary.find(s => s.placeholderId.includes('hero'));
+  if (hero && hero.imageUrl) {
+    newFrontmatter.heroImage = hero.imageUrl;
+    hasChanges = true;
+  }
+
+  // 2. Insert Inline Images
+  // Sort by index descending to avoid offsetting indices when inserting
+  const inlineImages = summary
+    .filter(s => s.heading && s.imageUrl)
+    .sort((a, b) => {
+      const idxA = content.indexOf(a.heading);
+      const idxB = content.indexOf(b.heading);
+      return idxB - idxA;
+    });
+
+  for (const img of inlineImages) {
+    // Find the heading in the *current* newContent (it might have changed, but we iterate backwards so indices relative to the start shouldn't shift for previous items... wait, regex is safer)
+    // Actually, simple replacement is safer.
+    const headingRegex = new RegExp(`(##\\s+${escapeRegExp(img.heading)})`, 'i');
+    if (headingRegex.test(newContent)) {
+      // Check if image is already there to avoid duplicates
+      if (!newContent.includes(img.imageUrl)) {
+        // Insert after the heading
+        const imageMarkdown = `\n![${img.heading}](${img.imageUrl})\n`;
+        newContent = newContent.replace(headingRegex, `$1${imageMarkdown}`);
+        hasChanges = true;
+      }
+    }
+  }
+
+  if (hasChanges) {
+    const newFileContent = matter.stringify(newContent, newFrontmatter);
+    fs.writeFileSync(file, newFileContent, 'utf8');
+    console.error(`   💾 Updated blog file with images: ${slug}`);
+  } else {
+    console.error(`   ℹ️  No new images to write for: ${slug}`);
+  }
+}
+
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 async function main() {

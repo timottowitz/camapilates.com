@@ -1,15 +1,28 @@
 ---
-title: "Comunidad Pilates Mexicana: Conectando Instructores y Transformando Vidas en 2025"
-description: "Descubre la vibrante comunidad de Pilates en México: certificaciones reconocidas, eventos de networking, estudios destacados y oportunidades de crecimie…"
-category: "Comunidad Pilates México"
-tags: ["comunidad pilates", "networking instructores", "eventos pilates", "certificación pilates méxico", "estudios pilates cdmx"]
-publishDate: "2025-01-28"
-author: "CAMA Pilates"
-slug: "comunidad-pilates-mexicana"
+title: >-
+  Comunidad Pilates Mexicana: Conectando Instructores y Transformando Vidas en
+  2025
+description: >-
+  Descubre la vibrante comunidad de Pilates en México: certificaciones
+  reconocidas, eventos de networking, estudios destacados y oportunidades de
+  crecimie…
+category: Comunidad Pilates México
+tags:
+  - comunidad pilates
+  - networking instructores
+  - eventos pilates
+  - certificación pilates méxico
+  - estudios pilates cdmx
+publishDate: '2025-01-28'
+author: CAMA Pilates
+slug: comunidad-pilates-mexicana
 featured: true
-hero: "estudio-pilates-mexico-comunidad.jpg"
-heroAlt: "Grupo de instructores de Pilates mexicanos en sesión de entrenamiento"
----s en sesión de entrenamiento"
+hero: estudio-pilates-mexico-comunidad.jpg
+heroAlt: Grupo de instructores de Pilates mexicanos en sesión de entrenamiento
+heroImage: >-
+  https://spotted-raven-102.convex.cloud/api/storage/dc804b10-4d0a-45ed-9a2a-2aa70ab662e8
+---
+s en sesión de entrenamiento"
 ---
 
 > **Nota**: Este artículo es una guía completa sobre la comunidad de Pilates en México. Para asesoramiento médico específico, consulta a un profesional de la salud.
@@ -32,6 +45,8 @@ Los instructores mexicanos son especialmente activos en Instagram (@pilatesmexic
 Las certificaciones con valor internacional como NPCP (National Pilates Certification Program) o PMA (Pilates Method Alliance) abren puertas no solo en México sino globalmente, con inversiones desde $45,000 hasta $95,000 MXN.
 
 ## Mapa de la Comunidad Pilates por Ciudad
+![Mapa de la Comunidad Pilates por Ciudad](https://spotted-raven-102.convex.cloud/api/storage/8393c61e-d609-4d76-bccb-20e6ee98806a)
+
 
 ### Ciudad de México (CDMX): El Epicentro del Movimiento
 
@@ -54,6 +69,8 @@ Monterrey destaca por albergar programas de certificación de **Catalina Colín*
 <see-also limit="3" />
 
 ## Certificaciones que Están Transformando Carreras
+![Certificaciones que Están Transformando Carreras](https://spotted-raven-102.convex.cloud/api/storage/0de8df10-ab16-4641-903b-671cdaedc615)
+
 
 ### Authentic Pilates México: El Legado Clásico
 - **Duración**: 12 meses con 600 horas de formación

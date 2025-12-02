@@ -25,12 +25,18 @@ import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import CONFIG from '../autonomous-blog-writer/config.js';
+import { ConvexHttpClient } from "convex/browser";
+import { api } from "../convex/_generated/api.js";
+import { config as dotenvConfig } from 'dotenv';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = CONFIG.PROJECT_ROOT;
 const RESEARCH_DIR = CONFIG.RESEARCH_DIR;
 const BLOG_DIR = CONFIG.BLOG_OUTPUT_DIR;
 const TODO_FILE = CONFIG.TODO_FILE;
+
+// Load root .env.local for VITE_CONVEX_URL
+dotenvConfig({ path: path.resolve(__dirname, '../.env.local') });
 
 let openaiClient = null;
 let geminiClient = null;
@@ -53,12 +59,15 @@ function getModel(kind = 'main') {
 
 function extractJsonPayload(text) {
   if (!text) return '';
-  const trimmed = text.trim();
-  const fenceMatch = trimmed.match(/```(?:json)?\s*([\s\S]*?)```/i);
-  if (fenceMatch) {
-    return fenceMatch[1].trim();
+  // Remove markdown code blocks
+  let cleaned = text.replace(/```(?:json)?/g, '').replace(/```/g, '').trim();
+  // Find first '{' and last '}'
+  const firstBrace = cleaned.indexOf('{');
+  const lastBrace = cleaned.lastIndexOf('}');
+  if (firstBrace >= 0 && lastBrace > firstBrace) {
+    cleaned = cleaned.slice(firstBrace, lastBrace + 1);
   }
-  return trimmed;
+  return cleaned;
 }
 
 const server = new Server(
@@ -209,6 +218,44 @@ async function writeBlogFromResearch(slug, forceOverwrite = false) {
   // 8. Write to file
   await fs.mkdir(BLOG_DIR, { recursive: true });
   await fs.writeFile(blogFile, final, 'utf-8');
+
+  // 9. Write to Convex
+  if (process.env.VITE_CONVEX_URL) {
+    log(`🚀 Uploading to Convex: ${process.env.VITE_CONVEX_URL}`);
+    try {
+      const client = new ConvexHttpClient(process.env.VITE_CONVEX_URL);
+
+      // Extract description from frontmatter or metadata
+      const description = `Guía práctica sobre ${metadata.title.toLowerCase()} con enfoque en México: consejos y pasos accionables.`.slice(0, 155);
+
+      const blogData = {
+        slug: metadata.slug,
+        title: metadata.title,
+        content: fullContent, // Markdown content without frontmatter
+        excerpt: description,
+        category: metadata.category,
+        tags: metadata.keywords.slice(0, 5),
+        author: "CAMA Pilates",
+        publishDate: new Date().toISOString(),
+        featured: false,
+        status: 'published',
+      };
+
+      // Check if exists to decide on create vs update (though create handles unique constraint usually by failing, but we want to update if exists)
+      // Since we don't have an easy "upsert" without ID, we query first.
+      const existing = await client.query(api.blogs.getBySlug, { slug: metadata.slug });
+
+      if (existing) {
+        await client.mutation(api.blogs.update, { ...blogData, slug: metadata.slug });
+        log(`   ✅ Updated in Convex`);
+      } else {
+        await client.mutation(api.blogs.create, blogData);
+        log(`   ✅ Created in Convex`);
+      }
+    } catch (e) {
+      log(`   ❌ Failed to upload to Convex: ${e.message}`);
+    }
+  }
 
   const processingTime = Date.now() - startTime;
   const wordCount = countWords(fullContent);
@@ -470,7 +517,7 @@ FORMATO JSON:
 // ============================================================================
 
 async function polishContent(fullContent, researchContent, metadata) {
-  const model = getModel('fast');
+  const model = getModel('main');
 
   const systemPrompt = `Eres un editor de contenido senior para CAMA Pilates.
 

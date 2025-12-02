@@ -74,7 +74,7 @@ export const register = mutation({
             placeholderId: args.placeholderId,
           });
         }
-      } catch {}
+      } catch { }
       return existing._id;
     }
 
@@ -107,7 +107,7 @@ export const register = mutation({
       await ctx.scheduler.runAfter(0, internal.placeholderGeneration.generatePrompt, {
         placeholderId: args.placeholderId,
       });
-    } catch {}
+    } catch { }
 
     return id;
   },
@@ -179,13 +179,45 @@ export const listWithPreview = query({
 
     const out = await Promise.all(rows.map(async (row) => {
       let previewUrl: string | undefined;
+
+      // First try to get assigned image
       if (row.assignedImageId) {
         const img = await ctx.db.get(row.assignedImageId);
         if (img) {
           const sid = img.generatedStorageId || img.storageId;
-          try { previewUrl = await ctx.storage.getUrl(sid); } catch {}
+          try { previewUrl = await ctx.storage.getUrl(sid); } catch { }
         }
       }
+
+      // If no assigned image, try to extract from blog content
+      if (!previewUrl && row.pageType === 'blog' && row.pageSlug) {
+        try {
+          const blog = await ctx.db
+            .query('blogs')
+            .withIndex('by_slug', q => q.eq('slug', row.pageSlug!))
+            .first();
+
+          if (blog) {
+            // Extract image URLs from markdown
+            const imgRegex = /!\[([^\]]*)\]\(([^)]+)\)/g;
+            const matches = [...blog.content.matchAll(imgRegex)];
+
+            if (matches.length > 0) {
+              // Try to match the location to the appropriate image
+              const locationMatch = row.location.match(/inline-(\d+)/);
+              if (locationMatch) {
+                const index = parseInt(locationMatch[1]);
+                if (matches[index]) {
+                  previewUrl = matches[index][2];
+                }
+              } else if (row.location === 'hero' && matches[0]) {
+                previewUrl = matches[0][2];
+              }
+            }
+          }
+        } catch { }
+      }
+
       return { ...row, previewUrl };
     }));
     return out;

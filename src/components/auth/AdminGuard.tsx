@@ -11,15 +11,19 @@ const AdminGuard: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const sess = useQuery(api.admin.session as any, token ? ({ token } as any) : 'skip' as any) as any;
   useEffect(() => {
     if (token && sess) {
-      setAuthed(Boolean(sess?.authenticated));
+      const isAuthenticated = Boolean(sess?.authenticated);
+      setAuthed(isAuthenticated);
       setLoading(false);
+      if (!isAuthenticated) {
+        localStorage.removeItem('admint');
+      }
     } else if (!token) {
       setAuthed(false);
       setLoading(false);
     }
   }, [token, sess]);
 
-  if (loading) return <div className="container mx-auto px-4 py-12">Cargando…</div>;
+  if (loading) return <div className="container mx-auto px-4 py-12">Cargando...</div>;
   if (!authed) return <Navigate to="/admin" replace />;
   return <>{children}</>;
 };

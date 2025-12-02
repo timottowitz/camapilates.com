@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import BlogList from '@/components/blog/BlogList';
-import { loadAllBlogPosts } from '@/utils/blogUtils';
 import { slugify } from '@/utils/slug';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { ArrowLeft } from 'lucide-react';
+import { useQuery } from 'convex/react';
+import { api } from '../../convex/_generated/api';
 
 interface BlogPostMeta {
   slug: string;
@@ -25,16 +26,15 @@ const BlogCategory: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const normalized = slugify(category || '');
 
+  const blogs = useQuery(api.blogs.list, { status: 'published' });
+
   useEffect(() => {
-    const run = async () => {
-      setLoading(true);
-      const all = await loadAllBlogPosts();
-      const filtered = all.filter(p => slugify(p.category) === normalized);
-      setPosts(filtered);
+    if (blogs) {
+      const filtered = blogs.filter(p => slugify(p.category) === normalized);
+      setPosts(filtered as any);
       setLoading(false);
-    };
-    run();
-  }, [normalized]);
+    }
+  }, [blogs, normalized]);
 
   // Normalize URL to ASCII slug to avoid diacritics in path
   useEffect(() => {

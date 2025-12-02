@@ -1,15 +1,27 @@
 import React, { useMemo, useState } from 'react';
 import { useAction, useMutation, useQuery } from 'convex/react';
 import { api } from '../../convex/_generated/api';
-import { toast } from '@/components/ui/sonner';
+import { toast } from 'sonner';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 
 const StatusBadge: React.FC<{ s: string }> = ({ s }) => {
-  const color = s === 'active' ? 'bg-green-100 text-green-800' : s === 'image_assigned' ? 'bg-blue-100 text-blue-800' : s === 'prompt_generated' ? 'bg-purple-100 text-purple-800' : 'bg-yellow-100 text-yellow-800';
-  return <span className={`px-2 py-0.5 rounded text-xs ${color}`}>{s}</span>;
+  const isProcessing = s === 'pending' || s === 'prompt_generated';
+  const color = s === 'active' ? 'bg-green-100 text-green-800' :
+    s === 'image_assigned' ? 'bg-blue-100 text-blue-800' :
+      s === 'prompt_generated' ? 'bg-purple-100 text-purple-800' :
+        s === 'pending' ? 'bg-orange-100 text-orange-800' :
+          'bg-yellow-100 text-yellow-800';
+
+  return (
+    <div className={`px-2 py-0.5 rounded text-xs inline-flex items-center gap-1 w-fit ${color}`}>
+      {/* Always render spinner to maintain DOM stability, hide when not processing */}
+      <span className={`w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin ${isProcessing ? '' : 'hidden'}`} />
+      <span>{s}</span>
+    </div>
+  );
 };
 
 const AdminPlaceholders: React.FC = () => {
@@ -23,7 +35,7 @@ const AdminPlaceholders: React.FC = () => {
   // History drawer
   const [openHistory, setOpenHistory] = useState(false);
   const [histPhId, setHistPhId] = useState<string | null>(null);
-  const historyItems = useQuery(api.aiImages.listByPlaceholder as any, histPhId ? { placeholderId: histPhId } : undefined as any) as any[] | undefined;
+  const historyItems = useQuery(api.aiImages.listByPlaceholder as any, histPhId ? { placeholderId: histPhId } : "skip") as any[] | undefined;
 
   // Prompt dialog
   const [openPrompt, setOpenPrompt] = useState(false);
@@ -44,7 +56,7 @@ const AdminPlaceholders: React.FC = () => {
   async function queueAllPending() {
     const pending = filtered.filter(r => r.status === 'pending' || r.status === 'prompt_generated');
     for (const r of pending.slice(0, 50)) {
-      try { await queue({ placeholderId: r.placeholderId }); } catch {}
+      try { await queue({ placeholderId: r.placeholderId }); } catch { }
     }
     toast.success(`Queued ${pending.length} placeholders`);
   }
@@ -66,28 +78,28 @@ const AdminPlaceholders: React.FC = () => {
           <Button
             variant="outline"
             size="sm"
-            onClick={async ()=>{
+            onClick={async () => {
               const ids = Object.keys(selected).filter(k => selected[k]);
               if (!ids.length) return toast('No items selected');
               let ok = 0;
-              for (const id of ids) { try { await queue({ placeholderId: id }); ok++; } catch {} }
+              for (const id of ids) { try { await queue({ placeholderId: id }); ok++; } catch { } }
               toast.success(`Queued ${ok} selected`);
             }}
           >Queue selected</Button>
           <Button
             variant="outline"
             size="sm"
-            onClick={async ()=>{
+            onClick={async () => {
               const ids = Object.keys(selected).filter(k => selected[k]);
               if (!ids.length) return toast('No items selected');
               let ok = 0;
-              for (const id of ids) { try { await assignLatest({ placeholderId: id, activate: true }); ok++; } catch {} }
+              for (const id of ids) { try { await assignLatest({ placeholderId: id, activate: true }); ok++; } catch { } }
               toast.success(`Assigned latest for ${ok} selected`);
             }}
           >Assign latest (selected)</Button>
         </div>
       </div>
-      <div className="text-sm text-muted-foreground mb-4">Totals: {Object.entries(counts).map(([k,v]) => `${k}: ${v}`).join(' · ') || '—'}</div>
+      <div className="text-sm text-muted-foreground mb-4">Totals: {Object.entries(counts).map(([k, v]) => `${k}: ${v}`).join(' · ') || '—'}</div>
       <div className="overflow-auto border rounded">
         <table className="min-w-full text-sm">
           <thead className="bg-muted">
@@ -95,7 +107,7 @@ const AdminPlaceholders: React.FC = () => {
               <th className="px-3 py-2">
                 <input
                   type="checkbox"
-                  onChange={(e)=>{
+                  onChange={(e) => {
                     const on = e.currentTarget.checked;
                     const next: Record<string, boolean> = {};
                     for (const r of filtered) next[r.placeholderId] = on;
@@ -121,29 +133,67 @@ const AdminPlaceholders: React.FC = () => {
                   <input
                     type="checkbox"
                     checked={Boolean(selected[r.placeholderId])}
-                    onChange={(e)=> setSelected(prev => ({ ...prev, [r.placeholderId]: e.currentTarget.checked }))}
+                    onChange={(e) => setSelected(prev => ({ ...prev, [r.placeholderId]: e.currentTarget.checked }))}
                   />
                 </td>
                 <td className="px-3 py-2">
                   <div className="relative group h-14 w-24 rounded border overflow-hidden">
                     {r.previewUrl ? (
-                      <img src={r.previewUrl} alt={r.headingAbove || r.placeholderId} className="h-full w-full object-cover" />
+                      <img src={r.previewUrl} alt={r.headingAbove || r.placeholderId} className={`h-full w-full object-cover transition-opacity ${(r.status === 'pending' || r.status === 'prompt_generated') ? 'opacity-50' : ''}`} />
                     ) : (
                       <div className="h-full w-full bg-muted" />
                     )}
-                    <button
-                      className="absolute inset-0 hidden group-hover:flex items-center justify-center bg-black/50 text-white text-xs"
-                      onClick={async ()=>{
-                        setWorking(prev => ({ ...prev, [r.placeholderId]: true }));
-                        try { await queue({ placeholderId: r.placeholderId }); toast('Generation queued'); }
-                        catch { toast.error('Failed to queue'); }
-                        finally { setWorking(prev => { const n = { ...prev }; delete n[r.placeholderId]; return n; }); }
-                      }}
-                      title="Cycle (regenerate)"
-                    >Cycle</button>
-                    {working[r.placeholderId] && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+
+                    {/* Cycle Button Overlay */}
+                    {!(r.status === 'pending' || r.status === 'prompt_generated') && (
+                      <button
+                        className="absolute inset-0 hidden group-hover:flex items-center justify-center bg-black/50 text-white text-xs"
+                        onClick={async () => {
+                          setWorking(prev => ({ ...prev, [r.placeholderId]: true }));
+                          try {
+                            console.log('Cycling image for:', r.placeholderId);
+                            await queue({ placeholderId: r.placeholderId });
+                            toast.success('Generation queued successfully');
+                          } catch (error) {
+                            console.error('Failed to queue generation:', error);
+                            toast.error(`Failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+                          } finally {
+                            setWorking(prev => { const n = { ...prev }; delete n[r.placeholderId]; return n; });
+                          }
+                        }}
+                        title="Cycle (regenerate)"
+                      >Cycle</button>
+                    )}
+
+                    {/* Processing / Loading Overlay */}
+                    {(working[r.placeholderId] || (r.status === 'pending' || r.status === 'prompt_generated')) && (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 text-white text-[10px]">
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mb-1" />
+                        {r.status === 'prompt_generated' ? 'Generating...' : 'Pending...'}
+
+                        {/* Retry button for stuck items (shows on hover) */}
+                        {!working[r.placeholderId] && (
+                          <button
+                            className="mt-2 px-2 py-1 bg-orange-500 hover:bg-orange-600 rounded text-white text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"
+                            onClick={async (e) => {
+                              e.stopPropagation();
+                              setWorking(prev => ({ ...prev, [r.placeholderId]: true }));
+                              try {
+                                console.log('Retrying stuck generation for:', r.placeholderId);
+                                await queue({ placeholderId: r.placeholderId });
+                                toast.success('Retry queued successfully');
+                              } catch (error) {
+                                console.error('Failed to retry:', error);
+                                toast.error(`Failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+                              } finally {
+                                setWorking(prev => { const n = { ...prev }; delete n[r.placeholderId]; return n; });
+                              }
+                            }}
+                            title="Retry stuck generation"
+                          >
+                            Retry
+                          </button>
+                        )}
                       </div>
                     )}
                   </div>
@@ -154,9 +204,11 @@ const AdminPlaceholders: React.FC = () => {
                 <td className="px-3 py-2"><StatusBadge s={r.status} /></td>
                 <td className="px-3 py-2">{r.preferredAspectRatio}</td>
                 <td className="px-3 py-2">{r.headingAbove?.slice(0, 80)}</td>
-                <td className="px-3 py-2 space-x-2">
-                  <Button size="sm" variant="outline" onClick={()=>{ setHistPhId(r.placeholderId); setOpenHistory(true); }}>History</Button>
-                  <Button size="sm" onClick={()=>{ setPromptPhId(r.placeholderId); setPromptText(r.generatedPrompt || ''); setOpenPrompt(true); }}>Regenerate Prompt</Button>
+                <td className="px-3 py-2">
+                  <div className="flex flex-col gap-2">
+                    <Button size="sm" variant="outline" onClick={() => { setHistPhId(r.placeholderId); setOpenHistory(true); }}>History</Button>
+                    <Button size="sm" onClick={() => { setPromptPhId(r.placeholderId); setPromptText(r.generatedPrompt || ''); setOpenPrompt(true); }}>Regenerate Prompt</Button>
+                  </div>
                 </td>
                 <td className="px-3 py-2 text-xs text-muted-foreground">{new Date(r.updatedAt).toLocaleString()}</td>
               </tr>
@@ -182,7 +234,7 @@ const AdminPlaceholders: React.FC = () => {
                   <Button
                     size="sm"
                     className="w-full"
-                    onClick={async ()=>{
+                    onClick={async () => {
                       if (!histPhId) return;
                       try {
                         await assignImage({ placeholderId: histPhId, imageId: img._id, activate: true });
@@ -209,11 +261,11 @@ const AdminPlaceholders: React.FC = () => {
           </DialogHeader>
           <div className="space-y-2">
             <label className="text-sm text-muted-foreground">Prompt</label>
-            <Textarea value={promptText} onChange={(e)=>setPromptText(e.target.value)} rows={6} />
+            <Textarea value={promptText} onChange={(e) => setPromptText(e.target.value)} rows={6} />
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={()=>setOpenPrompt(false)}>Cancel</Button>
-            <Button onClick={async ()=>{
+            <Button variant="outline" onClick={() => setOpenPrompt(false)}>Cancel</Button>
+            <Button onClick={async () => {
               if (!promptPhId) return;
               try {
                 await updatePrompt({ placeholderId: promptPhId, prompt: promptText });
@@ -237,8 +289,8 @@ const HistoryCard: React.FC<{ img: any }> = ({ img }) => {
       <img src={showUrl} className="w-full h-28 object-cover" />
       {img.originalUrl && img.isGenerated && (
         <div className="flex gap-2 p-2">
-          <button className={`text-xs px-2 py-1 rounded border ${mode==='gen' ? 'bg-primary text-white' : ''}`} onClick={()=>setMode('gen')}>Generated</button>
-          <button className={`text-xs px-2 py-1 rounded border ${mode==='orig' ? 'bg-primary text-white' : ''}`} onClick={()=>setMode('orig')}>Original</button>
+          <button className={`text-xs px-2 py-1 rounded border ${mode === 'gen' ? 'bg-primary text-white' : ''}`} onClick={() => setMode('gen')}>Generated</button>
+          <button className={`text-xs px-2 py-1 rounded border ${mode === 'orig' ? 'bg-primary text-white' : ''}`} onClick={() => setMode('orig')}>Original</button>
         </div>
       )}
     </div>

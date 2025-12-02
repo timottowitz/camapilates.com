@@ -1,12 +1,19 @@
 ---
-title: "Guía completa del Reformer: Uso y beneficios – reformer pilates"
-description: "Todo lo que necesitas saber del Reformer: cómo funciona, beneficios, ejercicios clave y recomendaciones para México."
-category: "Ejercicios y salud"
-tags: ["reformer pilates", "uso del reformer", "beneficios reformer"]
-publishDate: "2025-09-27"
-author: "CAMA Pilates"
-slug: "guia-completa-reformer"
+title: 'Guía completa del Reformer: Uso y beneficios – reformer pilates'
+description: >-
+  Todo lo que necesitas saber del Reformer: cómo funciona, beneficios,
+  ejercicios clave y recomendaciones para México.
+category: Ejercicios y salud
+tags:
+  - reformer pilates
+  - uso del reformer
+  - beneficios reformer
+publishDate: '2025-09-27'
+author: CAMA Pilates
+slug: guia-completa-reformer
 featured: false
+heroImage: >-
+  https://spotted-raven-102.convex.cloud/api/storage/9ca2ace2-b058-4ede-b404-18df2faaabfb
 ---
 
 # Guía completa del Reformer: Uso y beneficios – reformer pilates
@@ -27,6 +34,8 @@ El Reformer está compuesto por un carro que se desliza sobre rieles, un juego d
 - Transferencia a la vida diaria/deporte: fortalece cadenas musculares, estabilidad central y movilidad útil.
 
 ## Anatomía del Reformer (partes clave)
+![Anatomía del Reformer (partes clave)](https://spotted-raven-102.convex.cloud/api/storage/a442918e-6566-4a9f-baa2-53fec6a6b107)
+
 - Carro y rieles: determinan suavidad, estabilidad y sensación del recorrido.
 - Resortes: combinaciones que definen resistencia efectiva; su calidad impacta la progresión.
 - Footbar y plataforma: distintos ángulos para empuje/estabilidad de pies y manos.
@@ -34,6 +43,8 @@ El Reformer está compuesto por un carro que se desliza sobre rieles, un juego d
 - Topes y seguridad: limitan recorrido para proteger articulaciones y equipo.
 
 ## Ejercicios fundamentales para iniciar
+![Ejercicios fundamentales para iniciar](https://spotted-raven-102.convex.cloud/api/storage/aa1534ca-446f-480e-a24f-73406ae1d6ac)
+
 Empieza con 2–3 sesiones semanales, 20–30 minutos, priorizando técnica sobre volumen. Un bloque típico:
 - Respiración y conexión central: imprint/neutral, activación suave del core.
 - Trabajo de piernas con footbar: footwork (paralelo, externo, interno), tempo controlado.

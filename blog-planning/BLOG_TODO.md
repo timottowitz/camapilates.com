@@ -1,6 +1,11 @@
 
 ## CATEGORÍA: Estudio
 
+### 🔬 Pilates Reformer for Digital Nomads in Mexico
+**Research File:** [pilates-reformer-digital-nomads-mexico.md](./research/pilates-reformer-digital-nomads-mexico.md)
+**Target:** Digital nomads and expats in Mexico
+**Keywords:** pilates reformer mexico, digital nomad fitness, mexico city pilates
+
 ### ✅ Pilates Reformer cerca de mí: Cómo encontrar el estudio ideal
 **Research File:** [pilates-reformer-cerca-de-mi.md](./research/pilates-reformer-cerca-de-mi.md)
 **Target:** Personas buscando estudios boutique en México
@@ -118,6 +123,11 @@
 
 ## CATEGORÍA: Ejercicios y salud
 
+### 🔬 Pilates para embarazo: Guía completa y segura
+**Research File:** [pilates-para-embarazo.md](./research/pilates-para-embarazo.md)
+**Target:** Mujeres embarazadas en México
+**Keywords:** pilates embarazo, pilates prenatal, ejercicios embarazo
+
 ### ✅ Pilates Reformer para espalda: Pautas seguras
 **Research File:** [pilates-reformer-para-espalda.md](./research/pilates-reformer-para-espalda.md)
 **Target:** Practicantes que quieren rutinas seguras en México
@@ -161,3 +171,11 @@
 **Target:** Público general en México
 **Keywords:** reformer vs tower, torre, comparativa
 
+
+### 🔬 Beneficios del Pilates Reformer para Corredores
+**Research File:** [pilates-reformer-para-corredores.md]
+**Status:** Research Needed
+### 🔬 Pilates Reformer for Digital Nomads in Mexico
+**Research File:** [pilates-reformer-digital-nomads-mexico.md](./research/pilates-reformer-digital-nomads-mexico.md)
+**Target:** Digital nomads and expats in Mexico
+**Keywords:** pilates reformer mexico, digital nomad fitness, mexico city pilates

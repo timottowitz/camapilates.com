@@ -1,20 +1,23 @@
 ---
-title: "Accesorios para cama de Pilates: Esenciales"
-description: "Guía completa de accesorios para tu cama de Pilates en México: box, correas, poleas, muelles y mantenimiento con recomendaciones CAMA."
-category: "Equipo y mantenimiento"
+title: 'Accesorios para cama de Pilates: Esenciales'
+description: >-
+  Guía completa de accesorios para tu cama de Pilates en México: box, correas,
+  poleas, muelles y mantenimiento con recomendaciones CAMA.
+category: Equipo y mantenimiento
 tags:
   - accesorios reformer
   - cama de pilates
   - correas
   - poleas
   - reformer mexico
-publishDate: "2025-09-24"
-updatedDate: "2025-09-26"
-author: "CAMA Pilates"
-slug: "accesorios-cama-de-pilates"
+publishDate: '2025-09-24'
+updatedDate: '2025-09-26'
+author: CAMA Pilates
+slug: accesorios-cama-de-pilates
 featured: true
-canonical: "https://camadepilates.com/blog/accesorios-cama-de-pilates"
-heroImage: "/images/blog/accesorios-cama-de-pilates-esenciales/hero.jpg"
+canonical: 'https://camadepilates.com/blog/accesorios-cama-de-pilates'
+heroImage: >-
+  https://spotted-raven-102.convex.cloud/api/storage/0be55466-0ae1-47d5-8d87-35454bead796
 ---
 
 # Accesorios para cama de Pilates: Esenciales
@@ -63,6 +66,8 @@ Utiliza cubiertas lavables, toallas de microfibra y limpiadores neutros para pro
 <small>Foto: Simeon Galabov / Unsplash</small>
 
 ## Mantenimiento y seguridad
+![Mantenimiento y seguridad](https://spotted-raven-102.convex.cloud/api/storage/3cfc1a7a-c871-4eb0-9a01-b71e8f4aa93a)
+
 
 1. **Checklist semanal**: revisa correas, poleas y muelles antes de la primera sesión.
 2. **Limpieza diaria**: desinfecta superficies y acolchados después de cada uso.
@@ -72,12 +77,16 @@ Utiliza cubiertas lavables, toallas de microfibra y limpiadores neutros para pro
 <see-also limit="3" />
 
 ## Recomendaciones CAMA Pilates
+![Recomendaciones CAMA Pilates](https://spotted-raven-102.convex.cloud/api/storage/149b2d7f-f9ea-4add-b829-64cd398616b5)
+
 
 CAMA Pilates fabrica accesorios y repuestos con envío nacional en 2–3 semanas: box tapizados, correas calibradas y kits de muelles compatibles con equipos premium. Incluye línea de soporte técnico en español y vídeos de instalación.
 
 <hub-list category="Equipo y mantenimiento" limit="6" title="Más sobre equipo y mantenimiento" />
 
 ## FAQ
+![FAQ](https://spotted-raven-102.convex.cloud/api/storage/1dc76791-cebb-4ec3-9156-46cfc92d3c6d)
+
 
 ### ¿Cada cuánto debo reemplazar las correas?
 En uso doméstico cambia cada 12-18 meses; en estudio cada 6-12 meses. Si notas fibras sueltas o pérdida de acolchado, reemplaza inmediatamente.

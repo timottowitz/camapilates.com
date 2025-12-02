@@ -25,6 +25,27 @@ export default defineSchema({
     createdAt: v.number(),
   }).index('by_slug', ['slug']).index('by_status', ['status']).index('by_created', ['createdAt']),
 
+  blogs: defineTable({
+    slug: v.string(),
+    title: v.string(),
+    content: v.string(), // Markdown content
+    excerpt: v.string(),
+    category: v.string(),
+    tags: v.array(v.string()),
+    author: v.string(),
+    publishDate: v.string(), // ISO date string
+    heroImage: v.optional(v.string()),
+    featured: v.boolean(),
+    status: v.string(), // 'published' | 'draft' | 'archived'
+    canonical: v.optional(v.string()),
+    noindex: v.optional(v.boolean()),
+    updatedAt: v.number(),
+  })
+    .index('by_slug', ['slug'])
+    .index('by_status', ['status'])
+    .index('by_category', ['category'])
+    .index('by_date', ['publishDate']),
+
   pipeline_jobs: defineTable({
     type: v.string(), // single | batch
     slugs: v.array(v.string()),

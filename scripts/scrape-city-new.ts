@@ -129,7 +129,7 @@ function transformToStudioData(
   stateName: string,
   service: GooglePlacesNewService
 ): StudioData {
-  const neighborhood = service.extractNeighborhood(place.addressComponents);
+  const neighborhood = service.extractNeighborhood(place.addressComponents, place.formattedAddress);
   const postalCode = service.extractPostalCode(place.addressComponents);
 
   const photos = place.photos

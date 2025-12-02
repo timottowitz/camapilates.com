@@ -1,12 +1,24 @@
 ---
-title: "Cama para Pilates: Guía Completa 2024-2025 para México"
-description: "Guía definitiva sobre camas para Pilates en México: precios, marcas, beneficios científicos, comparativas y testimonios. Todo lo que necesitas saber antes de comprar tu reformer."
-category: "Guías de compra"
-tags: ["cama para pilates", "reformer pilates", "pilates méxico", "equipos pilates", "reformer beneficios", "compra pilates", "marcas pilates"]
-publishDate: "2025-09-24"
-author: "CAMA Pilates"
-slug: "cama-para-pilates"
+title: 'Cama para Pilates: Guía Completa 2024-2025 para México'
+description: >-
+  Guía definitiva sobre camas para Pilates en México: precios, marcas,
+  beneficios científicos, comparativas y testimonios. Todo lo que necesitas
+  saber antes de comprar tu reformer.
+category: Guías de compra
+tags:
+  - cama para pilates
+  - reformer pilates
+  - pilates méxico
+  - equipos pilates
+  - reformer beneficios
+  - compra pilates
+  - marcas pilates
+publishDate: '2025-09-24'
+author: CAMA Pilates
+slug: cama-para-pilates
 featured: true
+heroImage: >-
+  https://spotted-raven-102.convex.cloud/api/storage/9b4d7215-0871-4aca-9631-0d437d972882
 ---
 
 # Cama para Pilates: La Guía Definitiva 2024-2025 para México
@@ -18,6 +30,8 @@ En esta guía completa de **CAMA Pilates**, exploraremos todo lo que necesitas s
 <see-also />
 
 ## ¿Qué es una Cama para Pilates (Reformer)?
+![¿Qué es una Cama para Pilates (Reformer)?](https://spotted-raven-102.convex.cloud/api/storage/705e8374-f8bb-4bc4-a194-39cb128d750d)
+
 
 Una cama para Pilates o Reformer es un equipo especializado que consiste en una plataforma deslizante montada sobre un marco con resortes, poleas y barras de resistencia. Este diseño ingenioso permite realizar cientos de ejercicios diferentes con resistencia variable, proporcionando un entrenamiento completo para todo el cuerpo.
 
@@ -137,6 +151,8 @@ El Pilates ha demostrado efectividad en la recuperación funcional de pacientes 
 - **Característica**: "Armala, dóblala y desdóblala"
 
 ## Cama para Pilates vs Mat Pilates: Comparación Completa
+![Cama para Pilates vs Mat Pilates: Comparación Completa](https://spotted-raven-102.convex.cloud/api/storage/3f71bf5b-0d73-47d4-8fc7-861951a0bdc5)
+
 
 | Aspecto | Cama para Pilates (Reformer) | Mat Pilates |
 |---------|------------------------------|-------------|

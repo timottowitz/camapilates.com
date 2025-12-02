@@ -34,3 +34,8 @@ db/*.sqlite
 *.sw?
 data/*.csv
 *.csv
+
+# Google Cloud / Vertex AI credentials
+*service-account*.json
+.google-credentials.json
+vertex-ai-*.json

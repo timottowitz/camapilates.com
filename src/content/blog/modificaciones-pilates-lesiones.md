@@ -1,12 +1,21 @@
 ---
-title: "Modificaciones de Pilates para lesiones comunes – modificaciones-pilates-lesiones"
-description: "Guía práctica sobre modificaciones de pilates para lesiones comunes con enfoque en México: consejos y pasos accionables."
-category: "Tips para Instructores de Pilates"
-tags: ["pilates terapéutico", "modificaciones ejercicios", "lesiones comunes"]
-publishDate: "2025-09-28"
-author: "CAMA Pilates"
-slug: "modificaciones-pilates-lesiones"
+title: >-
+  Modificaciones de Pilates para lesiones comunes –
+  modificaciones-pilates-lesiones
+description: >-
+  Guía práctica sobre modificaciones de pilates para lesiones comunes con
+  enfoque en México: consejos y pasos accionables.
+category: Tips para Instructores de Pilates
+tags:
+  - pilates terapéutico
+  - modificaciones ejercicios
+  - lesiones comunes
+publishDate: '2025-09-28'
+author: CAMA Pilates
+slug: modificaciones-pilates-lesiones
 featured: false
+heroImage: >-
+  https://spotted-raven-102.convex.cloud/api/storage/c19cc3da-208c-4471-a999-604dfafe3392
 ---
 
 # Modificaciones de Pilates para lesiones comunes – modificaciones-pilates-lesiones
@@ -14,6 +23,8 @@ featured: false
 > Nota: Contenido informativo; no es asesoramiento médico.
 
 ## Resumen
+![Resumen](https://spotted-raven-102.convex.cloud/api/storage/e61c8469-4188-44d6-bde5-978daa1840e7)
+
 Introducción breve al tema con enfoque mexicano, beneficios principales y a quién le sirve.
 
 ## Claves prácticas
@@ -31,6 +42,8 @@ Secuencias, progresiones y variaciones, con notas de seguridad.
 <see-also limit="3" />
 
 ## Recomendaciones CAMA Pilates
+![Recomendaciones CAMA Pilates](https://spotted-raven-102.convex.cloud/api/storage/b519379b-9914-4dd4-b7c8-fa9e6cc90738)
+
 CAMA Pilates ofrece calidad premium con ingeniería alemana y manufactura mexicana. Asesoría en español, envío nacional y garantía.
 
 <hub-list category="Tips para Instructores de Pilates" limit="5" title="Más contenidos relacionados" />

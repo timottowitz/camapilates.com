@@ -308,21 +308,49 @@ export class GooglePlacesNewService {
   }
 
   /**
-   * Extract neighborhood from address components
+   * Extract neighborhood/colonia from address components with fallback to formatted address parsing.
+   * Mexican addresses typically follow: "Street, Colonia, Delegación, PostalCode City, State, Country"
    */
-  extractNeighborhood(addressComponents?: Array<{ longText: string; types: string[] }>): string | null {
-    if (!addressComponents) return null;
+  extractNeighborhood(
+    addressComponents?: Array<{ longText: string; types: string[] }>,
+    formattedAddress?: string
+  ): string | null {
+    // Primary: Try addressComponents with expanded type list for Mexican addresses
+    if (addressComponents) {
+      const neighborhoodTypes = [
+        'neighborhood',
+        'sublocality',
+        'sublocality_level_1',
+        'sublocality_level_2',
+        'colloquial_area',
+      ];
 
-    const neighborhoodTypes = [
-      'neighborhood',
-      'sublocality',
-      'sublocality_level_1',
-      'administrative_area_level_2',
-    ];
+      for (const component of addressComponents) {
+        if (component.types && Array.isArray(component.types)) {
+          // Check for neighborhood types (excluding 'political' alone which is too generic)
+          if (component.types.some(type => neighborhoodTypes.includes(type))) {
+            return component.longText;
+          }
+        }
+      }
+    }
 
-    for (const component of addressComponents) {
-      if (component.types && Array.isArray(component.types) && component.types.some(type => neighborhoodTypes.includes(type))) {
-        return component.longText;
+    // Fallback: Parse colonia from formatted address (Mexican format)
+    // Pattern: "Street, Colonia, Delegación/Municipality, PostalCode City, State, Country"
+    if (formattedAddress) {
+      const parts = formattedAddress.split(',').map(p => p.trim());
+      if (parts.length >= 3) {
+        // Second segment is typically the colonia in Mexican addresses
+        const potentialColonia = parts[1];
+        // Validate: not a number, not too short, not a postal code pattern
+        if (
+          potentialColonia &&
+          potentialColonia.length > 2 &&
+          !/^\d+$/.test(potentialColonia) &&
+          !/^\d{5}/.test(potentialColonia)
+        ) {
+          return potentialColonia;
+        }
       }
     }
 

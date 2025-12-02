@@ -1,17 +1,27 @@
 #!/usr/bin/env node
 
 /**
- * Lightweight CLI wrapper for SEO Optimization Agent
+ * CLI wrapper for SEO Optimization Agent
  * Tool: optimize_title_and_meta { slug, target_keyword, intent }
- * - Ensures meta description exists and is <= 155 chars
+ * - Uses gray-matter for robust frontmatter parsing
+ * - Uses LLM to generate compelling meta descriptions
  */
 
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import matter from 'gray-matter';
+import { generateText } from 'ai';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { createOpenAI } from '@ai-sdk/openai';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
+
+// Simple config loader (duplicate of config.js logic to avoid import issues in CLI)
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const LLM_PROVIDER = process.env.LLM_PROVIDER || (GEMINI_API_KEY ? 'gemini' : 'openai');
 
 async function readStdin() {
   const chunks = [];
@@ -20,45 +30,76 @@ async function readStdin() {
   return raw ? JSON.parse(raw) : {};
 }
 
-function clampDescription(d) {
-  if (!d) return '';
-  return d.length > 155 ? d.slice(0, 152) + '…' : d;
+function getModel() {
+  if (LLM_PROVIDER === 'gemini' && GEMINI_API_KEY) {
+    const google = createGoogleGenerativeAI({ apiKey: GEMINI_API_KEY });
+    return google('gemini-1.5-flash'); // Fast model for SEO
+  }
+  if (OPENAI_API_KEY) {
+    const openai = createOpenAI({ apiKey: OPENAI_API_KEY });
+    return openai('gpt-4o-mini'); // Fast model for SEO
+  }
+  throw new Error('No API key configured for SEO agent');
+}
+
+async function generateMetaDescription(content, title, keyword) {
+  try {
+    const model = getModel();
+    const prompt = `Eres un experto en SEO para CAMA Pilates (México).
+Tarea: Escribe una meta description atractiva para Google.
+Título: "${title}"
+Keyword: "${keyword}"
+Contenido (inicio): "${content.slice(0, 500)}..."
+
+Requisitos:
+- Máximo 155 caracteres.
+- Incluye la keyword de forma natural.
+- Call to action sutil.
+- Tono profesional y persuasivo.
+- Devuelve SOLO el texto de la descripción.`;
+
+    const { text } = await generateText({
+      model,
+      prompt,
+      temperature: 0.7,
+      maxTokens: 100
+    });
+
+    return text.trim().slice(0, 155);
+  } catch (e) {
+    // Fallback if LLM fails
+    return `Descubre todo sobre ${title}. Guía completa de CAMA Pilates México con consejos expertos sobre ${keyword}.`;
+  }
 }
 
 async function optimizeTitleAndMeta({ slug, target_keyword }) {
   const file = path.join(ROOT, 'src', 'content', 'blog', `${slug}.md`);
-  let txt;
-  try { txt = await fs.readFile(file, 'utf-8'); } catch { return { success: false, error: 'Blog file not found', slug }; }
+  let rawContent;
+  try { rawContent = await fs.readFile(file, 'utf-8'); } catch { return { success: false, error: 'Blog file not found', slug }; }
 
-  // Extract frontmatter block
-  const m = txt.match(/^---[\s\S]*?---/);
-  if (!m) return { success: false, error: 'Frontmatter missing', slug };
-  let fm = m[0];
+  const { data: frontmatter, content } = matter(rawContent);
+  let updated = false;
 
-  // Title: keep as-is; ensure keyword presence softly
-  const hasTitle = /\ntitle:\s*"([^"]+)"/.exec(fm);
-  let title = hasTitle ? hasTitle[1] : '';
-  if (title && target_keyword && !title.toLowerCase().includes(target_keyword.toLowerCase())) {
-    // Non-destructive: append subtly if room allows
-    if (title.length < 54) title = `${title} – ${target_keyword}`;
-    fm = fm.replace(/\ntitle:\s*"([^"]+)"/, `\ntitle: "${title}"`);
+  // 1. Optimize Title
+  if (frontmatter.title && target_keyword && !frontmatter.title.toLowerCase().includes(target_keyword.toLowerCase())) {
+    if (frontmatter.title.length < 50) {
+      frontmatter.title = `${frontmatter.title} – ${target_keyword}`;
+      updated = true;
+    }
   }
 
-  // Description: ensure exists and <= 155 chars
-  const dm = /\ndescription:\s*"([^"]*)"/;
-  const dMatch = dm.exec(fm);
-  if (dMatch) {
-    const desc = clampDescription(dMatch[1]);
-    fm = fm.replace(dm, `\ndescription: "${desc}"`);
-  } else {
-    const fallback = clampDescription(`Artículo sobre ${title || slug} para el público de México.`);
-    fm = fm.replace(/^---/, `---\ndescription: "${fallback}"`);
+  // 2. Optimize Description
+  if (!frontmatter.description || frontmatter.description.length < 50 || frontmatter.description.length > 160) {
+    frontmatter.description = await generateMetaDescription(content, frontmatter.title, target_keyword);
+    updated = true;
   }
 
-  // Rewrite file
-  const updated = fm + txt.slice(fm.length);
-  await fs.writeFile(file, updated, 'utf-8');
-  return { success: true, slug, title, updated: true };
+  if (updated) {
+    const newFileContent = matter.stringify(content, frontmatter);
+    await fs.writeFile(file, newFileContent, 'utf-8');
+  }
+
+  return { success: true, slug, title: frontmatter.title, description: frontmatter.description, updated };
 }
 
 async function main() {
@@ -66,12 +107,14 @@ async function main() {
     const req = await readStdin();
     const tool = req?.tool || req?.name;
     const p = req?.parameters || {};
+
     if (tool === 'optimize_title_and_meta') {
       const res = await optimizeTitleAndMeta(p);
       process.stdout.write(JSON.stringify(res));
       process.exit(res.success ? 0 : 1);
       return;
     }
+
     process.stdout.write(JSON.stringify({ success: false, error: `Unknown tool: ${tool}` }));
     process.exit(1);
   } catch (err) {

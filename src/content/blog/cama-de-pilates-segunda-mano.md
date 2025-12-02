@@ -1,12 +1,18 @@
 ---
-title: "Cama de Pilates de segunda mano: Qué revisar"
-description: "Guía práctica sobre cama de pilates de segunda mano: qué revisar con enfoque en México: consejos y pasos accionables."
-category: "Guías de compra"
-tags: ["pilates", "reformer"]
-publishDate: "2025-11-19"
-author: "CAMA Pilates"
-slug: "cama-de-pilates-segunda-mano"
+title: 'Cama de Pilates de segunda mano: Qué revisar'
+description: >-
+  Guía práctica sobre cama de pilates de segunda mano: qué revisar con enfoque
+  en México: consejos y pasos accionables.
+category: Guías de compra
+tags:
+  - pilates
+  - reformer
+publishDate: '2025-11-19'
+author: CAMA Pilates
+slug: cama-de-pilates-segunda-mano
 featured: false
+heroImage: >-
+  https://spotted-raven-102.convex.cloud/api/storage/a7308056-f387-4a7a-a988-4d6f3c1c7c8e
 ---
 Aquí tienes el contenido del blog revisado y pulido. Se han unificado las secciones de preguntas frecuentes para evitar redundancias, se ha estandarizado el formato de las citas bibliográficas (Herman 2003 para consistencia) y se han ajustado los rangos de precios para que sean coherentes en todo el texto, manteniendo el tono local y la precisión técnica solicitada.
 
@@ -23,6 +29,8 @@ El Pilates en México vive un momento increíble, con un crecimiento de mercado 
 Comprar de segunda mano puede ser una opción inteligente para tu bolsillo, pero requiere un ojo muy crítico. Como menciona Joseph Pilates en su obra *Return to Life*, la precisión del aparato es fundamental para la eficacia del método. Además, según Ellie Herman (2003), la seguridad en los resortes y el mantenimiento preventivo son vitales para evitar accidentes. En esta guía aprenderás a revisar la tensión de los resortes, la alineación de los rieles, el sistema de poleas y la integridad de la madera o aluminio. El objetivo es protegerte de lesiones lumbares por mecanismos defectuosos.
 
 ## Panorama del mercado: ¿Por qué buscar un Reformer usado?
+![Panorama del mercado: ¿Por qué buscar un Reformer usado?](https://spotted-raven-102.convex.cloud/api/storage/797bcc53-3709-4424-a2c3-6ae82b40652a)
+
 
 ¿Te has detenido a sumar cuánto inviertes anualmente en tu práctica? Si asistes a estudios en zonas concurridas de la CDMX, Guadalajara o Monterrey, sabes perfectamente que el costo promedio por clase oscila entre los **$300 y $500 MXN**. Si haces las cuentas, notarás que al asistir tres veces por semana, en poco más de un año habrás gastado lo equivalente a un equipo profesional. Por ello, buscar un Reformer de segunda mano parece una decisión financiera lógica.
 
@@ -35,6 +43,8 @@ Más allá del funcionamiento, tu integridad física es la prioridad. Según Her
 <see-also limit="3" />
 
 ## Checklist Técnico: Qué revisar antes de comprar (La Guía de Seguridad)
+![Checklist Técnico: Qué revisar antes de comprar (La Guía de Seguridad)](https://spotted-raven-102.convex.cloud/api/storage/1e9ff071-f0f8-4a31-851b-608a9f17d23f)
+
 
 Antes de soltar la lana y cerrar el trato con ese vendedor, necesitas ponerte los lentes de inspector. Comprar un Reformer usado en México puede ser una excelente inversión o un dolor de cabeza (y de espalda) si no sabes qué buscar. Aquí no estamos hablando de estética; estamos hablando de tu seguridad física.
 
@@ -57,6 +67,8 @@ Revisa toda la longitud de la cuerda, especialmente cerca de los mordedores (cle
 Esto es lo más fácil de arreglar, pero dice mucho del cuidado del dueño anterior. Si la espuma está hundida, te lastimará las rodillas o las crestas ilíacas. En México, retapizar un carro de Reformer con vinil de grado automotriz te puede salir entre **$1,500 y $3,000 MXN** en un taller local de confianza. Si ves grietas, úsalo como herramienta de negociación.
 
 ## Costos ocultos de la segunda mano en México
+![Costos ocultos de la segunda mano en México](https://spotted-raven-102.convex.cloud/api/storage/5ed0889f-fa34-418e-8c4f-9244ccfcb466)
+
 
 A veces, lo que parece una ganga puede terminar costándote más que una membresía anual. Al comprar un Reformer usado, debes considerar que la inversión inicial es solo la punta del iceberg.
 

@@ -1,17 +1,30 @@
 #!/usr/bin/env node
 
 /**
- * Lightweight CLI wrapper for Web Research Agent
+ * CLI wrapper for Web Research Agent
  * Accepts: { tool: "gather_current_data", parameters: { topic, data_types } }
- * No network calls; appends a structured web research section to the research file when a slug is provided
+ * Uses Google Custom Search API if available.
+ * Fallback: Uses LLM (Gemini/GPT) to generate relevant research from training data.
  */
 
-import fs from 'fs/promises';
+import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.resolve(__dirname, '../autonomous-blog-writer/.env') });
+
+import fs from 'fs/promises';
+import { generateText } from 'ai';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { createOpenAI } from '@ai-sdk/openai';
+
 const ROOT = path.resolve(__dirname, '..');
+
+// Simple config loader
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const LLM_PROVIDER = process.env.LLM_PROVIDER || (GEMINI_API_KEY ? 'gemini' : 'openai');
 
 async function readStdin() {
   const chunks = [];
@@ -20,69 +33,139 @@ async function readStdin() {
   return raw ? JSON.parse(raw) : {};
 }
 
-function buildStructuredData(topic, types) {
-  const date = new Date().toISOString().split('T')[0];
-  const defaultData = {
-    statistics: [
-      'Crecimiento del mercado de Pilates en México (estimado INEGI) ~20–30% 2023–2025',
-      'Porcentaje de interés en equipos para casa en México >60%',
-      'Número de estudios en CDMX, GDL, MTY en aumento'
-    ],
-    studies: [
-      'Estudio universitario en MX: reducción de dolor lumbar con Pilates (resumen)',
-      'Revisión de literatura: beneficios en control motor y estabilidad',
-      'Reportes de salud pública: impacto del ejercicio de bajo impacto'
-    ],
-    expert_quotes: [
-      '“El Reformer crea progresiones seguras y medibles” – Instructora certificada MX',
-      '“Pilates mejora la adherencia por su componente de control” – Fisioterapeuta en CDMX'
-    ],
-    market_data: [
-      'Costos de clase en MX: $300–$500 MXN promedio',
-      'Rango de precio Reformer hogar: $20,000–$80,000 MXN (según calidad/accesorios)',
-      'Preferencia por instructivos y asesoría en español (>=80%)'
-    ],
-    trends: [
-      'Crece búsqueda “reformer casa” y “cama de pilates precio”',
-      'Mayor interés en equipos plegables/compactos por espacios reducidos',
-      'Integración de contenido en video y rutinas guiadas'
-    ]
+function getModel() {
+  if (LLM_PROVIDER === 'gemini' && GEMINI_API_KEY) {
+    const google = createGoogleGenerativeAI({ apiKey: GEMINI_API_KEY });
+    return google('gemini-2.5-flash-preview-09-2025'); // Fast model for research
+  }
+  if (OPENAI_API_KEY) {
+    const openai = createOpenAI({ apiKey: OPENAI_API_KEY });
+    return openai('gpt-4o-mini'); // Fast model for research
+  }
+  throw new Error('No API key configured for Research Agent');
+}
+
+async function googleSearch(query, apiKey, cx) {
+  try {
+    const url = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${encodeURIComponent(query)}`;
+    const resp = await fetch(url);
+    if (!resp.ok) return null;
+    const data = await resp.json();
+    return data.items || [];
+  } catch {
+    return null;
+  }
+}
+
+async function gatherLLMKnowledge(topic) {
+  try {
+    const model = getModel();
+    const prompt = `Act as a market researcher for the Pilates industry in Mexico.
+Topic: "${topic}"
+
+Provide a JSON object with the following arrays (3-5 items each):
+- statistics: Key stats/numbers relevant to the topic.
+- studies: Relevant scientific or market studies (summarized).
+- market_data: Prices, costs, or consumer behavior in Mexico.
+- trends: Current trends for 2024-2025.
+
+Ensure the data is realistic, specific to Mexico where possible, and professional.
+Return ONLY the JSON object.`;
+
+    const { text } = await generateText({
+      model,
+      prompt,
+      temperature: 0.4, // Low temp for factual/consistent output
+      format: 'json'
+    });
+
+    // Clean and parse JSON
+    const cleaned = text.replace(/```(?:json)?/g, '').replace(/```/g, '').trim();
+    return JSON.parse(cleaned);
+  } catch (e) {
+    // Ultimate fallback if LLM fails
+    return {
+      statistics: ['Error generating research data'],
+      studies: [],
+      market_data: [],
+      trends: []
+    };
+  }
+}
+
+async function gatherRealData(topic, types) {
+  const apiKey = process.env.GOOGLE_SEARCH_API_KEY || process.env.GOOGLE_API_KEY;
+  const cx = process.env.GOOGLE_SEARCH_CX;
+
+  // If no Search API key, use LLM knowledge
+  if (!apiKey || !cx) {
+    const llmData = await gatherLLMKnowledge(topic);
+    return llmData;
+  }
+
+  const results = {
+    statistics: [],
+    studies: [],
+    market_data: [],
+    trends: []
   };
 
-  const selected = {};
-  for (const t of types || []) {
-    if (defaultData[t]) selected[t] = defaultData[t];
+  // Perform searches
+  const queries = [
+    `${topic} estadísticas méxico 2024`,
+    `${topic} beneficios estudios científicos`,
+    `${topic} precio méxico mercado`,
+    `${topic} tendencias 2025`
+  ];
+
+  for (const q of queries) {
+    const items = await googleSearch(q, apiKey, cx);
+    if (items) {
+      items.slice(0, 2).forEach(item => {
+        const snippet = item.snippet || item.title;
+        if (q.includes('estadísticas')) results.statistics.push(`${item.title}: ${snippet} (${item.link})`);
+        if (q.includes('científicos')) results.studies.push(`${item.title}: ${snippet} (${item.link})`);
+        if (q.includes('precio')) results.market_data.push(`${item.title}: ${snippet} (${item.link})`);
+        if (q.includes('tendencias')) results.trends.push(`${item.title}: ${snippet} (${item.link})`);
+      });
+    }
   }
-  return {
-    topic: topic || 'sin_tema',
-    research_date: date,
-    data_collected: selected,
-    sources_needed: [
-      'INEGI (hábitos de actividad física, equipamiento hogar)',
-      'Secretaría de Salud / IMSS (beneficios ejercicio de bajo impacto)',
-      'Asociaciones locales de Pilates (cifras y certificaciones)',
-      'Encuestas de consumo (preferencias y barreras)'
-    ],
-    next_steps: [
-      'Verificar cifras con fuentes oficiales mexicanas',
-      'Recopilar precios MXN actualizados (hogar vs estudio)',
-      'Identificar diferenciadores CAMA (fabricación, soporte, calidad)',
-      'Planear tabla/resumen con decisiones prácticas para el lector'
-    ]
-  };
+
+  // Fill empty slots with LLM knowledge if search failed
+  const llmFallback = await gatherLLMKnowledge(topic);
+  if (!results.statistics.length) results.statistics = llmFallback.statistics;
+  if (!results.studies.length) results.studies = llmFallback.studies;
+  if (!results.market_data.length) results.market_data = llmFallback.market_data;
+  if (!results.trends.length) results.trends = llmFallback.trends;
+
+  return results;
 }
 
 async function appendWebResearch(slug, topic, types) {
   if (!slug) return { success: true, note: 'No slug provided; skipping file write', topic, types };
+
   const file = path.join(ROOT, 'blog-planning', 'research', `${slug}.md`);
+  const date = new Date().toISOString().split('T')[0];
+
   try {
     let exists = await fs.readFile(file, 'utf-8');
-    const structured = buildStructuredData(topic, types);
-    const block = `\n\n## Web Research Data\n\n> Fecha: ${structured.research_date}\n> Tema: ${structured.topic}\n\n### Datos recopilados\n${Object.entries(structured.data_collected).map(([k, arr]) => `- ${k}:\n${(arr||[]).map(i => `  - ${i}`).join('\n')}`).join('\n')}\n\n### Fuentes necesarias\n${structured.sources_needed.map(s => `- ${s}`).join('\n')}\n\n### Próximos pasos\n${structured.next_steps.map(s => `- ${s}`).join('\n')}\n`;
-    // Replace existing Web Research Data section if present to avoid duplication
+
+    const dataCollected = await gatherRealData(topic, types);
+
+    // Filter requested types
+    const selectedData = {};
+    for (const t of types || []) {
+      if (dataCollected[t]) selectedData[t] = dataCollected[t];
+    }
+
+    const block = `\n\n## Web Research Data\n\n> Fecha: ${date}\n> Tema: ${topic}\n\n### Datos recopilados\n${Object.entries(selectedData).map(([k, arr]) => `- ${k}:\n${(arr || []).map(i => {
+      if (typeof i === 'string') return `  - ${i}`;
+      return `  - ${Object.values(i).join(': ')}`;
+    }).join('\n')}`).join('\n')}\n\n### Fuentes necesarias\n- INEGI (hábitos de actividad física)\n- Secretaría de Salud / IMSS\n- Asociaciones locales de Pilates\n\n### Próximos pasos\n- Verificar cifras con fuentes oficiales\n- Recopilar precios MXN actualizados\n`;
+
+    // Replace existing Web Research Data section if present
     if (/^##\s+Web Research Data/m.test(exists)) {
       const start = exists.indexOf('## Web Research Data');
-      // Find next H2 or EOF
       const after = exists.slice(start + '## Web Research Data'.length);
       const nextIdxRel = after.search(/\n##\s+/);
       const endIdx = nextIdxRel >= 0 ? start + '## Web Research Data'.length + nextIdxRel : exists.length;
@@ -90,6 +173,7 @@ async function appendWebResearch(slug, topic, types) {
     } else {
       exists = exists + block;
     }
+
     await fs.writeFile(file, exists, 'utf-8');
     return { success: true, slug, file };
   } catch {
@@ -102,9 +186,9 @@ async function main() {
     const req = await readStdin();
     const tool = req?.tool || req?.name;
     const p = req?.parameters || {};
+
     switch (tool) {
       case 'gather_current_data': {
-        // Best effort: accept optional p.slug (if present from orchestrator fix); otherwise skip write
         const res = await appendWebResearch(p.slug, p.topic, p.data_types);
         process.stdout.write(JSON.stringify(res));
         process.exit(0);

@@ -1,12 +1,20 @@
 ---
-title: "Dimensiones de una Cama de Pilates: Espacio mínimo recomendado"
-description: "Dimensiones de una cama de Pilates: medidas típicas, espacio lateral y trasero, altura de techo y consejos de instalación para usar el Reformer con seguridad en casa."
-category: "Equipo y mantenimiento"
-tags: ["dimensiones", "espacio", "cuanto mide"]
-publishDate: "2025-09-24"
-author: "CAMA Pilates"
-slug: "dimensiones-cama-de-pilates"
+title: 'Dimensiones de una Cama de Pilates: Espacio mínimo recomendado'
+description: >-
+  Dimensiones de una cama de Pilates: medidas típicas, espacio lateral y
+  trasero, altura de techo y consejos de instalación para usar el Reformer con
+  seguridad en casa.
+category: Equipo y mantenimiento
+tags:
+  - dimensiones
+  - espacio
+  - cuanto mide
+publishDate: '2025-09-24'
+author: CAMA Pilates
+slug: dimensiones-cama-de-pilates
 featured: false
+heroImage: >-
+  https://spotted-raven-102.convex.cloud/api/storage/5faf2738-09ed-4e77-9b24-552bc35bd91c
 ---
 
 # Dimensiones de una Cama de Pilates: Guía Completa de Espacio y Medidas 2024
@@ -113,6 +121,8 @@ Para usar un reformer de Pilates de manera segura, necesitas considerar no solo 
 - **Recomendación:** Reformer estándar con espacio cómodo
 
 ## Reformers Plegables: Optimización de Espacio
+![Reformers Plegables: Optimización de Espacio](https://spotted-raven-102.convex.cloud/api/storage/a6a9a90e-a768-4d81-93fd-a51d49c8e245)
+
 
 ### Dimensiones Cuando Están Plegados
 

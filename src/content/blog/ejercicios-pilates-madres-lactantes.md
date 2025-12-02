@@ -1,13 +1,21 @@
 ---
-title: "Ejercicios de Pilates Seguros para Madres Lactantes en México"
-description: "Guía completa de ejercicios de Pilates seguros durante la lactancia. Mejora tu postura, fortalece el core y alivia dolores con técnicas específicas para…"
-category: "Tips para Instructores de Pilates"
-tags: ["pilates posparto", "ejercicios lactancia", "pilates para madres", "recuperación posparto", "pilates mamás"]
-publishDate: "2025-01-28"
-author: "CAMA Pilates"
-slug: "ejercicios-pilates-madres-lactantes"
+title: Ejercicios de Pilates Seguros para Madres Lactantes en México
+description: >-
+  Guía completa de ejercicios de Pilates seguros durante la lactancia. Mejora tu
+  postura, fortalece el core y alivia dolores con técnicas específicas para…
+category: Tips para Instructores de Pilates
+tags:
+  - pilates posparto
+  - ejercicios lactancia
+  - pilates para madres
+  - recuperación posparto
+  - pilates mamás
+publishDate: '2025-01-28'
+author: CAMA Pilates
+slug: ejercicios-pilates-madres-lactantes
 featured: true
-heroImage: "/images/blog/madres-lactantes/pilates-posparto-mexico-hero.jpg"
+heroImage: >-
+  https://spotted-raven-102.convex.cloud/api/storage/9cec1be1-3ebc-4547-88c1-a1f04693e607
 ---
 
 # Ejercicios de Pilates Seguros para Madres Lactantes en México
@@ -34,6 +42,8 @@ Si eres madre lactante en México, probablemente experimentas:
 ✅ **Respetar las tradiciones:** Adaptado a la cuarentena mexicana y apoyo familiar
 
 ## 😩 Los Desafíos Físicos Únicos de la Lactancia
+![😩 Los Desafíos Físicos Únicos de la Lactancia](https://spotted-raven-102.convex.cloud/api/storage/03263d22-6e1a-4942-b5e0-55dd8254a6e9)
+
 
 > 📊 **Dato clave:** El 78% de madres lactantes en México experimenta dolor cervical y el 85% sufre tensión en hombros.
 
@@ -84,6 +94,8 @@ Durante la lactancia, tu cuerpo experimenta cambios que van más allá de lo vis
 ✅ **Mejor vínculo madre-bebé** por menor estrés materno
 
 ## Cuándo y Cómo Comenzar de Forma Segura
+![Cuándo y Cómo Comenzar de Forma Segura](https://spotted-raven-102.convex.cloud/api/storage/08ae751d-b582-48be-a2b2-5f7545a77cda)
+
 
 ### Timing Apropiado para el Inicio
 

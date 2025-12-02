@@ -8,6 +8,8 @@ import { loadAllBlogPosts } from '@/utils/blogUtils';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
 import { getAllCategories } from '@/lib/content';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
+import { useQuery } from 'convex/react';
+import { api } from '../../convex/_generated/api';
 
 interface BlogPostMeta {
   slug: string;
@@ -21,25 +23,18 @@ interface BlogPostMeta {
 }
 
 const Blog: React.FC = () => {
+  const postsData = useQuery(api.blogs.list, { status: 'published' });
   const [posts, setPosts] = useState<BlogPostMeta[]>([]);
   const [loading, setLoading] = useState(true);
   const [cat, setCat] = useState<string>('Todos');
   const [visible, setVisible] = useState<number>(9);
 
   useEffect(() => {
-    const loadPosts = async () => {
-      try {
-        const blogPosts = await loadAllBlogPosts();
-        setPosts(blogPosts);
-      } catch (error) {
-        console.error('Failed to load blog posts:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadPosts();
-  }, []);
+    if (postsData) {
+      setPosts(postsData as any);
+      setLoading(false);
+    }
+  }, [postsData]);
 
   const categories = useMemo(() => ['Todos', ...getAllCategories()], []);
   const filtered = useMemo(() => (cat === 'Todos' ? posts : posts.filter(p => p.category === cat)), [cat, posts]);

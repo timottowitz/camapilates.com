@@ -1,12 +1,19 @@
 ---
-title: "Pilates Rehabilitacion Cancer Mama"
-description: "Guía práctica sobre pilates rehabilitacion cancer mama con enfoque en México: consejos y pasos accionables."
-category: "Tips para Instructores de Pilates"
-tags: ["pilates terapéutico", "rehabilitación cáncer", "ejercicios terapéuticos"]
-publishDate: "2025-09-28"
-author: "CAMA Pilates"
-slug: "pilates-rehabilitacion-cancer-mama"
+title: Pilates Rehabilitacion Cancer Mama
+description: >-
+  Guía práctica sobre pilates rehabilitacion cancer mama con enfoque en México:
+  consejos y pasos accionables.
+category: Tips para Instructores de Pilates
+tags:
+  - pilates terapéutico
+  - rehabilitación cáncer
+  - ejercicios terapéuticos
+publishDate: '2025-09-28'
+author: CAMA Pilates
+slug: pilates-rehabilitacion-cancer-mama
 featured: false
+heroImage: >-
+  https://spotted-raven-102.convex.cloud/api/storage/5140ed94-1083-417c-8bab-5f6d0b1899c8
 ---
 
 # Pilates Rehabilitacion Cancer Mama
@@ -14,6 +21,8 @@ featured: false
 > Nota: Contenido informativo; no es asesoramiento médico.
 
 ## Resumen
+![Resumen](https://spotted-raven-102.convex.cloud/api/storage/57c388ea-16e8-488b-8da0-0ab64bc3bd70)
+
 Introducción breve al tema con enfoque mexicano, beneficios principales y a quién le sirve.
 
 ## Claves prácticas
@@ -31,6 +40,8 @@ Secuencias, progresiones y variaciones, con notas de seguridad.
 <see-also limit="3" />
 
 ## Recomendaciones CAMA Pilates
+![Recomendaciones CAMA Pilates](https://spotted-raven-102.convex.cloud/api/storage/776b841e-2d78-4e69-80e3-cdbbaa089cad)
+
 CAMA Pilates ofrece calidad premium con ingeniería alemana y manufactura mexicana. Asesoría en español, envío nacional y garantía.
 
 <hub-list category="Tips para Instructores de Pilates" limit="5" title="Más contenidos relacionados" />

@@ -41,12 +41,8 @@ const Compare = () => {
           {/* Home Model */}
           <div className="group relative bg-[#EAE8E4] rounded-sm overflow-hidden border border-[#2A2624]/10 hover:border-[#2A2624]/30 transition-colors duration-500">
             <div className="aspect-[4/3] overflow-hidden">
-              <ContextualImage
-                placeholderId="compare-home-reformer"
-                pageType="compare"
-                pageSlug="home"
-                location="split-left"
-                aspectRatio="4:3"
+              <img
+                src="/images/compare-home.png"
                 alt="Edelweiss Home Reformer"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -85,12 +81,8 @@ const Compare = () => {
           {/* Professional Model */}
           <div className="group relative bg-[#2A2624] text-[#EAE8E4] rounded-sm overflow-hidden">
             <div className="aspect-[4/3] overflow-hidden opacity-90 group-hover:opacity-100 transition-opacity">
-              <ContextualImage
-                placeholderId="compare-pro-reformer"
-                pageType="compare"
-                pageSlug="pro"
-                location="split-right"
-                aspectRatio="4:3"
+              <img
+                src="/images/compare-pro.png"
                 alt="Edelweiss Professional Reformer"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />

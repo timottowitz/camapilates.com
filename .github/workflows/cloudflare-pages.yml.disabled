@@ -28,6 +28,9 @@ jobs:
 
       - name: Build
         run: deno task build
+        env:
+          VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
+          VITE_CONVEX_URL: ${{ secrets.VITE_CONVEX_URL }}
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3

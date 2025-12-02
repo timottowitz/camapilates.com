@@ -1,15 +1,30 @@
 ---
-title: "De Principiante a Instructor Certificado: Historias Reales de Transformación en el Pilates Mexicano"
-description: "Descubre historias inspiradoras de mexicanos que transformaron sus vidas convirtiéndose en instructores de Pilates. Desde oficinistas hasta fisioterapeu…"
-category: "Comunidad Pilates México"
-tags: ["certificación pilates", "carrera instructor", "historia personal", "transformación profesional", "testimonio pilates"]
-publishDate: "2025-01-28"
-author: "CAMA Pilates"
-slug: "historia-instructor-certificado"
+title: >-
+  De Principiante a Instructor Certificado: Historias Reales de Transformación
+  en el Pilates Mexicano
+description: >-
+  Descubre historias inspiradoras de mexicanos que transformaron sus vidas
+  convirtiéndose en instructores de Pilates. Desde oficinistas hasta
+  fisioterapeu…
+category: Comunidad Pilates México
+tags:
+  - certificación pilates
+  - carrera instructor
+  - historia personal
+  - transformación profesional
+  - testimonio pilates
+publishDate: '2025-01-28'
+author: CAMA Pilates
+slug: historia-instructor-certificado
 featured: true
-hero: "instructor-pilates-transformacion-mexico.jpg"
-heroAlt: "Instructor de Pilates mexicano guiando a un alumno en Reformer durante clase de certificación"
----o guiando a un alumno en Reformer durante clase de certificación"
+hero: instructor-pilates-transformacion-mexico.jpg
+heroAlt: >-
+  Instructor de Pilates mexicano guiando a un alumno en Reformer durante clase
+  de certificación
+heroImage: >-
+  https://spotted-raven-102.convex.cloud/api/storage/506bfe5a-7a41-4e6b-900f-13728827b029
+---
+o guiando a un alumno en Reformer durante clase de certificación"
 ---
 
 > **Nota**: Las historias presentadas son reales y han sido compartidas con autorización. Los nombres han sido modificados en algunos casos para proteger la privacidad.

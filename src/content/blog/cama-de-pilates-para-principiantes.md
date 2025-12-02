@@ -1,12 +1,22 @@
 ---
-title: "Cama de Pilates para principiantes: Guía completa 2025"
-description: "Guía definitiva para principiantes: cómo elegir tu primera cama de Pilates Reformer, ejercicios básicos, errores a evitar y plan progresivo de 8 semanas."
-category: "Guías de compra"
-tags: ["principiantes", "reformer para empezar", "guía inicial", "cama pilates principiantes", "ejercicios básicos reformer", "pilates reformer México"]
-publishDate: "2025-09-24"
-author: "CAMA Pilates"
-slug: "cama-de-pilates-para-principiantes"
+title: 'Cama de Pilates para principiantes: Guía completa 2025'
+description: >-
+  Guía definitiva para principiantes: cómo elegir tu primera cama de Pilates
+  Reformer, ejercicios básicos, errores a evitar y plan progresivo de 8 semanas.
+category: Guías de compra
+tags:
+  - principiantes
+  - reformer para empezar
+  - guía inicial
+  - cama pilates principiantes
+  - ejercicios básicos reformer
+  - pilates reformer México
+publishDate: '2025-09-24'
+author: CAMA Pilates
+slug: cama-de-pilates-para-principiantes
 featured: true
+heroImage: >-
+  https://spotted-raven-102.convex.cloud/api/storage/3f931afd-110d-4117-b95e-6f7ab0937198
 ---
 
 # Cama de Pilates para principiantes: Guía completa 2025
@@ -22,6 +32,8 @@ La **cama de Pilates** o Reformer es una máquina especializada que consta de un
 A diferencia del Pilates tradicional en colchoneta (Mat Pilates), el Reformer utiliza resortes y poleas que ofrecen una resistencia variable, permitiendo un mayor rango de movimientos y una mayor personalización de los ejercicios.
 
 ## Anatomía básica del Reformer para principiantes
+![Anatomía básica del Reformer para principiantes](https://spotted-raven-102.convex.cloud/api/storage/37977076-db07-49e1-85fd-3fb6c3c4ec85)
+
 
 ### Componentes principales:
 
@@ -54,6 +66,8 @@ Como principiante, comenzarás típicamente con resortes ligeros (amarillos o ve
 Los especialistas recomiendan practicar Mat Pilates durante al menos 3 meses antes de pasar al Reformer. Sin embargo, muchos principiantes pueden comenzar directamente con el Reformer bajo supervisión profesional adecuada.
 
 ## Lista de verificación para tu primera clase de Reformer
+![Lista de verificación para tu primera clase de Reformer](https://spotted-raven-102.convex.cloud/api/storage/e5b92cab-0704-4d83-954c-7f94b4d07ea4)
+
 
 ### Antes de la clase:
 - [ ] Llega 15 minutos antes para familiarizarte con el equipo
@@ -77,6 +91,8 @@ Los especialistas recomiendan practicar Mat Pilates durante al menos 3 meses ant
 - [ ] Nota cómo se siente tu cuerpo para discutirlo en la siguiente sesión
 
 ## 10 ejercicios esenciales de Reformer para principiantes
+![10 ejercicios esenciales de Reformer para principiantes](https://spotted-raven-102.convex.cloud/api/storage/8a327bc9-9880-45c2-8506-10b18465fb56)
+
 
 ### 1. Footwork (Trabajo de Pies)
 **Posición:** Acostado boca arriba con los pies en la barra

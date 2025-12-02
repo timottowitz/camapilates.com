@@ -22,6 +22,8 @@ const AdminBlogWriter = lazy(() => import('./pages/AdminBlogWriter'));
 const Admin = lazy(() => import('./pages/Admin'));
 const AdminPlaceholders = lazy(() => import('./pages/AdminPlaceholders'));
 const AdminSettings = lazy(() => import('./pages/AdminSettings'));
+const AdminBlogList = lazy(() => import('./pages/AdminBlogList'));
+const AdminBlogEditor = lazy(() => import('./pages/AdminBlogEditor'));
 const Product = lazy(() => import('./pages/Product'));
 const Products = lazy(() => import('./pages/Products'));
 const CamaDePilatesEnVenta = lazy(() => import('./pages/CamaDePilatesEnVenta'));
@@ -93,6 +95,8 @@ const App = () => (
               <Route path="/admin/blog-writer" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminBlogWriter /></AdminGuard></Suspense>} />
               <Route path="/admin/settings" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminSettings /></AdminGuard></Suspense>} />
               <Route path="/admin/placeholders" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminPlaceholders /></AdminGuard></Suspense>} />
+              <Route path="/admin/blogs" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminBlogList /></AdminGuard></Suspense>} />
+              <Route path="/admin/blogs/:slug" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminBlogEditor /></AdminGuard></Suspense>} />
               <Route path="/product/:slug" element={<Suspense fallback={<PageLoader />}><Product /></Suspense>} />
 
               {/* Studio Directory Routes */}

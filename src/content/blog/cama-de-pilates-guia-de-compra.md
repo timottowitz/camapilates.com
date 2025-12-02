@@ -16,7 +16,8 @@ author: CAMA Pilates
 slug: cama-de-pilates-guia-de-compra
 featured: false
 updatedDate: '2025-09-26'
-heroImage: /images/blog/cama-de-pilates-guia-de-compra/hero.jpg
+heroImage: >-
+  https://spotted-raven-102.convex.cloud/api/storage/9b0e0e81-5e19-4bc3-95e3-8319032437e8
 ---
 
 # Guía de compra de Cama de Pilates (Reformer) 2025 — México
@@ -49,6 +50,8 @@ heroImage: /images/blog/cama-de-pilates-guia-de-compra/hero.jpg
 - **Silencio:** tolerancias de riel/carro y rodamientos sellados de calidad reducen juego lateral y crujidos.
 
 ## Accesorios esenciales
+![Accesorios esenciales](https://spotted-raven-102.convex.cloud/api/storage/52020c5b-baf3-4601-86b8-54d9b6a1258b)
+
 - **Box** para ampliar repertorio y alineación.
 - **Correas cómodas** (pies/manos) de fácil limpieza.
 - **Poleas suaves** con rodamientos sellados para tensión consistente.
@@ -56,6 +59,8 @@ heroImage: /images/blog/cama-de-pilates-guia-de-compra/hero.jpg
 <shoprocket-button product="prod_reformer_profesional_placeholder" pk="sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c" />
 
 ## Espacio y medidas
+![Espacio y medidas](https://spotted-raven-102.convex.cloud/api/storage/0a78196f-e96f-4b58-9043-5162bfb4dc30)
+
 - Revisa huella (largo × ancho) y altura libre; deja margen para cambios de footbar/gearbar.
 - Considera acceso a domicilio/estudio para el equipo embalado e instalación.
 

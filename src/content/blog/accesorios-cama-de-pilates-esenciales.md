@@ -16,7 +16,8 @@ slug: accesorios-cama-de-pilates-esenciales
 featured: true
 canonical: 'https://camadepilates.com/blog/accesorios-cama-de-pilates'
 updatedDate: '2025-09-26'
-heroImage: /images/blog/accesorios-cama-de-pilates-esenciales/hero.jpg
+heroImage: >-
+  https://spotted-raven-102.convex.cloud/api/storage/ffe602ee-dbd6-4d6d-a18d-5da99fbf2f19
 ---
  
 # Accesorios para Cama de Pilates: Esenciales
@@ -86,6 +87,8 @@ Los muelles son el corazón del sistema de resistencia del Reformer. Tener una v
 Comprueba anclajes y puntos de fijación antes de cada uso.
 
 ## Mantenimiento y Cuidado
+![Mantenimiento y Cuidado](https://spotted-raven-102.convex.cloud/api/storage/68d03df2-8f5a-421e-815d-7e89e380550e)
+
 
 ### Inspección Regular
 

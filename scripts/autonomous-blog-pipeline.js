@@ -6,13 +6,16 @@
  * Each blog goes through: Research → Writing → SEO → Quality → Images → Publication
  */
 
-import fs from 'fs/promises';
+import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import fs from 'fs/promises';
 import { spawn, exec } from 'child_process';
 import { promisify } from 'util';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.resolve(__dirname, '../autonomous-blog-writer/.env') });
+
 const ROOT = path.resolve(__dirname, '..');
 const execAsync = promisify(exec);
 
@@ -491,13 +494,13 @@ class AutonomousBlogPipeline {
     };
 
     if (CONFIG.logLevel === 'verbose' ||
-        (CONFIG.logLevel === 'detailed' && level !== 'verbose') ||
-        (CONFIG.logLevel === 'minimal' && ['info', 'error', 'warning'].includes(level))) {
+      (CONFIG.logLevel === 'detailed' && level !== 'verbose') ||
+      (CONFIG.logLevel === 'minimal' && ['info', 'error', 'warning'].includes(level))) {
       console.log(`${colors[level] || colors.info}${message}${colors.reset}`);
     }
 
     // Always write to log file
-    fs.appendFile(this.logFile, logEntry + '\n', 'utf-8').catch(() => {});
+    fs.appendFile(this.logFile, logEntry + '\n', 'utf-8').catch(() => { });
   }
 }
 

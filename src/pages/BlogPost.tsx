@@ -9,6 +9,8 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Calendar, Clock, ArrowLeft, User } from 'lucide-react';
 import { loadBlogPost, getRelatedPosts } from '@/utils/blogUtils';
 import { slugify } from '@/utils/slug';
+import { useQuery } from 'convex/react';
+import { api } from '../../convex/_generated/api';
 import CTASection from '@/components/ui/cta-section';
 import AudioStory from '@/components/ui/audio-story';
 import TableOfContents from '@/components/blog/TableOfContents';
@@ -50,28 +52,30 @@ const BlogPost = () => {
   const [loading, setLoading] = useState(true);
   const [heroOverride, setHeroOverride] = useState<string | null>(null);
 
+  const blogPost = useQuery(api.blogs.getBySlug, { slug: slug || '' });
+
   useEffect(() => {
-    const loadPost = async () => {
-      if (!slug) {
-        setLoading(false);
-        return;
-      }
+    if (blogPost) {
+      const { content, publishDate, updatedAt, ...meta } = blogPost;
 
-      try {
-        const result = await loadBlogPost(slug);
-        if (result) {
-          setContent(result.content);
-          setPostMeta(result.metadata);
-        }
-      } catch (error) {
-        console.error('Failed to load blog post:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+      // Calculate read time
+      const words = (content || '').trim().split(/\s+/).filter(Boolean).length;
+      const mins = Math.max(1, Math.ceil(words / 200));
+      const readTime = `${mins} min read`;
 
-    loadPost();
-  }, [slug]);
+      setContent(content);
+      setPostMeta({
+        ...meta,
+        date: publishDate,
+        readTime,
+        updatedDate: new Date(updatedAt).toISOString(),
+      });
+      setLoading(false);
+    } else if (blogPost === null) {
+      // Not found
+      setLoading(false);
+    }
+  }, [blogPost]);
 
   const origin = getOrigin();
   const safeSlug = slug || '';

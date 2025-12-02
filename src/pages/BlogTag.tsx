@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import BlogList from '@/components/blog/BlogList';
-import { getAllPostsMeta, getPostsByTag } from '@/lib/content';
 import { slugify } from '@/utils/slug';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { ArrowLeft } from 'lucide-react';
+import { useQuery } from 'convex/react';
+import { api } from '../../convex/_generated/api';
 
 interface BlogPostMeta {
   slug: string;
@@ -26,12 +27,15 @@ const BlogTag: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const normalized = slugify(tag || '');
 
+  const blogs = useQuery(api.blogs.list, { status: 'published' });
+
   useEffect(() => {
-    setLoading(true);
-    const filtered = tag ? getPostsByTag(normalized) : getAllPostsMeta();
-    setPosts(filtered);
-    setLoading(false);
-  }, [normalized]);
+    if (blogs) {
+      const filtered = tag ? blogs.filter(p => p.tags.some(t => slugify(t) === normalized)) : blogs;
+      setPosts(filtered as any);
+      setLoading(false);
+    }
+  }, [blogs, normalized, tag]);
 
   // Normalize URL to ASCII slug
   useEffect(() => {

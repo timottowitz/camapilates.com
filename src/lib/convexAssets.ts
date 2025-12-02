@@ -52,8 +52,8 @@ export const CONVEX_IMAGE_NAMES = {
 const FALLBACKS = {
   shopHero: '/images/reformer-pro.png',
   featuredProducts: '/images/reformer-home.png',
-  catReformers: '/images/reformer-pro.png',
-  catAccessories: '/images/pilates-straps.png',
+  catReformers: '/images/cat-icon-reformers.png',
+  catAccessories: '/images/cat-icon-accessories.png',
   finishMycelium: '/images/reformer-mycelium.png',
   myloBadge: '/images/badges/mylo.svg',
   myloSpecial: '/images/special/mylo-special.svg',
