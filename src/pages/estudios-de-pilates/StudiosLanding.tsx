@@ -58,7 +58,8 @@ const StudiosLanding: React.FC = () => {
   // Statistics (calculated)
   const stats = {
     totalCities: cities.length,
-    totalStudios: cities.reduce((sum: number, city: any) => sum + (city.studioCount || 0), 0),
+    // Fallback to manual count of 170+ if data is not fully populated, otherwise sum remote counts
+    totalStudios: Math.max(170, cities.reduce((sum: number, city: any) => sum + (city.studioCount || 0), 0)),
     avgRating: 4.7,
     totalReviews: 12500,
   };
