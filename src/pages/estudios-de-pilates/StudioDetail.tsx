@@ -52,6 +52,11 @@ const InfoItem = ({ icon: Icon, title, children, className = "" }: { icon: any, 
   </div>
 );
 
+const formatCoordinate = (value: number, axis: 'lat' | 'lng') => {
+  const direction = axis === 'lat' ? (value >= 0 ? 'N' : 'S') : (value >= 0 ? 'E' : 'W');
+  return `${Math.abs(value).toFixed(4)}° ${direction}`;
+};
+
 const StudioDetail: React.FC = () => {
   const { city, studio } = useParams<{ city: string; studio: string }>();
 
@@ -381,6 +386,15 @@ const StudioDetail: React.FC = () => {
                   )}
                 </div>
               )}
+
+              {/* Review Insights */}
+              {studioData.generatedSummary?.reviewInsights && (
+                <div className="mt-6 p-4 bg-[#F9F8F6] rounded-lg border border-[#2A2624]/5">
+                  <p className="text-sm text-[#5D5550] font-light italic">
+                    💬 {studioData.generatedSummary.reviewInsights}
+                  </p>
+                </div>
+              )}
             </section>
 
             {/* Google Reviews Section */}
@@ -451,17 +465,41 @@ const StudioDetail: React.FC = () => {
 
               <div className="bg-[#F9F8F6] rounded-xl p-1 overflow-hidden border border-[#2A2624]/5">
                  {studioData.address?.coordinates && (
-                    <div className="aspect-[21/9] w-full rounded-lg overflow-hidden relative">
-                       <iframe
-                          title={`Location of ${studioData.name}`}
-                          width="100%"
-                          height="100%"
-                          style={{ border: 0 }}
-                          loading="lazy"
-                          referrerPolicy="no-referrer-when-downgrade"
-                          src={`https://www.google.com/maps/embed/v1/place?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ''}&q=place_id:${studioData.googlePlaceId || `loc:${studioData.address.coordinates.lat},${studioData.address.coordinates.lng}`}&zoom=15`}
-                          className="grayscale hover:grayscale-0 transition-all duration-500"
-                       />
+                    <div
+                       className="aspect-[21/9] w-full rounded-lg overflow-hidden relative bg-[#201A18] cursor-pointer group"
+                       onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${studioData.address!.coordinates!.lat},${studioData.address!.coordinates!.lng}`, '_blank')}
+                    >
+                       <div className="absolute inset-0" style={{
+                         backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.12) 1px, transparent 0)',
+                         backgroundSize: '28px 28px'
+                       }} />
+                       <div className="absolute inset-0 bg-gradient-to-br from-[#FFFBF5]/10 via-transparent to-[#2A2624]/40" />
+                       <div className="relative z-10 h-full flex items-center justify-between px-6">
+                          <div className="flex items-center gap-4">
+                             <div className="w-16 h-16 rounded-full bg-white/10 border border-white/20 backdrop-blur flex items-center justify-center">
+                                <MapPin className="w-7 h-7 text-white" />
+                             </div>
+                             <div>
+                                <p className="text-xs uppercase tracking-[0.3em] text-white/70 mb-1">Coordenadas</p>
+                                <p className="font-mono text-white text-lg">
+                                   {formatCoordinate(studioData.address.coordinates.lat, 'lat')}, {formatCoordinate(studioData.address.coordinates.lng, 'lng')}
+                                </p>
+                                <p className="text-white/70 text-sm">
+                                   {studioData.address.neighborhood || studioData.address.city}
+                                </p>
+                             </div>
+                          </div>
+                          <div className="hidden md:flex items-center gap-3 text-white/80 text-sm group-hover:text-white transition-colors">
+                             <span>Ver en Google Maps</span>
+                             <Navigation className="w-4 h-4" />
+                          </div>
+                       </div>
+                    </div>
+                 )}
+                 {!studioData.address?.coordinates && (
+                    <div className="aspect-[21/9] w-full rounded-lg bg-[#E8E6E2] flex flex-col items-center justify-center text-center p-6">
+                       <MapPin className="w-8 h-8 text-[#3E2723] mb-3" />
+                       <p className="text-[#5D5550] text-sm">Coordenadas no disponibles. Consulta la dirección para llegar.</p>
                     </div>
                  )}
                  

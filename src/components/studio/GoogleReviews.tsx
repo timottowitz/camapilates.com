@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
-import { Star, Quote, ExternalLink } from 'lucide-react';
+import { Star, Quote, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { hasConvex } from '@/lib/convexProvider';
 
 interface Review {
@@ -20,6 +20,34 @@ interface GoogleReviewsProps {
   googlePlaceId?: string;
   studioName: string;
   maxReviews?: number;
+}
+
+class GoogleReviewsBoundary extends React.Component<{ children: React.ReactNode; resetKey: string }, { hasError: boolean }> {
+  constructor(props: { children: React.ReactNode; resetKey: string }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: any) {
+    console.error('GoogleReviews render error:', error);
+  }
+
+  componentDidUpdate(prevProps: { children: React.ReactNode; resetKey: string }) {
+    if (prevProps.resetKey !== this.props.resetKey && this.state.hasError) {
+      this.setState({ hasError: false });
+    }
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return null;
+    }
+    return this.props.children;
+  }
 }
 
 const StarRating = ({ rating }: { rating: number }) => (
@@ -105,10 +133,12 @@ const ReviewCard = ({ review }: { review: Review }) => {
 };
 
 // Inner component that uses hooks (only rendered when Convex is available)
-const GoogleReviewsInner: React.FC<{ googlePlaceId: string; maxReviews: number }> = ({
+const GoogleReviewsInner: React.FC<{ googlePlaceId: string; reviewsPerPage: number }> = ({
   googlePlaceId,
-  maxReviews,
+  reviewsPerPage,
 }) => {
+  const [currentPage, setCurrentPage] = React.useState(0);
+  
   // Always call hook unconditionally
   const reviews = useQuery(api.studioEnrichment.getStudioReviews, { googlePlaceId });
 
@@ -117,7 +147,19 @@ const GoogleReviewsInner: React.FC<{ googlePlaceId: string; maxReviews: number }
     return null;
   }
 
-  const displayReviews = reviews.slice(0, maxReviews);
+  const totalPages = Math.ceil(reviews.length / reviewsPerPage);
+  const startIndex = currentPage * reviewsPerPage;
+  const displayReviews = reviews.slice(startIndex, startIndex + reviewsPerPage);
+
+  const goToPrevious = () => {
+    setCurrentPage((prev) => (prev > 0 ? prev - 1 : totalPages - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentPage((prev) => (prev < totalPages - 1 ? prev + 1 : 0));
+  };
+
+  const hasMultiplePages = totalPages > 1;
 
   return (
     <section className="scroll-mt-24">
@@ -125,21 +167,70 @@ const GoogleReviewsInner: React.FC<{ googlePlaceId: string; maxReviews: number }
         <h2 className="font-serif italic text-3xl text-[#2A2624]">
           What Clients Say
         </h2>
-        <a
-          href={`https://search.google.com/local/reviews?placeid=${googlePlaceId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-xs uppercase tracking-widest text-[#5D5550] hover:text-[#2A2624] flex items-center gap-2 transition-colors"
-        >
-          All Reviews <ExternalLink className="w-3 h-3" />
-        </a>
+        <div className="flex items-center gap-4">
+          {hasMultiplePages && (
+            <span className="text-xs text-[#5D5550]">
+              {startIndex + 1}-{Math.min(startIndex + reviewsPerPage, reviews.length)} of {reviews.length}
+            </span>
+          )}
+          <a
+            href={`https://search.google.com/local/reviews?placeid=${googlePlaceId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs uppercase tracking-widest text-[#5D5550] hover:text-[#2A2624] flex items-center gap-2 transition-colors"
+          >
+            All Reviews <ExternalLink className="w-3 h-3" />
+          </a>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {displayReviews.map((review, index) => (
-          <ReviewCard key={index} review={review} />
-        ))}
+      {/* Reviews Grid with Navigation */}
+      <div className="relative">
+        {/* Navigation Arrows */}
+        {hasMultiplePages && (
+          <>
+            <button
+              onClick={goToPrevious}
+              className="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-[#2A2624]/10 shadow-lg flex items-center justify-center hover:bg-[#F9F8F6] hover:border-[#2A2624]/20 transition-all"
+              aria-label="Previous reviews"
+            >
+              <ChevronLeft className="w-5 h-5 text-[#2A2624]" />
+            </button>
+            <button
+              onClick={goToNext}
+              className="absolute -right-4 md:-right-12 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-[#2A2624]/10 shadow-lg flex items-center justify-center hover:bg-[#F9F8F6] hover:border-[#2A2624]/20 transition-all"
+              aria-label="Next reviews"
+            >
+              <ChevronRight className="w-5 h-5 text-[#2A2624]" />
+            </button>
+          </>
+        )}
+
+        {/* Reviews Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {displayReviews.map((review, index) => (
+            <ReviewCard key={`${currentPage}-${index}`} review={review} />
+          ))}
+        </div>
       </div>
+
+      {/* Page Dots Indicator */}
+      {hasMultiplePages && (
+        <div className="flex items-center justify-center gap-2 mt-6">
+          {Array.from({ length: totalPages }).map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentPage(idx)}
+              className={`w-2 h-2 rounded-full transition-all ${
+                idx === currentPage
+                  ? 'bg-[#2A2624] w-4'
+                  : 'bg-[#2A2624]/20 hover:bg-[#2A2624]/40'
+              }`}
+              aria-label={`Go to page ${idx + 1}`}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Google Attribution */}
       <div className="mt-6 flex items-center justify-center gap-2 text-xs text-[#5D5550]/60">
@@ -158,7 +249,7 @@ const GoogleReviewsInner: React.FC<{ googlePlaceId: string; maxReviews: number }
 export const GoogleReviews: React.FC<GoogleReviewsProps> = ({
   googlePlaceId,
   studioName,
-  maxReviews = 5,
+  maxReviews = 4,
 }) => {
   // Early return before any hooks if Convex isn't available or no placeId
   if (!hasConvex || !googlePlaceId) {
@@ -166,10 +257,12 @@ export const GoogleReviews: React.FC<GoogleReviewsProps> = ({
   }
 
   return (
-    <GoogleReviewsInner
-      googlePlaceId={googlePlaceId}
-      maxReviews={maxReviews}
-    />
+    <GoogleReviewsBoundary resetKey={googlePlaceId}>
+      <GoogleReviewsInner
+        googlePlaceId={googlePlaceId}
+        reviewsPerPage={maxReviews}
+      />
+    </GoogleReviewsBoundary>
   );
 };
 

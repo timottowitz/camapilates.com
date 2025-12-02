@@ -810,26 +810,49 @@ export const getStudioReviews = query({
     googlePlaceId: v.string(),
   },
   handler: async (ctx, args) => {
-    const rawData = await ctx.db
-      .query('placesRawData')
-      .withIndex('by_place_id', (q) => q.eq('googlePlaceId', args.googlePlaceId))
-      .first();
+    try {
+      const rawData = await ctx.db
+        .query('placesRawData')
+        .withIndex('by_place_id', (q) => q.eq('googlePlaceId', args.googlePlaceId))
+        .first();
 
-    if (!rawData?.rawResponse?.reviews) {
+      const rawReviews = rawData?.rawResponse?.reviews;
+      const reviews = Array.isArray(rawReviews) ? rawReviews : [];
+
+      if (reviews.length === 0) {
+        return [];
+      }
+
+      const sanitized = reviews
+        .filter((review) => review && typeof review === 'object')
+        .map((review: any) => {
+          const authorAttribution = review.authorAttribution || {};
+          const translatedText = typeof review.text?.text === 'string' ? review.text.text : '';
+          const originalText = typeof review.originalText?.text === 'string' ? review.originalText.text : null;
+
+          return {
+            authorName: typeof authorAttribution.displayName === 'string' && authorAttribution.displayName.trim().length > 0
+              ? authorAttribution.displayName
+              : 'Anonymous',
+            authorPhotoUrl: authorAttribution.photoUri || null,
+            authorProfileUrl: authorAttribution.uri || null,
+            rating: typeof review.rating === 'number' ? review.rating : 0,
+            text: translatedText || originalText || '',
+            originalText,
+            language: review.text?.languageCode || review.originalText?.languageCode || 'es',
+            publishTime: typeof review.publishTime === 'string' ? review.publishTime : null,
+            relativeTime: review.relativePublishTimeDescription || '',
+          };
+        })
+        .filter((review) => review.text.length > 0 || review.rating > 0);
+
+      return sanitized.slice(0, 12);
+    } catch (error) {
+      console.error('studioEnrichment.getStudioReviews failed', {
+        placeId: args.googlePlaceId,
+        error: error instanceof Error ? error.message : error,
+      });
       return [];
     }
-
-    // Format reviews for frontend display
-    return rawData.rawResponse.reviews.map((review: any) => ({
-      authorName: review.authorAttribution?.displayName || 'Anonymous',
-      authorPhotoUrl: review.authorAttribution?.photoUri || null,
-      authorProfileUrl: review.authorAttribution?.uri || null,
-      rating: review.rating,
-      text: review.text?.text || review.originalText?.text || '',
-      originalText: review.originalText?.text || null,
-      language: review.text?.languageCode || review.originalText?.languageCode || 'es',
-      publishTime: review.publishTime,
-      relativeTime: review.relativePublishTimeDescription || '',
-    }));
   },
 });

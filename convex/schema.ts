@@ -165,6 +165,15 @@ export default defineSchema({
     // External IDs
     googlePlaceId: v.optional(v.string()),
 
+    // AI-Generated Summary from Reviews
+    generatedSummary: v.optional(v.object({
+      overview: v.string(),
+      vibe: v.optional(v.string()),
+      highlight: v.optional(v.string()),
+      reviewInsights: v.optional(v.string()),
+      generatedAt: v.number(),
+    })),
+
     // Timestamps
     createdAt: v.number(),
     updatedAt: v.number(),
