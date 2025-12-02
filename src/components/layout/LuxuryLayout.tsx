@@ -26,7 +26,7 @@ const LuxuryLayout = ({ children, className = "", noPadding = false }: LuxuryLay
         { to: '/shop', label: 'Shop' },
         { to: '/compare', label: 'Compare' },
         { to: '/blog', label: 'Blog' },
-        { to: '/estudios-de-pilates', label: 'Studios' },
+        { to: '/estudios-de-pilates', label: 'Buscador' },
         { to: '/certificacion-pilates', label: 'Certification' },
         { to: '/about', label: 'About' },
     ];
