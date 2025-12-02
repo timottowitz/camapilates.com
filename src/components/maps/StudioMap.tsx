@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { MapPin, Navigation, Search, Filter, Layers } from 'lucide-react';
+import { MapPin, Navigation, Search, Filter, Layers, X, Star, CheckCircle, ExternalLink } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import {
   Select,
@@ -14,6 +14,7 @@ import {
 interface Studio {
   _id: string;
   name: string;
+  slug?: string;
   address: {
     street: string;
     neighborhood?: string;
@@ -30,6 +31,11 @@ interface Studio {
   amenities?: string[];
   photos?: string[];
   isVerified?: boolean;
+  classTypes?: string[];
+  priceRange?: {
+    min?: number;
+    max?: number;
+  };
 }
 
 interface StudioMapProps {
@@ -230,12 +236,16 @@ export function StudioMap({
         // Close all other info windows
         newMarkers.forEach(m => m.infoWindow?.close());
 
-        infoWindow.open(map, marker);
-        setSelectedStudio(studio);
-
-        if (onStudioClick) {
-          onStudioClick(studio);
+        // Pan map to center the marker with offset for the card
+        const latLng = marker.getPosition();
+        if (latLng) {
+          // Offset the center slightly up so the card doesn't cover the marker
+          const offsetLat = latLng.lat() - 0.008; // Shift down so marker appears above card
+          map.panTo({ lat: offsetLat, lng: latLng.lng() });
         }
+
+        // Set selected studio to show the preview card (don't navigate yet)
+        setSelectedStudio(studio);
       });
 
       marker.infoWindow = infoWindow;
@@ -498,38 +508,108 @@ export function StudioMap({
         </Badge>
       </div>
 
-      {/* Selected studio info */}
+      {/* Selected studio preview card */}
       {selectedStudio && (
-        <Card className="absolute bottom-4 left-4 right-4 z-10 p-4 max-w-md mx-auto shadow-xl">
-          <h3 className="font-semibold text-lg mb-2">{selectedStudio.name}</h3>
-          <p className="text-sm text-muted-foreground mb-2">{selectedStudio.address.street}</p>
-          {selectedStudio.metrics?.googleRating && (
-            <div className="flex items-center gap-2 mb-3">
-              <span className="text-sm font-medium">⭐ {selectedStudio.metrics.googleRating}</span>
-              <span className="text-xs text-muted-foreground">
-                ({selectedStudio.metrics.googleReviewCount} reviews)
-              </span>
+        <Card className="absolute bottom-4 left-4 right-4 z-10 max-w-lg mx-auto shadow-2xl border-0 overflow-hidden">
+          {/* Close button */}
+          <button
+            onClick={() => setSelectedStudio(null)}
+            className="absolute top-3 right-3 z-20 p-1.5 rounded-full bg-white/90 hover:bg-white shadow-md transition-colors"
+            aria-label="Cerrar"
+          >
+            <X className="h-4 w-4 text-gray-600" />
+          </button>
+
+          <div className="flex">
+            {/* Photo */}
+            <div className="w-28 h-full min-h-[140px] bg-gradient-to-br from-stone-100 to-stone-200 flex-shrink-0">
+              {selectedStudio.photos?.[0] ? (
+                <img
+                  src={selectedStudio.photos[0]}
+                  alt={selectedStudio.name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <MapPin className="h-8 w-8 text-stone-400" />
+                </div>
+              )}
             </div>
-          )}
-          <div className="flex gap-2">
-            {enableGeolocation && userLocation && directionsService && (
-              <Button
-                onClick={() => getDirectionsToStudio(selectedStudio._id)}
-                size="sm"
-                className="flex-1"
-              >
-                <Navigation className="h-4 w-4 mr-2" />
-                Get Directions
-              </Button>
-            )}
-            <Button
-              onClick={() => onStudioClick?.(selectedStudio)}
-              size="sm"
-              variant="outline"
-              className="flex-1"
-            >
-              View Details
-            </Button>
+
+            {/* Content */}
+            <div className="flex-1 p-4">
+              {/* Header with name and verification */}
+              <div className="flex items-start justify-between gap-2 mb-2">
+                <h3 className="font-semibold text-base leading-tight line-clamp-2 pr-6">
+                  {selectedStudio.name}
+                </h3>
+              </div>
+
+              {/* Verification badge */}
+              {selectedStudio.isVerified && (
+                <div className="flex items-center gap-1 text-emerald-600 text-xs mb-2">
+                  <CheckCircle className="h-3.5 w-3.5" />
+                  <span>Verificado</span>
+                </div>
+              )}
+
+              {/* Location */}
+              <p className="text-sm text-muted-foreground mb-2 line-clamp-1">
+                {selectedStudio.address.neighborhood || selectedStudio.address.street}
+                {selectedStudio.address.neighborhood && `, ${selectedStudio.address.city}`}
+              </p>
+
+              {/* Rating */}
+              {selectedStudio.metrics?.googleRating && (
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="flex items-center gap-1 bg-amber-50 px-2 py-0.5 rounded-full">
+                    <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+                    <span className="text-sm font-medium text-amber-700">
+                      {selectedStudio.metrics.googleRating.toFixed(1)}
+                    </span>
+                  </div>
+                  <span className="text-xs text-muted-foreground">
+                    ({selectedStudio.metrics.googleReviewCount?.toLocaleString()} reseñas)
+                  </span>
+                </div>
+              )}
+
+              {/* Class types / Amenities */}
+              {(selectedStudio.classTypes?.length || selectedStudio.amenities?.length) && (
+                <div className="flex flex-wrap gap-1 mb-3">
+                  {(selectedStudio.classTypes || selectedStudio.amenities || []).slice(0, 3).map((item, i) => (
+                    <span
+                      key={i}
+                      className="text-xs px-2 py-0.5 bg-stone-100 text-stone-600 rounded-full"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {/* Action buttons */}
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => onStudioClick?.(selectedStudio)}
+                  size="sm"
+                  className="flex-1 bg-stone-900 hover:bg-stone-800"
+                >
+                  <ExternalLink className="h-3.5 w-3.5 mr-1.5" />
+                  Ver Estudio
+                </Button>
+                {enableGeolocation && userLocation && directionsService && (
+                  <Button
+                    onClick={() => getDirectionsToStudio(selectedStudio._id)}
+                    size="sm"
+                    variant="outline"
+                    className="px-3"
+                  >
+                    <Navigation className="h-3.5 w-3.5" />
+                  </Button>
+                )}
+              </div>
+            </div>
           </div>
         </Card>
       )}
