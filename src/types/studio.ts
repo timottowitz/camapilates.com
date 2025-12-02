@@ -48,6 +48,17 @@ export interface PilatesStudio {
   // === AMENITIES ===
   amenities: Amenities;
 
+  // === FACILITIES DETAILED ===
+  parking: ParkingDetails | null;
+  payment: PaymentMethods | null;
+  
+  // === AI CONTENT ===
+  generatedSummary: {
+    overview: string | null;
+    vibe: string | null; // e.g. "Relaxing", "High Energy"
+    highlight: string | null; // e.g. "Best for beginners"
+  } | null;
+
   // === ACCESSIBILITY ===
   accessibility: Accessibility;
 
@@ -236,6 +247,21 @@ export interface Amenities {
   changingRooms: boolean | null;
   waterStation: boolean | null;
   retailShop: boolean | null;
+}
+
+export interface ParkingDetails {
+  hasParking: boolean;
+  isFree: boolean | null;
+  isValet: boolean | null;
+  structure: 'street' | 'lot' | 'garage' | null;
+  notes: string | null;
+}
+
+export interface PaymentMethods {
+  card: boolean;
+  cash: boolean;
+  digital: boolean; // Apple Pay, Google Pay
+  transfer: boolean;
 }
 
 export interface Accessibility {
