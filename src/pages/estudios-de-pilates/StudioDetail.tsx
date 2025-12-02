@@ -59,16 +59,19 @@ const StudioDetail: React.FC = () => {
     }
   }, [city, studio, cityName]);
 
-  // Fetch studio data - Convex
-  const convexStudio = hasConvex
-    ? useQuery(api.studios.getBySlug, cityName && studio ? { city: cityName, slug: studio } : undefined)
-    : undefined;
-  const convexCityStudios = hasConvex
-    ? useQuery(api.studios.getByCity, cityName ? { city: cityName } : undefined)
-    : undefined;
-  const convexSearch = hasConvex
-    ? useQuery(api.studios.search, studio ? { query: studio.replace(/-/g, ' '), limit: 10 } : undefined)
-    : undefined;
+  // Fetch studio data - Convex (always call hooks, use 'skip' pattern)
+  const convexStudio = useQuery(
+    api.studios.getBySlug,
+    hasConvex && cityName && studio ? { city: cityName, slug: studio } : 'skip'
+  );
+  const convexCityStudios = useQuery(
+    api.studios.getByCity,
+    hasConvex && cityName ? { city: cityName } : 'skip'
+  );
+  const convexSearch = useQuery(
+    api.studios.search,
+    hasConvex && studio ? { query: studio.replace(/-/g, ' '), limit: 10 } : 'skip'
+  );
 
   // Failover to local data after a short timeout
   const [failover, setFailover] = React.useState(false);

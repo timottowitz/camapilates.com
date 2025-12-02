@@ -53,9 +53,9 @@ const CityDirectory: React.FC = () => {
     }
   }, [city, cityName, navigate]);
 
-  // Fetch data from Convex
-  const convexStudios = hasConvex ? useQuery(api.studios.getByCity, { city: cityName }) : undefined;
-  const convexCity = hasConvex ? useQuery(api.cities.getBySlug, { slug: city || '' }) : undefined;
+  // Fetch data from Convex - always call hooks, use "skip" pattern with undefined args
+  const convexStudios = useQuery(api.studios.getByCity, hasConvex && cityName ? { city: cityName } : 'skip');
+  const convexCity = useQuery(api.cities.getBySlug, hasConvex && city ? { slug: city } : 'skip');
 
   // Failover to local data if Convex is slow/unavailable
   const [failover, setFailover] = useState(false);

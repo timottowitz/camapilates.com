@@ -28,8 +28,8 @@ const StudiosLanding: React.FC = () => {
     .map((id) => (localData.studios as any[]).find((s) => s._id === id))
     .filter(Boolean) as any[];
 
-  const remoteCities = hasConvex ? useQuery(api.cities.getPriority, { limit: 10 }) : undefined;
-  const remoteFeatured = hasConvex ? useQuery(api.studios.getFeatured, { limit: 6 }) : undefined;
+  const remoteCities = useQuery(api.cities.getPriority, hasConvex ? { limit: 10 } : 'skip');
+  const remoteFeatured = useQuery(api.studios.getFeatured, hasConvex ? { limit: 6 } : 'skip');
 
   const cities = React.useMemo(() => {
     if (!hasConvex) return fallbackCities;
