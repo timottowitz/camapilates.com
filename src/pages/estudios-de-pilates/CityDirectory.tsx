@@ -33,6 +33,7 @@ import LuxuryLayout from "@/components/layout/LuxuryLayout";
 
 // City name mappings - normalize accents in slugs
 const cityNameMap: { [key: string]: string } = {
+  cdmx: "Ciudad de México", // Common abbreviation
   "ciudad-de-mexico": "Ciudad de México",
   "ciudad-de-méxico": "Ciudad de México", // Handle URL with accent
   queretaro: "Querétaro",

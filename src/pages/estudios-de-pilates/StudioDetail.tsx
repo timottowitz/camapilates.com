@@ -57,6 +57,7 @@ const StudioDetail: React.FC = () => {
 
   // City name mapping - normalize accents in slugs
   const cityNameMap: { [key: string]: string } = {
+    'cdmx': 'Ciudad de México', // Common abbreviation
     'ciudad-de-mexico': 'Ciudad de México',
     'ciudad-de-méxico': 'Ciudad de México', // Handle URL with accent
     'queretaro': 'Querétaro',
