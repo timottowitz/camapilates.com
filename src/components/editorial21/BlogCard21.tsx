@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { toAbsoluteUrl, getOrigin } from '@/lib/seo';
+import { useQuery } from 'convex/react';
+import { api } from '../../../convex/_generated/api';
+import { hasConvex } from '@/lib/convexProvider';
 import Reveal from './Reveal';
 
 export type BlogMeta = {
@@ -15,7 +18,17 @@ export type BlogMeta = {
 
 const BlogCard21: React.FC<{ post: BlogMeta; large?: boolean }> = ({ post, large = false }) => {
   const origin = getOrigin();
-  const img = toAbsoluteUrl(post.heroImage) || `${origin}/og/${post.slug}.png`;
+  const placeholderId = `blog-${post.slug}-hero-1`;
+  
+  // Try to get the hero image from Convex placeholders (same as BlogPost uses)
+  const placeholderData = useQuery(
+    api.placeholders.getById,
+    hasConvex ? { placeholderId } : undefined
+  ) as any;
+  
+  // Priority: 1) Convex placeholder image, 2) heroImage from frontmatter, 3) OG fallback
+  const img = placeholderData?.imageUrl || toAbsoluteUrl(post.heroImage) || `${origin}/og/${post.slug}.png`;
+  
   return (
     <Reveal>
     <Link to={`/blog/${post.slug}`} className={`group block rounded-xl overflow-hidden border border-border bg-card hover:border-primary/50 transition-colors ${large ? 'md:col-span-2' : ''}`}>
