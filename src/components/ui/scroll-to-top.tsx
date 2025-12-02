@@ -1,40 +1,10 @@
 
-import React, { useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowUp } from 'lucide-react';
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const { pathname, hash } = useLocation();
-  const isFirstRender = useRef(true);
-
-  // Scroll to top on route change - with delay to ensure content renders first
-  useEffect(() => {
-    // Skip first render to avoid scroll on initial page load
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-
-    // If there's a hash, let the browser handle anchor scrolling
-    if (hash) {
-      return;
-    }
-
-    // Use requestAnimationFrame + setTimeout to ensure DOM has updated
-    const timeoutId = setTimeout(() => {
-      requestAnimationFrame(() => {
-        window.scrollTo({
-          top: 0,
-          left: 0,
-          behavior: 'instant' // Use instant to avoid visible scrolling animation
-        });
-      });
-    }, 0);
-
-    return () => clearTimeout(timeoutId);
-  }, [pathname, hash]);
 
   // Toggle button visibility based on scroll position
   useEffect(() => {
