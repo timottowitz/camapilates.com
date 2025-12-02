@@ -232,7 +232,13 @@ export function StudioMap({
         content: infoContent,
       });
 
-      marker.addListener('click', () => {
+      marker.addListener('click', (event: any) => {
+        // Prevent any default scroll behavior
+        if (event?.domEvent) {
+          event.domEvent.preventDefault();
+          event.domEvent.stopPropagation();
+        }
+
         // Close all other info windows
         newMarkers.forEach(m => m.infoWindow?.close());
 
@@ -245,7 +251,10 @@ export function StudioMap({
         }
 
         // Set selected studio to show the preview card (don't navigate yet)
-        setSelectedStudio(studio);
+        // Use setTimeout to avoid any scroll side effects from state change
+        setTimeout(() => {
+          setSelectedStudio(studio);
+        }, 0);
       });
 
       marker.infoWindow = infoWindow;
@@ -443,7 +452,7 @@ export function StudioMap({
   }
 
   return (
-    <div className="relative">
+    <div className="relative" style={{ overscrollBehavior: 'contain' }}>
       {/* Map Controls */}
       {showControls && (
         <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
@@ -510,7 +519,11 @@ export function StudioMap({
 
       {/* Selected studio preview card */}
       {selectedStudio && (
-        <Card className="absolute bottom-4 left-4 right-4 z-10 max-w-lg mx-auto shadow-2xl border-0 overflow-hidden">
+        <Card
+          className="absolute bottom-4 left-4 right-4 z-10 max-w-lg mx-auto shadow-2xl border-0 overflow-hidden"
+          tabIndex={-1}
+          style={{ scrollMargin: 0 }}
+        >
           {/* Close button */}
           <button
             onClick={() => setSelectedStudio(null)}
