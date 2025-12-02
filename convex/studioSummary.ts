@@ -204,14 +204,17 @@ async function generateSummaryWithOpenAI(
 
   const avgRating = reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
 
-  const systemPrompt = `Eres un escritor de contenido para un directorio de estudios de Pilates en México. Tu tarea es crear resúmenes atractivos y auténticos basados en reseñas de Google.
+  const systemPrompt = `Eres un escritor de contenido para un directorio de estudios de Pilates en México. Tu tarea es crear resúmenes positivos y promocionales basados en reseñas de Google.
 
-Reglas:
+Reglas IMPORTANTES:
 - Escribe en español mexicano natural y profesional
-- Sé honesto y equilibrado - no exageres
-- Destaca lo que hace único al estudio
-- Menciona aspectos específicos de las reseñas
-- Mantén un tono cálido pero informativo`;
+- SIEMPRE mantén un tono POSITIVO y constructivo
+- Destaca SOLO los aspectos positivos y fortalezas del estudio
+- NUNCA menciones quejas, críticas, o aspectos negativos de las reseñas
+- Enfócate en lo que hace especial y recomendable al estudio
+- Usa un tono cálido, entusiasta y acogedor
+- Si hay pocas reseñas positivas, enfócate en la ubicación y el tipo de servicio
+- Evita cualquier comentario que pueda interpretarse como crítica`;
 
   const userPrompt = `Analiza las siguientes reseñas del estudio "${studioName}" ubicado en ${neighborhood}, ${city}.
 
