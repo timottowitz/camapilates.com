@@ -3,7 +3,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { MapPin, Phone, Globe, Star, CheckCircle } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { citySlug } from '@/utils/slug';
 import { GooglePlacesPhoto } from '@/components/studio/GooglePlacesPhoto';
 import { formatPrice, formatDistance } from '@/utils/studio-helpers';
@@ -60,6 +60,7 @@ export interface StudioCardProps {
 }
 
 const StudioCard: React.FC<StudioCardProps> = ({ studio }) => {
+  const navigate = useNavigate();
   const studioUrl = `/estudios-de-pilates/${citySlug(studio.address.city)}/${studio.slug}`;
 
   // Filter out generic/empty types and translate
@@ -208,12 +209,16 @@ const StudioCard: React.FC<StudioCardProps> = ({ studio }) => {
 
         {/* Actions */}
         <div className="p-6 pt-0 flex gap-2 mt-auto">
-          <Link
-            to={studioUrl}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              navigate(studioUrl);
+            }}
             className="flex-1 inline-flex items-center justify-center h-10 px-4 py-2 rounded-md bg-[#2A2624] hover:bg-[#3E2723] text-white font-sans tracking-wide transition-all duration-300 hover:shadow-lg text-sm font-medium"
           >
             Ver Detalles
-          </Link>
+          </button>
 
           <div className="flex gap-2">
             {studio.contact?.phone && (

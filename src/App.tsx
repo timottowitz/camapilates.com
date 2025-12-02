@@ -133,8 +133,8 @@ const App = () => (
 
               {/* Studio Directory Routes */}
               <Route path="/estudios-de-pilates" element={<Suspense fallback={<PageLoader />}><StudiosLanding /></Suspense>} />
-              <Route path="/estudios-de-pilates/:city" element={<Suspense fallback={<PageLoader />}><CityDirectory /></Suspense>} />
               <Route path="/estudios-de-pilates/:city/:studio" element={<Suspense fallback={<PageLoader />}><StudioDetail /></Suspense>} />
+              <Route path="/estudios-de-pilates/:city" element={<Suspense fallback={<PageLoader />}><CityDirectory /></Suspense>} />
 
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
