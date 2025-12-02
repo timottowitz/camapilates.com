@@ -800,3 +800,36 @@ export const getRawPlaceData = query({
     return rawData;
   },
 });
+
+/**
+ * Get Google reviews for a studio
+ * Returns formatted reviews from the raw Places data
+ */
+export const getStudioReviews = query({
+  args: {
+    googlePlaceId: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const rawData = await ctx.db
+      .query('placesRawData')
+      .withIndex('by_place_id', (q) => q.eq('googlePlaceId', args.googlePlaceId))
+      .first();
+
+    if (!rawData?.rawResponse?.reviews) {
+      return [];
+    }
+
+    // Format reviews for frontend display
+    return rawData.rawResponse.reviews.map((review: any) => ({
+      authorName: review.authorAttribution?.displayName || 'Anonymous',
+      authorPhotoUrl: review.authorAttribution?.photoUri || null,
+      authorProfileUrl: review.authorAttribution?.uri || null,
+      rating: review.rating,
+      text: review.text?.text || review.originalText?.text || '',
+      originalText: review.originalText?.text || null,
+      language: review.text?.languageCode || review.originalText?.languageCode || 'es',
+      publishTime: review.publishTime,
+      relativeTime: review.relativePublishTimeDescription || '',
+    }));
+  },
+});

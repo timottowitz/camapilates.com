@@ -28,6 +28,7 @@ import {
   Share2
 } from 'lucide-react';
 import { GooglePlacesPhoto } from '@/components/studio/GooglePlacesPhoto';
+import { GoogleReviews } from '@/components/studio/GoogleReviews';
 import { hasConvex } from '@/lib/convexProvider';
 import { ContextualImage } from '@/components/ContextualImage';
 import localData from '@/data/studios.json';
@@ -380,6 +381,13 @@ const StudioDetail: React.FC = () => {
                 </div>
               )}
             </section>
+
+            {/* Google Reviews Section */}
+            <GoogleReviews
+              googlePlaceId={studioData.googlePlaceId || undefined}
+              studioName={studioData.name}
+              maxReviews={4}
+            />
 
             {/* Know Before You Go - NEW SECTION */}
             <section>
