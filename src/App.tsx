@@ -11,6 +11,9 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import NotFound from "./pages/NotFound";
+import StudiosLanding from './pages/estudios-de-pilates/StudiosLanding';
+import CityDirectory from './pages/estudios-de-pilates/CityDirectory';
+import StudioDetail from './pages/estudios-de-pilates/StudioDetail';
 
 // Retry wrapper for lazy imports - handles chunk loading failures after deployments
 function lazyWithRetry<T extends ComponentType<any>>(
@@ -68,13 +71,9 @@ const LegalTerms = lazyWithRetry(() => import('./pages/LegalTerms'));
 const LegalPrivacy = lazyWithRetry(() => import('./pages/LegalPrivacy'));
 const Support = lazyWithRetry(() => import('./pages/Support'));
 
-// Studio Directory Pages
-const StudiosLanding = lazyWithRetry(() => import('./pages/estudios-de-pilates/StudiosLanding'));
-const CityDirectory = lazyWithRetry(() => import('./pages/estudios-de-pilates/CityDirectory'));
-const StudioDetail = lazyWithRetry(() => import('./pages/estudios-de-pilates/StudioDetail'));
-
 import GAListener from "@/components/analytics/GAListener";
 import FloatingCart21 from "@/components/commerce21/FloatingCart21";
+import ShoprocketLoader from "@/components/commerce21/ShoprocketLoader";
 import AdminGuard from "@/components/auth/AdminGuard";
 import ErrorBoundary from "@/components/ErrorBoundary";
 
@@ -97,6 +96,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ShoprocketLoader />
           <GAListener />
           <ScrollToTop />
           {/* Shoprocket embeds are placed directly in pages via embed blocks */}

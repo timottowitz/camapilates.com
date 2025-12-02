@@ -1,8 +1,10 @@
 import React from 'react';
 import ShoprocketCart from './ShoprocketCart';
 import { allProducts } from '@/lib/shop/catalog';
+import { SHOPROCKET_ENABLED } from '@/lib/shoprocket/config';
 
 const FloatingCart21: React.FC = () => {
+  if (!SHOPROCKET_ENABLED) return null;
   const p = allProducts()[0];
   if (!p) return null;
   return (
