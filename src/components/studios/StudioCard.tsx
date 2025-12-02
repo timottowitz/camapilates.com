@@ -208,8 +208,18 @@ const StudioCard: React.FC<StudioCardProps> = ({ studio }) => {
 
         {/* Actions */}
         <div className="p-6 pt-0 flex gap-2 mt-auto">
-          <Link to={studioUrl} className="flex-1">
-            <Button className="w-full bg-[#2A2624] hover:bg-[#3E2723] text-white font-sans tracking-wide transition-all duration-300 hover:shadow-lg">
+          <Link
+            to={studioUrl}
+            className="flex-1"
+            onClick={(e) => {
+              // Prevent any parent handlers from interfering with navigation
+              e.stopPropagation();
+            }}
+          >
+            <Button
+              type="button"
+              className="w-full bg-[#2A2624] hover:bg-[#3E2723] text-white font-sans tracking-wide transition-all duration-300 hover:shadow-lg"
+            >
               Ver Detalles
             </Button>
           </Link>
