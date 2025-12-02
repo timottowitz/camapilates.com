@@ -389,17 +389,31 @@ const StudioDetail: React.FC = () => {
                   {/* Map */}
                   <div className="bg-white/50 border border-[#2A2624]/10 p-6 rounded-sm">
                     <h3 className="font-serif italic text-xl text-[#2A2624] mb-4">Location</h3>
-                    <div className="aspect-video bg-[#2A2624]/5 rounded-sm flex items-center justify-center mb-4">
-                      <MapPin className="w-8 h-8 text-[#2A2624]/20" />
-                    </div>
-                    {studioData.address?.coordinates && (
-                      <Button
-                        className="w-full border-[#2A2624]/20 text-[#2A2624] hover:bg-[#2A2624]/5"
-                        variant="outline"
-                        onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${studioData.address.coordinates.lat},${studioData.address.coordinates.lng}`, '_blank')}
-                      >
-                        Ver en Google Maps
-                      </Button>
+                    {studioData.address?.coordinates ? (
+                      <>
+                        <div className="aspect-video rounded-sm overflow-hidden mb-4">
+                          <iframe
+                            title={`Ubicación de ${studioData.name}`}
+                            width="100%"
+                            height="100%"
+                            style={{ border: 0 }}
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            src={`https://www.google.com/maps/embed/v1/place?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ''}&q=${studioData.address.coordinates.lat},${studioData.address.coordinates.lng}&zoom=15`}
+                          />
+                        </div>
+                        <Button
+                          className="w-full border-[#2A2624]/20 text-[#2A2624] hover:bg-[#2A2624]/5"
+                          variant="outline"
+                          onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${studioData.address.coordinates.lat},${studioData.address.coordinates.lng}`, '_blank')}
+                        >
+                          Ver en Google Maps
+                        </Button>
+                      </>
+                    ) : (
+                      <div className="aspect-video bg-[#2A2624]/5 rounded-sm flex items-center justify-center mb-4">
+                        <MapPin className="w-8 h-8 text-[#2A2624]/20" />
+                      </div>
                     )}
                   </div>
                 </div>
