@@ -783,3 +783,20 @@ export const getStudioPhotos = query({
     return photosWithUrls;
   },
 });
+
+/**
+ * Get raw Places API data for a studio (for debugging/analysis)
+ */
+export const getRawPlaceData = query({
+  args: {
+    googlePlaceId: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const rawData = await ctx.db
+      .query('placesRawData')
+      .withIndex('by_place_id', (q) => q.eq('googlePlaceId', args.googlePlaceId))
+      .first();
+
+    return rawData;
+  },
+});
