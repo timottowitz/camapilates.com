@@ -292,6 +292,39 @@ export default defineSchema({
   })
     .index('by_place_id', ['placeId']),
 
+  // Raw Google Places API data warehouse (complete responses)
+  placesRawData: defineTable({
+    googlePlaceId: v.string(),
+    studioId: v.optional(v.id('studios')),
+    rawResponse: v.any(), // Complete API response JSON
+    fieldMask: v.string(), // Fields that were requested
+    apiVersion: v.string(), // "v1" for new Places API
+    fetchedAt: v.number(),
+  })
+    .index('by_place_id', ['googlePlaceId'])
+    .index('by_studio', ['studioId'])
+    .index('by_fetched', ['fetchedAt']),
+
+  // Studio photos stored in Convex file storage
+  studioPhotos: defineTable({
+    studioId: v.id('studios'),
+    googlePlaceId: v.string(),
+    storageId: v.id('_storage'), // Convex file storage reference
+    photoIndex: v.number(), // 0-9 position from Places API
+    width: v.number(),
+    height: v.number(),
+    attribution: v.optional(v.object({
+      displayName: v.string(),
+      uri: v.optional(v.string()),
+      photoUri: v.optional(v.string()),
+    })),
+    googlePhotoName: v.string(), // Original Places API photo name
+    uploadedAt: v.number(),
+  })
+    .index('by_studio', ['studioId'])
+    .index('by_place_id', ['googlePlaceId'])
+    .index('by_studio_index', ['studioId', 'photoIndex']),
+
   // API Usage Tracking for Cost Monitoring
   apiUsageStats: defineTable({
     date: v.string(), // YYYY-MM-DD format

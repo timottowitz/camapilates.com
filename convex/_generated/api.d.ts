@@ -38,6 +38,7 @@ import type * as places from "../places.js";
 import type * as settings from "../settings.js";
 import type * as siteImages from "../siteImages.js";
 import type * as stats from "../stats.js";
+import type * as studioEnrichment from "../studioEnrichment.js";
 import type * as studios from "../studios.js";
 import type * as testGooglePlaces from "../testGooglePlaces.js";
 import type * as topics from "../topics.js";
@@ -76,6 +77,7 @@ declare const fullApi: ApiFromModules<{
   settings: typeof settings;
   siteImages: typeof siteImages;
   stats: typeof stats;
+  studioEnrichment: typeof studioEnrichment;
   studios: typeof studios;
   testGooglePlaces: typeof testGooglePlaces;
   topics: typeof topics;
