@@ -325,11 +325,11 @@ const CityDirectory: React.FC = () => {
             <div className="flex items-center justify-center gap-8 text-sm text-[#5D5550]">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-[#3E2723] rounded-full" />
-                <span className="font-medium">{cityData.studioCount} estudios</span>
+                <span className="font-medium">{cityData.studioCount ?? 0} estudios</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-[#D9865B] rounded-full" />
-                <span className="font-medium">{cityData.neighborhoods.length} colonias</span>
+                <span className="font-medium">{cityData.neighborhoods?.length ?? 0} colonias</span>
               </div>
             </div>
           )}
