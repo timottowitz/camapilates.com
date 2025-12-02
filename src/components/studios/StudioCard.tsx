@@ -3,7 +3,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { MapPin, Phone, Globe, Star, CheckCircle } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { citySlug } from '@/utils/slug';
 import { GooglePlacesPhoto } from '@/components/studio/GooglePlacesPhoto';
 import { formatPrice, formatDistance } from '@/utils/studio-helpers';
@@ -60,15 +60,7 @@ export interface StudioCardProps {
 }
 
 const StudioCard: React.FC<StudioCardProps> = ({ studio }) => {
-  const navigate = useNavigate();
   const studioUrl = `/estudios-de-pilates/${citySlug(studio.address.city)}/${studio.slug}`;
-
-  // Handle navigation directly instead of using Link inside Button
-  const handleViewDetails = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    navigate(studioUrl);
-  };
 
   // Filter out generic/empty types and translate
   const displayTypes = (studio.classTypes || [])
@@ -216,16 +208,16 @@ const StudioCard: React.FC<StudioCardProps> = ({ studio }) => {
 
         {/* Actions */}
         <div className="p-6 pt-0 flex gap-2 mt-auto">
-          <Button
-            onClick={handleViewDetails}
-            className="flex-1 bg-[#2A2624] hover:bg-[#3E2723] text-white font-sans tracking-wide transition-all duration-300 hover:shadow-lg"
-          >
-            Ver Detalles
-          </Button>
+          <Link to={studioUrl} className="flex-1">
+            <Button className="w-full bg-[#2A2624] hover:bg-[#3E2723] text-white font-sans tracking-wide transition-all duration-300 hover:shadow-lg">
+              Ver Detalles
+            </Button>
+          </Link>
 
           <div className="flex gap-2">
             {studio.contact?.phone && (
               <Button
+                type="button"
                 variant="outline"
                 size="icon"
                 onClick={(e) => {
@@ -239,6 +231,7 @@ const StudioCard: React.FC<StudioCardProps> = ({ studio }) => {
             )}
             {studio.contact?.website && (
               <Button
+                type="button"
                 variant="outline"
                 size="icon"
                 onClick={(e) => {
