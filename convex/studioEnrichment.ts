@@ -1,5 +1,5 @@
 import { v } from 'convex/values';
-import { action, internalMutation, internalQuery } from './_generated/server';
+import { action, internalMutation, internalQuery, query } from './_generated/server';
 import { internal } from './_generated/api';
 import { Id } from './_generated/dataModel';
 
@@ -687,5 +687,99 @@ export const updateStudioWithEnrichment = internalMutation({
     }
 
     await ctx.db.patch(args.studioId, updates);
+  },
+});
+
+// ============================================
+// Public Queries for Frontend
+// ============================================
+
+/**
+ * Get stored photos for a studio by googlePlaceId
+ * Returns photos from Convex storage instead of making live API calls
+ */
+export const getStoredPhotos = query({
+  args: {
+    googlePlaceId: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const photos = await ctx.db
+      .query('studioPhotos')
+      .withIndex('by_place_id', (q) => q.eq('googlePlaceId', args.googlePlaceId))
+      .collect();
+
+    // Sort by photoIndex
+    photos.sort((a, b) => a.photoIndex - b.photoIndex);
+
+    // Generate URLs for each photo
+    const photosWithUrls = await Promise.all(
+      photos.map(async (photo) => {
+        const url = await ctx.storage.getUrl(photo.storageId);
+        return {
+          ...photo,
+          url,
+        };
+      })
+    );
+
+    return photosWithUrls;
+  },
+});
+
+/**
+ * Get a single stored photo by placeId and index
+ */
+export const getStoredPhoto = query({
+  args: {
+    googlePlaceId: v.string(),
+    photoIndex: v.number(),
+  },
+  handler: async (ctx, args) => {
+    const photo = await ctx.db
+      .query('studioPhotos')
+      .withIndex('by_place_id', (q) => q.eq('googlePlaceId', args.googlePlaceId))
+      .filter((q) => q.eq(q.field('photoIndex'), args.photoIndex))
+      .first();
+
+    if (!photo) {
+      return null;
+    }
+
+    const url = await ctx.storage.getUrl(photo.storageId);
+    return {
+      ...photo,
+      url,
+    };
+  },
+});
+
+/**
+ * Get stored photos for a studio by studioId
+ */
+export const getStudioPhotos = query({
+  args: {
+    studioId: v.id('studios'),
+  },
+  handler: async (ctx, args) => {
+    const photos = await ctx.db
+      .query('studioPhotos')
+      .withIndex('by_studio', (q) => q.eq('studioId', args.studioId))
+      .collect();
+
+    // Sort by photoIndex
+    photos.sort((a, b) => a.photoIndex - b.photoIndex);
+
+    // Generate URLs for each photo
+    const photosWithUrls = await Promise.all(
+      photos.map(async (photo) => {
+        const url = await ctx.storage.getUrl(photo.storageId);
+        return {
+          ...photo,
+          url,
+        };
+      })
+    );
+
+    return photosWithUrls;
   },
 });

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useAction } from 'convex/react';
+import { useQuery } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Info, ExternalLink } from 'lucide-react';
@@ -24,14 +24,13 @@ interface GooglePlacesPhotoProps {
 }
 
 /**
- * Compliant Google Places Photo Component
+ * Stored Photo Component
  *
- * This component implements the canonical architecture for displaying Google Places photos:
- * 1. Uses place_id (permanently cacheable) as the key
- * 2. Fetches fresh photo references on-demand via server proxy
- * 3. Implements multi-layer fallback strategy
- * 4. Properly displays required attribution
- * 5. Optimizes for performance with lazy loading
+ * This component displays photos from Convex storage (pre-downloaded from Google Places):
+ * 1. Fetches stored photo from studioPhotos table
+ * 2. Falls back to placeholder if no stored photo exists
+ * 3. No live API calls - all data comes from Convex
+ * 4. Properly displays stored attribution
  */
 export const GooglePlacesPhoto: React.FC<GooglePlacesPhotoProps> = ({
   placeId,
@@ -43,15 +42,14 @@ export const GooglePlacesPhoto: React.FC<GooglePlacesPhotoProps> = ({
   showAttribution = true,
   fallbackIndex = 0,
 }) => {
-  const [imageState, setImageState] = useState<'loading' | 'success' | 'fallback'>('loading');
-  const [imageSrc, setImageSrc] = useState<string>('');
-  const [attribution, setAttribution] = useState<any>(null);
   const [isVisible, setIsVisible] = useState(priority === 'eager');
 
-  // useAction requires being inside ConvexProvider
-  // Since hasConvex is a module-level constant, the conditional hook is safe
+  // Fetch stored photo from Convex (no live API call)
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const fetchPhotoUrl = hasConvex ? useAction(api.googlePlaces.getStudioPhotoUrl) : null;
+  const storedPhoto = hasConvex && placeId ? useQuery(
+    api.studioEnrichment.getStoredPhoto,
+    isVisible ? { googlePlaceId: placeId, photoIndex: fallbackIndex } : 'skip'
+  ) : null;
 
   // Intersection Observer for lazy loading
   useEffect(() => {
@@ -80,55 +78,15 @@ export const GooglePlacesPhoto: React.FC<GooglePlacesPhotoProps> = ({
     return () => observer.disconnect();
   }, [placeId, fallbackIndex, priority]);
 
-  // Fetch photo when visible
-  useEffect(() => {
-    if (!isVisible || !placeId || !fetchPhotoUrl) {
-      // No place_id or no Convex, use fallback immediately
-      if (!placeId || !fetchPhotoUrl) {
-        setImageSrc(getPlaceholderImage(fallbackIndex));
-        setImageState('fallback');
-      }
-      return;
-    }
+  // Determine image state based on query result
+  const imageState = storedPhoto === undefined
+    ? 'loading'
+    : storedPhoto?.url
+      ? 'success'
+      : 'fallback';
 
-    let mounted = true;
-
-    const loadPhoto = async () => {
-      try {
-        const result = await fetchPhotoUrl({
-          placeId,
-          maxWidth: width,
-          maxHeight: height,
-          photoIndex: fallbackIndex,
-          includeAttribution: showAttribution,
-        });
-
-        if (!mounted) return;
-
-        if (result.success && result.photoUrl) {
-          setImageSrc(result.photoUrl);
-          setAttribution(result.attribution);
-          setImageState('success');
-        } else {
-          // API call failed, use fallback
-          console.log(`Photo fetch failed for ${placeId}: ${result.error}`);
-          setImageSrc(getPlaceholderImage(fallbackIndex));
-          setImageState('fallback');
-        }
-      } catch (error) {
-        if (!mounted) return;
-        console.error('Error fetching photo:', error);
-        setImageSrc(getPlaceholderImage(fallbackIndex));
-        setImageState('fallback');
-      }
-    };
-
-    loadPhoto();
-
-    return () => {
-      mounted = false;
-    };
-  }, [isVisible, placeId, width, height, fallbackIndex, showAttribution, fetchPhotoUrl]);
+  const imageSrc = storedPhoto?.url || getPlaceholderImage(fallbackIndex);
+  const attribution = storedPhoto?.attribution || null;
 
   // Generate deterministic placeholder while loading
   const studioColor = getStudioColor(studioName);
