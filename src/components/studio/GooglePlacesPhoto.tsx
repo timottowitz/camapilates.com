@@ -48,10 +48,10 @@ export const GooglePlacesPhoto: React.FC<GooglePlacesPhotoProps> = ({
   const [attribution, setAttribution] = useState<any>(null);
   const [isVisible, setIsVisible] = useState(priority === 'eager');
 
-  // Always call the hook unconditionally to satisfy React's rules of hooks
-  // Use "skip" pattern: pass undefined to skip, but always call the hook
-  const fetchPhotoUrl = useAction(api.googlePlaces.getStudioPhotoUrl);
-  const canFetchPhoto = hasConvex && fetchPhotoUrl;
+  // useAction requires being inside ConvexProvider
+  // Since hasConvex is a module-level constant, the conditional hook is safe
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const fetchPhotoUrl = hasConvex ? useAction(api.googlePlaces.getStudioPhotoUrl) : null;
 
   // Intersection Observer for lazy loading
   useEffect(() => {
@@ -82,9 +82,9 @@ export const GooglePlacesPhoto: React.FC<GooglePlacesPhotoProps> = ({
 
   // Fetch photo when visible
   useEffect(() => {
-    if (!isVisible || !placeId || !canFetchPhoto) {
-      // No place_id, use fallback immediately
-      if (!placeId || !canFetchPhoto) {
+    if (!isVisible || !placeId || !fetchPhotoUrl) {
+      // No place_id or no Convex, use fallback immediately
+      if (!placeId || !fetchPhotoUrl) {
         setImageSrc(getPlaceholderImage(fallbackIndex));
         setImageState('fallback');
       }
