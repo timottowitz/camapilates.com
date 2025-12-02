@@ -239,6 +239,10 @@ export function StudioMap({
           event.domEvent.stopPropagation();
         }
 
+        // Save current scroll position to restore after state change
+        const scrollY = window.scrollY;
+        const scrollX = window.scrollX;
+
         // Close all other info windows
         newMarkers.forEach(m => m.infoWindow?.close());
 
@@ -251,10 +255,13 @@ export function StudioMap({
         }
 
         // Set selected studio to show the preview card (don't navigate yet)
-        // Use setTimeout to avoid any scroll side effects from state change
-        setTimeout(() => {
-          setSelectedStudio(studio);
-        }, 0);
+        // Use requestAnimationFrame to ensure scroll position is preserved
+        setSelectedStudio(studio);
+
+        // Restore scroll position after React re-render
+        requestAnimationFrame(() => {
+          window.scrollTo(scrollX, scrollY);
+        });
       });
 
       marker.infoWindow = infoWindow;
