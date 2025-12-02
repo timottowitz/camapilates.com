@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, ComponentType } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import ScrollToTop from "@/components/ui/scroll-to-top";
@@ -11,35 +11,67 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import NotFound from "./pages/NotFound";
-const Compare = lazy(() => import('./pages/Compare'));
-const Shop = lazy(() => import('./pages/Shop'));
-const ShopCategory = lazy(() => import('./pages/ShopCategory'));
-const Blog = lazy(() => import('./pages/Blog'));
-const BlogPost = lazy(() => import('./pages/BlogPost'));
-const BlogCategory = lazy(() => import('./pages/BlogCategory'));
-const BlogTag = lazy(() => import('./pages/BlogTag'));
-const AdminBlogWriter = lazy(() => import('./pages/AdminBlogWriter'));
-const Admin = lazy(() => import('./pages/Admin'));
-const AdminPlaceholders = lazy(() => import('./pages/AdminPlaceholders'));
-const AdminSettings = lazy(() => import('./pages/AdminSettings'));
-const AdminBlogList = lazy(() => import('./pages/AdminBlogList'));
-const AdminBlogEditor = lazy(() => import('./pages/AdminBlogEditor'));
-const Product = lazy(() => import('./pages/Product'));
-const Products = lazy(() => import('./pages/Products'));
-const CamaDePilatesEnVenta = lazy(() => import('./pages/CamaDePilatesEnVenta'));
-const CamaDePilatesPrecio = lazy(() => import('./pages/CamaDePilatesPrecio'));
-const StudioPack = lazy(() => import('./pages/StudioPack'));
-const CamaDePilatesHub = lazy(() => import('./pages/CamaDePilatesHub'));
-const CertificacionPilates = lazy(() => import('./pages/CertificacionPilates'));
-const CertificacionPilatesCity = lazy(() => import('./pages/CertificacionPilatesCity'));
-const LegalTerms = lazy(() => import('./pages/LegalTerms'));
-const LegalPrivacy = lazy(() => import('./pages/LegalPrivacy'));
-const Support = lazy(() => import('./pages/Support'));
+
+// Retry wrapper for lazy imports - handles chunk loading failures after deployments
+function lazyWithRetry<T extends ComponentType<any>>(
+  importFn: () => Promise<{ default: T }>,
+  retries = 2
+): React.LazyExoticComponent<T> {
+  return lazy(async () => {
+    for (let attempt = 0; attempt <= retries; attempt++) {
+      try {
+        return await importFn();
+      } catch (error: any) {
+        const isChunkError = error?.message?.includes('Failed to fetch dynamically imported module') ||
+                             error?.message?.includes('Loading chunk') ||
+                             error?.message?.includes('Loading CSS chunk');
+        if (isChunkError && attempt < retries) {
+          // Wait briefly then retry
+          await new Promise(resolve => setTimeout(resolve, 500 * (attempt + 1)));
+          continue;
+        }
+        // If still failing after retries, reload the page to get fresh chunks
+        if (isChunkError) {
+          window.location.reload();
+          // Return a placeholder while reloading
+          return { default: (() => null) as unknown as T };
+        }
+        throw error;
+      }
+    }
+    throw new Error('Failed to load module after retries');
+  });
+}
+
+const Compare = lazyWithRetry(() => import('./pages/Compare'));
+const Shop = lazyWithRetry(() => import('./pages/Shop'));
+const ShopCategory = lazyWithRetry(() => import('./pages/ShopCategory'));
+const Blog = lazyWithRetry(() => import('./pages/Blog'));
+const BlogPost = lazyWithRetry(() => import('./pages/BlogPost'));
+const BlogCategory = lazyWithRetry(() => import('./pages/BlogCategory'));
+const BlogTag = lazyWithRetry(() => import('./pages/BlogTag'));
+const AdminBlogWriter = lazyWithRetry(() => import('./pages/AdminBlogWriter'));
+const Admin = lazyWithRetry(() => import('./pages/Admin'));
+const AdminPlaceholders = lazyWithRetry(() => import('./pages/AdminPlaceholders'));
+const AdminSettings = lazyWithRetry(() => import('./pages/AdminSettings'));
+const AdminBlogList = lazyWithRetry(() => import('./pages/AdminBlogList'));
+const AdminBlogEditor = lazyWithRetry(() => import('./pages/AdminBlogEditor'));
+const Product = lazyWithRetry(() => import('./pages/Product'));
+const Products = lazyWithRetry(() => import('./pages/Products'));
+const CamaDePilatesEnVenta = lazyWithRetry(() => import('./pages/CamaDePilatesEnVenta'));
+const CamaDePilatesPrecio = lazyWithRetry(() => import('./pages/CamaDePilatesPrecio'));
+const StudioPack = lazyWithRetry(() => import('./pages/StudioPack'));
+const CamaDePilatesHub = lazyWithRetry(() => import('./pages/CamaDePilatesHub'));
+const CertificacionPilates = lazyWithRetry(() => import('./pages/CertificacionPilates'));
+const CertificacionPilatesCity = lazyWithRetry(() => import('./pages/CertificacionPilatesCity'));
+const LegalTerms = lazyWithRetry(() => import('./pages/LegalTerms'));
+const LegalPrivacy = lazyWithRetry(() => import('./pages/LegalPrivacy'));
+const Support = lazyWithRetry(() => import('./pages/Support'));
 
 // Studio Directory Pages
-const StudiosLanding = lazy(() => import('./pages/estudios-de-pilates/StudiosLanding'));
-const CityDirectory = lazy(() => import('./pages/estudios-de-pilates/CityDirectory'));
-const StudioDetail = lazy(() => import('./pages/estudios-de-pilates/StudioDetail'));
+const StudiosLanding = lazyWithRetry(() => import('./pages/estudios-de-pilates/StudiosLanding'));
+const CityDirectory = lazyWithRetry(() => import('./pages/estudios-de-pilates/CityDirectory'));
+const StudioDetail = lazyWithRetry(() => import('./pages/estudios-de-pilates/StudioDetail'));
 
 import GAListener from "@/components/analytics/GAListener";
 import FloatingCart21 from "@/components/commerce21/FloatingCart21";

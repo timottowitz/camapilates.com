@@ -56,11 +56,6 @@ const placeTypeTranslations: Record<string, string> = {
   'establishment': 'Establecimiento',
 };
 
-const formatCoordinate = (value: number, axis: 'lat' | 'lng') => {
-  const direction = axis === 'lat' ? (value >= 0 ? 'N' : 'S') : (value >= 0 ? 'E' : 'W');
-  return `${Math.abs(value).toFixed(4)}° ${direction}`;
-};
-
 const InfoItem = ({ icon: Icon, title, children }: { icon: any, title: string, children: React.ReactNode }) => (
   <div className="flex gap-4 p-4 rounded-lg bg-[#F9F8F6] border border-[#2A2624]/5">
     <div className="mt-1">
@@ -235,22 +230,25 @@ const StudioDetail: React.FC = () => {
             />
           </div>
           <div className="hidden md:block md:col-span-2 relative bg-[#2A2624]/5">
-            {studioData.address?.coordinates ? (
+            {studioData.googlePlaceId ? (
               <div
                 className="w-full h-full bg-[#201A18] cursor-pointer group relative overflow-hidden"
-                onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${studioData.address!.coordinates!.lat},${studioData.address!.coordinates!.lng}`, '_blank')}
+                onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(studioData.name)}&query_place_id=${studioData.googlePlaceId}`, '_blank')}
               >
                 <div className="absolute inset-0" style={{
                   backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.12) 1px, transparent 0)',
                   backgroundSize: '28px 28px'
                 }} />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
+                  <div className="text-center px-4">
                     <MapPin className="w-8 h-8 text-white mx-auto mb-2" />
-                    <p className="font-mono text-white text-lg">
-                      {formatCoordinate(studioData.address.coordinates.lat, 'lat')}, {formatCoordinate(studioData.address.coordinates.lng, 'lng')}
+                    <p className="text-white text-lg font-medium line-clamp-2">
+                      {studioData.name}
                     </p>
-                    <p className="text-white/60 text-sm mt-1">Click para ver en Google Maps</p>
+                    <p className="text-white/60 text-sm mt-1">
+                      {studioData.address?.neighborhood || studioData.address?.city}
+                    </p>
+                    <p className="text-white/80 text-xs mt-3 uppercase tracking-wider">Click para ver en Google Maps</p>
                   </div>
                 </div>
               </div>
@@ -350,8 +348,8 @@ const StudioDetail: React.FC = () => {
             <section id="location-section" className="scroll-mt-24">
               <div className="flex items-center justify-between mb-8">
                 <h2 className="font-serif italic text-3xl text-[#2A2624]">Ubicación y Horarios</h2>
-                {studioData.address?.coordinates && (
-                  <Button variant="link" className="text-[#3E2723]" onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${studioData.address!.coordinates!.lat},${studioData.address!.coordinates!.lng}`, '_blank')}>
+                {studioData.googlePlaceId && (
+                  <Button variant="link" className="text-[#3E2723]" onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(studioData.name)}&query_place_id=${studioData.googlePlaceId}`, '_blank')}>
                     Abrir en Maps <Navigation className="w-4 h-4 ml-2" />
                   </Button>
                 )}
