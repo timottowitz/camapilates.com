@@ -17,7 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Filter, X, Map, List, ArrowLeft } from 'lucide-react';
+import { Filter, X, Map as MapIcon, List, ArrowLeft } from 'lucide-react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { hasConvex } from '@/lib/convexProvider';
 import localData from '@/data/studios.json';
@@ -466,7 +466,7 @@ const CityDirectory: React.FC = () => {
                   value="map"
                   className="data-[state=active]:bg-white data-[state=active]:shadow-lg data-[state=active]:shadow-[#3E2723]/10 rounded-md transition-all duration-300 font-sans"
                 >
-                  <Map className="w-4 h-4 mr-2" />
+                  <MapIcon className="w-4 h-4 mr-2" />
                   Mapa
                 </TabsTrigger>
               </TabsList>
