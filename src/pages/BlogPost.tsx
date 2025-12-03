@@ -16,7 +16,7 @@ import AudioStory from '@/components/ui/audio-story';
 import TableOfContents from '@/components/blog/TableOfContents';
 import ShareButtons from '@/components/blog/ShareButtons';
 import { Card, CardContent } from '@/components/ui/card';
-import { DEFAULTS, getOrigin, toAbsoluteUrl } from '@/lib/seo';
+import { DEFAULTS, getOrigin, toAbsoluteUrl, generateBlogPostSchema } from '@/lib/seo';
 import { getAllPostsMeta } from '@/lib/content';
 import HubList from '@/components/blog/HubList';
 import SeeAlso from '@/components/blog/SeeAlso';
@@ -131,6 +131,24 @@ const BlogPost = () => {
   };
   const faqs = parseFaqs(normalizedContent);
 
+  // Calculate word count for schema
+  const wordCount = content.trim().split(/\s+/).filter(Boolean).length;
+
+  // Generate full schema with @graph structure
+  const blogSchema = postMeta ? generateBlogPostSchema({
+    title: postMeta.title,
+    description: postMeta.excerpt,
+    datePublished: postMeta.date,
+    dateModified: (postMeta as any).updatedDate || postMeta.date,
+    authorName: postMeta.author,
+    category: postMeta.category,
+    tags: tags,
+    imageUrl: ogImage,
+    articleUrl: articleUrl,
+    wordCount: wordCount,
+    faqs: faqs,
+  }) : null;
+
   if (loading) {
     return (
       <LuxuryLayout>
@@ -168,35 +186,11 @@ const BlogPost = () => {
         {tags.map((t: string) => (
           <meta key={t} property="article:tag" content={t} />
         ))}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            "headline": postMeta.title,
-            "description": postMeta.excerpt,
-            "datePublished": postMeta.date,
-            "dateModified": (postMeta as any).updatedDate || postMeta.date,
-            "author": {
-              "@type": "Person",
-              "name": AUTHOR_INFO.name,
-              "description": AUTHOR_INFO.bio,
-              "url": AUTHOR_INFO.url
-            },
-            "publisher": {
-              "@type": "Organization",
-              "name": DEFAULTS.siteName,
-              "url": origin
-            },
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": articleUrl
-            },
-            "articleSection": postMeta.category,
-            "keywords": tags,
-            "image": ogImage,
-            "url": articleUrl
-          })}
-        </script>
+        {blogSchema && (
+          <script type="application/ld+json">
+            {JSON.stringify(blogSchema)}
+          </script>
+        )}
       </Helmet>
 
       <div className="container mx-auto px-8 md:px-24 py-12">
