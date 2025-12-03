@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -208,12 +207,12 @@ const StudioCard: React.FC<StudioCardProps> = ({ studio }) => {
 
         {/* Actions */}
         <div className="p-6 pt-0 flex gap-2 mt-auto">
-          <Link
-            to={studioUrl}
+          <a
+            href={studioUrl}
             className="flex-1 inline-flex items-center justify-center h-10 px-4 py-2 rounded-md bg-[#2A2624] hover:bg-[#3E2723] text-white font-sans tracking-wide transition-all duration-300 hover:shadow-lg text-sm font-medium"
           >
             Ver Detalles
-          </Link>
+          </a>
 
           <div className="flex gap-2">
             {studio.contact?.phone && (
