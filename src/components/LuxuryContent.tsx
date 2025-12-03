@@ -23,14 +23,19 @@ export default function LuxuryContent() {
                 <div className="md:col-span-5 sticky top-32">
                     <FadeIn>
                         <h2 className="text-4xl md:text-6xl font-serif italic leading-tight mb-8">
-                            Form follows <br />
-                            <span className="not-italic font-sans font-light tracking-tighter">Function.</span>
+                            Detox your <br />
+                            <span className="not-italic font-sans font-light tracking-tighter">Movement.</span>
                         </h2>
                         <div className="w-12 h-[1px] bg-[#3E2723] mb-8"></div>
+                        <p className="font-sans font-light text-lg leading-relaxed text-[#5D5550] mb-6">
+                            Microplastics belong in the trash, not in your pores. 
+                            While the rest of the world rushes towards faster fashion and cheaper plastics, 
+                            Edelweiss climbs higher.
+                        </p>
                         <p className="font-sans font-light text-lg leading-relaxed text-[#5D5550]">
-                            We believe the equipment you use should be as refined as the movement it supports.
-                            Our reformers are not merely gym equipment; they are architectural statements
-                            crafted from sustainable walnut and aerospace-grade aluminum.
+                            We believe your sanctuary shouldn't be toxic. Our reformers are not merely gym equipment; 
+                            they are architectural statements crafted from sustainable walnut, aerospace-grade aluminum, 
+                            and organic materials that heal you from the outside in.
                         </p>
                     </FadeIn>
                 </div>
@@ -72,7 +77,7 @@ export default function LuxuryContent() {
                     <FadeIn>
                         <div className="flex flex-col md:flex-row justify-between items-end mb-24">
                             <h3 className="text-3xl md:text-5xl font-light tracking-tight max-w-lg">
-                                Engineered for <span className="font-serif italic">Silence</span>
+                                Engineered for <span className="font-serif italic">Purity</span>
                             </h3>
                             <p className="text-xs font-sans tracking-[0.2em] uppercase mt-8 md:mt-0 opacity-60">
                                 Specification 02
@@ -87,7 +92,7 @@ export default function LuxuryContent() {
                                 <span className="block text-xs tracking-[0.2em] text-[#3E2723] mb-6">01. MATERIALS</span>
                                 <h4 className="text-2xl font-serif italic mb-4">Solid Walnut</h4>
                                 <p className="text-sm text-[#5D5550] leading-relaxed font-light max-w-xs">
-                                    Sourced from sustainable forests in Pennsylvania. Hand-finished with natural oils to preserve the grain's organic texture.
+                                    Sourced from sustainable forests in Pennsylvania. Hand-finished with non-toxic natural oils to preserve the grain's organic texture.
                                 </p>
                             </FadeIn>
                         </div>
@@ -109,7 +114,7 @@ export default function LuxuryContent() {
                                 <span className="block text-xs tracking-[0.2em] text-[#3E2723] mb-6">03. TOUCH</span>
                                 <h4 className="text-2xl font-serif italic mb-4">Full Grain</h4>
                                 <p className="text-sm text-[#5D5550] leading-relaxed font-light max-w-xs">
-                                    Upholstered in premium full-grain leather that breathes and ages beautifully, providing superior grip and comfort.
+                                    Upholstered in premium full-grain leather or Mylo™ that breathes and ages beautifully, free from synthetic vinyls.
                                 </p>
                             </FadeIn>
                         </div>
@@ -123,7 +128,7 @@ export default function LuxuryContent() {
                     <div className="text-xs tracking-[0.3em] uppercase mb-12 text-[#3E2723]">The Review</div>
                     <blockquote className="max-w-4xl mx-auto">
                         <p className="text-3xl md:text-6xl font-serif leading-[1.2] text-[#2A2624]">
-                            "Finally, a reformer that doesn't look like industrial machinery. It is a piece of furniture that <span className="italic text-[#3E2723]">invites</span> movement."
+                            "Finally, a reformer that doesn't look like industrial machinery. It is a piece of furniture that <span className="italic text-[#3E2723]">heals</span>."
                         </p>
                         <footer className="mt-12 font-sans font-medium text-sm tracking-widest uppercase opacity-60">
                             — Architectural Digest

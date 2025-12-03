@@ -77,17 +77,24 @@ const ProductCard21Enhanced: React.FC<Props> = ({
             </div>
           )}
 
-          {/* Product Image */}
+          {/* Product Image with Hover Swap */}
           <img
-            src={product.image}
+            src={isHovered && product.hoverImage ? product.hoverImage : product.image}
             alt={product.name}
             loading="lazy"
             decoding="async"
-            className={`h-full w-full object-cover transition-transform duration-500 ${
-              isHovered ? 'scale-110' : 'scale-100'
-            }`}
+            className={`h-full w-full object-cover transition-transform duration-700 ${
+              isHovered && !product.hoverImage ? 'scale-110' : 'scale-100'
+            } ${isHovered && product.hoverImage ? 'animate-fade-in' : ''}`}
             onError={(e) => { e.currentTarget.style.display = 'none'; }}
           />
+
+          {/* Plastic Free Badge - Bottom Left */}
+          <div className="absolute bottom-2 left-2 z-10">
+            <Badge variant="outline" className="bg-white/90 text-[#2C4F59] border-[#2C4F59]/20 backdrop-blur-sm text-[10px] font-medium">
+              Plastic-Free
+            </Badge>
+          </div>
 
           {/* Overlay on Hover */}
           {isHovered && onQuickView && (

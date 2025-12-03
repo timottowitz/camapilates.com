@@ -58,6 +58,8 @@ const ReformerHero = () => {
             <div className="flex flex-col gap-6">
               <p className="text-lg md:text-xl font-light text-white/80 leading-relaxed max-w-xl">
                 The world's first plastic-free pilates ecosystem. Non-toxic beds, organic wear, healthy skin.
+                <br /><br />
+                <span className="italic text-white/90">Your skin drinks what you wear. Detox your movement.</span>
               </p>
             </div>
           </FadeIn>
