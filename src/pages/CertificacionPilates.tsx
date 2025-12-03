@@ -287,9 +287,9 @@ const CertificacionPilates: React.FC = () => {
             <div className="bg-[#2A2624]/5 border border-[#2A2624]/10 rounded-sm p-8 md:p-12">
               <h3 className="text-xs uppercase tracking-[0.2em] text-[#5D5550] mb-6">Qué Aprenderás</h3>
               <p className="text-lg text-[#5D5550] font-light leading-relaxed mb-6">
-                El Reformer ofrece más de 500 ejercicios con infinitas variaciones. En 135 horas aprenderás a 
-                descomponer cada movimiento, aplicar modificaciones para diferentes cuerpos y condiciones, 
-                y diseñar sesiones efectivas desde el primer día.
+                El repertorio completo de Reformer incluye más de 130 ejercicios—desde esenciales hasta avanzados—cada uno 
+                con múltiples variaciones y modificaciones. En 135 horas aprenderás a descomponer cada movimiento, 
+                adaptarlo a diferentes cuerpos, y diseñar sesiones efectivas desde el primer día.
               </p>
               <ul className="space-y-3 text-[#5D5550] font-light">
                 <li className="flex items-start gap-3">
