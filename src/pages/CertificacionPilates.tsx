@@ -67,7 +67,7 @@ const CertificacionPilates: React.FC = () => {
         name: '¿Cuánto dura una certificación de Pilates?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Desde fines de semana intensivos (40–60 h) hasta programas profesionales (150–450 h) con práctica, evaluación y clases observadas.'
+          text: 'Una certificación profesional de Reformer requiere 125–150 horas incluyendo teoría, práctica y enseñanza supervisada. Edelweiss ofrece 135 horas.'
         }
       },
       {
@@ -139,7 +139,7 @@ const CertificacionPilates: React.FC = () => {
                 <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span> Reformer y Mat
               </li>
               <li className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span> Programas 150–450 h
+                <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span> Programa 135 horas
               </li>
               <li className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span> Práctica supervisada
@@ -217,7 +217,7 @@ const CertificacionPilates: React.FC = () => {
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3E2723] flex-shrink-0"></span>
-                <span>Duración estimada: 150–450 h totales según programa.</span>
+                <span>Duración: 135 horas (84h instrucción + 51h práctica supervisada).</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3E2723] flex-shrink-0"></span>
