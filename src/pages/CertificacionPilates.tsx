@@ -269,53 +269,53 @@ const CertificacionPilates: React.FC = () => {
         </div>
       </section>
 
-      {/* ========== EDELWEISS 400-HOUR PROGRAM SECTIONS ========== */}
-      {/* Section A: The Why - Mastery Gap */}
+      {/* ========== EDELWEISS 135-HOUR REFORMER CERTIFICATION ========== */}
+      {/* Section A: The Why - Reformer Specialist */}
       <section className="py-24 px-8 md:px-24 border-t border-[#2A2624]/10">
         <div className="max-w-[1800px] mx-auto">
           <div className="text-center mb-16">
             <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-6">
-              La Diferencia Edelweiss
+              Certificación Reformer
             </span>
             <h2 className="text-4xl md:text-5xl font-serif italic text-[#2A2624] leading-tight mb-6">
-              La Industria Se Ha Bifurcado.<br />
-              <span className="not-italic font-light font-sans tracking-tight">Nosotros Construimos el Puente.</span>
+              Especialízate en Reformer.<br />
+              <span className="not-italic font-light font-sans tracking-tight">Domina Un Solo Aparato.</span>
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
             <div className="bg-[#2A2624]/5 border border-[#2A2624]/10 rounded-sm p-8 md:p-12">
-              <h3 className="text-xs uppercase tracking-[0.2em] text-[#5D5550] mb-6">El Problema de la Industria</h3>
+              <h3 className="text-xs uppercase tracking-[0.2em] text-[#5D5550] mb-6">¿Por Qué Solo Reformer?</h3>
               <p className="text-lg text-[#5D5550] font-light leading-relaxed mb-6">
-                La educación actual te obliga a elegir: una <strong className="text-[#2A2624]">certificación express de fin de semana</strong> que carece de profundidad, 
-                o un <strong className="text-[#2A2624]">programa integral de varios años</strong> que diluye tu enfoque entre todos los aparatos.
+                El Reformer es el aparato más versátil y demandado en estudios de Pilates. 
+                En lugar de diluir tu atención entre múltiples equipos, <strong className="text-[#2A2624]">135 horas enfocadas</strong> te 
+                convierten en un verdadero especialista.
               </p>
               <ul className="space-y-3 text-[#5D5550] font-light">
                 <li className="flex items-start gap-3">
                   <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/40 flex-shrink-0"></span>
-                  <span>Certificaciones de fin de semana: 40-60 horas, conocimiento superficial</span>
+                  <span>Aparato más solicitado en estudios profesionales</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/40 flex-shrink-0"></span>
-                  <span>Programas integrales: años de estudio, atención dispersa</span>
+                  <span>Dominio profundo vs. conocimiento superficial</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/40 flex-shrink-0"></span>
-                  <span>Ninguno produce verdaderos especialistas en Reformer</span>
+                  <span>Listo para trabajar al graduarte</span>
                 </li>
               </ul>
             </div>
 
             <div className="bg-white/50 border border-[#3E2723]/20 rounded-sm p-8 md:p-12">
-              <h3 className="text-xs uppercase tracking-[0.2em] text-[#3E2723] mb-6">La Solución Edelweiss</h3>
+              <h3 className="text-xs uppercase tracking-[0.2em] text-[#3E2723] mb-6">El Programa Edelweiss</h3>
               <p className="text-lg text-[#5D5550] font-light leading-relaxed mb-6">
-                Aplicamos el <strong className="text-[#2A2624]">rigor de una carrera universitaria completa</strong> exclusivamente al Reformer. 
-                Al dedicar <strong className="text-[#3E2723]">300 horas a un solo aparato</strong>, formamos graduados con el razonamiento clínico 
-                de un fisioterapeuta y la calidad de movimiento de un bailarín.
+                Nuestro programa de <strong className="text-[#3E2723]">135 horas</strong> está alineado con los estándares internacionales 
+                de certificación Reformer (STOTT: 125h, Balanced Body: 134h). Formación completa, enfocada y 100% presencial.
               </p>
               <div className="flex items-center gap-4 pt-4 border-t border-[#2A2624]/10">
                 <div className="text-center">
-                  <div className="text-3xl font-serif italic text-[#3E2723]">300</div>
+                  <div className="text-3xl font-serif italic text-[#3E2723]">135</div>
                   <div className="text-xs uppercase tracking-widest text-[#5D5550]">Horas</div>
                 </div>
                 <div className="text-center">
@@ -380,7 +380,7 @@ const CertificacionPilates: React.FC = () => {
               </div>
               <h3 className="text-xl font-serif italic mb-4">100% Presencial</h3>
               <p className="text-white/60 font-light leading-relaxed">
-                Sin atajos en línea. Sin compromisos híbridos. Cada hora de tu programa de 300 horas 
+                Sin atajos en línea. Sin compromisos híbridos. Cada hora de tu programa de 135 horas 
                 ocurre en el estudio, con cuerpos reales, resortes reales y retroalimentación 
                 real de mentores.
               </p>
@@ -389,7 +389,7 @@ const CertificacionPilates: React.FC = () => {
         </div>
       </section>
 
-      {/* Section C: Curriculum - The 5 Pillars */}
+      {/* Section C: Curriculum - 135 Hours */}
       <section className="py-24 px-8 md:px-24 border-t border-[#2A2624]/10">
         <div className="max-w-[1800px] mx-auto">
           <div className="text-center mb-16">
@@ -397,12 +397,12 @@ const CertificacionPilates: React.FC = () => {
               El Plan de Estudios
             </span>
             <h2 className="text-4xl md:text-5xl font-serif italic text-[#2A2624] leading-tight mb-6">
-              300 Horas.<br />
-              <span className="not-italic font-light font-sans tracking-tight">Cinco Pilares de Maestría.</span>
+              135 Horas.<br />
+              <span className="not-italic font-light font-sans tracking-tight">Especialización Completa en Reformer.</span>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Phase I */}
             <div className="group border border-[#2A2624]/10 rounded-sm p-8 hover:bg-white/50 transition-colors">
               <div className="flex items-center gap-4 mb-6">
@@ -410,15 +410,15 @@ const CertificacionPilates: React.FC = () => {
                   <BookOpen className="w-5 h-5 text-[#3E2723] group-hover:text-white transition-colors" />
                 </div>
                 <div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Fase I</div>
-                  <div className="text-2xl font-serif italic text-[#3E2723]">40h</div>
+                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Módulo I</div>
+                  <div className="text-2xl font-serif italic text-[#3E2723]">20h</div>
                 </div>
               </div>
-              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">La Ciencia</h3>
+              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Fundamentos</h3>
               <ul className="space-y-2 text-sm text-[#5D5550] font-light">
-                <li>• Anatomía Aplicada y Kinesiología</li>
-                <li>• Laboratorios 3D "Arcilla y Cadáver"</li>
-                <li>• Biomecánica de Resortes</li>
+                <li>• Anatomía Funcional</li>
+                <li>• Principios del Movimiento</li>
+                <li>• Biomecánica del Reformer</li>
                 <li>• Evaluación Postural</li>
               </ul>
             </div>
@@ -430,16 +430,16 @@ const CertificacionPilates: React.FC = () => {
                   <GraduationCap className="w-5 h-5 text-[#3E2723] group-hover:text-white transition-colors" />
                 </div>
                 <div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Fase II</div>
-                  <div className="text-2xl font-serif italic text-[#3E2723]">70h</div>
+                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Módulo II</div>
+                  <div className="text-2xl font-serif italic text-[#3E2723]">48h</div>
                 </div>
               </div>
-              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">El Repertorio</h3>
+              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Repertorio Reformer</h3>
               <ul className="space-y-2 text-sm text-[#5D5550] font-light">
-                <li>• Ejercicios Esenciales a Archivales</li>
-                <li>• Respiración de Percusión Fletcher</li>
-                <li>• Secuencias de Acondicionamiento Atlético</li>
+                <li>• Ejercicios Esenciales e Intermedios</li>
+                <li>• Ejercicios Avanzados</li>
                 <li>• Progresiones y Modificaciones</li>
+                <li>• Secuencias de Clase</li>
               </ul>
             </div>
 
@@ -450,76 +450,36 @@ const CertificacionPilates: React.FC = () => {
                   <MessageCircle className="w-5 h-5 text-[#3E2723] group-hover:text-white transition-colors" />
                 </div>
                 <div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Fase III</div>
-                  <div className="text-2xl font-serif italic text-[#3E2723]">24h</div>
+                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Módulo III</div>
+                  <div className="text-2xl font-serif italic text-[#3E2723]">16h</div>
                 </div>
               </div>
-              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">El Arte de Enseñar</h3>
+              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Metodología</h3>
               <ul className="space-y-2 text-sm text-[#5D5550] font-light">
-                <li>• Programación Neurolingüística (PNL)</li>
-                <li>• Modulación de Voz e Instrucciones</li>
-                <li>• Pedagogía Informada en Trauma</li>
-                <li>• Flujo de Clase y Manejo de Energía</li>
-              </ul>
-            </div>
-
-            {/* Phase IV */}
-            <div className="group border border-[#2A2624]/10 rounded-sm p-8 hover:bg-white/50 transition-colors">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full bg-[#3E2723]/10 flex items-center justify-center group-hover:bg-[#3E2723] transition-colors">
-                  <Heart className="w-5 h-5 text-[#3E2723] group-hover:text-white transition-colors" />
-                </div>
-                <div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Fase IV</div>
-                  <div className="text-2xl font-serif italic text-[#3E2723]">40h</div>
-                </div>
-              </div>
-              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Aplicación Clínica</h3>
-              <ul className="space-y-2 text-sm text-[#5D5550] font-light">
-                <li>• Patologías de la Columna Vertebral</li>
-                <li>• Protocolos Pre/Post-Natales</li>
-                <li>• Rehabilitación de Lesiones</li>
+                <li>• Técnicas de Instrucción</li>
+                <li>• Cueing Verbal y Táctil</li>
+                <li>• Diseño de Programas</li>
                 <li>• Poblaciones Especiales</li>
               </ul>
             </div>
 
-            {/* Phase V */}
-            <div className="group border border-[#2A2624]/10 rounded-sm p-8 hover:bg-white/50 transition-colors">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full bg-[#3E2723]/10 flex items-center justify-center group-hover:bg-[#3E2723] transition-colors">
-                  <Briefcase className="w-5 h-5 text-[#3E2723] group-hover:text-white transition-colors" />
-                </div>
-                <div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Fase V</div>
-                  <div className="text-2xl font-serif italic text-[#3E2723]">16h</div>
-                </div>
-              </div>
-              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">El Negocio</h3>
-              <ul className="space-y-2 text-sm text-[#5D5550] font-light">
-                <li>• Educación Financiera para Instructores</li>
-                <li>• Empleo vs. Emprendimiento</li>
-                <li>• Psicología de Retención de Clientes</li>
-                <li>• Construyendo Tu Marca</li>
-              </ul>
-            </div>
-
-            {/* Residency */}
+            {/* Practice Hours */}
             <div className="group border-2 border-[#3E2723]/30 bg-[#3E2723]/5 rounded-sm p-8 hover:bg-[#3E2723]/10 transition-colors">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-full bg-[#3E2723] flex items-center justify-center">
                   <Users className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <div className="text-xs uppercase tracking-widest text-[#3E2723]">Residencia</div>
-                  <div className="text-2xl font-serif italic text-[#3E2723]">110h</div>
+                  <div className="text-xs uppercase tracking-widest text-[#3E2723]">Práctica</div>
+                  <div className="text-2xl font-serif italic text-[#3E2723]">51h</div>
                 </div>
               </div>
-              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Experiencia Práctica</h3>
+              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Horas Supervisadas</h3>
               <ul className="space-y-2 text-sm text-[#5D5550] font-light">
-                <li>• Sesiones de Enseñanza por Segmentos</li>
-                <li>• Horas de Clínica Comunitaria</li>
-                <li>• Retroalimentación de Mentores en Tiempo Real</li>
-                <li>• Estudios de Caso de Clientes</li>
+                <li>• 15h Observación</li>
+                <li>• 20h Práctica Personal</li>
+                <li>• 16h Enseñanza Supervisada</li>
+                <li>• Evaluación Final</li>
               </ul>
             </div>
           </div>
@@ -527,40 +487,40 @@ const CertificacionPilates: React.FC = () => {
           <div className="mt-12 text-center">
             <div className="inline-flex items-center gap-8 bg-[#2A2624] text-[#EAE8E4] px-12 py-6 rounded-sm">
               <div className="text-center">
-                <div className="text-3xl font-serif italic">300</div>
+                <div className="text-3xl font-serif italic">135</div>
                 <div className="text-xs uppercase tracking-widest text-white/60">Horas Totales</div>
               </div>
               <div className="w-px h-12 bg-white/20"></div>
               <div className="text-center">
-                <div className="text-3xl font-serif italic">190h</div>
-                <div className="text-xs uppercase tracking-widest text-white/60">Formación Base</div>
+                <div className="text-3xl font-serif italic">84h</div>
+                <div className="text-xs uppercase tracking-widest text-white/60">Instrucción</div>
               </div>
               <div className="w-px h-12 bg-white/20"></div>
               <div className="text-center">
-                <div className="text-3xl font-serif italic">110h</div>
-                <div className="text-xs uppercase tracking-widest text-white/60">Residencia</div>
+                <div className="text-3xl font-serif italic">51h</div>
+                <div className="text-xs uppercase tracking-widest text-white/60">Práctica</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Section D: Residency Differentiator */}
+      {/* Section D: Practice Hours Differentiator */}
       <section className="py-24 px-8 md:px-24 bg-white/40 border-t border-[#2A2624]/10">
         <div className="max-w-[1800px] mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
               <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-6">
-                La Residencia
+                Práctica Supervisada
               </span>
               <h2 className="text-4xl md:text-5xl font-serif italic text-[#2A2624] leading-tight mb-6">
-                No Solo Observación.<br />
-                <span className="not-italic font-light font-sans tracking-tight">Un Modelo de Hospital Escuela.</span>
+                No Solo Teoría.<br />
+                <span className="not-italic font-light font-sans tracking-tight">Experiencia Real desde el Día Uno.</span>
               </h2>
               <p className="text-lg text-[#5D5550] font-light leading-relaxed mb-8">
-                La mayoría de los cursos requieren que te sientes al fondo y observes. En Edelweiss, trabajas. 
-                Nuestra residencia de 110 horas sigue el modelo de hospital escuela de medicina—aprendes haciendo, 
-                con supervisión experta en cada paso.
+                Las 51 horas de práctica supervisada son el corazón de tu formación. 
+                Observas instructores certificados, practicas en tu propio cuerpo y enseñas a clientes reales 
+                bajo supervisión experta—todo antes de graduarte.
               </p>
               <button
                 onClick={() => setModalOpen(true)}
@@ -574,13 +534,13 @@ const CertificacionPilates: React.FC = () => {
               <div className="bg-white border border-[#2A2624]/10 rounded-sm p-8">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-full bg-[#3E2723]/10 flex items-center justify-center flex-shrink-0">
-                    <span className="text-lg font-serif italic text-[#3E2723]">1</span>
+                    <span className="text-lg font-serif italic text-[#3E2723]">15h</span>
                   </div>
                   <div>
-                    <h3 className="text-lg font-serif italic text-[#2A2624] mb-2">Enseñanza por Segmentos</h3>
+                    <h3 className="text-lg font-serif italic text-[#2A2624] mb-2">Observación</h3>
                     <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                      Enseña a clientes reales bajo supervisión de mentores. Comienza con ejercicios individuales, 
-                      progresa a sesiones completas. Construye confianza a través de la repetición.
+                      Observa clases impartidas por instructores certificados. Aprende cómo manejan 
+                      diferentes clientes, modificaciones y el flujo de una sesión profesional.
                     </p>
                   </div>
                 </div>
@@ -589,13 +549,13 @@ const CertificacionPilates: React.FC = () => {
               <div className="bg-white border border-[#2A2624]/10 rounded-sm p-8">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-full bg-[#3E2723]/10 flex items-center justify-center flex-shrink-0">
-                    <span className="text-lg font-serif italic text-[#3E2723]">2</span>
+                    <span className="text-lg font-serif italic text-[#3E2723]">20h</span>
                   </div>
                   <div>
-                    <h3 className="text-lg font-serif italic text-[#2A2624] mb-2">Clínicas Comunitarias</h3>
+                    <h3 className="text-lg font-serif italic text-[#2A2624] mb-2">Práctica Personal</h3>
                     <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                      Atiende poblaciones diversas en sesiones comunitarias supervisadas. 
-                      Experimenta el espectro completo de necesidades y adaptaciones de clientes.
+                      Domina cada ejercicio en tu propio cuerpo. No puedes enseñar lo que no has sentido. 
+                      Desarrolla tu práctica personal con retroalimentación de mentores.
                     </p>
                   </div>
                 </div>
@@ -604,13 +564,13 @@ const CertificacionPilates: React.FC = () => {
               <div className="bg-white border border-[#2A2624]/10 rounded-sm p-8">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-full bg-[#3E2723]/10 flex items-center justify-center flex-shrink-0">
-                    <span className="text-lg font-serif italic text-[#3E2723]">3</span>
+                    <span className="text-lg font-serif italic text-[#3E2723]">16h</span>
                   </div>
                   <div>
-                    <h3 className="text-lg font-serif italic text-[#2A2624] mb-2">Retroalimentación en Tiempo Real</h3>
+                    <h3 className="text-lg font-serif italic text-[#2A2624] mb-2">Enseñanza Supervisada</h3>
                     <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                      Cada hora de enseñanza incluye retroalimentación inmediata y accionable. 
-                      Gradúate con experiencia, no solo con teoría.
+                      Enseña a clientes reales bajo la guía de un mentor. Recibe retroalimentación inmediata 
+                      y gradúate con experiencia real, no solo con teoría.
                     </p>
                   </div>
                 </div>
@@ -619,7 +579,7 @@ const CertificacionPilates: React.FC = () => {
           </div>
         </div>
       </section>
-      {/* ========== END EDELWEISS 400-HOUR PROGRAM SECTIONS ========== */}
+      {/* ========== END EDELWEISS 135-HOUR REFORMER CERTIFICATION ========== */}
 
       <PreRegistrationModal
         isOpen={modalOpen}
