@@ -275,56 +275,56 @@ const CertificacionPilates: React.FC = () => {
         <div className="max-w-[1800px] mx-auto">
           <div className="text-center mb-16">
             <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-6">
-              The Edelweiss Difference
+              La Diferencia Edelweiss
             </span>
             <h2 className="text-4xl md:text-5xl font-serif italic text-[#2A2624] leading-tight mb-6">
-              The Industry Has Bifurcated.<br />
-              <span className="not-italic font-light font-sans tracking-tight">We Built the Bridge.</span>
+              La Industria Se Ha Bifurcado.<br />
+              <span className="not-italic font-light font-sans tracking-tight">Nosotros Construimos el Puente.</span>
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
             <div className="bg-[#2A2624]/5 border border-[#2A2624]/10 rounded-sm p-8 md:p-12">
-              <h3 className="text-xs uppercase tracking-[0.2em] text-[#5D5550] mb-6">The Industry Problem</h3>
+              <h3 className="text-xs uppercase tracking-[0.2em] text-[#5D5550] mb-6">El Problema de la Industria</h3>
               <p className="text-lg text-[#5D5550] font-light leading-relaxed mb-6">
-                Current education forces you to choose: a <strong className="text-[#2A2624]">fast-track weekend certification</strong> that lacks depth, 
-                or a <strong className="text-[#2A2624]">multi-year comprehensive program</strong> that dilutes your focus across every apparatus.
+                La educación actual te obliga a elegir: una <strong className="text-[#2A2624]">certificación express de fin de semana</strong> que carece de profundidad, 
+                o un <strong className="text-[#2A2624]">programa integral de varios años</strong> que diluye tu enfoque entre todos los aparatos.
               </p>
               <ul className="space-y-3 text-[#5D5550] font-light">
                 <li className="flex items-start gap-3">
                   <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/40 flex-shrink-0"></span>
-                  <span>Weekend certifications: 40-60 hours, surface-level knowledge</span>
+                  <span>Certificaciones de fin de semana: 40-60 horas, conocimiento superficial</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/40 flex-shrink-0"></span>
-                  <span>Comprehensive programs: years of study, attention spread thin</span>
+                  <span>Programas integrales: años de estudio, atención dispersa</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/40 flex-shrink-0"></span>
-                  <span>Neither produces true Reformer specialists</span>
+                  <span>Ninguno produce verdaderos especialistas en Reformer</span>
                 </li>
               </ul>
             </div>
 
             <div className="bg-white/50 border border-[#3E2723]/20 rounded-sm p-8 md:p-12">
-              <h3 className="text-xs uppercase tracking-[0.2em] text-[#3E2723] mb-6">The Edelweiss Solution</h3>
+              <h3 className="text-xs uppercase tracking-[0.2em] text-[#3E2723] mb-6">La Solución Edelweiss</h3>
               <p className="text-lg text-[#5D5550] font-light leading-relaxed mb-6">
-                We apply the <strong className="text-[#2A2624]">rigor of a full comprehensive degree</strong> exclusively to the Reformer. 
-                By dedicating <strong className="text-[#3E2723]">400 hours to one apparatus</strong>, we produce graduates with the clinical reasoning 
-                of a physical therapist and the movement quality of a dancer.
+                Aplicamos el <strong className="text-[#2A2624]">rigor de una carrera universitaria completa</strong> exclusivamente al Reformer. 
+                Al dedicar <strong className="text-[#3E2723]">400 horas a un solo aparato</strong>, formamos graduados con el razonamiento clínico 
+                de un fisioterapeuta y la calidad de movimiento de un bailarín.
               </p>
               <div className="flex items-center gap-4 pt-4 border-t border-[#2A2624]/10">
                 <div className="text-center">
                   <div className="text-3xl font-serif italic text-[#3E2723]">400</div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Hours</div>
+                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Horas</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-serif italic text-[#3E2723]">1</div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Apparatus</div>
+                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Aparato</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-serif italic text-[#3E2723]">100%</div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">In-Person</div>
+                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Presencial</div>
                 </div>
               </div>
             </div>
@@ -337,15 +337,15 @@ const CertificacionPilates: React.FC = () => {
         <div className="max-w-[1800px] mx-auto">
           <div className="text-center mb-16">
             <span className="block text-xs font-sans tracking-[0.3em] uppercase text-white/40 mb-6">
-              The Somatic Promise
+              La Promesa Somática
             </span>
             <h2 className="text-4xl md:text-5xl font-serif italic leading-tight mb-6">
-              You Cannot Download<br />
-              <span className="not-italic font-light font-sans tracking-tight">"Touch."</span>
+              No Puedes Descargar<br />
+              <span className="not-italic font-light font-sans tracking-tight">"El Tacto."</span>
             </h2>
             <p className="text-lg text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
-              In an era of Zoom anatomy and hybrid certification, Edelweiss stands firm: 
-              Pilates is a kinesthetic practice. Some things simply cannot be transmitted through a screen.
+              En una era de anatomía por Zoom y certificaciones híbridas, Edelweiss se mantiene firme: 
+              Pilates es una práctica kinestésica. Algunas cosas simplemente no se pueden transmitir a través de una pantalla.
             </p>
           </div>
 
@@ -354,11 +354,11 @@ const CertificacionPilates: React.FC = () => {
               <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6">
                 <Heart className="w-6 h-6 text-white/80" />
               </div>
-              <h3 className="text-xl font-serif italic mb-4">Somatic Empathy</h3>
+              <h3 className="text-xl font-serif italic mb-4">Empatía Somática</h3>
               <p className="text-white/60 font-light leading-relaxed">
-                Learn to read a client's nervous system through their breath and tone—skills 
-                that cannot be transmitted through a screen. Feel the subtle shifts that indicate 
-                readiness, fatigue, or emotional release.
+                Aprende a leer el sistema nervioso de tu cliente a través de su respiración y tono—habilidades 
+                que no se pueden transmitir por una pantalla. Siente los cambios sutiles que indican 
+                disposición, fatiga o liberación emocional.
               </p>
             </div>
 
@@ -366,11 +366,11 @@ const CertificacionPilates: React.FC = () => {
               <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6">
                 <Hand className="w-6 h-6 text-white/80" />
               </div>
-              <h3 className="text-xl font-serif italic mb-4">Tactile Intelligence</h3>
+              <h3 className="text-xl font-serif italic mb-4">Inteligencia Táctil</h3>
               <p className="text-white/60 font-light leading-relaxed">
-                Our "Anatomy in 3D" labs—building muscles in clay—and hands-on spotting 
-                workshops ensure you don't just memorize anatomy; you feel it. Your hands 
-                become diagnostic tools.
+                Nuestros laboratorios de "Anatomía en 3D"—construyendo músculos en arcilla—y talleres 
+                prácticos de asistencia aseguran que no solo memorices anatomía; la sientas. Tus manos 
+                se convierten en herramientas diagnósticas.
               </p>
             </div>
 
@@ -378,11 +378,11 @@ const CertificacionPilates: React.FC = () => {
               <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6">
                 <Users className="w-6 h-6 text-white/80" />
               </div>
-              <h3 className="text-xl font-serif italic mb-4">100% In-Person</h3>
+              <h3 className="text-xl font-serif italic mb-4">100% Presencial</h3>
               <p className="text-white/60 font-light leading-relaxed">
-                No online shortcuts. No hybrid compromises. Every hour of your 400-hour 
-                journey happens in the studio, with real bodies, real springs, and real 
-                mentor feedback.
+                Sin atajos en línea. Sin compromisos híbridos. Cada hora de tu programa de 400 horas 
+                ocurre en el estudio, con cuerpos reales, resortes reales y retroalimentación 
+                real de mentores.
               </p>
             </div>
           </div>
@@ -394,11 +394,11 @@ const CertificacionPilates: React.FC = () => {
         <div className="max-w-[1800px] mx-auto">
           <div className="text-center mb-16">
             <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-6">
-              The Curriculum
+              El Plan de Estudios
             </span>
             <h2 className="text-4xl md:text-5xl font-serif italic text-[#2A2624] leading-tight mb-6">
-              400 Hours.<br />
-              <span className="not-italic font-light font-sans tracking-tight">Five Pillars of Mastery.</span>
+              400 Horas.<br />
+              <span className="not-italic font-light font-sans tracking-tight">Cinco Pilares de Maestría.</span>
             </h2>
           </div>
 
@@ -410,16 +410,16 @@ const CertificacionPilates: React.FC = () => {
                   <BookOpen className="w-5 h-5 text-[#3E2723] group-hover:text-white transition-colors" />
                 </div>
                 <div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Phase I</div>
+                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Fase I</div>
                   <div className="text-2xl font-serif italic text-[#3E2723]">50h</div>
                 </div>
               </div>
-              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">The Science</h3>
+              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">La Ciencia</h3>
               <ul className="space-y-2 text-sm text-[#5D5550] font-light">
-                <li>• Applied Anatomy & Kinesiology</li>
-                <li>• "Clay & Cadaver" 3D Labs</li>
-                <li>• Biomechanics of Springs</li>
-                <li>• Postural Assessment</li>
+                <li>• Anatomía Aplicada y Kinesiología</li>
+                <li>• Laboratorios 3D "Arcilla y Cadáver"</li>
+                <li>• Biomecánica de Resortes</li>
+                <li>• Evaluación Postural</li>
               </ul>
             </div>
 
@@ -430,16 +430,16 @@ const CertificacionPilates: React.FC = () => {
                   <GraduationCap className="w-5 h-5 text-[#3E2723] group-hover:text-white transition-colors" />
                 </div>
                 <div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Phase II</div>
+                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Fase II</div>
                   <div className="text-2xl font-serif italic text-[#3E2723]">100h</div>
                 </div>
               </div>
-              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">The Repertoire</h3>
+              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">El Repertorio</h3>
               <ul className="space-y-2 text-sm text-[#5D5550] font-light">
-                <li>• Essential to Archival Exercises</li>
-                <li>• Fletcher Percussion Breathing</li>
-                <li>• Athletic Conditioning Sequences</li>
-                <li>• Progressions & Modifications</li>
+                <li>• Ejercicios Esenciales a Archivales</li>
+                <li>• Respiración de Percusión Fletcher</li>
+                <li>• Secuencias de Acondicionamiento Atlético</li>
+                <li>• Progresiones y Modificaciones</li>
               </ul>
             </div>
 
@@ -450,16 +450,16 @@ const CertificacionPilates: React.FC = () => {
                   <MessageCircle className="w-5 h-5 text-[#3E2723] group-hover:text-white transition-colors" />
                 </div>
                 <div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Phase III</div>
+                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Fase III</div>
                   <div className="text-2xl font-serif italic text-[#3E2723]">30h</div>
                 </div>
               </div>
-              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">The Art of Teaching</h3>
+              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">El Arte de Enseñar</h3>
               <ul className="space-y-2 text-sm text-[#5D5550] font-light">
-                <li>• Neuro-Linguistic Programming (NLP)</li>
-                <li>• Voice Modulation & Cueing</li>
-                <li>• Trauma-Informed Pedagogy</li>
-                <li>• Class Flow & Energy Management</li>
+                <li>• Programación Neurolingüística (PNL)</li>
+                <li>• Modulación de Voz e Instrucciones</li>
+                <li>• Pedagogía Informada en Trauma</li>
+                <li>• Flujo de Clase y Manejo de Energía</li>
               </ul>
             </div>
 
@@ -470,16 +470,16 @@ const CertificacionPilates: React.FC = () => {
                   <Heart className="w-5 h-5 text-[#3E2723] group-hover:text-white transition-colors" />
                 </div>
                 <div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Phase IV</div>
+                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Fase IV</div>
                   <div className="text-2xl font-serif italic text-[#3E2723]">60h</div>
                 </div>
               </div>
-              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Clinical Application</h3>
+              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Aplicación Clínica</h3>
               <ul className="space-y-2 text-sm text-[#5D5550] font-light">
-                <li>• Pathologies of the Spine</li>
-                <li>• Pre/Post-Natal Protocols</li>
-                <li>• Injury Rehabilitation</li>
-                <li>• Special Populations</li>
+                <li>• Patologías de la Columna Vertebral</li>
+                <li>• Protocolos Pre/Post-Natales</li>
+                <li>• Rehabilitación de Lesiones</li>
+                <li>• Poblaciones Especiales</li>
               </ul>
             </div>
 
@@ -490,16 +490,16 @@ const CertificacionPilates: React.FC = () => {
                   <Briefcase className="w-5 h-5 text-[#3E2723] group-hover:text-white transition-colors" />
                 </div>
                 <div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Phase V</div>
+                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Fase V</div>
                   <div className="text-2xl font-serif italic text-[#3E2723]">20h</div>
                 </div>
               </div>
-              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">The Business</h3>
+              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">El Negocio</h3>
               <ul className="space-y-2 text-sm text-[#5D5550] font-light">
-                <li>• Financial Literacy for Instructors</li>
-                <li>• Employment vs. Entrepreneurship</li>
-                <li>• Client Retention Psychology</li>
-                <li>• Building Your Brand</li>
+                <li>• Educación Financiera para Instructores</li>
+                <li>• Empleo vs. Emprendimiento</li>
+                <li>• Psicología de Retención de Clientes</li>
+                <li>• Construyendo Tu Marca</li>
               </ul>
             </div>
 
@@ -510,16 +510,16 @@ const CertificacionPilates: React.FC = () => {
                   <Users className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <div className="text-xs uppercase tracking-widest text-[#3E2723]">Residency</div>
+                  <div className="text-xs uppercase tracking-widest text-[#3E2723]">Residencia</div>
                   <div className="text-2xl font-serif italic text-[#3E2723]">140h</div>
                 </div>
               </div>
-              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Practical Experience</h3>
+              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Experiencia Práctica</h3>
               <ul className="space-y-2 text-sm text-[#5D5550] font-light">
-                <li>• Segment Teaching Sessions</li>
-                <li>• Community Clinic Hours</li>
-                <li>• Real-time Mentor Feedback</li>
-                <li>• Client Case Studies</li>
+                <li>• Sesiones de Enseñanza por Segmentos</li>
+                <li>• Horas de Clínica Comunitaria</li>
+                <li>• Retroalimentación de Mentores en Tiempo Real</li>
+                <li>• Estudios de Caso de Clientes</li>
               </ul>
             </div>
           </div>
@@ -528,17 +528,17 @@ const CertificacionPilates: React.FC = () => {
             <div className="inline-flex items-center gap-8 bg-[#2A2624] text-[#EAE8E4] px-12 py-6 rounded-sm">
               <div className="text-center">
                 <div className="text-3xl font-serif italic">400</div>
-                <div className="text-xs uppercase tracking-widest text-white/60">Total Hours</div>
+                <div className="text-xs uppercase tracking-widest text-white/60">Horas Totales</div>
               </div>
               <div className="w-px h-12 bg-white/20"></div>
               <div className="text-center">
                 <div className="text-3xl font-serif italic">260h</div>
-                <div className="text-xs uppercase tracking-widest text-white/60">Core Training</div>
+                <div className="text-xs uppercase tracking-widest text-white/60">Formación Base</div>
               </div>
               <div className="w-px h-12 bg-white/20"></div>
               <div className="text-center">
                 <div className="text-3xl font-serif italic">140h</div>
-                <div className="text-xs uppercase tracking-widest text-white/60">Residency</div>
+                <div className="text-xs uppercase tracking-widest text-white/60">Residencia</div>
               </div>
             </div>
           </div>
@@ -551,22 +551,22 @@ const CertificacionPilates: React.FC = () => {
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
               <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-6">
-                The Residency
+                La Residencia
               </span>
               <h2 className="text-4xl md:text-5xl font-serif italic text-[#2A2624] leading-tight mb-6">
-                Not Just Observation.<br />
-                <span className="not-italic font-light font-sans tracking-tight">A Teaching Hospital Model.</span>
+                No Solo Observación.<br />
+                <span className="not-italic font-light font-sans tracking-tight">Un Modelo de Hospital Escuela.</span>
               </h2>
               <p className="text-lg text-[#5D5550] font-light leading-relaxed mb-8">
-                Most courses require you to sit in the back and watch. At Edelweiss, you work. 
-                Our 140-hour residency follows the medical teaching hospital model—you learn by doing, 
-                with expert supervision at every step.
+                La mayoría de los cursos requieren que te sientes al fondo y observes. En Edelweiss, trabajas. 
+                Nuestra residencia de 140 horas sigue el modelo de hospital escuela de medicina—aprendes haciendo, 
+                con supervisión experta en cada paso.
               </p>
               <button
                 onClick={() => setModalOpen(true)}
                 className="inline-flex items-center px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors"
               >
-                Begin Your Journey
+                Comienza Tu Camino
               </button>
             </div>
 
@@ -577,10 +577,10 @@ const CertificacionPilates: React.FC = () => {
                     <span className="text-lg font-serif italic text-[#3E2723]">1</span>
                   </div>
                   <div>
-                    <h3 className="text-lg font-serif italic text-[#2A2624] mb-2">Segment Teaching</h3>
+                    <h3 className="text-lg font-serif italic text-[#2A2624] mb-2">Enseñanza por Segmentos</h3>
                     <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                      Teach real clients under mentor supervision. Start with individual exercises, 
-                      progress to full sessions. Build confidence through repetition.
+                      Enseña a clientes reales bajo supervisión de mentores. Comienza con ejercicios individuales, 
+                      progresa a sesiones completas. Construye confianza a través de la repetición.
                     </p>
                   </div>
                 </div>
@@ -592,10 +592,10 @@ const CertificacionPilates: React.FC = () => {
                     <span className="text-lg font-serif italic text-[#3E2723]">2</span>
                   </div>
                   <div>
-                    <h3 className="text-lg font-serif italic text-[#2A2624] mb-2">Community Clinics</h3>
+                    <h3 className="text-lg font-serif italic text-[#2A2624] mb-2">Clínicas Comunitarias</h3>
                     <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                      Serve diverse populations in supervised community sessions. 
-                      Experience the full spectrum of client needs and adaptations.
+                      Atiende poblaciones diversas en sesiones comunitarias supervisadas. 
+                      Experimenta el espectro completo de necesidades y adaptaciones de clientes.
                     </p>
                   </div>
                 </div>
@@ -607,10 +607,10 @@ const CertificacionPilates: React.FC = () => {
                     <span className="text-lg font-serif italic text-[#3E2723]">3</span>
                   </div>
                   <div>
-                    <h3 className="text-lg font-serif italic text-[#2A2624] mb-2">Real-time Mentor Feedback</h3>
+                    <h3 className="text-lg font-serif italic text-[#2A2624] mb-2">Retroalimentación en Tiempo Real</h3>
                     <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                      Every teaching hour includes immediate, actionable feedback. 
-                      Graduate with experience, not just theory.
+                      Cada hora de enseñanza incluye retroalimentación inmediata y accionable. 
+                      Gradúate con experiencia, no solo con teoría.
                     </p>
                   </div>
                 </div>
