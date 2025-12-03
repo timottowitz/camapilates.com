@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
+import { generateAboutPageSchema } from '@/lib/seo';
 
 const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: number }) => (
   <motion.div
@@ -15,12 +16,17 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: nu
 );
 
 const About = () => {
+  const aboutSchema = generateAboutPageSchema();
+
   return (
     <LuxuryLayout>
       <Helmet>
         <title>Sobre Edelweiss Pilates | Ingeniería alemana, manufactura mexicana</title>
         <meta name="description" content="Conoce Edelweiss Pilates: Reformers silenciosos y precisos en cuero genuino, nogal y acero. Ingeniería alemana con manufactura en CDMX." />
         <link rel="canonical" href={`${window.location.origin}/about`} />
+        <script type="application/ld+json">
+          {JSON.stringify(aboutSchema)}
+        </script>
       </Helmet>
 
       {/* Hero Section */}

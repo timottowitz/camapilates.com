@@ -31,6 +31,7 @@ import { GooglePlacesPhoto } from '@/components/studio/GooglePlacesPhoto';
 import { GoogleReviews } from '@/components/studio/GoogleReviews';
 import { citySlug } from '@/utils/slug';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
+import { getOrigin, generateStudioSchema } from '@/lib/seo';
 
 // City name mapping
 const cityNameMap: Record<string, string> = {
@@ -138,11 +139,42 @@ const StudioDetail: React.FC = () => {
   const pageDescription = studioData.generatedSummary?.overview || studioData.description ||
     `${studioData.name} es un estudio de Pilates en ${studioData.address?.neighborhood || cityName}.`;
 
+  const origin = getOrigin();
+  const studioUrl = `${origin}/estudios-de-pilates/${normalizedCitySlug}/${studioSlug}`;
+
+  const studioSchema = generateStudioSchema({
+    name: studioData.name,
+    description: pageDescription,
+    address: studioData.address ? {
+      street: studioData.address.street,
+      neighborhood: studioData.address.neighborhood,
+      city: studioData.address.city,
+      state: studioData.address.state,
+      postalCode: studioData.address.postalCode,
+      country: 'MX',
+    } : undefined,
+    geo: studioData.coordinates ? {
+      lat: studioData.coordinates.lat,
+      lng: studioData.coordinates.lng,
+    } : undefined,
+    phone: studioData.contact?.phone,
+    website: studioData.contact?.website,
+    rating: studioData.metrics?.googleRating,
+    reviewCount: studioData.metrics?.googleReviewCount,
+    hours: studioData.hours,
+    studioUrl,
+    cityName,
+    priceRange: '$$',
+  });
+
   return (
     <LuxuryLayout>
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
+        <script type="application/ld+json">
+          {JSON.stringify(studioSchema)}
+        </script>
       </Helmet>
 
       <section className="relative pt-24 pb-20 px-4 md:px-8 max-w-[1400px] mx-auto">

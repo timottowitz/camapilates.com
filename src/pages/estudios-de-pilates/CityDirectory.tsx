@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/sheet";
 import { citySlug } from "@/utils/slug";
 import LuxuryLayout from "@/components/layout/LuxuryLayout";
+import { generateCityDirectorySchema } from "@/lib/seo";
 
 // Simple city name mapping
 const cityNameMap: Record<string, string> = {
@@ -166,11 +167,27 @@ const CityDirectory: React.FC = () => {
   const pageTitle = `Estudios de Pilates en ${cityName} - ${filteredStudios.length} Opciones`;
   const pageDescription = `Encuentra los mejores estudios de Pilates en ${cityName}. Compara ${filteredStudios.length} estudios con reseñas, precios y ubicaciones.`;
 
+  const cityDirectorySchema = generateCityDirectorySchema({
+    cityName,
+    citySlug: normalizedSlug,
+    studioCount: filteredStudios.length,
+    avgRating: cityData?.avgRating,
+    studios: filteredStudios.map((s) => ({
+      name: s.name,
+      slug: s.slug,
+      rating: s.metrics?.googleRating,
+      reviewCount: s.metrics?.googleReviewCount,
+    })),
+  });
+
   return (
     <LuxuryLayout>
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
+        <script type="application/ld+json">
+          {JSON.stringify(cityDirectorySchema)}
+        </script>
       </Helmet>
 
       <section className="relative pt-32 pb-12 px-8 md:px-24 max-w-[1800px] mx-auto">

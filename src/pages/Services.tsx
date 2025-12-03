@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { generateServicesSchema } from '@/lib/seo';
 
 const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: number }) => (
   <motion.div
@@ -16,12 +17,17 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: nu
 );
 
 const Services = () => {
+  const servicesSchema = generateServicesSchema();
+
   return (
     <LuxuryLayout>
       <Helmet>
         <title>Servicios | Edelweiss Pilates</title>
         <meta name="description" content="Servicios profesionales para estudios de Pilates: Diseño, Mantenimiento y Capacitación." />
         <link rel="canonical" href={`${window.location.origin}/services`} />
+        <script type="application/ld+json">
+          {JSON.stringify(servicesSchema)}
+        </script>
       </Helmet>
 
       <section className="relative pt-32 pb-20 px-8 md:px-24 max-w-[1800px] mx-auto">

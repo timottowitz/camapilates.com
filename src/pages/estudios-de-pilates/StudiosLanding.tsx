@@ -8,6 +8,7 @@ import { hasConvex } from '@/lib/convexProvider';
 import localData from '@/data/studios.json';
 import { citySlug } from '@/utils/slug';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
+import { generateStudiosLandingSchema } from '@/lib/seo';
 
 const StudiosLanding: React.FC = () => {
   // SEO metadata
@@ -64,6 +65,17 @@ const StudiosLanding: React.FC = () => {
     totalReviews: globalStats?.totalReviews || 21000,
   };
 
+  // Enhanced schema for SEO
+  const landingSchema = generateStudiosLandingSchema({
+    cities: cities.map((city: any) => ({
+      name: city.name,
+      slug: city.slug || citySlug(city.name),
+      studioCount: city.studioCount || 0,
+    })),
+    totalStudios: stats.totalStudios,
+    totalReviews: stats.totalReviews,
+  });
+
   return (
     <LuxuryLayout>
       <Helmet>
@@ -72,13 +84,7 @@ const StudiosLanding: React.FC = () => {
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'WebPage',
-            name: pageTitle,
-            description: pageDescription,
-            url: 'https://camadepilates.com/estudios-de-pilates',
-          })}
+          {JSON.stringify(landingSchema)}
         </script>
       </Helmet>
 

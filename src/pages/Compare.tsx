@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { DEFAULTS, getOrigin } from '@/lib/seo';
+import { DEFAULTS, getOrigin, generateCompareSchema } from '@/lib/seo';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { Check, ArrowRight, Star, Shield, Truck, Clock } from 'lucide-react';
 import { ContextualImage } from '@/components/ContextualImage';
@@ -14,12 +14,17 @@ const Compare = () => {
 
   const [activeTab, setActiveTab] = useState<'overview' | 'specs'>('overview');
 
+  const compareSchema = generateCompareSchema();
+
   return (
     <LuxuryLayout>
       <Helmet>
         <title>{title} | {DEFAULTS.siteName}</title>
         <meta name="description" content={desc} />
         <link rel="canonical" href={`${origin}/compare`} />
+        <script type="application/ld+json">
+          {JSON.stringify(compareSchema)}
+        </script>
       </Helmet>
 
       {/* Hero Section */}
