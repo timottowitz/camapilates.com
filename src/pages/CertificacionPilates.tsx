@@ -278,31 +278,35 @@ const CertificacionPilates: React.FC = () => {
               Certificación Reformer
             </span>
             <h2 className="text-4xl md:text-5xl font-serif italic text-[#2A2624] leading-tight mb-6">
-              Especialízate en Reformer.<br />
-              <span className="not-italic font-light font-sans tracking-tight">Domina Un Solo Aparato.</span>
+              135 Horas para Convertirte<br />
+              <span className="not-italic font-light font-sans tracking-tight">en Especialista de Reformer.</span>
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
             <div className="bg-[#2A2624]/5 border border-[#2A2624]/10 rounded-sm p-8 md:p-12">
-              <h3 className="text-xs uppercase tracking-[0.2em] text-[#5D5550] mb-6">¿Por Qué Solo Reformer?</h3>
+              <h3 className="text-xs uppercase tracking-[0.2em] text-[#5D5550] mb-6">Qué Aprenderás</h3>
               <p className="text-lg text-[#5D5550] font-light leading-relaxed mb-6">
-                El Reformer es el aparato más versátil y demandado en estudios de Pilates. 
-                En lugar de diluir tu atención entre múltiples equipos, <strong className="text-[#2A2624]">135 horas enfocadas</strong> te 
-                convierten en un verdadero especialista.
+                El Reformer ofrece más de 500 ejercicios con infinitas variaciones. En 135 horas aprenderás a 
+                descomponer cada movimiento, aplicar modificaciones para diferentes cuerpos y condiciones, 
+                y diseñar sesiones efectivas desde el primer día.
               </p>
               <ul className="space-y-3 text-[#5D5550] font-light">
                 <li className="flex items-start gap-3">
                   <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/40 flex-shrink-0"></span>
-                  <span>Aparato más solicitado en estudios profesionales</span>
+                  <span>Anatomía funcional y biomecánica aplicada al Reformer</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/40 flex-shrink-0"></span>
-                  <span>Dominio profundo vs. conocimiento superficial</span>
+                  <span>Repertorio esencial a avanzado con progresiones</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/40 flex-shrink-0"></span>
-                  <span>Listo para trabajar al graduarte</span>
+                  <span>Análisis postural y adaptaciones para cada cliente</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/40 flex-shrink-0"></span>
+                  <span>Cueing verbal, táctil y visual efectivo</span>
                 </li>
               </ul>
             </div>
@@ -310,17 +314,19 @@ const CertificacionPilates: React.FC = () => {
             <div className="bg-white/50 border border-[#3E2723]/20 rounded-sm p-8 md:p-12">
               <h3 className="text-xs uppercase tracking-[0.2em] text-[#3E2723] mb-6">El Programa Edelweiss</h3>
               <p className="text-lg text-[#5D5550] font-light leading-relaxed mb-6">
-                Nuestro programa de <strong className="text-[#3E2723]">135 horas</strong> está alineado con los estándares internacionales 
-                de certificación Reformer (STOTT: 125h, Balanced Body: 134h). Formación completa, enfocada y 100% presencial.
+                Nuestro programa está alineado con los estándares internacionales de certificación Reformer 
+                (STOTT: 125h, Balanced Body: 134h). <strong className="text-[#3E2723]">84 horas de instrucción</strong> más 
+                <strong className="text-[#3E2723]"> 51 horas de práctica supervisada</strong>—observando, practicando en tu cuerpo 
+                y enseñando a clientes reales.
               </p>
-              <div className="flex items-center gap-4 pt-4 border-t border-[#2A2624]/10">
+              <div className="flex items-center justify-between pt-4 border-t border-[#2A2624]/10">
                 <div className="text-center">
-                  <div className="text-3xl font-serif italic text-[#3E2723]">135</div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Horas</div>
+                  <div className="text-3xl font-serif italic text-[#3E2723]">84h</div>
+                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Instrucción</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-serif italic text-[#3E2723]">1</div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Aparato</div>
+                  <div className="text-3xl font-serif italic text-[#3E2723]">51h</div>
+                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Práctica</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-serif italic text-[#3E2723]">100%</div>
