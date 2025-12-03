@@ -372,11 +372,11 @@ const CertificacionPilates: React.FC = () => {
               <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6">
                 <Hand className="w-6 h-6 text-white/80" />
               </div>
-              <h3 className="text-xl font-serif italic mb-4">Inteligencia Táctil</h3>
+              <h3 className="text-xl font-serif italic mb-4">Cueing Táctil</h3>
               <p className="text-white/60 font-light leading-relaxed">
-                Nuestros laboratorios de "Anatomía en 3D"—construyendo músculos en arcilla—y talleres 
-                prácticos de asistencia aseguran que no solo memorices anatomía; la sientas. Tus manos 
-                se convierten en herramientas diagnósticas.
+                Aprenderás a usar el tacto como herramienta de enseñanza—correcciones sutiles que guían 
+                al cliente hacia la alineación correcta. Practicarás técnicas de asistencia manual con 
+                retroalimentación inmediata de tus mentores.
               </p>
             </div>
 
