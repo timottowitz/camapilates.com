@@ -294,6 +294,41 @@ export const updateMetrics = mutation({
   },
 });
 
+// Get global stats for all studios
+export const getGlobalStats = query({
+  handler: async (ctx) => {
+    const allStudios = await ctx.db
+      .query('studios')
+      .filter((q) => q.eq(q.field('isActive'), true))
+      .collect();
+
+    // Count by city
+    const citySet = new Set<string>();
+    let totalReviews = 0;
+    let totalRating = 0;
+    let ratedStudios = 0;
+
+    for (const studio of allStudios) {
+      citySet.add(studio.address.city);
+      
+      if (studio.metrics.googleReviewCount) {
+        totalReviews += studio.metrics.googleReviewCount;
+      }
+      if (studio.metrics.googleRating) {
+        totalRating += studio.metrics.googleRating;
+        ratedStudios++;
+      }
+    }
+
+    return {
+      totalStudios: allStudios.length,
+      totalCities: citySet.size,
+      totalReviews,
+      averageRating: ratedStudios > 0 ? Math.round((totalRating / ratedStudios) * 100) / 100 : 0,
+    };
+  },
+});
+
 // Helper function to calculate distance between two coordinates
 function calculateDistance(lat1: number, lng1: number, lat2: number, lng2: number): number {
   const R = 6371; // Earth's radius in kilometers

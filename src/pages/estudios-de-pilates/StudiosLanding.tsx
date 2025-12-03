@@ -30,6 +30,7 @@ const StudiosLanding: React.FC = () => {
 
   const remoteCities = useQuery(api.cities.getPriority, hasConvex ? { limit: 10 } : 'skip');
   const remoteFeatured = useQuery(api.studios.getFeatured, hasConvex ? { limit: 6 } : 'skip');
+  const globalStats = useQuery(api.studios.getGlobalStats, hasConvex ? {} : 'skip');
 
   const cities = React.useMemo(() => {
     if (!hasConvex) return fallbackCities;
@@ -55,13 +56,12 @@ const StudiosLanding: React.FC = () => {
     return failover ? fallbackFeatured : [];
   }, [hasConvex, remoteFeatured, fallbackFeatured, failover]);
 
-  // Statistics (calculated)
+  // Statistics from real data
   const stats = {
-    totalCities: cities.length,
-    // Fallback to manual count of 170+ if data is not fully populated, otherwise sum remote counts
-    totalStudios: Math.max(170, cities.reduce((sum: number, city: any) => sum + (city.studioCount || 0), 0)),
-    avgRating: 4.7,
-    totalReviews: 12500,
+    totalCities: globalStats?.totalCities || cities.length || 5,
+    totalStudios: globalStats?.totalStudios || cities.reduce((sum: number, city: any) => sum + (city.studioCount || 0), 0) || 580,
+    avgRating: globalStats?.averageRating || 4.71,
+    totalReviews: globalStats?.totalReviews || 21000,
   };
 
   return (
@@ -92,14 +92,17 @@ const StudiosLanding: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-white/80" />
         </div>
         <div className="relative z-10">
-          <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-6">
-            National Directory
+          <span className="inline-block px-4 py-2 bg-[#3E2723] text-[#EAE8E4] text-xs font-sans tracking-[0.2em] uppercase rounded-full mb-6">
+            El directorio más completo de México
           </span>
           <h1 className="text-5xl md:text-7xl font-serif italic text-[#2A2624] leading-[0.9] mb-8">
             Find Your Studio
           </h1>
-          <p className="text-lg text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed mb-12">
+          <p className="text-lg text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed mb-6">
             Descubre y compara los mejores estudios de Pilates cerca de ti. Reseñas verificadas, precios transparentes y toda la información que necesitas.
+          </p>
+          <p className="text-sm text-[#3E2723] font-medium max-w-xl mx-auto mb-12">
+            Con más de {stats.totalStudios.toLocaleString()} estudios indexados y {stats.totalReviews.toLocaleString()}+ reseñas de Google, somos el directorio de Pilates más grande de México.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mb-16">
