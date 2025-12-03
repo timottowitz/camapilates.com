@@ -20,6 +20,9 @@ import { getVersionedImageUrl } from '@/hooks/useVersionedImage';
  * These map to the 'name' field in the site_images table
  */
 export const CONVEX_IMAGE_NAMES = {
+  // Hero images
+  HERO_EDELWEISS: 'heroEdelweiss',
+
   // Shop images
   SHOP_HERO: 'shopHero',
   FEATURED_PRODUCTS: 'featuredProducts',
@@ -50,6 +53,7 @@ export const CONVEX_IMAGE_NAMES = {
  * These are the current local image paths
  */
 const FALLBACKS = {
+  heroEdelweiss: '/images/hero-edelweiss.webp',
   shopHero: '/images/reformer-pro.png',
   featuredProducts: '/images/reformer-home.png',
   catReformers: '/images/cat-icon-reformers.png',
@@ -67,6 +71,7 @@ const FALLBACKS = {
  * These will automatically fetch from Convex or fall back to local images
  */
 export function useConvexAssets() {
+  const heroEdelweiss = useConvexImage(CONVEX_IMAGE_NAMES.HERO_EDELWEISS, getVersionedImageUrl(FALLBACKS.heroEdelweiss));
   const shopHero = useConvexImage(CONVEX_IMAGE_NAMES.SHOP_HERO, getVersionedImageUrl(FALLBACKS.shopHero));
   const featuredProducts = useConvexImage(CONVEX_IMAGE_NAMES.FEATURED_PRODUCTS, getVersionedImageUrl(FALLBACKS.featuredProducts));
   const catReformers = useConvexImage(CONVEX_IMAGE_NAMES.CAT_REFORMERS, getVersionedImageUrl(FALLBACKS.catReformers));
@@ -79,6 +84,7 @@ export function useConvexAssets() {
   const heroVideo = useConvexImage(CONVEX_IMAGE_NAMES.HERO_VIDEO, FALLBACKS.heroVideo);
 
   return {
+    heroEdelweiss,
     shopHero,
     featuredProducts,
     catReformers,

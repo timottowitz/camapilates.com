@@ -8,8 +8,8 @@ import LuxuryLayout from '@/components/layout/LuxuryLayout';
 
 const Index = () => {
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://camadepilates.com';
-  const title = 'Cama de Pilates (Reformer) en México — Casa y Estudio';
-  const desc = 'Cama de Pilates en venta: Reformers silenciosos con cuero genuino, madera de nogal y acero. Precios 2025, entrega 3 semanas desde CDMX y garantía 1 año.';
+  const title = 'Edelweiss Pilates — Cama de Pilates sin Plásticos | Reformer Ecológico México';
+  const desc = 'El primer ecosistema de pilates libre de plásticos. Reformers de madera maciza, ropa orgánica de algodón y bambú. Pure form. Pure materials. Entrega 3 semanas, garantía 1 año.';
 
   const orgSchema = {
     '@context': 'https://schema.org',
@@ -55,8 +55,8 @@ const Index = () => {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: 'Cama de Pilates Reformer – Casa',
-    description: 'Reformer compacto para casa. Recorrido suave, estabilidad y accesorios esenciales.',
-    brand: { '@type': 'Brand', name: 'CAMA Pilates' },
+    description: 'Reformer ecológico de madera maciza para casa. Sin plásticos, materiales orgánicos, silencioso.',
+    brand: { '@type': 'Brand', name: 'Edelweiss Pilates' },
     sku: 'HOME-REFORMER-001',
     image: [`${origin}/og/cama-de-pilates-venta-mexico.png`],
     url: `${origin}/compare#casa`,

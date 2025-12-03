@@ -21,20 +21,17 @@ const ReformerHero = () => {
 
   return (
     <section className="relative w-full overflow-hidden bg-[#2A2624] text-[#EAE8E4]">
-      {/* Video Background - Native 1920x700 */}
+      {/* Hero Background Image */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-black/40 z-10" /> {/* Refined Overlay */}
-        {assets.heroVideo && (
-          <video
-            className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            aria-hidden="true"
-          >
-            <source src={assets.heroVideo} type="video/quicktime" />
-          </video>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent z-10" />
+        {assets.heroEdelweiss && (
+          <img
+            src={assets.heroEdelweiss}
+            alt="Mujer practicando pilates en reformer de madera con luz natural matutina - Edelweiss Pilates"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            loading="eager"
+            fetchPriority="high"
+          />
         )}
       </div>
 
@@ -42,29 +39,25 @@ const ReformerHero = () => {
       <div className="relative z-20 container mx-auto px-8 md:px-24 py-20 md:py-28">
         <div className="max-w-3xl">
 
-          {/* Super-title */}
-          <FadeIn delay={0.1}>
-            <p className="text-xs md:text-sm font-sans tracking-[0.3em] uppercase text-white/80 mb-6">
-              German Engineering • Mexican Soul
-            </p>
-          </FadeIn>
-
           {/* Main Title */}
-          <FadeIn delay={0.2}>
-            <h1 className="text-6xl md:text-9xl font-serif italic text-white leading-[0.9] mb-8">
-              The <br />
-              <span className="not-italic font-light font-sans tracking-tight">Reformer.</span>
+          <FadeIn delay={0.1}>
+            <h1 className="text-6xl md:text-9xl font-serif italic text-white leading-[0.9] mb-4">
+              Edelweiss.
             </h1>
           </FadeIn>
 
-          {/* Description */}
+          {/* Tagline */}
+          <FadeIn delay={0.2}>
+            <p className="text-2xl md:text-3xl font-light text-white/90 leading-relaxed mb-8">
+              Pure form. Pure materials.
+            </p>
+          </FadeIn>
+
+          {/* Sub-headline */}
           <FadeIn delay={0.3}>
             <div className="flex flex-col gap-6">
-              <p className="text-lg md:text-xl font-light text-white/90 leading-relaxed max-w-xl">
-                Complete silence. Vibration-free stability. Crafted from sustainable American Walnut and structural steel.
-              </p>
-              <p className="text-sm font-sans tracking-wide text-white/70 italic max-w-lg border-l border-white/30 pl-4">
-                "The last Reformer you'll ever need. Develop your grace with materials that honor the body."
+              <p className="text-lg md:text-xl font-light text-white/80 leading-relaxed max-w-xl">
+                The world's first plastic-free pilates ecosystem. Non-toxic beds, organic wear, healthy skin.
               </p>
             </div>
           </FadeIn>
