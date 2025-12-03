@@ -23,12 +23,12 @@ const LuxuryLayout = ({ children, className = "", noPadding = false }: LuxuryLay
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const navLinks = [
-        { to: '/shop', label: 'Shop' },
-        { to: '/compare', label: 'Compare' },
+        { to: '/shop', label: 'Tienda' },
+        { to: '/compare', label: 'Comparar' },
         { to: '/blog', label: 'Blog' },
         { to: '/estudios-de-pilates', label: 'Buscar Estudio' },
-        { to: '/certificacion-pilates', label: 'Certification' },
-        { to: '/about', label: 'About' },
+        { to: '/certificacion-pilates', label: 'Certificación' },
+        { to: '/about', label: 'Nosotros' },
     ];
 
     return (
@@ -93,31 +93,31 @@ const LuxuryLayout = ({ children, className = "", noPadding = false }: LuxuryLay
                         <div className="col-span-1 md:col-span-2">
                             <h3 className="text-3xl font-serif italic mb-8">Edelweiss</h3>
                             <p className="text-white/60 font-light max-w-md">
-                                The world's first plastic-free pilates ecosystem.
-                                Pure form. Pure materials. Healthy skin.
+                                El primer ecosistema de pilates libre de plásticos.
+                                Forma pura. Materiales puros. Piel sana.
                             </p>
                         </div>
                         <div>
-                            <h4 className="text-xs uppercase tracking-[0.2em] mb-6 text-white/40">Explore</h4>
+                            <h4 className="text-xs uppercase tracking-[0.2em] mb-6 text-white/40">Explorar</h4>
                             <ul className="space-y-4 text-sm font-light text-white/80">
-                                <li><Link to="/shop" className="hover:text-white transition-colors">Shop Collection</Link></li>
-                                <li><Link to="/compare" className="hover:text-white transition-colors">Compare Models</Link></li>
-                                <li><Link to="/about" className="hover:text-white transition-colors">Our Story</Link></li>
+                                <li><Link to="/shop" className="hover:text-white transition-colors">Ver Colección</Link></li>
+                                <li><Link to="/compare" className="hover:text-white transition-colors">Comparar Modelos</Link></li>
+                                <li><Link to="/about" className="hover:text-white transition-colors">Nuestra Historia</Link></li>
                             </ul>
                         </div>
                         <div>
-                            <h4 className="text-xs uppercase tracking-[0.2em] mb-6 text-white/40">Contact</h4>
+                            <h4 className="text-xs uppercase tracking-[0.2em] mb-6 text-white/40">Contacto</h4>
                             <ul className="space-y-4 text-sm font-light text-white/80">
                                 <li><a href="mailto:hello@camadepilates.com" className="hover:text-white transition-colors">hello@camadepilates.com</a></li>
-                                <li><a href="https://wa.me/523222787690" className="hover:text-white transition-colors">WhatsApp Support</a></li>
+                                <li><a href="https://wa.me/523222787690" className="hover:text-white transition-colors">Soporte WhatsApp</a></li>
                             </ul>
                         </div>
                     </div>
                     <div className="mt-24 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between text-xs text-white/40 uppercase tracking-widest">
                         <p>&copy; 2025 Edelweiss</p>
                         <div className="flex gap-8 mt-4 md:mt-0">
-                            <Link to="/legal/terminos">Terms</Link>
-                            <Link to="/legal/privacidad">Privacy</Link>
+                            <Link to="/legal/terminos">Términos</Link>
+                            <Link to="/legal/privacidad">Privacidad</Link>
                         </div>
                     </div>
                 </div>
