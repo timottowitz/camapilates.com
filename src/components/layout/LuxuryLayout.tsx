@@ -36,7 +36,7 @@ const LuxuryLayout = ({ children, className = "", noPadding = false }: LuxuryLay
             {/* Minimal Header */}
             <header className="fixed top-0 left-0 right-0 z-50 px-8 py-6 flex justify-between items-center mix-blend-difference text-[#EAE8E4]">
                 <Link to="/" className="text-xl font-serif italic tracking-tight z-50 relative">
-                    CAMA Pilates
+                    Edelweiss
                 </Link>
 
                 {/* Desktop Nav */}
@@ -91,10 +91,10 @@ const LuxuryLayout = ({ children, className = "", noPadding = false }: LuxuryLay
                 <div className="max-w-[1800px] mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                         <div className="col-span-1 md:col-span-2">
-                            <h3 className="text-3xl font-serif italic mb-8">CAMA Pilates</h3>
+                            <h3 className="text-3xl font-serif italic mb-8">Edelweiss</h3>
                             <p className="text-white/60 font-light max-w-md">
-                                Premium Pilates reformers for the Mexican market.
-                                Quality equipment, expert guidance, transformative practice.
+                                The world's first plastic-free pilates ecosystem.
+                                Pure form. Pure materials. Healthy skin.
                             </p>
                         </div>
                         <div>
@@ -114,7 +114,7 @@ const LuxuryLayout = ({ children, className = "", noPadding = false }: LuxuryLay
                         </div>
                     </div>
                     <div className="mt-24 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between text-xs text-white/40 uppercase tracking-widest">
-                        <p>&copy; 2025 CAMA Pilates</p>
+                        <p>&copy; 2025 Edelweiss</p>
                         <div className="flex gap-8 mt-4 md:mt-0">
                             <Link to="/legal/terminos">Terms</Link>
                             <Link to="/legal/privacidad">Privacy</Link>
