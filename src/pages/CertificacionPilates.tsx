@@ -310,12 +310,12 @@ const CertificacionPilates: React.FC = () => {
               <h3 className="text-xs uppercase tracking-[0.2em] text-[#3E2723] mb-6">La Solución Edelweiss</h3>
               <p className="text-lg text-[#5D5550] font-light leading-relaxed mb-6">
                 Aplicamos el <strong className="text-[#2A2624]">rigor de una carrera universitaria completa</strong> exclusivamente al Reformer. 
-                Al dedicar <strong className="text-[#3E2723]">400 horas a un solo aparato</strong>, formamos graduados con el razonamiento clínico 
+                Al dedicar <strong className="text-[#3E2723]">300 horas a un solo aparato</strong>, formamos graduados con el razonamiento clínico 
                 de un fisioterapeuta y la calidad de movimiento de un bailarín.
               </p>
               <div className="flex items-center gap-4 pt-4 border-t border-[#2A2624]/10">
                 <div className="text-center">
-                  <div className="text-3xl font-serif italic text-[#3E2723]">400</div>
+                  <div className="text-3xl font-serif italic text-[#3E2723]">300</div>
                   <div className="text-xs uppercase tracking-widest text-[#5D5550]">Horas</div>
                 </div>
                 <div className="text-center">
@@ -380,7 +380,7 @@ const CertificacionPilates: React.FC = () => {
               </div>
               <h3 className="text-xl font-serif italic mb-4">100% Presencial</h3>
               <p className="text-white/60 font-light leading-relaxed">
-                Sin atajos en línea. Sin compromisos híbridos. Cada hora de tu programa de 400 horas 
+                Sin atajos en línea. Sin compromisos híbridos. Cada hora de tu programa de 300 horas 
                 ocurre en el estudio, con cuerpos reales, resortes reales y retroalimentación 
                 real de mentores.
               </p>
@@ -397,7 +397,7 @@ const CertificacionPilates: React.FC = () => {
               El Plan de Estudios
             </span>
             <h2 className="text-4xl md:text-5xl font-serif italic text-[#2A2624] leading-tight mb-6">
-              400 Horas.<br />
+              300 Horas.<br />
               <span className="not-italic font-light font-sans tracking-tight">Cinco Pilares de Maestría.</span>
             </h2>
           </div>
@@ -411,7 +411,7 @@ const CertificacionPilates: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-widest text-[#5D5550]">Fase I</div>
-                  <div className="text-2xl font-serif italic text-[#3E2723]">50h</div>
+                  <div className="text-2xl font-serif italic text-[#3E2723]">40h</div>
                 </div>
               </div>
               <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">La Ciencia</h3>
@@ -431,7 +431,7 @@ const CertificacionPilates: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-widest text-[#5D5550]">Fase II</div>
-                  <div className="text-2xl font-serif italic text-[#3E2723]">100h</div>
+                  <div className="text-2xl font-serif italic text-[#3E2723]">70h</div>
                 </div>
               </div>
               <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">El Repertorio</h3>
@@ -451,7 +451,7 @@ const CertificacionPilates: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-widest text-[#5D5550]">Fase III</div>
-                  <div className="text-2xl font-serif italic text-[#3E2723]">30h</div>
+                  <div className="text-2xl font-serif italic text-[#3E2723]">24h</div>
                 </div>
               </div>
               <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">El Arte de Enseñar</h3>
@@ -471,7 +471,7 @@ const CertificacionPilates: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-widest text-[#5D5550]">Fase IV</div>
-                  <div className="text-2xl font-serif italic text-[#3E2723]">60h</div>
+                  <div className="text-2xl font-serif italic text-[#3E2723]">40h</div>
                 </div>
               </div>
               <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Aplicación Clínica</h3>
@@ -491,7 +491,7 @@ const CertificacionPilates: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-widest text-[#5D5550]">Fase V</div>
-                  <div className="text-2xl font-serif italic text-[#3E2723]">20h</div>
+                  <div className="text-2xl font-serif italic text-[#3E2723]">16h</div>
                 </div>
               </div>
               <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">El Negocio</h3>
@@ -511,7 +511,7 @@ const CertificacionPilates: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-widest text-[#3E2723]">Residencia</div>
-                  <div className="text-2xl font-serif italic text-[#3E2723]">140h</div>
+                  <div className="text-2xl font-serif italic text-[#3E2723]">110h</div>
                 </div>
               </div>
               <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Experiencia Práctica</h3>
@@ -527,17 +527,17 @@ const CertificacionPilates: React.FC = () => {
           <div className="mt-12 text-center">
             <div className="inline-flex items-center gap-8 bg-[#2A2624] text-[#EAE8E4] px-12 py-6 rounded-sm">
               <div className="text-center">
-                <div className="text-3xl font-serif italic">400</div>
+                <div className="text-3xl font-serif italic">300</div>
                 <div className="text-xs uppercase tracking-widest text-white/60">Horas Totales</div>
               </div>
               <div className="w-px h-12 bg-white/20"></div>
               <div className="text-center">
-                <div className="text-3xl font-serif italic">260h</div>
+                <div className="text-3xl font-serif italic">190h</div>
                 <div className="text-xs uppercase tracking-widest text-white/60">Formación Base</div>
               </div>
               <div className="w-px h-12 bg-white/20"></div>
               <div className="text-center">
-                <div className="text-3xl font-serif italic">140h</div>
+                <div className="text-3xl font-serif italic">110h</div>
                 <div className="text-xs uppercase tracking-widest text-white/60">Residencia</div>
               </div>
             </div>
@@ -559,7 +559,7 @@ const CertificacionPilates: React.FC = () => {
               </h2>
               <p className="text-lg text-[#5D5550] font-light leading-relaxed mb-8">
                 La mayoría de los cursos requieren que te sientes al fondo y observes. En Edelweiss, trabajas. 
-                Nuestra residencia de 140 horas sigue el modelo de hospital escuela de medicina—aprendes haciendo, 
+                Nuestra residencia de 110 horas sigue el modelo de hospital escuela de medicina—aprendes haciendo, 
                 con supervisión experta en cada paso.
               </p>
               <button
