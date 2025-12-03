@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
@@ -174,13 +174,13 @@ const CityDirectory: React.FC = () => {
       </Helmet>
 
       <section className="relative pt-32 pb-12 px-8 md:px-24 max-w-[1800px] mx-auto">
-        <button
-          onClick={() => navigate("/estudios-de-pilates")}
+        <Link
+          to="/estudios-de-pilates"
           className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#5D5550] hover:text-[#2A2624] mb-12"
         >
           <ArrowLeft className="w-3 h-3" />
           <span>Directorio</span>
-        </button>
+        </Link>
 
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-7xl font-serif italic text-[#2A2624] mb-8">
