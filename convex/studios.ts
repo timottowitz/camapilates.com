@@ -297,35 +297,58 @@ export const updateMetrics = mutation({
 // Get global stats for all studios
 export const getGlobalStats = query({
   handler: async (ctx) => {
-    const allStudios = await ctx.db
-      .query('studios')
-      .filter((q) => q.eq(q.field('isActive'), true))
-      .collect();
+    try {
+      const allStudios = await ctx.db
+        .query('studios')
+        .filter((q) => q.eq(q.field('isActive'), true))
+        .collect();
 
-    // Count by city
-    const citySet = new Set<string>();
-    let totalReviews = 0;
-    let totalRating = 0;
-    let ratedStudios = 0;
+      // Return defaults if no studios
+      if (!allStudios || allStudios.length === 0) {
+        return {
+          totalStudios: 0,
+          totalCities: 0,
+          totalReviews: 0,
+          averageRating: 0,
+        };
+      }
 
-    for (const studio of allStudios) {
-      citySet.add(studio.address.city);
-      
-      if (studio.metrics.googleReviewCount) {
-        totalReviews += studio.metrics.googleReviewCount;
+      // Count by city
+      const citySet = new Set<string>();
+      let totalReviews = 0;
+      let totalRating = 0;
+      let ratedStudios = 0;
+
+      for (const studio of allStudios) {
+        if (studio.address?.city) {
+          citySet.add(studio.address.city);
+        }
+        
+        if (studio.metrics?.googleReviewCount) {
+          totalReviews += studio.metrics.googleReviewCount;
+        }
+        if (studio.metrics?.googleRating) {
+          totalRating += studio.metrics.googleRating;
+          ratedStudios++;
+        }
       }
-      if (studio.metrics.googleRating) {
-        totalRating += studio.metrics.googleRating;
-        ratedStudios++;
-      }
+
+      return {
+        totalStudios: allStudios.length,
+        totalCities: citySet.size,
+        totalReviews,
+        averageRating: ratedStudios > 0 ? Math.round((totalRating / ratedStudios) * 100) / 100 : 0,
+      };
+    } catch (error) {
+      // Return safe defaults on error
+      console.error('getGlobalStats error:', error);
+      return {
+        totalStudios: 0,
+        totalCities: 0,
+        totalReviews: 0,
+        averageRating: 0,
+      };
     }
-
-    return {
-      totalStudios: allStudios.length,
-      totalCities: citySet.size,
-      totalReviews,
-      averageRating: ratedStudios > 0 ? Math.round((totalRating / ratedStudios) * 100) / 100 : 0,
-    };
   },
 });
 

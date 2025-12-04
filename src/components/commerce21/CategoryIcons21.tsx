@@ -4,15 +4,19 @@ import { Link } from 'react-router-dom';
 type Cat = { label: string; href: string; img?: string; emoji?: string; count?: number };
 
 const Circle: React.FC<{ img?: string; emoji?: string; alt: string }> = ({ img, emoji, alt }) => (
-  <div className="h-16 w-16 rounded-full border border-border bg-card grid place-content-center overflow-hidden">
+  <div className="h-16 w-16 rounded-full border border-[#2A2624]/10 bg-[#EAE8E4] grid place-content-center overflow-hidden">
     {img ? (
       <img
         src={img}
         alt={alt}
-        className="h-full w-full object-cover scale-[1.9]"
+        className="h-full w-full object-cover"
         loading="lazy"
         decoding="async"
-        onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+        onError={(e) => { 
+          const target = e.currentTarget as HTMLImageElement;
+          target.style.display = 'none'; 
+          console.error('Failed to load category image:', img);
+        }}
       />
     ) : (
       <span className="text-xl" aria-hidden>{emoji || '🛍️'}</span>
