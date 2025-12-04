@@ -30,6 +30,8 @@ export const CONVEX_IMAGE_NAMES = {
   // Category icons
   CAT_REFORMERS: 'catReformers',
   CAT_ACCESSORIES: 'catAccessories',
+  CAT_ROPA: 'catRopa',
+  CAT_LUZ: 'catLuz',
 
   // Finish/material images
   FINISH_MYCELIUM: 'finishMycelium',
@@ -58,6 +60,8 @@ const FALLBACKS = {
   featuredProducts: '/images/reformer-home.png',
   catReformers: '/images/cat-icon-reformers.png',
   catAccessories: '/images/cat-icon-accessories.png',
+  catRopa: '/images/cat-icon-ropa.png',
+  catLuz: '/images/cat-icon-luz.png',
   finishMycelium: '/images/reformer-mycelium.png',
   myloBadge: '/images/badges/mylo.svg',
   myloSpecial: '/images/special/mylo-special.svg',
@@ -76,6 +80,8 @@ export function useConvexAssets() {
   const featuredProducts = useConvexImage(CONVEX_IMAGE_NAMES.FEATURED_PRODUCTS, getVersionedImageUrl(FALLBACKS.featuredProducts));
   const catReformers = useConvexImage(CONVEX_IMAGE_NAMES.CAT_REFORMERS, getVersionedImageUrl(FALLBACKS.catReformers));
   const catAccessories = useConvexImage(CONVEX_IMAGE_NAMES.CAT_ACCESSORIES, getVersionedImageUrl(FALLBACKS.catAccessories));
+  const catRopa = useConvexImage(CONVEX_IMAGE_NAMES.CAT_ROPA, getVersionedImageUrl(FALLBACKS.catRopa));
+  const catLuz = useConvexImage(CONVEX_IMAGE_NAMES.CAT_LUZ, getVersionedImageUrl(FALLBACKS.catLuz));
   const finishMycelium = useConvexImage(CONVEX_IMAGE_NAMES.FINISH_MYCELIUM, getVersionedImageUrl(FALLBACKS.finishMycelium));
   const myloBadge = useConvexImage(CONVEX_IMAGE_NAMES.MYLO_BADGE, getVersionedImageUrl(FALLBACKS.myloBadge));
   const myloSpecial = useConvexImage(CONVEX_IMAGE_NAMES.MYLO_SPECIAL, getVersionedImageUrl(FALLBACKS.myloSpecial));
@@ -89,6 +95,8 @@ export function useConvexAssets() {
     featuredProducts,
     catReformers,
     catAccessories,
+    catRopa,
+    catLuz,
     finishMycelium,
     myloBadge,
     myloSpecial,

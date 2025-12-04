@@ -181,18 +181,17 @@ const Shop: React.FC = () => {
         <div>
           <h2 className="text-2xl font-serif italic text-[#2A2624] mb-6">Categorías</h2>
           <CategoryIcons21 items={cats.map(c => {
-            const emojiMap: Record<string, string> = {
-              'reformers': '🛏️',
-              'accesorios': '🧰',
-              'ropa': '👕',
-              'terapia-de-luz': '💡'
+            const imgMap: Record<string, string | undefined> = {
+              'reformers': assets.catReformers,
+              'accesorios': assets.catAccessories,
+              'ropa': assets.catRopa,
+              'terapia-de-luz': assets.catLuz
             };
             return {
               label: c.name,
               href: `/shop/category/${c.slug}`,
               count: c.count,
-              img: c.slug === 'reformers' ? assets.catReformers : (c.slug === 'accesorios' ? assets.catAccessories : undefined),
-              emoji: emojiMap[c.slug] || '📦'
+              img: imgMap[c.slug],
             };
           })} />
         </div>
