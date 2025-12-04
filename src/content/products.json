@@ -158,5 +158,497 @@
     "isNew": true,
     "productId": "prod_accessorio_cintas_placeholder",
     "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+  },
+  {
+    "slug": "calcetines-antideslizantes",
+    "name": "Calcetines Antideslizantes de Algodón Orgánico",
+    "description": "Calcetines grip de algodón orgánico certificado GOTS. Suelas de caucho natural antideslizante para máxima estabilidad en tu Reformer. Libres de plásticos y sintéticos.",
+    "brand": "Edelweiss Pilates",
+    "sku": "ACC-SOCKS-ORG-001",
+    "image": "/images/socks-organic.png",
+    "hoverImage": "/images/socks-grip.webp",
+    "price": "450.00",
+    "currency": "MXN",
+    "availability": "https://schema.org/InStock",
+    "category": "Accesorios",
+    "materials": [
+      "algodón orgánico certificado GOTS",
+      "caucho natural",
+      "elastano natural"
+    ],
+    "warranty": "6 meses",
+    "variants": [
+      {
+        "id": "var_socks_cream",
+        "sku": "ACC-SOCKS-ORG-001-CR",
+        "name": "Crema Natural"
+      },
+      {
+        "id": "var_socks_charcoal",
+        "sku": "ACC-SOCKS-ORG-001-CH",
+        "name": "Carbón"
+      },
+      {
+        "id": "var_socks_sage",
+        "sku": "ACC-SOCKS-ORG-001-SG",
+        "name": "Salvia"
+      }
+    ],
+    "bestSeller": true,
+    "isNew": true,
+    "productId": "prod_calcetines_organicos_placeholder",
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+  },
+  {
+    "slug": "calcetines-pack-3",
+    "name": "Pack 3 Calcetines Antideslizantes Orgánicos",
+    "description": "Set de 3 pares de calcetines grip orgánicos. Incluye colores: Crema Natural, Carbón y Salvia. Ahorra 15% comprando el pack completo.",
+    "brand": "Edelweiss Pilates",
+    "sku": "ACC-SOCKS-PACK3-001",
+    "image": "/images/socks-pack3.png",
+    "hoverImage": "/images/socks-collection.webp",
+    "price": "1150.00",
+    "currency": "MXN",
+    "availability": "https://schema.org/InStock",
+    "category": "Accesorios",
+    "materials": [
+      "algodón orgánico certificado GOTS",
+      "caucho natural",
+      "elastano natural"
+    ],
+    "warranty": "6 meses",
+    "bestSeller": false,
+    "isNew": true,
+    "productId": "prod_calcetines_pack3_placeholder",
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+  },
+  {
+    "slug": "leggings-organicos-fitted",
+    "name": "Leggings Fitted de Algodón Orgánico",
+    "description": "Leggings ajustados de algodón orgánico con elastano natural. Diseño segunda piel para libertad de movimiento total. Transpirables, sin plásticos ni materiales sintéticos tóxicos.",
+    "brand": "Edelweiss Pilates",
+    "sku": "ROPA-LEG-FIT-001",
+    "image": "/images/leggings-fitted.png",
+    "hoverImage": "/images/leggings-action.webp",
+    "price": "1800.00",
+    "currency": "MXN",
+    "availability": "https://schema.org/InStock",
+    "category": "Ropa",
+    "materials": [
+      "algodón orgánico certificado GOTS",
+      "elastano natural (caucho)",
+      "tintes vegetales"
+    ],
+    "warranty": "1 año",
+    "variants": [
+      {
+        "id": "var_leg_fit_black",
+        "sku": "ROPA-LEG-FIT-001-BK",
+        "name": "Negro"
+      },
+      {
+        "id": "var_leg_fit_cream",
+        "sku": "ROPA-LEG-FIT-001-CR",
+        "name": "Crema"
+      },
+      {
+        "id": "var_leg_fit_sage",
+        "sku": "ROPA-LEG-FIT-001-SG",
+        "name": "Salvia"
+      }
+    ],
+    "bestSeller": true,
+    "isNew": true,
+    "productId": "prod_leggings_fitted_placeholder",
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+  },
+  {
+    "slug": "top-organico-fitted",
+    "name": "Top Fitted de Algodón Orgánico",
+    "description": "Top ajustado de algodón orgánico con soporte integrado. Corte ergonómico para práctica de Pilates. Libre de poliéster y nylon.",
+    "brand": "Edelweiss Pilates",
+    "sku": "ROPA-TOP-FIT-001",
+    "image": "/images/top-fitted.png",
+    "hoverImage": "/images/top-action.webp",
+    "price": "1200.00",
+    "currency": "MXN",
+    "availability": "https://schema.org/InStock",
+    "category": "Ropa",
+    "materials": [
+      "algodón orgánico certificado GOTS",
+      "elastano natural",
+      "tintes vegetales"
+    ],
+    "warranty": "1 año",
+    "variants": [
+      {
+        "id": "var_top_fit_black",
+        "sku": "ROPA-TOP-FIT-001-BK",
+        "name": "Negro"
+      },
+      {
+        "id": "var_top_fit_cream",
+        "sku": "ROPA-TOP-FIT-001-CR",
+        "name": "Crema"
+      },
+      {
+        "id": "var_top_fit_terracotta",
+        "sku": "ROPA-TOP-FIT-001-TC",
+        "name": "Terracota"
+      }
+    ],
+    "bestSeller": false,
+    "isNew": true,
+    "productId": "prod_top_fitted_placeholder",
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+  },
+  {
+    "slug": "conjunto-fitted-organico",
+    "name": "Conjunto Fitted Completo – Algodón Orgánico",
+    "description": "Set completo: leggings + top fitted de algodón orgánico. Coordinados para una práctica elegante y consciente. Ahorra 10% con el conjunto.",
+    "brand": "Edelweiss Pilates",
+    "sku": "ROPA-SET-FIT-001",
+    "image": "/images/conjunto-fitted.png",
+    "hoverImage": "/images/conjunto-action.webp",
+    "price": "2700.00",
+    "currency": "MXN",
+    "availability": "https://schema.org/InStock",
+    "category": "Ropa",
+    "materials": [
+      "algodón orgánico certificado GOTS",
+      "elastano natural",
+      "tintes vegetales"
+    ],
+    "warranty": "1 año",
+    "variants": [
+      {
+        "id": "var_set_fit_black",
+        "sku": "ROPA-SET-FIT-001-BK",
+        "name": "Negro Total"
+      },
+      {
+        "id": "var_set_fit_cream",
+        "sku": "ROPA-SET-FIT-001-CR",
+        "name": "Crema Natural"
+      },
+      {
+        "id": "var_set_fit_sage",
+        "sku": "ROPA-SET-FIT-001-SG",
+        "name": "Salvia"
+      }
+    ],
+    "bestSeller": true,
+    "isNew": true,
+    "productId": "prod_conjunto_fitted_placeholder",
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+  },
+  {
+    "slug": "pantalon-organico-relaxed",
+    "name": "Pantalón Relaxed de Algodón Orgánico",
+    "description": "Pantalón amplio y fluido de algodón orgánico. Corte relajado con cintura elástica natural. Ideal para práctica suave y post-workout. Sin restricción de movimiento.",
+    "brand": "Edelweiss Pilates",
+    "sku": "ROPA-PANT-REL-001",
+    "image": "/images/pantalon-relaxed.png",
+    "hoverImage": "/images/pantalon-movement.webp",
+    "price": "1600.00",
+    "currency": "MXN",
+    "availability": "https://schema.org/InStock",
+    "category": "Ropa",
+    "materials": [
+      "algodón orgánico certificado GOTS",
+      "lino orgánico",
+      "tintes vegetales"
+    ],
+    "warranty": "1 año",
+    "variants": [
+      {
+        "id": "var_pant_rel_cream",
+        "sku": "ROPA-PANT-REL-001-CR",
+        "name": "Crema Natural"
+      },
+      {
+        "id": "var_pant_rel_oat",
+        "sku": "ROPA-PANT-REL-001-OT",
+        "name": "Avena"
+      },
+      {
+        "id": "var_pant_rel_charcoal",
+        "sku": "ROPA-PANT-REL-001-CH",
+        "name": "Carbón Suave"
+      }
+    ],
+    "bestSeller": false,
+    "isNew": true,
+    "productId": "prod_pantalon_relaxed_placeholder",
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+  },
+  {
+    "slug": "top-organico-relaxed",
+    "name": "Top Relaxed de Algodón Orgánico",
+    "description": "Top holgado y transpirable de algodón orgánico. Corte oversized cómodo para práctica relajada. Perfecto para calentar o enfriar.",
+    "brand": "Edelweiss Pilates",
+    "sku": "ROPA-TOP-REL-001",
+    "image": "/images/top-relaxed.png",
+    "hoverImage": "/images/top-relaxed-action.webp",
+    "price": "1100.00",
+    "currency": "MXN",
+    "availability": "https://schema.org/InStock",
+    "category": "Ropa",
+    "materials": [
+      "algodón orgánico certificado GOTS",
+      "lino orgánico",
+      "tintes vegetales"
+    ],
+    "warranty": "1 año",
+    "variants": [
+      {
+        "id": "var_top_rel_cream",
+        "sku": "ROPA-TOP-REL-001-CR",
+        "name": "Crema Natural"
+      },
+      {
+        "id": "var_top_rel_sage",
+        "sku": "ROPA-TOP-REL-001-SG",
+        "name": "Salvia"
+      },
+      {
+        "id": "var_top_rel_dusty",
+        "sku": "ROPA-TOP-REL-001-DP",
+        "name": "Rosa Polvo"
+      }
+    ],
+    "bestSeller": false,
+    "isNew": true,
+    "productId": "prod_top_relaxed_placeholder",
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+  },
+  {
+    "slug": "conjunto-relaxed-organico",
+    "name": "Conjunto Relaxed Completo – Algodón Orgánico",
+    "description": "Set completo: pantalón + top relaxed de algodón orgánico y lino. Comodidad suprema para práctica suave o recuperación. Ahorra 10% con el conjunto.",
+    "brand": "Edelweiss Pilates",
+    "sku": "ROPA-SET-REL-001",
+    "image": "/images/conjunto-relaxed.png",
+    "hoverImage": "/images/conjunto-relaxed-action.webp",
+    "price": "2430.00",
+    "currency": "MXN",
+    "availability": "https://schema.org/InStock",
+    "category": "Ropa",
+    "materials": [
+      "algodón orgánico certificado GOTS",
+      "lino orgánico",
+      "tintes vegetales"
+    ],
+    "warranty": "1 año",
+    "variants": [
+      {
+        "id": "var_set_rel_cream",
+        "sku": "ROPA-SET-REL-001-CR",
+        "name": "Crema Natural"
+      },
+      {
+        "id": "var_set_rel_oat",
+        "sku": "ROPA-SET-REL-001-OT",
+        "name": "Avena"
+      }
+    ],
+    "bestSeller": false,
+    "isNew": true,
+    "productId": "prod_conjunto_relaxed_placeholder",
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+  },
+  {
+    "slug": "luz-terapia-casa",
+    "name": "Panel de Luz Roja + Infrarroja – Casa",
+    "description": "Panel de luz roja (660nm) e infrarroja cercana (850nm) para uso personal junto a tu Reformer. Acelera recuperación muscular, reduce inflamación y mejora circulación. Diseñado para espacios de práctica en casa.",
+    "brand": "Edelweiss Pilates",
+    "sku": "LUZ-PANEL-HOME-001",
+    "image": "/images/luz-panel-home.png",
+    "hoverImage": "/images/luz-reformer-action.webp",
+    "price": "8500.00",
+    "currency": "MXN",
+    "availability": "https://schema.org/InStock",
+    "category": "Terapia de Luz",
+    "materials": [
+      "LEDs de grado médico",
+      "aluminio reciclado",
+      "vidrio templado"
+    ],
+    "warranty": "2 años",
+    "specifications": {
+      "wavelengths": "660nm (roja) + 850nm (infrarroja)",
+      "power": "100W",
+      "coverage": "1 reformer / 4m²",
+      "timer": "5-30 minutos",
+      "mounting": "pedestal incluido o pared"
+    },
+    "bestSeller": false,
+    "isNew": true,
+    "productId": "prod_luz_home_placeholder",
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+  },
+  {
+    "slug": "luz-terapia-studio-2",
+    "name": "Sistema de Luz Terapéutica – Studio 2 Reformers",
+    "description": "Pack para estudios pequeños: 2 paneles de luz roja/infrarroja. Cobertura ideal para 2 reformers o sala de 15m². Incluye soportes de pedestal y control centralizado.",
+    "brand": "Edelweiss Pilates",
+    "sku": "LUZ-STUDIO-2REF-001",
+    "image": "/images/luz-studio-2.png",
+    "hoverImage": "/images/luz-studio-ambient.webp",
+    "price": "15500.00",
+    "currency": "MXN",
+    "availability": "https://schema.org/InStock",
+    "category": "Terapia de Luz",
+    "materials": [
+      "LEDs de grado médico",
+      "aluminio reciclado",
+      "vidrio templado"
+    ],
+    "warranty": "2 años",
+    "specifications": {
+      "wavelengths": "660nm (roja) + 850nm (infrarroja)",
+      "power": "200W total",
+      "coverage": "2 reformers / 15m²",
+      "panels": 2,
+      "timer": "5-60 minutos",
+      "control": "centralizado con app"
+    },
+    "studioPackage": true,
+    "reformerCount": 2,
+    "bestSeller": false,
+    "isNew": true,
+    "productId": "prod_luz_studio_2_placeholder",
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+  },
+  {
+    "slug": "luz-terapia-studio-4",
+    "name": "Sistema de Luz Terapéutica – Studio 4 Reformers",
+    "description": "Pack para estudios medianos: 4 paneles de luz roja/infrarroja. Cobertura para 4 reformers o sala de 30m². Sistema sincronizado con control por app y montaje profesional incluido.",
+    "brand": "Edelweiss Pilates",
+    "sku": "LUZ-STUDIO-4REF-001",
+    "image": "/images/luz-studio-4.png",
+    "hoverImage": "/images/luz-studio-class.webp",
+    "price": "28000.00",
+    "currency": "MXN",
+    "availability": "https://schema.org/InStock",
+    "category": "Terapia de Luz",
+    "materials": [
+      "LEDs de grado médico",
+      "aluminio reciclado",
+      "vidrio templado"
+    ],
+    "warranty": "2 años",
+    "specifications": {
+      "wavelengths": "660nm (roja) + 850nm (infrarroja)",
+      "power": "400W total",
+      "coverage": "4 reformers / 30m²",
+      "panels": 4,
+      "timer": "5-60 minutos",
+      "control": "centralizado con app",
+      "mounting": "profesional incluido"
+    },
+    "studioPackage": true,
+    "reformerCount": 4,
+    "bestSeller": true,
+    "isNew": true,
+    "productId": "prod_luz_studio_4_placeholder",
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+  },
+  {
+    "slug": "luz-terapia-studio-6",
+    "name": "Sistema de Luz Terapéutica – Studio 6 Reformers",
+    "description": "Pack para estudios grandes: 6 paneles de luz roja/infrarroja. Cobertura para 6 reformers o sala de 45m². Control por zonas, app profesional y montaje incluido.",
+    "brand": "Edelweiss Pilates",
+    "sku": "LUZ-STUDIO-6REF-001",
+    "image": "/images/luz-studio-6.png",
+    "hoverImage": "/images/luz-studio-full.webp",
+    "price": "39000.00",
+    "currency": "MXN",
+    "availability": "https://schema.org/InStock",
+    "category": "Terapia de Luz",
+    "materials": [
+      "LEDs de grado médico",
+      "aluminio reciclado",
+      "vidrio templado"
+    ],
+    "warranty": "2 años",
+    "specifications": {
+      "wavelengths": "660nm (roja) + 850nm (infrarroja)",
+      "power": "600W total",
+      "coverage": "6 reformers / 45m²",
+      "panels": 6,
+      "timer": "5-60 minutos",
+      "control": "por zonas con app profesional",
+      "mounting": "profesional incluido"
+    },
+    "studioPackage": true,
+    "reformerCount": 6,
+    "bestSeller": false,
+    "isNew": true,
+    "productId": "prod_luz_studio_6_placeholder",
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+  },
+  {
+    "slug": "luz-terapia-studio-8",
+    "name": "Sistema de Luz Terapéutica – Studio 8+ Reformers",
+    "description": "Pack para estudios boutique grandes: 8 paneles de luz roja/infrarroja. Cobertura para 8+ reformers o sala de 60m². Sistema enterprise con control por zonas, sensores de ocupación y app profesional.",
+    "brand": "Edelweiss Pilates",
+    "sku": "LUZ-STUDIO-8REF-001",
+    "image": "/images/luz-studio-8.png",
+    "hoverImage": "/images/luz-studio-enterprise.webp",
+    "price": "48000.00",
+    "currency": "MXN",
+    "availability": "https://schema.org/InStock",
+    "category": "Terapia de Luz",
+    "materials": [
+      "LEDs de grado médico",
+      "aluminio reciclado",
+      "vidrio templado"
+    ],
+    "warranty": "3 años",
+    "specifications": {
+      "wavelengths": "660nm (roja) + 850nm (infrarroja)",
+      "power": "800W total",
+      "coverage": "8+ reformers / 60m²",
+      "panels": 8,
+      "timer": "programable por sesión",
+      "control": "enterprise con sensores de ocupación",
+      "mounting": "profesional incluido",
+      "support": "soporte técnico prioritario"
+    },
+    "studioPackage": true,
+    "reformerCount": 8,
+    "bestSeller": false,
+    "isNew": true,
+    "productId": "prod_luz_studio_8_placeholder",
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+  },
+  {
+    "slug": "luz-terapia-custom",
+    "name": "Sistema de Luz Terapéutica – Personalizado",
+    "description": "Solución personalizada para estudios con necesidades específicas. Consulta con nuestro equipo para diseñar el sistema ideal según tu espacio, número de reformers y objetivos terapéuticos.",
+    "brand": "Edelweiss Pilates",
+    "sku": "LUZ-STUDIO-CUSTOM-001",
+    "image": "/images/luz-custom.png",
+    "hoverImage": "/images/luz-consultation.webp",
+    "price": "0.00",
+    "currency": "MXN",
+    "availability": "https://schema.org/InStock",
+    "category": "Terapia de Luz",
+    "materials": [
+      "LEDs de grado médico",
+      "configuración personalizada"
+    ],
+    "warranty": "3 años",
+    "specifications": {
+      "type": "consulta personalizada",
+      "includes": "análisis de espacio, diseño, instalación"
+    },
+    "studioPackage": true,
+    "customQuote": true,
+    "bestSeller": false,
+    "isNew": true,
+    "productId": "prod_luz_custom_placeholder",
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
   }
 ]

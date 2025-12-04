@@ -180,13 +180,21 @@ const Shop: React.FC = () => {
         {/* Shop by category icons */}
         <div>
           <h2 className="text-2xl font-serif italic text-[#2A2624] mb-6">Categorías</h2>
-          <CategoryIcons21 items={cats.map(c => ({
-            label: c.name,
-            href: `/shop/category/${c.slug}`,
-            count: c.count,
-            img: c.slug === 'reformers' ? assets.catReformers : (c.slug === 'accesorios' ? assets.catAccessories : undefined),
-            emoji: c.slug === 'reformers' ? '🛏️' : '🧰'
-          }))} />
+          <CategoryIcons21 items={cats.map(c => {
+            const emojiMap: Record<string, string> = {
+              'reformers': '🛏️',
+              'accesorios': '🧰',
+              'ropa': '👕',
+              'terapia-de-luz': '💡'
+            };
+            return {
+              label: c.name,
+              href: `/shop/category/${c.slug}`,
+              count: c.count,
+              img: c.slug === 'reformers' ? assets.catReformers : (c.slug === 'accesorios' ? assets.catAccessories : undefined),
+              emoji: emojiMap[c.slug] || '📦'
+            };
+          })} />
         </div>
 
         {/* Featured product (curated) */}
@@ -289,7 +297,9 @@ const Shop: React.FC = () => {
             {/* Explore range blocks */}
             <ExploreTiles21 items={[
               { label: 'Reformers', desc: 'Silenciosos y precisos para casa y estudio', href: '/shop/category/reformers', img: '/images/explore-reformers.png' },
-              { label: 'Accesorios', desc: 'Cintas y mantenimiento para tu Reformer', href: '/shop/category/accesorios', img: '/images/explore-accessories.png' },
+              { label: 'Accesorios', desc: 'Cintas, calcetines grip y mantenimiento', href: '/shop/category/accesorios', img: '/images/explore-accessories.png' },
+              { label: 'Ropa', desc: 'Algodón orgánico: fitted y relaxed', href: '/shop/category/ropa', img: '/images/explore-ropa.png' },
+              { label: 'Terapia de Luz', desc: 'Luz roja e infrarroja para estudios y casa', href: '/shop/category/terapia-de-luz', img: '/images/explore-luz.png' },
             ]} />
 
             {/* Newsletter stub */}
