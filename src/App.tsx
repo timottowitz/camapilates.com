@@ -79,12 +79,12 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 
 const queryClient = new QueryClient();
 
-// Loading fallback component
+// Loading fallback component - matches LuxuryLayout design system
 const PageLoader = () => (
-  <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+  <div className="min-h-screen bg-[#EAE8E4] flex items-center justify-center">
     <div className="text-center">
-      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
-      <p className="text-gray-600">Cargando...</p>
+      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#2A2624] mx-auto mb-4"></div>
+      <p className="text-[#5D5550] text-sm font-light tracking-wide">Cargando...</p>
     </div>
   </div>
 );
