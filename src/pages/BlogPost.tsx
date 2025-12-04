@@ -20,6 +20,7 @@ import { DEFAULTS, getOrigin, toAbsoluteUrl, generateBlogPostSchema } from '@/li
 import { getAllPostsMeta } from '@/lib/content';
 import HubList from '@/components/blog/HubList';
 import SeeAlso from '@/components/blog/SeeAlso';
+import RelatedProducts from '@/components/blog/RelatedProducts';
 import { ContextualImage } from '@/components/ContextualImage';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 
@@ -272,6 +273,13 @@ const BlogPost = () => {
               </aside>
             </div>
           </article>
+
+          {/* Related Products based on article tags/category */}
+          <RelatedProducts 
+            tags={postMeta.tags || []} 
+            category={postMeta.category} 
+            maxProducts={3} 
+          />
 
           <div className="mt-24 pt-12 border-t border-[#2A2624]/10">
             <CTASection

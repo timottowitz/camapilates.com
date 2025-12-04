@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Home, Building2, MapPin, BookOpen } from 'lucide-react';
 
@@ -50,6 +50,19 @@ const paths = [
 ];
 
 const UserPathSelector: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handlePathClick = (pathKey: string, href: string) => {
+    // Store user preference for personalization
+    try {
+      localStorage.setItem('userSegment', pathKey);
+      localStorage.setItem('userSegmentTime', Date.now().toString());
+    } catch {
+      // Ignore localStorage errors
+    }
+    navigate(href);
+  };
+
   return (
     <section className="w-full bg-[#EAE8E4] py-20 md:py-28">
       <div className="max-w-[1800px] mx-auto px-8 md:px-24">
@@ -65,11 +78,13 @@ const UserPathSelector: React.FC = () => {
         </FadeIn>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {paths.map((path, index) => (
+          {paths.map((path, index) => {
+            const pathKey = path.title.toLowerCase().replace(/\s+/g, '-');
+            return (
             <FadeIn key={path.title} delay={index * 0.1}>
-              <Link
-                to={path.href}
-                className="group block bg-white/50 hover:bg-white rounded-lg p-8 transition-all duration-300 hover:shadow-lg border border-[#2A2624]/5 hover:border-[#2A2624]/10"
+              <button
+                onClick={() => handlePathClick(pathKey, path.href)}
+                className="group block w-full text-left bg-white/50 hover:bg-white rounded-lg p-8 transition-all duration-300 hover:shadow-lg border border-[#2A2624]/5 hover:border-[#2A2624]/10"
               >
                 <div
                   className="w-12 h-12 rounded-full flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
@@ -90,9 +105,10 @@ const UserPathSelector: React.FC = () => {
                   {path.cta}
                   <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </span>
-              </Link>
+              </button>
             </FadeIn>
-          ))}
+          );
+          })}
         </div>
       </div>
     </section>

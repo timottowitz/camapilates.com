@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
 import { CheckCircle2, MapPin, Calendar, MessageCircle, BookOpen, Hand, Users, Briefcase, Heart, GraduationCap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -586,6 +587,59 @@ const CertificacionPilates: React.FC = () => {
         </div>
       </section>
       {/* ========== END EDELWEISS 135-HOUR REFORMER CERTIFICATION ========== */}
+
+      {/* Cross-sell: Equipment for Future Studios */}
+      <section className="py-20 px-8 md:px-24 bg-[#EAE8E4]">
+        <div className="max-w-[1800px] mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-6">
+                Para Futuros Instructores
+              </span>
+              <h2 className="text-3xl md:text-4xl font-serif italic text-[#2A2624] leading-tight mb-6">
+                Equipa Tu Futuro Estudio
+              </h2>
+              <p className="text-lg text-[#5D5550] font-light leading-relaxed mb-8">
+                Al graduarte, tendrás acceso a precios especiales en equipamiento. 
+                Reformers profesionales, sistemas de luz terapéutica y todo lo que 
+                necesitas para abrir tu propio espacio.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  to="/packs/estudio"
+                  className="inline-flex items-center px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors"
+                >
+                  Ver Paquetes de Estudio
+                </Link>
+                <Link
+                  to="/shop"
+                  className="inline-flex items-center px-8 py-4 border border-[#2A2624]/20 text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white transition-colors"
+                >
+                  Explorar Equipamiento
+                </Link>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white p-6 rounded-sm border border-[#2A2624]/10">
+                <div className="text-3xl font-serif italic text-[#3E2723] mb-2">15%</div>
+                <p className="text-sm text-[#5D5550]">Descuento para graduados en reformers</p>
+              </div>
+              <div className="bg-white p-6 rounded-sm border border-[#2A2624]/10">
+                <div className="text-3xl font-serif italic text-[#3E2723] mb-2">MSI</div>
+                <p className="text-sm text-[#5D5550]">Financiamiento a 12 meses</p>
+              </div>
+              <div className="bg-white p-6 rounded-sm border border-[#2A2624]/10">
+                <div className="text-3xl font-serif italic text-[#3E2723] mb-2">2+</div>
+                <p className="text-sm text-[#5D5550]">Reformers con envío gratis</p>
+              </div>
+              <div className="bg-white p-6 rounded-sm border border-[#2A2624]/10">
+                <div className="text-3xl font-serif italic text-[#3E2723] mb-2">1 Año</div>
+                <p className="text-sm text-[#5D5550]">Garantía completa</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <PreRegistrationModal
         isOpen={modalOpen}

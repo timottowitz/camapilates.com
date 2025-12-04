@@ -70,9 +70,11 @@ const CertificacionPilatesCity = lazyWithRetry(() => import('./pages/Certificaci
 const LegalTerms = lazyWithRetry(() => import('./pages/LegalTerms'));
 const LegalPrivacy = lazyWithRetry(() => import('./pages/LegalPrivacy'));
 const Support = lazyWithRetry(() => import('./pages/Support'));
+const ClaimStudio = lazyWithRetry(() => import('./pages/ClaimStudio'));
 
 import GAListener from "@/components/analytics/GAListener";
 import FloatingCart21 from "@/components/commerce21/FloatingCart21";
+import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
 import ShoprocketLoader from "@/components/commerce21/ShoprocketLoader";
 import AdminGuard from "@/components/auth/AdminGuard";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -135,12 +137,14 @@ const App = () => (
               <Route path="/estudios-de-pilates" element={<Suspense fallback={<PageLoader />}><StudiosLanding /></Suspense>} />
               <Route path="/estudios-de-pilates/:city/:studio" element={<Suspense fallback={<PageLoader />}><StudioDetail /></Suspense>} />
               <Route path="/estudios-de-pilates/:city" element={<Suspense fallback={<PageLoader />}><CityDirectory /></Suspense>} />
+              <Route path="/claim-studio" element={<Suspense fallback={<PageLoader />}><ClaimStudio /></Suspense>} />
 
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </ErrorBoundary>
           <FloatingCart21 />
+          <FloatingWhatsApp />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

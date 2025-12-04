@@ -467,6 +467,45 @@ export default defineSchema({
     .index('by_priority', ['priority'])
     .index('by_page_type_slug', ['pageType', 'pageSlug']),
 
+  // Lead Capture (Lead Magnets)
+  leads: defineTable({
+    email: v.string(),
+    magnet: v.string(), // 'routine' | 'checklist' | 'pricing'
+    source: v.string(), // page URL or identifier
+    lastMagnet: v.string(),
+    lastSource: v.string(),
+    touchpoints: v.number(),
+    metadata: v.optional(v.object({
+      userAgent: v.optional(v.string()),
+      referrer: v.optional(v.string()),
+    })),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index('by_email', ['email'])
+    .index('by_magnet', ['magnet'])
+    .index('by_created', ['createdAt']),
+
+  // Studio Claim Requests
+  studioClaims: defineTable({
+    studioSlug: v.string(),
+    studioCity: v.string(),
+    studioName: v.optional(v.string()),
+    name: v.string(),
+    email: v.string(),
+    phone: v.string(),
+    role: v.string(), // 'owner' | 'manager' | 'instructor' | 'other'
+    message: v.optional(v.string()),
+    status: v.string(), // 'pending' | 'approved' | 'rejected'
+    adminNotes: v.optional(v.string()),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index('by_studio', ['studioSlug', 'studioCity'])
+    .index('by_status', ['status'])
+    .index('by_email', ['email'])
+    .index('by_created', ['createdAt']),
+
   // Certification Pre-Registration (Lead Generation)
   certificationPreRegistrations: defineTable({
     // Personal Information

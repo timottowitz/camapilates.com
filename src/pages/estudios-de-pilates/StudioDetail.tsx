@@ -25,7 +25,7 @@ import {
   Share2,
   Clock,
   Users,
-  Award
+  Award,
 } from 'lucide-react';
 import { GooglePlacesPhoto } from '@/components/studio/GooglePlacesPhoto';
 import { GoogleReviews } from '@/components/studio/GoogleReviews';
@@ -480,6 +480,39 @@ const StudioDetail: React.FC = () => {
                       <Facebook className="w-5 h-5 text-[#2A2624]" />
                     </a>
                   )}
+                </div>
+              )}
+
+              {/* Cross-sell: Home Practice */}
+              <Card className="bg-[#2A2624] text-[#EAE8E4] border-0">
+                <CardContent className="p-6 text-center">
+                  <h4 className="font-serif italic text-lg mb-2">¿Practicas en Casa?</h4>
+                  <p className="text-xs text-white/60 mb-4">Equipa tu santuario personal con un Reformer</p>
+                  <Link to="/shop" className="block py-3 bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs uppercase tracking-widest hover:bg-white transition-colors">
+                    Ver Reformers
+                  </Link>
+                </CardContent>
+              </Card>
+
+              {/* Cross-sell: Certification */}
+              <div className="p-6 border border-[#2A2624]/10 rounded-sm text-center bg-white/50">
+                <Award className="w-6 h-6 mx-auto mb-3 text-[#3E2723]" />
+                <p className="text-sm text-[#5D5550] mb-3">¿Eres instructor?</p>
+                <Link to="/certificacion-pilates" className="text-xs uppercase tracking-widest text-[#3E2723] hover:underline">
+                  Obtén tu certificación →
+                </Link>
+              </div>
+
+              {/* Claim Studio */}
+              {!studioData.isVerified && (
+                <div className="p-6 border border-dashed border-[#2A2624]/20 rounded-sm text-center">
+                  <p className="text-sm text-[#5D5550] mb-3">¿Eres el dueño de este estudio?</p>
+                  <Link 
+                    to={`/claim-studio?studio=${studioSlug}&city=${normalizedCitySlug}`}
+                    className="text-xs uppercase tracking-widest text-[#3E2723] border-b border-[#3E2723] pb-0.5 hover:opacity-70 transition-opacity"
+                  >
+                    Reclama tu listado gratis
+                  </Link>
                 </div>
               )}
             </div>

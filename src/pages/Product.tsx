@@ -340,6 +340,20 @@ const ProductPage: React.FC = () => {
             <div className="pt-8">
               <ReviewsPreview productSlug={prod.slug} onAggregate={(avg, count) => setAgg({ ratingValue: avg.toFixed(1), reviewCount: count })} />
             </div>
+
+            {/* Cross-sell: Find a Studio (for expensive items) */}
+            {Number(priceToShow) >= 10000 && (
+              <div className="p-6 bg-[#E3E0DB] rounded-sm">
+                <p className="text-sm text-[#2A2624] font-medium mb-1">¿Nuevo en Pilates?</p>
+                <p className="text-xs text-[#5D5550] mb-3">Prueba primero en un estudio cerca de ti antes de invertir.</p>
+                <Link 
+                  to="/estudios-de-pilates" 
+                  className="text-xs uppercase tracking-widest text-[#3E2723] hover:underline"
+                >
+                  Buscar estudios en México →
+                </Link>
+              </div>
+            )}
           </div>
         </div>
 
