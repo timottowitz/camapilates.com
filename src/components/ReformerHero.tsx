@@ -84,7 +84,7 @@ const ReformerHero = () => {
 
           {/* Trust Indicators (Minimal) */}
           <FadeIn delay={0.6}>
-            <div className="mt-16 flex gap-8 text-xs font-sans tracking-widest uppercase text-white/50">
+            <div className="mt-16 flex flex-wrap gap-6 md:gap-8 text-xs font-sans tracking-widest uppercase text-white/50">
               <div className="flex items-center gap-2">
                 <span className="w-1 h-1 bg-white rounded-full"></span>
                 3 Week Delivery
@@ -97,6 +97,26 @@ const ReformerHero = () => {
                 <span className="w-1 h-1 bg-white rounded-full"></span>
                 Silence Guaranteed
               </div>
+            </div>
+          </FadeIn>
+
+          {/* Secondary CTAs */}
+          <FadeIn delay={0.7}>
+            <div className="mt-10 flex flex-wrap gap-6 text-xs font-sans tracking-widest uppercase">
+              <Link
+                to="/estudios-de-pilates"
+                className="text-white/50 hover:text-white/80 transition-colors flex items-center gap-2"
+              >
+                <span className="w-1.5 h-1.5 bg-[#5D7A99] rounded-full"></span>
+                Buscar Estudio
+              </Link>
+              <Link
+                to="/blog"
+                className="text-white/50 hover:text-white/80 transition-colors flex items-center gap-2"
+              >
+                <span className="w-1.5 h-1.5 bg-[#8B7355] rounded-full"></span>
+                Leer Guías
+              </Link>
             </div>
           </FadeIn>
 

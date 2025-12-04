@@ -3,8 +3,14 @@ import { Helmet } from 'react-helmet-async';
 import { DEFAULTS } from '@/lib/seo';
 import products from '@/content/products.json';
 import ReformerHero from '@/components/ReformerHero';
-import LuxuryContent from '@/components/LuxuryContent';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
+import UserPathSelector from '@/components/landing/UserPathSelector';
+import FeaturedProducts from '@/components/landing/FeaturedProducts';
+import StudioDiscoveryTeaser from '@/components/landing/StudioDiscoveryTeaser';
+import BlogPreview from '@/components/landing/BlogPreview';
+import CertificationTeaser from '@/components/landing/CertificationTeaser';
+import PhilosophySection from '@/components/landing/PhilosophySection';
+import SocialProof from '@/components/landing/SocialProof';
 
 const Index = () => {
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://camadepilates.com';
@@ -121,11 +127,29 @@ const Index = () => {
       </Helmet>
 
       <LuxuryLayout noPadding>
-        {/* 3D Hero Section */}
+        {/* Hero Section */}
         <ReformerHero />
 
-        {/* Editorial Content Sections */}
-        <LuxuryContent />
+        {/* User Journey Selector */}
+        <UserPathSelector />
+
+        {/* Featured Products */}
+        <FeaturedProducts />
+
+        {/* Studio Discovery */}
+        <StudioDiscoveryTeaser />
+
+        {/* Philosophy (Condensed) */}
+        <PhilosophySection />
+
+        {/* Blog/Guides Preview */}
+        <BlogPreview />
+
+        {/* Certification CTA */}
+        <CertificationTeaser />
+
+        {/* Social Proof */}
+        <SocialProof />
       </LuxuryLayout>
     </>
   );
