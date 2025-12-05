@@ -70,7 +70,7 @@ const FALLBACKS = {
   myloBadge: '/images/badges/mylo.svg',
   myloSpecial: '/images/special/mylo-special.svg',
   edelweissLogo: '/brand/edelweiss.svg',
-  featureSilence: '/images/feature_1.webp',
+  featureSilence: '/images/feature-detox.webp',
   heroVideo: '', // No local fallback for video
 } as const;
 
