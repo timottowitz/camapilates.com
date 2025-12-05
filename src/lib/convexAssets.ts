@@ -59,7 +59,7 @@ export const CONVEX_IMAGE_NAMES = {
  */
 const FALLBACKS = {
   heroEdelweiss: '/images/hero-edelweiss.webp',
-  shopHero: '/images/reformer-pro.png',
+  shopHero: '/images/shop-hero-bohemian.jpeg',
   featuredProducts: '/images/reformer-home.png',
   reformerEditorial1: '/images/reformer-editorial-1.webp',
   catReformers: '/images/cat-icon-reformers.png',
