@@ -159,6 +159,44 @@ const Shop: React.FC = () => {
           { name: 'Inicio', url: '/' },
           { name: 'Tienda' }
         ]))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Cuánto cuesta una cama de Pilates Reformer?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Nuestros reformers van desde $35,000 MXN (modelo Casa) hasta $55,000 MXN (modelo Profesional con acabado Mycelium). Ofrecemos financiamiento a 12 meses sin intereses."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cuánto tiempo tarda la entrega?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "La entrega en México es de 3 semanas. Para envíos a EE.UU. y Europa, el tiempo estimado es de 4-6 semanas."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Qué garantía incluyen los reformers?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Todos nuestros reformers incluyen garantía de 1 año que cubre defectos de fabricación en estructura, muelles y accesorios básicos."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Los reformers son silenciosos?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, nuestro sistema Whisper Glide con 8 ruedas garantiza un deslizamiento completamente silencioso, ideal para práctica en casa o estudios."
+              }
+            }
+          ]
+        })}</script>
       </Helmet>
 
       <div className="container mx-auto px-8 md:px-24 py-12 space-y-12">

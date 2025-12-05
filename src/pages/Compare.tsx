@@ -25,6 +25,44 @@ const Compare = () => {
         <script type="application/ld+json">
           {JSON.stringify(compareSchema)}
         </script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Cuál es la diferencia entre el Reformer Casa y Profesional?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "El Reformer Casa ($35,000 MXN) es compacto y diseñado para uso personal en el hogar. El Profesional ($50,000 MXN) tiene construcción más robusta para uso intensivo en estudios, con mayor durabilidad y capacidad de peso."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Qué reformer es mejor para principiantes?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Para principiantes recomendamos el Reformer Casa. Ofrece todas las funcionalidades esenciales a un precio accesible y es perfecto para práctica personal en casa."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Qué es el acabado Mycelium?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Mycelium (Mylo™) es un material sostenible hecho de micelio de hongos. Es una alternativa ecológica al cuero tradicional, con tacto premium y origen 100% renovable. Disponible como opción premium (+$3,000-5,000 MXN)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Ambos modelos son silenciosos?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, ambos modelos incluyen nuestro sistema Whisper Glide con 8 ruedas que garantiza un deslizamiento completamente silencioso, sin diferencia entre el modelo Casa y Profesional."
+              }
+            }
+          ]
+        })}</script>
       </Helmet>
 
       {/* Hero Section */}

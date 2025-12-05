@@ -54,7 +54,7 @@ const ReformerHero = () => {
           {/* Tagline */}
           <FadeIn delay={0.2}>
             <p className="text-2xl md:text-3xl font-light text-white/90 leading-relaxed mb-8">
-              Pure form. Pure materials.
+              Forma pura. Materiales puros.
             </p>
           </FadeIn>
 
@@ -62,9 +62,9 @@ const ReformerHero = () => {
           <FadeIn delay={0.3}>
             <div className="flex flex-col gap-6">
               <p className="text-lg md:text-xl font-light text-white/80 leading-relaxed max-w-xl">
-                The world's first plastic-free pilates ecosystem. Non-toxic beds, organic wear, healthy skin.
+                El primer ecosistema de pilates libre de plásticos. Camas no tóxicas, ropa orgánica, piel sana.
                 <br /><br />
-                <span className="italic text-white/90">Your skin drinks what you wear. Detox your movement.</span>
+                <span className="italic text-white/90">Tu piel absorbe lo que usas. Desintoxica tu movimiento.</span>
               </p>
             </div>
           </FadeIn>
@@ -76,13 +76,13 @@ const ReformerHero = () => {
                 to="/shop"
                 className="px-8 py-4 bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white transition-colors duration-300"
               >
-                Shop Collection
+                Ver Colección
               </Link>
               <Link
                 to="/compare"
                 className="px-8 py-4 border border-white/30 text-white rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white/10 transition-colors duration-300 backdrop-blur-sm"
               >
-                Compare Models
+                Comparar Modelos
               </Link>
             </div>
           </FadeIn>
@@ -92,15 +92,15 @@ const ReformerHero = () => {
             <div className="mt-16 flex flex-wrap gap-6 md:gap-8 text-xs font-sans tracking-widest uppercase text-white/50">
               <div className="flex items-center gap-2">
                 <span className="w-1 h-1 bg-white rounded-full"></span>
-                3 Week Delivery
+                Entrega 3 Semanas
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-1 h-1 bg-white rounded-full"></span>
-                1 Year Warranty
+                Garantía 1 Año
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-1 h-1 bg-white rounded-full"></span>
-                Silence Guaranteed
+                Silencio Garantizado
               </div>
             </div>
           </FadeIn>

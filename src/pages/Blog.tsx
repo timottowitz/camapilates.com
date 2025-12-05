@@ -118,7 +118,7 @@ const Blog: React.FC = () => {
                     onClick={() => setVisible(v => v + 9)}
                     className="px-8 py-4 bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white transition-colors"
                   >
-                    Load More
+                    Cargar Más
                   </button>
                 </div>
               )}
@@ -126,15 +126,15 @@ const Blog: React.FC = () => {
             <aside className="lg:col-span-1">
               <div className="sticky top-24 space-y-8">
                 <div>
-                  <h3 className="font-serif italic text-xl text-[#2A2624] mb-4">Topics</h3>
+                  <h3 className="font-serif italic text-xl text-[#2A2624] mb-4">Temas</h3>
                   <TagCloud21 tags={tagCounts} />
                 </div>
 
                 <div className="p-6 bg-[#2A2624] text-[#EAE8E4] rounded-sm">
-                  <h3 className="font-serif italic text-xl mb-2">Newsletter</h3>
-                  <p className="text-xs font-light text-white/60 mb-4">Get the latest guides and pilates tips.</p>
+                  <h3 className="font-serif italic text-xl mb-2">Boletín</h3>
+                  <p className="text-xs font-light text-white/60 mb-4">Recibe las últimas guías y consejos de pilates.</p>
                   <input type="email" placeholder="Email" className="w-full bg-transparent border-b border-white/20 py-2 text-white text-sm focus:outline-none mb-4" />
-                  <button className="w-full py-2 bg-[#EAE8E4] text-[#2A2624] text-xs uppercase tracking-widest hover:bg-white transition-colors">Subscribe</button>
+                  <button className="w-full py-2 bg-[#EAE8E4] text-[#2A2624] text-xs uppercase tracking-widest hover:bg-white transition-colors">Suscribirse</button>
                 </div>
               </div>
             </aside>
