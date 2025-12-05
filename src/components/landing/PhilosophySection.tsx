@@ -25,7 +25,7 @@ const PhilosophySection: React.FC = () => {
             <div className="aspect-[4/3] w-full bg-[#D6D3CD] rounded-sm overflow-hidden relative group">
               <img
                 src={assets.featureSilence}
-                alt="Man performing side plank on Pilates reformer - Detox Your Movement"
+                alt="Hombre practicando plancha lateral en cama de pilates reformer Edelweiss - ejercicio de pilates para fuerza y equilibrio con equipo premium de madera de nogal"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
               />

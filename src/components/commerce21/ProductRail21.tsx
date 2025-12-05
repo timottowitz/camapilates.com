@@ -23,7 +23,7 @@ const ProductRail21: React.FC<{ title: string; products: Product[] }> = ({ title
             {products.map((p) => (
             <Link key={p.slug} to={`/product/${p.slug}`} className="w-56 shrink-0 border border-border rounded-lg bg-card hover:border-primary/50 transition-colors snap-start focus:outline-none focus:ring-1 focus:ring-primary">
               <div className="aspect-video w-full bg-muted rounded-t-lg overflow-hidden">
-                <img src={p.image} alt={p.name} className="h-full w-full object-cover" loading="lazy" decoding="async" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                <img src={p.image} alt={`${p.name} - ${p.category === 'Reformers' ? 'cama de pilates reformer' : (p.category?.toLowerCase() || 'equipo de pilates')} Edelweiss Mexico`} className="h-full w-full object-cover" loading="lazy" decoding="async" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
               </div>
               <div className="p-3">
                 <div className="text-sm font-medium text-foreground line-clamp-2">{p.name}</div>

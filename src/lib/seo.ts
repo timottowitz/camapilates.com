@@ -26,10 +26,11 @@ export const DEFAULTS = {
 
 // Organization schema constants
 export const ORGANIZATION = {
-  name: 'CAMA Pilates',
+  name: 'Edelweiss Pilates',
+  legalName: 'CAMA Pilates',
   url: 'https://camadepilates.com',
   logo: {
-    url: 'https://camadepilates.com/logo.png',
+    url: 'https://camadepilates.com/brand/edelweiss.svg',
     width: 512,
     height: 512,
   },
@@ -37,7 +38,119 @@ export const ORGANIZATION = {
     'https://www.instagram.com/camadepilates/',
     'https://www.facebook.com/camadepilates',
   ],
+  address: {
+    streetAddress: 'Av. Insurgentes Sur 1234',
+    addressLocality: 'Ciudad de México',
+    addressRegion: 'CDMX',
+    postalCode: '03100',
+    addressCountry: 'MX',
+  },
+  geo: {
+    latitude: 19.4326,
+    longitude: -99.1332,
+  },
+  telephone: '+52-322-278-7690',
+  email: 'info@camadepilates.com',
 };
+
+// Generate LocalBusiness schema for homepage
+export function generateLocalBusinessSchema() {
+  const origin = getOrigin();
+  
+  return {
+    '@context': 'https://schema.org',
+    '@type': ['LocalBusiness', 'Store', 'SportsActivityLocation'],
+    '@id': `${origin}/#localbusiness`,
+    name: ORGANIZATION.name,
+    alternateName: ORGANIZATION.legalName,
+    description: 'Fabricante y tienda de Camas de Pilates (Reformer) premium en México. Equipos de madera de nogal, cuero genuino y materiales orgánicos libres de plásticos.',
+    url: ORGANIZATION.url,
+    logo: {
+      '@type': 'ImageObject',
+      url: ORGANIZATION.logo.url,
+      width: ORGANIZATION.logo.width,
+      height: ORGANIZATION.logo.height,
+    },
+    image: `${origin}/og/cama-de-pilates-venta-mexico.png`,
+    telephone: ORGANIZATION.telephone,
+    email: ORGANIZATION.email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: ORGANIZATION.address.streetAddress,
+      addressLocality: ORGANIZATION.address.addressLocality,
+      addressRegion: ORGANIZATION.address.addressRegion,
+      postalCode: ORGANIZATION.address.postalCode,
+      addressCountry: ORGANIZATION.address.addressCountry,
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: ORGANIZATION.geo.latitude,
+      longitude: ORGANIZATION.geo.longitude,
+    },
+    areaServed: [
+      { '@type': 'Country', name: 'México' },
+      { '@type': 'City', name: 'Ciudad de México' },
+      { '@type': 'City', name: 'Monterrey' },
+      { '@type': 'City', name: 'Guadalajara' },
+    ],
+    priceRange: '$$$',
+    currenciesAccepted: 'MXN',
+    paymentAccepted: 'Cash, Credit Card, Bank Transfer',
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '09:00',
+        closes: '18:00',
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: 'Saturday',
+        opens: '10:00',
+        closes: '14:00',
+      },
+    ],
+    sameAs: ORGANIZATION.sameAs,
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Catálogo de Camas de Pilates',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Product',
+            name: 'Cama de Pilates Reformer Casa',
+            category: 'Reformers',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Product',
+            name: 'Cama de Pilates Reformer Profesional',
+            category: 'Reformers',
+          },
+        },
+      ],
+    },
+  };
+}
+
+// Generate simple breadcrumb schema
+export function generateBreadcrumbSchema(items: Array<{ name: string; url?: string }>) {
+  const origin = getOrigin();
+  
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      name: item.name,
+      ...(item.url && { item: item.url.startsWith('http') ? item.url : `${origin}${item.url}` }),
+    })),
+  };
+}
 
 // Author info for blog posts
 export const AUTHOR = {

@@ -14,7 +14,7 @@ const FeaturedProduct21: React.FC<{ product: Product }> = ({ product }) => {
           {(((product as any).finishes || []).includes('mycelium') || /mycel/i.test(product?.name || '') || /mycel/i.test(product?.slug || '')) && assets.myloBadge && (
             <img src={assets.myloBadge} alt="Mylo™" className="absolute top-3 left-3 h-7 w-auto drop-shadow" />
           )}
-          <img src={assets.featuredProducts || product.image} alt={assets.featuredProducts ? 'Productos destacados' : product.name} className="h-full w-full object-cover" loading="lazy" decoding="async" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+          <img src={assets.featuredProducts || product.image} alt={assets.featuredProducts ? `Cama de pilates reformer ${product.name} Edelweiss - producto destacado de madera de nogal y cuero premium` : `${product.name} - cama de pilates reformer Edelweiss Mexico`} className="h-full w-full object-cover" loading="lazy" decoding="async" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
         </div>
         <div>
           <Link to={`/product/${product.slug}`} className="text-2xl font-semibold text-foreground hover:text-primary">{product.name}</Link>

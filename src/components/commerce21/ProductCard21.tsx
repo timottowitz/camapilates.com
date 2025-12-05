@@ -35,7 +35,7 @@ const ProductCard21: React.FC<Props> = ({ product, onQuickView }) => {
           </div>
           <img
             src={product.image}
-            alt={product.name}
+            alt={`${product.name} - ${product.category === 'Reformers' ? 'cama de pilates reformer' : product.category?.toLowerCase() || 'equipo de pilates'} Edelweiss de ${(product.materials || []).slice(0, 2).join(' y ') || 'materiales premium'} Mexico`}
             loading="lazy"
             decoding="async"
             className="h-full w-full object-cover group-hover:scale-[1.02] transition-transform"

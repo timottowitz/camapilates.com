@@ -3,9 +3,13 @@ import React from 'react';
 type Props = {
   images: string[];
   altPrefix?: string;
+  productCategory?: string;
 };
 
-const Gallery21: React.FC<Props> = ({ images, altPrefix = 'Producto' }) => {
+const Gallery21: React.FC<Props> = ({ images, altPrefix = 'Producto', productCategory }) => {
+  const seoAltPrefix = productCategory === 'Reformers' 
+    ? `${altPrefix} - cama de pilates reformer Edelweiss` 
+    : `${altPrefix} - ${productCategory?.toLowerCase() || 'equipo de pilates'} Edelweiss`;
   const [idx, setIdx] = React.useState(0);
   const current = images?.[idx] || images?.[0];
   const onKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -18,7 +22,7 @@ const Gallery21: React.FC<Props> = ({ images, altPrefix = 'Producto' }) => {
         {current && (
           <img
             src={current}
-            alt={`${altPrefix} - imagen ${idx + 1}`}
+            alt={`${seoAltPrefix} - vista ${idx + 1} de ${images.length} - comprar en Mexico`}
             className="h-full w-full object-cover"
             loading="eager"
             onError={(e) => { e.currentTarget.style.display = 'none'; }}
@@ -35,7 +39,7 @@ const Gallery21: React.FC<Props> = ({ images, altPrefix = 'Producto' }) => {
             className={`aspect-square overflow-hidden rounded-md border ${idx === i ? 'border-foreground' : 'border-border'} bg-card`}
             title={`Ver imagen ${i + 1}`}
           >
-            <img src={src} alt={`${altPrefix} miniatura ${i + 1}`} className="h-full w-full object-cover" loading="lazy" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+            <img src={src} alt={`${seoAltPrefix} miniatura ${i + 1}`} className="h-full w-full object-cover" loading="lazy" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
           </button>
         ))}
       </div>

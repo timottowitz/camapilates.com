@@ -76,6 +76,17 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
       const offset = 100; // Account for sticky header
       const top = element.offsetTop - offset;
       window.scrollTo({ top, behavior: 'smooth' });
+      // Update URL with anchor for SEO and shareability
+      if (typeof window !== 'undefined') {
+        window.history.replaceState(null, '', `#${id}`);
+      }
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, '', window.location.pathname);
     }
   };
 
@@ -85,19 +96,32 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
 
   return (
     <EnhancedCard variant="glass" className="p-6">
-      <div className="flex items-center mb-4">
-        <List className="w-4 h-4 mr-2 text-bennett-navy" />
-        <h3 className="font-semibold text-bennett-navy">Table of Contents</h3>
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center">
+          <List className="w-4 h-4 mr-2 text-bennett-navy" />
+          <h3 className="font-semibold text-bennett-navy">Contenido</h3>
+        </div>
+        <button 
+          onClick={scrollToTop}
+          className="text-xs text-bennett-slate hover:text-bennett-gold transition-colors"
+          aria-label="Ir al inicio"
+        >
+          ↑ Inicio
+        </button>
       </div>
       
-      <nav>
+      <nav aria-label="Tabla de contenidos">
         <ul className="space-y-2">
           {tocItems.map((item) => (
             <li key={item.id}>
-              <button
-                onClick={() => scrollToHeading(item.id)}
+              <a
+                href={`#${item.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToHeading(item.id);
+                }}
                 className={cn(
-                  "text-left w-full text-sm transition-colors hover:text-bennett-gold",
+                  "block text-left w-full text-sm transition-colors hover:text-bennett-gold",
                   item.level === 1 && "font-medium",
                   item.level === 2 && "pl-3",
                   item.level === 3 && "pl-6",
@@ -107,7 +131,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
                 )}
               >
                 {item.title}
-              </button>
+              </a>
             </li>
           ))}
         </ul>

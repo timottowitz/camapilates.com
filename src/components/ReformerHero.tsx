@@ -27,7 +27,7 @@ const ReformerHero = () => {
         {assets.heroEdelweiss && (
           <img
             src={assets.heroEdelweiss}
-            alt="Mujer practicando pilates en reformer de madera con luz natural matutina - Edelweiss Pilates"
+            alt="Mujer practicando pilates en cama de pilates reformer Edelweiss de madera de nogal con luz natural - equipo premium libre de plasticos para casa y estudio en Mexico"
             className="absolute inset-0 w-full h-full object-cover object-center"
             loading="eager"
             fetchPriority="high"

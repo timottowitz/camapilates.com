@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { DEFAULTS, getOrigin } from '@/lib/seo';
+import { DEFAULTS, getOrigin, generateBreadcrumbSchema } from '@/lib/seo';
 import { allProducts, regionEstimate, categoriesWithCounts, filterByCategory, availableFinishes, getBySlug } from '@/lib/shop/catalog';
 import { filterByFinishes, filterByAvailability } from '@/lib/shop/catalog';
 import type { FinishKey } from '@/lib/shop/types';
@@ -144,7 +144,7 @@ const Shop: React.FC = () => {
         <title>{title} | {DEFAULTS.siteName}</title>
         <meta name="description" content={desc} />
         <link rel="canonical" href={`${origin}/shop`} />
-        {assets.shopHero && <link rel="preload" as="image" href={assets.shopHero} />}
+        {assets.shopHero && <link rel="preload" as="image" href={assets.shopHero} fetchpriority="high" />}
         <meta property="og:site_name" content={DEFAULTS.siteName} />
         <meta property="og:locale" content={DEFAULTS.locale} />
         <meta property="og:title" content={title} />
@@ -152,7 +152,13 @@ const Shop: React.FC = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${origin}/shop`} />
         <meta property="og:image" content={`${origin}${DEFAULTS.ogImage}`} />
+        <meta property="og:image:alt" content="Tienda de Camas de Pilates Reformer Edelweiss - comprar equipo premium en Mexico" />
+        <meta name="twitter:image:alt" content="Tienda de Camas de Pilates Reformer Edelweiss - comprar equipo premium en Mexico" />
         <script type="application/ld+json">{JSON.stringify(itemList)}</script>
+        <script type="application/ld+json">{JSON.stringify(generateBreadcrumbSchema([
+          { name: 'Inicio', url: '/' },
+          { name: 'Tienda' }
+        ]))}</script>
       </Helmet>
 
       <div className="container mx-auto px-8 md:px-24 py-12 space-y-12">

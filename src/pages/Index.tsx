@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { DEFAULTS } from '@/lib/seo';
+import { DEFAULTS, generateLocalBusinessSchema, generateBreadcrumbSchema } from '@/lib/seo';
 import products from '@/content/products.json';
 import ReformerHero from '@/components/ReformerHero';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
@@ -105,6 +105,11 @@ const Index = () => {
     })),
   };
 
+  const localBusinessSchema = generateLocalBusinessSchema();
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Inicio' }
+  ]);
+
   return (
     <>
       <Helmet>
@@ -118,12 +123,16 @@ const Index = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={origin} />
         <meta property="og:image" content={`${origin}${DEFAULTS.ogImage}`} />
+        <meta property="og:image:alt" content="Cama de Pilates Reformer Edelweiss - equipo premium de madera de nogal para casa y estudio en Mexico" />
+        <meta name="twitter:image:alt" content="Cama de Pilates Reformer Edelweiss - equipo premium de madera de nogal para casa y estudio en Mexico" />
         <script type="application/ld+json">{JSON.stringify(orgSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(siteSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(localBusinessSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(productSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(featuredListSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(guidesListSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
 
       <LuxuryLayout noPadding>

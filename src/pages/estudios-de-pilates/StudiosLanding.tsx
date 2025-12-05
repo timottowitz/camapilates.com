@@ -92,7 +92,7 @@ const StudiosLanding: React.FC = () => {
         <div className="absolute inset-0 z-0 opacity-20">
           <img
             src="/images/studios-hero.webp"
-            alt="Pilates Studio Interior"
+            alt="Interior de estudio de pilates en Mexico con camas reformer profesionales - directorio de estudios de pilates en Ciudad de Mexico Monterrey y Guadalajara"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-white/80" />

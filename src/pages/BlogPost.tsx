@@ -207,8 +207,13 @@ const BlogPost = () => {
                 <span className="px-3 py-1 border border-[#2A2624]/10 rounded-full">{postMeta.category}</span>
                 <div className="flex items-center gap-1">
                   <Calendar className="h-3 w-3" />
-                  <span>{new Date(postMeta.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                  <span>{new Date(postMeta.date).toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                 </div>
+                {postMeta.updatedDate && postMeta.updatedDate !== postMeta.date && (
+                  <div className="flex items-center gap-1 text-[#3E2723]">
+                    <span>Actualizado: {new Date(postMeta.updatedDate).toLocaleDateString('es-MX', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                  </div>
+                )}
                 <div className="flex items-center gap-1">
                   <Clock className="h-3 w-3" />
                   <span>{postMeta.readTime}</span>

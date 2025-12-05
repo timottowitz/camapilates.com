@@ -45,7 +45,7 @@ export default function LuxuryContent() {
                         <div className="aspect-[4/3] w-full bg-[#D6D3CD] rounded-sm overflow-hidden relative group">
                             <img
                                 src="/images/feature_1.webp"
-                                alt="Close up of walnut wood grain"
+                                alt="Detalle de madera de nogal americano para cama de pilates reformer Edelweiss - acabado premium con aceites naturales no toxicos"
                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                             />
                         </div>
@@ -59,7 +59,7 @@ export default function LuxuryContent() {
                         <div className="aspect-[16/9] w-full bg-[#D6D3CD] rounded-sm overflow-hidden relative mt-12">
                             <img
                                 src="/images/grace_1.webp"
-                                alt="Woman stretching on pilates reformer"
+                                alt="Mujer estirando en cama de pilates reformer Edelweiss coleccion studio 2024 - equipo profesional de pilates para estudio"
                                 className="w-full h-full object-cover"
                             />
                         </div>

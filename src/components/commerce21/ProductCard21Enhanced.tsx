@@ -80,7 +80,7 @@ const ProductCard21Enhanced: React.FC<Props> = ({
           {/* Product Image with Hover Swap */}
           <img
             src={isHovered && product.hoverImage ? product.hoverImage : product.image}
-            alt={product.name}
+            alt={`${product.name} - ${product.category === 'Reformers' ? 'cama de pilates reformer' : product.category?.toLowerCase() || 'equipo de pilates'} Edelweiss de ${(product.materials || []).slice(0, 2).join(' y ') || 'materiales premium'} - comprar en Mexico`}
             loading="lazy"
             decoding="async"
             className={`h-full w-full object-cover transition-transform duration-700 ${
