@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useConvexAssets } from '@/lib/convexAssets';
 
 const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => (
   <motion.div
@@ -13,6 +14,8 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 );
 
 const PhilosophySection: React.FC = () => {
+  const assets = useConvexAssets();
+  
   return (
     <section className="w-full bg-[#E3E0DB] py-20 md:py-28">
       <div className="max-w-[1800px] mx-auto px-8 md:px-24">
@@ -21,8 +24,8 @@ const PhilosophySection: React.FC = () => {
           <FadeIn>
             <div className="aspect-[4/3] w-full bg-[#D6D3CD] rounded-sm overflow-hidden relative group">
               <img
-                src="/images/feature_1.webp"
-                alt="Detalle de madera de nogal americana en reformer Edelweiss"
+                src={assets.featureSilence}
+                alt="Man performing side plank on Pilates reformer - Detox Your Movement"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
               />
