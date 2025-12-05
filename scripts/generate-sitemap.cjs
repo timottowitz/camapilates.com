@@ -52,7 +52,10 @@ function build() {
     '/shop': 'src/pages/Shop.tsx',
     '/products': 'src/pages/Shop.tsx',
     '/compare': 'src/pages/Compare.tsx',
-    '/certificacion-pilates': 'src/pages/CertificationHub.tsx',
+    '/certificacion-pilates': 'src/pages/CertificacionPilates.tsx',
+    '/reformer-para-casa': 'src/pages/ReformerParaCasa.tsx',
+    '/pilates-reformer-cdmx': 'src/pages/PilatesReformerCDMX.tsx',
+    '/cama-de-pilates': 'src/pages/CamaDePilatesHub.tsx',
   };
 
   const urls = [
@@ -63,6 +66,9 @@ function build() {
     { loc: `${origin}/shop`, lastmod: getGitLastMod(pageFiles['/shop']) || now, changefreq: 'weekly', priority: '0.8' },
     { loc: `${origin}/products`, lastmod: getGitLastMod(pageFiles['/products']) || now, changefreq: 'weekly', priority: '0.8' },
     { loc: `${origin}/compare`, lastmod: getGitLastMod(pageFiles['/compare']) || now, changefreq: 'weekly', priority: '0.8' },
+    { loc: `${origin}/cama-de-pilates`, lastmod: getGitLastMod(pageFiles['/cama-de-pilates']) || now, changefreq: 'weekly', priority: '0.9' },
+    { loc: `${origin}/reformer-para-casa`, lastmod: getGitLastMod(pageFiles['/reformer-para-casa']) || now, changefreq: 'weekly', priority: '0.9' },
+    { loc: `${origin}/pilates-reformer-cdmx`, lastmod: getGitLastMod(pageFiles['/pilates-reformer-cdmx']) || now, changefreq: 'weekly', priority: '0.9' },
     { loc: `${origin}/certificacion-pilates`, lastmod: getGitLastMod(pageFiles['/certificacion-pilates']) || now, changefreq: 'weekly', priority: '0.8' },
     { loc: `${origin}/certificacion-pilates/cdmx`, lastmod: now, changefreq: 'weekly', priority: '0.7' },
     { loc: `${origin}/certificacion-pilates/guadalajara`, lastmod: now, changefreq: 'weekly', priority: '0.7' },
