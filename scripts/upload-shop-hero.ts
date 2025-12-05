@@ -13,9 +13,9 @@ async function uploadShopHero() {
   const client = new ConvexHttpClient(CONVEX_URL);
 
   console.log("🖼️  Reading shop hero image file...");
-  const imagePath = "/Users/m3max361tb/Documents/Code/Pilates_Reformer/public/images/shop-hero-bohemian.jpeg";
+  const imagePath = "/Users/m3max361tb/Documents/Code/Pilates_Reformer/public/images/shop-hero-bohemian.png";
   const imageBuffer = await Deno.readFile(imagePath);
-  const imageBlob = new Blob([imageBuffer], { type: "image/jpeg" });
+  const imageBlob = new Blob([imageBuffer], { type: "image/png" });
 
   console.log(`📊 Image size: ${(imageBlob.size / 1024).toFixed(2)} KB`);
 
@@ -25,7 +25,7 @@ async function uploadShopHero() {
   console.log("⬆️  Uploading image to Convex...");
   const uploadResponse = await fetch(uploadUrl, {
     method: "POST",
-    headers: { "Content-Type": "image/jpeg" },
+    headers: { "Content-Type": "image/png" },
     body: imageBlob,
   });
 
@@ -41,7 +41,7 @@ async function uploadShopHero() {
     name: "shopHero",
     category: "hero",
     storageId,
-    mimeType: "image/jpeg",
+    mimeType: "image/png",
     size: imageBlob.size,
     width: 1024,
     height: 683,
