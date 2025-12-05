@@ -17,6 +17,7 @@ import { EnhancedGallery } from '@/components/commerce21/EnhancedGallery';
 import { FinancingDisplay } from '@/components/commerce21/FinancingDisplay';
 import { StickyMobileCTA } from '@/components/commerce21/StickyMobileCTA';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
+import { useConvexAssets } from '@/lib/convexAssets';
 
 type Product = (typeof products)[number] & PType;
 
@@ -24,6 +25,7 @@ const ProductPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const origin = getOrigin();
   const prod: Product | undefined = products.find(p => p.slug === slug);
+  const assets = useConvexAssets();
 
   const initialRegion = ((): 'MX' | 'US' | 'DE' => {
     if (typeof window === 'undefined') return 'MX';
@@ -208,11 +210,18 @@ const ProductPage: React.FC = () => {
           <div>
             <EnhancedGallery
               images={[
+                // Editorial image first for reformer-casa
+                ...(prod.slug === 'reformer-casa' && assets.reformerEditorial1 ? [{
+                  src: assets.reformerEditorial1,
+                  alt: 'Artistic editorial - Pilates Reformer lifestyle',
+                  type: 'main' as const,
+                  label: 'Editorial'
+                }] : []),
                 {
                   src: activeVariant?.image || prod.image,
                   alt: `${prod.name} — ${FINISHES[finish]?.name || ''}`,
-                  type: 'main',
-                  label: 'Vista principal'
+                  type: prod.slug === 'reformer-casa' ? 'detail' as const : 'main' as const,
+                  label: prod.slug === 'reformer-casa' ? `Acabado ${FINISHES[finish]?.name || ''}` : 'Vista principal'
                 },
                 {
                   src: FINISHES[finish]?.img || prod.image,

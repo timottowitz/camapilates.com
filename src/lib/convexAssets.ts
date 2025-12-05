@@ -27,6 +27,9 @@ export const CONVEX_IMAGE_NAMES = {
   SHOP_HERO: 'shopHero',
   FEATURED_PRODUCTS: 'featuredProducts',
 
+  // Product editorial images
+  REFORMER_EDITORIAL_1: 'reformerEditorial1',
+
   // Category icons
   CAT_REFORMERS: 'catReformers',
   CAT_ACCESSORIES: 'catAccessories',
@@ -58,6 +61,7 @@ const FALLBACKS = {
   heroEdelweiss: '/images/hero-edelweiss.webp',
   shopHero: '/images/reformer-pro.png',
   featuredProducts: '/images/reformer-home.png',
+  reformerEditorial1: '/images/reformer-editorial-1.webp',
   catReformers: '/images/cat-icon-reformers.png',
   catAccessories: '/images/cat-icon-accessories.png',
   catRopa: '/images/cat-icon-ropa.png',
@@ -78,6 +82,7 @@ export function useConvexAssets() {
   const heroEdelweiss = useConvexImage(CONVEX_IMAGE_NAMES.HERO_EDELWEISS, getVersionedImageUrl(FALLBACKS.heroEdelweiss));
   const shopHero = useConvexImage(CONVEX_IMAGE_NAMES.SHOP_HERO, getVersionedImageUrl(FALLBACKS.shopHero));
   const featuredProducts = useConvexImage(CONVEX_IMAGE_NAMES.FEATURED_PRODUCTS, getVersionedImageUrl(FALLBACKS.featuredProducts));
+  const reformerEditorial1 = useConvexImage(CONVEX_IMAGE_NAMES.REFORMER_EDITORIAL_1, getVersionedImageUrl(FALLBACKS.reformerEditorial1));
   const catReformers = useConvexImage(CONVEX_IMAGE_NAMES.CAT_REFORMERS, getVersionedImageUrl(FALLBACKS.catReformers));
   const catAccessories = useConvexImage(CONVEX_IMAGE_NAMES.CAT_ACCESSORIES, getVersionedImageUrl(FALLBACKS.catAccessories));
   const catRopa = useConvexImage(CONVEX_IMAGE_NAMES.CAT_ROPA, getVersionedImageUrl(FALLBACKS.catRopa));
@@ -93,6 +98,7 @@ export function useConvexAssets() {
     heroEdelweiss,
     shopHero,
     featuredProducts,
+    reformerEditorial1,
     catReformers,
     catAccessories,
     catRopa,
