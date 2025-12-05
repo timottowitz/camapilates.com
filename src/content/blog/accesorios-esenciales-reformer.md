@@ -1,5 +1,5 @@
 ---
-title: Accesorios Esenciales Reformer – reformer pilates
+title: Accesorios Esenciales Reformer
 description: >-
   Guía práctica sobre accesorios esenciales reformer con enfoque en México:
   consejos y pasos accionables.
@@ -16,7 +16,7 @@ heroImage: >-
   https://spotted-raven-102.convex.cloud/api/storage/35069ac2-963c-479f-b55c-e7f18a91f120
 ---
 
-# Accesorios Esenciales Reformer – reformer pilates
+# Accesorios Esenciales Reformer
 
 > Nota: Contenido informativo; no es asesoramiento médico.
 

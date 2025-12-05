@@ -1,5 +1,5 @@
 ---
-title: ¿Para qué sirve el Pilates en cama (Reformer)? – reformer pilates
+title: ¿Para qué sirve el Pilates en cama (Reformer)?
 description: >-
   Guía práctica sobre ¿para qué sirve el pilates en cama (reformer)? con enfoque
   en México: consejos y pasos accionables.

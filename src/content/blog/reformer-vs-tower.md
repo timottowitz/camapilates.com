@@ -1,5 +1,5 @@
 ---
-title: 'Reformer vs Tower (Torre): ¿Qué conviene primero? – reformer pilates'
+title: 'Reformer vs Tower (Torre): ¿Qué conviene primero?'
 description: >-
   Guía práctica sobre reformer vs tower (torre): ¿qué conviene primero? con
   enfoque en México: consejos y pasos accionables.

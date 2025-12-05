@@ -1,5 +1,5 @@
 ---
-title: Mejor Reformer para espacios pequeños – reformer pilates
+title: Mejor Reformer para espacios pequeños
 description: >-
   Guía práctica sobre mejor reformer para espacios pequeños con enfoque en
   México: consejos y pasos accionables.

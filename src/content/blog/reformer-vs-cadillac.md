@@ -1,5 +1,5 @@
 ---
-title: 'Reformer vs Cadillac: ¿Cuál elegir primero? – reformer pilates'
+title: 'Reformer vs Cadillac: ¿Cuál elegir primero?'
 description: >-
   Guía práctica sobre reformer vs cadillac: ¿cuál elegir primero? con enfoque en
   México: consejos y pasos accionables.

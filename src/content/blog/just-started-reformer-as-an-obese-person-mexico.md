@@ -1,5 +1,5 @@
 ---
-title: Just started reformer as an obese person (México) – reformer pilates
+title: Just started reformer as an obese person (México)
 description: >-
   Guía práctica sobre just started reformer as an obese person (méxico) con
   enfoque en México: consejos y pasos accionables.

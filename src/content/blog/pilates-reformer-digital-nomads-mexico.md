@@ -1,5 +1,5 @@
 ---
-title: Pilates Reformer for Digital Nomads in Mexico – reformer pilates
+title: Pilates Reformer for Digital Nomads in Mexico
 description: >-
   Guía práctica sobre pilates reformer for digital nomads in mexico con enfoque
   en México: consejos y pasos accionables.

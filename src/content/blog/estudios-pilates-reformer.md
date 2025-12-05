@@ -1,5 +1,5 @@
 ---
-title: 'Estudios de Pilates Reformer: Guía de selección – reformer pilates'
+title: 'Estudios de Pilates Reformer: Guía de selección'
 description: >-
   Guía práctica sobre estudios de pilates reformer: guía de selección con
   enfoque en México: consejos y pasos accionables.

@@ -1,5 +1,5 @@
 ---
-title: 'Pilates Reformer para espalda: Pautas seguras – reformer pilates'
+title: 'Pilates Reformer para espalda: Pautas seguras'
 description: >-
   Guía práctica sobre pilates reformer para espalda: pautas seguras con enfoque
   en México: consejos y pasos accionables.

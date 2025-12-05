@@ -1,5 +1,5 @@
 ---
-title: Beneficios del Pilates en Cama (Reformer) – reformer pilates
+title: Beneficios del Pilates en Cama (Reformer)
 description: >-
   Guía práctica sobre beneficios del pilates en cama (reformer) con enfoque en
   México: consejos y pasos accionables.

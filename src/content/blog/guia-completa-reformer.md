@@ -1,5 +1,5 @@
 ---
-title: 'Guía completa del Reformer: Uso y beneficios – reformer pilates'
+title: 'Guía completa del Reformer: Uso y beneficios'
 description: >-
   Todo lo que necesitas saber del Reformer: cómo funciona, beneficios,
   ejercicios clave y recomendaciones para México.
@@ -16,7 +16,7 @@ heroImage: >-
   https://spotted-raven-102.convex.cloud/api/storage/9ca2ace2-b058-4ede-b404-18df2faaabfb
 ---
 
-# Guía completa del Reformer: Uso y beneficios – reformer pilates
+# Guía completa del Reformer: Uso y beneficios
 
 > Nota: Contenido informativo; no es asesoramiento médico.
 
