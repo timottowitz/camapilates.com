@@ -58,7 +58,7 @@ export const CONVEX_IMAGE_NAMES = {
  * These are the current local image paths
  */
 const FALLBACKS = {
-  heroEdelweiss: '/images/hero-edelweiss.webp',
+  heroEdelweiss: '/images/hero-edelweiss.png',
   shopHero: '/images/shop-hero-bohemian.png',
   featuredProducts: '/images/reformer-home.png',
   reformerEditorial1: '/images/reformer-editorial-1.webp',
