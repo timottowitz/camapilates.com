@@ -224,12 +224,6 @@ const ProductPage: React.FC = () => {
                   label: prod.slug === 'reformer-casa' ? `Acabado ${FINISHES[finish]?.name || ''}` : 'Vista principal'
                 },
                 {
-                  src: FINISHES[finish]?.img || prod.image,
-                  alt: `Acabado ${FINISHES[finish]?.name || ''}`,
-                  type: 'detail',
-                  label: `Acabado ${FINISHES[finish]?.name || ''}`
-                },
-                {
                   src: prod.image,
                   alt: prod.name,
                   type: 'lifestyle',
