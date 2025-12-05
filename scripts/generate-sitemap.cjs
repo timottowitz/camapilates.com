@@ -2,6 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
+const { execSync } = require('child_process');
 
 const ROOT = path.resolve(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT, 'src', 'content', 'blog');
@@ -28,18 +29,41 @@ function iso(d) {
   try { return new Date(d).toISOString().slice(0,10); } catch { return new Date().toISOString().slice(0,10); }
 }
 
+// Get last git commit date for a file
+function getGitLastMod(filePath) {
+  try {
+    const date = execSync(`git log -1 --format=%ci "${filePath}"`, { cwd: ROOT, encoding: 'utf8' }).trim();
+    return date ? iso(date) : null;
+  } catch {
+    return null;
+  }
+}
+
 function build() {
   const origin = process.env.SITE_ORIGIN || 'https://camadepilates.com';
   const now = new Date().toISOString().slice(0,10);
 
+  // Map page routes to their source files for git lastmod
+  const pageFiles = {
+    '/': 'src/pages/Index.tsx',
+    '/about': 'src/pages/About.tsx',
+    '/services': 'src/pages/Services.tsx',
+    '/blog': 'src/pages/Blog.tsx',
+    '/shop': 'src/pages/Shop.tsx',
+    '/products': 'src/pages/Shop.tsx',
+    '/compare': 'src/pages/Compare.tsx',
+    '/certificacion-pilates': 'src/pages/CertificationHub.tsx',
+  };
+
   const urls = [
-    { loc: `${origin}/`, lastmod: now, changefreq: 'weekly', priority: '1.0' },
-    { loc: `${origin}/about`, lastmod: now, changefreq: 'monthly', priority: '0.8' },
-    { loc: `${origin}/services`, lastmod: now, changefreq: 'monthly', priority: '0.9' },
-    { loc: `${origin}/blog`, lastmod: now, changefreq: 'daily', priority: '0.9' },
-    { loc: `${origin}/shop`, lastmod: now, changefreq: 'weekly', priority: '0.8' },
-    { loc: `${origin}/products`, lastmod: now, changefreq: 'weekly', priority: '0.8' },
-    { loc: `${origin}/certificacion-pilates`, lastmod: now, changefreq: 'weekly', priority: '0.8' },
+    { loc: `${origin}/`, lastmod: getGitLastMod(pageFiles['/']) || now, changefreq: 'weekly', priority: '1.0' },
+    { loc: `${origin}/about`, lastmod: getGitLastMod(pageFiles['/about']) || now, changefreq: 'monthly', priority: '0.8' },
+    { loc: `${origin}/services`, lastmod: getGitLastMod(pageFiles['/services']) || now, changefreq: 'monthly', priority: '0.9' },
+    { loc: `${origin}/blog`, lastmod: getGitLastMod(pageFiles['/blog']) || now, changefreq: 'daily', priority: '0.9' },
+    { loc: `${origin}/shop`, lastmod: getGitLastMod(pageFiles['/shop']) || now, changefreq: 'weekly', priority: '0.8' },
+    { loc: `${origin}/products`, lastmod: getGitLastMod(pageFiles['/products']) || now, changefreq: 'weekly', priority: '0.8' },
+    { loc: `${origin}/compare`, lastmod: getGitLastMod(pageFiles['/compare']) || now, changefreq: 'weekly', priority: '0.8' },
+    { loc: `${origin}/certificacion-pilates`, lastmod: getGitLastMod(pageFiles['/certificacion-pilates']) || now, changefreq: 'weekly', priority: '0.8' },
     { loc: `${origin}/certificacion-pilates/cdmx`, lastmod: now, changefreq: 'weekly', priority: '0.7' },
     { loc: `${origin}/certificacion-pilates/guadalajara`, lastmod: now, changefreq: 'weekly', priority: '0.7' },
     { loc: `${origin}/certificacion-pilates/monterrey`, lastmod: now, changefreq: 'weekly', priority: '0.7' },
@@ -69,13 +93,15 @@ function build() {
 
   // Include product pages from JSON catalog
   try {
-    const productsJson = fs.readFileSync(path.join(ROOT, 'src', 'content', 'products.json'), 'utf8');
+    const productsJsonPath = path.join(ROOT, 'src', 'content', 'products.json');
+    const productsJson = fs.readFileSync(productsJsonPath, 'utf8');
     const prods = JSON.parse(productsJson);
+    const productsLastMod = getGitLastMod(productsJsonPath) || now;
     const catMap = new Map();
     for (const p of prods) {
       urls.push({
         loc: `${origin}/product/${encodeURIComponent(p.slug)}`,
-        lastmod: now,
+        lastmod: productsLastMod,
         changefreq: 'weekly',
         priority: '0.7'
       });
@@ -87,7 +113,7 @@ function build() {
       const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
       urls.push({
         loc: `${origin}/shop/category/${slug}`,
-        lastmod: now,
+        lastmod: productsLastMod,
         changefreq: 'weekly',
         priority: '0.6'
       });
