@@ -163,7 +163,10 @@ const Shop: React.FC = () => {
 
       <div className="container mx-auto px-8 md:px-24 py-12 space-y-12">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <h1 className="text-4xl md:text-6xl font-serif italic text-[#2A2624]">Colección</h1>
+          {/* SEO H1 - Visually hidden */}
+          <h1 className="sr-only">Tienda de Camas de Pilates Reformer y Accesorios en México - Edelweiss Pilates</h1>
+          {/* Visual Title */}
+          <p className="text-4xl md:text-6xl font-serif italic text-[#2A2624]" aria-hidden="true">Colección</p>
           <div className="flex items-center gap-4 text-xs uppercase tracking-[0.15em]">
             <a href="https://wa.me/523222787690" className="hover:text-[#3E2723] transition-colors">WhatsApp</a>
             <a href="tel:+523222787690" className="hover:text-[#3E2723] transition-colors">Llamar</a>

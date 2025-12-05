@@ -84,7 +84,12 @@ const Blog: React.FC = () => {
         <div className="max-w-[1800px] mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-6xl font-serif italic text-[#2A2624] mb-6">The Journal</h1>
+            {/* SEO H1 - Visually hidden */}
+            <h1 className="sr-only">
+              Blog de Pilates Reformer: Guías de Compra, Ejercicios y Consejos para México
+            </h1>
+            {/* Visual Title */}
+            <p className="text-4xl md:text-6xl font-serif italic text-[#2A2624] mb-6" aria-hidden="true">The Journal</p>
             <p className="text-lg text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed">
               Guías de compra, ejercicios, mantenimiento y comparativas. Todo sobre la cama de Pilates (Reformer) para casa y estudio.
             </p>

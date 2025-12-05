@@ -39,11 +39,16 @@ const ReformerHero = () => {
       <div className="relative z-20 container mx-auto px-8 md:px-24 py-20 md:py-28">
         <div className="max-w-3xl">
 
-          {/* Main Title */}
+          {/* SEO H1 - Visually hidden but read by Google and screen readers */}
+          <h1 className="sr-only">
+            Cama de Pilates Reformer en México - Edelweiss Pilates | Equipo Premium de Madera de Nogal
+          </h1>
+
+          {/* Visual Title */}
           <FadeIn delay={0.1}>
-            <h1 className="text-6xl md:text-9xl font-serif italic text-white leading-[0.9] mb-4">
+            <p className="text-6xl md:text-9xl font-serif italic text-white leading-[0.9] mb-4" aria-hidden="true">
               Edelweiss.
-            </h1>
+            </p>
           </FadeIn>
 
           {/* Tagline */}
