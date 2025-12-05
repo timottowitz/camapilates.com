@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
@@ -21,6 +21,24 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: nu
 
 const LuxuryLayout = ({ children, className = "", noPadding = false }: LuxuryLayoutProps) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const location = useLocation();
+    
+    // Pages with dark hero backgrounds that need white text initially
+    const darkHeroPages = ['/', '/compare'];
+    const hasDarkHero = darkHeroPages.includes(location.pathname);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            // Switch to blend mode after scrolling past hero (~500px)
+            setIsScrolled(window.scrollY > 500);
+        };
+        
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Check initial state
+        
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const navLinks = [
         { to: '/shop', label: 'Tienda' },
@@ -34,7 +52,15 @@ const LuxuryLayout = ({ children, className = "", noPadding = false }: LuxuryLay
     return (
         <div className={`min-h-screen bg-[#EAE8E4] text-[#2A2624] font-sans selection:bg-[#3E2723] selection:text-white ${className}`}>
             {/* Minimal Header */}
-            <header className="fixed top-0 left-0 right-0 z-50 px-8 py-6 flex justify-between items-center mix-blend-difference text-[#EAE8E4]">
+            {/* On dark hero pages: white text until scrolled, then blend mode */}
+            {/* On other pages: always use blend mode */}
+            <header 
+                className={`fixed top-0 left-0 right-0 z-50 px-8 py-6 flex justify-between items-center transition-colors duration-300 ${
+                    hasDarkHero && !isScrolled 
+                        ? 'text-white' 
+                        : 'mix-blend-difference text-[#EAE8E4]'
+                }`}
+            >
                 <Link to="/" className="text-xl font-serif italic tracking-tight z-50 relative">
                     Edelweiss
                 </Link>
@@ -50,7 +76,9 @@ const LuxuryLayout = ({ children, className = "", noPadding = false }: LuxuryLay
 
                 {/* Mobile Nav Toggle */}
                 <button
-                    className="lg:hidden z-50 relative text-[#EAE8E4] hover:opacity-70 transition-opacity"
+                    className={`lg:hidden z-50 relative hover:opacity-70 transition-opacity ${
+                        hasDarkHero && !isScrolled ? 'text-white' : 'text-[#EAE8E4]'
+                    }`}
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
                     {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
