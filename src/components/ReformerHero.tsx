@@ -20,16 +20,16 @@ const ReformerHero = () => {
   const assets = useConvexAssets();
 
   return (
-    <section className="relative w-full bg-[#EAE8E4] pt-4 px-4 md:pt-6 md:px-6">
-      <div className="relative w-full overflow-hidden rounded-2xl md:rounded-3xl bg-[#2A2624] text-[#EAE8E4]">
+    <section className="relative w-full bg-[#EAE8E4] pt-2 px-2 md:pt-3 md:px-3">
+      <div className="relative w-full overflow-hidden rounded-xl md:rounded-2xl bg-[#2A2624] text-[#EAE8E4]">
         {/* Hero Background Image */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent z-10 rounded-2xl md:rounded-3xl" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent z-10 rounded-xl md:rounded-2xl" />
           {assets.heroEdelweiss && (
             <img
               src={assets.heroEdelweiss}
               alt="Mujer practicando pilates en cama de pilates reformer Edelweiss de madera de nogal con luz natural - equipo premium libre de plasticos para casa y estudio en Mexico"
-              className="absolute inset-0 w-full h-full object-cover object-center rounded-2xl md:rounded-3xl"
+              className="absolute inset-0 w-full h-full object-cover object-center rounded-xl md:rounded-2xl"
               loading="eager"
               fetchPriority="high"
             />
