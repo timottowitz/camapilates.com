@@ -145,22 +145,31 @@ const CityTeachers: React.FC = () => {
                      <Filter className="w-4 h-4" /> Filtros
                    </Button>
                  </SheetTrigger>
-                 <SheetContent side="left" className="w-[300px]">
+                 <SheetContent side="left" className="w-[300px] flex flex-col h-full">
                    <SheetHeader>
                      <SheetTitle className="font-serif italic">Filtrar Instructores</SheetTitle>
                    </SheetHeader>
-                   <div className="py-6 space-y-6">
+                   <div className="py-6 space-y-6 flex-1 overflow-y-auto">
+                     <div className="relative">
+                       <Search className="absolute left-3 top-2.5 h-4 w-4 text-[#5D5550]" />
+                       <Input
+                         placeholder="Buscar por nombre..."
+                         className="pl-9 bg-white border-[#2A2624]/10"
+                         value={searchTerm}
+                         onChange={(e) => setSearchTerm(e.target.value)}
+                       />
+                     </div>
                      <div>
                        <h3 className="text-sm font-medium mb-3 uppercase tracking-wider">Especialidad</h3>
                        <div className="space-y-2">
                          {allSpecializations.map(spec => (
                            <div key={spec} className="flex items-center space-x-2">
-                             <Checkbox 
-                               id={`mobile-spec-${spec}`} 
+                             <Checkbox
+                               id={`mobile-spec-${spec}`}
                                checked={selectedSpecs.includes(spec)}
                                onCheckedChange={() => toggleSpec(spec)}
                              />
-                             <label 
+                             <label
                                htmlFor={`mobile-spec-${spec}`}
                                className="text-sm font-light leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                              >
@@ -170,6 +179,18 @@ const CityTeachers: React.FC = () => {
                          ))}
                        </div>
                      </div>
+                     {(searchTerm || selectedSpecs.length > 0) && (
+                       <Button
+                         variant="ghost"
+                         className="w-full text-xs uppercase tracking-widest text-[#5D5550] hover:text-[#2A2624]"
+                         onClick={() => {
+                           setSearchTerm('');
+                           setSelectedSpecs([]);
+                         }}
+                       >
+                         Limpiar Filtros
+                       </Button>
+                     )}
                    </div>
                  </SheetContent>
                </Sheet>
