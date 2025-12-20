@@ -21,6 +21,9 @@ const APPROVABLE_FIELDS = [
   'bookingUrl',
   'instagram',
   'website',
+  'teachingStyle',
+  'teachingHours',
+  'fullName',  // Update name from claimantName
 ] as const;
 
 type ApprovableField = (typeof APPROVABLE_FIELDS)[number];
@@ -106,6 +109,24 @@ async function approveClaimInternal(
 
     if (approvedFields.includes('languages') && proposedProfile.languages?.length) {
       teacherUpdates.languages = { value: proposedProfile.languages, confidence };
+    }
+
+    // Teaching hours
+    if (
+      approvedFields.includes('teachingHours') &&
+      typeof proposedProfile.teachingHours === 'number'
+    ) {
+      teacherUpdates.teachingHours = { value: proposedProfile.teachingHours, confidence };
+    }
+
+    // Teaching style
+    if (approvedFields.includes('teachingStyle') && proposedProfile.teachingStyle) {
+      teacherUpdates.teachingStyle = { value: proposedProfile.teachingStyle, confidence };
+    }
+
+    // Full name (from claimantName - the user knows their own name)
+    if (approvedFields.includes('fullName') && claim.claimantName) {
+      teacherUpdates.fullName = { value: claim.claimantName, confidence };
     }
 
     // Contact (only WhatsApp + booking)

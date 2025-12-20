@@ -719,6 +719,48 @@ const AdminTeacherClaims: React.FC = () => {
                           });
                         }
 
+                        // Teaching hours
+                        if (typeof profile.teachingHours === 'number') {
+                          fields.push({
+                            key: 'teachingHours',
+                            label: 'Teaching Hours',
+                            current: (teacher as any)?.teachingHours?.value !== undefined
+                              ? `${(teacher as any).teachingHours.value.toLocaleString()} hours`
+                              : <span className="text-sm text-gray-400">—</span>,
+                            proposed: `${profile.teachingHours.toLocaleString()} hours`,
+                          });
+                        }
+
+                        // Teaching style
+                        if (profile.teachingStyle) {
+                          const formatStyle = (style: any) => {
+                            const parts: string[] = [];
+                            if (style?.vibe?.length) parts.push(`Vibe: ${style.vibe.join(', ')}`);
+                            if (style?.classPace) parts.push(`Pace: ${style.classPace}`);
+                            if (style?.musicStyle) parts.push(`Music: ${style.musicStyle}`);
+                            if (style?.classSize) parts.push(`Size: ${style.classSize}`);
+                            return parts.length ? parts.join(' • ') : '—';
+                          };
+                          fields.push({
+                            key: 'teachingStyle',
+                            label: 'Teaching Style',
+                            current: (teacher as any)?.teachingStyle?.value
+                              ? <span className="text-sm">{formatStyle((teacher as any).teachingStyle.value)}</span>
+                              : <span className="text-sm text-gray-400">—</span>,
+                            proposed: <span className="text-sm">{formatStyle(profile.teachingStyle)}</span>,
+                          });
+                        }
+
+                        // Full name (if claimant name differs from current)
+                        if (selectedClaim?.claimantName && selectedClaim.claimantName !== teacher?.fullName?.value) {
+                          fields.push({
+                            key: 'fullName',
+                            label: 'Name Correction',
+                            current: teacher?.fullName?.value || <span className="text-sm text-gray-400">—</span>,
+                            proposed: <span className="font-medium">{selectedClaim.claimantName}</span>,
+                          });
+                        }
+
                         return fields.map((field) => (
                           <div
                             key={field.key}

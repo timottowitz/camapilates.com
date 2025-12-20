@@ -605,6 +605,29 @@ export default defineSchema({
         observedAt: v.number(),
       }),
     })),
+    teachingHours: v.optional(v.object({
+      value: v.number(),
+      confidence: v.object({
+        value: v.number(),
+        level: v.string(),
+        source: v.string(),
+        observedAt: v.number(),
+      }),
+    })),
+    teachingStyle: v.optional(v.object({
+      value: v.object({
+        vibe: v.optional(v.array(v.string())),      // "Motivador", "Técnico", "Relajante"
+        classPace: v.optional(v.string()),           // "slow" | "moderate" | "fast"
+        musicStyle: v.optional(v.string()),          // "none" | "pop" | "classical" | "lofi"
+        classSize: v.optional(v.string()),           // "private_only" | "small_groups" | "large"
+      }),
+      confidence: v.object({
+        value: v.number(),
+        level: v.string(),
+        source: v.string(),
+        observedAt: v.number(),
+      }),
+    })),
     experienceLevel: v.optional(v.object({
       value: v.union(
         v.literal('ENTRY'),

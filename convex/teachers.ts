@@ -1,5 +1,5 @@
 import { v } from 'convex/values';
-import { query, mutation, QueryCtx, MutationCtx } from './_generated/server';
+import { query, mutation, internalMutation, QueryCtx, MutationCtx } from './_generated/server';
 import { Doc, Id } from './_generated/dataModel';
 import { getAdminUserId } from './lib/adminAuth';
 
@@ -917,5 +917,54 @@ export const getSeedSyncStatus = query({
     }
 
     return out;
+  },
+});
+
+// Internal mutation for backfilling teacher data from approved claims
+export const backfillFromClaim = internalMutation({
+  args: {
+    teacherId: v.id('teachers'),
+    updates: v.object({
+      fullName: v.optional(v.string()),
+      teachingHours: v.optional(v.number()),
+      teachingStyle: v.optional(v.object({
+        vibe: v.optional(v.array(v.string())),
+        classPace: v.optional(v.string()),
+        musicStyle: v.optional(v.string()),
+        classSize: v.optional(v.string()),
+      })),
+    }),
+  },
+  handler: async (ctx, { teacherId, updates }) => {
+    const teacher = await ctx.db.get(teacherId);
+    if (!teacher) {
+      return { ok: false, error: 'Teacher not found' };
+    }
+
+    const now = Date.now();
+    const confidence = {
+      value: 0.95,
+      level: 'high' as const,
+      source: 'claim_backfill',
+      observedAt: now,
+    };
+
+    const patch: Record<string, any> = { updatedAt: now };
+
+    if (updates.fullName) {
+      patch.fullName = { value: updates.fullName, confidence };
+    }
+
+    if (typeof updates.teachingHours === 'number') {
+      patch.teachingHours = { value: updates.teachingHours, confidence };
+    }
+
+    if (updates.teachingStyle) {
+      patch.teachingStyle = { value: updates.teachingStyle, confidence };
+    }
+
+    await ctx.db.patch(teacherId, patch);
+
+    return { ok: true };
   },
 });

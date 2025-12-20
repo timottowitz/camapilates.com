@@ -71,6 +71,15 @@ interface TeacherDetail {
     phone?: { value: string };
     whatsapp?: { value: string };
   };
+  teachingHours?: { value: number };
+  teachingStyle?: {
+    value: {
+      vibe?: string[];
+      classPace?: string;
+      musicStyle?: string;
+      classSize?: string;
+    };
+  };
   instagramPosts?: string[];
 }
 
@@ -412,6 +421,47 @@ const TeacherDetail: React.FC = () => {
                     </span>
                   ))}
                 </div>
+              </section>
+            )}
+
+            {/* Teaching Style */}
+            {teacher.teachingStyle?.value && (
+              <section>
+                <h2 className="text-xl font-serif italic text-[#2A2624] mb-4">Estilo de Enseñanza</h2>
+                <div className="space-y-3">
+                  {teacher.teachingStyle.value.vibe && teacher.teachingStyle.value.vibe.length > 0 && (
+                    <div>
+                      <span className="text-sm text-[#5D5550] mr-2">Estilo:</span>
+                      <span className="text-[#2A2624]">{teacher.teachingStyle.value.vibe.join(', ')}</span>
+                    </div>
+                  )}
+                  {teacher.teachingStyle.value.classPace && (
+                    <div>
+                      <span className="text-sm text-[#5D5550] mr-2">Ritmo de clase:</span>
+                      <span className="text-[#2A2624]">
+                        {teacher.teachingStyle.value.classPace === 'slow' && 'Tranquilo'}
+                        {teacher.teachingStyle.value.classPace === 'moderate' && 'Moderado'}
+                        {teacher.teachingStyle.value.classPace === 'fast' && 'Dinámico'}
+                      </span>
+                    </div>
+                  )}
+                  {teacher.teachingStyle.value.musicStyle && (
+                    <div>
+                      <span className="text-sm text-[#5D5550] mr-2">Música:</span>
+                      <span className="text-[#2A2624]">{teacher.teachingStyle.value.musicStyle}</span>
+                    </div>
+                  )}
+                </div>
+              </section>
+            )}
+
+            {/* Teaching Hours */}
+            {teacher.teachingHours?.value && (
+              <section>
+                <h2 className="text-xl font-serif italic text-[#2A2624] mb-4">Experiencia</h2>
+                <p className="text-[#5D5550]">
+                  <span className="font-medium text-[#2A2624]">{teacher.teachingHours.value.toLocaleString()}</span> horas de enseñanza
+                </p>
               </section>
             )}
 
