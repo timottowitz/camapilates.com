@@ -1,5 +1,48 @@
 import { mutation, query } from './_generated/server';
 import { v } from 'convex/values';
+import { Id } from './_generated/dataModel';
+
+// =============================================
+// HELPER: Sync profile photo to teacher record
+// =============================================
+
+async function syncProfilePhoto(ctx: any, teacherId: Id<'teachers'>) {
+  // Get the first active photo (lowest displayOrder)
+  const photos = await ctx.db
+    .query('teacherPhotos')
+    .withIndex('by_teacher_active', (q: any) =>
+      q.eq('teacherId', teacherId).eq('isActive', true)
+    )
+    .collect();
+
+  photos.sort((a: any, b: any) => a.displayOrder - b.displayOrder);
+  const firstPhoto = photos[0];
+
+  if (firstPhoto) {
+    const url = await ctx.storage.getUrl(firstPhoto.storageId);
+    await ctx.db.patch(teacherId, {
+      profilePhoto: {
+        value: {
+          storageId: firstPhoto.storageId.toString(),
+          source: 'upload',
+          url: url || undefined,
+          updatedAt: Date.now(),
+        },
+        confidence: {
+          value: 0.95,
+          level: 'high',
+          source: 'user_upload',
+          observedAt: Date.now(),
+        },
+      },
+    });
+  } else {
+    // No photos - clear the profilePhoto
+    await ctx.db.patch(teacherId, {
+      profilePhoto: undefined,
+    });
+  }
+}
 
 // =============================================
 // HELPER: Verify session and get account/teacher
@@ -290,6 +333,9 @@ export const addPhoto = mutation({
 
     const url = await ctx.storage.getUrl(storageId);
 
+    // Sync profile photo (first photo becomes profile photo)
+    await syncProfilePhoto(ctx, teacher._id);
+
     return {
       ok: true,
       photo: {
@@ -328,6 +374,9 @@ export const deletePhoto = mutation({
     // Soft delete
     await ctx.db.patch(photoId, { isActive: false });
 
+    // Sync profile photo (next photo becomes profile, or clear if none)
+    await syncProfilePhoto(ctx, auth.teacher._id);
+
     return { ok: true };
   },
 });
@@ -351,6 +400,9 @@ export const reorderPhotos = mutation({
       }
       await ctx.db.patch(photoOrder[i], { displayOrder: i });
     }
+
+    // Sync profile photo (first in new order becomes profile photo)
+    await syncProfilePhoto(ctx, auth.teacher._id);
 
     return { ok: true };
   },
