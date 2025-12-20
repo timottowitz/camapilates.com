@@ -1,6 +1,6 @@
 import { mutation, query, action, internalMutation } from './_generated/server';
 import { v } from 'convex/values';
-import { internal } from './_generated/api';
+import { internal, api } from './_generated/api';
 
 // =============================================
 // CRYPTO HELPERS
@@ -463,6 +463,52 @@ export const resendSetupToken = mutation({
         setupToken,
         teacherName: teacher?.fullName?.value || 'Instructor',
       },
+    };
+  },
+});
+
+// =============================================
+// ADMIN: CREATE ACCOUNT FOR EXISTING CLAIM
+// =============================================
+
+// Creates account for a pre-existing approved claim (for migration/backfill)
+export const createAccountForClaim = action({
+  args: { claimId: v.id('teacherClaims') },
+  handler: async (ctx, { claimId }) => {
+    // Get claim details
+    const claim = await ctx.runQuery(internal.teacherClaimsAdmin.getClaimByIdInternal, { claimId });
+
+    if (!claim) {
+      return { ok: false, error: 'Claim not found' };
+    }
+
+    if (claim.status !== 'approved') {
+      return { ok: false, error: 'Claim is not approved' };
+    }
+
+    // Create account
+    const accountResult = await ctx.runMutation(internal.instructorAuth.createAccount, {
+      email: claim.email,
+      teacherId: claim.teacherId,
+      teacherName: claim.teacherName,
+    });
+
+    if (!accountResult.ok) {
+      return { ok: false, error: accountResult.error || 'Failed to create account' };
+    }
+
+    // Send welcome email
+    const emailResult = await ctx.runAction(api.instructorEmail.sendWelcomeEmail, {
+      email: claim.email,
+      teacherName: claim.teacherName,
+      setupToken: accountResult.setupToken!,
+    });
+
+    return {
+      ok: true,
+      accountId: accountResult.accountId,
+      email: claim.email,
+      emailSent: emailResult.ok,
     };
   },
 });

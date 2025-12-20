@@ -1,8 +1,16 @@
 import { v } from 'convex/values';
-import { mutation, query } from './_generated/server';
+import { mutation, query, internalQuery } from './_generated/server';
 import { Doc, Id } from './_generated/dataModel';
 import { getAdminUserId } from './lib/adminAuth';
 import { internal, api } from './_generated/api';
+
+// Internal query to get claim by ID (for admin tooling)
+export const getClaimByIdInternal = internalQuery({
+  args: { claimId: v.id('teacherClaims') },
+  handler: async (ctx, { claimId }) => {
+    return await ctx.db.get(claimId);
+  },
+});
 
 const APPROVABLE_FIELDS = [
   'bio',
