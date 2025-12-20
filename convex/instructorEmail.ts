@@ -23,9 +23,18 @@ function welcomeEmailHtml(teacherName: string, setupUrl: string): string {
 
   <h2 style="color: #333;">¡Hola ${teacherName}!</h2>
 
-  <p>Tu perfil de instructor ha sido <strong>verificado</strong> en el directorio de CAMA Pilates.</p>
+  <p>Tu perfil de instructor ha sido <strong>verificado</strong> en el directorio de CAMA Pilates. ¡Felicidades!</p>
 
-  <p>Ahora puedes configurar tu cuenta para editar tu perfil cuando quieras:</p>
+  <p>Ahora tienes acceso a tu propia cuenta donde puedes:</p>
+
+  <ul style="color: #555; padding-left: 20px;">
+    <li>Actualizar tu biografía y especialidades</li>
+    <li>Subir y organizar tus fotos de perfil</li>
+    <li>Agregar tu WhatsApp, Instagram y enlaces de reserva</li>
+    <li>Mantener tu información siempre actualizada</li>
+  </ul>
+
+  <p><strong>Primer paso:</strong> Crea tu contraseña para activar tu cuenta:</p>
 
   <div style="text-align: center; margin: 30px 0;">
     <a href="${setupUrl}" style="background-color: #8B7355; color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: 500; display: inline-block;">
@@ -33,8 +42,16 @@ function welcomeEmailHtml(teacherName: string, setupUrl: string): string {
     </a>
   </div>
 
+  <div style="background-color: #f8f6f4; padding: 16px; border-radius: 8px; margin: 24px 0;">
+    <p style="margin: 0; color: #555; font-size: 14px;">
+      <strong>¿Cómo acceder después?</strong><br>
+      Una vez que configures tu contraseña, podrás iniciar sesión en cualquier momento en:<br>
+      <a href="${SITE_URL}/mi-perfil" style="color: #8B7355;">camadepilates.com/mi-perfil</a>
+    </p>
+  </div>
+
   <p style="color: #666; font-size: 14px;">
-    Este enlace expira en 7 días. Si no solicitaste esto, puedes ignorar este correo.
+    Este enlace de configuración expira en 7 días. Si expira, puedes solicitar uno nuevo desde la página de inicio de sesión.
   </p>
 
   <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
@@ -52,14 +69,22 @@ function welcomeEmailText(teacherName: string, setupUrl: string): string {
   return `
 ¡Hola ${teacherName}!
 
-Tu perfil de instructor ha sido verificado en el directorio de CAMA Pilates.
+Tu perfil de instructor ha sido verificado en el directorio de CAMA Pilates. ¡Felicidades!
 
-Ahora puedes configurar tu cuenta para editar tu perfil cuando quieras.
+Ahora tienes acceso a tu propia cuenta donde puedes:
+• Actualizar tu biografía y especialidades
+• Subir y organizar tus fotos de perfil
+• Agregar tu WhatsApp, Instagram y enlaces de reserva
+• Mantener tu información siempre actualizada
 
-Configura tu cuenta aquí:
+PRIMER PASO: Crea tu contraseña para activar tu cuenta:
 ${setupUrl}
 
-Este enlace expira en 7 días.
+¿CÓMO ACCEDER DESPUÉS?
+Una vez que configures tu contraseña, podrás iniciar sesión en cualquier momento en:
+${SITE_URL}/mi-perfil
+
+Este enlace de configuración expira en 7 días. Si expira, puedes solicitar uno nuevo desde la página de inicio de sesión.
 
 ---
 CAMA Pilates - Directorio de Instructores
