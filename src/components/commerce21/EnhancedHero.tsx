@@ -55,77 +55,95 @@ export function EnhancedHero({
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#2A2624] via-transparent to-transparent opacity-90" />
 
-        {/* Content */}
+        {/* Content - Editorial Split Layout */}
         <div className="absolute inset-0 flex items-center">
-          <div className="container mx-auto px-8 md:px-12">
-            <div className="max-w-3xl space-y-8">
-              {/* Badge */}
-              <div className="flex items-center gap-4">
-                <Badge className="bg-white/10 backdrop-blur-md text-white border-0 rounded-full px-4 py-1 text-[10px] uppercase tracking-[0.2em] font-sans font-medium hover:bg-white/20 transition-colors">
-                  Limited Edition
-                </Badge>
-              </div>
+          <div className="container mx-auto px-6 md:px-12 lg:px-16">
+            {/* Asymmetric grid: left column for title/CTAs, right column for subtitle */}
+            <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-8 md:gap-4">
 
-              {/* Title */}
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif italic text-white leading-[0.9] animate-in slide-in-from-left duration-700">
-                {title}
-              </h1>
+              {/* LEFT COLUMN - Title, Trust, CTAs */}
+              <div className="max-w-[320px] lg:max-w-[380px] space-y-6">
+                {/* Badge */}
+                <div className="flex items-center gap-4">
+                  <Badge className="bg-white/10 backdrop-blur-md text-white border-0 rounded-full px-4 py-1 text-[10px] uppercase tracking-[0.2em] font-sans font-medium hover:bg-white/20 transition-colors">
+                    Limited Edition
+                  </Badge>
+                </div>
 
-              {/* Subtitle */}
-              <p className="text-sm md:text-base text-white/80 font-light leading-relaxed max-w-xl animate-in slide-in-from-left duration-700 delay-100">
-                {subtitle}
-              </p>
+                {/* Title - Constrained width */}
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif italic text-white leading-[0.95] animate-in slide-in-from-left duration-700">
+                  {title}
+                </h1>
 
-              {/* Trust Indicators */}
-              <div className="flex flex-wrap items-center gap-6 text-[10px] uppercase tracking-[0.15em] text-white/60 animate-in slide-in-from-left duration-700 delay-200 font-sans">
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-3 w-3 fill-white text-white" />
-                    ))}
+                {/* Trust Indicators */}
+                <div className="flex flex-wrap items-center gap-4 text-[10px] uppercase tracking-[0.15em] text-white/60 animate-in slide-in-from-left duration-700 delay-100 font-sans">
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-3 w-3 fill-white text-white" />
+                      ))}
+                    </div>
+                    <span className="text-white">4.9/5</span>
                   </div>
-                  <span className="text-white">4.9/5</span>
+                  <div className="h-3 w-px bg-white/20" />
+                  <div className="flex items-center gap-2">
+                    <span>1,247+ Sold</span>
+                  </div>
                 </div>
-                <div className="h-3 w-px bg-white/20" />
-                <div className="flex items-center gap-2">
-                  <span>1,247+ Sold</span>
-                </div>
-              </div>
 
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 animate-in slide-in-from-left duration-700 delay-300 pt-4">
-                <Link
-                  to={ctaPrimary.href}
-                  className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#EAE8E4] text-[#2A2624] text-xs uppercase tracking-[0.2em] hover:bg-white transition-all duration-300"
-                >
-                  {ctaPrimary.text}
-                </Link>
-
-                <Link
-                  to={ctaSecondary.href}
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-white/30 text-white text-xs uppercase tracking-[0.2em] hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
-                >
-                  {ctaSecondary.text}
-                </Link>
-
-                {/* Play Video Button (if video provided) */}
-                {videoUrl && !isVideoPlaying && (
-                  <button
-                    onClick={() => setIsVideoPlaying(true)}
-                    className="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-white/30 text-white text-xs uppercase tracking-[0.2em] hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
+                {/* CTAs */}
+                <div className="flex flex-col sm:flex-row items-start gap-3 animate-in slide-in-from-left duration-700 delay-200 pt-2">
+                  <Link
+                    to={ctaPrimary.href}
+                    className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#EAE8E4] text-[#2A2624] text-[10px] uppercase tracking-[0.2em] hover:bg-white transition-all duration-300"
                   >
-                    <Play className="h-3 w-3" />
-                    Demo
-                  </button>
-                )}
+                    {ctaPrimary.text}
+                  </Link>
+
+                  <Link
+                    to={ctaSecondary.href}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/30 text-white text-[10px] uppercase tracking-[0.2em] hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
+                  >
+                    {ctaSecondary.text}
+                  </Link>
+
+                  {/* Play Video Button (if video provided) */}
+                  {videoUrl && !isVideoPlaying && (
+                    <button
+                      onClick={() => setIsVideoPlaying(true)}
+                      className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-white/30 text-white text-[10px] uppercase tracking-[0.2em] hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
+                    >
+                      <Play className="h-3 w-3" />
+                      Demo
+                    </button>
+                  )}
+                </div>
               </div>
 
-              {/* Additional trust elements */}
-              <div className="flex flex-wrap items-center gap-6 pt-8 border-t border-white/10 text-[10px] uppercase tracking-[0.15em] text-white/50 animate-in fade-in duration-700 delay-400 font-sans">
-                <span>Free Shipping MX</span>
-                <span>1 Year Warranty</span>
-                <span>Secure Payment</span>
+              {/* RIGHT COLUMN - Subtitle & Secondary Info */}
+              <div className="max-w-[280px] lg:max-w-[320px] md:text-right space-y-6 animate-in slide-in-from-right duration-700 delay-150">
+                {/* Subtitle */}
+                <p className="text-sm md:text-base text-white/80 font-light leading-relaxed">
+                  {subtitle}
+                </p>
+
+                {/* Secondary trust elements */}
+                <div className="flex flex-col gap-2 text-[10px] uppercase tracking-[0.15em] text-white/50 font-sans md:items-end">
+                  <span className="flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full bg-white/40"></span>
+                    Free Shipping MX
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full bg-white/40"></span>
+                    1 Year Warranty
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full bg-white/40"></span>
+                    Secure Payment
+                  </span>
+                </div>
               </div>
+
             </div>
           </div>
         </div>
