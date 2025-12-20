@@ -80,6 +80,10 @@ const TeachersLanding = lazyWithRetry(() => import('./pages/instructores-pilates
 const CityTeachers = lazyWithRetry(() => import('./pages/instructores-pilates/CityTeachers'));
 const ClaimTeacher = lazyWithRetry(() => import('./pages/instructores-pilates/ClaimTeacher'));
 const TeacherDetail = lazyWithRetry(() => import('./pages/instructores-pilates/TeacherDetail'));
+const SetupCuenta = lazyWithRetry(() => import('./pages/instructores-pilates/SetupCuenta'));
+const MiPerfil = lazyWithRetry(() => import('./pages/instructores-pilates/MiPerfil'));
+const EditarPerfil = lazyWithRetry(() => import('./pages/instructores-pilates/EditarPerfil'));
+const ResetPassword = lazyWithRetry(() => import('./pages/instructores-pilates/ResetPassword'));
 
 import GAListener from "@/components/analytics/GAListener";
 import FloatingCart21 from "@/components/commerce21/FloatingCart21";
@@ -157,6 +161,12 @@ const App = () => (
               <Route path="/instructores-pilates" element={<Suspense fallback={<PageLoader />}><TeachersLanding /></Suspense>} />
               <Route path="/instructores-pilates/:city/:slug" element={<Suspense fallback={<PageLoader />}><TeacherDetail /></Suspense>} />
               <Route path="/instructores-pilates/:city" element={<Suspense fallback={<PageLoader />}><CityTeachers /></Suspense>} />
+
+              {/* Instructor Account Routes */}
+              <Route path="/setup-cuenta" element={<Suspense fallback={<PageLoader />}><SetupCuenta /></Suspense>} />
+              <Route path="/mi-perfil" element={<Suspense fallback={<PageLoader />}><MiPerfil /></Suspense>} />
+              <Route path="/mi-perfil/editar" element={<Suspense fallback={<PageLoader />}><EditarPerfil /></Suspense>} />
+              <Route path="/reset-password" element={<Suspense fallback={<PageLoader />}><ResetPassword /></Suspense>} />
 
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />

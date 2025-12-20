@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { useMutation, useQuery } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
 import { Id } from '../../../convex/_generated/dataModel';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
-import { CheckCircle, UserCheck, ArrowLeft, ArrowRight, User, Briefcase, Phone, Image as ImageIcon } from 'lucide-react';
+import { CheckCircle, UserCheck, ArrowLeft, ArrowRight, User, Briefcase, Phone, Image as ImageIcon, Save, Cloud } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -69,6 +69,12 @@ const ClaimTeacher: React.FC = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
 
+  // Draft/checkpoint state
+  const [draftId, setDraftId] = useState<Id<'teacherClaims'> | null>(null);
+  const [saving, setSaving] = useState(false);
+  const [lastSaved, setLastSaved] = useState<Date | null>(null);
+  const [draftLoaded, setDraftLoaded] = useState(false);
+
   // Step 1: Identity
   const [identity, setIdentity] = useState({
     name: '',
@@ -105,7 +111,10 @@ const ClaimTeacher: React.FC = () => {
   // Step 4: Photos
   const [photos, setPhotos] = useState<UploadedPhoto[]>([]);
 
+  // Mutations
   const submitClaim = useMutation(api.teacherClaims.submitWithProfile);
+  const saveDraftMutation = useMutation(api.teacherClaims.saveDraft);
+  const submitDraftMutation = useMutation(api.teacherClaims.submitDraft);
 
   const didPrefillProfile = useRef(false);
   useEffect(() => {
@@ -135,6 +144,142 @@ const ClaimTeacher: React.FC = () => {
       navigate('/instructores-pilates');
     }
   }, [teacherSlug, normalizedCitySlug, navigate]);
+
+  // Query for existing draft when we have teacher and valid email
+  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(identity.email);
+  const existingDraft = useQuery(
+    api.teacherClaims.getDraft,
+    hasConvex && teacher?._id && isValidEmail && !draftLoaded
+      ? { teacherId: teacher._id, email: identity.email }
+      : 'skip'
+  );
+
+  // Load draft data into form when found
+  useEffect(() => {
+    if (!existingDraft || draftLoaded) return;
+
+    // Restore identity
+    setIdentity({
+      name: existingDraft.claimantName || '',
+      email: existingDraft.email || '',
+      phone: existingDraft.phone || '',
+      role: existingDraft.relationship || 'self',
+      message: existingDraft.message || '',
+    });
+
+    // Restore profile from proposedProfile
+    if (existingDraft.proposedProfile) {
+      const pp = existingDraft.proposedProfile;
+      setProfile({
+        bio: pp.bio || '',
+        specializations: pp.specializations || [],
+        experienceYears: pp.experienceYears?.toString() || '',
+        languages: pp.languages || [],
+        teachingStyle: {
+          vibe: pp.teachingStyle?.vibe || [],
+          classPace: pp.teachingStyle?.classPace || 'moderate',
+          musicStyle: pp.teachingStyle?.musicStyle || '',
+          classSize: pp.teachingStyle?.classSize || '',
+        },
+        trainingLineage: pp.trainingLineage || '',
+        teachingHours: pp.teachingHours?.toString() || '',
+      });
+
+      // Restore contact
+      setContact({
+        whatsapp: pp.whatsapp || '',
+        bookingUrl: pp.bookingUrl || '',
+        instagram: pp.instagram || '',
+        website: pp.website || '',
+      });
+    }
+
+    // Restore photos (note: photos need storageId mapping)
+    if (existingDraft.proposedPhotos && existingDraft.proposedPhotos.length > 0) {
+      setPhotos(existingDraft.proposedPhotos.map((p: any) => ({
+        storageId: p.storageId,
+        type: p.type,
+        caption: p.caption || '',
+        previewUrl: '', // Will need to be fetched
+      })));
+    }
+
+    // Set draft tracking state
+    setDraftId(existingDraft.claimId);
+    setCurrentStep(existingDraft.lastSavedStep || 1);
+    setLastSaved(new Date(existingDraft.updatedAt));
+    setDraftLoaded(true);
+  }, [existingDraft, draftLoaded]);
+
+  // Save checkpoint function
+  const saveCheckpoint = useCallback(async (step: number) => {
+    if (!teacher || !identity.name || !identity.email || !identity.phone) return;
+
+    setSaving(true);
+    try {
+      const parseOptionalInt = (value: string): number | undefined => {
+        const trimmed = value.trim();
+        if (!trimmed) return undefined;
+        const num = Number.parseInt(trimmed, 10);
+        if (!Number.isFinite(num)) return undefined;
+        return num;
+      };
+
+      const proposedProfile = {
+        bio: profile.bio || undefined,
+        specializations: profile.specializations.length > 0 ? profile.specializations : undefined,
+        experienceYears: parseOptionalInt(profile.experienceYears),
+        languages: profile.languages.length > 0 ? profile.languages : undefined,
+        teachingStyle: profile.teachingStyle.vibe.length > 0 ? {
+          vibe: profile.teachingStyle.vibe,
+          classPace: profile.teachingStyle.classPace || undefined,
+          musicStyle: profile.teachingStyle.musicStyle || undefined,
+          classSize: profile.teachingStyle.classSize || undefined,
+        } : undefined,
+        trainingLineage: profile.trainingLineage || undefined,
+        teachingHours: parseOptionalInt(profile.teachingHours),
+        whatsapp: contact.whatsapp || undefined,
+        bookingUrl: contact.bookingUrl || undefined,
+        instagram: contact.instagram || undefined,
+        website: contact.website || undefined,
+      };
+
+      const proposedPhotos = photos
+        .filter(p => p.storageId)
+        .map(p => ({
+          storageId: p.storageId as Id<'_storage'>,
+          type: p.type,
+          caption: p.caption,
+        }));
+
+      const result = await saveDraftMutation({
+        teacherId: teacher._id,
+        teacherSlug,
+        teacherName: teacher.fullName.value,
+        citySlug: normalizedCitySlug,
+        currentStep: step,
+        claimantName: identity.name,
+        email: identity.email,
+        phone: identity.phone,
+        relationship: identity.role,
+        message: identity.message || undefined,
+        proposedProfile: Object.keys(proposedProfile).some(k => proposedProfile[k as keyof typeof proposedProfile] !== undefined)
+          ? proposedProfile
+          : undefined,
+        proposedPhotos: proposedPhotos.length > 0 ? proposedPhotos : undefined,
+      });
+
+      if (result.success) {
+        setDraftId(result.claimId);
+        setLastSaved(new Date());
+        setDraftLoaded(true); // Mark as loaded to prevent re-querying
+      }
+    } catch (err) {
+      console.error('Failed to save checkpoint:', err);
+    } finally {
+      setSaving(false);
+    }
+  }, [teacher, teacherSlug, normalizedCitySlug, identity, profile, contact, photos, saveDraftMutation]);
 
   if (!hasConvex) {
     return (
@@ -197,31 +342,52 @@ const ClaimTeacher: React.FC = () => {
     }
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (validateStep(currentStep)) {
+      // Save checkpoint before moving to next step
+      await saveCheckpoint(currentStep);
       setCurrentStep(prev => Math.min(prev + 1, 4));
     }
   };
 
-  const handleBack = () => {
+  const handleBack = async () => {
+    // Save current step before going back
+    if (validateStep(1)) { // Only save if step 1 is valid (required fields)
+      await saveCheckpoint(currentStep);
+    }
     setCurrentStep(prev => Math.max(prev - 1, 1));
   };
 
   const handleSubmit = async () => {
     if (!teacher) return;
 
-    const parseOptionalInt = (value: string): number | undefined => {
-      const trimmed = value.trim();
-      if (!trimmed) return undefined;
-      const num = Number.parseInt(trimmed, 10);
-      if (!Number.isFinite(num)) return undefined;
-      return num;
-    };
-
     setLoading(true);
     setError('');
 
     try {
+      // First save the final step checkpoint
+      await saveCheckpoint(4);
+
+      // If we have a draft, use submitDraft to convert it to pending_review
+      if (draftId) {
+        const result = await submitDraftMutation({ claimId: draftId });
+        if (result.success) {
+          setSuccess(true);
+        } else {
+          setError(result.error || 'Hubo un error al enviar tu solicitud.');
+        }
+        return;
+      }
+
+      // Fallback: submit directly (shouldn't happen if checkpoints work, but kept for safety)
+      const parseOptionalInt = (value: string): number | undefined => {
+        const trimmed = value.trim();
+        if (!trimmed) return undefined;
+        const num = Number.parseInt(trimmed, 10);
+        if (!Number.isFinite(num)) return undefined;
+        return num;
+      };
+
       const proposedProfile = {
         bio: profile.bio || undefined,
         specializations: profile.specializations.length > 0 ? profile.specializations : undefined,
@@ -257,8 +423,8 @@ const ClaimTeacher: React.FC = () => {
         phone: identity.phone,
         relationship: identity.role,
         message: identity.message || undefined,
-        proposedProfile: Object.keys(proposedProfile).some(k => proposedProfile[k as keyof typeof proposedProfile] !== undefined) 
-          ? proposedProfile 
+        proposedProfile: Object.keys(proposedProfile).some(k => proposedProfile[k as keyof typeof proposedProfile] !== undefined)
+          ? proposedProfile
           : undefined,
         proposedPhotos: proposedPhotos.length > 0 ? proposedPhotos : undefined,
       });
@@ -411,30 +577,49 @@ const ClaimTeacher: React.FC = () => {
 
             {/* Form area */}
             <div className="md:col-span-2">
-              {/* Step indicator */}
-              <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-2">
-                {STEPS.map((step, index) => (
-                  <React.Fragment key={step.id}>
-                    <button
-                      type="button"
-                      onClick={() => step.id < currentStep && setCurrentStep(step.id)}
-                      className={`flex items-center gap-2 px-3 py-2 rounded-full text-xs font-medium transition-colors ${
-                        currentStep === step.id
-                          ? 'bg-[#2A2624] text-white'
-                          : currentStep > step.id
-                          ? 'bg-[#3E2723]/10 text-[#3E2723] cursor-pointer hover:bg-[#3E2723]/20'
-                          : 'bg-gray-100 text-gray-400'
-                      }`}
-                      disabled={step.id > currentStep}
-                    >
-                      <step.icon className="w-4 h-4" />
-                      <span className="hidden sm:inline">{step.title}</span>
-                    </button>
-                    {index < STEPS.length - 1 && (
-                      <div className={`w-8 h-0.5 ${currentStep > step.id ? 'bg-[#3E2723]' : 'bg-gray-200'}`} />
+              {/* Step indicator with save status */}
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center gap-2 overflow-x-auto pb-2">
+                  {STEPS.map((step, index) => (
+                    <React.Fragment key={step.id}>
+                      <button
+                        type="button"
+                        onClick={() => step.id < currentStep && setCurrentStep(step.id)}
+                        className={`flex items-center gap-2 px-3 py-2 rounded-full text-xs font-medium transition-colors ${
+                          currentStep === step.id
+                            ? 'bg-[#2A2624] text-white'
+                            : currentStep > step.id
+                            ? 'bg-[#3E2723]/10 text-[#3E2723] cursor-pointer hover:bg-[#3E2723]/20'
+                            : 'bg-gray-100 text-gray-400'
+                        }`}
+                        disabled={step.id > currentStep}
+                      >
+                        <step.icon className="w-4 h-4" />
+                        <span className="hidden sm:inline">{step.title}</span>
+                      </button>
+                      {index < STEPS.length - 1 && (
+                        <div className={`w-8 h-0.5 ${currentStep > step.id ? 'bg-[#3E2723]' : 'bg-gray-200'}`} />
                     )}
                   </React.Fragment>
                 ))}
+                </div>
+
+                {/* Save status indicator */}
+                {(saving || lastSaved) && (
+                  <div className="flex items-center gap-2 text-xs text-[#5D5550] flex-shrink-0">
+                    {saving ? (
+                      <>
+                        <Save className="w-3 h-3 animate-pulse" />
+                        <span>Guardando...</span>
+                      </>
+                    ) : lastSaved ? (
+                      <>
+                        <Cloud className="w-3 h-3 text-green-600" />
+                        <span className="text-green-600">Borrador guardado</span>
+                      </>
+                    ) : null}
+                  </div>
+                )}
               </div>
 
               <div className="bg-white border border-[#2A2624]/10 rounded-lg p-6 md:p-8 shadow-sm">

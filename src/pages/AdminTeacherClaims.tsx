@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery, useMutation } from 'convex/react';
+import { useQuery, useMutation, useAction } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import { Id } from '../../convex/_generated/dataModel';
 import { Button } from '@/components/ui/button';
@@ -67,6 +67,14 @@ interface ProposedProfile {
   homeVisits?: boolean;
 }
 
+const isNonEmptyString = (value: unknown): value is string =>
+  typeof value === 'string' && value.trim().length > 0;
+
+const asStringArray = (value: unknown): string[] =>
+  Array.isArray(value)
+    ? value.filter((item): item is string => typeof item === 'string' && item.trim().length > 0)
+    : [];
+
 const AdminTeacherClaims: React.FC = () => {
   const [selectedClaimId, setSelectedClaimId] = useState<Id<'teacherClaims'> | null>(null);
   const [approvedFields, setApprovedFields] = useState<string[]>([]);
@@ -85,11 +93,15 @@ const AdminTeacherClaims: React.FC = () => {
     api.teacherClaimsAdmin.getClaimDetails,
     selectedClaimId && token ? { claimId: selectedClaimId, token } : 'skip'
   );
+  const claimTeacherName = isNonEmptyString(claimDetails?.claim?.teacherName)
+    ? claimDetails.claim.teacherName
+    : 'Instructor';
 
   const approveMutation = useMutation(api.teacherClaimsAdmin.approve);
   const approveAllMutation = useMutation(api.teacherClaimsAdmin.approveAll);
   const rejectMutation = useMutation(api.teacherClaimsAdmin.reject);
   const deleteMutation = useMutation(api.teacherClaimsAdmin.deleteClaim);
+  const sendWelcomeEmailAction = useAction(api.instructorEmail.sendWelcomeEmail);
 
   const handleOpenReview = (claimId: Id<'teacherClaims'>) => {
     setSelectedClaimId(claimId);
@@ -211,7 +223,22 @@ const AdminTeacherClaims: React.FC = () => {
         adminNotes: adminNotes || undefined,
       });
       if (result.success) {
-        toast.success('Claim approved successfully');
+        // Send welcome email if account was created
+        if (result.accountCreated && result.setupToken && result.email) {
+          try {
+            await sendWelcomeEmailAction({
+              email: result.email,
+              teacherName: result.teacherName || 'Instructor',
+              setupToken: result.setupToken,
+            });
+            toast.success('Claim approved and welcome email sent');
+          } catch (emailErr) {
+            console.error('Failed to send welcome email:', emailErr);
+            toast.success('Claim approved (email failed to send)');
+          }
+        } else {
+          toast.success('Claim approved successfully');
+        }
         handleCloseReview();
       } else {
         toast.error(result.error || 'Failed to approve claim');
@@ -229,7 +256,22 @@ const AdminTeacherClaims: React.FC = () => {
     try {
       const result = await approveAllMutation({ token, claimId });
       if (result.success) {
-        toast.success('Claim approved successfully');
+        // Send welcome email if account was created
+        if (result.accountCreated && result.setupToken && result.email) {
+          try {
+            await sendWelcomeEmailAction({
+              email: result.email,
+              teacherName: result.teacherName || 'Instructor',
+              setupToken: result.setupToken,
+            });
+            toast.success('Claim approved and welcome email sent');
+          } catch (emailErr) {
+            console.error('Failed to send welcome email:', emailErr);
+            toast.success('Claim approved (email failed to send)');
+          }
+        } else {
+          toast.success('Claim approved successfully');
+        }
       } else {
         toast.error(result.error || 'Failed to approve claim');
       }
@@ -474,7 +516,7 @@ const AdminTeacherClaims: React.FC = () => {
               <DialogTitle className="flex items-center gap-2">
                 <User className="w-5 h-5" />
                 <span className="flex items-center gap-2">
-                  Review Claim: {claimDetails?.claim.teacherName}
+                  Review Claim: {claimTeacherName}
                   {claimDetails?.claim?.teacherSlug && claimDetails?.claim?.citySlug && (
                     <a
                       href={`/instructores-pilates/${claimDetails.claim.citySlug}/${normalizeTeacherSlugForUrl(
@@ -539,7 +581,7 @@ const AdminTeacherClaims: React.FC = () => {
                           proposed: React.ReactNode;
                         }> = [];
 
-                        if (profile.bio) {
+                        if (isNonEmptyString(profile.bio)) {
                           fields.push({
                             key: 'bio',
                             label: 'Bio',
@@ -547,20 +589,22 @@ const AdminTeacherClaims: React.FC = () => {
                             proposed: <p className="text-sm">{profile.bio}</p>,
                           });
                         }
-                        if (profile.specializations?.length) {
+                        const proposedSpecializations = asStringArray(profile.specializations);
+                        const currentSpecializations = asStringArray(teacher?.specializations?.value);
+                        if (proposedSpecializations.length) {
                           fields.push({
                             key: 'specializations',
                             label: 'Specializations',
-                            current: teacher?.specializations?.value?.length ? (
+                            current: currentSpecializations.length ? (
                               <div className="flex flex-wrap gap-1">
-                                {teacher.specializations.value.map((s: string, i: number) => (
+                                {currentSpecializations.map((s, i) => (
                                   <Badge key={i} variant="outline">{s}</Badge>
                                 ))}
                               </div>
                             ) : <span className="text-sm text-gray-400">—</span>,
                             proposed: (
                               <div className="flex flex-wrap gap-1">
-                                {profile.specializations.map((s, i) => (
+                                {proposedSpecializations.map((s, i) => (
                                   <Badge key={i} variant="secondary">{s}</Badge>
                                 ))}
                               </div>
@@ -577,17 +621,19 @@ const AdminTeacherClaims: React.FC = () => {
                             proposed: `${profile.experienceYears} years`,
                           });
                         }
-                        if (profile.languages?.length) {
+                        const proposedLanguages = asStringArray(profile.languages);
+                        const currentLanguages = asStringArray(teacher?.languages?.value);
+                        if (proposedLanguages.length) {
                           fields.push({
                             key: 'languages',
                             label: 'Languages',
-                            current: teacher?.languages?.value?.length
-                              ? teacher.languages.value.join(', ')
+                            current: currentLanguages.length
+                              ? currentLanguages.join(', ')
                               : <span className="text-sm text-gray-400">—</span>,
-                            proposed: profile.languages.join(', '),
+                            proposed: proposedLanguages.join(', '),
                           });
                         }
-                        if (profile.whatsapp) {
+                        if (isNonEmptyString(profile.whatsapp)) {
                           fields.push({
                             key: 'whatsapp',
                             label: 'WhatsApp',
@@ -597,18 +643,21 @@ const AdminTeacherClaims: React.FC = () => {
                             proposed: profile.whatsapp,
                           });
                         }
-                        if (profile.bookingUrl) {
+                        if (isNonEmptyString(profile.bookingUrl)) {
+                          const currentBookingUrl = isNonEmptyString(teacher?.contact?.bookingUrl?.value)
+                            ? teacher.contact.bookingUrl.value
+                            : '';
                           fields.push({
                             key: 'bookingUrl',
                             label: 'Booking URL',
-                            current: teacher?.contact?.bookingUrl?.value ? (
+                            current: currentBookingUrl ? (
                               <a
-                                href={teacher.contact.bookingUrl.value}
+                                href={currentBookingUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-blue-600 hover:underline flex items-center gap-1"
                               >
-                                {teacher.contact.bookingUrl.value.slice(0, 40)}...
+                                {currentBookingUrl.slice(0, 40)}...
                                 <ExternalLink className="w-3 h-3" />
                               </a>
                             ) : <span className="text-sm text-gray-400">—</span>,
@@ -625,8 +674,11 @@ const AdminTeacherClaims: React.FC = () => {
                             ),
                           });
                         }
-                        if (profile.instagram) {
-                          const currentHandle = instagramHandle(teacher?.social?.instagram?.value);
+                        if (isNonEmptyString(profile.instagram)) {
+                          const currentInstagram = isNonEmptyString(teacher?.social?.instagram?.value)
+                            ? teacher.social.instagram.value
+                            : '';
+                          const currentHandle = instagramHandle(currentInstagram);
                           const proposedHandle = instagramHandle(profile.instagram) ?? profile.instagram;
                           fields.push({
                             key: 'instagram',
@@ -635,18 +687,21 @@ const AdminTeacherClaims: React.FC = () => {
                             proposed: proposedHandle,
                           });
                         }
-                        if (profile.website) {
+                        if (isNonEmptyString(profile.website)) {
+                          const currentWebsite = isNonEmptyString(teacher?.social?.website?.value)
+                            ? teacher.social.website.value
+                            : '';
                           fields.push({
                             key: 'website',
                             label: 'Website',
-                            current: teacher?.social?.website?.value ? (
+                            current: currentWebsite ? (
                               <a
-                                href={teacher.social.website.value}
+                                href={currentWebsite}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-blue-600 hover:underline flex items-center gap-1"
                               >
-                                {teacher.social.website.value}
+                                {currentWebsite}
                                 <ExternalLink className="w-3 h-3" />
                               </a>
                             ) : <span className="text-sm text-gray-400">—</span>,

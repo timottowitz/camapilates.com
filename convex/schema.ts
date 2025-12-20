@@ -814,10 +814,14 @@ export default defineSchema({
     message: v.optional(v.string()),
 
     // === VERIFICATION ===
-    status: v.string(),        // 'email_pending' | 'pending_review' | 'approved' | 'rejected'
+    status: v.string(),        // 'draft' | 'email_pending' | 'pending_review' | 'approved' | 'rejected'
     verificationToken: v.optional(v.string()),  // Hashed 6-digit code
     tokenExpiresAt: v.optional(v.number()),
     emailVerifiedAt: v.optional(v.number()),
+
+    // === DRAFT CHECKPOINT TRACKING ===
+    completedSteps: v.optional(v.array(v.number())),  // [1, 2, 3] = steps 1-3 saved
+    lastSavedStep: v.optional(v.number()),            // Last step user was viewing
 
     // === PROPOSED PROFILE (Rich data from claim form) ===
     proposedProfile: v.optional(v.object({
@@ -891,7 +895,8 @@ export default defineSchema({
     .index('by_teacher', ['teacherId'])
     .index('by_email', ['email'])
     .index('by_status', ['status'])
-    .index('by_created', ['createdAt']),
+    .index('by_created', ['createdAt'])
+    .index('by_teacher_email', ['teacherId', 'email']),
 
   // Teacher Photos (approved photos from claims)
   teacherPhotos: defineTable({
@@ -907,6 +912,51 @@ export default defineSchema({
     .index('by_teacher', ['teacherId'])
     .index('by_teacher_type', ['teacherId', 'type'])
     .index('by_teacher_active', ['teacherId', 'isActive']),
+
+  // =============================================
+  // INSTRUCTOR ACCOUNTS (SaaS-ready authentication)
+  // =============================================
+  instructorAccounts: defineTable({
+    // Identity
+    email: v.string(),
+    passwordHash: v.string(),
+    salt: v.string(),
+
+    // Profile link
+    teacherId: v.id('teachers'),
+
+    // Account status
+    status: v.string(),  // 'pending_setup' | 'active' | 'suspended'
+
+    // SaaS-ready (unused now, prepared for future)
+    tier: v.optional(v.string()),              // 'free' | 'pro' | 'studio'
+    stripeCustomerId: v.optional(v.string()),
+    subscriptionStatus: v.optional(v.string()), // 'active' | 'past_due' | 'canceled'
+
+    // Tokens
+    setupToken: v.optional(v.string()),
+    setupTokenExpiresAt: v.optional(v.number()),
+    resetToken: v.optional(v.string()),
+    resetTokenExpiresAt: v.optional(v.number()),
+
+    // Timestamps
+    createdAt: v.number(),
+    lastLoginAt: v.optional(v.number()),
+    passwordSetAt: v.optional(v.number()),
+  })
+    .index('by_email', ['email'])
+    .index('by_teacher', ['teacherId'])
+    .index('by_status', ['status'])
+    .index('by_tier', ['tier']),
+
+  instructorSessions: defineTable({
+    token: v.string(),
+    accountId: v.id('instructorAccounts'),
+    expiresAt: v.number(),
+    createdAt: v.number(),
+  })
+    .index('by_token', ['token'])
+    .index('by_account', ['accountId']),
 
   // Cached Instagram profile previews (best-effort; used for teacher pages)
   instagramProfiles: defineTable({

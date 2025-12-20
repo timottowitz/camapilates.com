@@ -411,3 +411,352 @@ export const getStatus = query({
     };
   },
 });
+
+// ============================================================
+// DRAFT / CHECKPOINT SYSTEM
+// ============================================================
+
+// Get existing draft for a teacher+email combination
+export const getDraft = query({
+  args: {
+    teacherId: v.id('teachers'),
+    email: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const email = args.email.trim().toLowerCase().slice(0, 254);
+    if (!EMAIL_REGEX.test(email)) return null;
+
+    const draft = await ctx.db
+      .query('teacherClaims')
+      .withIndex('by_teacher_email', (q) =>
+        q.eq('teacherId', args.teacherId).eq('email', email)
+      )
+      .filter((q) => q.eq(q.field('status'), 'draft'))
+      .first();
+
+    if (!draft) return null;
+
+    // Return full draft data for form restoration
+    return {
+      claimId: draft._id,
+      // Step 1: Identity
+      claimantName: draft.claimantName,
+      email: draft.email,
+      phone: draft.phone,
+      relationship: draft.relationship,
+      message: draft.message,
+      // Step 2-3: Profile & Contact
+      proposedProfile: draft.proposedProfile,
+      // Step 4: Photos
+      proposedPhotos: draft.proposedPhotos,
+      // Checkpoint tracking
+      completedSteps: draft.completedSteps ?? [],
+      lastSavedStep: draft.lastSavedStep ?? 1,
+      updatedAt: draft.updatedAt,
+    };
+  },
+});
+
+// Save draft checkpoint - creates or updates draft at each step
+export const saveDraft = mutation({
+  args: {
+    teacherId: v.id('teachers'),
+    teacherSlug: v.string(),
+    teacherName: v.string(),
+    citySlug: v.string(),
+    currentStep: v.number(),
+
+    // Step 1: Identity (required for draft creation)
+    claimantName: v.string(),
+    email: v.string(),
+    phone: v.string(),
+    relationship: v.string(),
+    message: v.optional(v.string()),
+
+    // Step 2-3: Profile & Contact
+    proposedProfile: v.optional(proposedProfileSchema),
+
+    // Step 4: Photos
+    proposedPhotos: v.optional(v.array(v.object({
+      storageId: v.id('_storage'),
+      type: v.string(),
+      caption: v.optional(v.string()),
+    }))),
+  },
+  handler: async (ctx, args) => {
+    const claimantName = args.claimantName.trim().slice(0, 120);
+    const email = args.email.trim().toLowerCase().slice(0, 254);
+    const phone = args.phone.trim().slice(0, 40);
+    const relationship = args.relationship.trim().slice(0, 40);
+    const message = args.message?.trim().slice(0, 2000);
+
+    if (!EMAIL_REGEX.test(email)) {
+      return { success: false, error: 'Email inválido.' };
+    }
+
+    // Check teacher exists and is claimable
+    const teacher = await ctx.db.get(args.teacherId);
+    if (!teacher || !teacher.isActive) {
+      return { success: false, error: 'Perfil no encontrado.' };
+    }
+    if (teacher.status === 'claimed' || teacher.status === 'verified') {
+      return { success: false, error: 'Este perfil ya fue reclamado.' };
+    }
+
+    // Check for existing non-draft claim
+    const existingClaim = await ctx.db
+      .query('teacherClaims')
+      .withIndex('by_teacher', (q) => q.eq('teacherId', args.teacherId))
+      .filter((q) =>
+        q.and(
+          q.neq(q.field('status'), 'rejected'),
+          q.neq(q.field('status'), 'draft')
+        )
+      )
+      .first();
+
+    if (existingClaim) {
+      return { success: false, error: 'Ya existe una solicitud pendiente para este perfil.' };
+    }
+
+    // Normalize profile data
+    const normalizedBookingUrl = normalizeUrl(args.proposedProfile?.bookingUrl, 500);
+    const normalizedWebsite = normalizeUrl(args.proposedProfile?.website, 500);
+
+    const proposedProfile = args.proposedProfile
+      ? {
+          bio: args.proposedProfile.bio?.trim().slice(0, 5000),
+          specializations: normalizeStringArray(args.proposedProfile.specializations, 30, 80),
+          experienceYears:
+            typeof args.proposedProfile.experienceYears === 'number' &&
+            Number.isFinite(args.proposedProfile.experienceYears)
+              ? Math.max(0, Math.min(args.proposedProfile.experienceYears, 80))
+              : undefined,
+          languages: normalizeStringArray(args.proposedProfile.languages, 15, 40),
+          teachingStyle: args.proposedProfile.teachingStyle
+            ? {
+                vibe: normalizeStringArray(args.proposedProfile.teachingStyle.vibe, 10, 40),
+                classPace: args.proposedProfile.teachingStyle.classPace?.trim().slice(0, 40),
+                musicStyle: args.proposedProfile.teachingStyle.musicStyle?.trim().slice(0, 80),
+                classSize: args.proposedProfile.teachingStyle.classSize?.trim().slice(0, 40),
+              }
+            : undefined,
+          trainingLineage: args.proposedProfile.trainingLineage?.trim().slice(0, 500),
+          teachingHours:
+            typeof args.proposedProfile.teachingHours === 'number' &&
+            Number.isFinite(args.proposedProfile.teachingHours)
+              ? Math.max(0, Math.min(args.proposedProfile.teachingHours, 100000))
+              : undefined,
+          whatsapp: args.proposedProfile.whatsapp?.trim().slice(0, 40),
+          bookingUrl: normalizedBookingUrl,
+          instagram: args.proposedProfile.instagram?.trim().slice(0, 100),
+          website: normalizedWebsite,
+        }
+      : undefined;
+
+    const now = Date.now();
+    const photosWithTimestamp = args.proposedPhotos?.map((photo) => ({
+      storageId: photo.storageId,
+      type: photo.type,
+      caption: photo.caption?.trim().slice(0, 200),
+      uploadedAt: now,
+    }));
+
+    // Find existing draft for this teacher+email
+    const existingDraft = await ctx.db
+      .query('teacherClaims')
+      .withIndex('by_teacher_email', (q) =>
+        q.eq('teacherId', args.teacherId).eq('email', email)
+      )
+      .filter((q) => q.eq(q.field('status'), 'draft'))
+      .first();
+
+    // Calculate completed steps
+    const completedSteps = existingDraft?.completedSteps ?? [];
+    if (!completedSteps.includes(args.currentStep)) {
+      completedSteps.push(args.currentStep);
+      completedSteps.sort((a, b) => a - b);
+    }
+
+    if (existingDraft) {
+      // Update existing draft
+      await ctx.db.patch(existingDraft._id, {
+        claimantName,
+        phone,
+        relationship,
+        message,
+        proposedProfile,
+        proposedPhotos: photosWithTimestamp,
+        completedSteps,
+        lastSavedStep: args.currentStep,
+        updatedAt: now,
+      });
+
+      return { success: true, claimId: existingDraft._id, isNew: false };
+    } else {
+      // Create new draft
+      const claimId = await ctx.db.insert('teacherClaims', {
+        teacherId: args.teacherId,
+        teacherSlug: teacher.slug,
+        teacherName: teacher.fullName.value,
+        citySlug: teacher.citySlug,
+        claimantName,
+        email,
+        phone,
+        relationship,
+        message,
+        proposedProfile,
+        proposedPhotos: photosWithTimestamp,
+        status: 'draft',
+        completedSteps,
+        lastSavedStep: args.currentStep,
+        createdAt: now,
+        updatedAt: now,
+      });
+
+      return { success: true, claimId, isNew: true };
+    }
+  },
+});
+
+// List recent claims with photos (for debugging/admin)
+export const listRecentWithPhotos = query({
+  args: {},
+  handler: async (ctx) => {
+    const claims = await ctx.db.query('teacherClaims').order('desc').take(20);
+
+    const results = [];
+    for (const c of claims) {
+      const photos = c.proposedPhotos;
+      if (photos && photos.length > 0) {
+        results.push({
+          _id: c._id,
+          teacherId: c.teacherId,
+          teacherName: c.teacherName,
+          claimantName: c.claimantName,
+          status: c.status,
+          photoCount: photos.length,
+        });
+      }
+    }
+    return results;
+  },
+});
+
+// Sync photos from a claim to teacherPhotos table
+export const syncPhotos = mutation({
+  args: {
+    claimId: v.id('teacherClaims'),
+  },
+  handler: async (ctx, args) => {
+    const claim = await ctx.db.get(args.claimId);
+    if (!claim) {
+      return { success: false, error: 'Claim not found' };
+    }
+
+    const proposedPhotos = claim.proposedPhotos || [];
+    if (proposedPhotos.length === 0) {
+      return { success: false, error: 'No photos in claim' };
+    }
+
+    // Check existing photos
+    const existingPhotos = await ctx.db
+      .query('teacherPhotos')
+      .withIndex('by_teacher', (q) => q.eq('teacherId', claim.teacherId))
+      .collect();
+
+    const existingStorageIds = new Set(existingPhotos.map((p) => p.storageId));
+    const photosToSync = proposedPhotos.filter(
+      (p) => !existingStorageIds.has(p.storageId)
+    );
+
+    if (photosToSync.length === 0) {
+      return { success: true, message: 'Already synced', syncedCount: 0 };
+    }
+
+    // Validate and insert
+    const now = Date.now();
+    let displayOrder = existingPhotos.length;
+    let syncedCount = 0;
+
+    for (const photo of photosToSync) {
+      const url = await ctx.storage.getUrl(photo.storageId);
+      if (url) {
+        await ctx.db.insert('teacherPhotos', {
+          teacherId: claim.teacherId,
+          storageId: photo.storageId,
+          type: photo.type,
+          caption: photo.caption,
+          displayOrder: displayOrder++,
+          isActive: true,
+          uploadedAt: photo.uploadedAt,
+          approvedAt: now,
+        });
+        syncedCount++;
+      }
+    }
+
+    return {
+      success: true,
+      message: `Synced ${syncedCount} photos for ${claim.teacherName}`,
+      syncedCount,
+    };
+  },
+});
+
+// Submit draft - converts draft to pending_review
+export const submitDraft = mutation({
+  args: {
+    claimId: v.id('teacherClaims'),
+  },
+  handler: async (ctx, args) => {
+    const draft = await ctx.db.get(args.claimId);
+    if (!draft) {
+      return { success: false, error: 'Borrador no encontrado.' };
+    }
+    if (draft.status !== 'draft') {
+      return { success: false, error: 'Esta solicitud ya fue enviada.' };
+    }
+
+    // Validate required fields
+    if (!draft.claimantName || !draft.email || !draft.phone) {
+      return { success: false, error: 'Faltan campos requeridos. Por favor completa el paso 1.' };
+    }
+
+    // Check teacher is still claimable
+    const teacher = await ctx.db.get(draft.teacherId);
+    if (!teacher || !teacher.isActive) {
+      return { success: false, error: 'Perfil no encontrado.' };
+    }
+    if (teacher.status === 'claimed' || teacher.status === 'verified') {
+      return { success: false, error: 'Este perfil ya fue reclamado.' };
+    }
+
+    // Check no other pending claim exists
+    const existingClaim = await ctx.db
+      .query('teacherClaims')
+      .withIndex('by_teacher', (q) => q.eq('teacherId', draft.teacherId))
+      .filter((q) =>
+        q.and(
+          q.neq(q.field('_id'), args.claimId),
+          q.neq(q.field('status'), 'rejected'),
+          q.neq(q.field('status'), 'draft')
+        )
+      )
+      .first();
+
+    if (existingClaim) {
+      return { success: false, error: 'Ya existe una solicitud pendiente para este perfil.' };
+    }
+
+    // Convert draft to pending_review
+    await ctx.db.patch(args.claimId, {
+      status: 'pending_review',
+      completedSteps: [1, 2, 3, 4], // Mark all steps complete on submit
+      lastSavedStep: 4,
+      updatedAt: Date.now(),
+    });
+
+    return { success: true, claimId: args.claimId };
+  },
+});

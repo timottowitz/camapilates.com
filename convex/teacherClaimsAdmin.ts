@@ -2,6 +2,7 @@ import { v } from 'convex/values';
 import { mutation, query } from './_generated/server';
 import { Doc, Id } from './_generated/dataModel';
 import { getAdminUserId } from './lib/adminAuth';
+import { internal, api } from './_generated/api';
 
 const APPROVABLE_FIELDS = [
   'bio',
@@ -223,7 +224,36 @@ async function approveClaimInternal(
     proposedPhotos: approvedPhotos,
   });
 
-  return { success: true as const };
+  // Create instructor account for the claimant
+  let accountCreated = false;
+  let setupToken: string | undefined;
+
+  try {
+    const accountResult = await (ctx as any).runMutation(
+      internal.instructorAuth.createAccount,
+      {
+        email: claim.email,
+        teacherId: claim.teacherId,
+        teacherName: teacher.fullName?.value || claim.teacherName,
+      }
+    );
+
+    if (accountResult.ok && accountResult.setupToken) {
+      accountCreated = true;
+      setupToken = accountResult.setupToken;
+    }
+  } catch (error) {
+    // Account creation failure shouldn't block claim approval
+    console.error('Failed to create instructor account:', error);
+  }
+
+  return {
+    success: true as const,
+    accountCreated,
+    setupToken,
+    email: claim.email,
+    teacherName: teacher.fullName?.value || claim.teacherName,
+  };
 }
 
 // List all pending claims with basic info
@@ -490,5 +520,167 @@ export const approveAll = mutation({
       approvedPhotoIndices: allPhotoIndices,
       adminNotes: args.adminNotes,
     });
+  },
+});
+
+// List all claims with photos (internal use - for finding claims to sync)
+export const listClaimsWithPhotos = query({
+  args: {},
+  handler: async (ctx) => {
+    const claims = await ctx.db.query('teacherClaims').order('desc').take(50);
+
+    return claims
+      .filter((c) => c.proposedPhotos && c.proposedPhotos.length > 0)
+      .map((c) => ({
+        _id: c._id,
+        teacherId: c.teacherId,
+        teacherName: c.teacherName,
+        claimantName: c.claimantName,
+        email: c.email,
+        status: c.status,
+        photoCount: c.proposedPhotos?.length || 0,
+        createdAt: c.createdAt,
+      }));
+  },
+});
+
+// Sync photos from a claim to teacherPhotos (internal use - no auth required)
+export const syncPhotosFromClaimInternal = mutation({
+  args: {
+    claimId: v.id('teacherClaims'),
+  },
+  handler: async (ctx, args) => {
+    const claim = await ctx.db.get(args.claimId);
+    if (!claim) {
+      return { success: false, error: 'Claim not found' };
+    }
+
+    const proposedPhotos = claim.proposedPhotos || [];
+    if (proposedPhotos.length === 0) {
+      return { success: false, error: 'No photos in claim to sync' };
+    }
+
+    // Check if photos already exist for this teacher
+    const existingPhotos = await ctx.db
+      .query('teacherPhotos')
+      .withIndex('by_teacher', (q) => q.eq('teacherId', claim.teacherId))
+      .collect();
+
+    // Filter out photos that are already synced (by storageId)
+    const existingStorageIds = new Set(existingPhotos.map((p) => p.storageId));
+    const photosToSync = proposedPhotos.filter(
+      (p) => !existingStorageIds.has(p.storageId)
+    );
+
+    if (photosToSync.length === 0) {
+      return { success: true, message: 'Photos already synced', syncedCount: 0 };
+    }
+
+    // Validate storage URLs exist before inserting
+    const validPhotos = [];
+    for (const photo of photosToSync) {
+      const url = await ctx.storage.getUrl(photo.storageId);
+      if (url) validPhotos.push(photo);
+    }
+
+    if (validPhotos.length === 0) {
+      return { success: false, error: 'No valid photos found in storage' };
+    }
+
+    const now = Date.now();
+    let displayOrder = existingPhotos.length;
+
+    for (const photo of validPhotos) {
+      await ctx.db.insert('teacherPhotos', {
+        teacherId: claim.teacherId,
+        storageId: photo.storageId,
+        type: photo.type,
+        caption: photo.caption,
+        displayOrder: displayOrder++,
+        isActive: true,
+        uploadedAt: photo.uploadedAt,
+        approvedAt: now,
+      });
+    }
+
+    return {
+      success: true,
+      message: `Synced ${validPhotos.length} photos for teacher ${claim.teacherName}`,
+      syncedCount: validPhotos.length,
+      teacherId: claim.teacherId,
+    };
+  },
+});
+
+// Sync photos from an approved claim that had photos missed during approval (admin version)
+export const syncPhotosFromClaim = mutation({
+  args: {
+    token: v.string(),
+    claimId: v.id('teacherClaims'),
+  },
+  handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx, args.token);
+    if (!adminId) {
+      return { success: false, error: 'Unauthorized' };
+    }
+
+    const claim = await ctx.db.get(args.claimId);
+    if (!claim) {
+      return { success: false, error: 'Claim not found' };
+    }
+
+    const proposedPhotos = claim.proposedPhotos || [];
+    if (proposedPhotos.length === 0) {
+      return { success: false, error: 'No photos in claim to sync' };
+    }
+
+    // Check if photos already exist for this teacher
+    const existingPhotos = await ctx.db
+      .query('teacherPhotos')
+      .withIndex('by_teacher', (q) => q.eq('teacherId', claim.teacherId))
+      .collect();
+
+    // Filter out photos that are already synced (by storageId)
+    const existingStorageIds = new Set(existingPhotos.map((p) => p.storageId));
+    const photosToSync = proposedPhotos.filter(
+      (p) => !existingStorageIds.has(p.storageId)
+    );
+
+    if (photosToSync.length === 0) {
+      return { success: true, message: 'Photos already synced', syncedCount: 0 };
+    }
+
+    // Validate storage URLs exist before inserting
+    const validPhotos = [];
+    for (const photo of photosToSync) {
+      const url = await ctx.storage.getUrl(photo.storageId);
+      if (url) validPhotos.push(photo);
+    }
+
+    if (validPhotos.length === 0) {
+      return { success: false, error: 'No valid photos found in storage' };
+    }
+
+    const now = Date.now();
+    let displayOrder = existingPhotos.length;
+
+    for (const photo of validPhotos) {
+      await ctx.db.insert('teacherPhotos', {
+        teacherId: claim.teacherId,
+        storageId: photo.storageId,
+        type: photo.type,
+        caption: photo.caption,
+        displayOrder: displayOrder++,
+        isActive: true,
+        uploadedAt: photo.uploadedAt,
+        approvedAt: now,
+      });
+    }
+
+    return {
+      success: true,
+      message: `Synced ${validPhotos.length} photos`,
+      syncedCount: validPhotos.length,
+    };
   },
 });
