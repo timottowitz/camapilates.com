@@ -17,6 +17,7 @@ import fs from 'node:fs';
 import matter from 'gray-matter';
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 import { generateText } from 'ai';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 
@@ -187,20 +188,20 @@ async function withRetries(fn, options = {}) {
   throw lastError;
 }
 
-async function ensurePlaceholder(client, args) {
-  await withRetries(() => client.mutation(api.placeholders.register, args), {
+async function ensurePlaceholder(client, token, args) {
+  await withRetries(() => client.mutation(api.placeholders.register, { token, ...args }), {
     description: `register ${args.placeholderId}`,
   });
   const current = await withRetries(
-    () => client.query(api.placeholders.getById, { placeholderId: args.placeholderId }),
+    () => client.query(api.placeholders.getByIdAdmin, { token, placeholderId: args.placeholderId }),
     { description: `fetch placeholder ${args.placeholderId}` },
   );
   return current;
 }
 
-async function queueGeneration(client, placeholderId) {
+async function queueGeneration(client, token, placeholderId) {
   await withRetries(
-    () => client.action(api.placeholderGeneration.queue, { placeholderId }),
+    () => client.action(api.placeholderGeneration.queue, { token, placeholderId }),
     { description: `queue generation for ${placeholderId}` },
   );
 }
@@ -209,12 +210,12 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function pollPlaceholder(client, placeholderId, timeoutMs) {
+async function pollPlaceholder(client, token, placeholderId, timeoutMs) {
   const deadline = Date.now() + timeoutMs;
   let last;
   while (Date.now() < deadline) {
     try {
-      last = await client.query(api.placeholders.getById, { placeholderId });
+      last = await client.query(api.placeholders.getByIdAdmin, { token, placeholderId });
     } catch (err) {
       const message = err?.message || '';
       if (/Service temporarily unavailable/i.test(message)) {
@@ -242,12 +243,12 @@ async function pollPlaceholder(client, placeholderId, timeoutMs) {
   return { status: last?.status || 'pending', imageUrl: last?.imageUrl, timeout: true };
 }
 
-async function processSlug(client, slug, options) {
+async function processSlug(client, token, slug, options) {
   const { content, frontmatter } = loadBlog(slug);
   const summary = [];
 
   const heroId = `blog-${slug}-hero-1`;
-  const heroPlaceholder = await ensurePlaceholder(client, {
+  const heroPlaceholder = await ensurePlaceholder(client, token, {
     placeholderId: heroId,
     pageType: 'blog',
     pageSlug: slug,
@@ -265,8 +266,10 @@ async function processSlug(client, slug, options) {
 
   const heroNeedsGeneration = options.force || !heroPlaceholder?.imageUrl;
   if (heroNeedsGeneration) {
-    await queueGeneration(client, heroId);
-    const result = await pollPlaceholder(client, heroId, options.waitMs);
+    if (options.force) {
+      await queueGeneration(client, token, heroId);
+    }
+    const result = await pollPlaceholder(client, token, heroId, options.waitMs);
     summary.push({ placeholderId: heroId, ...result });
     console.error(`   ↳ hero: ${result.status}${result.imageUrl ? ' (image ready)' : ''}${result.error ? ` - ${result.error}` : ''}`);
   } else {
@@ -295,7 +298,7 @@ async function processSlug(client, slug, options) {
     const requiredSubjects = meta?.subjects?.length ? meta.subjects : classified.requiredSubjects;
     const preferredAspectRatio = meta?.aspectRatio || (i === 0 ? '16:9' : '4:3');
 
-    const inlinePlaceholder = await ensurePlaceholder(client, {
+    const inlinePlaceholder = await ensurePlaceholder(client, token, {
       placeholderId,
       pageType: 'blog',
       pageSlug: slug,
@@ -312,8 +315,10 @@ async function processSlug(client, slug, options) {
 
     const needsGeneration = options.force || !inlinePlaceholder?.imageUrl;
     if (needsGeneration) {
-      await queueGeneration(client, placeholderId);
-      const result = await pollPlaceholder(client, placeholderId, options.waitMs);
+      if (options.force) {
+        await queueGeneration(client, token, placeholderId);
+      }
+      const result = await pollPlaceholder(client, token, placeholderId, options.waitMs);
       summary.push({ placeholderId, heading, reason: meta?.reason, ...result });
       console.error(`   ↳ ${placeholderId}: ${result.status}${result.imageUrl ? ' (image ready)' : ''}${result.error ? ` - ${result.error}` : ''}`);
     } else {
@@ -404,6 +409,7 @@ async function main() {
     const convexUrl = resolveConvexUrl(explicitUrl ? String(explicitUrl) : String(envPreference || 'prod'));
     console.error(`🔗 Convex endpoint: ${convexUrl}`);
     const client = new ConvexHttpClient(convexUrl);
+    const token = await getAdminToken(client);
 
     const options = {
       force: Boolean(params.force || params.forceOverwrite),
@@ -414,7 +420,7 @@ async function main() {
     const results = {};
     for (const slug of slugs) {
       console.error(`🌆 Processing blog: ${slug}`);
-      const placeholders = await processSlug(client, slug, options);
+      const placeholders = await processSlug(client, token, slug, options);
       results[slug] = placeholders;
     }
 
@@ -433,4 +439,3 @@ async function main() {
 if (import.meta.url === `file://${process.argv[1]}`) {
   main();
 }
-

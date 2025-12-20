@@ -1,6 +1,7 @@
 import { ConvexHttpClient } from "convex/browser";
 // @ts-ignore - Deno TS doesn't understand Convex generated types
 import { api } from "../convex/_generated/api.js";
+import { getAdminToken } from "./lib/adminAuth.js";
 
 const CONVEX_URL = Deno.env.get("VITE_CONVEX_URL");
 
@@ -11,6 +12,7 @@ if (!CONVEX_URL) {
 
 async function uploadFeatureSilence() {
   const client = new ConvexHttpClient(CONVEX_URL);
+  const token = await getAdminToken(client);
 
   console.log("🖼️  Reading feature image file...");
   const imagePath = "/Users/m3max361tb/Documents/Code/Pilates_Reformer/public/images/feature_1.webp";
@@ -20,7 +22,7 @@ async function uploadFeatureSilence() {
   console.log(`📊 Image size: ${(imageBlob.size / 1024).toFixed(2)} KB`);
 
   console.log("🔗 Generating upload URL...");
-  const uploadUrl = await client.mutation(api.siteImages.generateUploadUrl, {});
+  const uploadUrl = await client.mutation(api.siteImages.generateUploadUrl, { token });
 
   console.log("⬆️  Uploading image to Convex...");
   const uploadResponse = await fetch(uploadUrl, {
@@ -38,6 +40,7 @@ async function uploadFeatureSilence() {
 
   console.log("💾 Saving metadata to Convex...");
   await client.mutation(api.siteImages.upload, {
+    token,
     name: "featureSilence",
     category: "feature",
     storageId,

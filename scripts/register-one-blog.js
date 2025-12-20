@@ -4,6 +4,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 
 const ROOT = process.cwd();
 const BLOG_DIR = path.join(ROOT, 'src', 'content', 'blog');
@@ -15,14 +16,15 @@ function resolveConvexUrl() {
 
 function parseArgs() {
   const args = process.argv.slice(2);
-  const out = { slug: '', inlineLimit: 3, queue: true };
+  const out = { slug: '', inlineLimit: 3, queue: false };
   for (const a of args) {
     if (a.startsWith('--slug=')) out.slug = a.split('=')[1];
     else if (a.startsWith('--inline=')) out.inlineLimit = Math.max(0, parseInt(a.split('=')[1] || '3', 10) || 3);
+    else if (a === '--queue') out.queue = true;
     else if (a === '--no-queue') out.queue = false;
   }
   if (!out.slug) {
-    console.error('Usage: node scripts/register-one-blog.js --slug=<slug> [--inline=3] [--no-queue]');
+    console.error('Usage: node scripts/register-one-blog.js --slug=<slug> [--inline=3] [--queue]');
     process.exit(1);
   }
   return out;
@@ -71,19 +73,21 @@ async function main() {
   }
 
   const client = new ConvexHttpClient(resolveConvexUrl());
+  const token = await getAdminToken(client);
   const created = [];
 
   // Hero
   const heroId = `blog-${slug}-hero-1`;
   try {
     await client.mutation(api.placeholders.register, {
+      token,
       placeholderId: heroId,
       pageType: 'blog', pageSlug: slug, location: 'hero',
       contextBefore: content.slice(0, 300), contextAfter: content.slice(0, 300),
       headingAbove: data?.title || '', preferredAspectRatio: '16:9',
       preferredStyle: 'lifestyle', requiredSubjects: ['person','reformer','studio'], priority: 100,
     });
-    if (queue) await client.action(api.placeholderGeneration.queue, { placeholderId: heroId });
+    if (queue) await client.action(api.placeholderGeneration.queue, { token, placeholderId: heroId });
     created.push({ placeholderId: heroId, location: 'hero' });
   } catch (e) { /* ignore */ }
 
@@ -99,13 +103,14 @@ async function main() {
     const { preferredStyle, requiredSubjects } = classify(heading, i - 1);
     try {
       await client.mutation(api.placeholders.register, {
+        token,
         placeholderId: phId,
         pageType: 'blog', pageSlug: slug, location: `inline-${i}`,
         contextBefore: before, contextAfter: after, headingAbove: heading,
         preferredAspectRatio: aspect, preferredStyle, requiredSubjects,
         priority: i === 1 ? 100 : 60,
       });
-      if (queue) await client.action(api.placeholderGeneration.queue, { placeholderId: phId });
+      if (queue) await client.action(api.placeholderGeneration.queue, { token, placeholderId: phId });
       created.push({ placeholderId: phId, location: `inline-${i}` });
     } catch (e) { /* ignore */ }
   }
@@ -117,4 +122,3 @@ async function main() {
 }
 
 main();
-

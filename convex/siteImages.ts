@@ -1,13 +1,16 @@
 import { v } from 'convex/values';
 import { mutation, query } from './_generated/server';
+import { getAdminUserId } from './lib/adminAuth';
 
 /**
  * Generate upload URL for image
  * Call this first to get a URL, then POST the file to that URL
  */
 export const generateUploadUrl = mutation({
-  args: {},
-  handler: async (ctx) => {
+  args: { token: v.string() },
+  handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx, args.token);
+    if (!adminId) throw new Error('Not authenticated');
     return await ctx.storage.generateUploadUrl();
   },
 });
@@ -18,6 +21,7 @@ export const generateUploadUrl = mutation({
  */
 export const upload = mutation({
   args: {
+    token: v.string(),
     name: v.string(),
     category: v.string(),
     storageId: v.id('_storage'),
@@ -29,10 +33,13 @@ export const upload = mutation({
     description: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx, args.token);
+    if (!adminId) throw new Error('Not authenticated');
+    const { token: _token, ...body } = args;
     // Check if image with this name already exists
     const existing = await ctx.db
       .query('site_images')
-      .withIndex('by_name', (q) => q.eq('name', args.name))
+      .withIndex('by_name', (q) => q.eq('name', body.name))
       .first();
 
     const now = Date.now();
@@ -40,13 +47,13 @@ export const upload = mutation({
     if (existing) {
       // Update existing image
       await ctx.db.patch(existing._id, {
-        storageId: args.storageId,
-        mimeType: args.mimeType,
-        size: args.size,
-        width: args.width,
-        height: args.height,
-        alt: args.alt,
-        description: args.description,
+        storageId: body.storageId,
+        mimeType: body.mimeType,
+        size: body.size,
+        width: body.width,
+        height: body.height,
+        alt: body.alt,
+        description: body.description,
         updatedAt: now,
       });
       return existing._id;
@@ -54,15 +61,15 @@ export const upload = mutation({
 
     // Create new image
     const imageId = await ctx.db.insert('site_images', {
-      name: args.name,
-      category: args.category,
-      storageId: args.storageId,
-      mimeType: args.mimeType,
-      size: args.size,
-      width: args.width,
-      height: args.height,
-      alt: args.alt,
-      description: args.description,
+      name: body.name,
+      category: body.category,
+      storageId: body.storageId,
+      mimeType: body.mimeType,
+      size: body.size,
+      width: body.width,
+      height: body.height,
+      alt: body.alt,
+      description: body.description,
       isActive: true,
       cacheControl: 'no-store, no-cache, must-revalidate',
       createdAt: now,
@@ -77,8 +84,10 @@ export const upload = mutation({
  * Delete a site image
  */
 export const deleteImage = mutation({
-  args: { id: v.id('site_images') },
+  args: { token: v.string(), id: v.id('site_images') },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx, args.token);
+    if (!adminId) throw new Error('Not authenticated');
     const image = await ctx.db.get(args.id);
     if (!image) throw new Error('Image not found');
 
@@ -161,8 +170,10 @@ export const listByCategory = query({
  * Toggle image active status
  */
 export const toggleActive = mutation({
-  args: { id: v.id('site_images') },
+  args: { token: v.string(), id: v.id('site_images') },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx, args.token);
+    if (!adminId) throw new Error('Not authenticated');
     const image = await ctx.db.get(args.id);
     if (!image) throw new Error('Image not found');
 
@@ -178,13 +189,16 @@ export const toggleActive = mutation({
  */
 export const updateMetadata = mutation({
   args: {
+    token: v.string(),
     id: v.id('site_images'),
     alt: v.optional(v.string()),
     description: v.optional(v.string()),
     cacheControl: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    const { id, ...updates } = args;
+    const adminId = await getAdminUserId(ctx, args.token);
+    if (!adminId) throw new Error('Not authenticated');
+    const { token: _token, id, ...updates } = args;
 
     await ctx.db.patch(id, {
       ...updates,

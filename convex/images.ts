@@ -1,5 +1,6 @@
 import { queryGeneric as query, mutationGeneric as mutation, actionGeneric as action } from 'convex/server';
 import { v } from 'convex/values';
+import { api } from './_generated/api';
 
 function trimWords(s: string, max = 70) {
   const words = s.trim().split(/\s+/);
@@ -39,8 +40,13 @@ function buildChapterPrompt(heading: string, summary: string) {
 }
 
 export const listImages = query({
-  args: {},
-  handler: async (ctx) => {
+  args: { token: v.string() },
+  handler: async (ctx, args) => {
+    const s = await ctx.db.query('sessions').withIndex('by_token', q => q.eq('token', args.token)).unique();
+    if (!s) return { items: [] };
+    const now = Math.floor(Date.now() / 1000);
+    if (s.expiresAt < now) return { items: [] };
+
     const rows = await ctx.db.query('blog_images').collect();
     rows.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
     // Resolve signed URLs
@@ -54,8 +60,13 @@ export const listImages = query({
 });
 
 export const getImageMeta = query({
-  args: { slug: v.string() },
-  handler: async (ctx, { slug }) => {
+  args: { token: v.string(), slug: v.string() },
+  handler: async (ctx, { token, slug }) => {
+    const s = await ctx.db.query('sessions').withIndex('by_token', q => q.eq('token', token)).unique();
+    if (!s) return { slug, heroUrl: null, sections: [] };
+    const now = Math.floor(Date.now() / 1000);
+    if (s.expiresAt < now) return { slug, heroUrl: null, sections: [] };
+
     const row = await ctx.db.query('blog_images').withIndex('by_slug', q => q.eq('slug', slug)).unique();
     if (!row) return { slug, heroUrl: null, sections: [] };
     const heroUrl = row.heroStorageId ? await ctx.storage.getUrl(row.heroStorageId) : null;
@@ -71,8 +82,13 @@ export const getImageMeta = query({
 });
 
 export const saveImageMeta = mutation({
-  args: { slug: v.string(), heroStorageId: v.optional(v.id('_storage')), sectionStorageIds: v.optional(v.array(v.id('_storage'))) },
-  handler: async (ctx, { slug, heroStorageId, sectionStorageIds }) => {
+  args: { token: v.string(), slug: v.string(), heroStorageId: v.optional(v.id('_storage')), sectionStorageIds: v.optional(v.array(v.id('_storage'))) },
+  handler: async (ctx, { token, slug, heroStorageId, sectionStorageIds }) => {
+    const s = await ctx.db.query('sessions').withIndex('by_token', q => q.eq('token', token)).unique();
+    if (!s) return { error: 'Not authenticated' };
+    const nowSec = Math.floor(Date.now() / 1000);
+    if (s.expiresAt < nowSec) return { error: 'Not authenticated' };
+
     const now = Date.now();
     const row = await ctx.db.query('blog_images').withIndex('by_slug', q => q.eq('slug', slug)).unique();
     if (row) {
@@ -85,8 +101,11 @@ export const saveImageMeta = mutation({
 });
 
 export const generateImages = action({
-  args: { slug: v.string(), headline: v.string(), additionalPrompt: v.optional(v.string()), sections: v.optional(v.array(v.object({ heading: v.string(), text: v.string() }))), limit: v.optional(v.number()), testOnly: v.optional(v.boolean()) },
-  handler: async (ctx, { slug, headline, additionalPrompt, sections, limit, testOnly }) => {
+  args: { token: v.string(), slug: v.string(), headline: v.string(), additionalPrompt: v.optional(v.string()), sections: v.optional(v.array(v.object({ heading: v.string(), text: v.string() }))), limit: v.optional(v.number()), testOnly: v.optional(v.boolean()) },
+  handler: async (ctx, { token, slug, headline, additionalPrompt, sections, limit, testOnly }) => {
+    const sess = await ctx.runQuery(api.admin.session as any, { token } as any);
+    if (!sess?.authenticated) return { success: false, error: 'Not authenticated' };
+
     // Build prompts
     const heroPrompt = buildHeroPrompt(headline, additionalPrompt || undefined);
     const useSections = (sections || []).filter(s => s.heading && !/^FAQ\b/i.test(s.heading)).slice(0, Math.max(2, Math.min(3, limit || 3)));
@@ -102,4 +121,3 @@ export const generateImages = action({
     return { success: true, usedVertex: false, hero: { prompt: heroPrompt }, chapters: chapterPrompts };
   }
 });
-

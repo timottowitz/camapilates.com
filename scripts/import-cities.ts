@@ -14,6 +14,8 @@ import path from 'path';
 import dotenv from 'dotenv';
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api';
+// eslint-disable-next-line import/extensions
+import { getAdminToken } from './lib/adminAuth.js';
 
 type CliOptions = {
   dryRun: boolean;
@@ -175,9 +177,10 @@ async function main() {
   console.log(`📦 Payload size: ${payload.length}`);
 
   const client = new ConvexHttpClient(convexUrl);
+  const token = await getAdminToken(client as any);
 
   try {
-    const result = await client.mutation(api.cities.batchImport, { cities: payload });
+    const result = await client.mutation(api.cities.batchImport, { token, cities: payload });
 
     const created = result.filter((entry) => entry.status === 'created').length;
     const existing = result.filter((entry) => entry.status === 'exists').length;

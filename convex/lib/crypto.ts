@@ -1,5 +1,5 @@
 // AES-GCM encryption helpers for server-side settings
-import { actionGeneric as action } from 'convex/server';
+import { internalAction } from '../_generated/server';
 import { v } from 'convex/values';
 
 async function importAesKey() {
@@ -10,7 +10,7 @@ async function importAesKey() {
   return crypto.subtle.importKey('raw', hash, { name: 'AES-GCM' }, false, ['encrypt', 'decrypt']);
 }
 
-export const encryptJson = action({
+export const encryptJson = internalAction({
   args: { obj: v.any() },
   handler: async (ctx, { obj }) => {
     const key = await importAesKey();
@@ -22,7 +22,7 @@ export const encryptJson = action({
   }
 });
 
-export const decryptJson = action({
+export const decryptJson = internalAction({
   args: { b64: v.string() },
   handler: async (ctx, { b64 }) => {
     try {
@@ -36,4 +36,3 @@ export const decryptJson = action({
     }
   }
 });
-

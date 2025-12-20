@@ -4,6 +4,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 
 const ROOT = process.cwd();
 const BLOG_DIR = path.join(ROOT, 'src', 'content', 'blog');
@@ -60,6 +61,7 @@ function parseArgs() {
 async function main() {
   const { inlineLimit, changedOnly, changed } = parseArgs();
   const client = new ConvexHttpClient(resolveConvexUrl());
+  const token = await getAdminToken(client);
 
   const blogFiles = walkBlog();
   let targets = blogFiles;
@@ -80,19 +82,20 @@ async function main() {
     if (!data?.publishDate) { skipped++; continue; }
 
     // Check if placeholders exist already (hero)
-    const existing = await client.query(api.placeholders.listByPage, { pageType: 'blog', pageSlug: slug });
+    const existing = await client.query(api.placeholders.listByPage, { token, pageType: 'blog', pageSlug: slug });
     const haveHero = existing?.some((r) => r.location === 'hero');
 
-    // Always register idempotently; queue only if hero missing
+    // Always register idempotently; new placeholders auto-trigger generation in Convex.
     const heroId = `blog-${slug}-hero-1`;
     await client.mutation(api.placeholders.register, {
+      token,
       placeholderId: heroId,
       pageType: 'blog', pageSlug: slug, location: 'hero',
       contextBefore: content.slice(0, 300), contextAfter: content.slice(0, 300),
       headingAbove: data?.title || '', preferredAspectRatio: '16:9',
       preferredStyle: 'lifestyle', requiredSubjects: ['person','reformer','studio'], priority: 100,
     });
-    if (!haveHero) { await client.action(api.placeholderGeneration.queue, { placeholderId: heroId }); queued++; }
+    if (!haveHero) queued++;
 
     // Inline by H2
     const sections = content.split(/\n## /);
@@ -104,6 +107,7 @@ async function main() {
       const aspect = i === 1 ? '16:9' : '4:3';
       const phId = `blog-${slug}-inline-${i}`;
       await client.mutation(api.placeholders.register, {
+        token,
         placeholderId: phId,
         pageType: 'blog', pageSlug: slug, location: `inline-${i}`,
         contextBefore: before, contextAfter: after, headingAbove: heading,
@@ -111,7 +115,7 @@ async function main() {
         priority: i === 1 ? 100 : 60,
       });
       const haveThis = existing?.some((r) => r.location === `inline-${i}`);
-      if (!haveThis) { await client.action(api.placeholderGeneration.queue, { placeholderId: phId }); queued++; }
+      if (!haveThis) queued++;
     }
 
     processed++;
@@ -121,4 +125,3 @@ async function main() {
 }
 
 main();
-

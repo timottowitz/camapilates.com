@@ -1,5 +1,6 @@
 import { mutation, query } from './_generated/server';
 import { v } from 'convex/values';
+import { getAdminUserId } from './lib/adminAuth';
 
 /**
  * Submit a new pre-registration for Pilates certification courses
@@ -87,11 +88,14 @@ export const submitPreRegistration = mutation({
  */
 export const listPreRegistrations = query({
   args: {
+    token: v.string(),
     status: v.optional(v.string()),
     city: v.optional(v.string()),
     limit: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx, args.token);
+    if (!adminId) return [];
     let results;
 
     if (args.status) {
@@ -122,8 +126,34 @@ export const listPreRegistrations = query({
  * Get pre-registration statistics (for admin dashboard)
  */
 export const getPreRegistrationStats = query({
-  args: {},
-  handler: async (ctx) => {
+  args: { token: v.string() },
+  handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx, args.token);
+    if (!adminId) {
+      return {
+        total: 0,
+        byStatus: {
+          new: 0,
+          contacted: 0,
+          enrolled: 0,
+          notInterested: 0,
+        },
+        byCity: {} as Record<string, number>,
+        byExperience: {
+          beginner: 0,
+          someExperience: 0,
+          advanced: 0,
+        },
+        byTimeline: {
+          asap: 0,
+          oneToThreeMonths: 0,
+          threeToSixMonths: 0,
+          flexible: 0,
+        },
+        last7Days: 0,
+        last30Days: 0,
+      };
+    }
     const all = await ctx.db.query('certificationPreRegistrations').collect();
 
     const stats = {
@@ -164,11 +194,14 @@ export const getPreRegistrationStats = query({
  */
 export const updateStatus = mutation({
   args: {
+    token: v.string(),
     id: v.id('certificationPreRegistrations'),
     status: v.string(),
     notes: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx, args.token);
+    if (!adminId) return { success: false, error: 'Not authenticated' };
     if (!['new', 'contacted', 'enrolled', 'not-interested'].includes(args.status)) {
       throw new Error('Estado inválido');
     }

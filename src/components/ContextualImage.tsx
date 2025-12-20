@@ -66,6 +66,7 @@ export const ContextualImage: React.FC<ContextualImageProps> = ({
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [registered, setRegistered] = useState(false);
+  const token = typeof window !== 'undefined' ? (localStorage.getItem('admint') || '') : '';
 
   const register = useMutation(api.placeholders.register);
   const data = useQuery(
@@ -76,12 +77,14 @@ export const ContextualImage: React.FC<ContextualImageProps> = ({
   // Register placeholder on mount/update with local context if Convex available
   useEffect(() => {
     if (!hasConvex) return;
+    if (!token) return;
     const el = ref.current;
     const { before, after } = collectTextAround(el, 500, 500);
     const headingAbove = getNearestHeading(el);
     const doRegister = async () => {
       try {
         await register({
+          token,
           placeholderId,
           pageType,
           pageSlug,
@@ -101,7 +104,7 @@ export const ContextualImage: React.FC<ContextualImageProps> = ({
     };
     void doRegister();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [placeholderId, pageType, pageSlug, location, aspectRatio, alt]);
+  }, [placeholderId, pageType, pageSlug, location, aspectRatio, alt, token]);
 
   const paddingTop = useMemo(() => aspectToPadding(aspectRatio), [aspectRatio]);
   const url = data?.imageUrl || fallbackSrc;

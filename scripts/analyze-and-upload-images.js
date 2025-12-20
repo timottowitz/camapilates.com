@@ -1,5 +1,6 @@
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -82,7 +83,7 @@ Be specific and detailed for accurate search later.`,
 /**
  * Upload image to Convex with AI description
  */
-async function uploadToConvex(client, imagePath, aiDescription) {
+async function uploadToConvex(client, imagePath, aiDescription, token) {
   const fileName = path.basename(imagePath);
   const buffer = fs.readFileSync(imagePath);
   const mimeType = imagePath.endsWith('.png') ? 'image/png' :
@@ -94,7 +95,7 @@ async function uploadToConvex(client, imagePath, aiDescription) {
   console.log(`📤 Uploading to Convex: ${fileName}`);
 
   // Generate upload URL
-  const uploadUrl = await client.mutation(api.aiImages.generateUploadUrl);
+  const uploadUrl = await client.mutation(api.aiImages.generateUploadUrl, { token });
 
   // Upload file using Buffer directly
   const response = await fetch(uploadUrl, {
@@ -111,6 +112,7 @@ async function uploadToConvex(client, imagePath, aiDescription) {
 
   // Save with AI description
   const imageId = await client.mutation(api.aiImages.upload, {
+    token,
     fileName,
     storageId,
     mimeType,
@@ -141,6 +143,7 @@ async function main() {
   }
 
   const client = new ConvexHttpClient(CONVEX_URL);
+  const token = await getAdminToken(client);
   const imagesDir = path.join(__dirname, '../images');
 
   // Get all image files
@@ -159,7 +162,7 @@ async function main() {
       const aiDescription = await analyzeImage(imagePath);
 
       // Upload to Convex
-      await uploadToConvex(client, imagePath, aiDescription);
+      await uploadToConvex(client, imagePath, aiDescription, token);
 
       processed++;
       console.log();

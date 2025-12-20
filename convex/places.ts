@@ -1,12 +1,12 @@
 import { v } from 'convex/values';
-import { action } from './_generated/server';
-import { api } from './_generated/api';
+import { internalAction } from './_generated/server';
+import { internal } from './_generated/api';
 
 /**
  * Fetch fresh Google Places photo URL for a studio
  * Photo references expire, so we need to fetch them on-demand
  */
-export const getStudioPhotoUrl = action({
+export const getStudioPhotoUrl = internalAction({
   args: {
     placeId: v.string(),
     maxWidth: v.optional(v.number()),
@@ -63,7 +63,7 @@ export const getStudioPhotoUrl = action({
 /**
  * Batch fetch photo URLs for multiple studios
  */
-export const getStudioPhotoUrls = action({
+export const getStudioPhotoUrls = internalAction({
   args: {
     placeIds: v.array(v.string()),
     maxWidth: v.optional(v.number()),
@@ -81,7 +81,7 @@ export const getStudioPhotoUrls = action({
 
       const batchResults = await Promise.all(
         batch.map(async (placeId) => {
-          const url = await ctx.runAction(api.places.getStudioPhotoUrl, {
+          const url = await ctx.runAction(internal.places.getStudioPhotoUrl, {
             placeId,
             maxWidth,
             maxHeight,

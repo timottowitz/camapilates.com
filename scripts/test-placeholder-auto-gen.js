@@ -1,5 +1,6 @@
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 
 const CONVEX_URL = 'https://spotted-raven-102.convex.cloud';
 
@@ -9,6 +10,7 @@ async function sleep(ms) {
 
 async function main() {
   const client = new ConvexHttpClient(CONVEX_URL);
+  const token = await getAdminToken(client);
 
   console.log('\n🧪 TESTING AUTOMATIC PLACEHOLDER GENERATION\n');
   console.log('='.repeat(70));
@@ -31,43 +33,14 @@ async function main() {
 
   console.log('\n📝 Step 1: Registering test placeholder...');
   try {
-    const placeholderId = await client.mutation(api.placeholders.register, testData);
+    const placeholderId = await client.mutation(api.placeholders.register, { token, ...testData });
     console.log(`   ✅ Placeholder registered: ${placeholderId}`);
   } catch (error) {
     console.log(`   ❌ Registration failed: ${error.message}`);
     return;
   }
 
-  console.log('\n⏱️  Step 2: Checking queue status...');
-  await sleep(2000); // Wait 2s for queue to process
-
-  try {
-    const queueStatus = await client.query(api.generationQueue.getStatus, {
-      placeholderId: testPlaceholderId
-    });
-    if (queueStatus) {
-      console.log(`   Queue status: ${queueStatus.status}`);
-      console.log(`   Priority: ${queueStatus.priority}`);
-    } else {
-      console.log('   ⚠️  Not found in queue (may have processed already)');
-    }
-  } catch (error) {
-    console.log(`   ℹ️  ${error.message}`);
-  }
-
-  console.log('\n📊 Step 3: Checking queue stats...');
-  try {
-    const stats = await client.query(api.generationQueue.getQueueStats);
-    console.log(`   Total: ${stats.total}`);
-    console.log(`   Pending: ${stats.pending}`);
-    console.log(`   Processing: ${stats.processing}`);
-    console.log(`   Completed: ${stats.completed}`);
-    console.log(`   Failed: ${stats.failed}`);
-  } catch (error) {
-    console.log(`   ❌ ${error.message}`);
-  }
-
-  console.log('\n🔍 Step 4: Monitoring placeholder status...');
+  console.log('\n🔍 Step 2: Monitoring placeholder status...');
   console.log('   (Checking every 5 seconds for 60 seconds...)');
 
   let found = false;
@@ -75,9 +48,7 @@ async function main() {
     await sleep(5000);
 
     try {
-      const placeholder = await client.query(api.placeholders.getById, {
-        placeholderId: testPlaceholderId
-      });
+      const placeholder = await client.query(api.placeholders.getByIdAdmin, { token, placeholderId: testPlaceholderId });
 
       if (!placeholder) {
         console.log(`   [${i * 5}s] ❌ Placeholder not found`);
@@ -98,8 +69,8 @@ async function main() {
         break;
       }
 
-      if (status === 'failed') {
-        console.log(`\n   ❌ FAILED: Generation failed`);
+      if (status === 'error') {
+        console.log(`\n   ❌ ERROR: ${placeholder.generationError || 'Generation failed'}`);
         break;
       }
     } catch (error) {
@@ -110,18 +81,6 @@ async function main() {
   if (!found) {
     console.log('\n   ⏱️  Timeout: Image generation took longer than 60 seconds');
     console.log('   (This is normal - DALL-E can take 20-40 seconds per image)');
-  }
-
-  console.log('\n📈 Step 5: Final queue stats...');
-  try {
-    const stats = await client.query(api.generationQueue.getQueueStats);
-    console.log(`   Total: ${stats.total}`);
-    console.log(`   Pending: ${stats.pending}`);
-    console.log(`   Processing: ${stats.processing}`);
-    console.log(`   Completed: ${stats.completed}`);
-    console.log(`   Failed: ${stats.failed}`);
-  } catch (error) {
-    console.log(`   ❌ ${error.message}`);
   }
 
   console.log('\n' + '='.repeat(70));

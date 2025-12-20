@@ -15,6 +15,8 @@ import { parse } from 'csv-parse/sync';
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api';
 import dotenv from 'dotenv';
+// eslint-disable-next-line import/extensions
+import { getAdminToken } from './lib/adminAuth.js';
 
 type CliOptions = {
   file: string;
@@ -308,6 +310,7 @@ async function importStudios(options: CliOptions) {
 
   const convexUrl = resolveConvexUrl();
   const client = new ConvexHttpClient(convexUrl);
+  const token = await getAdminToken(client as any);
 
   console.log(`🚀 Importing ${rows.length} studios to ${convexUrl}`);
 
@@ -319,7 +322,7 @@ async function importStudios(options: CliOptions) {
     const studio = transformRow(row);
 
     try {
-      await client.mutation(api.studios.upsert, { studio });
+      await client.mutation(api.studios.upsert, { token, studio });
       success++;
       console.log(`✅ [${i + 1}/${rows.length}] ${studio.name}`);
     } catch (error) {

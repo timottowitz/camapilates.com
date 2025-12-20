@@ -26,7 +26,11 @@ const StatusBadge: React.FC<{ s: string }> = ({ s }) => {
 
 const AdminPlaceholders: React.FC = () => {
   const [status, setStatus] = useState<string>('');
-  const rows = useQuery(api.placeholders.listWithPreview, status ? { status } as any : {} as any) as any[] | undefined;
+  const token = typeof window !== 'undefined' ? (localStorage.getItem('admint') || '') : '';
+  const rows = useQuery(
+    api.placeholders.listWithPreview,
+    token ? (status ? ({ token, status } as any) : ({ token } as any)) : 'skip'
+  ) as any[] | undefined;
   const queue = useAction(api.placeholderGeneration.queue) as any;
   const assignImage = useMutation(api.placeholders.assignImage) as any;
   const assignLatest = useMutation(api.placeholders.assignLatest) as any;
@@ -35,7 +39,10 @@ const AdminPlaceholders: React.FC = () => {
   // History drawer
   const [openHistory, setOpenHistory] = useState(false);
   const [histPhId, setHistPhId] = useState<string | null>(null);
-  const historyItems = useQuery(api.aiImages.listByPlaceholder as any, histPhId ? { placeholderId: histPhId } : "skip") as any[] | undefined;
+  const historyItems = useQuery(
+    api.aiImages.listByPlaceholder as any,
+    histPhId && token ? ({ token, placeholderId: histPhId } as any) : 'skip'
+  ) as any[] | undefined;
 
   // Prompt dialog
   const [openPrompt, setOpenPrompt] = useState(false);
@@ -56,7 +63,7 @@ const AdminPlaceholders: React.FC = () => {
   async function queueAllPending() {
     const pending = filtered.filter(r => r.status === 'pending' || r.status === 'prompt_generated');
     for (const r of pending.slice(0, 50)) {
-      try { await queue({ placeholderId: r.placeholderId }); } catch { }
+      try { await queue({ token, placeholderId: r.placeholderId }); } catch { }
     }
     toast.success(`Queued ${pending.length} placeholders`);
   }
@@ -82,7 +89,7 @@ const AdminPlaceholders: React.FC = () => {
               const ids = Object.keys(selected).filter(k => selected[k]);
               if (!ids.length) return toast('No items selected');
               let ok = 0;
-              for (const id of ids) { try { await queue({ placeholderId: id }); ok++; } catch { } }
+              for (const id of ids) { try { await queue({ token, placeholderId: id }); ok++; } catch { } }
               toast.success(`Queued ${ok} selected`);
             }}
           >Queue selected</Button>
@@ -93,7 +100,7 @@ const AdminPlaceholders: React.FC = () => {
               const ids = Object.keys(selected).filter(k => selected[k]);
               if (!ids.length) return toast('No items selected');
               let ok = 0;
-              for (const id of ids) { try { await assignLatest({ placeholderId: id, activate: true }); ok++; } catch { } }
+              for (const id of ids) { try { await assignLatest({ token, placeholderId: id, activate: true }); ok++; } catch { } }
               toast.success(`Assigned latest for ${ok} selected`);
             }}
           >Assign latest (selected)</Button>
@@ -152,7 +159,7 @@ const AdminPlaceholders: React.FC = () => {
                           setWorking(prev => ({ ...prev, [r.placeholderId]: true }));
                           try {
                             console.log('Cycling image for:', r.placeholderId);
-                            await queue({ placeholderId: r.placeholderId });
+                            await queue({ token, placeholderId: r.placeholderId });
                             toast.success('Generation queued successfully');
                           } catch (error) {
                             console.error('Failed to queue generation:', error);
@@ -180,7 +187,7 @@ const AdminPlaceholders: React.FC = () => {
                               setWorking(prev => ({ ...prev, [r.placeholderId]: true }));
                               try {
                                 console.log('Retrying stuck generation for:', r.placeholderId);
-                                await queue({ placeholderId: r.placeholderId });
+                                await queue({ token, placeholderId: r.placeholderId });
                                 toast.success('Retry queued successfully');
                               } catch (error) {
                                 console.error('Failed to retry:', error);
@@ -237,7 +244,7 @@ const AdminPlaceholders: React.FC = () => {
                     onClick={async () => {
                       if (!histPhId) return;
                       try {
-                        await assignImage({ placeholderId: histPhId, imageId: img._id, activate: true });
+                        await assignImage({ token, placeholderId: histPhId, imageId: img._id, activate: true });
                         toast.success('Assigned');
                         setOpenHistory(false);
                       } catch { toast.error('Failed to assign'); }
@@ -268,8 +275,8 @@ const AdminPlaceholders: React.FC = () => {
             <Button onClick={async () => {
               if (!promptPhId) return;
               try {
-                await updatePrompt({ placeholderId: promptPhId, prompt: promptText });
-                await queue({ placeholderId: promptPhId });
+                await updatePrompt({ token, placeholderId: promptPhId, prompt: promptText });
+                await queue({ token, placeholderId: promptPhId });
                 toast.success('Prompt updated and generation queued');
                 setOpenPrompt(false);
               } catch { toast.error('Failed to update prompt'); }

@@ -1,5 +1,6 @@
 import { v } from 'convex/values';
 import { mutation, query } from './_generated/server';
+import { getAdminUserId } from './lib/adminAuth';
 
 export const capture = mutation({
   args: {
@@ -48,9 +49,12 @@ export const capture = mutation({
 
 export const list = query({
   args: {
+    token: v.string(),
     limit: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx, args.token);
+    if (!adminId) return [];
     const limit = args.limit || 100;
     return await ctx.db
       .query('leads')
@@ -60,8 +64,16 @@ export const list = query({
 });
 
 export const getStats = query({
-  args: {},
-  handler: async (ctx) => {
+  args: { token: v.string() },
+  handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx, args.token);
+    if (!adminId) {
+      return {
+        total: 0,
+        byMagnet: {} as Record<string, number>,
+        bySource: {} as Record<string, number>,
+      };
+    }
     const allLeads = await ctx.db.query('leads').collect();
     
     const byMagnet = allLeads.reduce((acc, lead) => {

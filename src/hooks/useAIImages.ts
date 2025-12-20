@@ -6,44 +6,43 @@ import { api } from '../../convex/_generated/api';
  * PREFERS GENERATED IMAGES - Returns copyright-free AI-generated versions when available
  */
 export function useAllAIImages(limit?: number) {
-  return useQuery(api.aiImages.listAllWithGenerated, { limit });
+  const token = typeof window !== 'undefined' ? (localStorage.getItem('admint') || '') : '';
+  return useQuery(api.aiImages.listAllWithGenerated, token ? ({ token, limit } as any) : ('skip' as any));
 }
 
 /**
  * Hook for searching AI-analyzed images by description
  */
 export function useAIImageSearch(query: string, limit?: number) {
-  return useQuery(api.aiImages.searchByDescription, {
-    query,
-    limit,
-  });
+  const token = typeof window !== 'undefined' ? (localStorage.getItem('admint') || '') : '';
+  return useQuery(
+    api.aiImages.searchByDescription,
+    token ? ({ token, query, limit } as any) : ('skip' as any)
+  );
 }
 
 /**
  * Hook for getting images by use case (hero, feature, blog, etc.)
  */
 export function useAIImagesByUseCase(useCase: string, limit?: number) {
-  return useQuery(api.aiImages.getByUseCase, {
-    useCase,
-    limit,
-  });
+  const token = typeof window !== 'undefined' ? (localStorage.getItem('admint') || '') : '';
+  return useQuery(api.aiImages.getByUseCase, token ? ({ token, useCase, limit } as any) : ('skip' as any));
 }
 
 /**
  * Hook for getting images by mood/atmosphere
  */
 export function useAIImagesByMood(mood: string, limit?: number) {
-  return useQuery(api.aiImages.getByMood, {
-    mood,
-    limit,
-  });
+  const token = typeof window !== 'undefined' ? (localStorage.getItem('admint') || '') : '';
+  return useQuery(api.aiImages.getByMood, token ? ({ token, mood, limit } as any) : ('skip' as any));
 }
 
 /**
  * Hook for getting images pending generation
  */
 export function usePendingGeneration(limit?: number) {
-  return useQuery(api.aiImages.getPendingGeneration, { limit });
+  const token = typeof window !== 'undefined' ? (localStorage.getItem('admint') || '') : '';
+  return useQuery(api.aiImages.getPendingGeneration, token ? ({ token, limit } as any) : ('skip' as any));
 }
 
 /**
@@ -65,21 +64,22 @@ export function useSmartImage(options: {
   limit?: number;
 }) {
   const { useCase, mood, query, limit = 1 } = options;
+  const token = typeof window !== 'undefined' ? (localStorage.getItem('admint') || '') : '';
 
   // Priority: query > useCase > mood
   const byQuery = useQuery(
     query ? api.aiImages.searchByDescription : 'skip',
-    query ? { query, limit } : 'skip'
+    query && token ? ({ token, query, limit } as any) : 'skip'
   );
 
   const byUseCase = useQuery(
     !query && useCase ? api.aiImages.getByUseCase : 'skip',
-    !query && useCase ? { useCase, limit } : 'skip'
+    !query && useCase && token ? ({ token, useCase, limit } as any) : 'skip'
   );
 
   const byMood = useQuery(
     !query && !useCase && mood ? api.aiImages.getByMood : 'skip',
-    !query && !useCase && mood ? { mood, limit } : 'skip'
+    !query && !useCase && mood && token ? ({ token, mood, limit } as any) : 'skip'
   );
 
   // Return first match from priority order

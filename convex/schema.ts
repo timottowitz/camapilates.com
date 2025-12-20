@@ -532,5 +532,401 @@ export default defineSchema({
     .index('by_status', ['status'])
     .index('by_submitted', ['submittedAt']),
 
-  // (legacy generation_queue table removed)
+  // Teachers Directory
+  teachers: defineTable({
+    // === IDENTITY ===
+    slug: v.string(),                    // "maria-gonzalez-cdmx"
+    fullName: v.object({
+      value: v.string(),
+      confidence: v.object({
+        value: v.number(),
+        level: v.union(v.literal('high'), v.literal('medium'), v.literal('low')),
+        source: v.string(),
+        observedAt: v.number(),
+        evidence: v.optional(v.string()),
+      }),
+    }),
+    displayName: v.optional(v.object({
+      value: v.string(),
+      confidence: v.object({
+        value: v.number(),
+        level: v.union(v.literal('high'), v.literal('medium'), v.literal('low')),
+        source: v.string(),
+        observedAt: v.number(),
+      }),
+    })),
+
+    // === LOCATION (matches cities pattern) ===
+    citySlug: v.string(),                // "cdmx" - matches cities.slug
+    cityName: v.object({
+      value: v.string(),
+      confidence: v.object({
+        value: v.number(),
+        level: v.string(),
+        source: v.string(),
+        observedAt: v.number(),
+      }),
+    }),
+    neighborhoodSlug: v.optional(v.object({
+      value: v.string(),
+      confidence: v.object({
+        value: v.number(),
+        level: v.string(),
+        source: v.string(),
+        observedAt: v.number(),
+      }),
+    })),
+
+    // === PROFILE ===
+    bio: v.optional(v.object({
+      value: v.string(),
+      confidence: v.object({
+        value: v.number(),
+        level: v.string(),
+        source: v.string(),
+        observedAt: v.number(),
+      }),
+    })),
+    specializations: v.object({
+      value: v.array(v.string()), // ["Reformer", "Prenatal", "Rehabilitación"]
+      confidence: v.object({
+        value: v.number(),
+        level: v.string(),
+        source: v.string(),
+        observedAt: v.number(),
+      }),
+    }),
+    experienceYears: v.optional(v.object({
+      value: v.number(),
+      confidence: v.object({
+        value: v.number(),
+        level: v.string(),
+        source: v.string(),
+        observedAt: v.number(),
+      }),
+    })),
+    experienceLevel: v.optional(v.object({
+      value: v.union(
+        v.literal('ENTRY'),
+        v.literal('INTERMEDIATE'),
+        v.literal('EXPERIENCED'),
+        v.literal('SENIOR'),
+        v.literal('MASTER')
+      ),
+      confidence: v.object({
+        value: v.number(),
+        level: v.string(),
+        source: v.string(),
+        observedAt: v.number(),
+      }),
+    })),
+    languages: v.object({
+      value: v.array(v.string()),
+      confidence: v.object({
+        value: v.number(),
+        level: v.string(),
+        source: v.string(),
+        observedAt: v.number(),
+      }),
+    }),
+
+    // === CERTIFICATIONS ===
+    certifications: v.array(v.object({
+      key: v.string(),
+      name: v.string(),
+      organization: v.optional(v.string()),
+      year: v.optional(v.object({
+        value: v.number(),
+        confidence: v.object({
+          value: v.number(),
+          level: v.string(),
+          source: v.string(),
+          observedAt: v.number(),
+        }),
+      })),
+      expiryDate: v.optional(v.object({
+        value: v.string(),
+        confidence: v.object({
+          value: v.number(),
+          level: v.string(),
+          source: v.string(),
+          observedAt: v.number(),
+        }),
+      })),
+      credentialId: v.optional(v.object({
+        value: v.string(),
+        confidence: v.object({
+          value: v.number(),
+          level: v.string(),
+          source: v.string(),
+          observedAt: v.number(),
+        }),
+      })),
+      isVerified: v.boolean(),
+      verificationProof: v.optional(v.object({
+        storageId: v.optional(v.id('_storage')),
+        url: v.optional(v.string()),
+        uploadedAt: v.optional(v.number()),
+      })),
+    })),
+
+    // === PHOTO (Convex storage first) ===
+    profilePhoto: v.optional(v.object({
+      value: v.object({
+        storageId: v.string(),
+        source: v.union(v.literal('upload'), v.literal('instagram_oauth'), v.literal('scrape')),
+        url: v.optional(v.string()),
+        updatedAt: v.number(),
+      }),
+      confidence: v.object({
+        value: v.number(),
+        level: v.string(),
+        source: v.string(),
+        observedAt: v.number(),
+      }),
+    })),
+
+    // === SOCIAL (for icon display) ===
+    social: v.optional(v.object({
+      instagram: v.optional(v.object({
+        value: v.string(),
+        confidence: v.object({ value: v.number(), level: v.string(), source: v.string(), observedAt: v.number() })
+      })),
+      linkedin: v.optional(v.object({
+        value: v.string(),
+        confidence: v.object({ value: v.number(), level: v.string(), source: v.string(), observedAt: v.number() })
+      })),
+      facebook: v.optional(v.object({
+        value: v.string(),
+        confidence: v.object({ value: v.number(), level: v.string(), source: v.string(), observedAt: v.number() })
+      })),
+      tiktok: v.optional(v.object({
+        value: v.string(),
+        confidence: v.object({ value: v.number(), level: v.string(), source: v.string(), observedAt: v.number() })
+      })),
+      website: v.optional(v.object({
+        value: v.string(),
+        confidence: v.object({ value: v.number(), level: v.string(), source: v.string(), observedAt: v.number() })
+      })),
+    })),
+
+    // === CONTACT (private by default) ===
+    contact: v.optional(v.object({
+      email: v.optional(v.object({
+        value: v.string(),
+        confidence: v.object({ value: v.number(), level: v.string(), source: v.string(), observedAt: v.number() })
+      })),
+      phone: v.optional(v.object({
+        value: v.string(),
+        confidence: v.object({ value: v.number(), level: v.string(), source: v.string(), observedAt: v.number() })
+      })),
+      whatsapp: v.optional(v.object({
+        value: v.string(),
+        confidence: v.object({ value: v.number(), level: v.string(), source: v.string(), observedAt: v.number() })
+      })),
+      bookingUrl: v.optional(v.object({
+        value: v.string(),
+        confidence: v.object({ value: v.number(), level: v.string(), source: v.string(), observedAt: v.number() })
+      })),
+      isPublic: v.boolean(),             // Show on public profile?
+    })),
+
+    // === STATUS & VERIFICATION ===
+    status: v.union(
+      v.literal('scraped'),
+      v.literal('claimed'),
+      v.literal('verified'),
+      v.literal('suspended')
+    ),
+    isVerified: v.boolean(),             // Quick filter
+    isActive: v.boolean(),
+    dataQualityScore: v.number(),        // 0-100
+
+    // === TIMESTAMPS ===
+    createdAt: v.number(),
+    updatedAt: v.number(),
+    claimedAt: v.optional(v.number()),
+    verifiedAt: v.optional(v.number()),
+    lastScrapedAt: v.optional(v.number()),
+    scrapeSources: v.optional(v.array(v.string())),
+  })
+    .index('by_slug', ['slug'])
+    .index('by_city', ['citySlug'])
+    .index('by_city_active', ['citySlug', 'isActive'])
+    .index('by_active_verified', ['isActive', 'isVerified'])
+    .index('by_quality', ['dataQualityScore']),
+
+  // Teacher-Studio Links (Smart Links Junction Table)
+  teacherStudioLinks: defineTable({
+    teacherId: v.id('teachers'),
+    studioId: v.id('studios'),
+
+    // === STATUS & CONFIDENCE ===
+    status: v.string(),       // 'inferred' | 'pending' | 'verified' | 'rejected'
+    confidence: v.number(),   // 0-100
+    source: v.string(),       // 'scrape' | 'suggested' | 'teacher_claim' | 'studio_claim' | 'admin'
+
+    // === EVIDENCE LOG ===
+    signals: v.array(v.object({
+      type: v.string(),       // 'bio_mention' | 'website_staff_page' | 'user_suggestion' | etc.
+      score: v.number(),      // 0-100
+      evidence: v.optional(v.string()), // Snippet/explanation
+      url: v.optional(v.string()),
+      observedAt: v.number(),
+    })),
+
+    // === DISPLAY DATA (denormalized) ===
+    teacherSlug: v.string(),
+    teacherName: v.string(),
+    studioSlug: v.string(),
+    studioName: v.string(),
+    studioCity: v.string(),
+
+    // === VERIFICATION ===
+    verifiedAt: v.optional(v.number()),
+    verifiedBy: v.optional(v.string()), // 'teacher' | 'studio' | 'admin'
+    rejectedAt: v.optional(v.number()),
+    rejectionReason: v.optional(v.string()),
+
+    // === TIMESTAMPS ===
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index('by_teacher', ['teacherId'])
+    .index('by_studio', ['studioId'])
+    .index('by_teacher_status', ['teacherId', 'status'])
+    .index('by_studio_status', ['studioId', 'status'])
+    .index('by_teacher_studio', ['teacherId', 'studioId']),
+
+  // Teacher Claims
+  teacherClaims: defineTable({
+    // === TARGET ===
+    teacherId: v.id('teachers'),
+    teacherSlug: v.string(),
+    teacherName: v.string(),
+    citySlug: v.string(),
+
+    // === CLAIMANT INFO ===
+    claimantName: v.string(),
+    email: v.string(),
+    phone: v.string(),
+    relationship: v.string(),  // 'self' | 'agent' | 'colleague'
+    message: v.optional(v.string()),
+
+    // === VERIFICATION ===
+    status: v.string(),        // 'email_pending' | 'pending_review' | 'approved' | 'rejected'
+    verificationToken: v.optional(v.string()),  // Hashed 6-digit code
+    tokenExpiresAt: v.optional(v.number()),
+    emailVerifiedAt: v.optional(v.number()),
+
+    // === PROPOSED PROFILE (Rich data from claim form) ===
+    proposedProfile: v.optional(v.object({
+      // Basic Info
+      bio: v.optional(v.string()),
+      specializations: v.optional(v.array(v.string())),
+      experienceYears: v.optional(v.number()),
+      languages: v.optional(v.array(v.string())),
+      
+      // Teaching Style
+      teachingStyle: v.optional(v.object({
+        vibe: v.optional(v.array(v.string())),      // "Motivador", "Técnico", "Relajante"
+        classPace: v.optional(v.string()),           // "slow" | "moderate" | "fast"
+        musicStyle: v.optional(v.string()),          // "none" | "pop" | "classical" | "lofi"
+        classSize: v.optional(v.string()),           // "private_only" | "small_groups" | "large"
+      })),
+      
+      // Credentials
+      certifications: v.optional(v.array(v.object({
+        name: v.string(),
+        organization: v.optional(v.string()),
+        year: v.optional(v.number()),
+      }))),
+      trainingLineage: v.optional(v.string()),       // "Trained under..."
+      teachingHours: v.optional(v.number()),         // Total hours taught
+      
+      // Contact & Booking
+      whatsapp: v.optional(v.string()),
+      bookingUrl: v.optional(v.string()),
+      instagram: v.optional(v.string()),
+      website: v.optional(v.string()),
+      
+      // Location
+      neighborhoods: v.optional(v.array(v.string())),
+      homeVisits: v.optional(v.boolean()),
+    })),
+
+    // === PROPOSED PHOTOS (up to 5) ===
+    proposedPhotos: v.optional(v.array(v.object({
+      storageId: v.id('_storage'),
+      type: v.string(),            // "profile" | "action" | "studio" | "certificate"
+      caption: v.optional(v.string()),
+      uploadedAt: v.number(),
+    }))),
+
+    // === LEGACY: PROPOSED UPDATES (keeping for backward compatibility) ===
+    proposedChanges: v.optional(v.object({
+      bio: v.optional(v.string()),
+      specializations: v.optional(v.array(v.string())),
+      certifications: v.optional(v.array(v.object({
+        name: v.string(),
+        organization: v.optional(v.string()),
+      }))),
+      studioAssociations: v.optional(v.array(v.string())), // studioSlugs
+      profilePhotoStorageId: v.optional(v.id('_storage')),
+    })),
+
+    // === MAGIC LINK ACCESS ===
+    editorTokenHash: v.optional(v.string()),
+    editorTokenExpiresAt: v.optional(v.number()),
+
+    // === ADMIN ===
+    adminNotes: v.optional(v.string()),
+    reviewedBy: v.optional(v.id('users')),
+    reviewedAt: v.optional(v.number()),
+
+    // === TIMESTAMPS ===
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index('by_teacher', ['teacherId'])
+    .index('by_email', ['email'])
+    .index('by_status', ['status'])
+    .index('by_created', ['createdAt']),
+
+  // Teacher Photos (approved photos from claims)
+  teacherPhotos: defineTable({
+    teacherId: v.id('teachers'),
+    storageId: v.id('_storage'),
+    type: v.string(),              // "profile" | "gallery" | "action" | "certificate"
+    caption: v.optional(v.string()),
+    displayOrder: v.number(),
+    isActive: v.boolean(),
+    uploadedAt: v.number(),
+    approvedAt: v.number(),
+  })
+    .index('by_teacher', ['teacherId'])
+    .index('by_teacher_type', ['teacherId', 'type'])
+    .index('by_teacher_active', ['teacherId', 'isActive']),
+
+  // Cached Instagram profile previews (best-effort; used for teacher pages)
+  instagramProfiles: defineTable({
+    username: v.string(), // normalized (no @, lowercase)
+    profileUrl: v.string(),
+    displayName: v.optional(v.string()),
+    ogTitle: v.optional(v.string()),
+    ogDescription: v.optional(v.string()),
+    profileImageStorageId: v.optional(v.id('_storage')),
+    followers: v.optional(v.number()),
+    following: v.optional(v.number()),
+    posts: v.optional(v.number()),
+    recentPostUrls: v.optional(v.array(v.string())),
+    status: v.string(), // 'pending' | 'ok' | 'error'
+    error: v.optional(v.string()),
+    fetchedAt: v.number(),
+    nextFetchAfter: v.number(),
+    updatedAt: v.number(),
+  })
+    .index('by_username', ['username'])
+    .index('by_updated', ['updatedAt']),
+
 });

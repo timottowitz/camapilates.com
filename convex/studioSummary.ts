@@ -1,6 +1,6 @@
 import { v } from 'convex/values';
 import { action, internalMutation, internalQuery } from './_generated/server';
-import { internal } from './_generated/api';
+import { api, internal } from './_generated/api';
 import { Id } from './_generated/dataModel';
 
 /**
@@ -22,9 +22,13 @@ interface ReviewForSummary {
  */
 export const generateSummaryForStudio = action({
   args: {
+    token: v.string(),
     studioId: v.id('studios'),
   },
   handler: async (ctx, args) => {
+    const sess = await ctx.runQuery(api.admin.session as any, { token: args.token } as any);
+    if (!sess?.authenticated) throw new Error('Not authenticated');
+
     const apiKey = process.env.OPENAI_API_KEY || process.env.OPENAI_API_TOKEN;
     if (!apiKey) {
       throw new Error('OPENAI_API_KEY not configured');
@@ -84,11 +88,15 @@ export const generateSummaryForStudio = action({
  */
 export const generateAllSummaries = action({
   args: {
+    token: v.string(),
     city: v.optional(v.string()),
     limit: v.optional(v.number()),
     forceRegenerate: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
+    const sess = await ctx.runQuery(api.admin.session as any, { token: args.token } as any);
+    if (!sess?.authenticated) throw new Error('Not authenticated');
+
     const apiKey = process.env.OPENAI_API_KEY || process.env.OPENAI_API_TOKEN;
     if (!apiKey) {
       throw new Error('OPENAI_API_KEY not configured');

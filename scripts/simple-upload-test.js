@@ -1,5 +1,6 @@
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -29,7 +30,7 @@ const visionSchema = z.object({
   quality: z.string().optional(),
 });
 
-async function processImage(imagePath) {
+async function processImage(client, token, imagePath) {
   console.log(`\n🔍 Processing: ${path.basename(imagePath)}`);
 
   const buffer = fs.readFileSync(imagePath);
@@ -54,8 +55,7 @@ async function processImage(imagePath) {
   console.log(`      Scene: ${result.object.scene}`);
 
   // Upload to Convex
-  const client = new ConvexHttpClient(CONVEX_URL);
-  const uploadUrl = await client.mutation(api.aiImages.generateUploadUrl);
+  const uploadUrl = await client.mutation(api.aiImages.generateUploadUrl, { token });
 
   const uploadResponse = await fetch(uploadUrl, {
     method: 'POST',
@@ -66,6 +66,7 @@ async function processImage(imagePath) {
   const { storageId } = await uploadResponse.json();
 
   await client.mutation(api.aiImages.upload, {
+    token,
     fileName: path.basename(imagePath),
     storageId,
     mimeType,
@@ -87,10 +88,12 @@ async function main() {
   ].filter(f => fs.existsSync(f));
 
   console.log(`\n🖼️  Processing ${testImages.length} test images\n`);
+  const client = new ConvexHttpClient(CONVEX_URL);
+  const token = await getAdminToken(client);
 
   for (const img of testImages) {
     try {
-      await processImage(img);
+      await processImage(client, token, img);
     } catch (error) {
       console.error(`   ❌ Failed: ${error.message}`);
     }

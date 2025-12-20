@@ -15,6 +15,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api';
+// eslint-disable-next-line import/extensions
+import { getAdminToken } from './lib/adminAuth.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -93,7 +95,7 @@ async function getMimeType(filePath: string): Promise<string> {
   return mimeTypes[ext] || 'application/octet-stream';
 }
 
-async function uploadImageToConvex(mapping: typeof IMAGE_MAPPINGS[0]) {
+async function uploadImageToConvex(mapping: typeof IMAGE_MAPPINGS[0], token: string) {
   const fullPath = path.join(__dirname, '..', mapping.localPath);
 
   // Check if file exists
@@ -110,17 +112,33 @@ async function uploadImageToConvex(mapping: typeof IMAGE_MAPPINGS[0]) {
 
     console.log(`📤 Uploading ${mapping.name} (${(stats.size / 1024).toFixed(1)}KB)...`);
 
-    // Upload to Convex storage
-    const storageId = await client.mutation(api.siteImages.upload as any, {
+    // Step 1: Generate upload URL
+    const uploadUrl = await client.mutation(api.siteImages.generateUploadUrl, { token });
+
+    // Step 2: Upload file to the URL
+    const uploadResponse = await fetch(uploadUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': blob.type || 'application/octet-stream' },
+      body: blob,
+    });
+    if (!uploadResponse.ok) {
+      throw new Error(`Upload failed: ${uploadResponse.status} ${uploadResponse.statusText}`);
+    }
+
+    const { storageId } = await uploadResponse.json();
+
+    // Step 3: Create/update database entry
+    const imageId = await client.mutation(api.siteImages.upload, {
+      token,
       name: mapping.name,
       category: mapping.category,
-      file: blob,
+      storageId,
       mimeType: blob.type,
       size: stats.size,
       alt: mapping.alt,
     });
 
-    console.log(`✅ Uploaded ${mapping.name} → ${storageId}`);
+    console.log(`✅ Uploaded ${mapping.name} → ${imageId}`);
   } catch (error: any) {
     console.error(`❌ Failed to upload ${mapping.name}:`, error.message);
   }
@@ -129,9 +147,10 @@ async function uploadImageToConvex(mapping: typeof IMAGE_MAPPINGS[0]) {
 async function main() {
   console.log('🚀 Starting image migration to Convex...\n');
   console.log(`📡 Connected to: ${CONVEX_URL}\n`);
+  const token = await getAdminToken(client as any);
 
   for (const mapping of IMAGE_MAPPINGS) {
-    await uploadImageToConvex(mapping);
+    await uploadImageToConvex(mapping, token);
   }
 
   console.log('\n✨ Migration complete!');

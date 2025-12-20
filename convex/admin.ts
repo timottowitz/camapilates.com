@@ -70,20 +70,34 @@ export const logout = mutation({
 });
 
 export const users = query({
-  args: {},
-  handler: async (ctx) => {
+  args: { token: v.string() },
+  handler: async (ctx, { token }) => {
+    const s = await ctx.db.query('sessions').withIndex('by_token', q => q.eq('token', token)).unique();
+    if (!s) return [];
+    const now = Math.floor(Date.now() / 1000);
+    if (s.expiresAt < now) return [];
+    const user = await ctx.db.get(s.userId);
+    if (!user) return [];
+
     const rows = await ctx.db.query('users').collect();
     return rows.map(r => r.username);
   }
 });
 
 export const sessions = query({
-  args: {},
-  handler: async (ctx) => {
+  args: { token: v.string() },
+  handler: async (ctx, { token }) => {
+    const s = await ctx.db.query('sessions').withIndex('by_token', q => q.eq('token', token)).unique();
+    if (!s) return { items: [] as Array<{ token: string; tokenShort: string; username: string; expires: number }> };
+    const now = Math.floor(Date.now() / 1000);
+    if (s.expiresAt < now) return { items: [] as Array<{ token: string; tokenShort: string; username: string; expires: number }> };
+    const user = await ctx.db.get(s.userId);
+    if (!user) return { items: [] as Array<{ token: string; tokenShort: string; username: string; expires: number }> };
+
     const items = await ctx.db.query('sessions').collect();
-    const list = await Promise.all(items.map(async (s) => {
-      const user = await ctx.db.get(s.userId);
-      return { token: s.token, tokenShort: s.token.slice(0, 8), username: user?.username || '', expires: s.expiresAt };
+    const list = await Promise.all(items.map(async (sess) => {
+      const sessUser = await ctx.db.get(sess.userId);
+      return { token: sess.token, tokenShort: sess.token.slice(0, 8), username: sessUser?.username || '', expires: sess.expiresAt };
     }));
     return { items: list };
   }

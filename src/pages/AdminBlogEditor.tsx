@@ -24,6 +24,7 @@ const CustomImage = Image.extend({
             const [isRegenerating, setIsRegenerating] = useState(false);
             const [prompt, setPrompt] = useState(alt || '');
             const regenerateImage = useAction(api.blogs.regenerateImage);
+            const token = typeof window !== 'undefined' ? (localStorage.getItem('admint') || '') : '';
 
             const handleRegenerate = async () => {
                 setIsRegenerating(true);
@@ -33,6 +34,7 @@ const CustomImage = Image.extend({
                     const context = editor.getText().substring(Math.max(0, pos - 500), Math.min(editor.getText().length, pos + 500));
 
                     const result = await regenerateImage({
+                        token,
                         prompt: prompt || 'Contextual image for blog post',
                         context,
                     });
@@ -195,6 +197,7 @@ const AdminBlogEditor = () => {
     const navigate = useNavigate();
     const blog = useQuery(api.blogs.getBySlug, { slug: slug || '' });
     const updateBlog = useMutation(api.blogs.update);
+    const token = typeof window !== 'undefined' ? (localStorage.getItem('admint') || '') : '';
 
     const [title, setTitle] = useState('');
     const [excerpt, setExcerpt] = useState('');
@@ -232,6 +235,7 @@ const AdminBlogEditor = () => {
         try {
             const markdown = (editor?.storage as any).markdown.getMarkdown();
             await updateBlog({
+                token,
                 slug: blog.slug,
                 title,
                 excerpt,

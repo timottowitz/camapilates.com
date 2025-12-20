@@ -6,6 +6,7 @@
 
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -48,6 +49,7 @@ function extractImages(markdown, slug) {
 }
 
 async function main() {
+    const token = await getAdminToken(client);
     console.log('🔍 Fetching all blogs...');
     const blogs = await client.query(api.blogs.list);
     console.log(`📚 Found ${blogs.length} blogs`);
@@ -69,7 +71,8 @@ async function main() {
         for (const img of images) {
             try {
                 // Check if placeholder exists
-                const placeholder = await client.query(api.placeholders.getById, {
+                const placeholder = await client.query(api.placeholders.getByIdAdmin, {
+                    token,
                     placeholderId: img.placeholderId
                 });
 

@@ -1,6 +1,7 @@
 import { ConvexHttpClient } from "convex/browser";
 // @ts-ignore - Deno TS doesn't understand Convex generated types
 import { api } from "../convex/_generated/api.js";
+import { getAdminToken } from "./lib/adminAuth.js";
 
 const CONVEX_URL = Deno.env.get("VITE_CONVEX_URL");
 
@@ -11,6 +12,7 @@ if (!CONVEX_URL) {
 
 async function uploadVideo() {
   const client = new ConvexHttpClient(CONVEX_URL);
+  const token = await getAdminToken(client);
 
   console.log("📹 Reading video file...");
   const videoPath = "/Users/m3max361tb/Movies/header_low_2.mov";
@@ -20,7 +22,7 @@ async function uploadVideo() {
   console.log(`📊 Video size: ${(videoBlob.size / 1024 / 1024).toFixed(2)} MB`);
 
   console.log("🔗 Generating upload URL...");
-  const uploadUrl = await client.mutation(api.siteImages.generateUploadUrl, {});
+  const uploadUrl = await client.mutation(api.siteImages.generateUploadUrl, { token });
 
   console.log("⬆️  Uploading video to Convex...");
   const uploadResponse = await fetch(uploadUrl, {
@@ -38,6 +40,7 @@ async function uploadVideo() {
 
   console.log("💾 Saving metadata to Convex...");
   await client.mutation(api.siteImages.upload, {
+    token,
     name: "heroVideo",
     category: "video",
     storageId,

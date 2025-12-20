@@ -1,6 +1,6 @@
 import { v } from 'convex/values';
 import { action, internalAction } from './_generated/server';
-import { internal } from './_generated/api';
+import { api, internal } from './_generated/api';
 import { Id } from './_generated/dataModel';
 
 function buildPromptFromContext(p: any): string {
@@ -43,12 +43,12 @@ async function getGeminiKey(ctx: any): Promise<string | null> {
   const stored = await ctx.runQuery(internal.appSettings.getApiKey, { key: 'GEMINI_API_KEY' });
   if (stored) return stored as string;
 
-  const row = await ctx.db.query('app_settings').withIndex('by_key', (q: any) => q.eq('key', 'provider_key_gemini')).unique();
-  if (!row?.valueEnc) return null;
+  const valueEnc = await ctx.runQuery(internal.appSettings.getApiKey, { key: 'provider_key_gemini' });
+  if (!valueEnc) return null;
   try {
     const cfgKey = process.env.CONFIG_ENC_KEY || '';
     if (!cfgKey) return null;
-    const bin = Uint8Array.from(Buffer.from(row.valueEnc, 'base64'));
+    const bin = Uint8Array.from(Buffer.from(valueEnc as string, 'base64'));
     const iv = bin.slice(0, 12);
     const ct = bin.slice(12);
     const enc = new TextEncoder().encode(cfgKey);
@@ -67,20 +67,28 @@ const GEMINI_TEXT_MODEL = process.env.GEMINI_TEXT_MODEL || 'gemini-3-pro-preview
 export const generatePrompt = internalAction({
   args: { placeholderId: v.string() },
   handler: async (ctx, args) => {
+    const row = await ctx.runQuery(internal.placeholders.getByIdInternal, { placeholderId: args.placeholderId });
+    if (!row) throw new Error('Placeholder not found');
+
+    if (row.generatedPrompt) {
+      return { prompt: row.generatedPrompt, reused: true };
+    }
+
+    const base = buildPromptFromContext(row);
+    const GEMINI_API_KEY = await getGeminiKey(ctx);
+    if (!GEMINI_API_KEY) {
+      const fallback = buildFallbackPromptBase(row);
+      await ctx.runMutation(internal.placeholders.updatePromptInternal, { placeholderId: args.placeholderId, prompt: fallback });
+      return { prompt: fallback, fallback: true };
+    }
+
     try {
-      const row = await ctx.runQuery(internal.placeholders.getByIdInternal, { placeholderId: args.placeholderId });
-      if (!row) throw new Error('Placeholder not found');
-
-      const GEMINI_API_KEY = await getGeminiKey(ctx);
-      if (!GEMINI_API_KEY) throw new Error('GEMINI_API_KEY not configured');
-
-      const prompt = buildPromptFromContext(row);
       const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_TEXT_MODEL}:generateContent`;
       const resp = await fetch(`${url}?key=${GEMINI_API_KEY}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
+          contents: [{ parts: [{ text: base }] }],
           generationConfig: { temperature: 0.7 }
         })
       });
@@ -89,18 +97,16 @@ export const generatePrompt = internalAction({
         throw new Error(`Prompt gen failed: ${resp.status} - ${errorText}`);
       }
       const data = await resp.json();
-      const text = String(data?.candidates?.[0]?.content?.parts?.map((p: any) => p.text).join('\n') || '').trim() || prompt;
+      const text = String(data?.candidates?.[0]?.content?.parts?.map((p: any) => p.text).join('\n') || '').trim() || base;
 
-      await ctx.runMutation(internal.placeholders.updatePrompt, { placeholderId: args.placeholderId, prompt: text });
-
-      // Schedule image generation
-      await ctx.scheduler.runAfter(0, internal.placeholderGeneration.generateImage, {
-        placeholderId: args.placeholderId,
-      });
-
+      await ctx.runMutation(internal.placeholders.updatePromptInternal, { placeholderId: args.placeholderId, prompt: text });
       return { prompt: text };
     } catch (error) {
-      throw error;
+      const message = (error as Error)?.message || String(error);
+      console.error(`placeholderGeneration.generatePrompt failed for ${args.placeholderId}: ${message}`);
+      const fallback = buildFallbackPromptBase(row);
+      await ctx.runMutation(internal.placeholders.updatePromptInternal, { placeholderId: args.placeholderId, prompt: fallback });
+      return { prompt: fallback, fallback: true };
     }
   }
 });
@@ -407,7 +413,7 @@ export const generateImage = internalAction({
           if (attempt === 0 && isContentFilterError(err)) {
             const fallbackBase = buildFallbackPromptBase(row);
             promptToUse = appendStyleDirectives(fallbackBase, row.preferredStyle || 'professional');
-            await ctx.runMutation(internal.placeholders.updatePrompt, {
+            await ctx.runMutation(internal.placeholders.updatePromptInternal, {
               placeholderId: args.placeholderId,
               prompt: fallbackBase,
             });
@@ -439,7 +445,7 @@ export const generateImage = internalAction({
         quality: 'Excellent',
       } as const;
 
-      const imageId = await ctx.runMutation(internal.aiImages.upload, {
+      const imageId = await ctx.runMutation(internal.aiImages.uploadInternal, {
         fileName: `${args.placeholderId}.png`,
         storageId,
         mimeType: 'image/png',
@@ -450,7 +456,7 @@ export const generateImage = internalAction({
         autoGenerate: false,
       });
 
-      await ctx.runMutation(internal.aiImages.updateGeneratedImage, {
+      await ctx.runMutation(internal.aiImages.updateGeneratedImageInternal, {
         imageId,
         generatedStorageId: storageId,
         generationPrompt: promptToUse,
@@ -458,7 +464,7 @@ export const generateImage = internalAction({
       });
 
       // Assign to placeholder
-      await ctx.runMutation(internal.placeholders.assignImage, { placeholderId: args.placeholderId, imageId, activate: true });
+      await ctx.runMutation(internal.placeholders.assignImageInternal, { placeholderId: args.placeholderId, imageId, activate: true });
 
       return { ok: true, imageId };
     } catch (error) {
@@ -476,10 +482,13 @@ export const generateImage = internalAction({
 
 // Public action to queue generation for a placeholder (schedules internal action)
 export const queue = action({
-  args: { placeholderId: v.string() },
+  args: { token: v.string(), placeholderId: v.string() },
   handler: async (ctx, args) => {
-    // Start with prompt generation (which will check if prompt exists)
-    await ctx.scheduler.runAfter(0, internal.placeholderGeneration.generatePrompt, { placeholderId: args.placeholderId });
+    const sess = await ctx.runQuery(api.admin.session as any, { token: args.token } as any);
+    if (!sess?.authenticated) return { queued: false, error: 'Not authenticated' };
+
+    // Generate (and assign) an image; will generate a prompt if needed.
+    await ctx.scheduler.runAfter(0, internal.placeholderGeneration.generateImage, { placeholderId: args.placeholderId });
     return { queued: true };
   }
 });

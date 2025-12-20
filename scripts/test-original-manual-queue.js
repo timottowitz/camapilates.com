@@ -1,5 +1,6 @@
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 
 const CONVEX_URL = 'https://spotted-raven-102.convex.cloud';
 
@@ -9,12 +10,14 @@ async function sleep(ms) {
 
 async function main() {
   const client = new ConvexHttpClient(CONVEX_URL);
+  const token = await getAdminToken(client);
   const testId = `manual-test-${Date.now()}`;
 
   console.log('\n🧪 TEST MANUAL QUEUE (Original Design)\n');
 
   // Step 1: Register
   await client.mutation(api.placeholders.register, {
+    token,
     placeholderId: testId,
     pageType: 'test',
     location: 'hero',
@@ -26,6 +29,7 @@ async function main() {
 
   // Step 2: Manually queue (like admin would)
   await client.action(api.placeholderGeneration.queue, {
+    token,
     placeholderId: testId
   });
   console.log('✅ Queued for generation');

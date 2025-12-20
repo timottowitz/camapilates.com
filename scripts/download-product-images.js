@@ -12,6 +12,7 @@ import https from 'node:https';
 import http from 'node:http';
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.resolve(__dirname, '../autonomous-blog-writer/.env') });
@@ -74,9 +75,10 @@ async function main() {
   console.log(`🔗 Convex: ${convexUrl}`);
   
   const client = new ConvexHttpClient(convexUrl);
+  const token = await getAdminToken(client);
 
   // Get all product placeholders
-  const all = await client.query(api.placeholders.list, {});
+  const all = await client.query(api.placeholders.list, { token });
   const productPlaceholders = all.filter(p => p.pageType === 'product');
 
   console.log(`\n📦 Found ${productPlaceholders.length} product placeholders\n`);

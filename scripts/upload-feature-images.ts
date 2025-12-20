@@ -1,5 +1,6 @@
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -21,6 +22,7 @@ async function uploadImage(params: {
   console.log(`\n📤 Uploading: ${name}`);
 
   const client = new ConvexHttpClient(CONVEX_URL);
+  const token = await getAdminToken(client);
 
   // Read file
   const buffer = fs.readFileSync(filePath);
@@ -29,7 +31,7 @@ async function uploadImage(params: {
   console.log(`   Size: ${(blob.size / 1024).toFixed(2)} KB`);
 
   // Generate upload URL
-  const uploadUrl = await client.mutation(api.siteImages.generateUploadUrl);
+  const uploadUrl = await client.mutation(api.siteImages.generateUploadUrl, { token });
 
   // Upload file
   const response = await fetch(uploadUrl, {
@@ -46,6 +48,7 @@ async function uploadImage(params: {
 
   // Save metadata
   const result = await client.mutation(api.siteImages.upload, {
+    token,
     name,
     category,
     storageId,

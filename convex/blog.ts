@@ -1,9 +1,18 @@
 import { queryGeneric as query, mutationGeneric as mutation } from 'convex/server';
 import { v } from 'convex/values';
+import { getAdminUserId } from './lib/adminAuth';
+
+async function isAdmin(ctx: any, token: string): Promise<boolean> {
+  const adminId = await getAdminUserId(ctx as any, token);
+  return Boolean(adminId);
+}
 
 export const listSuggestions = query({
-  args: {},
-  handler: async (ctx) => {
+  args: { token: v.string() },
+  handler: async (ctx, args) => {
+    const authed = await isAdmin(ctx, args.token);
+    if (!authed) return [];
+
     const rows = await ctx.db.query('blog_suggestions').collect();
     // Sort by createdAt desc
     rows.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
@@ -12,8 +21,11 @@ export const listSuggestions = query({
 });
 
 export const getSuggestion = query({
-  args: { slug: v.string() },
-  handler: async (ctx, { slug }) => {
+  args: { token: v.string(), slug: v.string() },
+  handler: async (ctx, { token, slug }) => {
+    const authed = await isAdmin(ctx, token);
+    if (!authed) return null;
+
     const idx = ctx.db.query('blog_suggestions').withIndex('by_slug', q => q.eq('slug', slug));
     const row = await idx.unique();
     return row;
@@ -21,8 +33,11 @@ export const getSuggestion = query({
 });
 
 export const addSuggestion = mutation({
-  args: { slug: v.string(), title: v.string(), category: v.string(), keywords: v.array(v.string()), source: v.optional(v.string()) },
-  handler: async (ctx, { slug, title, category, keywords, source }) => {
+  args: { token: v.string(), slug: v.string(), title: v.string(), category: v.string(), keywords: v.array(v.string()), source: v.optional(v.string()) },
+  handler: async (ctx, { token, slug, title, category, keywords, source }) => {
+    const authed = await isAdmin(ctx, token);
+    if (!authed) return { ok: false, error: 'Not authenticated' };
+
     const now = Date.now();
     // Upsert by slug
     const existing = await ctx.db.query('blog_suggestions').withIndex('by_slug', q => q.eq('slug', slug)).unique();
@@ -36,8 +51,11 @@ export const addSuggestion = mutation({
 });
 
 export const acceptSuggestion = mutation({
-  args: { slug: v.string() },
-  handler: async (ctx, { slug }) => {
+  args: { token: v.string(), slug: v.string() },
+  handler: async (ctx, { token, slug }) => {
+    const authed = await isAdmin(ctx, token);
+    if (!authed) return { ok: false, error: 'Not authenticated' };
+
     const s = await ctx.db.query('blog_suggestions').withIndex('by_slug', q => q.eq('slug', slug)).unique();
     if (!s) return { ok: false, error: 'not_found' };
     await ctx.db.patch(s._id, { status: 'accepted' });
@@ -46,8 +64,11 @@ export const acceptSuggestion = mutation({
 });
 
 export const declineSuggestion = mutation({
-  args: { slug: v.string() },
-  handler: async (ctx, { slug }) => {
+  args: { token: v.string(), slug: v.string() },
+  handler: async (ctx, { token, slug }) => {
+    const authed = await isAdmin(ctx, token);
+    if (!authed) return { ok: false, error: 'Not authenticated' };
+
     const s = await ctx.db.query('blog_suggestions').withIndex('by_slug', q => q.eq('slug', slug)).unique();
     if (!s) return { ok: false, error: 'not_found' };
     await ctx.db.patch(s._id, { status: 'declined' });
@@ -56,8 +77,11 @@ export const declineSuggestion = mutation({
 });
 
 export const updateTopic = mutation({
-  args: { slug: v.string(), title: v.optional(v.string()), category: v.optional(v.string()), keywords: v.optional(v.array(v.string())) },
-  handler: async (ctx, { slug, title, category, keywords }) => {
+  args: { token: v.string(), slug: v.string(), title: v.optional(v.string()), category: v.optional(v.string()), keywords: v.optional(v.array(v.string())) },
+  handler: async (ctx, { token, slug, title, category, keywords }) => {
+    const authed = await isAdmin(ctx, token);
+    if (!authed) return { ok: false, error: 'Not authenticated' };
+
     const s = await ctx.db.query('blog_suggestions').withIndex('by_slug', q => q.eq('slug', slug)).unique();
     if (!s) return { ok: false, error: 'not_found' };
     const patch: any = {};
@@ -70,8 +94,11 @@ export const updateTopic = mutation({
 });
 
 export const status = query({
-  args: { slug: v.string() },
-  handler: async (ctx, { slug }) => {
+  args: { token: v.string(), slug: v.string() },
+  handler: async (ctx, { token, slug }) => {
+    const authed = await isAdmin(ctx, token);
+    if (!authed) return { slug, status: 'not_authenticated' };
+
     const s = await ctx.db.query('blog_suggestions').withIndex('by_slug', q => q.eq('slug', slug)).unique();
     if (!s) return { slug, status: 'not_found' };
     return { slug, status: s.status, title: s.title, category: s.category, createdAt: s.createdAt };
@@ -79,8 +106,11 @@ export const status = query({
 });
 
 export const saveKeywords = mutation({
-  args: { keywords: v.array(v.object({ term: v.string(), category: v.string(), usageCount: v.number(), lastUsed: v.optional(v.number()) })) },
-  handler: async (ctx, { keywords }) => {
+  args: { token: v.string(), keywords: v.array(v.object({ term: v.string(), category: v.string(), usageCount: v.number(), lastUsed: v.optional(v.number()) })) },
+  handler: async (ctx, { token, keywords }) => {
+    const authed = await isAdmin(ctx, token);
+    if (!authed) return { ok: false, error: 'Not authenticated' };
+
     // Simple replace strategy: delete all and reinsert
     const all = await ctx.db.query('keywords').collect();
     await Promise.all(all.map(doc => ctx.db.delete(doc._id)));
@@ -90,4 +120,3 @@ export const saveKeywords = mutation({
     return { ok: true, count: keywords.length };
   }
 });
-

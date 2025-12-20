@@ -38,25 +38,32 @@ const AdminSettings: React.FC = () => {
   const [oauthBanner, setOauthBanner] = useState<string | null>(null);
   const [oauthBannerError, setOauthBannerError] = useState(false);
 
+  const token = typeof window !== 'undefined' ? (localStorage.getItem('admint') || '') : '';
+
   // Convex: Vertex settings
-  const vertexCfg = useQuery(api.settings.getVertexConfig, {} as any) as any;
+  const vertexCfg = useQuery(
+    api.settings.getVertexConfig,
+    token ? ({ token } as any) : 'skip'
+  ) as any;
   const setVertex = useMutation(api.settings.setVertexConfig);
   const testImages = useAction(api.images.generateImages);
 
-  const uQuery = useQuery(api.admin.users as any, {} as any) as string[] | undefined;
-  const sQuery = useQuery(api.admin.sessions as any, {} as any) as any;
+  const uQuery = useQuery(api.admin.users as any, token ? ({ token } as any) : 'skip') as
+    | string[]
+    | undefined;
+  const sQuery = useQuery(api.admin.sessions as any, token ? ({ token } as any) : 'skip') as any;
   const mutateChangePassword = useMutation(api.admin.changePassword as any);
   const mutateAddUser = useMutation(api.admin.addUser as any);
   const mutateDeleteUser = useMutation(api.admin.deleteUser as any);
   const mutateRevokeSession = useMutation(api.admin.revokeSession as any);
 
-  const oauthStatus = useQuery(api.settings.getOAuthStatus as any, {} as any) as any;
-  const providerStatus = useQuery(api.settings.getProviderKeysStatus as any, {} as any) as any;
+  const oauthStatus = useQuery(api.settings.getOAuthStatus as any, token ? ({ token } as any) : 'skip') as any;
+  const providerStatus = useQuery(api.settings.getProviderKeysStatus as any, token ? ({ token } as any) : 'skip') as any;
   const saveProviderKey = useMutation(api.settings.setProviderKey as any);
   const delProviderKey = useMutation(api.settings.deleteProviderKey as any);
-  const deepModeQuery = useQuery(api.settings.getDeepMode as any, {} as any) as any;
+  const deepModeQuery = useQuery(api.settings.getDeepMode as any, token ? ({ token } as any) : 'skip') as any;
   const setDeepMode = useMutation(api.settings.setDeepMode as any);
-  const hasOAuthClient = Boolean(vertexCfg?.oauthClientId && vertexCfg?.oauthClientSecret);
+  const hasOAuthClient = Boolean(vertexCfg?.oauthClientId && vertexCfg?.hasOAuthSecret);
   useEffect(() => {
     (async () => {
       try {
@@ -104,7 +111,7 @@ const AdminSettings: React.FC = () => {
   const save = async () => {
     setStatus('saving'); setMessage('');
     try {
-      await setVertex({ projectId, location, model, serviceAccountEmail: saEmail || undefined, serviceAccountPrivateKey: saKey || undefined, oauthClientId: oauthId || undefined, oauthClientSecret: oauthSecret || undefined } as any);
+      await setVertex({ token, projectId, location, model, serviceAccountEmail: saEmail || undefined, serviceAccountPrivateKey: saKey || undefined, oauthClientId: oauthId || undefined, oauthClientSecret: oauthSecret || undefined } as any);
       setStatus('saved'); setMessage('Guardado');
     } catch { setStatus('error'); setMessage('No se pudo guardar'); }
   };
@@ -112,7 +119,7 @@ const AdminSettings: React.FC = () => {
   const test = async () => {
     setStatus('testing'); setMessage('');
     try {
-      const data = await testImages({ slug: 'test-connection', headline: 'Prueba de conexión', testOnly: true } as any);
+      const data = await testImages({ token, slug: 'test-connection', headline: 'Prueba de conexión', testOnly: true } as any);
       if (data?.success) { setStatus('idle'); setMessage('Conexión correcta con Vertex'); }
       else { setStatus('error'); setMessage('Fallo de conexión con Vertex'); }
     } catch { setStatus('error'); setMessage('Fallo de conexión con Vertex'); }
@@ -142,7 +149,6 @@ const AdminSettings: React.FC = () => {
       const out = await mutateAddUser({ token, username: newUser, password: newUserPass } as any);
       if (out?.ok) {
         setUserMsg('Usuario creado'); setNewUser(''); setNewUserPass('');
-        const uq = (await import('convex/react')).useQuery as any; // hint only
       } else setUserMsg(out?.error || 'No se pudo crear');
     } catch { setUserMsg('No se pudo crear'); }
   };
@@ -191,7 +197,7 @@ const AdminSettings: React.FC = () => {
               <select
                 className="border rounded p-2 text-sm"
                 value={deepModeQuery?.mode || 'direct'}
-                onChange={async (e)=>{ try { await setDeepMode({ mode: e.target.value } as any); } catch {} }}
+                onChange={async (e)=>{ try { await setDeepMode({ token, mode: e.target.value } as any); } catch {} }}
               >
                 <option value="direct">Direct API Calls</option>
                 <option value="agent">AI SDK Agent</option>
@@ -205,7 +211,13 @@ const AdminSettings: React.FC = () => {
             <h2 className="text-xl font-semibold">AI Providers</h2>
             <div className="text-sm text-muted-foreground">Administra API keys para investigadores profundos.</div>
             {['openai','perplexity','gemini','exa','firecrawl'].map((p) => (
-              <ProviderKeyRow key={p} provider={p} status={Boolean(providerStatus?.[p])} onSave={async (k)=>{ await saveProviderKey({ provider: p, key: k } as any); }} onDelete={async ()=>{ await delProviderKey({ provider: p } as any); }} />
+              <ProviderKeyRow
+                key={p}
+                provider={p}
+                status={Boolean(providerStatus?.[p])}
+                onSave={async (k)=>{ await saveProviderKey({ token, provider: p, key: k } as any); }}
+                onDelete={async ()=>{ await delProviderKey({ token, provider: p } as any); }}
+              />
             ))}
           </CardContent>
         </Card>

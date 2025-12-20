@@ -75,6 +75,12 @@ function build() {
     { loc: `${origin}/certificacion-pilates/monterrey`, lastmod: now, changefreq: 'weekly', priority: '0.7' },
     { loc: `${origin}/certificacion-pilates/puebla`, lastmod: now, changefreq: 'weekly', priority: '0.6' },
     { loc: `${origin}/certificacion-pilates/queretaro`, lastmod: now, changefreq: 'weekly', priority: '0.6' },
+    { loc: `${origin}/estudios-de-pilates`, lastmod: now, changefreq: 'weekly', priority: '0.9' },
+    { loc: `${origin}/cdmx/estudios-de-pilates`, lastmod: now, changefreq: 'weekly', priority: '0.8' },
+    { loc: `${origin}/instructores-pilates`, lastmod: now, changefreq: 'weekly', priority: '0.8' },
+    { loc: `${origin}/cdmx/instructores-pilates`, lastmod: now, changefreq: 'weekly', priority: '0.7' },
+    { loc: `${origin}/guadalajara/instructores-pilates`, lastmod: now, changefreq: 'monthly', priority: '0.6' },
+    { loc: `${origin}/monterrey/instructores-pilates`, lastmod: now, changefreq: 'monthly', priority: '0.6' },
   ];
 
   

@@ -1,5 +1,6 @@
 import { v } from 'convex/values';
 import { query, mutation } from './_generated/server';
+import { getAdminUserId } from './lib/adminAuth';
 
 // Get all active cities
 export const getActive = query({
@@ -63,11 +64,15 @@ export const getWithStudios = query({
 // Update city statistics
 export const updateStats = mutation({
   args: {
+    token: v.string(),
     cityId: v.id('cities'),
     studioCount: v.number(),
     averageRating: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx as any, args.token);
+    if (!adminId) throw new Error('Not authenticated');
+
     await ctx.db.patch(args.cityId, {
       studioCount: args.studioCount,
       averageRating: args.averageRating,
@@ -79,6 +84,7 @@ export const updateStats = mutation({
 // Create or update city
 export const upsert = mutation({
   args: {
+    token: v.string(),
     city: v.object({
       slug: v.string(),
       name: v.string(),
@@ -101,6 +107,9 @@ export const upsert = mutation({
     }),
   },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx as any, args.token);
+    if (!adminId) throw new Error('Not authenticated');
+
     const now = Date.now();
 
     // Check if city exists
@@ -134,6 +143,7 @@ export const upsert = mutation({
 // Batch import cities
 export const batchImport = mutation({
   args: {
+    token: v.string(),
     cities: v.array(v.object({
       slug: v.string(),
       name: v.string(),
@@ -151,6 +161,9 @@ export const batchImport = mutation({
     })),
   },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx as any, args.token);
+    if (!adminId) throw new Error('Not authenticated');
+
     const now = Date.now();
     const results = [];
 
@@ -193,10 +206,14 @@ export const batchImport = mutation({
 // Activate/deactivate city
 export const setActive = mutation({
   args: {
+    token: v.string(),
     cityId: v.id('cities'),
     isActive: v.boolean(),
   },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx as any, args.token);
+    if (!adminId) throw new Error('Not authenticated');
+
     await ctx.db.patch(args.cityId, {
       isActive: args.isActive,
       updatedAt: Date.now(),

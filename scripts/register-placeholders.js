@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 
 const ROOT = process.cwd();
 const SCAN_FILE = path.join(ROOT, 'data', 'placeholder-scan.json');
@@ -21,11 +22,13 @@ async function main() {
   const json = JSON.parse(fs.readFileSync(SCAN_FILE, 'utf8'));
   const items = Array.isArray(json?.placeholders) ? json.placeholders : [];
   const client = new ConvexHttpClient(resolveConvexUrl());
+  const token = await getAdminToken(client);
 
   let ok = 0, fail = 0;
   for (const p of items) {
     try {
       await client.mutation(api.placeholders.register, {
+        token,
         placeholderId: p.placeholderId,
         pageType: p.pageType || 'page',
         pageSlug: p.pageSlug,

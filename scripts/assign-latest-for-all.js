@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 
 function resolveConvexUrl() {
   return process.env.CONVEX_URL || process.env.VITE_CONVEX_URL || 'https://spotted-raven-102.convex.cloud';
@@ -8,13 +9,14 @@ function resolveConvexUrl() {
 
 async function main() {
   const client = new ConvexHttpClient(resolveConvexUrl());
+  const token = await getAdminToken(client);
 
   console.log('\n🧩 Assigning latest generated images to placeholders...');
 
   // Fetch all placeholders (no filter)
   let rows = [];
   try {
-    rows = await client.query(api.placeholders.list, {});
+    rows = await client.query(api.placeholders.list, { token });
   } catch (e) {
     console.error('❌ Failed to list placeholders:', e?.message || e);
     process.exit(1);
@@ -26,7 +28,7 @@ async function main() {
     // Skip active items to avoid unnecessary writes; still safe to assignLatest, but avoid churn
     if (r.status === 'active') { skipped++; continue; }
     try {
-      await client.mutation(api.placeholders.assignLatest, { placeholderId: r.placeholderId, activate: true });
+      await client.mutation(api.placeholders.assignLatest, { token, placeholderId: r.placeholderId, activate: true });
       assigned++;
       process.stdout.write('.');
     } catch (e) {
@@ -40,4 +42,3 @@ async function main() {
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });
-

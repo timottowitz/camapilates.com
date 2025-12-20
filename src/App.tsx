@@ -59,6 +59,9 @@ const AdminPlaceholders = lazyWithRetry(() => import('./pages/AdminPlaceholders'
 const AdminSettings = lazyWithRetry(() => import('./pages/AdminSettings'));
 const AdminBlogList = lazyWithRetry(() => import('./pages/AdminBlogList'));
 const AdminBlogEditor = lazyWithRetry(() => import('./pages/AdminBlogEditor'));
+const AdminTeacherClaims = lazyWithRetry(() => import('./pages/AdminTeacherClaims'));
+const AdminTeacherLinks = lazyWithRetry(() => import('./pages/AdminTeacherLinks'));
+const AdminTeacherSeeds = lazyWithRetry(() => import('./pages/AdminTeacherSeeds'));
 const Product = lazyWithRetry(() => import('./pages/Product'));
 const Products = lazyWithRetry(() => import('./pages/Products'));
 const CamaDePilatesEnVenta = lazyWithRetry(() => import('./pages/CamaDePilatesEnVenta'));
@@ -73,6 +76,10 @@ const LegalTerms = lazyWithRetry(() => import('./pages/LegalTerms'));
 const LegalPrivacy = lazyWithRetry(() => import('./pages/LegalPrivacy'));
 const Support = lazyWithRetry(() => import('./pages/Support'));
 const ClaimStudio = lazyWithRetry(() => import('./pages/ClaimStudio'));
+const TeachersLanding = lazyWithRetry(() => import('./pages/instructores-pilates/TeachersLanding'));
+const CityTeachers = lazyWithRetry(() => import('./pages/instructores-pilates/CityTeachers'));
+const ClaimTeacher = lazyWithRetry(() => import('./pages/instructores-pilates/ClaimTeacher'));
+const TeacherDetail = lazyWithRetry(() => import('./pages/instructores-pilates/TeacherDetail'));
 
 import GAListener from "@/components/analytics/GAListener";
 import FloatingCart21 from "@/components/commerce21/FloatingCart21";
@@ -135,6 +142,9 @@ const App = () => (
               <Route path="/admin/placeholders" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminPlaceholders /></AdminGuard></Suspense>} />
               <Route path="/admin/blogs" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminBlogList /></AdminGuard></Suspense>} />
               <Route path="/admin/blogs/:slug" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminBlogEditor /></AdminGuard></Suspense>} />
+              <Route path="/admin/teacher-links" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminTeacherLinks /></AdminGuard></Suspense>} />
+              <Route path="/admin/teacher-seeds" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminTeacherSeeds /></AdminGuard></Suspense>} />
+              <Route path="/admin/instructor-claims" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminTeacherClaims /></AdminGuard></Suspense>} />
               <Route path="/product/:slug" element={<Suspense fallback={<PageLoader />}><Product /></Suspense>} />
 
               {/* Studio Directory Routes */}
@@ -142,6 +152,11 @@ const App = () => (
               <Route path="/estudios-de-pilates/:city/:studio" element={<Suspense fallback={<PageLoader />}><StudioDetail /></Suspense>} />
               <Route path="/estudios-de-pilates/:city" element={<Suspense fallback={<PageLoader />}><CityDirectory /></Suspense>} />
               <Route path="/claim-studio" element={<Suspense fallback={<PageLoader />}><ClaimStudio /></Suspense>} />
+              <Route path="/claim-teacher" element={<Suspense fallback={<PageLoader />}><ClaimTeacher /></Suspense>} />
+
+              <Route path="/instructores-pilates" element={<Suspense fallback={<PageLoader />}><TeachersLanding /></Suspense>} />
+              <Route path="/instructores-pilates/:city/:slug" element={<Suspense fallback={<PageLoader />}><TeacherDetail /></Suspense>} />
+              <Route path="/instructores-pilates/:city" element={<Suspense fallback={<PageLoader />}><CityTeachers /></Suspense>} />
 
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />

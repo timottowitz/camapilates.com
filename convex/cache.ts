@@ -1,5 +1,5 @@
 import { v } from 'convex/values';
-import { mutation, query } from './_generated/server';
+import { internalMutation, internalQuery } from './_generated/server';
 
 /**
  * Cache management for Google Places data
@@ -19,7 +19,7 @@ import { mutation, query } from './_generated/server';
 /**
  * Get cached place details
  */
-export const getPlaceDetails = query({
+export const getPlaceDetails = internalQuery({
   args: {
     placeId: v.string(),
   },
@@ -42,7 +42,7 @@ export const getPlaceDetails = query({
  * Save place details to cache
  * Maximum cache duration: 30 days per ToS
  */
-export const savePlaceDetails = mutation({
+export const savePlaceDetails = internalMutation({
   args: {
     placeId: v.string(),
     data: v.any(),
@@ -87,7 +87,7 @@ export const savePlaceDetails = mutation({
  * Clean up expired cache entries
  * Should be run periodically (e.g., daily cron job)
  */
-export const cleanExpiredCache = mutation({
+export const cleanExpiredCache = internalMutation({
   args: {},
   handler: async (ctx) => {
     const now = Date.now();
@@ -113,7 +113,7 @@ export const cleanExpiredCache = mutation({
 /**
  * Get cache statistics for monitoring
  */
-export const getCacheStats = query({
+export const getCacheStats = internalQuery({
   args: {},
   handler: async (ctx) => {
     const all = await ctx.db.query('placeDetailsCache').collect();

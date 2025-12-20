@@ -1,5 +1,6 @@
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 import { createOpenAI } from '@ai-sdk/openai';
 import fetch from 'node-fetch';
 import fs from 'fs';
@@ -95,7 +96,7 @@ async function downloadImage(url) {
 /**
  * Process single image: generate similar version
  */
-async function processImage(client, image) {
+async function processImage(client, token, image) {
   console.log(`\n🔍 Processing: ${image.fileName}`);
   console.log(`   Scene: ${image.aiDescription.scene.substring(0, 60)}...`);
 
@@ -113,7 +114,7 @@ async function processImage(client, image) {
 
     // Upload to Convex
     console.log('   ⬆️  Uploading to Convex...');
-    const uploadUrl = await client.mutation(api.aiImages.generateUploadUrl);
+    const uploadUrl = await client.mutation(api.aiImages.generateUploadUrl, { token });
 
     const uploadResponse = await fetch(uploadUrl, {
       method: 'POST',
@@ -125,6 +126,7 @@ async function processImage(client, image) {
 
     // Update image record with generated version
     await client.mutation(api.aiImages.updateGeneratedImage, {
+      token,
       imageId: image._id,
       generatedStorageId: storageId,
       generationPrompt: revisedPrompt,
@@ -138,6 +140,7 @@ async function processImage(client, image) {
 
     // Mark as failed in database
     await client.mutation(api.aiImages.markGenerationFailed, {
+      token,
       imageId: image._id,
       error: error.message,
     });
@@ -156,10 +159,11 @@ async function main() {
   }
 
   const client = new ConvexHttpClient(CONVEX_URL);
+  const token = await getAdminToken(client);
 
   // Get all images without generated versions
   console.log('\n🔍 Fetching images without generated versions...');
-  const allImages = await client.query(api.aiImages.listAll, { limit: 100 });
+  const allImages = await client.query(api.aiImages.listAll, { token, limit: 100 });
 
   const pendingImages = allImages.filter((img) => !img.generatedStorageId);
 
@@ -174,7 +178,7 @@ async function main() {
   let failed = 0;
 
   for (const img of pendingImages) {
-    const result = await processImage(client, img);
+    const result = await processImage(client, token, img);
 
     if (result.success) {
       processed++;

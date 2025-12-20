@@ -1,6 +1,6 @@
 import { v } from 'convex/values';
 import { action, internalAction } from './_generated/server';
-import { internal } from './_generated/api';
+import { api, internal } from './_generated/api';
 
 /**
  * AUTOMATIC IMAGE GENERATION TRIGGER
@@ -78,7 +78,7 @@ export const triggerGeneration = internalAction({
       const storageId = await ctx.storage.store(new Blob([imageBuffer], { type: 'image/png' }));
 
       // Update record with generated image
-      await ctx.runMutation(internal.aiImages.updateGeneratedImage, {
+      await ctx.runMutation(internal.aiImages.updateGeneratedImageInternal, {
         imageId: args.imageId,
         generatedStorageId: storageId,
         generationPrompt: revisedPrompt,
@@ -91,7 +91,7 @@ export const triggerGeneration = internalAction({
       console.error(`❌ Generation failed for ${image.fileName}:`, error.message);
 
       // Mark as failed
-      await ctx.runMutation(internal.aiImages.markGenerationFailed, {
+      await ctx.runMutation(internal.aiImages.markGenerationFailedInternal, {
         imageId: args.imageId,
         error: error.message,
       });
@@ -138,9 +138,13 @@ Photorealistic but with unique artistic interpretation.`;
  */
 export const queueForGeneration = action({
   args: {
+    token: v.string(),
     imageId: v.id('ai_images'),
   },
   handler: async (ctx, args) => {
+    const sess = await ctx.runQuery(api.admin.session as any, { token: args.token } as any);
+    if (!sess?.authenticated) return { success: false, error: 'Not authenticated' };
+
     // Schedule the generation
     await ctx.scheduler.runAfter(0, internal.imageGeneration.triggerGeneration, {
       imageId: args.imageId,

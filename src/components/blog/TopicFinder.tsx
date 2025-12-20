@@ -39,12 +39,13 @@ export default function TopicFinder() {
   // Decision map: 'accept' | 'decline' per slug. Default is 'accept'.
   const [decisions, setDecisions] = useState<Record<string, 'accept' | 'decline'>>({});
   const [summary, setSummary] = useState<string>('');
-  const suggestionsQuery = useQuery(api.blog.listSuggestions, {} as any) as any[] | undefined;
+  const token = typeof window !== 'undefined' ? (localStorage.getItem('admint') || '') : '';
+  const suggestionsQuery = useQuery(api.blog.listSuggestions, token ? ({ token } as any) : 'skip') as any[] | undefined;
   const actionFind = useAction(api.topics.findTopicsFromReddit);
   const actionDeep = useAction(api.llm.discoverTopicsDeep as any);
   const actionDeepBatch = useAction(api.llm.batchDiscoverAndScaffold as any);
   const [provider, setProvider] = useState<string>('openai');
-  const deepMode = useQuery(api.settings.getDeepMode as any, {} as any) as any;
+  const deepMode = useQuery(api.settings.getDeepMode as any, token ? ({ token } as any) : 'skip') as any;
   const modeDefault = (deepMode?.mode || 'direct') as 'direct'|'agent';
   const [mode, setMode] = useState<'direct'|'agent'>(modeDefault);
   const mutateAccept = useMutation(api.blog.acceptSuggestion);
@@ -77,13 +78,13 @@ export default function TopicFinder() {
       // Prefer Deep (OpenAI) if available; gracefully fallback to Reddit/Quora/Web
       let data: any;
       if (mode === 'agent') {
-        data = await actionDeep({ prompt, limit, provider, mode } as any);
+        data = await actionDeep({ token, prompt, limit, provider, mode } as any);
       } else {
-        data = await actionDeep({ prompt, limit, provider: provider, mode: 'direct' } as any);
+        data = await actionDeep({ token, prompt, limit, provider: provider, mode: 'direct' } as any);
       }
       if (data?.error && /missing_/.test(String(data.error))) {
         const queries = deriveQueries(prompt);
-        data = await actionFind({ queries: queries.length ? queries : undefined, limit });
+        data = await actionFind({ token, queries: queries.length ? queries : undefined, limit } as any);
       }
       const suggestions: Suggestion[] = (data?.suggestions || []).map((s: any) => ({ ...s, status: 'in_review' }));
       setItems(suggestions);
@@ -99,12 +100,12 @@ export default function TopicFinder() {
   }
 
   async function accept(slug: string) {
-    try { await mutateAccept({ slug }); setItems(prev => prev.map(i => i.slug === slug ? { ...i, status: 'accepted' } : i)); }
+    try { await mutateAccept({ token, slug } as any); setItems(prev => prev.map(i => i.slug === slug ? { ...i, status: 'accepted' } : i)); }
     catch (e: any) { console.warn('No se pudo aceptar', e?.message || e); }
   }
 
   async function decline(slug: string) {
-    try { await mutateDecline({ slug }); setItems(prev => prev.map(i => i.slug === slug ? { ...i, status: 'declined' } : i)); }
+    try { await mutateDecline({ token, slug } as any); setItems(prev => prev.map(i => i.slug === slug ? { ...i, status: 'declined' } : i)); }
     catch (e: any) { console.warn('No se pudo rechazar', e?.message || e); }
   }
 
@@ -115,12 +116,12 @@ export default function TopicFinder() {
     // Declines
     for (const slug of declined) {
       // eslint-disable-next-line no-await-in-loop
-      try { await mutateDecline({ slug }); okD++; } catch { failD++; }
+      try { await mutateDecline({ token, slug } as any); okD++; } catch { failD++; }
     }
     // Accepts
     for (const slug of accepted) {
       // eslint-disable-next-line no-await-in-loop
-      try { await mutateAccept({ slug }); okA++; } catch { failA++; }
+      try { await mutateAccept({ token, slug } as any); okA++; } catch { failA++; }
     }
     // Refresh from server to avoid state races
     try {
@@ -179,7 +180,7 @@ export default function TopicFinder() {
               <Button className="mt-2 w-full" variant="outline" onClick={async ()=>{
                 setLoading(true);
                 try {
-                  const out = await actionDeepBatch({ prompt, limit: 50, provider, mode } as any);
+                  const out = await actionDeepBatch({ token, prompt, limit: 50, provider, mode } as any);
                   if (out?.created) setSummary(`Deep topics creados: ${out.created}`);
                   // Reload suggestions
                   const suggs: Suggestion[] = (suggestionsQuery || []).filter((it: any) => it.status === 'in_review') as any;

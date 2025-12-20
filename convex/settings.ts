@@ -1,5 +1,11 @@
 import { queryGeneric as query, mutationGeneric as mutation } from 'convex/server';
 import { v } from 'convex/values';
+import { getAdminUserId } from './lib/adminAuth';
+
+async function isAdmin(ctx: any, token: string): Promise<boolean> {
+  const adminId = await getAdminUserId(ctx as any, token);
+  return Boolean(adminId);
+}
 
 async function encrypt(obj: unknown): Promise<string> {
   const keyStr = process.env.CONFIG_ENC_KEY;
@@ -27,21 +33,48 @@ async function decrypt(b64: string): Promise<any | null> {
 }
 
 export const getVertexConfig = query({
-  args: {},
-  handler: async (ctx) => {
+  args: { token: v.string() },
+  handler: async (ctx, args) => {
+    const authed = await isAdmin(ctx, args.token);
+    if (!authed) return { configured: false };
+
     const row = await ctx.db.query('app_settings').withIndex('by_key', q => q.eq('key', 'vertex_config')).unique();
     if (!row) return { configured: false };
     const cfg = await decrypt(row.valueEnc);
     if (!cfg) return { configured: false };
-    return { configured: true, ...cfg };
+
+    const { serviceAccountPrivateKey, oauthClientSecret, ...safeCfg } = cfg as any;
+    return {
+      configured: true,
+      ...safeCfg,
+      hasPrivateKey: Boolean(serviceAccountPrivateKey),
+      hasOAuthSecret: Boolean(oauthClientSecret),
+    };
   }
 });
 
 export const setVertexConfig = mutation({
-  args: { projectId: v.string(), location: v.optional(v.string()), model: v.optional(v.string()), serviceAccountEmail: v.optional(v.string()), serviceAccountPrivateKey: v.optional(v.string()), oauthClientId: v.optional(v.string()), oauthClientSecret: v.optional(v.string()) },
-  handler: async (ctx, body) => {
+  args: {
+    token: v.string(),
+    projectId: v.string(),
+    location: v.optional(v.string()),
+    model: v.optional(v.string()),
+    serviceAccountEmail: v.optional(v.string()),
+    serviceAccountPrivateKey: v.optional(v.string()),
+    oauthClientId: v.optional(v.string()),
+    oauthClientSecret: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const authed = await isAdmin(ctx, args.token);
+    if (!authed) return { success: false, error: 'Not authenticated' };
+
+    const { token: _token, ...body } = args;
     if (!body.projectId) throw new Error('projectId required');
-    const enc = await encrypt({ ...body, location: body.location || 'us-central1', model: body.model || 'imagegeneration@006' });
+    const enc = await encrypt({
+      ...body,
+      location: body.location || 'us-central1',
+      model: body.model || 'imagegeneration@006',
+    });
     const now = Date.now();
     const row = await ctx.db.query('app_settings').withIndex('by_key', q => q.eq('key', 'vertex_config')).unique();
     if (row) { await ctx.db.patch(row._id, { valueEnc: enc, updatedAt: now }); }
@@ -51,8 +84,11 @@ export const setVertexConfig = mutation({
 });
 
 export const getOAuthStatus = query({
-  args: {},
-  handler: async (ctx) => {
+  args: { token: v.string() },
+  handler: async (ctx, args) => {
+    const authed = await isAdmin(ctx, args.token);
+    if (!authed) return { connected: false };
+
     // If we ever store OAuth refresh, check it here; otherwise infer from config
     const row = await ctx.db.query('app_settings').withIndex('by_key', q => q.eq('key', 'vertex_oauth_refresh')).unique();
     return { connected: Boolean(row) };
@@ -93,8 +129,11 @@ async function decJson(b64: string) {
 }
 
 export const setProviderKey = mutation({
-  args: { provider: v.string(), key: v.string() },
-  handler: async (ctx, { provider, key }) => {
+  args: { token: v.string(), provider: v.string(), key: v.string() },
+  handler: async (ctx, { token, provider, key }) => {
+    const authed = await isAdmin(ctx, token);
+    if (!authed) return { success: false, error: 'Not authenticated' };
+
     const now = Date.now();
     const valueEnc = await encJson({ key });
     const row = await ctx.db.query('app_settings').withIndex('by_key', q => q.eq('key', `provider_key_${provider}`)).unique();
@@ -105,8 +144,11 @@ export const setProviderKey = mutation({
 });
 
 export const deleteProviderKey = mutation({
-  args: { provider: v.string() },
-  handler: async (ctx, { provider }) => {
+  args: { token: v.string(), provider: v.string() },
+  handler: async (ctx, { token, provider }) => {
+    const authed = await isAdmin(ctx, token);
+    if (!authed) return { success: false, error: 'Not authenticated' };
+
     const row = await ctx.db.query('app_settings').withIndex('by_key', q => q.eq('key', `provider_key_${provider}`)).unique();
     if (row) await ctx.db.delete(row._id);
     return { success: true };
@@ -114,8 +156,11 @@ export const deleteProviderKey = mutation({
 });
 
 export const getProviderKeysStatus = query({
-  args: {},
-  handler: async (ctx) => {
+  args: { token: v.string() },
+  handler: async (ctx, args) => {
+    const authed = await isAdmin(ctx, args.token);
+    if (!authed) return {};
+
     const keys = ['openai','gemini','perplexity','exa','firecrawl'];
     const status: Record<string, boolean> = {};
     for (const p of keys) {
@@ -127,8 +172,11 @@ export const getProviderKeysStatus = query({
 });
 
 export const setDeepMode = mutation({
-  args: { mode: v.string() },
-  handler: async (ctx, { mode }) => {
+  args: { token: v.string(), mode: v.string() },
+  handler: async (ctx, { token, mode }) => {
+    const authed = await isAdmin(ctx, token);
+    if (!authed) return { success: false, error: 'Not authenticated' };
+
     const now = Date.now();
     const valueEnc = await encJson({ mode });
     const row = await ctx.db.query('app_settings').withIndex('by_key', q => q.eq('key', 'deep_mode')).unique();
@@ -139,8 +187,11 @@ export const setDeepMode = mutation({
 });
 
 export const getDeepMode = query({
-  args: {},
-  handler: async (ctx) => {
+  args: { token: v.string() },
+  handler: async (ctx, args) => {
+    const authed = await isAdmin(ctx, args.token);
+    if (!authed) return { mode: 'direct' };
+
     const row = await ctx.db.query('app_settings').withIndex('by_key', q => q.eq('key', 'deep_mode')).unique();
     if (!row?.valueEnc) return { mode: 'direct' };
     const cfg = await decJson(row.valueEnc);
@@ -150,8 +201,11 @@ export const getDeepMode = query({
 
 // Rate limiting settings for Google Places API
 export const enableRateLimiting = mutation({
-  args: { enabled: v.boolean() },
+  args: { token: v.string(), enabled: v.boolean() },
   handler: async (ctx, args) => {
+    const authed = await isAdmin(ctx, args.token);
+    if (!authed) return { success: false, error: 'Not authenticated' };
+
     const existing = await ctx.db
       .query('settings')
       .withIndex('by_key', (q) => q.eq('key', 'rateLimitingEnabled'))
@@ -175,8 +229,11 @@ export const enableRateLimiting = mutation({
 });
 
 export const isRateLimitingEnabled = query({
-  args: {},
-  handler: async (ctx) => {
+  args: { token: v.string() },
+  handler: async (ctx, args) => {
+    const authed = await isAdmin(ctx, args.token);
+    if (!authed) return false;
+
     const setting = await ctx.db
       .query('settings')
       .withIndex('by_key', (q) => q.eq('key', 'rateLimitingEnabled'))

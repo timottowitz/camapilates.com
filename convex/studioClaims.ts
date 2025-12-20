@@ -1,5 +1,6 @@
 import { v } from 'convex/values';
 import { mutation, query } from './_generated/server';
+import { getAdminUserId } from './lib/adminAuth';
 
 export const submit = mutation({
   args: {
@@ -53,10 +54,13 @@ export const submit = mutation({
 
 export const list = query({
   args: {
+    token: v.string(),
     status: v.optional(v.string()),
     limit: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx, args.token);
+    if (!adminId) return [];
     const limit = args.limit || 50;
     let q = ctx.db.query('studioClaims');
     
@@ -70,11 +74,14 @@ export const list = query({
 
 export const updateStatus = mutation({
   args: {
+    token: v.string(),
     id: v.id('studioClaims'),
     status: v.string(),
     notes: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx, args.token);
+    if (!adminId) return { success: false, error: 'Not authenticated' };
     await ctx.db.patch(args.id, {
       status: args.status,
       adminNotes: args.notes,
@@ -90,7 +97,7 @@ export const getByStudio = query({
     studioCity: v.string(),
   },
   handler: async (ctx, args) => {
-    return await ctx.db
+    const claim = await ctx.db
       .query('studioClaims')
       .filter((q) => 
         q.and(
@@ -99,5 +106,14 @@ export const getByStudio = query({
         )
       )
       .first();
+
+    if (!claim) return null;
+    // Public-safe subset: do not expose claimant PII.
+    return {
+      id: claim._id,
+      status: claim.status,
+      createdAt: claim.createdAt,
+      updatedAt: claim.updatedAt,
+    };
   },
 });

@@ -237,8 +237,10 @@ const AdminBlogWriter: React.FC = () => {
   const [suggestions, setSuggestions] = useState<Array<{ slug: string; title: string; category: string; keywords: string[]; source?: string; status: string; created_at?: number }>>([]);
   const [loadingSuggestions, setLoadingSuggestions] = useState(false);
 
+  const token = typeof window !== 'undefined' ? (localStorage.getItem('admint') || '') : '';
+
   // Convex hooks
-  const suggestionsData = useQuery(api.blog.listSuggestions, {} as any) as any[] | undefined;
+  const suggestionsData = useQuery(api.blog.listSuggestions, token ? ({ token } as any) : 'skip') as any[] | undefined;
   const mutateAccept = useMutation(api.blog.acceptSuggestion);
   const mutateDecline = useMutation(api.blog.declineSuggestion);
   const mutateUpdateTopic = useMutation(api.blog.updateTopic);
@@ -495,29 +497,29 @@ const AdminBlogWriter: React.FC = () => {
 
   const acceptSuggestion = useCallback(async (slug: string) => {
     try {
-      await mutateAccept({ slug });
+      await mutateAccept({ token, slug } as any);
       const s = (suggestions || []).find(x => x.slug === slug);
       try {
-        await actionEnsureTodo({ slug, title: s?.title || slug.replace(/-/g,' '), category: s?.category || 'Estudio', keywords: s?.keywords || [] } as any);
+        await actionEnsureTodo({ token, slug, title: s?.title || slug.replace(/-/g,' '), category: s?.category || 'Estudio', keywords: s?.keywords || [] } as any);
       } catch {}
-      await mutateQueueTopic({ slug, title: s?.title, category: s?.category, keywords: s?.keywords });
-      try { await actionRunPipeline({ slug }); } catch {}
+      await mutateQueueTopic({ token, slug, title: s?.title, category: s?.category, keywords: s?.keywords } as any);
+      try { await actionRunPipeline({ token, slug } as any); } catch {}
       setSuggestions(prev => prev.map(s => s.slug === slug ? { ...s, status: 'queued' } : s));
       await refreshTopics();
       setStatusFilter('Queued');
     } catch (e) {
       alert('Failed to accept: ' + ((e as any)?.message || e));
     }
-  }, [mutateAccept, mutateQueueTopic, actionRunPipeline, suggestions, refreshTopics]);
+  }, [mutateAccept, mutateQueueTopic, actionRunPipeline, suggestions, refreshTopics, token, actionEnsureTodo]);
 
   const declineSuggestion = useCallback(async (slug: string) => {
     try {
-      await mutateDecline({ slug });
+      await mutateDecline({ token, slug } as any);
       setSuggestions(prev => prev.map(s => s.slug === slug ? { ...s, status: 'declined' } : s));
     } catch (e) {
       alert('Failed to decline: ' + ((e as any)?.message || e));
     }
-  }, [mutateDecline]);
+  }, [mutateDecline, token]);
 
   function openEditModal(t: BlogTopic) {
     setEditTopic(t);
@@ -531,7 +533,7 @@ const AdminBlogWriter: React.FC = () => {
   async function saveEdit() {
     if (!editTopic) return;
     try {
-      await mutateUpdateTopic({ slug: editTopic.slug, title: editTitle.trim(), category: editCategory.trim(), keywords: editKeywords.split(',').map(s => s.trim()).filter(Boolean) });
+      await mutateUpdateTopic({ token, slug: editTopic.slug, title: editTitle.trim(), category: editCategory.trim(), keywords: editKeywords.split(',').map(s => s.trim()).filter(Boolean) } as any);
       setIsEditOpen(false);
       await refreshTopics();
     } catch (e) {
@@ -558,13 +560,13 @@ const AdminBlogWriter: React.FC = () => {
   // Inline status for queued topics
   function QueuedStatus({ slug }: { slug: string }) {
     const [state, setState] = useState<{ researchExists: boolean; blogExists: boolean }>({ researchExists: false, blogExists: false });
-    const s = useQuery(api.blog.status, { slug } as any) as any;
+    const s = useQuery(api.blog.status, token ? ({ token, slug } as any) : 'skip') as any;
     const statusAction = (useAction as any)(api.pipeline.contentStatus);
     useEffect(() => {
       let cancelled = false;
       async function tick() {
         try {
-          const j = await statusAction({ slug });
+          const j = await statusAction({ token, slug });
           if (!cancelled) setState({ researchExists: Boolean(j?.researchExists), blogExists: Boolean(j?.blogExists) });
         } catch {}
       }
@@ -653,7 +655,7 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
     setProcessingTopics(prev => new Set([...prev, topic.slug]));
 
     try {
-      await actionRunPipeline({ slug: topic.slug });
+      await actionRunPipeline({ token, slug: topic.slug } as any);
 
       // Show success feedback - no intrusive alert, just console log
       console.log(`✅ Pipeline triggered for "${topic.title}"`);
@@ -834,7 +836,7 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
                   onClick={async () => {
                     setProcessingTopics(prev => new Set([...prev, topic.slug]));
                     try {
-                      await actionRunPipeline({ slug: topic.slug });
+                      await actionRunPipeline({ token, slug: topic.slug } as any);
                     } catch {}
                   }}
                 >
@@ -1140,10 +1142,10 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
       const slug = toSlug(newTopicTitle.trim());
       const newKeywords = newTopicKeywords.split(',').map(k => k.trim()).filter(Boolean);
       try {
-        await actionEnsureTodo({ slug, title: newTopicTitle.trim(), category: newTopicCategory.trim(), keywords: newKeywords } as any);
+        await actionEnsureTodo({ token, slug, title: newTopicTitle.trim(), category: newTopicCategory.trim(), keywords: newKeywords } as any);
       } catch {}
-      await mutateQueueTopic({ slug, title: newTopicTitle.trim(), category: newTopicCategory.trim(), keywords: newKeywords });
-      try { await actionRunPipeline({ slug }); } catch {}
+      await mutateQueueTopic({ token, slug, title: newTopicTitle.trim(), category: newTopicCategory.trim(), keywords: newKeywords } as any);
+      try { await actionRunPipeline({ token, slug } as any); } catch {}
 
       // Add new keywords to the persistent manager
       if (newKeywords.length > 0) {
@@ -1156,7 +1158,7 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
             usageCount: k.usageCount,
             lastUsed: k.lastUsed ? Date.parse(k.lastUsed) : undefined,
           }));
-          await mutateSaveKeywords({ keywords: klist } as any);
+          await mutateSaveKeywords({ token, keywords: klist } as any);
         } catch {}
       }
 
@@ -1218,7 +1220,7 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
     try {
       if (type === 'quick') {
         const topic = topicsToProcess[0];
-        await actionRunPipeline({ slug: topic.slug });
+        await actionRunPipeline({ token, slug: topic.slug } as any);
         setPipelineStatus(`Processing "${topic.title}" in background...`);
 
         // Poll for research completion up to 10 minutes, then clear
@@ -1250,7 +1252,7 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
       }
 
       // Batch run via Convex action
-      await actionRunBatch({ slugs: topicsToProcess.map(t => t.slug) });
+      await actionRunBatch({ token, slugs: topicsToProcess.map(t => t.slug) } as any);
       setPipelineStatus(`Processing ${topicsToProcess.length} topics in background...`);
 
       // Auto-clear status after 10 seconds

@@ -1,4 +1,4 @@
-import { actionGeneric as action } from 'convex/server';
+import { internalAction } from '../_generated/server';
 import { v } from 'convex/values';
 
 type GhFile = { sha: string; content: string };
@@ -20,7 +20,7 @@ function repoInfo() {
   return { repo, branch };
 }
 
-export const ghGetFile = action({
+export const ghGetFile = internalAction({
   args: { path: v.string() },
   handler: async (ctx, { path }): Promise<GhFile | null> => {
     const { repo, branch } = repoInfo();
@@ -33,7 +33,7 @@ export const ghGetFile = action({
   }
 });
 
-export const ghPutFile = action({
+export const ghPutFile = internalAction({
   args: { path: v.string(), content: v.string(), message: v.string(), sha: v.optional(v.string()) },
   handler: async (ctx, { path, content, message, sha }) => {
     const { repo, branch } = repoInfo();
@@ -52,4 +52,3 @@ export const ghPutFile = action({
     return { ok: true };
   }
 });
-

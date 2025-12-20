@@ -1,5 +1,6 @@
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -29,7 +30,7 @@ const visionSchema = z.object({
   quality: z.string().optional(),
 });
 
-async function processImage(imagePath) {
+async function processImage(client, token, imagePath) {
   const fileName = path.basename(imagePath);
   console.log(`\n🔍 ${fileName}`);
 
@@ -53,8 +54,7 @@ async function processImage(imagePath) {
   console.log(`   ✅ AI: ${result.object.scene.substring(0, 60)}...`);
 
   // Upload to Convex
-  const client = new ConvexHttpClient(CONVEX_URL);
-  const uploadUrl = await client.mutation(api.aiImages.generateUploadUrl);
+  const uploadUrl = await client.mutation(api.aiImages.generateUploadUrl, { token });
 
   const uploadResponse = await fetch(uploadUrl, {
     method: 'POST',
@@ -65,6 +65,7 @@ async function processImage(imagePath) {
   const { storageId } = await uploadResponse.json();
 
   await client.mutation(api.aiImages.upload, {
+    token,
     fileName,
     storageId,
     mimeType,
@@ -86,12 +87,15 @@ async function main() {
 
   console.log(`\n🖼️  Found ${webpImages.length} WebP images\n`);
 
+  const client = new ConvexHttpClient(CONVEX_URL);
+  const token = await getAdminToken(client);
+
   let processed = 0;
   let failed = 0;
 
   for (const img of webpImages) {
     try {
-      await processImage(img);
+      await processImage(client, token, img);
       processed++;
     } catch (error) {
       failed++;

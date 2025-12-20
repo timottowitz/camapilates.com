@@ -20,14 +20,17 @@ const AdminBlogList = () => {
     const createBlog = useMutation(api.blogs.create);
     const deleteBlog = useMutation(api.blogs.deleteBlog);
     const navigate = useNavigate();
+    const token = typeof window !== 'undefined' ? (localStorage.getItem('admint') || '') : '';
 
     const handleCreate = async () => {
         const slug = prompt('Enter a slug for the new blog (e.g., my-new-post):');
         if (!slug) return;
 
         try {
+            const normalizedSlug = slug.toLowerCase().replace(/\s+/g, '-');
             await createBlog({
-                slug: slug.toLowerCase().replace(/\s+/g, '-'),
+                token,
+                slug: normalizedSlug,
                 title: 'New Blog Post',
                 content: '# New Blog Post\n\nStart writing...',
                 excerpt: '',
@@ -38,7 +41,7 @@ const AdminBlogList = () => {
                 featured: false,
                 status: 'draft',
             });
-            navigate(`/admin/blogs/${slug}`);
+            navigate(`/admin/blogs/${normalizedSlug}`);
         } catch (error) {
             alert('Failed to create blog: ' + error.message);
         }
@@ -47,7 +50,7 @@ const AdminBlogList = () => {
     const handleDelete = async (slug: string) => {
         if (!confirm('Are you sure you want to delete this blog post?')) return;
         try {
-            await deleteBlog({ slug });
+            await deleteBlog({ token, slug });
         } catch (error) {
             alert('Failed to delete blog: ' + error.message);
         }

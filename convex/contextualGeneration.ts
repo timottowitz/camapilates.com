@@ -34,10 +34,14 @@ const GEMINI_TEXT_MODEL = process.env.GEMINI_TEXT_MODEL || 'gemini-3-pro-preview
 
 export const analyzeBlogContent = action({
     args: {
+        token: v.string(),
         slug: v.string(),
         content: v.string(),
     },
     handler: async (ctx, args) => {
+        const sess = await ctx.runQuery(api.admin.session as any, { token: args.token } as any);
+        if (!sess?.authenticated) throw new Error('Not authenticated');
+
         // Determine Auth Mode
         const vertexConfig = await getVertexConfig(ctx);
         const serviceAccountJson = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
@@ -144,6 +148,7 @@ export const analyzeBlogContent = action({
 
             // Register the placeholder
             await ctx.runMutation(api.placeholders.register, {
+                token: args.token,
                 placeholderId,
                 pageType: 'blog',
                 pageSlug: args.slug,

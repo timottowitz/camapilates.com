@@ -1,5 +1,6 @@
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 
 const CONVEX_URL = 'https://spotted-raven-102.convex.cloud';
 
@@ -9,6 +10,7 @@ async function sleep(ms) {
 
 async function main() {
   const client = new ConvexHttpClient(CONVEX_URL);
+  const token = await getAdminToken(client);
 
   console.log('\n🧪 SIMPLE PLACEHOLDER AUTO-GEN TEST\n');
   console.log('='.repeat(60));
@@ -18,6 +20,7 @@ async function main() {
   console.log(`\n📝 Registering placeholder: ${testId}`);
   try {
     await client.mutation(api.placeholders.register, {
+      token,
       placeholderId: testId,
       pageType: 'test',
       location: 'hero',
@@ -39,9 +42,7 @@ async function main() {
     await sleep(5000);
 
     try {
-      const data = await client.query(api.placeholders.getById, {
-        placeholderId: testId
-      });
+      const data = await client.query(api.placeholders.getByIdAdmin, { token, placeholderId: testId });
 
       const status = data?.status || 'unknown';
       const hasPrompt = !!data?.generatedPrompt;

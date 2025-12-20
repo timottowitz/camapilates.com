@@ -1,6 +1,7 @@
 import { v } from 'convex/values';
 import { query, mutation } from './_generated/server';
 import { Doc } from './_generated/dataModel';
+import { getAdminUserId } from './lib/adminAuth';
 
 // Get studios by city
 export const getByCity = query({
@@ -183,6 +184,7 @@ export const getNearby = query({
 // Create or update studio
 export const upsert = mutation({
   args: {
+    token: v.string(),
     studio: v.object({
       slug: v.string(),
       name: v.string(),
@@ -246,6 +248,9 @@ export const upsert = mutation({
     }),
   },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx as any, args.token);
+    if (!adminId) throw new Error('Not authenticated');
+
     const now = Date.now();
 
     // Check if studio exists
@@ -278,6 +283,7 @@ export const upsert = mutation({
 // Update studio metrics
 export const updateMetrics = mutation({
   args: {
+    token: v.string(),
     studioId: v.id('studios'),
     metrics: v.object({
       googleRating: v.optional(v.number()),
@@ -287,6 +293,9 @@ export const updateMetrics = mutation({
     }),
   },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx as any, args.token);
+    if (!adminId) throw new Error('Not authenticated');
+
     await ctx.db.patch(args.studioId, {
       metrics: args.metrics,
       updatedAt: Date.now(),

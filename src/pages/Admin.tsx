@@ -5,7 +5,8 @@ import { api } from '../../convex/_generated/api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Lock, LayoutDashboard, FileText, Settings, Image as ImageIcon } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Lock, LayoutDashboard, FileText, Settings, Image as ImageIcon, UserPlus, UserCheck, Database } from 'lucide-react';
 
 const Admin = () => {
   const [username, setUsername] = useState('');
@@ -15,14 +16,26 @@ const Admin = () => {
   const navigate = useNavigate();
 
   const loginMutation = useMutation(api.admin.login);
+  const token = typeof window !== 'undefined' ? (localStorage.getItem('admint') || '') : '';
+  const sess = useQuery(api.admin.session as any, token ? ({ token } as any) : 'skip' as any) as any;
+  const pendingClaimsCount = useQuery(
+    api.teacherClaimsAdmin.getPendingCount,
+    token ? { token } : 'skip'
+  );
 
   // Check if already authenticated
   useEffect(() => {
-    const token = localStorage.getItem('admint');
-    if (token) {
-      setIsAuthenticated(true);
+    if (!token) {
+      setIsAuthenticated(false);
+      return;
     }
-  }, []);
+
+    if (sess) {
+      const ok = Boolean(sess?.authenticated);
+      setIsAuthenticated(ok);
+      if (!ok) localStorage.removeItem('admint');
+    }
+  }, [token, sess]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -148,6 +161,59 @@ const Admin = () => {
               <CardContent>
                 <p className="text-sm text-muted-foreground">
                   Review and generate AI images for your blog posts.
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link to="/admin/teacher-links" className="block group">
+            <Card className="h-full transition-all hover:shadow-md group-hover:border-primary/50">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <UserPlus className="w-5 h-5 text-indigo-600" />
+                  Teacher Links
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Review and verify inferred connections between teachers and studios.
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link to="/admin/teacher-seeds" className="block group">
+            <Card className="h-full transition-all hover:shadow-md group-hover:border-primary/50">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Database className="w-5 h-5 text-slate-600" />
+                  Teacher Seeds
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Sync local seed instructors into Convex (enables claims, photos, and previews).
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link to="/admin/instructor-claims" className="block group">
+            <Card className="h-full transition-all hover:shadow-md group-hover:border-primary/50">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <UserCheck className="w-5 h-5 text-emerald-600" />
+                  Instructor Claims
+                  {pendingClaimsCount !== undefined && pendingClaimsCount > 0 && (
+                    <Badge variant="destructive" className="ml-auto">
+                      {pendingClaimsCount}
+                    </Badge>
+                  )}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Review instructor profile claims, approve photos, and verify identities.
                 </p>
               </CardContent>
             </Card>

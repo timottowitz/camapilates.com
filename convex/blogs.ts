@@ -1,6 +1,7 @@
 import { query, mutation, action } from './_generated/server';
 import { v } from 'convex/values';
 import { api } from './_generated/api';
+import { getAdminUserId } from './lib/adminAuth';
 
 // --- Queries ---
 
@@ -83,6 +84,7 @@ export const getRelated = query({
 
 export const create = mutation({
     args: {
+        token: v.string(),
         slug: v.string(),
         title: v.string(),
         content: v.string(),
@@ -98,17 +100,21 @@ export const create = mutation({
         noindex: v.optional(v.boolean()),
     },
     handler: async (ctx, args) => {
+        const adminId = await getAdminUserId(ctx as any, args.token);
+        if (!adminId) throw new Error('Not authenticated');
+
+        const { token: _token, ...data } = args as any;
         const existing = await ctx.db
             .query('blogs')
-            .withIndex('by_slug', (q) => q.eq('slug', args.slug))
+            .withIndex('by_slug', (q) => q.eq('slug', data.slug))
             .unique();
 
         if (existing) {
-            throw new Error(`Blog with slug "${args.slug}" already exists`);
+            throw new Error(`Blog with slug "${data.slug}" already exists`);
         }
 
         await ctx.db.insert('blogs', {
-            ...args,
+            ...data,
             updatedAt: Date.now(),
         });
     },
@@ -116,6 +122,7 @@ export const create = mutation({
 
 export const update = mutation({
     args: {
+        token: v.string(),
         slug: v.string(),
         title: v.optional(v.string()),
         content: v.optional(v.string()),
@@ -129,7 +136,10 @@ export const update = mutation({
         noindex: v.optional(v.boolean()),
     },
     handler: async (ctx, args) => {
-        const { slug, ...updates } = args;
+        const adminId = await getAdminUserId(ctx as any, args.token);
+        if (!adminId) throw new Error('Not authenticated');
+
+        const { token: _token, slug, ...updates } = args as any;
         const blog = await ctx.db
             .query('blogs')
             .withIndex('by_slug', (q) => q.eq('slug', slug))
@@ -147,8 +157,11 @@ export const update = mutation({
 });
 
 export const deleteBlog = mutation({
-    args: { slug: v.string() },
+    args: { token: v.string(), slug: v.string() },
     handler: async (ctx, args) => {
+        const adminId = await getAdminUserId(ctx as any, args.token);
+        if (!adminId) throw new Error('Not authenticated');
+
         const blog = await ctx.db
             .query('blogs')
             .withIndex('by_slug', (q) => q.eq('slug', args.slug))
@@ -164,12 +177,16 @@ export const deleteBlog = mutation({
 
 export const regenerateImage = action({
     args: {
+        token: v.string(),
         prompt: v.string(),
         context: v.optional(v.string()),
         width: v.optional(v.number()),
         height: v.optional(v.number()),
     },
     handler: async (ctx, args) => {
+        const sess = await ctx.runQuery(api.admin.session as any, { token: args.token } as any);
+        if (!sess?.authenticated) return { success: false, error: 'Not authenticated' };
+
         // This connects to the existing AI pipeline
         // For now, we'll mock the response or call an internal endpoint if available
         // In a real scenario, this would call OpenAI DALL-E 3 or similar

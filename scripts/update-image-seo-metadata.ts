@@ -10,6 +10,7 @@
 import { ConvexHttpClient } from "convex/browser";
 // @ts-ignore - Deno TS doesn't understand Convex generated types
 import { api } from "../convex/_generated/api.js";
+import { getAdminToken } from "./lib/adminAuth.js";
 
 const CONVEX_URL = Deno.env.get("VITE_CONVEX_URL");
 
@@ -94,6 +95,7 @@ const SEO_UPDATES: ImageSeoUpdate[] = [
 
 async function updateImageSeoMetadata() {
   const client = new ConvexHttpClient(CONVEX_URL!);
+  const token = await getAdminToken(client);
 
   console.log("🔍 Fetching current site images from Convex...");
   
@@ -120,6 +122,7 @@ async function updateImageSeoMetadata() {
 
     try {
       await client.mutation(api.siteImages.updateMetadata, {
+        token,
         id: image._id,
         alt: update.alt,
         description: update.description,

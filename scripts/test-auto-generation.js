@@ -1,5 +1,6 @@
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 import fs from 'fs';
 import path from 'path';
 import { createOpenAI } from '@ai-sdk/openai';
@@ -31,6 +32,7 @@ const visionSchema = z.object({
  */
 async function main() {
   const client = new ConvexHttpClient(CONVEX_URL);
+  const token = await getAdminToken(client);
 
   // Use a small test image
   const testImagePath = '/Users/m3max361tb/Documents/Code/Pilates_Reformer/images/accessories.webp';
@@ -59,7 +61,7 @@ async function main() {
 
   // Step 2: Upload to Convex (should auto-trigger generation)
   console.log('\n2️⃣  Uploading to Convex with AUTO-GENERATION enabled...');
-  const uploadUrl = await client.mutation(api.aiImages.generateUploadUrl);
+  const uploadUrl = await client.mutation(api.aiImages.generateUploadUrl, { token });
 
   const uploadResponse = await fetch(uploadUrl, {
     method: 'POST',
@@ -70,6 +72,7 @@ async function main() {
   const { storageId } = await uploadResponse.json();
 
   const imageId = await client.mutation(api.aiImages.upload, {
+    token,
     fileName: `TEST_AUTO_${Date.now()}.webp`,
     storageId,
     mimeType: 'image/webp',
@@ -93,7 +96,7 @@ async function main() {
   while (attempts < maxAttempts) {
     await new Promise(resolve => setTimeout(resolve, 2000)); // Wait 2s
 
-    const images = await client.query(api.aiImages.listAll, { limit: 1 });
+    const images = await client.query(api.aiImages.listAll, { token, limit: 50 });
     const image = images.find(img => img._id === imageId);
 
     if (!image) {

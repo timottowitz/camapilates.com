@@ -11,6 +11,7 @@ import { fileURLToPath } from 'url';
 import fs from 'node:fs';
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.resolve(__dirname, '../autonomous-blog-writer/.env') });
@@ -175,30 +176,30 @@ async function withRetries(fn, options = {}) {
   throw lastError;
 }
 
-async function ensurePlaceholder(client, args) {
-  await withRetries(() => client.mutation(api.placeholders.register, args), {
+async function ensurePlaceholder(client, token, args) {
+  await withRetries(() => client.mutation(api.placeholders.register, { token, ...args }), {
     description: `register ${args.placeholderId}`,
   });
   const current = await withRetries(
-    () => client.query(api.placeholders.getById, { placeholderId: args.placeholderId }),
+    () => client.query(api.placeholders.getByIdAdmin, { token, placeholderId: args.placeholderId }),
     { description: `fetch placeholder ${args.placeholderId}` },
   );
   return current;
 }
 
-async function queueGeneration(client, placeholderId) {
+async function queueGeneration(client, token, placeholderId) {
   await withRetries(
-    () => client.action(api.placeholderGeneration.queue, { placeholderId }),
+    () => client.action(api.placeholderGeneration.queue, { token, placeholderId }),
     { description: `queue generation for ${placeholderId}` },
   );
 }
 
-async function pollPlaceholder(client, placeholderId, timeoutMs) {
+async function pollPlaceholder(client, token, placeholderId, timeoutMs) {
   const deadline = Date.now() + timeoutMs;
   let last;
   while (Date.now() < deadline) {
     try {
-      last = await client.query(api.placeholders.getById, { placeholderId });
+      last = await client.query(api.placeholders.getByIdAdmin, { token, placeholderId });
     } catch (err) {
       await sleep(2000);
       continue;
@@ -223,14 +224,14 @@ async function pollPlaceholder(client, placeholderId, timeoutMs) {
   return { status: last?.status || 'pending', imageUrl: last?.imageUrl, timeout: true };
 }
 
-async function generateProductImage(client, product, options) {
+async function generateProductImage(client, token, product, options) {
   const placeholderId = `product-${product.slug}-main`;
   
   console.log(`\n🖼️  Generating image for: ${product.name}`);
   console.log(`   File: ${product.imageFile}`);
   
   // Register placeholder with detailed context (without generatedPrompt - that's set separately)
-  const placeholder = await ensurePlaceholder(client, {
+  const placeholder = await ensurePlaceholder(client, token, {
     placeholderId,
     pageType: 'product',
     pageSlug: product.slug,
@@ -243,6 +244,7 @@ async function generateProductImage(client, product, options) {
     preferredStyle: product.style,
     requiredSubjects: product.subjects,
     priority: 100,
+    autoGenerate: false,
   });
 
   console.log(`   📋 Placeholder registered: ${placeholder?.status || 'new'}`);
@@ -256,6 +258,7 @@ async function generateProductImage(client, product, options) {
   // Update prompt with our custom detailed prompt
   await withRetries(
     () => client.mutation(api.placeholders.updatePrompt, { 
+      token,
       placeholderId, 
       prompt: product.prompt 
     }),
@@ -264,11 +267,11 @@ async function generateProductImage(client, product, options) {
   console.log(`   📝 Custom prompt set`);
 
   // Queue generation
-  await queueGeneration(client, placeholderId);
+  await queueGeneration(client, token, placeholderId);
   console.log(`   🚀 Generation queued`);
 
   // Poll for result
-  const result = await pollPlaceholder(client, placeholderId, options.waitMs);
+  const result = await pollPlaceholder(client, token, placeholderId, options.waitMs);
   
   if (result.imageUrl) {
     console.log(`   ✅ Image generated: ${result.imageUrl}`);
@@ -289,6 +292,7 @@ async function main() {
   console.log(`🔗 Convex: ${convexUrl}`);
   
   const client = new ConvexHttpClient(convexUrl);
+  const token = await getAdminToken(client);
 
   const options = {
     force: process.argv.includes('--force'),
@@ -300,7 +304,7 @@ async function main() {
   // Process products one at a time to avoid rate limits
   for (const product of PRODUCTS_TO_GENERATE) {
     try {
-      const result = await generateProductImage(client, product, options);
+      const result = await generateProductImage(client, token, product, options);
       results.push(result);
       
       // Small delay between products

@@ -1,10 +1,12 @@
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 
 const CONVEX_URL = 'https://spotted-raven-102.convex.cloud';
 
 async function main() {
   const client = new ConvexHttpClient(CONVEX_URL);
+  const token = await getAdminToken(client);
 
   console.log('\n🔍 IMAGE PIPELINE DIAGNOSTIC\n');
   console.log('='.repeat(60));
@@ -12,7 +14,7 @@ async function main() {
   // 1. Check site_images table (old system)
   console.log('\n📊 SITE_IMAGES TABLE (Current Website Images):');
   try {
-    const siteImages = await client.query(api.siteImages.list);
+    const siteImages = await client.query(api.siteImages.listActive);
     console.log(`   Found: ${siteImages?.length || 0} images`);
     if (siteImages && siteImages.length > 0) {
       siteImages.forEach(img => {
@@ -28,7 +30,7 @@ async function main() {
   // 2. Check ai_images table (new AI system)
   console.log('\n📊 AI_IMAGES TABLE (AI-Generated System):');
   try {
-    const aiImages = await client.query(api.aiImages.listAll, { limit: 100 });
+    const aiImages = await client.query(api.aiImages.listAll, { token, limit: 100 });
     console.log(`   Found: ${aiImages?.length || 0} images`);
 
     const withGenerated = aiImages?.filter(img => img.generatedStorageId) || [];
@@ -51,13 +53,8 @@ async function main() {
   // 3. Check image_placeholders table (new placeholder system)
   console.log('\n📊 IMAGE_PLACEHOLDERS TABLE (Placeholder Registry):');
   try {
-    // This might fail if the query doesn't exist yet
-    const placeholders = await client.query(api.placeholders?.list || 'skip');
-    if (placeholders === 'skip') {
-      console.log('   ⚠️  Placeholder system not implemented yet');
-    } else {
-      console.log(`   Found: ${placeholders?.length || 0} placeholders`);
-    }
+    const placeholders = await client.query(api.placeholders.list, { token });
+    console.log(`   Found: ${placeholders?.length || 0} placeholders`);
   } catch (error) {
     console.log(`   ⚠️  ${error.message}`);
   }

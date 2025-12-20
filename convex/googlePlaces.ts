@@ -1,6 +1,6 @@
 import { v } from 'convex/values';
-import { action, internalAction } from './_generated/server';
-import { api } from './_generated/api';
+import { internalAction } from './_generated/server';
+import { internal } from './_generated/api';
 
 /**
  * Production-ready Google Places Photo Proxy
@@ -24,7 +24,7 @@ const DETAILED_FIELDS = 'id,displayName,photos,formattedAddress,nationalPhoneNum
  *
  * Cost: ~$0.017 per call (Place Details) + $0.007 (Place Photos) = $0.024
  */
-export const getStudioPhotoUrl = action({
+export const getStudioPhotoUrl = internalAction({
   args: {
     placeId: v.string(),
     maxWidth: v.optional(v.number()),
@@ -159,7 +159,7 @@ export const getStudioPhotoUrl = action({
  * Batch photo fetching with rate limiting
  * Optimized for directory pages showing multiple studios
  */
-export const getBatchStudioPhotos = action({
+export const getBatchStudioPhotos = internalAction({
   args: {
     placeIds: v.array(v.string()),
     maxWidth: v.optional(v.number()),
@@ -179,7 +179,7 @@ export const getBatchStudioPhotos = action({
 
       // Process batch in parallel
       const batchPromises = batch.map(async (placeId) => {
-        const result = await ctx.runAction(api.googlePlaces.getStudioPhotoUrl, {
+        const result = await ctx.runAction(internal.googlePlaces.getStudioPhotoUrl, {
           placeId,
           maxWidth,
           maxHeight,
@@ -210,7 +210,7 @@ export const getBatchStudioPhotos = action({
  * Get cached studio details (non-photo data)
  * This data can be cached for up to 30 days per ToS
  */
-export const getCachedStudioDetails = action({
+export const getCachedStudioDetails = internalAction({
   args: {
     placeId: v.string(),
     forceRefresh: v.optional(v.boolean()),
@@ -219,7 +219,7 @@ export const getCachedStudioDetails = action({
     const { placeId, forceRefresh = false } = args;
 
     // Check if we have cached data less than 24 hours old
-    const cached = await ctx.runQuery(api.cache.getPlaceDetails, { placeId });
+    const cached = await ctx.runQuery(internal.cache.getPlaceDetails, { placeId });
 
     if (!forceRefresh && cached && cached.cachedAt > Date.now() - 24 * 60 * 60 * 1000) {
       return {
@@ -260,7 +260,7 @@ export const getCachedStudioDetails = action({
       const data = await response.json();
 
       // Cache the non-photo data
-      await ctx.runMutation(api.cache.savePlaceDetails, {
+      await ctx.runMutation(internal.cache.savePlaceDetails, {
         placeId,
         data: {
           displayName: data.displayName,
@@ -298,7 +298,7 @@ export const monitorApiUsage = internalAction({
     // This would integrate with Google Cloud Monitoring API
     // to fetch actual usage metrics and costs
 
-    const stats = await ctx.runQuery(api.stats.getApiUsage, {});
+    const stats = await ctx.runQuery(internal.stats.getApiUsageInternal, {});
 
     // Check if we're approaching budget limits
     const MONTHLY_BUDGET = 1000; // $1000 monthly budget
@@ -307,9 +307,6 @@ export const monitorApiUsage = internalAction({
     if (stats.estimatedMonthlyCost > MONTHLY_BUDGET * WARNING_THRESHOLD) {
       // Send alert (email, Slack, etc.)
       console.warn(`API usage warning: $${stats.estimatedMonthlyCost} of $${MONTHLY_BUDGET} budget used`);
-
-      // Could implement automatic rate limiting here
-      await ctx.runMutation(api.settings.enableRateLimiting, { enabled: true });
     }
 
     return {

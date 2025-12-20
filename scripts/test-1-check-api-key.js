@@ -1,16 +1,18 @@
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 
 const CONVEX_URL = 'https://spotted-raven-102.convex.cloud';
 
 async function main() {
   const client = new ConvexHttpClient(CONVEX_URL);
+  const token = await getAdminToken(client);
 
   console.log('\n🧪 TEST 1: Check if OpenAI API key is stored\n');
 
   try {
     // Try to get a setting to see if the table works
-    const settings = await client.query(api.appSettings.list);
+    const settings = await client.query(api.appSettings.list, { token });
     console.log('✅ app_settings table accessible');
     console.log(`   Found ${settings?.length || 0} settings`);
 

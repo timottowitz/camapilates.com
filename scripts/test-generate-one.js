@@ -1,5 +1,6 @@
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 import { createOpenAI } from '@ai-sdk/openai';
 import fetch from 'node-fetch';
 
@@ -100,9 +101,10 @@ async function main() {
   }
 
   const client = new ConvexHttpClient(CONVEX_URL);
+  const token = await getAdminToken(client);
 
   console.log('\n🔍 Fetching first image...');
-  const allImages = await client.query(api.aiImages.listAll, { limit: 1 });
+  const allImages = await client.query(api.aiImages.listAll, { token, limit: 1 });
 
   if (!allImages || allImages.length === 0) {
     console.error('❌ No images found in database');
@@ -131,7 +133,7 @@ async function main() {
 
     // Upload to Convex
     console.log('   ⬆️  Uploading to Convex...');
-    const uploadUrl = await client.mutation(api.aiImages.generateUploadUrl);
+    const uploadUrl = await client.mutation(api.aiImages.generateUploadUrl, { token });
 
     const uploadResponse = await fetch(uploadUrl, {
       method: 'POST',
@@ -145,6 +147,7 @@ async function main() {
     // Update record
     console.log('   💾 Updating database record...');
     await client.mutation(api.aiImages.updateGeneratedImage, {
+      token,
       imageId: image._id,
       generatedStorageId: storageId,
       generationPrompt: revisedPrompt,

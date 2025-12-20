@@ -1,12 +1,14 @@
 import { v } from 'convex/values';
 import { mutation, query, internalQuery, internalMutation } from './_generated/server';
 import { internal } from './_generated/api';
+import { getAdminUserId } from './lib/adminAuth';
 
 /**
  * Register or update an image placeholder
  */
 export const register = mutation({
   args: {
+    token: v.string(),
     placeholderId: v.string(),
     pageType: v.string(),
     pageSlug: v.optional(v.string()),
@@ -26,9 +28,16 @@ export const register = mutation({
 
     // Priority override
     priority: v.optional(v.number()),
+
+    // When true, schedules generation automatically (default: true).
+    autoGenerate: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx as any, args.token);
+    if (!adminId) throw new Error('Not authenticated');
+
     const now = Date.now();
+    const autoGenerate = args.autoGenerate !== false;
 
     // Derive default priority from location if not provided
     const defaultPriority = (() => {
@@ -65,16 +74,17 @@ export const register = mutation({
         generationError: undefined,
         // Keep existing status/assignment fields
       });
-      // Auto-trigger: if still pending or only prompt exists, schedule prompt/gen pipeline
-      try {
+      // Auto-trigger: schedule generation only when not assigned yet
+      if (autoGenerate) try {
         const status = (existing as any).status;
-        const hasPrompt = Boolean((existing as any).generatedPrompt);
-        if (status === 'pending' || (status === 'prompt_generated' && hasPrompt)) {
-          await ctx.scheduler.runAfter(0, internal.placeholderGeneration.generatePrompt, {
+        const hasAssigned = Boolean((existing as any).assignedImageId);
+
+        if (!hasAssigned && (status === 'pending' || status === 'prompt_generated' || status === 'error')) {
+          await ctx.scheduler.runAfter(0, internal.placeholderGeneration.generateImage, {
             placeholderId: args.placeholderId,
           });
         }
-      } catch { }
+      } catch {}
       return existing._id;
     }
 
@@ -102,12 +112,14 @@ export const register = mutation({
       isActive: true,
       generationError: undefined,
     });
-    // Auto-trigger: schedule prompt generation (which will schedule image generation)
-    try {
-      await ctx.scheduler.runAfter(0, internal.placeholderGeneration.generatePrompt, {
-        placeholderId: args.placeholderId,
-      });
-    } catch { }
+    if (autoGenerate) {
+      // Auto-trigger: generate (and assign) an image; will generate a prompt if needed.
+      try {
+        await ctx.scheduler.runAfter(0, internal.placeholderGeneration.generateImage, {
+          placeholderId: args.placeholderId,
+        });
+      } catch {}
+    }
 
     return id;
   },
@@ -134,16 +146,63 @@ export const getById = query({
       }
     }
 
-    return { ...row, imageUrl };
+    // Public-safe shape (do not expose prompt/context/error fields)
+    return {
+      placeholderId: row.placeholderId,
+      pageType: row.pageType,
+      pageSlug: row.pageSlug,
+      location: row.location,
+      headingAbove: row.headingAbove,
+      altText: row.altText,
+      figCaption: row.figCaption,
+      preferredAspectRatio: row.preferredAspectRatio,
+      preferredStyle: row.preferredStyle,
+      requiredSubjects: row.requiredSubjects,
+      status: row.status,
+      assignedAt: row.assignedAt,
+      updatedAt: row.updatedAt,
+      imageUrl,
+    };
   },
+});
+
+/**
+ * Admin-only: Get full placeholder row (includes prompt/context/error fields).
+ */
+export const getByIdAdmin = query({
+  args: { token: v.string(), placeholderId: v.string() },
+  handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx as any, args.token);
+    if (!adminId) return null;
+
+    const row = await ctx.db
+      .query('image_placeholders')
+      .withIndex('by_placeholder_id', q => q.eq('placeholderId', args.placeholderId))
+      .first();
+    if (!row) return null;
+
+    let imageUrl: string | undefined;
+    if (row.assignedImageId) {
+      const img = await ctx.db.get(row.assignedImageId);
+      if (img) {
+        const sid = img.generatedStorageId ?? img.storageId;
+        imageUrl = await ctx.storage.getUrl(sid);
+      }
+    }
+
+    return { ...row, imageUrl };
+  }
 });
 
 /**
  * List placeholders by status (optional)
  */
 export const list = query({
-  args: { status: v.optional(v.string()) },
+  args: { token: v.string(), status: v.optional(v.string()) },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx as any, args.token);
+    if (!adminId) return [];
+
     const q = ctx.db.query('image_placeholders');
     const rows = args.status
       ? await q.withIndex('by_status', ix => ix.eq('status', args.status!)).collect()
@@ -156,8 +215,11 @@ export const list = query({
  * List placeholders by page type & slug
  */
 export const listByPage = query({
-  args: { pageType: v.string(), pageSlug: v.string() },
+  args: { token: v.string(), pageType: v.string(), pageSlug: v.string() },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx as any, args.token);
+    if (!adminId) return [];
+
     const rows = await ctx.db
       .query('image_placeholders')
       .withIndex('by_page_type_slug', q => q.eq('pageType', args.pageType).eq('pageSlug', args.pageSlug))
@@ -170,8 +232,11 @@ export const listByPage = query({
  * List placeholders with preview URL (if assigned)
  */
 export const listWithPreview = query({
-  args: { status: v.optional(v.string()) },
+  args: { token: v.string(), status: v.optional(v.string()) },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx as any, args.token);
+    if (!adminId) return [];
+
     const q = ctx.db.query('image_placeholders');
     const rows = args.status
       ? await q.withIndex('by_status', ix => ix.eq('status', args.status!)).collect()
@@ -229,6 +294,23 @@ export const listWithPreview = query({
  */
 export const updatePrompt = mutation({
   args: {
+    token: v.string(),
+    placeholderId: v.string(),
+    prompt: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx as any, args.token);
+    if (!adminId) throw new Error('Not authenticated');
+
+    await ctx.runMutation(internal.placeholders.updatePromptInternal, {
+      placeholderId: args.placeholderId,
+      prompt: args.prompt,
+    });
+  },
+});
+
+export const updatePromptInternal = internalMutation({
+  args: {
     placeholderId: v.string(),
     prompt: v.string(),
   },
@@ -251,6 +333,25 @@ export const updatePrompt = mutation({
  * Assign an AI image to a placeholder
  */
 export const assignImage = mutation({
+  args: {
+    token: v.string(),
+    placeholderId: v.string(),
+    imageId: v.id('ai_images'),
+    activate: v.optional(v.boolean()),
+  },
+  handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx as any, args.token);
+    if (!adminId) throw new Error('Not authenticated');
+
+    await ctx.runMutation(internal.placeholders.assignImageInternal, {
+      placeholderId: args.placeholderId,
+      imageId: args.imageId,
+      activate: args.activate,
+    });
+  },
+});
+
+export const assignImageInternal = internalMutation({
   args: {
     placeholderId: v.string(),
     imageId: v.id('ai_images'),
@@ -275,10 +376,14 @@ export const assignImage = mutation({
 /** Assign latest generated/original image for a placeholder */
 export const assignLatest = mutation({
   args: {
+    token: v.string(),
     placeholderId: v.string(),
     activate: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx as any, args.token);
+    if (!adminId) throw new Error('Not authenticated');
+
     const row = await ctx.db
       .query('image_placeholders')
       .withIndex('by_placeholder_id', q => q.eq('placeholderId', args.placeholderId))

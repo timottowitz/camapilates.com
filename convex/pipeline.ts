@@ -1,6 +1,8 @@
 import { actionGeneric as action, mutationGeneric as mutation, queryGeneric as query } from 'convex/server';
+import { internalAction, internalMutation } from './_generated/server';
 import { v } from 'convex/values';
-import { api } from './_generated/api';
+import { api, internal } from './_generated/api';
+import { getAdminUserId } from './lib/adminAuth';
 
 // Helpers
 function toSlug(s: string) {
@@ -95,8 +97,11 @@ async function ghPut(path: string, content: string, message: string, sha?: strin
 }
 
 export const queueTopic = mutation({
-  args: { slug: v.string(), title: v.optional(v.string()), category: v.optional(v.string()), keywords: v.optional(v.array(v.string())) },
-  handler: async (ctx, { slug, title, category, keywords }) => {
+  args: { token: v.string(), slug: v.string(), title: v.optional(v.string()), category: v.optional(v.string()), keywords: v.optional(v.array(v.string())) },
+  handler: async (ctx, { token, slug, title, category, keywords }) => {
+    const adminId = await getAdminUserId(ctx as any, token);
+    if (!adminId) return { ok: false, error: 'Not authenticated' };
+
     const now = Date.now();
     const s = await ctx.db.query('blog_suggestions').withIndex('by_slug', q => q.eq('slug', slug)).unique();
     if (s) {
@@ -108,7 +113,7 @@ export const queueTopic = mutation({
   }
 });
 
-export const pipelineRun = action({
+export const pipelineRunInternal = internalAction({
   args: { slug: v.string() },
   handler: async (ctx, { slug }) => {
     const s = await ctx.runQuery(getSuggestionBySlug, { slug });
@@ -145,19 +150,50 @@ export const pipelineRun = action({
     } catch {}
 
     // Mark status
-    if (s) await ctx.db.patch(s._id, { status: 'completed' });
+    if (s) {
+      await ctx.runMutation(internal.pipeline.markSuggestionStatusInternal as any, {
+        suggestionId: s._id,
+        status: 'completed',
+      } as any);
+    }
     return { success: true, slug, committed: blogPath };
   }
 });
 
+export const markSuggestionStatusInternal = internalMutation({
+  args: {
+    suggestionId: v.id('blog_suggestions'),
+    status: v.string(),
+  },
+  handler: async (ctx, args) => {
+    await ctx.db.patch(args.suggestionId, { status: args.status });
+  }
+});
+
+export const pipelineRun = action({
+  args: { token: v.string(), slug: v.string() },
+  handler: async (ctx, { token, slug }) => {
+    const sess = await ctx.runQuery(api.admin.session as any, { token } as any);
+    if (!sess?.authenticated) return { success: false, error: 'Not authenticated' };
+    return await ctx.runAction(internal.pipeline.pipelineRunInternal as any, { slug } as any);
+  }
+});
+
 export const pipelineRunBatch = action({
-  args: { slugs: v.array(v.string()) },
-  handler: async (ctx, { slugs }) => {
+  args: { token: v.string(), slugs: v.array(v.string()) },
+  handler: async (ctx, { token, slugs }) => {
+    const sess = await ctx.runQuery(api.admin.session as any, { token } as any);
+    if (!sess?.authenticated) return { success: false, error: 'Not authenticated' };
+
     const results: any[] = [];
     for (const slug of slugs) {
-      try { results.push(await ctx.runAction(pipelineRun, { slug })); } catch (e: any) { results.push({ slug, error: e?.message || String(e) }); }
+      try {
+        results.push(await ctx.runAction(internal.pipeline.pipelineRunInternal as any, { slug } as any));
+      } catch (e: any) {
+        results.push({ slug, error: e?.message || String(e) });
+      }
     }
-    return { results };
+    return { success: true, results };
   }
 });
 
@@ -168,7 +204,7 @@ export const getSuggestionBySlug = query({
   }
 });
 
-export const processQueuedSuggestions = mutation({
+export const processQueuedSuggestions = internalMutation({
   args: {},
   handler: async (ctx) => {
     const queued = await ctx.db
@@ -177,7 +213,7 @@ export const processQueuedSuggestions = mutation({
       .take(2);
     for (const s of queued) {
       try {
-        await ctx.scheduler.runAfter(0, api.pipeline.pipelineRun, { slug: s.slug });
+        await ctx.scheduler.runAfter(0, internal.pipeline.pipelineRunInternal as any, { slug: s.slug } as any);
       } catch (e) {
         // noop — will retry next schedule
       }
@@ -186,19 +222,25 @@ export const processQueuedSuggestions = mutation({
 });
 
 export const contentStatus = action({
-  args: { slug: v.string() },
-  handler: async (ctx, { slug }) => {
+  args: { token: v.string(), slug: v.string() },
+  handler: async (ctx, { token, slug }) => {
+    const sess = await ctx.runQuery(api.admin.session as any, { token } as any);
+    if (!sess?.authenticated) return { success: false, error: 'Not authenticated' };
+
     const researchPath = `blog-planning/research/${slug}.md`;
     const blogPath = `src/content/blog/${slug}.md`;
     const r = await ghGet(researchPath);
     const b = await ghGet(blogPath);
-    return { slug, researchExists: Boolean(r), blogExists: Boolean(b) };
+    return { success: true, slug, researchExists: Boolean(r), blogExists: Boolean(b) };
   }
 });
 
 export const ensureTodoEntry = action({
-  args: { slug: v.string(), title: v.string(), category: v.string(), keywords: v.optional(v.array(v.string())), targetAudience: v.optional(v.string()) },
-  handler: async (ctx, { slug, title, category, keywords, targetAudience }) => {
+  args: { token: v.string(), slug: v.string(), title: v.string(), category: v.string(), keywords: v.optional(v.array(v.string())), targetAudience: v.optional(v.string()) },
+  handler: async (ctx, { token, slug, title, category, keywords, targetAudience }) => {
+    const sess = await ctx.runQuery(api.admin.session as any, { token } as any);
+    if (!sess?.authenticated) return { success: false, error: 'Not authenticated' };
+
     const todoPath = 'blog-planning/BLOG_TODO.md';
     const todo = await ghGet(todoPath);
     if (!todo) throw new Error('BLOG_TODO.md not found');
@@ -241,6 +283,6 @@ export const ensureTodoEntry = action({
     }
 
     await ghPut(todoPath, lines.join('\n'), `chore(todo): add 🔬 ${slug}`, todo.sha);
-    return { created: true };
+    return { success: true, created: true };
   }
 });

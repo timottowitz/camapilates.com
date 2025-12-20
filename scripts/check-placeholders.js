@@ -4,6 +4,7 @@ import * as dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 
 const envPath = path.resolve(process.cwd(), '.env.local');
 if (fs.existsSync(envPath)) {
@@ -14,6 +15,7 @@ const CONVEX_URL = process.env.VITE_CONVEX_URL || process.env.CONVEX_URL;
 const client = new ConvexHttpClient(CONVEX_URL);
 
 async function main() {
+    const token = await getAdminToken(client);
     const placeholderIds = [
         "blog-reformer-vs-tower-context-1",
         "blog-reformer-vs-tower-context-2",
@@ -23,7 +25,7 @@ async function main() {
     console.log('Checking placeholder status...');
 
     for (const id of placeholderIds) {
-        const p = await client.query(api.placeholders.getById, { placeholderId: id });
+        const p = await client.query(api.placeholders.getByIdAdmin, { token, placeholderId: id });
         if (p) {
             console.log(`ID: ${id}`);
             console.log(`  Status: ${p.status}`);

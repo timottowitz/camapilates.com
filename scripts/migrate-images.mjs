@@ -9,6 +9,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -88,7 +89,7 @@ function getMimeType(filePath) {
   return mimeTypes[ext] || 'application/octet-stream';
 }
 
-async function uploadImageToConvex(mapping) {
+async function uploadImageToConvex(mapping, token) {
   const fullPath = path.join(__dirname, '..', mapping.localPath);
 
   // Check if file exists
@@ -102,7 +103,7 @@ async function uploadImageToConvex(mapping) {
     console.log(`📤 Uploading ${mapping.name} (${(stats.size / 1024).toFixed(1)}KB)...`);
 
     // Step 1: Generate upload URL
-    const uploadUrl = await client.mutation(api.siteImages.generateUploadUrl);
+    const uploadUrl = await client.mutation(api.siteImages.generateUploadUrl, { token });
 
     // Step 2: Upload file to that URL
     const buffer = fs.readFileSync(fullPath);
@@ -122,6 +123,7 @@ async function uploadImageToConvex(mapping) {
 
     // Step 3: Create database entry
     await client.mutation(api.siteImages.upload, {
+      token,
       name: mapping.name,
       category: mapping.category,
       storageId,
@@ -139,9 +141,10 @@ async function uploadImageToConvex(mapping) {
 async function main() {
   console.log('🚀 Starting image migration to Convex...\n');
   console.log(`📡 Connected to: ${CONVEX_URL}\n`);
+  const token = await getAdminToken(client);
 
   for (const mapping of IMAGE_MAPPINGS) {
-    await uploadImageToConvex(mapping);
+    await uploadImageToConvex(mapping, token);
   }
 
   console.log('\n✨ Migration complete!');

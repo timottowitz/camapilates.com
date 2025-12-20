@@ -1,5 +1,6 @@
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 
 function resolveConvexUrl() {
   return process.env.CONVEX_URL
@@ -23,10 +24,12 @@ async function main() {
   console.log('\n🔐 Storing API keys in Convex Database\n');
 
   const client = new ConvexHttpClient(resolveConvexUrl());
+  const token = await getAdminToken(client);
 
   try {
     if (OPENAI_API_KEY) {
       await client.mutation(api.appSettings.saveApiKey, {
+        token,
         key: 'OPENAI_API_KEY',
         value: OPENAI_API_KEY,
       });
@@ -35,6 +38,7 @@ async function main() {
 
     if (GEMINI_API_KEY) {
       await client.mutation(api.appSettings.saveApiKey, {
+        token,
         key: 'GEMINI_API_KEY',
         value: GEMINI_API_KEY,
       });

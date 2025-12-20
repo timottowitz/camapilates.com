@@ -1,7 +1,8 @@
 import { v } from 'convex/values';
 import { action, internalMutation, internalQuery, query } from './_generated/server';
-import { internal } from './_generated/api';
+import { api, internal } from './_generated/api';
 import { Id } from './_generated/dataModel';
+import { getAdminUserId } from './lib/adminAuth';
 
 /**
  * Studio Enrichment Pipeline
@@ -94,10 +95,14 @@ interface PlacesResponse {
  */
 export const enrichAll = action({
   args: {
+    token: v.string(),
     city: v.optional(v.string()),
     limit: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
+    const sess = await ctx.runQuery(api.admin.session as any, { token: args.token } as any);
+    if (!sess?.authenticated) throw new Error('Not authenticated');
+
     const city = args.city || 'Ciudad de México';
     const limit = args.limit;
 
@@ -227,9 +232,13 @@ export const enrichAll = action({
  */
 export const enrichOne = action({
   args: {
+    token: v.string(),
     studioId: v.id('studios'),
   },
   handler: async (ctx, args) => {
+    const sess = await ctx.runQuery(api.admin.session as any, { token: args.token } as any);
+    if (!sess?.authenticated) throw new Error('Not authenticated');
+
     const apiKey = process.env.GOOGLE_MAPS_API_KEY;
     if (!apiKey) {
       throw new Error('GOOGLE_MAPS_API_KEY not configured');
@@ -789,9 +798,13 @@ export const getStudioPhotos = query({
  */
 export const getRawPlaceData = query({
   args: {
+    token: v.string(),
     googlePlaceId: v.string(),
   },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx as any, args.token);
+    if (!adminId) throw new Error('Not authenticated');
+
     const rawData = await ctx.db
       .query('placesRawData')
       .withIndex('by_place_id', (q) => q.eq('googlePlaceId', args.googlePlaceId))

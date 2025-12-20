@@ -1,6 +1,6 @@
 import { v } from 'convex/values';
-import { mutation, query } from './_generated/server';
-import { api } from './_generated/api';
+import { internalMutation, internalQuery, mutation, query } from './_generated/server';
+import { getAdminUserId } from './lib/adminAuth';
 
 /**
  * API Usage Tracking and Cost Monitoring
@@ -29,76 +29,179 @@ const API_PRICING = {
   nearby_search: 32.00,
 };
 
+async function recordApiCallImpl(
+  ctx: any,
+  { endpoint, fieldMask }: { endpoint: string; fieldMask?: string }
+) {
+  // Determine SKU based on endpoint and fields
+  let sku = endpoint;
+  let costPer1000 = 0;
+
+  if (endpoint === 'place_details') {
+    // Determine SKU based on field mask
+    if (fieldMask && fieldMask === 'id,photos') {
+      sku = 'place_details_basic';
+      costPer1000 = API_PRICING.place_details_basic;
+    } else if (fieldMask && fieldMask.includes('rating')) {
+      sku = 'place_details_pro';
+      costPer1000 = API_PRICING.place_details_pro;
+    } else {
+      sku = 'place_details_contact';
+      costPer1000 = API_PRICING.place_details_contact;
+    }
+  } else if (endpoint === 'place_photos') {
+    costPer1000 = API_PRICING.place_photos;
+  } else if (endpoint === 'text_search') {
+    costPer1000 = API_PRICING.text_search;
+  } else if (endpoint === 'nearby_search') {
+    costPer1000 = API_PRICING.nearby_search;
+  }
+
+  // Calculate cost for this single request
+  const requestCost = costPer1000 / 1000;
+
+  // Get today's date in YYYY-MM-DD format
+  const today = new Date().toISOString().split('T')[0];
+
+  // Find or create today's record
+  const existing = await ctx.db
+    .query('apiUsageStats')
+    .withIndex('by_endpoint_date', (q: any) =>
+      q.eq('endpoint', sku).eq('date', today)
+    )
+    .first();
+
+  if (existing) {
+    // Update existing record
+    await ctx.db.patch(existing._id, {
+      count: existing.count + 1,
+      estimatedCost: existing.estimatedCost + requestCost,
+    });
+  } else {
+    // Create new record
+    await ctx.db.insert('apiUsageStats', {
+      date: today,
+      endpoint: sku,
+      count: 1,
+      estimatedCost: requestCost,
+    });
+  }
+
+  return {
+    sku,
+    cost: requestCost,
+  };
+}
+
+async function computeApiUsage(
+  ctx: any,
+  args: { startDate?: string; endDate?: string }
+) {
+  // Default to current month
+  const now = new Date();
+  const startDate = args.startDate ||
+    new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split('T')[0];
+  const endDate = args.endDate ||
+    new Date(now.getFullYear(), now.getMonth() + 1, 0).toISOString().split('T')[0];
+
+  // Get all usage records for the date range
+  const records = await ctx.db
+    .query('apiUsageStats')
+    .filter((q: any) =>
+      q.and(
+        q.gte(q.field('date'), startDate),
+        q.lte(q.field('date'), endDate)
+      )
+    )
+    .collect();
+
+  // Aggregate by endpoint
+  const byEndpoint: Record<string, { count: number; cost: number }> = {};
+  let totalCount = 0;
+  let totalCost = 0;
+
+  for (const record of records) {
+    if (!byEndpoint[record.endpoint]) {
+      byEndpoint[record.endpoint] = { count: 0, cost: 0 };
+    }
+    byEndpoint[record.endpoint].count += record.count;
+    byEndpoint[record.endpoint].cost += record.estimatedCost;
+    totalCount += record.count;
+    totalCost += record.estimatedCost;
+  }
+
+  // Calculate daily average
+  const days = records.length > 0
+    ? new Set(records.map((r: any) => r.date)).size
+    : 1;
+  const dailyAverage = totalCost / days;
+
+  // Project monthly total
+  const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+  const projectedTotal = dailyAverage * daysInMonth;
+
+  // Google provides $200 monthly credit
+  const MONTHLY_CREDIT = 200;
+  const netCost = Math.max(0, totalCost - MONTHLY_CREDIT);
+  const projectedNetCost = Math.max(0, projectedTotal - MONTHLY_CREDIT);
+
+  return {
+    period: { startDate, endDate },
+    totalRequests: totalCount,
+    totalCost,
+    netCost, // After $200 credit
+    dailyAverage,
+    projectedTotal,
+    projectedNetCost,
+    byEndpoint,
+    estimatedMonthlyCost: totalCost,
+    remainingCredit: Math.max(0, MONTHLY_CREDIT - totalCost),
+    isOverCredit: totalCost > MONTHLY_CREDIT,
+  };
+}
+
 /**
  * Record an API call for tracking
  */
-export const recordApiCall = mutation({
+export const recordApiCallInternal = internalMutation({
   args: {
     endpoint: v.string(),
     fieldMask: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    const { endpoint, fieldMask } = args;
-
-    // Determine SKU based on endpoint and fields
-    let sku = endpoint;
-    let costPer1000 = 0;
-
-    if (endpoint === 'place_details') {
-      // Determine SKU based on field mask
-      if (fieldMask && fieldMask === 'id,photos') {
-        sku = 'place_details_basic';
-        costPer1000 = API_PRICING.place_details_basic;
-      } else if (fieldMask && fieldMask.includes('rating')) {
-        sku = 'place_details_pro';
-        costPer1000 = API_PRICING.place_details_pro;
-      } else {
-        sku = 'place_details_contact';
-        costPer1000 = API_PRICING.place_details_contact;
-      }
-    } else if (endpoint === 'place_photos') {
-      costPer1000 = API_PRICING.place_photos;
-    } else if (endpoint === 'text_search') {
-      costPer1000 = API_PRICING.text_search;
-    } else if (endpoint === 'nearby_search') {
-      costPer1000 = API_PRICING.nearby_search;
-    }
-
-    // Calculate cost for this single request
-    const requestCost = costPer1000 / 1000;
-
-    // Get today's date in YYYY-MM-DD format
-    const today = new Date().toISOString().split('T')[0];
-
-    // Find or create today's record
-    const existing = await ctx.db
-      .query('apiUsageStats')
-      .withIndex('by_endpoint_date', (q) =>
-        q.eq('endpoint', sku).eq('date', today)
-      )
-      .first();
-
-    if (existing) {
-      // Update existing record
-      await ctx.db.patch(existing._id, {
-        count: existing.count + 1,
-        estimatedCost: existing.estimatedCost + requestCost,
-      });
-    } else {
-      // Create new record
-      await ctx.db.insert('apiUsageStats', {
-        date: today,
-        endpoint: sku,
-        count: 1,
-        estimatedCost: requestCost,
-      });
-    }
-
-    return {
-      sku,
-      cost: requestCost,
-    };
+    return await recordApiCallImpl(ctx, args);
   },
+});
+
+/**
+ * PUBLIC: Record an API call (admin only)
+ */
+export const recordApiCall = mutation({
+  args: {
+    token: v.string(),
+    endpoint: v.string(),
+    fieldMask: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx as any, args.token);
+    if (!adminId) throw new Error('Not authenticated');
+
+    const { token: _token, ...rest } = args;
+    return await recordApiCallImpl(ctx, rest);
+  },
+});
+
+/**
+ * INTERNAL: Get current month's API usage and costs
+ */
+export const getApiUsageInternal = internalQuery({
+  args: {
+    startDate: v.optional(v.string()),
+    endDate: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    return await computeApiUsage(ctx, args);
+  }
 });
 
 /**
@@ -106,71 +209,16 @@ export const recordApiCall = mutation({
  */
 export const getApiUsage = query({
   args: {
+    token: v.string(),
     startDate: v.optional(v.string()),
     endDate: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    // Default to current month
-    const now = new Date();
-    const startDate = args.startDate ||
-      new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split('T')[0];
-    const endDate = args.endDate ||
-      new Date(now.getFullYear(), now.getMonth() + 1, 0).toISOString().split('T')[0];
+    const adminId = await getAdminUserId(ctx as any, args.token);
+    if (!adminId) throw new Error('Not authenticated');
 
-    // Get all usage records for the date range
-    const records = await ctx.db
-      .query('apiUsageStats')
-      .filter((q) =>
-        q.and(
-          q.gte(q.field('date'), startDate),
-          q.lte(q.field('date'), endDate)
-        )
-      )
-      .collect();
-
-    // Aggregate by endpoint
-    const byEndpoint: Record<string, { count: number; cost: number }> = {};
-    let totalCount = 0;
-    let totalCost = 0;
-
-    for (const record of records) {
-      if (!byEndpoint[record.endpoint]) {
-        byEndpoint[record.endpoint] = { count: 0, cost: 0 };
-      }
-      byEndpoint[record.endpoint].count += record.count;
-      byEndpoint[record.endpoint].cost += record.estimatedCost;
-      totalCount += record.count;
-      totalCost += record.estimatedCost;
-    }
-
-    // Calculate daily average
-    const days = records.length > 0
-      ? new Set(records.map(r => r.date)).size
-      : 1;
-    const dailyAverage = totalCost / days;
-
-    // Project monthly total
-    const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
-    const projectedTotal = dailyAverage * daysInMonth;
-
-    // Google provides $200 monthly credit
-    const MONTHLY_CREDIT = 200;
-    const netCost = Math.max(0, totalCost - MONTHLY_CREDIT);
-    const projectedNetCost = Math.max(0, projectedTotal - MONTHLY_CREDIT);
-
-    return {
-      period: { startDate, endDate },
-      totalRequests: totalCount,
-      totalCost,
-      netCost, // After $200 credit
-      dailyAverage,
-      projectedTotal,
-      projectedNetCost,
-      byEndpoint,
-      estimatedMonthlyCost: totalCost,
-      remainingCredit: Math.max(0, MONTHLY_CREDIT - totalCost),
-      isOverCredit: totalCost > MONTHLY_CREDIT,
-    };
+    const { token: _token, ...range } = args;
+    return await computeApiUsage(ctx, range);
   },
 });
 
@@ -179,9 +227,13 @@ export const getApiUsage = query({
  */
 export const getDailyTrend = query({
   args: {
+    token: v.string(),
     days: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx as any, args.token);
+    if (!adminId) throw new Error('Not authenticated');
+
     const days = args.days || 30;
     const endDate = new Date();
     const startDate = new Date();
@@ -222,9 +274,13 @@ export const getDailyTrend = query({
  */
 export const checkBudgetStatus = query({
   args: {
+    token: v.string(),
     monthlyBudget: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
+    const adminId = await getAdminUserId(ctx as any, args.token);
+    if (!adminId) throw new Error('Not authenticated');
+
     const budget = args.monthlyBudget || 1000; // Default $1000 budget
 
     // Get current month's dates

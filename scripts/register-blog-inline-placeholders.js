@@ -4,6 +4,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 
 const ROOT = process.cwd();
 const BLOG_DIR = path.join(ROOT, 'src', 'content', 'blog');
@@ -47,7 +48,8 @@ function resolveConvexUrl() {
 async function main() {
   const files = walk(BLOG_DIR);
   const client = new ConvexHttpClient(resolveConvexUrl());
-  let registered = 0, queued = 0;
+  const token = await getAdminToken(client);
+  let registered = 0;
 
   for (const file of files) {
     const raw = fs.readFileSync(file, 'utf8');
@@ -65,6 +67,7 @@ async function main() {
       const { preferredStyle, requiredSubjects } = classify(heading, i - 1);
       try {
         await client.mutation(api.placeholders.register, {
+          token,
           placeholderId: phId,
           pageType: 'blog',
           pageSlug: slug,
@@ -78,8 +81,6 @@ async function main() {
           priority: i === 1 ? 100 : 60,
         });
         registered++;
-        await client.action(api.placeholderGeneration.queue, { placeholderId: phId });
-        queued++;
       } catch (e) {
         // continue
       }
@@ -88,6 +89,7 @@ async function main() {
     const phHero = `blog-${slug}-hero-1`;
     try {
       await client.mutation(api.placeholders.register, {
+        token,
         placeholderId: phHero,
         pageType: 'blog',
         pageSlug: slug,
@@ -101,13 +103,10 @@ async function main() {
         priority: 100,
       });
       registered++;
-      await client.action(api.placeholderGeneration.queue, { placeholderId: phHero });
-      queued++;
     } catch {}
   }
 
-  console.log(`Registered: ${registered}, Queued: ${queued}, Blogs: ${files.length}`);
+  console.log(`Registered: ${registered}, Blogs: ${files.length}`);
 }
 
 main();
-

@@ -15,6 +15,8 @@ import { stringify } from 'csv-stringify/sync';
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api';
 import dotenv from 'dotenv';
+// eslint-disable-next-line import/extensions
+import { getAdminToken } from './lib/adminAuth.js';
 
 // Load environment
 dotenv.config({ path: '.env.local' });
@@ -71,6 +73,7 @@ async function backfillNeighborhoods(options: CliOptions) {
   }
 
   const client = new ConvexHttpClient(convexUrl);
+  const token = await getAdminToken(client as any);
 
   console.log(`🔍 Fetching studios for ${options.city}...`);
   const studios = await client.query(api.studios.getByCity, { city: options.city });
@@ -167,6 +170,7 @@ async function backfillNeighborhoods(options: CliOptions) {
       }
 
       await client.mutation(api.studios.upsert, {
+        token,
         studio: {
           slug: studio.slug,
           name: studio.name,

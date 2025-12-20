@@ -9,6 +9,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'url';
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api.js';
+import { getAdminToken } from './lib/adminAuth.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.resolve(__dirname, '../autonomous-blog-writer/.env') });
@@ -49,13 +50,13 @@ async function withRetries(fn, options = {}) {
   throw lastError;
 }
 
-async function generateIcon(client, icon, options) {
+async function generateIcon(client, token, icon, options) {
   const placeholderId = `category-${icon.slug}`;
   
   console.log(`\n🖼️  Generating: ${icon.name}`);
   
   // Check if already exists with image
-  const existing = await client.query(api.placeholders.getById, { placeholderId });
+  const existing = await client.query(api.placeholders.getByIdAdmin, { token, placeholderId });
   if (existing?.imageUrl && !options.force) {
     console.log(`   ✅ Already has image`);
     return { placeholderId, status: 'exists', imageUrl: existing.imageUrl };
@@ -64,6 +65,7 @@ async function generateIcon(client, icon, options) {
   // Register placeholder
   await withRetries(
     () => client.mutation(api.placeholders.register, {
+      token,
       placeholderId,
       pageType: 'category',
       pageSlug: icon.slug,
@@ -76,6 +78,7 @@ async function generateIcon(client, icon, options) {
       preferredStyle: 'product',
       requiredSubjects: [],
       priority: 100,
+      autoGenerate: false,
     }),
     { description: 'register' }
   );
@@ -83,6 +86,7 @@ async function generateIcon(client, icon, options) {
   // Set custom prompt
   await withRetries(
     () => client.mutation(api.placeholders.updatePrompt, { 
+      token,
       placeholderId, 
       prompt: icon.prompt 
     }),
@@ -92,7 +96,7 @@ async function generateIcon(client, icon, options) {
 
   // Queue generation
   await withRetries(
-    () => client.action(api.placeholderGeneration.queue, { placeholderId }),
+    () => client.action(api.placeholderGeneration.queue, { token, placeholderId }),
     { description: 'queue' }
   );
   console.log(`   🚀 Generation queued`);
@@ -100,7 +104,7 @@ async function generateIcon(client, icon, options) {
   // Poll for result
   const deadline = Date.now() + options.waitMs;
   while (Date.now() < deadline) {
-    const p = await client.query(api.placeholders.getById, { placeholderId });
+    const p = await client.query(api.placeholders.getByIdAdmin, { token, placeholderId });
     
     if (p?.imageUrl) {
       console.log(`   ✅ Generated!`);
@@ -126,6 +130,7 @@ async function main() {
 
   const convexUrl = process.env.CONVEX_PROD_URL || 'https://scintillating-hornet-482.convex.cloud';
   const client = new ConvexHttpClient(convexUrl);
+  const token = await getAdminToken(client);
 
   const options = {
     force: process.argv.includes('--force'),
@@ -134,7 +139,7 @@ async function main() {
 
   for (const icon of CATEGORY_ICONS) {
     try {
-      await generateIcon(client, icon, options);
+      await generateIcon(client, token, icon, options);
     } catch (err) {
       console.error(`❌ Failed: ${err.message}`);
     }
