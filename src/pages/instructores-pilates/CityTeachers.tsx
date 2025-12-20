@@ -14,6 +14,51 @@ import { hasConvex } from '@/lib/convexProvider';
 import { getTeacherCities, getTeachersByCitySlug } from '@/data/teachers';
 import { normalizeTeacherSlugForUrl } from '@/lib/teacherSlug';
 
+// Whitelist of valid Pilates-related specializations
+const VALID_PILATES_SPECIALIZATIONS = new Set([
+  // Core Pilates methods
+  'Pilates', 'Mat Pilates', 'Reformer', 'Reformer Pilates', 'Classical Pilates',
+  'Authentic Pilates', 'Contemporary Pilates', 'Clinical Pilates', 'STOTT Pilates',
+  'Polestar Pilates', 'BASI Pilates', 'Peak Pilates', 'Balanced Body',
+  // Pilates equipment
+  'Cadillac', 'Chair', 'Wunda Chair', 'Tower', 'Barrel', 'Spine Corrector',
+  'Ladder Barrel', 'Arc Barrel', 'Trapeze Table', 'Ball', 'Ball Pilates',
+  'Magic Circle', 'Pilates Ring', 'Foam Roller', 'Small Props',
+  // Population specializations
+  'Prenatal', 'Prenatal Pilates', 'Postnatal', 'Postnatal Pilates',
+  'Embarazo', 'Postparto', 'Seniors', 'Adultos mayores', 'Older adults',
+  'Kids', 'Niños', 'Men', 'Hombres', 'Athletes', 'Deportistas',
+  // Therapeutic/clinical focus
+  'Rehabilitation', 'Rehabilitación', 'Rehab', 'Physical Therapy', 'Fisioterapia',
+  'Back Pain', 'Dolor de espalda', 'Scoliosis', 'Escoliosis', 'Injury Recovery',
+  'Post-surgery', 'Postoperatorio', 'Pelvic Floor', 'Suelo pélvico', 'Core Stability',
+  'Posture', 'Postura', 'Alignment', 'Alineación', 'Corrective Exercise',
+  // Movement complementary to Pilates
+  'Barre', 'Barré', 'Ballet', 'Dance', 'Danza', 'Gyrotonic', 'Gyrokinesis',
+  'Yoga', 'Stretch', 'Stretching', 'Flexibility', 'Flexibilidad',
+  'Conditioning', 'Physical Conditioning', 'Physical conditioning',
+  'Functional Movement', 'Movimiento Funcional', 'Sports Science',
+  // Training levels
+  'Beginner', 'Principiante', 'Intermediate', 'Intermedio', 'Advanced', 'Avanzado',
+  'Group Classes', 'Clases Grupales', 'Private Sessions', 'Sesiones Privadas',
+  'Teacher Training', 'Formación de Instructores',
+]);
+
+// Normalize specialty for matching (case-insensitive)
+const isValidPilatesSpecialization = (spec: string): boolean => {
+  const normalized = spec.trim();
+  // Check exact match first
+  if (VALID_PILATES_SPECIALIZATIONS.has(normalized)) return true;
+  // Check case-insensitive match
+  const lowerSpec = normalized.toLowerCase();
+  for (const valid of VALID_PILATES_SPECIALIZATIONS) {
+    if (valid.toLowerCase() === lowerSpec) return true;
+  }
+  // Check if contains "pilates" in name
+  if (lowerSpec.includes('pilates')) return true;
+  return false;
+};
+
 interface Teacher {
   _id: string;
   slug: string;
@@ -84,7 +129,11 @@ const CityTeachers: React.FC = () => {
 
   const allSpecializations = useMemo(() => {
     const specs = new Set<string>();
-    teachers.forEach(t => t.specializations?.value?.forEach(s => specs.add(s)));
+    teachers.forEach(t => t.specializations?.value?.forEach(s => {
+      if (isValidPilatesSpecialization(s)) {
+        specs.add(s);
+      }
+    }));
     return Array.from(specs).sort();
   }, [teachers]);
 
