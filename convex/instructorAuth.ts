@@ -267,8 +267,13 @@ export const debugGetAccountByEmail = query({
       email: account.email,
       teacherId: account.teacherId,
       hasPassword: Boolean(account.passwordHash),
+      hasResetToken: Boolean(account.resetToken),
+      resetTokenExpiresAt: account.resetTokenExpiresAt,
+      hasSetupToken: Boolean(account.setupToken),
+      setupTokenExpiresAt: account.setupTokenExpiresAt,
       createdAt: account.createdAt,
       lastLoginAt: account.lastLoginAt,
+      passwordSetAt: account.passwordSetAt,
     };
   },
 });
