@@ -205,8 +205,6 @@ const TeacherDetail: React.FC = () => {
   const isClaimedOrVerified = liveTeacher?.status === 'claimed' || liveTeacher?.status === 'verified';
   const showLoginButton = isClaimedOrVerified && !isOwner && !hasPendingClaim;
 
-  const teacherSlugForUrl = normalizeTeacherSlugForUrl(teacher.slug, teacher.citySlug);
-
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
@@ -262,6 +260,7 @@ const TeacherDetail: React.FC = () => {
 	    ? normalizeExternalUrl(teacher.contact.bookingUrl.value) ?? teacher.contact.bookingUrl.value
 	    : null;
 	  const avatarUrl = teacher.profilePhoto?.value.url || instagramPreview?.profileImageUrl || null;
+  const teacherSlugForUrl = normalizeTeacherSlugForUrl(teacher.slug, teacher.citySlug);
 
   return (
     <LuxuryLayout>

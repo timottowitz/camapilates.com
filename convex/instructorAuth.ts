@@ -248,6 +248,31 @@ export const logout = mutation({
 // SESSION VALIDATION
 // =============================================
 
+// DEBUG: Check account status by email (admin only)
+export const debugGetAccountByEmail = query({
+  args: { email: v.string() },
+  handler: async (ctx, { email }) => {
+    const account = await ctx.db
+      .query('instructorAccounts')
+      .withIndex('by_email', (q) => q.eq('email', email.toLowerCase()))
+      .first();
+
+    if (!account) {
+      return { found: false };
+    }
+
+    return {
+      found: true,
+      status: account.status,
+      email: account.email,
+      teacherId: account.teacherId,
+      hasPassword: Boolean(account.passwordHash),
+      createdAt: account.createdAt,
+      lastLoginAt: account.lastLoginAt,
+    };
+  },
+});
+
 export const validateSession = query({
   args: { token: v.string() },
   handler: async (ctx, { token }) => {
