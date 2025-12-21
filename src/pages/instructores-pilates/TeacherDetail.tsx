@@ -4,12 +4,12 @@ import { Helmet } from 'react-helmet-async';
 import { useMutation, useQuery } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
 import { Id } from '../../../convex/_generated/dataModel';
-import { 
-  MapPin, 
-  CheckCircle, 
+import {
+  MapPin,
+  CheckCircle,
 	  Clock,
-	  Instagram, 
-	  Linkedin, 
+	  Instagram,
+	  Linkedin,
 	  Globe,
 	  Facebook,
 	  Award,
@@ -19,7 +19,8 @@ import {
   ChevronRight,
   UserCheck,
   Image as ImageIcon,
-  X
+  X,
+  MessageCircle
 } from 'lucide-react';
 import { InstagramProfileSection } from '@/components/social/InstagramEmbed';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
@@ -234,6 +235,11 @@ const TeacherDetail: React.FC = () => {
 	  const facebookUrl = teacher.social?.facebook?.value
 	    ? normalizeExternalUrl(teacher.social.facebook.value) ?? teacher.social.facebook.value
 	    : null;
+	  const whatsappNumber = teacher.contact?.whatsapp?.value || null;
+	  const whatsappUrl = whatsappNumber ? `https://wa.me/52${whatsappNumber.replace(/\D/g, '')}` : null;
+	  const bookingUrl = teacher.contact?.bookingUrl?.value
+	    ? normalizeExternalUrl(teacher.contact.bookingUrl.value) ?? teacher.contact.bookingUrl.value
+	    : null;
 	  const avatarUrl = teacher.profilePhoto?.value.url || instagramPreview?.profileImageUrl || null;
 
   return (
@@ -367,6 +373,13 @@ const TeacherDetail: React.FC = () => {
 	                  <a href={facebookUrl} target="_blank" rel="noopener noreferrer">
 	                    <Button variant="outline" className="gap-2 border-[#2A2624]/20">
 	                      <Facebook className="w-4 h-4" /> Facebook
+	                    </Button>
+	                  </a>
+	                )}
+	                {whatsappUrl && (
+	                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+	                    <Button variant="outline" className="gap-2 border-green-600/30 text-green-700 hover:bg-green-50">
+	                      <MessageCircle className="w-4 h-4" /> WhatsApp
 	                    </Button>
 	                  </a>
 	                )}
