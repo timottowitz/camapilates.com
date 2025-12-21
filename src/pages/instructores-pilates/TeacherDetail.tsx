@@ -20,7 +20,9 @@ import {
   UserCheck,
   Image as ImageIcon,
   X,
-  MessageCircle
+  MessageCircle,
+  Pencil,
+  LogIn
 } from 'lucide-react';
 import { InstagramProfileSection } from '@/components/social/InstagramEmbed';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
@@ -110,6 +112,13 @@ const TeacherDetail: React.FC = () => {
   const { city: citySlug, slug } = useParams<{ city: string; slug: string }>();
   const [lightboxPhoto, setLightboxPhoto] = useState<string | null>(null);
 
+  // Check if instructor is logged in
+  const instructorToken = typeof window !== 'undefined' ? localStorage.getItem('instructor_token') : null;
+  const instructorSession = useQuery(
+    api.instructorAuth.validateSession,
+    hasConvex && instructorToken ? { token: instructorToken } : 'skip'
+  ) as { authenticated: boolean; teacherId?: Id<'teachers'> } | undefined;
+
   const normalizedCitySlug = citySlug === 'cdmx' ? 'ciudad-de-mexico' : citySlug;
   
   const seededTeacher = React.useMemo(() => {
@@ -183,6 +192,18 @@ const TeacherDetail: React.FC = () => {
   // Seed teachers without Convex record can also be claimed
   const canClaimSeed = !liveTeacher && seededTeacher && !hasPendingClaim;
   const canClaim = canClaimLive || canClaimSeed;
+
+  // Check if logged-in instructor owns this profile
+  const isOwner = Boolean(
+    instructorSession?.authenticated &&
+    instructorSession?.teacherId &&
+    liveTeacher?._id &&
+    instructorSession.teacherId === liveTeacher._id
+  );
+
+  // Show login button if profile is claimed/verified but user is not logged in as owner
+  const isClaimedOrVerified = liveTeacher?.status === 'claimed' || liveTeacher?.status === 'verified';
+  const showLoginButton = isClaimedOrVerified && !isOwner && !hasPendingClaim;
 
   const teacherSlugForUrl = normalizeTeacherSlugForUrl(teacher.slug, teacher.citySlug);
 
@@ -308,6 +329,24 @@ const TeacherDetail: React.FC = () => {
                 </div>
 
                 <div className="flex flex-wrap gap-2 justify-center md:justify-end">
+                  {/* Owner can edit directly */}
+                  {isOwner && (
+                    <Link to="/mi-perfil/editar">
+                      <Button className="gap-2 bg-[#3E2723] hover:bg-[#2A2624] text-white">
+                        <Pencil className="w-4 h-4" />
+                        Editar perfil
+                      </Button>
+                    </Link>
+                  )}
+                  {/* Show login for claimed profiles when not logged in as owner */}
+                  {showLoginButton && (
+                    <Link to="/mi-perfil">
+                      <Button variant="outline" className="gap-2 border-[#3E2723]/30 text-[#3E2723]">
+                        <LogIn className="w-4 h-4" />
+                        Iniciar sesión para editar
+                      </Button>
+                    </Link>
+                  )}
                   {canClaim && (
                     <Link to={`/claim-teacher?slug=${teacherSlugForUrl}&city=${teacher.citySlug}`}>
                       <Button className="gap-2 bg-emerald-600 hover:bg-emerald-700 text-white">
