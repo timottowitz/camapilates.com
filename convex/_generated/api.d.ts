@@ -47,6 +47,7 @@ import type * as teacherClaims from "../teacherClaims.js";
 import type * as teacherClaimsAdmin from "../teacherClaimsAdmin.js";
 import type * as teacherDiscovery from "../teacherDiscovery.js";
 import type * as teachers from "../teachers.js";
+import type * as teachersAdmin from "../teachersAdmin.js";
 import type * as testGooglePlaces from "../testGooglePlaces.js";
 import type * as topics from "../topics.js";
 
@@ -96,6 +97,7 @@ declare const fullApi: ApiFromModules<{
   teacherClaimsAdmin: typeof teacherClaimsAdmin;
   teacherDiscovery: typeof teacherDiscovery;
   teachers: typeof teachers;
+  teachersAdmin: typeof teachersAdmin;
   testGooglePlaces: typeof testGooglePlaces;
   topics: typeof topics;
 }>;

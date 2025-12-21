@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Lock, LayoutDashboard, FileText, Settings, Image as ImageIcon, UserPlus, UserCheck, Database } from 'lucide-react';
+import { Lock, LayoutDashboard, FileText, Settings, Image as ImageIcon, UserPlus, UserCheck, Database, Table2 } from 'lucide-react';
 
 const Admin = () => {
   const [username, setUsername] = useState('');
@@ -214,6 +214,22 @@ const Admin = () => {
               <CardContent>
                 <p className="text-sm text-muted-foreground">
                   Review instructor profile claims, approve photos, and verify identities.
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link to="/admin/teacher-profiles" className="block group">
+            <Card className="h-full transition-all hover:shadow-md group-hover:border-primary/50">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Table2 className="w-5 h-5 text-orange-600" />
+                  Teacher Profiles
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Edit all instructor profiles in a spreadsheet view. Manage photos and data.
                 </p>
               </CardContent>
             </Card>

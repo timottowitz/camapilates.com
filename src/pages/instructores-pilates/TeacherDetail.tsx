@@ -393,7 +393,38 @@ const TeacherDetail: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           
           <div className="md:col-span-2 space-y-12">
-            
+
+            {/* Photo Gallery - at top if photos exist */}
+            {photos && photos.length > 0 && (
+              <section>
+                <h2 className="flex items-center gap-3 text-2xl font-serif italic text-[#2A2624] mb-6 border-b border-[#2A2624]/10 pb-2">
+                  <ImageIcon className="w-6 h-6 text-[#3E2723]" />
+                  Galería
+                </h2>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {photos.filter(p => p.url).map((photo) => (
+                    <button
+                      key={photo._id}
+                      onClick={() => setLightboxPhoto(photo.url)}
+                      className="relative aspect-square rounded-lg overflow-hidden group"
+                    >
+                      <img
+                        src={photo.url!}
+                        alt={photo.caption || 'Foto del instructor'}
+                        className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
+                      {photo.caption && (
+                        <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                          <p className="text-white text-xs">{photo.caption}</p>
+                        </div>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </section>
+            )}
+
             <section>
               <h2 className="flex items-center gap-3 text-2xl font-serif italic text-[#2A2624] mb-6 border-b border-[#2A2624]/10 pb-2">
                 <Award className="w-6 h-6 text-[#3E2723]" />
@@ -475,37 +506,6 @@ const TeacherDetail: React.FC = () => {
                 <p className="text-[#5D5550]">
                   <span className="font-medium text-[#2A2624]">{teacher.teachingHours.value.toLocaleString()}</span> horas de enseñanza
                 </p>
-              </section>
-            )}
-
-            {/* Photo Gallery */}
-            {photos && photos.length > 0 && (
-              <section>
-                <h2 className="flex items-center gap-3 text-2xl font-serif italic text-[#2A2624] mb-6 border-b border-[#2A2624]/10 pb-2">
-                  <ImageIcon className="w-6 h-6 text-[#3E2723]" />
-                  Galería
-                </h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {photos.filter(p => p.url).map((photo) => (
-                    <button
-                      key={photo._id}
-                      onClick={() => setLightboxPhoto(photo.url)}
-                      className="relative aspect-square rounded-lg overflow-hidden group"
-                    >
-                      <img
-                        src={photo.url!}
-                        alt={photo.caption || 'Foto del instructor'}
-                        className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-                      {photo.caption && (
-                        <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                          <p className="text-white text-xs">{photo.caption}</p>
-                        </div>
-                      )}
-                    </button>
-                  ))}
-                </div>
               </section>
             )}
 
