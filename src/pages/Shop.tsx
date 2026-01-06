@@ -26,6 +26,8 @@ import { LivePurchaseNotifications, CustomerReviewsPreview } from '@/components/
 import ExitIntentPopup, { useExitIntent } from '@/components/commerce21/ExitIntentPopup';
 import ProductCard21Enhanced from '@/components/commerce21/ProductCard21Enhanced';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
+import MobileFilterSheet, { MobileFilterTrigger } from '@/components/commerce21/MobileFilterSheet';
+import { ChevronDown, Mail, ArrowRight } from 'lucide-react';
 
 function getInitialRegion(): Region {
   if (typeof window === 'undefined') return 'MX';
@@ -51,6 +53,7 @@ const Shop: React.FC = () => {
   const [activeFinishes, setActiveFinishes] = useState<FinishKey[]>([]);
   const [activeAvailability, setActiveAvailability] = useState<string[]>([]);
   const [showExitPopup, setShowExitPopup] = useState(false);
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   // Exit intent detection
   useExitIntent(() => {
@@ -139,12 +142,12 @@ const Shop: React.FC = () => {
   }, [search, sort, minPrice, maxPrice, activeCats, activeFinishes, activeAvailability, region]);
 
   return (
-    <LuxuryLayout>
+    <LuxuryLayout headerTheme="light">
       <Helmet>
         <title>{title} | {DEFAULTS.siteName}</title>
         <meta name="description" content={desc} />
         <link rel="canonical" href={`${origin}/shop`} />
-        {assets.shopHero && <link rel="preload" as="image" href={assets.shopHero} fetchpriority="high" />}
+        {assets.shopHero && <link rel="preload" as="image" href={assets.shopHero} fetchPriority="high" />}
         <meta property="og:site_name" content={DEFAULTS.siteName} />
         <meta property="og:locale" content={DEFAULTS.locale} />
         <meta property="og:title" content={title} />
@@ -199,191 +202,374 @@ const Shop: React.FC = () => {
         })}</script>
       </Helmet>
 
-      <div className="container mx-auto px-8 md:px-24 py-12 space-y-12">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          {/* SEO H1 - Visually hidden */}
-          <h1 className="sr-only">Tienda de Camas de Pilates Reformer y Accesorios en México - Edelweiss Pilates</h1>
-          {/* Visual Title */}
-          <p className="text-4xl md:text-6xl font-serif italic text-[#2A2624]" aria-hidden="true">Colección</p>
-          <div className="flex items-center gap-4 text-xs uppercase tracking-[0.15em]">
-            <a href="https://wa.me/523222787690" className="hover:text-[#3E2723] transition-colors">WhatsApp</a>
-            <a href="tel:+523222787690" className="hover:text-[#3E2723] transition-colors">Llamar</a>
-            <div className="hidden sm:block text-[#5D5550]">
-              <Link to="/compare" className="hover:text-[#3E2723] transition-colors">Comparar Modelos</Link>
+      <div className="relative min-h-screen bg-[#F9F9F8]">
+        {/* Subtle Background Mesh */}
+        <div className="absolute top-0 left-0 right-0 h-[800px] bg-gradient-to-b from-white/60 to-transparent pointer-events-none" />
+        <div className="absolute top-40 left-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 opacity-20 blur-3xl">
+          <div className="h-full w-full bg-gradient-to-r from-[#e0dcd9] via-[#dcd8d4] to-[#e0dcd9] rounded-full animate-pulse duration-[5000ms]" />
+        </div>
+
+        <div className="container mx-auto px-6 md:px-24 py-12 space-y-12 relative z-10">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            {/* SEO H1 - Visually hidden */}
+            <h1 className="sr-only">Tienda de Camas de Pilates Reformer y Accesorios en México - Edelweiss Pilates</h1>
+            {/* Visual Title */}
+            <p className="text-5xl md:text-7xl font-serif italic text-[#2A2624] tracking-tighter loading-[0.9]" aria-hidden="true">
+              Shop<span className="text-[#EB4C42]">.</span>
+            </p>
+            <div className="flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.2em] opacity-60">
+              <a href="https://wa.me/523222787690" className="hover:text-[#EB4C42] transition-colors">WhatsApp</a>
+              <a href="tel:+523222787690" className="hover:text-[#EB4C42] transition-colors">Llamar</a>
+              <div className="hidden sm:block text-[#5D5550]">
+                <Link to="/compare" className="hover:text-[#EB4C42] transition-colors">Comparar Modelos</Link>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Enhanced Hero */}
-        <EnhancedHero
-          title="Redescubre tu gracia"
-          subtitle="Tejidos no tóxicos & materiales premium (cuero genuino, nogal & acero). Pago seguro & entrega en 3 semanas."
-          backgroundImage={assets.shopHero || DEFAULTS.ogImage}
-          showTrustMetrics={false}
-          ctaPrimary={{ text: 'Ver promoción', href: '/product/reformer-profesional' }}
-          ctaSecondary={{ text: 'Comparar modelos', href: '/compare' }}
-        />
+          {/* Enhanced Hero */}
+          <EnhancedHero
+            title="Redescubre tu gracia"
+            subtitle="Tejidos no tóxicos & materiales premium (cuero genuino, nogal & acero). Pago seguro & entrega en 3 semanas."
+            backgroundImage={assets.shopHero || DEFAULTS.ogImage}
+            showTrustMetrics={false}
+            ctaPrimary={{ text: 'Ver promoción', href: '/product/reformer-profesional' }}
+            ctaSecondary={{ text: 'Comparar modelos', href: '/compare' }}
+          />
 
-        {/* Shop by category icons */}
-        <div>
-          <h2 className="text-2xl font-serif italic text-[#2A2624] mb-6">Categorías</h2>
-          <CategoryIcons21 items={cats.map(c => {
-            const imgMap: Record<string, string | undefined> = {
-              'reformers': assets.catReformers,
-              'accesorios': assets.catAccessories,
-              'ropa': assets.catRopa,
-              'terapia-de-luz': assets.catLuz
-            };
-            return {
-              label: c.name,
-              href: `/shop/category/${c.slug}`,
-              count: c.count,
-              img: imgMap[c.slug],
-            };
-          })} />
-        </div>
-
-        {/* Featured product (curated) */}
-        {getBySlug ? (getBySlug('reformer-profesional') ? <FeaturedProduct21 product={getBySlug('reformer-profesional') as any} /> : null) : (products[0] && <FeaturedProduct21 product={products[0] as any} />)}
-
-        {/* Best sellers and newest rails */}
-        <ProductRail21 title="Más vendidos" products={(allProducts() as any).filter((p: any) => p.bestSeller).slice(0, 8)} />
-        <ProductRail21 title="Novedades" products={(allProducts() as any).filter((p: any) => p.isNew).slice(0, 8)} />
-
-        {/* Sticky listing header */}
-        <div className="sticky top-0 z-40 bg-[#EAE8E4]/95 backdrop-blur border-b border-[#2A2624]/10 py-4 -mx-8 px-8 md:-mx-24 md:px-24">
-          <div className="flex items-center justify-between gap-3 text-sm mb-2">
-            <div className="text-[#5D5550] font-sans text-xs tracking-widest uppercase">{products.length} Resultados</div>
-            <FilterBar21 sort={sort} onSort={(v) => setSort(v as any)} region={region} onRegion={(v) => { setRegion(v); try { window.localStorage.setItem('regionPref', v); } catch { } }} search={search} onSearch={setSearch} />
+          {/* Shop by category icons */}
+          <div>
+            <h2 className="text-2xl font-serif italic text-[#2A2624] mb-6">Categorías</h2>
+            <CategoryIcons21 items={cats.map(c => {
+              const imgMap: Record<string, string | undefined> = {
+                'reformers': assets.catReformers,
+                'accesorios': assets.catAccessories,
+                'ropa': assets.catRopa,
+                'terapia-de-luz': assets.catLuz
+              };
+              return {
+                label: c.name,
+                href: `/shop/category/${c.slug}`,
+                count: c.count,
+                img: imgMap[c.slug],
+              };
+            })} />
           </div>
-          <div className="text-[10px] uppercase tracking-widest text-[#5D5550]" aria-live="polite">{regionEstimate(region)}</div>
-          <div className="mt-2">
-            <ActiveChips21 chips={((): Chip[] => {
-              const chips: Chip[] = [];
-              activeCats.forEach((c) => chips.push({ label: `Categoría: ${c}`, onRemove: () => setActiveCats((prev) => prev.filter(x => x !== c)) }));
-              activeFinishes.forEach((f) => chips.push({ label: `Acabado: ${f}`, onRemove: () => setActiveFinishes((prev) => prev.filter(x => x !== f)) }));
-              activeAvailability.forEach((a) => chips.push({ label: a.includes('InStock') ? 'En stock' : 'Preorden', onRemove: () => setActiveAvailability((prev) => prev.filter(x => x !== a)) }));
-              if (minPrice) chips.push({ label: `≥ $${minPrice}`, onRemove: () => setMinPrice('') });
-              if (maxPrice) chips.push({ label: `≤ $${maxPrice}`, onRemove: () => setMaxPrice('') });
-              if (search) chips.push({ label: `Buscar: ${search}`, onRemove: () => setSearch('') });
-              return chips;
-            })()} onClearAll={() => { setActiveCats([]); setActiveFinishes([]); setActiveAvailability([]); setMinPrice(''); setMaxPrice(''); setSearch(''); }} />
+
+          {/* Featured product (curated) */}
+          {getBySlug ? (getBySlug('reformer-profesional') ? <FeaturedProduct21 product={getBySlug('reformer-profesional') as any} /> : null) : (products[0] && <FeaturedProduct21 product={products[0] as any} />)}
+
+          {/* Best sellers rail */}
+          <ProductRail21 title="Más vendidos" products={(allProducts() as any).filter((p: any) => p.bestSeller).slice(0, 8)} />
+
+          {/* Sticky listing header */}
+          {/* Sticky listing header */}
+          <div className="sticky top-4 z-40 mx-auto max-w-7xl">
+            <div className="bg-white/80 backdrop-blur-md border border-white/40 shadow-sm rounded-full py-3 px-8 flex items-center justify-between gap-6 transition-all hover:shadow-md hover:bg-white/90">
+              <div className="text-[#5D5550] font-sans text-[10px] tracking-widest uppercase font-bold">{products.length} Items</div>
+              <FilterBar21 sort={sort} onSort={(v) => setSort(v as any)} region={region} onRegion={(v) => { setRegion(v); try { window.localStorage.setItem('regionPref', v); } catch { } }} search={search} onSearch={setSearch} />
+            </div>
+
+            <div className="mt-4 px-4">
+              <ActiveChips21 chips={((): Chip[] => {
+                const chips: Chip[] = [];
+                activeCats.forEach((c) => chips.push({ label: `Categoría: ${c}`, onRemove: () => setActiveCats((prev) => prev.filter(x => x !== c)) }));
+                activeFinishes.forEach((f) => chips.push({ label: `Acabado: ${f}`, onRemove: () => setActiveFinishes((prev) => prev.filter(x => x !== f)) }));
+                activeAvailability.forEach((a) => chips.push({ label: a.includes('InStock') ? 'En stock' : 'Preorden', onRemove: () => setActiveAvailability((prev) => prev.filter(x => x !== a)) }));
+                if (minPrice) chips.push({ label: `≥ $${minPrice}`, onRemove: () => setMinPrice('') });
+                if (maxPrice) chips.push({ label: `≤ $${maxPrice}`, onRemove: () => setMaxPrice('') });
+                if (search) chips.push({ label: `Buscar: ${search}`, onRemove: () => setSearch('') });
+                return chips;
+              })()} onClearAll={() => { setActiveCats([]); setActiveFinishes([]); setActiveAvailability([]); setMinPrice(''); setMaxPrice(''); setSearch(''); }} />
+            </div>
           </div>
-        </div>
 
-        <div className="grid md:grid-cols-4 gap-12">
-          <aside className="hidden md:block md:col-span-1 space-y-8">
-            <div className="border-b border-[#2A2624]/10 pb-8">
-              <h2 className="font-serif italic text-xl text-[#2A2624] mb-4">Filtros</h2>
+          <div className="grid md:grid-cols-4 gap-12">
+            {/* Enhanced Desktop Filter Sidebar */}
+            <aside className="hidden md:block md:col-span-1">
+              <div className="sticky top-24 space-y-6">
+                {/* Filter Header */}
+                <div className="flex items-center justify-between">
+                  <h2 className="font-serif italic text-xl text-[#2A2624]">Filtros</h2>
+                  {(activeCats.length > 0 || activeFinishes.length > 0 || minPrice || maxPrice) && (
+                    <button
+                      onClick={() => { setActiveCats([]); setActiveFinishes([]); setActiveAvailability([]); setMinPrice(''); setMaxPrice(''); setSearch(''); }}
+                      className="text-[10px] uppercase tracking-[0.15em] text-[#EB4C42] font-bold hover:underline"
+                    >
+                      Limpiar todo
+                    </button>
+                  )}
+                </div>
 
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xs uppercase tracking-widest text-[#5D5550] mb-3">Categorías</h3>
-                  <ul className="space-y-2 text-sm text-[#2A2624]">
+                {/* Categories */}
+                <FilterAccordion title="Categorías" defaultOpen>
+                  <div className="space-y-1">
                     {cats.map((c) => (
-                      <li key={c.slug} className="flex items-center justify-between group cursor-pointer">
-                        <div className="flex items-center gap-2">
-                          <input
-                            id={`cat-${c.slug}`}
-                            type="checkbox"
-                            checked={activeCats.includes(c.name)}
-                            onChange={(e) => {
-                              setActiveCats((prev) => e.target.checked ? Array.from(new Set([...prev, c.name])) : prev.filter((x) => x !== c.name));
-                            }}
-                            className="accent-[#3E2723]"
-                          />
-                          <label htmlFor={`cat-${c.slug}`} className="cursor-pointer group-hover:text-[#3E2723] transition-colors">{c.name}</label>
+                      <label
+                        key={c.slug}
+                        className={`
+                          flex items-center justify-between p-3 rounded-xl cursor-pointer
+                          transition-all duration-200
+                          ${activeCats.includes(c.name)
+                            ? 'bg-[#2A2624] text-white'
+                            : 'hover:bg-[#2A2624]/5'}
+                        `}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className={`
+                            w-5 h-5 rounded-md border-2 flex items-center justify-center transition-colors
+                            ${activeCats.includes(c.name)
+                              ? 'bg-white border-white'
+                              : 'border-[#2A2624]/20'}
+                          `}>
+                            {activeCats.includes(c.name) && (
+                              <svg className="w-3 h-3 text-[#2A2624]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                              </svg>
+                            )}
+                          </div>
+                          <span className="text-sm">{c.name}</span>
                         </div>
-                        <span className="text-xs text-[#5D5550]">{c.count}</span>
-                      </li>
+                        <span className={`text-xs px-2 py-0.5 rounded-full ${activeCats.includes(c.name) ? 'bg-white/20 text-white' : 'bg-[#2A2624]/5 text-[#5D5550]'}`}>
+                          {c.count}
+                        </span>
+                        <input
+                          type="checkbox"
+                          checked={activeCats.includes(c.name)}
+                          onChange={(e) => {
+                            setActiveCats((prev) => e.target.checked ? Array.from(new Set([...prev, c.name])) : prev.filter((x) => x !== c.name));
+                          }}
+                          className="sr-only"
+                        />
+                      </label>
                     ))}
-                  </ul>
-                </div>
+                  </div>
+                </FilterAccordion>
 
-                <div>
-                  <h3 className="text-xs uppercase tracking-widest text-[#5D5550] mb-3">Acabados</h3>
-                  <ul className="space-y-2 text-sm text-[#2A2624]">
+                {/* Finishes */}
+                <FilterAccordion title="Acabados">
+                  <div className="flex flex-wrap gap-2">
                     {finishes.map((f) => (
-                      <li key={f} className="flex items-center gap-2 group cursor-pointer">
-                        <input id={`fin-${f}`} type="checkbox" checked={activeFinishes.includes(f)} onChange={(e) => setActiveFinishes((prev) => e.target.checked ? [...prev, f] : prev.filter((x) => x !== f))} className="accent-[#3E2723]" />
-                        <label htmlFor={`fin-${f}`} className="cursor-pointer group-hover:text-[#3E2723] transition-colors">{f}</label>
-                      </li>
+                      <button
+                        key={f}
+                        onClick={() => setActiveFinishes((prev) => prev.includes(f) ? prev.filter((x) => x !== f) : [...prev, f])}
+                        className={`
+                          px-4 py-2 rounded-full text-sm transition-all duration-200
+                          ${activeFinishes.includes(f)
+                            ? 'bg-[#2A2624] text-white'
+                            : 'bg-[#2A2624]/5 text-[#2A2624] hover:bg-[#2A2624]/10'}
+                        `}
+                      >
+                        {f}
+                      </button>
                     ))}
-                  </ul>
-                </div>
+                  </div>
+                </FilterAccordion>
 
-                <div>
-                  <h3 className="text-xs uppercase tracking-widest text-[#5D5550] mb-3">Precio</h3>
-                  <div className="grid grid-cols-2 gap-2 text-sm">
-                    <input type="number" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="w-full bg-transparent border-b border-[#2A2624]/20 py-1 px-0 focus:outline-none focus:border-[#3E2723]" placeholder="Min" />
-                    <input type="number" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="w-full bg-transparent border-b border-[#2A2624]/20 py-1 px-0 focus:outline-none focus:border-[#3E2723]" placeholder="Max" />
+                {/* Price Range */}
+                <FilterAccordion title="Precio">
+                  <div className="space-y-4">
+                    <div className="flex gap-3">
+                      <div className="flex-1">
+                        <label className="text-[10px] uppercase tracking-[0.15em] text-[#5D5550]/60 font-bold mb-2 block">
+                          Mínimo
+                        </label>
+                        <div className="relative">
+                          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#5D5550]/60 text-sm">$</span>
+                          <input
+                            type="number"
+                            value={minPrice}
+                            onChange={(e) => setMinPrice(e.target.value)}
+                            placeholder="0"
+                            className="w-full pl-7 pr-3 py-2.5 rounded-xl border border-[#2A2624]/10 bg-white text-sm focus:outline-none focus:border-[#2A2624]/30 focus:ring-2 focus:ring-[#2A2624]/5 transition-all"
+                          />
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <label className="text-[10px] uppercase tracking-[0.15em] text-[#5D5550]/60 font-bold mb-2 block">
+                          Máximo
+                        </label>
+                        <div className="relative">
+                          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#5D5550]/60 text-sm">$</span>
+                          <input
+                            type="number"
+                            value={maxPrice}
+                            onChange={(e) => setMaxPrice(e.target.value)}
+                            placeholder="100,000"
+                            className="w-full pl-7 pr-3 py-2.5 rounded-xl border border-[#2A2624]/10 bg-white text-sm focus:outline-none focus:border-[#2A2624]/30 focus:ring-2 focus:ring-[#2A2624]/5 transition-all"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    {/* Quick ranges */}
+                    <div className="flex flex-wrap gap-1.5">
+                      {[
+                        { label: '< $1k', min: '', max: '1000' },
+                        { label: '$1-10k', min: '1000', max: '10000' },
+                        { label: '$10-50k', min: '10000', max: '50000' },
+                        { label: '> $50k', min: '50000', max: '' },
+                      ].map(range => (
+                        <button
+                          key={range.label}
+                          onClick={() => { setMinPrice(range.min); setMaxPrice(range.max); }}
+                          className="px-2.5 py-1 rounded-lg text-[10px] bg-[#2A2624]/5 text-[#2A2624] hover:bg-[#2A2624]/10 transition-colors font-medium"
+                        >
+                          {range.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </FilterAccordion>
+
+                {/* Delivery Info */}
+                <div className="p-4 rounded-2xl bg-gradient-to-br from-[#7A8A6F]/10 to-[#7A8A6F]/5 border border-[#7A8A6F]/20">
+                  <p className="text-xs text-[#5D5550] leading-relaxed">
+                    <span className="font-bold text-[#7A8A6F]">Envío gratis</span> en pedidos mayores a $5,000 MXN. Entrega en 3 semanas.
+                  </p>
+                </div>
+              </div>
+            </aside>
+
+            <div className="md:col-span-3">
+              {/* Enhanced Product Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                {products.map((product) => (
+                  <ProductCard21Enhanced
+                    key={product.slug}
+                    product={product}
+                    onQuickView={(p) => setQuick(p)}
+                    showUrgency={true}
+                  />
+                ))}
+              </div>
+
+              {/* Customer Reviews Preview */}
+              <CustomerReviewsPreview className="my-12" />
+
+              {/* Explore range blocks */}
+              <ExploreTiles21 items={[
+                { label: 'Reformers', desc: 'Silenciosos y precisos para casa y estudio', href: '/shop/category/reformers', img: '/images/explore-reformers.webp' },
+                { label: 'Accesorios', desc: 'Cintas, calcetines grip y mantenimiento', href: '/shop/category/accesorios', img: '/images/explore-accessories.webp' },
+                { label: 'Ropa', desc: 'Algodón orgánico: fitted y relaxed', href: '/shop/category/ropa', img: '/images/conjunto-fitted.webp' },
+                { label: 'Terapia de Luz', desc: 'Luz roja e infrarroja para estudios y casa', href: '/shop/category/terapia-de-luz', img: '/images/luz-studio-4.webp' },
+              ]} />
+
+              {/* Premium Newsletter Section */}
+              <section className="mt-16 relative overflow-hidden">
+                <div className="relative bg-gradient-to-br from-[#2A2624] via-[#3E2723] to-[#2A2624] rounded-[2rem] p-8 md:p-12">
+                  {/* Decorative elements */}
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                  <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#EB4C42]/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+
+                  <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-8">
+                    {/* Content */}
+                    <div className="flex-1">
+                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm mb-4">
+                        <Mail className="h-3 w-3 text-[#EB4C42]" />
+                        <span className="text-[10px] uppercase tracking-[0.2em] text-white/80 font-bold">Newsletter</span>
+                      </div>
+                      <h3 className="font-serif italic text-2xl md:text-3xl text-white mb-2">
+                        Únete a la comunidad
+                      </h3>
+                      <p className="text-sm text-white/60 max-w-md">
+                        Recibe actualizaciones exclusivas, promociones y consejos de pilates directamente en tu bandeja.
+                      </p>
+                    </div>
+
+                    {/* Form */}
+                    <div className="flex-shrink-0 w-full md:w-auto">
+                      <form
+                        action="mailto:valery@camadepilates.com"
+                        method="post"
+                        className="flex flex-col sm:flex-row gap-3"
+                      >
+                        <div className="relative flex-1 md:w-72">
+                          <input
+                            type="email"
+                            required
+                            placeholder="tu@email.com"
+                            className="
+                              w-full px-5 py-4 rounded-xl
+                              bg-white/10 backdrop-blur-sm border border-white/20
+                              text-white placeholder:text-white/40
+                              focus:outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10
+                              transition-all text-sm
+                            "
+                          />
+                        </div>
+                        <button
+                          type="submit"
+                          className="
+                            inline-flex items-center justify-center gap-2
+                            px-6 py-4 rounded-xl
+                            bg-white text-[#2A2624]
+                            text-sm font-bold uppercase tracking-[0.1em]
+                            hover:bg-[#EB4C42] hover:text-white
+                            active:scale-[0.98]
+                            transition-all duration-200
+                            shadow-lg shadow-black/20
+                          "
+                        >
+                          Suscribirse
+                          <ArrowRight className="h-4 w-4" />
+                        </button>
+                      </form>
+                      <p className="text-[10px] text-white/40 mt-3 text-center md:text-left">
+                        Sin spam. Cancela cuando quieras.
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </section>
             </div>
-          </aside>
-
-          <div className="md:col-span-3">
-            {/* Enhanced Product Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-              {products.map((product) => (
-                <ProductCard21Enhanced
-                  key={product.slug}
-                  product={product}
-                  onQuickView={(p) => setQuick(p)}
-                  showFinancing={true}
-                  showUrgency={true}
-                />
-              ))}
-            </div>
-
-            {/* Customer Reviews Preview */}
-            <CustomerReviewsPreview className="my-12" />
-
-            {/* Explore range blocks */}
-            <ExploreTiles21 items={[
-              { label: 'Reformers', desc: 'Silenciosos y precisos para casa y estudio', href: '/shop/category/reformers', img: '/images/explore-reformers.png' },
-              { label: 'Accesorios', desc: 'Cintas, calcetines grip y mantenimiento', href: '/shop/category/accesorios', img: '/images/explore-accessories.png' },
-              { label: 'Ropa', desc: 'Algodón orgánico: fitted y relaxed', href: '/shop/category/ropa', img: '/images/explore-ropa.png' },
-              { label: 'Terapia de Luz', desc: 'Luz roja e infrarroja para estudios y casa', href: '/shop/category/terapia-de-luz', img: '/images/explore-luz.png' },
-            ]} />
-
-            {/* Newsletter stub */}
-            <section className="mt-12 border-t border-[#2A2624]/10 pt-8">
-              <div className="flex flex-wrap items-center justify-between gap-6">
-                <div>
-                  <div className="font-serif italic text-xl text-[#2A2624]">Join the Community</div>
-                  <div className="text-sm text-[#5D5550] mt-1">Updates, promotions, and pilates tips.</div>
-                </div>
-                <form action="mailto:valery@camadepilates.com" method="post" className="flex items-center gap-4 w-full md:w-auto">
-                  <input type="email" required placeholder="email@example.com" className="flex-1 md:w-64 bg-transparent border-b border-[#2A2624]/20 py-2 px-0 focus:outline-none focus:border-[#3E2723]" />
-                  <button className="text-xs uppercase tracking-widest text-[#3E2723] hover:opacity-70 transition-opacity" type="submit">Subscribe</button>
-                </form>
-              </div>
-            </section>
           </div>
         </div>
       </div>
+
+      {/* Mobile Filter Trigger Button */}
+      <MobileFilterTrigger
+        onClick={() => setShowMobileFilters(true)}
+        activeCount={activeCats.length + activeFinishes.length + (minPrice ? 1 : 0) + (maxPrice ? 1 : 0)}
+      />
+
+      {/* Mobile Filter Sheet */}
+      <MobileFilterSheet
+        isOpen={showMobileFilters}
+        onClose={() => setShowMobileFilters(false)}
+        categories={cats}
+        activeCats={activeCats}
+        setActiveCats={setActiveCats}
+        finishes={finishes}
+        activeFinishes={activeFinishes}
+        setActiveFinishes={setActiveFinishes}
+        minPrice={minPrice}
+        maxPrice={maxPrice}
+        setMinPrice={setMinPrice}
+        setMaxPrice={setMaxPrice}
+        resultsCount={products.length}
+        onClearAll={() => { setActiveCats([]); setActiveFinishes([]); setActiveAvailability([]); setMinPrice(''); setMaxPrice(''); setSearch(''); }}
+      />
 
       {/* Live Purchase Notifications */}
       <LivePurchaseNotifications />
 
       {/* Exit Intent Popup */}
-      {showExitPopup && (
-        <ExitIntentPopup
-          onClose={() => {
-            setShowExitPopup(false);
-            sessionStorage.setItem('exitPopupSeen', 'true');
-          }}
-          onSubscribe={(email) => {
-            console.log('Subscribed:', email);
-            // TODO: Connect to email service
-          }}
-        />
-      )}
+      {
+        showExitPopup && (
+          <ExitIntentPopup
+            onClose={() => {
+              setShowExitPopup(false);
+              sessionStorage.setItem('exitPopupSeen', 'true');
+            }}
+            onSubscribe={(email) => {
+              console.log('Subscribed:', email);
+              // TODO: Connect to email service
+            }}
+          />
+        )
+      }
 
       {quick && <QuickView21 product={quick as any} onClose={() => setQuick(null)} />}
-    </LuxuryLayout>
+    </LuxuryLayout >
   );
 };
 
@@ -438,6 +624,40 @@ function PriceSliders({
           aria-label="Precio máximo"
           className="w-full accent-[#3E2723]"
         />
+      </div>
+    </div>
+  );
+}
+
+// FilterAccordion component for desktop sidebar
+function FilterAccordion({
+  title,
+  defaultOpen = false,
+  children,
+}: {
+  title: string;
+  defaultOpen?: boolean;
+  children: React.ReactNode;
+}) {
+  const [isOpen, setIsOpen] = React.useState(defaultOpen);
+
+  return (
+    <div className="border-b border-[#2A2624]/10 pb-6">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between py-2 group"
+      >
+        <h3 className="text-xs uppercase tracking-[0.15em] text-[#5D5550] font-bold group-hover:text-[#2A2624] transition-colors">
+          {title}
+        </h3>
+        <ChevronDown
+          className={`h-4 w-4 text-[#5D5550] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+        />
+      </button>
+      <div
+        className={`overflow-hidden transition-all duration-300 ease-out ${isOpen ? 'max-h-[500px] opacity-100 mt-3' : 'max-h-0 opacity-0'}`}
+      >
+        {children}
       </div>
     </div>
   );
