@@ -1,5 +1,5 @@
 ---
-heroImage: /images/blog/mantenimiento-cama-de-pilates/hero.jpg
+heroImage: /images/blog/mantenimiento-cama-de-pilates/hero.webp
 publishDate: '2025-10-01'
 ---
 
@@ -21,7 +21,7 @@ featured: false
 
 ## Rutina de limpieza y cuidado
 
-![Rutina de limpieza y cuidado](/images/blog/mantenimiento-cama-de-pilates/section-1.jpg)
+![Rutina de limpieza y cuidado](/images/blog/mantenimiento-cama-de-pilates/section-1.webp)
 <small>Foto: Kanishk Jain / Unsplash</small>
 
 ### Diario (post‑sesión)
@@ -105,5 +105,5 @@ Marca puntos de referencia y valida con una prueba balanceada de tracción izqui
 <see-also limit="3" />
 
 
-![Calibración práctica (consistencia entre sesiones)](/images/blog/mantenimiento-cama-de-pilates/section-2.jpg)
+![Calibración práctica (consistencia entre sesiones)](/images/blog/mantenimiento-cama-de-pilates/section-2.webp)
 <small>Foto: Mark Owen Wilkinson Hughes / Unsplash</small>

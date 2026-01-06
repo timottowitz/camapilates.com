@@ -208,7 +208,7 @@ const PilatesReformerCDMX: React.FC = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="aspect-[4/3] bg-[#EAE8E4] rounded-sm overflow-hidden">
               <img
-                src="/images/compare-home.png"
+                src="/images/compare-home.webp"
                 alt="Reformer Edelweiss disponible en CDMX con entrega a domicilio"
                 className="w-full h-full object-cover"
                 loading="lazy"

@@ -6,6 +6,7 @@ import products from '@/content/products.json';
 import { ContextualImage } from '@/components/ContextualImage';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { ArrowRight, ShoppingBag, Shield, Truck, Wrench } from 'lucide-react';
+import BackLink from '@/components/ui/back-link';
 
 const Products: React.FC = () => {
   const origin = getOrigin();
@@ -49,13 +50,14 @@ const Products: React.FC = () => {
       </Helmet>
 
       <section className="relative pt-32 pb-20 px-8 md:px-24 max-w-[1800px] mx-auto">
+        <BackLink className="mb-8" fallbackTo="/" label="Volver" />
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div>
             <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-6">
               The Collection
             </span>
             <h1 className="text-5xl md:text-7xl font-serif italic text-[#2A2624] leading-[0.9]">
-              All Products
+              All Products<span className="text-[#EB4C42]">.</span>
             </h1>
           </div>
           <RegionNote />
@@ -87,6 +89,7 @@ const Products: React.FC = () => {
                   location="main"
                   aspectRatio="4:5"
                   alt={p.name}
+                  fallbackSrc={p.image}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />

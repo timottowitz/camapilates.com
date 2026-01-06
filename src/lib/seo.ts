@@ -20,7 +20,7 @@ import { getVersionedImageUrl } from '@/hooks/useVersionedImage';
 export const DEFAULTS = {
   siteName: (import.meta as any).env?.VITE_SITE_NAME || 'CAMA Pilates',
   twitterSite: (import.meta as any).env?.VITE_TWITTER_SITE || '',
-  ogImage: getVersionedImageUrl('/og/cama-de-pilates-venta-mexico.png'),
+  ogImage: getVersionedImageUrl('/og/cama-de-pilates-venta-mexico.webp'),
   locale: 'es_MX'
 };
 
@@ -71,7 +71,7 @@ export function generateLocalBusinessSchema() {
       width: ORGANIZATION.logo.width,
       height: ORGANIZATION.logo.height,
     },
-    image: `${origin}/og/cama-de-pilates-venta-mexico.png`,
+    image: `${origin}/og/cama-de-pilates-venta-mexico.webp`,
     telephone: ORGANIZATION.telephone,
     email: ORGANIZATION.email,
     address: {
@@ -758,7 +758,7 @@ export function generateCompareSchema() {
       description: 'Diseño compacto sin comprometer el deslizamiento suave y silencioso. Diseñado para integrarse perfectamente en tu espacio.',
       price: 35000,
       url: `${origin}/product/reformer-casa`,
-      image: `${origin}/images/compare-home.png`,
+      image: `${origin}/images/compare-home.webp`,
     },
     {
       name: 'Edelweiss Studio Reformer',

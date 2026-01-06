@@ -14,10 +14,11 @@ import { beginCheckout, viewItem } from '@/lib/shop/analytics';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import TrustStrip from '@/components/ui/trust-strip';
 import { EnhancedGallery } from '@/components/commerce21/EnhancedGallery';
-import { FinancingDisplay } from '@/components/commerce21/FinancingDisplay';
 import { StickyMobileCTA } from '@/components/commerce21/StickyMobileCTA';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { useConvexAssets } from '@/lib/convexAssets';
+import BackLink from '@/components/ui/back-link';
+import { motion } from 'framer-motion';
 
 type Product = (typeof products)[number] & PType;
 
@@ -26,6 +27,8 @@ const ProductPage: React.FC = () => {
   const origin = getOrigin();
   const prod: Product | undefined = products.find(p => p.slug === slug);
   const assets = useConvexAssets();
+
+  const safeProd = (prod || (products[0] as Product)) as Product;
 
   const initialRegion = ((): 'MX' | 'US' | 'DE' => {
     if (typeof window === 'undefined') return 'MX';
@@ -47,13 +50,12 @@ const ProductPage: React.FC = () => {
     try { if (typeof window !== 'undefined') window.localStorage.setItem('regionPref', value); } catch { /* ignore */ }
   };
 
-  if (!prod) return <Navigate to="/compare" replace />;
-
-  const url = `${origin}/product/${prod.slug}`;
-
   useEffect(() => {
-    viewItem(prod as any);
-  }, [prod?.slug]);
+    if (!prod) return;
+    viewItem(prod as PType);
+  }, [prod]);
+
+  const url = `${origin}/product/${safeProd.slug}`;
 
   const materials = finish === 'mycelium'
     ? ['cuero de micelio (sostenible)', 'madera de nogal', 'acero estructural']
@@ -67,21 +69,21 @@ const ProductPage: React.FC = () => {
   } as const;
 
   const activeVariant = useMemo(() => {
-    return (prod.variants || []).find(v => v.finish === finish);
-  }, [finish, prod?.slug]);
-  const priceToShow = activeVariant?.price || prod.price;
-  const displaySku = activeVariant?.sku || prod.sku;
+    return (safeProd.variants || []).find(v => v.finish === finish);
+  }, [finish, safeProd]);
+  const priceToShow = activeVariant?.price || safeProd.price;
+  const displaySku = activeVariant?.sku || safeProd.sku;
 
-  const productSchema: any = {
+  const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: prod.name,
-    description: prod.description,
-    brand: { '@type': 'Brand', name: prod.brand },
+    name: safeProd.name,
+    description: safeProd.description,
+    brand: { '@type': 'Brand', name: safeProd.brand },
     sku: displaySku,
     image: [
       ...(activeVariant?.image ? [activeVariant.image] : []),
-      origin + prod.image,
+      origin + safeProd.image,
       '/images/finish-walnut.jpg',
       '/images/finish-white.jpg',
       '/images/finish-black.jpg',
@@ -92,9 +94,9 @@ const ProductPage: React.FC = () => {
     offers: {
       '@type': 'Offer',
       url,
-      priceCurrency: prod.currency,
+      priceCurrency: safeProd.currency,
       price: priceToShow,
-      availability: prod.availability,
+      availability: safeProd.availability,
       itemCondition: 'https://schema.org/NewCondition',
       shippingDetails: [
         {
@@ -126,7 +128,7 @@ const ProductPage: React.FC = () => {
         }
       ]
     }
-  };
+  } as Record<string, unknown>;
   if (agg) productSchema.aggregateRating = { '@type': 'AggregateRating', ...agg };
   productSchema.additionalProperty = [
     { '@type': 'PropertyValue', name: 'finish', value: finish },
@@ -136,7 +138,7 @@ const ProductPage: React.FC = () => {
     { '@type': 'PropertyValue', name: 'weight', value: SPECS.weight },
     { '@type': 'PropertyValue', name: 'warranty', value: SPECS.warranty },
     ...(activeVariant?.sku ? [{ '@type': 'PropertyValue', name: 'variant_sku', value: activeVariant.sku }] : []),
-    ...((finish === 'mycelium' || (prod.finishes || []).includes('mycelium')) ? [{ '@type': 'PropertyValue', name: 'material_brand', value: 'Mylo (micelio)' }] : []),
+    ...((finish === 'mycelium' || (safeProd.finishes || []).includes('mycelium')) ? [{ '@type': 'PropertyValue', name: 'material_brand', value: 'Mylo (micelio)' }] : []),
   ];
 
   const openBuyModal = useCallback(() => {
@@ -184,13 +186,15 @@ const ProductPage: React.FC = () => {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Tienda', item: `${origin}/shop` },
-      ...(prod.category ? [{ '@type': 'ListItem', position: 2, name: prod.category, item: `${origin}/shop/category/${toCategorySlug(prod.category || '')}` }] : []),
-      { '@type': 'ListItem', position: prod.category ? 3 : 2, name: prod.name, item: url },
+      ...(safeProd.category ? [{ '@type': 'ListItem', position: 2, name: safeProd.category, item: `${origin}/shop/category/${toCategorySlug(safeProd.category || '')}` }] : []),
+      { '@type': 'ListItem', position: safeProd.category ? 3 : 2, name: safeProd.name, item: url },
     ]
   };
 
+  if (!prod) return <Navigate to="/compare" replace />;
+
   return (
-    <LuxuryLayout>
+    <LuxuryLayout headerTheme="light">
       <Helmet>
         <title>{prod.name} | {DEFAULTS.siteName}</title>
         <meta name="description" content={prod.description} />
@@ -205,9 +209,22 @@ const ProductPage: React.FC = () => {
         <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
       </Helmet>
 
-      <div className="container mx-auto px-8 md:px-24 py-12">
+      {/* Main Content */}
+      <div className="relative container mx-auto px-8 md:px-24 py-12 min-h-screen">
+        {/* Subtle Background Mesh */}
+        <div className="absolute top-[20%] right-0 -z-10 h-[500px] w-[500px] opacity-20 blur-3xl pointer-events-none">
+          <div className="h-full w-full bg-gradient-to-l from-[#e0dcd9] to-transparent rounded-full" />
+        </div>
+
+        <BackLink className="mb-6 hidden md:inline-flex" fallbackTo="/shop" label="Volver" />
+
         <div className="grid md:grid-cols-2 gap-16 items-start">
-          <div>
+          {/* Left Column: Gallery */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
             <EnhancedGallery
               images={[
                 // Editorial image first for reformer-casa
@@ -232,7 +249,7 @@ const ProductPage: React.FC = () => {
               ].filter(Boolean)}
               showLabels={true}
             />
-            <div className="mt-8">
+            <div className="mt-8 hidden md:block">
               <ContextualImage
                 placeholderId={`product-${prod.slug}-hero-1`}
                 pageType="shop"
@@ -243,139 +260,143 @@ const ProductPage: React.FC = () => {
                 fallbackSrc={activeVariant?.image || prod.image}
               />
             </div>
-          </div>
+          </motion.div>
 
-          <div className="space-y-8">
+          {/* Right Column: Info */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={{
+              visible: { transition: { staggerChildren: 0.1 } }
+            }}
+            className="space-y-8 md:sticky md:top-32"
+          >
             {/* Region selector */}
-            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#5D5550]">
+            <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[#5D5550]">
               <label htmlFor="region" className="mr-2">Región:</label>
-              <select id="region" className="bg-transparent border-none focus:ring-0 p-0 text-[#2A2624] font-medium cursor-pointer" value={region} onChange={(e) => onChangeRegion(e.target.value as any)}>
+              <select id="region" className="bg-transparent border-none focus:ring-0 p-0 text-[#2A2624] font-medium cursor-pointer" value={region} onChange={(e) => onChangeRegion(e.target.value as 'MX' | 'US' | 'DE')}>
                 <option value="MX">México</option>
                 <option value="US">USA</option>
                 <option value="DE">Europe</option>
               </select>
-              <span className="ml-3 opacity-50">| Entrega: {estimate}</span>
-            </div>
+              <span className="ml-3 opacity-50 border-l border-[#2A2624]/20 pl-3">Entrega: {estimate}</span>
+            </motion.div>
 
-            <div>
-              <h1 className="text-4xl md:text-5xl font-serif italic text-[#2A2624] leading-tight mb-2">
+            <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}>
+              <h1 className="text-5xl md:text-6xl font-serif italic text-[#2A2624] leading-[0.9] mb-4 tracking-tight">
                 {prod.name}
               </h1>
               <div className="flex items-center gap-3">
                 {(prod.isNew || prod.bestSeller) && (
-                  <span className="inline-flex items-center px-2 py-1 rounded-full bg-[#2A2624] text-[#EAE8E4] text-[10px] uppercase tracking-widest">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#2A2624] text-[#EAE8E4] text-[10px] uppercase tracking-[0.2em]">
                     {prod.isNew ? 'New Arrival' : 'Best Seller'}
                   </span>
                 )}
                 {(/mycel/i.test(prod.name) || (prod.finishes || []).includes('mycelium')) && (
-                  <span className="inline-flex items-center px-2 py-1 rounded-full bg-[#3E2723] text-[#EAE8E4] text-[10px] uppercase tracking-widest">Mylo™</span>
+                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#3E2723] text-[#EAE8E4] text-[10px] uppercase tracking-[0.2em]">Mylo™</span>
                 )}
               </div>
-            </div>
+            </motion.div>
 
-            <p className="text-lg text-[#5D5550] font-light leading-relaxed">
+            <motion.p variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="text-lg text-[#5D5550] font-light leading-relaxed max-w-md">
               El último Reformer que necesitarás. Desarrolla tu gracia con materiales nobles—solo lo mejor toca tu piel.
-            </p>
+            </motion.p>
 
-            <div className="border-l-2 border-[#3E2723]/20 pl-4 py-2">
-              <p className="text-sm text-[#5D5550] italic">{prod.description}</p>
-            </div>
+            <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="border-l-2 border-[#2A2624] pl-5 py-1">
+              <p className="text-sm text-[#5D5550] italic leading-relaxed">{prod.description}</p>
+            </motion.div>
 
-            <div className="flex items-baseline gap-4 border-b border-[#2A2624]/10 pb-8">
-              <div className="text-3xl font-serif italic text-[#2A2624]">$ {priceToShow} <span className="text-sm font-sans not-italic text-[#5D5550]">{prod.currency}</span></div>
-              <div className="text-xs uppercase tracking-widest text-[#3E2723]">En stock</div>
-            </div>
+            <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="flex items-baseline gap-4 border-b border-[#2A2624]/10 pb-8">
+              <div className="text-4xl font-serif italic text-[#2A2624]">$ {priceToShow} <span className="text-sm font-sans not-italic text-[#5D5550] tracking-normal">{prod.currency}</span></div>
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#3E2723] flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723] animate-pulse" /> En stock
+              </div>
+            </motion.div>
 
-            <div className="space-y-6">
-              <FinancingDisplay
-                price={Number(priceToShow)}
-                currency={prod.currency}
-                variant="prominent"
-              />
-
+            <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="space-y-8">
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-[#2A2624]">Acabado</span>
-                  <Link to="/acabados" className="text-xs text-[#3E2723] underline decoration-[#3E2723]/30 hover:decoration-[#3E2723]">Ver guía de acabados</Link>
+                  <span className="text-xs font-medium uppercase tracking-widest text-[#2A2624]">Acabado</span>
+                  <Link to="/acabados" className="text-[10px] uppercase tracking-widest text-[#5D5550] hover:text-[#2A2624] underline decoration-[#2A2624]/30 hover:decoration-[#2A2624] underline-offset-4">Ver guía</Link>
                 </div>
                 <Finishes value={finish} onChange={setFinish} />
               </div>
 
-              <div className="flex flex-col gap-3 pt-4">
+              <div className="flex flex-col gap-4 pt-2">
                 <ShoprocketBuyButton
                   rootId="sr-buy-pdp"
                   productId={prod.productId}
                   publishableKey={prod.publishableKey}
-                  onBeforeOpen={() => beginCheckout({ product: prod as any })}
-                  className="w-full !bg-[#2A2624] !text-[#EAE8E4] !rounded-full !py-4 !uppercase !tracking-[0.2em] !text-xs hover:!bg-[#3E2723] transition-colors"
+                  onBeforeOpen={() => beginCheckout({ product: prod as PType })}
+                  className="w-full !bg-[#2A2624] !text-[#EAE8E4] !rounded-full !py-5 !uppercase !tracking-[0.2em] !text-xs !font-bold hover:!bg-[#3E2723] hover:!scale-[1.02] transition-all duration-300 shadow-xl shadow-[#2A2624]/10"
                 />
 
                 <div className="grid grid-cols-2 gap-3">
-                  <a href="https://wa.me/523222787690" className="flex items-center justify-center gap-2 px-4 py-3 border border-[#2A2624]/10 rounded-full text-xs uppercase tracking-widest text-[#2A2624] hover:bg-[#EAE8E4] transition-colors">
+                  <a href="https://wa.me/523222787690" className="flex items-center justify-center gap-2 px-4 py-3 border border-[#2A2624]/20 rounded-full text-[10px] uppercase tracking-[0.2em] text-[#2A2624] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors">
                     WhatsApp
                   </a>
-                  <a href="tel:+523222787690" className="flex items-center justify-center gap-2 px-4 py-3 border border-[#2A2624]/10 rounded-full text-xs uppercase tracking-widest text-[#2A2624] hover:bg-[#EAE8E4] transition-colors">
+                  <a href="tel:+523222787690" className="flex items-center justify-center gap-2 px-4 py-3 border border-[#2A2624]/20 rounded-full text-[10px] uppercase tracking-[0.2em] text-[#2A2624] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors">
                     Llamar
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="grid grid-cols-2 gap-x-4 gap-y-8 pt-8 border-t border-[#2A2624]/10">
+            <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="grid grid-cols-2 gap-x-8 gap-y-8 pt-8 border-t border-[#2A2624]/10">
               <div>
-                <h3 className="font-serif italic text-lg text-[#2A2624] mb-2">Materiales</h3>
-                <ul className="text-sm text-[#5D5550] space-y-1">
+                <h3 className="font-serif italic text-xl text-[#2A2624] mb-3">Materiales</h3>
+                <ul className="text-sm text-[#5D5550] space-y-2 font-light">
                   <li>Cuero Genuino</li>
                   <li>Nogal Americano</li>
                   <li>Acero Estructural</li>
                 </ul>
               </div>
               <div>
-                <h3 className="font-serif italic text-lg text-[#2A2624] mb-2">Especificaciones</h3>
-                <ul className="text-sm text-[#5D5550] space-y-1">
+                <h3 className="font-serif italic text-xl text-[#2A2624] mb-3">Especificaciones</h3>
+                <ul className="text-sm text-[#5D5550] space-y-2 font-light">
                   <li>{SPECS.dimensions}</li>
                   <li>{SPECS.weight}</li>
                   <li>{SPECS.warranty}</li>
                 </ul>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="pt-8">
+            <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="pt-4">
               <ReviewsPreview productSlug={prod.slug} onAggregate={(avg, count) => setAgg({ ratingValue: avg.toFixed(1), reviewCount: count })} />
-            </div>
+            </motion.div>
 
-            {/* Cross-sell: Find a Studio (for expensive items) */}
+            {/* Cross-sell: Find a Studio */}
             {Number(priceToShow) >= 10000 && (
-              <div className="p-6 bg-[#E3E0DB] rounded-sm">
+              <motion.div variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} className="p-6 bg-[#F5F4F0] rounded-sm border border-[#2A2624]/5">
                 <p className="text-sm text-[#2A2624] font-medium mb-1">¿Nuevo en Pilates?</p>
-                <p className="text-xs text-[#5D5550] mb-3">Prueba primero en un estudio cerca de ti antes de invertir.</p>
-                <Link 
-                  to="/estudios-de-pilates" 
-                  className="text-xs uppercase tracking-widest text-[#3E2723] hover:underline"
+                <p className="text-xs text-[#5D5550] mb-3 font-light">Prueba primero en un estudio cerca de ti antes de invertir.</p>
+                <Link
+                  to="/estudios-de-pilates"
+                  className="text-[10px] uppercase tracking-[0.2em] text-[#3E2723] hover:text-[#2A2624] border-b border-[#3E2723] pb-0.5"
                 >
                   Buscar estudios en México →
                 </Link>
-              </div>
+              </motion.div>
             )}
-          </div>
+          </motion.div>
         </div>
 
-        {/* Additional Sections */}
-        <div className="mt-24 grid md:grid-cols-3 gap-12 border-t border-[#2A2624]/10 pt-12">
-          <div className="md:col-span-2 space-y-8">
-            <h2 className="text-3xl font-serif italic text-[#2A2624]">Common Questions</h2>
-            <div className="space-y-4">
+        {/* FAQ & Related */}
+        <div className="mt-32 grid md:grid-cols-3 gap-16 border-t border-[#2A2624]/10 pt-16">
+          <div className="md:col-span-2 space-y-12">
+            <h2 className="text-4xl font-serif italic text-[#2A2624]">Common Questions</h2>
+            <div className="space-y-6">
               {[
                 { q: '¿Cuánto tarda la entrega?', a: 'En México la entrega estimada es de 3 semanas. Envíos a EE. UU. y Europa entre 4–6 semanas.' },
                 { q: '¿Qué garantía incluye?', a: 'Garantía de 1 año que cubre defectos de fabricación en estructura, muelles y accesorios básicos.' },
                 { q: '¿Qué materiales y acabados tiene?', a: 'Cuero genuino o de micelio (opción sostenible), madera de nogal y acero estructural.' }
               ].map((faq, i) => (
-                <details key={i} className="group bg-transparent border-b border-[#2A2624]/10 pb-4">
-                  <summary className="font-sans text-lg text-[#2A2624] cursor-pointer hover:text-[#3E2723] transition-colors list-none flex justify-between items-center">
+                <details key={i} className="group bg-transparent border-b border-[#2A2624]/10 pb-6">
+                  <summary className="font-serif italic text-xl text-[#2A2624] cursor-pointer hover:text-[#3E2723] transition-colors list-none flex justify-between items-center">
                     {faq.q}
-                    <span className="text-[#3E2723] group-open:rotate-45 transition-transform">+</span>
+                    <span className="text-[#3E2723] group-open:rotate-45 transition-transform text-2xl font-light">+</span>
                   </summary>
-                  <div className="mt-4 text-[#5D5550] font-light leading-relaxed">
+                  <div className="mt-4 text-[#5D5550] font-light leading-relaxed text-lg">
                     <p>{faq.a}</p>
                   </div>
                 </details>
@@ -383,15 +404,18 @@ const ProductPage: React.FC = () => {
             </div>
           </div>
           <div>
-            <h2 className="text-3xl font-serif italic text-[#2A2624] mb-8">Related</h2>
-            <div className="space-y-6">
+            <h2 className="text-4xl font-serif italic text-[#2A2624] mb-10">Related</h2>
+            <div className="space-y-10">
               {products.filter(p => p.slug !== prod.slug && p.category === prod.category).slice(0, 2).map((p) => (
                 <Link key={p.slug} to={`/product/${p.slug}`} className="block group">
-                  <div className="aspect-[4/3] overflow-hidden rounded-sm bg-[#EAE8E4] mb-3">
-                    <img src={p.image} alt={p.name} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <div className="aspect-[4/3] overflow-hidden rounded-sm bg-[#EAE8E4] mb-4 relative">
+                    <img src={p.image} alt={p.name} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
                   </div>
-                  <div className="font-serif italic text-lg text-[#2A2624] group-hover:text-[#3E2723]">{p.name}</div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">$ {p.price} {p.currency}</div>
+                  <div className="flex justify-between items-baseline">
+                    <div className="font-serif italic text-xl text-[#2A2624] group-hover:text-[#3E2723] transition-colors">{p.name}</div>
+                    <div className="text-[10px] uppercase tracking-widest text-[#5D5550]">$ {p.price} {p.currency}</div>
+                  </div>
                 </Link>
               ))}
             </div>
@@ -404,12 +428,12 @@ const ProductPage: React.FC = () => {
         price={Number(priceToShow)}
         currency={prod.currency}
         onAddToCart={() => {
-          beginCheckout({ product: prod as any });
+          beginCheckout({ product: prod as PType });
           openBuyModal();
         }}
         productSlug={prod.slug}
       />
-    </LuxuryLayout>
+    </LuxuryLayout >
   );
 };
 

@@ -1,6 +1,6 @@
 ---
 description: Artículo sobre reformer-casa-vs-profesional para el público de México.
-heroImage: /images/blog/reformer-casa-vs-profesional/hero.jpg
+heroImage: /images/blog/reformer-casa-vs-profesional/hero.webp
 publishDate: '2025-10-01'
 ---
 arativa 2025: Reformer para casa vs profesional en México. Estructura, silencio, ajustes, accesorios, precio y costo total de propiedad."
@@ -20,7 +20,7 @@ featured: false
 ## Comparativa rápida
 
 
-![Comparativa rápida](/images/blog/reformer-casa-vs-profesional/section-1.jpg)
+![Comparativa rápida](/images/blog/reformer-casa-vs-profesional/section-1.webp)
 <small>Foto: Gordon Gerard McLean / Unsplash</small>
 
 | Aspecto | Reformer Casa | Reformer Profesional |
@@ -38,7 +38,7 @@ featured: false
 ## Qué hace “profesional” a un Reformer
 
 
-![Qué hace “profesional” a un Reformer](/images/blog/reformer-casa-vs-profesional/section-2.jpg)
+![Qué hace “profesional” a un Reformer](/images/blog/reformer-casa-vs-profesional/section-2.webp)
 <small>Foto: Tim Mossholder / Unsplash</small>
 
 **Estructura y rigidez.** En un estudio, el aparato soporta cambios de carga, perfiles corporales diversos y rotación constante. La rigidez (menor torsión) mantiene el alineamiento del carro y la sensación de “solidez”.

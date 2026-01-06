@@ -102,9 +102,6 @@ export function ProductComparison({ products, onClose, className = '' }: Product
                         {product.currency}
                       </span>
                     </div>
-                    <div className="text-xs text-muted-foreground">
-                      o ${Math.ceil(Number(product.price) / 12).toLocaleString('es-MX')}/mes
-                    </div>
                     {product.bestSeller && (
                       <Badge variant="default" className="text-[10px]">Más vendido</Badge>
                     )}

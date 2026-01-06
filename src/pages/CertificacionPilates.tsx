@@ -116,7 +116,7 @@ const CertificacionPilates: React.FC = () => {
             </span>
             <h1 className="text-5xl md:text-7xl font-serif italic text-[#2A2624] leading-[0.9] mb-8">
               Master the Art <br />
-              <span className="not-italic font-light font-sans tracking-tight">of Teaching.</span>
+              <span className="not-italic font-light font-sans tracking-tight">of Teaching<span className="text-[#EB4C42]">.</span></span>
             </h1>
             <p className="text-lg text-[#5D5550] font-light max-w-xl leading-relaxed mb-8">
               Edelweiss te conecta con certificaciones de Pilates en México (Reformer y Mat). Sedes en CDMX, Guadalajara y Monterrey.

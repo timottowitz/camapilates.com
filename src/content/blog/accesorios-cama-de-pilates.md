@@ -49,7 +49,7 @@ Los muelles son el “motor” del Reformer. Ten un set completo (ligero, medio 
 - Reemplaza muelles cada 12-18 meses en uso doméstico, 6-12 meses en estudio.
 - Nunca mezcles muelles genéricos; respeta la colorimetría del fabricante.
 
-![Accesorios Reformer](/images/blog/accesorios-cama-de-pilates-esenciales/section-1.jpg)
+![Accesorios Reformer](/images/blog/accesorios-cama-de-pilates-esenciales/section-1.webp)
 <small>Foto: Elena Kloppenburg / Unsplash</small>
 
 ## Accesorios complementarios
@@ -62,7 +62,7 @@ Los muelles son el “motor” del Reformer. Ten un set completo (ligero, medio 
 ### Protección del tapizado
 Utiliza cubiertas lavables, toallas de microfibra y limpiadores neutros para prolongar la vida del vinil. Evita solventes agresivos que eliminan el recubrimiento anti-microbial.
 
-![Mantenimiento complementario](/images/blog/accesorios-cama-de-pilates-esenciales/section-2.jpg)
+![Mantenimiento complementario](/images/blog/accesorios-cama-de-pilates-esenciales/section-2.webp)
 <small>Foto: Simeon Galabov / Unsplash</small>
 
 ## Mantenimiento y seguridad

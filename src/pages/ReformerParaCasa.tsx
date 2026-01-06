@@ -232,7 +232,7 @@ const ReformerParaCasa: React.FC = () => {
             
             <div className="aspect-square bg-[#EAE8E4] rounded-sm overflow-hidden">
               <img
-                src="/images/compare-home.png"
+                src="/images/compare-home.webp"
                 alt="Edelweiss Home Reformer - reformer de pilates para casa en madera de nogal"
                 className="w-full h-full object-cover"
                 loading="lazy"

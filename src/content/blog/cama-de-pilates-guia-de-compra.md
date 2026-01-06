@@ -26,7 +26,7 @@ heroImage: >-
 
 ## Tipos de Reformer
 
-![Tipos de Reformer](/images/blog/cama-de-pilates-guia-de-compra/section-1.jpg)
+![Tipos de Reformer](/images/blog/cama-de-pilates-guia-de-compra/section-1.webp)
 <small>Foto: Ambitious Studio* | Rick Barrett / Unsplash</small>
 
 ### Reformer para casa
@@ -41,7 +41,7 @@ heroImage: >-
 
 ## Materiales y acabados
 
-![Materiales y acabados](/images/blog/cama-de-pilates-guia-de-compra/section-2.jpg)
+![Materiales y acabados](/images/blog/cama-de-pilates-guia-de-compra/section-2.webp)
 <small>Foto: Elena Kloppenburg / Unsplash</small>
 
 - **Estructura:** acero estructural para rigidez y precisión.

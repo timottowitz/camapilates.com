@@ -16,7 +16,7 @@ import CityDirectory from './pages/estudios-de-pilates/CityDirectory';
 import StudioDetail from './pages/estudios-de-pilates/StudioDetail';
 
 // Retry wrapper for lazy imports - handles chunk loading failures after deployments
-function lazyWithRetry<T extends ComponentType<any>>(
+function lazyWithRetry<T extends ComponentType<unknown>>(
   importFn: () => Promise<{ default: T }>,
   retries = 2
 ): React.LazyExoticComponent<T> {
@@ -24,10 +24,12 @@ function lazyWithRetry<T extends ComponentType<any>>(
     for (let attempt = 0; attempt <= retries; attempt++) {
       try {
         return await importFn();
-      } catch (error: any) {
-        const isChunkError = error?.message?.includes('Failed to fetch dynamically imported module') ||
-                             error?.message?.includes('Loading chunk') ||
-                             error?.message?.includes('Loading CSS chunk');
+      } catch (error: unknown) {
+        const err = error as { message?: string } | null;
+        const message = err?.message || '';
+        const isChunkError = message.includes('Failed to fetch dynamically imported module') ||
+                             message.includes('Loading chunk') ||
+                             message.includes('Loading CSS chunk');
         if (isChunkError && attempt < retries) {
           // Wait briefly then retry
           await new Promise(resolve => setTimeout(resolve, 500 * (attempt + 1)));
@@ -46,7 +48,7 @@ function lazyWithRetry<T extends ComponentType<any>>(
   });
 }
 
-const Compare = lazyWithRetry(() => import('./pages/Compare'));
+// Compare page is intentionally disabled for now (feature flag / coming soon)
 const Shop = lazyWithRetry(() => import('./pages/Shop'));
 const ShopCategory = lazyWithRetry(() => import('./pages/ShopCategory'));
 const Blog = lazyWithRetry(() => import('./pages/Blog'));
@@ -86,6 +88,9 @@ const MiPerfil = lazyWithRetry(() => import('./pages/instructores-pilates/MiPerf
 const EditarPerfil = lazyWithRetry(() => import('./pages/instructores-pilates/EditarPerfil'));
 const ResetPassword = lazyWithRetry(() => import('./pages/instructores-pilates/ResetPassword'));
 
+const ReformersNew = lazyWithRetry(() => import('./pages/ReformersNew'));
+const ReformersUsed = lazyWithRetry(() => import('./pages/ReformersUsed'));
+
 import GAListener from "@/components/analytics/GAListener";
 import FloatingCart21 from "@/components/commerce21/FloatingCart21";
 import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
@@ -120,9 +125,11 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
-              <Route path="/compare" element={<Suspense fallback={<PageLoader />}><Compare /></Suspense>} />
+              {/* Compare disabled */}
               <Route path="/shop" element={<Suspense fallback={<PageLoader />}><Shop /></Suspense>} />
               <Route path="/shop/category/:slug" element={<Suspense fallback={<PageLoader />}><ShopCategory /></Suspense>} />
+              <Route path="/reformers/nuevas" element={<Suspense fallback={<PageLoader />}><ReformersNew /></Suspense>} />
+              <Route path="/reformers/usadas" element={<Suspense fallback={<PageLoader />}><ReformersUsed /></Suspense>} />
               <Route path="/products" element={<Suspense fallback={<PageLoader />}><Products /></Suspense>} />
               <Route path="/cama-de-pilates/en-venta" element={<Suspense fallback={<PageLoader />}><CamaDePilatesEnVenta /></Suspense>} />
               <Route path="/cama-de-pilates/precio" element={<Suspense fallback={<PageLoader />}><CamaDePilatesPrecio /></Suspense>} />

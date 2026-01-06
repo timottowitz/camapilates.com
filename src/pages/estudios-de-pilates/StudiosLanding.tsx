@@ -9,6 +9,21 @@ import localData from '@/data/studios.json';
 import { citySlug } from '@/utils/slug';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { generateStudiosLandingSchema } from '@/lib/seo';
+import BackLink from '@/components/ui/back-link';
+
+type StudiosCity = {
+  name: string;
+  slug?: string;
+  studioCount?: number;
+  neighborhoods?: unknown[];
+};
+
+type StudiosDoc = {
+  _id?: string;
+  name?: string;
+  slug?: string;
+  neighborhoods?: unknown[];
+};
 
 const StudiosLanding: React.FC = () => {
   // SEO metadata
@@ -24,10 +39,10 @@ const StudiosLanding: React.FC = () => {
     return () => clearTimeout(timer);
   }, [hasConvex]);
 
-  const fallbackCities = localData.cities as any[];
+  const fallbackCities = localData.cities as StudiosCity[];
   const fallbackFeatured = localData.featured
-    .map((id) => (localData.studios as any[]).find((s) => s._id === id))
-    .filter(Boolean) as any[];
+    .map((id) => (localData.studios as StudiosDoc[]).find((s) => s._id === id))
+    .filter(Boolean) as StudiosDoc[];
 
   const remoteCities = useQuery(api.cities.getPriority, hasConvex ? { limit: 10 } : 'skip');
   const remoteFeatured = useQuery(api.studios.getFeatured, hasConvex ? { limit: 6 } : 'skip');
@@ -36,7 +51,7 @@ const StudiosLanding: React.FC = () => {
   const cities = React.useMemo(() => {
     if (!hasConvex) return fallbackCities;
     if (Array.isArray(remoteCities) && remoteCities.length > 0) {
-      return remoteCities.map((city: any) => {
+      return remoteCities.map((city: StudiosCity) => {
         if (Array.isArray(city.neighborhoods) && city.neighborhoods.length > 0) {
           return city;
         }
@@ -60,14 +75,14 @@ const StudiosLanding: React.FC = () => {
   // Statistics from real data
   const stats = {
     totalCities: globalStats?.totalCities || cities.length || 5,
-    totalStudios: globalStats?.totalStudios || cities.reduce((sum: number, city: any) => sum + (city.studioCount || 0), 0) || 580,
+    totalStudios: globalStats?.totalStudios || cities.reduce((sum: number, city) => sum + (city.studioCount || 0), 0) || 580,
     avgRating: globalStats?.averageRating || 4.71,
     totalReviews: globalStats?.totalReviews || 21000,
   };
 
   // Enhanced schema for SEO
   const landingSchema = generateStudiosLandingSchema({
-    cities: cities.map((city: any) => ({
+    cities: cities.map((city) => ({
       name: city.name,
       slug: city.slug || citySlug(city.name),
       studioCount: city.studioCount || 0,
@@ -89,6 +104,9 @@ const StudiosLanding: React.FC = () => {
       </Helmet>
 
       <section className="relative pt-32 pb-20 px-8 md:px-24 max-w-[1800px] mx-auto text-center overflow-hidden">
+        <div className="absolute left-8 top-28 z-20 hidden md:block">
+          <BackLink fallbackTo="/" label="Volver" />
+        </div>
         <div className="absolute inset-0 z-0 opacity-20">
           <img
             src="/images/studios-hero.webp"
@@ -102,7 +120,7 @@ const StudiosLanding: React.FC = () => {
             El directorio más completo de México
           </span>
           <h1 className="text-5xl md:text-7xl font-serif italic text-[#2A2624] leading-[0.9] mb-8">
-            Find Your Studio
+            Find Your Studio<span className="text-[#EB4C42]">.</span>
           </h1>
           <p className="text-lg text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed mb-6">
             Descubre y compara los mejores estudios de Pilates cerca de ti. Reseñas verificadas, precios transparentes y toda la información que necesitas.

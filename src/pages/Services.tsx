@@ -20,7 +20,7 @@ const Services = () => {
   const servicesSchema = generateServicesSchema();
 
   return (
-    <LuxuryLayout>
+    <LuxuryLayout headerTheme="light">
       <Helmet>
         <title>Servicios | Edelweiss Pilates</title>
         <meta name="description" content="Servicios profesionales para estudios de Pilates: Diseño, Mantenimiento y Capacitación." />
@@ -30,18 +30,24 @@ const Services = () => {
         </script>
       </Helmet>
 
-      <section className="relative pt-32 pb-20 px-8 md:px-24 max-w-[1800px] mx-auto">
+      <section className="relative pt-32 pb-24 md:pt-48 md:pb-32 px-6 md:px-24 max-w-[1800px] mx-auto overflow-hidden">
+        {/* Subtle Background Mesh */}
+        <div className="absolute top-0 left-0 right-0 h-[800px] bg-gradient-to-b from-white/40 to-transparent pointer-events-none -z-10" />
+        <div className="absolute top-40 left-1/2 -z-20 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 opacity-30 blur-3xl">
+          <div className="h-full w-full bg-gradient-to-r from-[#e0dcd9] via-[#dcd8d4] to-[#e0dcd9] rounded-full animate-pulse duration-[5000ms]" />
+        </div>
+
         <FadeIn>
-          <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-8">
+          <span className="block text-xs font-bold font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-8 opacity-60">
             Expertise
           </span>
-          <h1 className="text-5xl md:text-8xl font-serif italic text-[#2A2624] leading-[0.9] mb-12">
+          <h1 className="text-5xl md:text-8xl lg:text-9xl font-serif italic text-[#2A2624] leading-[0.85] mb-12 tracking-tighter">
             Beyond the <br />
-            <span className="not-italic font-light font-sans tracking-tight">Equipment.</span>
+            <span className="not-italic font-light font-sans tracking-tight text-[#5D5550]">Equipment<span className="text-[#EB4C42]">.</span></span>
           </h1>
         </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-24">
           {[
             {
               title: "Studio Design",
@@ -56,23 +62,25 @@ const Services = () => {
               linkText: "Schedule Service"
             },
             {
-              title: "Training",
+              title: "Education",
               desc: "Certification programs for instructors on Edelweiss equipment. Master the mechanics of movement.",
               link: "/certificacion-pilates",
               linkText: "View Courses"
             }
           ].map((service, i) => (
             <FadeIn delay={i * 0.2} key={i}>
-              <div className="border-t border-[#2A2624]/10 pt-8">
-                <h3 className="text-3xl font-serif italic text-[#2A2624] mb-6">{service.title}</h3>
-                <p className="text-[#5D5550] font-light leading-relaxed mb-8 min-h-[80px]">
-                  {service.desc}
-                </p>
+              <div className="group h-full p-8 bg-white/60 backdrop-blur-sm rounded-[2rem] border border-[#2A2624]/5 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-3xl font-serif italic text-[#2A2624] mb-6 group-hover:text-[#EB4C42] transition-colors">{service.title}</h3>
+                  <p className="text-[#5D5550] font-light leading-relaxed mb-8">
+                    {service.desc}
+                  </p>
+                </div>
                 <Link
                   to={service.link}
-                  className="text-xs uppercase tracking-[0.2em] text-[#3E2723] hover:opacity-70 transition-opacity border-b border-[#3E2723] pb-1"
+                  className="inline-flex items-center text-[10px] font-bold uppercase tracking-[0.2em] text-[#3E2723] group-hover:text-[#EB4C42] transition-colors"
                 >
-                  {service.linkText}
+                  {service.linkText} <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </Link>
               </div>
             </FadeIn>

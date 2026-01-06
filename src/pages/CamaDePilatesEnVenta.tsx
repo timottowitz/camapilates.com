@@ -115,7 +115,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
         title="Silencio y estabilidad para tu estudio"
         copy="Tolerancias precisas, cuero genuino, madera de nogal y acero estructural. Garantía 1 año y repuestos exprés."
         cta={{ href: '/packs/estudio', label: 'Pack para estudios (8+)' }}
-        image={{ src: '/og/cama-de-pilates-venta-mexico.png', alt: 'Reformer de Estudio Edelweiss' }}
+        image={{ src: '/og/cama-de-pilates-venta-mexico.webp', alt: 'Reformer de Estudio Edelweiss' }}
       />
     </>
   );

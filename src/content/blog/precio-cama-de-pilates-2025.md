@@ -1,5 +1,5 @@
 ---
-heroImage: /images/blog/precio-cama-de-pilates-2025/hero.jpg
+heroImage: /images/blog/precio-cama-de-pilates-2025/hero.webp
 publishDate: '2025-10-01'
 ---
 
@@ -23,7 +23,7 @@ El mercado de camas de Pilates (reformers) en México ha experimentado un crecim
 ## Panorama del mercado mexicano de camas de Pilates 2025
 
 
-![Panorama del mercado mexicano de camas de Pilates 2025](/images/blog/precio-cama-de-pilates-2025/section-1.jpg)
+![Panorama del mercado mexicano de camas de Pilates 2025](/images/blog/precio-cama-de-pilates-2025/section-1.webp)
 <small>Foto: Jeton Bajrami / Unsplash</small>
 
 El mercado mexicano de equipos de Pilates ha madurado considerablemente, con una oferta diversificada que incluye desde fabricantes locales hasta importadores de marcas internacionales premium. La inflación proyectada del 3.5% para 2025 ha influido moderadamente en los precios, pero la competencia entre proveedores ha mantenido opciones accesibles para diferentes presupuestos.
@@ -82,7 +82,7 @@ Diseñados para estudios profesionales y uso intensivo:
 ## Comparación detallada por marcas
 
 
-![Comparación detallada por marcas](/images/blog/precio-cama-de-pilates-2025/section-2.jpg)
+![Comparación detallada por marcas](/images/blog/precio-cama-de-pilates-2025/section-2.webp)
 <small>Foto: Ambitious Studio* | Rick Barrett / Unsplash</small>
 
 ### Marcas premium internacionales

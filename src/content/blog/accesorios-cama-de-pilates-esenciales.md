@@ -27,7 +27,7 @@ Los accesorios adecuados pueden transformar tu experiencia con el Reformer de Pi
 ## Accesorios Esenciales
 
 
-![Accesorios Esenciales](/images/blog/accesorios-cama-de-pilates-esenciales/section-1.jpg)
+![Accesorios Esenciales](/images/blog/accesorios-cama-de-pilates-esenciales/section-1.webp)
 <small>Foto: Elena Kloppenburg / Unsplash</small>
 
 ### Box y Correas para Pies
@@ -61,7 +61,7 @@ Señal de reemplazo: ruidos intermitentes o sensación “arenosa” al tirar de
 ## Accesorios Complementarios
 
 
-![Accesorios Complementarios](/images/blog/accesorios-cama-de-pilates-esenciales/section-2.jpg)
+![Accesorios Complementarios](/images/blog/accesorios-cama-de-pilates-esenciales/section-2.webp)
 <small>Foto: Simeon Galabov / Unsplash</small>
 
 ### Almohadillas y Cojines

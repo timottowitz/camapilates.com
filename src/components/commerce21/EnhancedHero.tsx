@@ -46,7 +46,7 @@ export function EnhancedHero({
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: `url(${backgroundImage || '/og/cama-de-pilates-venta-mexico.png'})`
+              backgroundImage: `url(${backgroundImage || '/og/cama-de-pilates-venta-mexico.webp'})`
             }}
           />
         )}

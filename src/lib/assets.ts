@@ -14,8 +14,8 @@ export const ASSETS = {
 
   // Category / explore imagery
   // Round category icons (use present OG images to avoid 404)
-  catReformers: v('/og/reformer-compacto.png'),
-  catAccessories: v('/og/accesorios-cama-de-pilates-esenciales.png'),
+  catReformers: v('/og/reformer-compacto.webp'),
+  catAccessories: v('/og/accesorios-cama-de-pilates-esenciales.webp'),
 
   // Featured Product section image (override)
   featuredProducts: v('/images/featured-products.webp'),
@@ -28,9 +28,9 @@ export const ASSETS = {
 // Candidate images available in public for randomized visual fill
 export const ASSET_CANDIDATES: string[] = [
   '/images/finish-mycelium.webp',
-  '/og/reformer-compacto.png',
-  '/og/cama-de-pilates-reformer.png',
-  '/og/cama-de-pilates-venta-mexico.png',
+  '/og/reformer-compacto.webp',
+  '/og/cama-de-pilates-reformer.webp',
+  '/og/cama-de-pilates-venta-mexico.webp',
   '/brand/edelweiss.svg',
 ];
 

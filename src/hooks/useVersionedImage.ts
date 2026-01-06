@@ -15,7 +15,7 @@ try {
 
 /**
  * Hook to get versioned image URLs for cache busting
- * @param imagePath - The original image path (e.g., '/images/hero.jpg')
+ * @param imagePath - The original image path (e.g., '/images/hero.webp')
  * @returns The versioned image URL with hash for cache busting
  */
 export function useVersionedImage(imagePath: string): string {
