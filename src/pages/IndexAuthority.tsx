@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
-import { DEFAULTS, generateBreadcrumbSchema, getOrigin } from '@/lib/seo';
+import { DEFAULTS, generateBreadcrumbSchema, generateLocalBusinessSchema, getOrigin } from '@/lib/seo';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
 
 type HubCard = {
@@ -20,8 +20,8 @@ type HubCard = {
 
 const IndexAuthority: React.FC = () => {
   const origin = getOrigin();
-  const title = 'Pilates in Mexico — Guides, Studios, Instructors & Reformers';
-  const desc = 'The modern guide to Pilates in Mexico: directory of studios, instructors, certifications, educational blog, and comparisons to buy reformers.';
+  const title = 'Cama de Pilates (Reformer) en México — Guías, Precios y Venta';
+  const desc = 'Compra tu cama de Pilates Reformer en México: modelos para casa y estudio, guía de precios 2025, dimensiones y envío desde CDMX.';
 
   const cards = useMemo<HubCard[]>(() => (
     [
@@ -103,6 +103,18 @@ const IndexAuthority: React.FC = () => {
   ), []);
 
   const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Inicio', url: '/' }]);
+  const localBusinessSchema = generateLocalBusinessSchema();
+  const homeItemListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Cama de Pilates (Reformer) — Enlaces clave',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, url: `${origin}/cama-de-pilates`, name: 'Cama de Pilates' },
+      { '@type': 'ListItem', position: 2, url: `${origin}/cama-de-pilates/en-venta`, name: 'Cama de Pilates en Venta' },
+      { '@type': 'ListItem', position: 3, url: `${origin}/cama-de-pilates/precio`, name: 'Precio de Cama de Pilates' },
+      { '@type': 'ListItem', position: 4, url: `${origin}/products`, name: 'Comparar Modelos' },
+    ],
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -141,6 +153,8 @@ const IndexAuthority: React.FC = () => {
         <meta property="og:url" content={`${origin}/`} />
         <meta property="og:image" content={`${origin}${DEFAULTS.ogImage}`} />
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(localBusinessSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(homeItemListSchema)}</script>
       </Helmet>
 
       {/* Modern Light Background */}
@@ -165,6 +179,33 @@ const IndexAuthority: React.FC = () => {
                   Encuentra más de <span className="text-[#EB4C42] font-medium">900 Estudios</span> de Pilates, <span className="text-[#EB4C42] font-medium">Cursos</span>, <span className="text-[#EB4C42] font-medium">Instructores</span> y <span className="text-[#EB4C42] font-medium">Reformers</span>.
                   La plataforma de Pilates más grande de México.
                 </p>
+
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Link
+                    to="/cama-de-pilates"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#2A2624] text-xs font-bold uppercase tracking-[0.18em] hover:bg-[#FFFFFF] transition-colors border border-[#2A2624]/10"
+                  >
+                    Cama de Pilates
+                  </Link>
+                  <Link
+                    to="/cama-de-pilates/en-venta"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#2A2624] text-xs font-bold uppercase tracking-[0.18em] hover:bg-[#FFFFFF] transition-colors border border-[#2A2624]/10"
+                  >
+                    En venta
+                  </Link>
+                  <Link
+                    to="/cama-de-pilates/precio"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#2A2624] text-xs font-bold uppercase tracking-[0.18em] hover:bg-[#FFFFFF] transition-colors border border-[#2A2624]/10"
+                  >
+                    Precio
+                  </Link>
+                  <Link
+                    to="/products"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#2A2624] text-xs font-bold uppercase tracking-[0.18em] hover:bg-[#FFFFFF] transition-colors border border-[#2A2624]/10"
+                  >
+                    Comparar
+                  </Link>
+                </div>
               </div>
 
               {/* Modern Pill Buttons */}
