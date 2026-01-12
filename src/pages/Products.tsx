@@ -10,8 +10,8 @@ import BackLink from '@/components/ui/back-link';
 
 const Products: React.FC = () => {
   const origin = getOrigin();
-  const title = 'Productos: Camas de Pilates y Accesorios';
-  const desc = 'Explora todas nuestras camas de Pilates (Reformer) y accesorios. Compra para casa o estudio.';
+  const title = 'Productos: Camas de Pilates (Reformer) y Accesorios';
+  const desc = 'Catálogo de camas de Pilates (Reformer) y accesorios en México. Compara modelos para casa o estudio y compra desde la tienda.';
 
   const itemList = {
     '@context': 'https://schema.org',
@@ -54,11 +54,28 @@ const Products: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div>
             <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-6">
-              The Collection
+              Catálogo
             </span>
             <h1 className="text-5xl md:text-7xl font-serif italic text-[#2A2624] leading-[0.9]">
-              All Products<span className="text-[#EB4C42]">.</span>
+              Productos<span className="text-[#EB4C42]">.</span>
             </h1>
+            <p className="mt-6 max-w-2xl text-sm md:text-base text-[#5D5550] font-light leading-relaxed">
+              Explora nuestras camas de Pilates (Reformer) y accesorios. Para comprar con filtros, promociones y envíos, entra a la tienda.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                to="/shop"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#2A2624] text-white text-xs uppercase tracking-widest hover:bg-[#3E2723] transition-colors"
+              >
+                Ir a la tienda <ArrowRight className="w-3 h-3" />
+              </Link>
+              <Link
+                to="/compare"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/70 border border-[#2A2624]/10 text-[#2A2624] text-xs uppercase tracking-widest hover:bg-white transition-colors"
+              >
+                Comparar Casa vs Profesional
+              </Link>
+            </div>
           </div>
           <RegionNote />
         </div>
@@ -95,7 +112,7 @@ const Products: React.FC = () => {
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
                 <div className="absolute bottom-6 left-6 right-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                   <span className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white">
-                    View Details <ArrowRight className="w-3 h-3" />
+                    Ver detalles <ArrowRight className="w-3 h-3" />
                   </span>
                 </div>
               </div>
@@ -121,7 +138,7 @@ const Products: React.FC = () => {
         </div>
 
         <div className="border-t border-[#2A2624]/10 pt-24">
-          <h2 className="text-3xl font-serif italic text-[#2A2624] mb-12 text-center">Essential Guides</h2>
+          <h2 className="text-3xl font-serif italic text-[#2A2624] mb-12 text-center">Guías esenciales</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {[
               { slug: 'cama-de-pilates-guia-de-compra', title: 'Guía de Compra 2025', desc: 'Todo lo que necesitas saber antes de invertir.' },
@@ -137,7 +154,7 @@ const Products: React.FC = () => {
                   {g.desc}
                 </p>
                 <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#2A2624]">
-                  Read Article <ArrowRight className="w-3 h-3" />
+                  Leer guía <ArrowRight className="w-3 h-3" />
                 </div>
               </Link>
             ))}

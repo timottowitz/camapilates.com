@@ -9,8 +9,8 @@ import { Check, Info, DollarSign } from 'lucide-react';
 const CamaDePilatesPrecio: React.FC = () => {
   const origin = getOrigin();
   const url = `${origin}/cama-de-pilates/precio`;
-  const title = 'Precio de Cama de Pilates: Rangos 2025 y Qué Incluye';
-  const desc = 'Precios de cama de Pilates (casa y estudio) en México: MXN 25,000–50,000. Qué influye en el precio: materiales, tolerancias, muelles y garantía. Envío desde CDMX.';
+  const title = 'Precio de Cama de Pilates: Rangos en México y Qué Incluye (2025)';
+  const desc = 'Precio de cama de Pilates (Reformer) en México: rangos para casa y estudio, qué incluye y cómo comparar. Envío desde CDMX y garantía.';
 
   const faq = {
     '@context': 'https://schema.org',
@@ -19,6 +19,8 @@ const CamaDePilatesPrecio: React.FC = () => {
       { '@type': 'Question', name: '¿Cuál es el precio de una cama de Pilates para casa?', acceptedAnswer: { '@type': 'Answer', text: 'Nuestras opciones para casa inician alrededor de MXN 25,000 según acabados y accesorios incluidos.' } },
       { '@type': 'Question', name: '¿Cuál es el precio de una cama de Pilates de estudio?', acceptedAnswer: { '@type': 'Answer', text: 'El Reformer de estudio ronda MXN 50,000 con cuero genuino, nogal y acero estructural; garantía 1 año.' } },
       { '@type': 'Question', name: '¿Qué factores influyen en el precio?', acceptedAnswer: { '@type': 'Answer', text: 'Materiales (cuero real, maderas nobles, acero), tolerancias (silencio), muelles, garantía, servicio y tiempos de entrega.' } },
+      { '@type': 'Question', name: '¿Vale la pena comprar una cama de Pilates barata?', acceptedAnswer: { '@type': 'Answer', text: 'Solo si cumple seguridad mínima: estabilidad, resortes confiables y carro sin vibración. En equipos muy baratos suele fallar el silencio, el desgaste y el soporte/garantía.' } },
+      { '@type': 'Question', name: '¿Qué incluye normalmente el precio?', acceptedAnswer: { '@type': 'Answer', text: 'Además del reformer, revisa si incluye box, jumpboard, correas, muelles, manual y soporte; y si hay disponibilidad real de repuestos.' } },
     ],
   };
 
@@ -36,11 +38,11 @@ const CamaDePilatesPrecio: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div>
             <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-6">
-              Investment Guide 2025
+              Guía de precios en México
             </span>
             <h1 className="text-5xl md:text-7xl font-serif italic text-[#2A2624] leading-[0.9] mb-8">
-              Understanding <br />
-              <span className="not-italic font-light font-sans tracking-tight">the Value.</span>
+              Precio de <br />
+              <span className="not-italic font-light font-sans tracking-tight">Cama de Pilates.</span>
             </h1>
             <p className="text-lg text-[#5D5550] font-light max-w-xl leading-relaxed mb-8">
               Rangos de referencia en México y qué incluye realmente el precio: materiales (cuero, nogal, acero), tolerancias para el silencio, muelles, garantía y servicio.
@@ -71,6 +73,50 @@ const CamaDePilatesPrecio: React.FC = () => {
       {/* Pricing Tiers */}
       <section className="py-24 px-8 md:px-24 bg-white/40 border-t border-[#2A2624]/10">
         <div className="max-w-[1800px] mx-auto">
+          <div className="max-w-4xl mx-auto mb-12 text-center">
+            <p className="text-sm md:text-base text-[#5D5550] font-light leading-relaxed">
+              Si buscas “precio de cama de pilates” en México, aquí tienes una referencia clara y práctica.
+              La diferencia no es solo estética: suele estar en estabilidad, silencio, materiales y soporte.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto border border-[#2A2624]/10 bg-white/50 rounded-sm mb-12">
+            <table className="w-full min-w-[720px] text-left">
+              <thead className="bg-[#2A2624]/[0.03]">
+                <tr>
+                  <th className="p-4 text-xs uppercase tracking-widest text-[#2A2624]">Tipo</th>
+                  <th className="p-4 text-xs uppercase tracking-widest text-[#2A2624]">Rango (MXN)</th>
+                  <th className="p-4 text-xs uppercase tracking-widest text-[#2A2624]">Uso ideal</th>
+                  <th className="p-4 text-xs uppercase tracking-widest text-[#2A2624]">Qué suele incluir</th>
+                  <th className="p-4 text-xs uppercase tracking-widest text-[#2A2624]">Riesgo común</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#2A2624]/10">
+                <tr>
+                  <td className="p-4 text-sm text-[#2A2624] font-semibold">Casa</td>
+                  <td className="p-4 text-sm text-[#2A2624]">$25,000–$40,000</td>
+                  <td className="p-4 text-sm text-[#5D5550] font-light">Hogar / uso moderado</td>
+                  <td className="p-4 text-sm text-[#5D5550] font-light">Reformer + set básico (varía)</td>
+                  <td className="p-4 text-sm text-[#5D5550] font-light">Carro ruidoso / poca estabilidad</td>
+                </tr>
+                <tr>
+                  <td className="p-4 text-sm text-[#2A2624] font-semibold">Estudio</td>
+                  <td className="p-4 text-sm text-[#2A2624]">$45,000–$70,000</td>
+                  <td className="p-4 text-sm text-[#5D5550] font-light">Uso intensivo diario</td>
+                  <td className="p-4 text-sm text-[#5D5550] font-light">Estructura robusta + accesorios</td>
+                  <td className="p-4 text-sm text-[#5D5550] font-light">Refacciones lentas / garantía confusa</td>
+                </tr>
+                <tr>
+                  <td className="p-4 text-sm text-[#2A2624] font-semibold">Usada</td>
+                  <td className="p-4 text-sm text-[#2A2624]">$15,000–$35,000</td>
+                  <td className="p-4 text-sm text-[#5D5550] font-light">Si puedes inspeccionarla</td>
+                  <td className="p-4 text-sm text-[#5D5550] font-light">Depende del vendedor</td>
+                  <td className="p-4 text-sm text-[#5D5550] font-light">Desgaste en ruedas/resortes</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-8">
             {/* Home Tier */}
             <div className="group border border-[#2A2624]/10 rounded-sm p-8 md:p-12 bg-white/50 hover:bg-white transition-colors duration-500">
@@ -140,7 +186,7 @@ const CamaDePilatesPrecio: React.FC = () => {
       {/* What Influences Price */}
       <section className="py-24 px-8 md:px-24">
         <div className="max-w-[1800px] mx-auto">
-          <h2 className="text-3xl font-serif italic text-[#2A2624] mb-12 text-center">What Influences the Price?</h2>
+          <h2 className="text-3xl font-serif italic text-[#2A2624] mb-12 text-center">Qué sube (o baja) el precio</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="p-8 border border-[#2A2624]/10 rounded-sm bg-white/50">
               <div className="w-10 h-10 rounded-full bg-[#2A2624] flex items-center justify-center mb-6">
@@ -170,6 +216,18 @@ const CamaDePilatesPrecio: React.FC = () => {
               </p>
             </div>
           </div>
+
+          <div className="mt-12 max-w-4xl mx-auto border border-[#2A2624]/10 rounded-sm bg-white/50 p-8">
+            <h3 className="text-xl font-serif italic text-[#2A2624] mb-4">Checklist rápido (60 segundos)</h3>
+            <ul className="grid md:grid-cols-2 gap-3 text-sm text-[#5D5550] font-light">
+              <li>¿Se siente estable sin vibraciones?</li>
+              <li>¿El carro se desliza sin ruido?</li>
+              <li>¿Incluye muelles/resortes confiables?</li>
+              <li>¿Hay garantía por escrito y repuestos?</li>
+              <li>¿Incluye box/jumpboard/correas (si los necesitas)?</li>
+              <li>¿Entrega real en México (tiempo estimado)?</li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -194,11 +252,11 @@ const CamaDePilatesPrecio: React.FC = () => {
 };
 
 // Helper icons
-function Star(props: any) {
+function Star(props: React.SVGProps<SVGSVGElement>) {
   return <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
 }
 
-function Shield(props: any) {
+function Shield(props: React.SVGProps<SVGSVGElement>) {
   return <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
 }
 

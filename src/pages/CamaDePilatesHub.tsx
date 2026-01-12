@@ -34,6 +34,45 @@ const CamaDePilatesHub: React.FC = () => {
     ],
   };
 
+  const faq = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: '¿Qué es una cama de Pilates (Reformer)?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'La cama de Pilates (Reformer) es un equipo con carro deslizante y resistencia por resortes que permite ejercicios para fuerza, control y movilidad. Se usa tanto en casa como en estudio.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cuánto cuesta una cama de Pilates en México?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'En México, una cama de Pilates para casa suele iniciar alrededor de MXN 25,000 y una de estudio ronda MXN 50,000, dependiendo de materiales, tolerancias, accesorios y garantía.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Qué diferencia hay entre un reformer para casa y uno profesional?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'El reformer profesional prioriza rigidez estructural, estabilidad y uso diario intensivo; el reformer para casa busca un formato más compacto sin perder recorrido suave y seguro.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Qué espacio necesito para instalar una cama de Pilates?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Además del largo del equipo, considera espacio lateral para entrar/salir y un margen en la parte trasera para accesorios. Revisa nuestra guía de dimensiones antes de comprar.',
+        },
+      },
+    ],
+  };
+
   return (
     <LuxuryLayout>
       <Helmet>
@@ -42,6 +81,7 @@ const CamaDePilatesHub: React.FC = () => {
         <link rel="canonical" href={url} />
         <script type="application/ld+json">{JSON.stringify(breadcrumbs)}</script>
         <script type="application/ld+json">{JSON.stringify(itemList)}</script>
+        <script type="application/ld+json">{JSON.stringify(faq)}</script>
       </Helmet>
 
       <section className="relative pt-32 pb-20 px-8 md:px-24 max-w-[1800px] mx-auto text-center">
@@ -51,9 +91,77 @@ const CamaDePilatesHub: React.FC = () => {
         <h1 className="text-5xl md:text-7xl font-serif italic text-[#2A2624] leading-[0.9] mb-8">
           Cama de Pilates
         </h1>
-        <p className="text-lg text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed mb-16">
-          Guía de compra, precios, dimensiones y dónde comprar tu cama de Pilates. Reformers silenciosos y precisos en cuero genuino, madera de nogal y acero.
+        <p className="text-lg text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed">
+          En México, “cama de Pilates” y “Reformer” se usan para hablar del mismo equipo: la máquina con carro y resortes que se ve en estudios y también en casa.
+          Aquí encuentras guía de compra, precios, dimensiones y dónde comprar tu cama de Pilates con envío desde CDMX.
         </p>
+
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
+          <Link to="/cama-de-pilates/en-venta" className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#2A2624] text-[#EAE8E4] text-xs uppercase tracking-widest hover:bg-[#3E2723] transition-colors">
+            Cama de Pilates en venta <ArrowRight className="w-3 h-3" />
+          </Link>
+          <Link to="/cama-de-pilates/precio" className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/70 border border-[#2A2624]/10 text-[#2A2624] text-xs uppercase tracking-widest hover:bg-white transition-colors">
+            Precio 2025
+          </Link>
+          <Link to="/products" className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/70 border border-[#2A2624]/10 text-[#2A2624] text-xs uppercase tracking-widest hover:bg-white transition-colors">
+            Comparar modelos
+          </Link>
+          <Link to="/blog/dimensiones-cama-de-pilates" className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/70 border border-[#2A2624]/10 text-[#2A2624] text-xs uppercase tracking-widest hover:bg-white transition-colors">
+            Dimensiones
+          </Link>
+        </div>
+
+        <div className="mt-20 text-left max-w-5xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-serif italic text-[#2A2624] mb-6">Qué revisar antes de comprar</h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="p-6 border border-[#2A2624]/10 rounded-sm bg-white/50">
+              <h3 className="text-lg font-semibold text-[#2A2624]">Silencio y recorrido</h3>
+              <p className="mt-2 text-sm text-[#5D5550] font-light leading-relaxed">
+                El “ruido” casi siempre viene de tolerancias flojas, ruedas y alineación. Si vas a usarla en departamento o estudio, prioriza estabilidad y un carro sin vibración.
+              </p>
+            </div>
+            <div className="p-6 border border-[#2A2624]/10 rounded-sm bg-white/50">
+              <h3 className="text-lg font-semibold text-[#2A2624]">Materiales reales</h3>
+              <p className="mt-2 text-sm text-[#5D5550] font-light leading-relaxed">
+                Cuero genuino vs vinipiel, madera sólida (nogal) vs laminados, y acero estructural marcan durabilidad y sensación. Esto explica gran parte del precio.
+              </p>
+            </div>
+            <div className="p-6 border border-[#2A2624]/10 rounded-sm bg-white/50">
+              <h3 className="text-lg font-semibold text-[#2A2624]">Para casa vs estudio</h3>
+              <p className="mt-2 text-sm text-[#5D5550] font-light leading-relaxed">
+                Para casa: tamaño y estética. Para estudio: rigidez, uso intensivo, repuestos y soporte. Si dudas, empieza en <Link to="/compare" className="underline decoration-[#2A2624]/30 hover:decoration-[#2A2624]">comparar modelos</Link>.
+              </p>
+            </div>
+            <div className="p-6 border border-[#2A2624]/10 rounded-sm bg-white/50">
+              <h3 className="text-lg font-semibold text-[#2A2624]">Entrega, garantía y repuestos</h3>
+              <p className="mt-2 text-sm text-[#5D5550] font-light leading-relaxed">
+                En México, la diferencia real está en logística: tiempos de entrega, garantía clara y repuestos. Verifica esto antes de decidir.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-16 text-left max-w-5xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-serif italic text-[#2A2624] mb-6">Guías recomendadas</h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            <Link to="/blog/mejor-cama-de-pilates-para-casa" className="group p-6 border border-[#2A2624]/10 rounded-sm bg-white/50 hover:bg-white transition-colors">
+              <h3 className="text-lg font-semibold text-[#2A2624] group-hover:text-[#3E2723]">Mejor cama de Pilates para casa</h3>
+              <p className="mt-1 text-sm text-[#5D5550] font-light">Cómo elegir por espacio, presupuesto y accesorios.</p>
+            </Link>
+            <Link to="/blog/precio-cama-de-pilates-2025" className="group p-6 border border-[#2A2624]/10 rounded-sm bg-white/50 hover:bg-white transition-colors">
+              <h3 className="text-lg font-semibold text-[#2A2624] group-hover:text-[#3E2723]">Precio de la cama de Pilates 2025</h3>
+              <p className="mt-1 text-sm text-[#5D5550] font-light">Rangos reales en México y qué incluye cada nivel.</p>
+            </Link>
+            <Link to="/blog/mejores-marcas-cama-de-pilates" className="group p-6 border border-[#2A2624]/10 rounded-sm bg-white/50 hover:bg-white transition-colors">
+              <h3 className="text-lg font-semibold text-[#2A2624] group-hover:text-[#3E2723]">Mejores marcas de cama de Pilates</h3>
+              <p className="mt-1 text-sm text-[#5D5550] font-light">Criterios para comparar calidad, garantía y soporte.</p>
+            </Link>
+            <Link to="/blog/reformer-casa-vs-profesional" className="group p-6 border border-[#2A2624]/10 rounded-sm bg-white/50 hover:bg-white transition-colors">
+              <h3 className="text-lg font-semibold text-[#2A2624] group-hover:text-[#3E2723]">Reformer para casa vs profesional</h3>
+              <p className="mt-1 text-sm text-[#5D5550] font-light">Diferencias clave para decidir sin pagar de más.</p>
+            </Link>
+          </div>
+        </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <Link to="/cama-de-pilates/en-venta" className="group p-8 border border-[#2A2624]/10 rounded-sm bg-white/50 hover:bg-white transition-colors text-left">
@@ -133,6 +241,28 @@ const CamaDePilatesHub: React.FC = () => {
               Cotizar ahora <ArrowRight className="w-3 h-3" />
             </div>
           </Link>
+        </div>
+
+        <div className="mt-16 text-left max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-serif italic text-[#2A2624] mb-6">FAQ</h2>
+          <div className="space-y-6">
+            <div className="border border-[#2A2624]/10 rounded-sm bg-white/50 p-6">
+              <h3 className="text-lg font-semibold text-[#2A2624]">¿Qué es una cama de Pilates (Reformer)?</h3>
+              <p className="mt-2 text-sm text-[#5D5550] font-light leading-relaxed">Es un equipo con carro deslizante y resistencia por resortes que permite cientos de ejercicios para fuerza, control y movilidad, tanto en casa como en estudio.</p>
+            </div>
+            <div className="border border-[#2A2624]/10 rounded-sm bg-white/50 p-6">
+              <h3 className="text-lg font-semibold text-[#2A2624]">¿Cuánto cuesta una cama de Pilates en México?</h3>
+              <p className="mt-2 text-sm text-[#5D5550] font-light leading-relaxed">Como referencia, una opción para casa suele iniciar alrededor de MXN 25,000 y una de estudio ronda MXN 50,000 (varía por materiales, tolerancias, accesorios y garantía).</p>
+            </div>
+            <div className="border border-[#2A2624]/10 rounded-sm bg-white/50 p-6">
+              <h3 className="text-lg font-semibold text-[#2A2624]">¿Qué diferencia hay entre un reformer para casa y uno profesional?</h3>
+              <p className="mt-2 text-sm text-[#5D5550] font-light leading-relaxed">El profesional está pensado para uso intensivo diario y máxima estabilidad; el de casa busca un formato más compacto manteniendo seguridad y recorrido suave.</p>
+            </div>
+            <div className="border border-[#2A2624]/10 rounded-sm bg-white/50 p-6">
+              <h3 className="text-lg font-semibold text-[#2A2624]">¿Qué espacio necesito para instalar una cama de Pilates?</h3>
+              <p className="mt-2 text-sm text-[#5D5550] font-light leading-relaxed">Considera el largo del equipo más espacio lateral para entrar/salir y un margen trasero para accesorios. Revisa la guía de dimensiones antes de comprar.</p>
+            </div>
+          </div>
         </div>
       </section>
     </LuxuryLayout>

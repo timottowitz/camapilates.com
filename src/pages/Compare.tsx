@@ -7,11 +7,17 @@ import { Check, ArrowRight, Star, Shield, Truck, Clock } from 'lucide-react';
 import { ContextualImage } from '@/components/ContextualImage';
 import { motion } from 'framer-motion';
 import BackLink from '@/components/ui/back-link';
+import { selectModel } from '@/lib/shop/analytics';
+import products from '@/content/products.json';
+import type { Product as ShopProduct } from '@/lib/shop/types';
 
 const Compare = () => {
   const origin = getOrigin();
-  const title = 'The Collection | Edelweiss Pilates';
-  const desc = 'Compare our professional and home reformer models. German engineering, Mexican soul. 3-week delivery.';
+  const title = 'Comparar Reformers: Casa vs Profesional | Edelweiss Pilates';
+  const desc = 'Compara nuestro Reformer para casa vs profesional. Elige el ideal para tu espacio (hogar o estudio) con entrega en 3 semanas en México.';
+
+  const casa = products.find((p) => p.slug === 'reformer-casa') as unknown as ShopProduct | undefined;
+  const profesional = products.find((p) => p.slug === 'reformer-profesional') as unknown as ShopProduct | undefined;
 
   const compareSchema = generateCompareSchema();
 
@@ -81,7 +87,7 @@ const Compare = () => {
             transition={{ delay: 0.1 }}
             className="block text-xs font-bold font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-8 opacity-60"
           >
-            Handcrafted in Mexico City
+            Hecho en Ciudad de México
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -89,7 +95,7 @@ const Compare = () => {
             transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-6xl md:text-9xl font-serif italic text-[#2A2624] leading-[0.85] mb-8 tracking-tighter"
           >
-            The Collection<span className="text-[#EB4C42]">.</span>
+            Comparar Reformers<span className="text-[#EB4C42]">.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -97,8 +103,8 @@ const Compare = () => {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="text-lg md:text-2xl text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed tracking-tight"
           >
-            Two distinct models, one shared philosophy: <br className="hidden md:block" />
-            absolute silence, organic materials, and precision engineering.
+            Dos modelos, una misma filosofía: <br className="hidden md:block" />
+            silencio total, materiales premium y tolerancias precisas.
           </motion.p>
         </div>
 
@@ -132,19 +138,26 @@ const Compare = () => {
               <div className="flex justify-between items-start mb-8">
                 <div>
                   <h2 className="text-4xl md:text-5xl font-serif italic text-[#2A2624] mb-2 group-hover:text-[#EB4C42] transition-colors">The Home</h2>
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#5D5550] font-bold opacity-60">For Your Sanctuary</p>
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#5D5550] font-bold opacity-60">Para casa</p>
                 </div>
                 <div className="text-2xl font-serif italic text-[#2A2624] opacity-50">$35,000</div>
               </div>
               <p className="text-[#5D5550] font-light mb-12 leading-relaxed text-lg max-w-md">
-                Compact footprint without compromising the smooth, silent glide. Designed to blend seamlessly into your living space.
+                Compacto sin sacrificar el recorrido suave y silencioso. Diseñado para integrarse en tu espacio.
               </p>
               <Link
                 to="/product/reformer-casa"
+                onClick={() => { if (casa) selectModel({ model: 'casa', product: casa, source: 'compare' }); }}
                 className="inline-flex items-center justify-center w-full px-8 py-5 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
               >
-                Shop Home
+                Ver y comprar
               </Link>
+              <a
+                href="https://wa.me/523222787690"
+                className="mt-3 inline-flex items-center justify-center w-full px-8 py-5 border border-[#2A2624]/20 text-[#2A2624] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-all"
+              >
+                Cotizar por WhatsApp
+              </a>
             </div>
           </motion.div>
 
@@ -168,43 +181,50 @@ const Compare = () => {
               <div className="flex justify-between items-start mb-8">
                 <div>
                   <h2 className="text-4xl md:text-5xl font-serif italic text-[#EAE8E4] mb-2 group-hover:text-white transition-colors">The Pro</h2>
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-bold">For The Studio</p>
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-bold">Para estudio</p>
                 </div>
                 <div className="text-2xl font-serif italic text-white/50">$50,000</div>
               </div>
               <p className="text-white/70 font-light mb-12 leading-relaxed text-lg max-w-md">
-                Engineered for continuous use. Reinforced structure, extended carriage, and complete accessory kit for the demanding instructor.
+                Diseñado para uso continuo. Estructura reforzada y estabilidad para estudios.
               </p>
               <Link
                 to="/product/reformer-profesional"
+                onClick={() => { if (profesional) selectModel({ model: 'profesional', product: profesional, source: 'compare' }); }}
                 className="inline-flex items-center justify-center w-full px-8 py-5 bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
               >
-                Shop Professional
+                Ver y comprar
               </Link>
+              <a
+                href="https://wa.me/523222787690"
+                className="mt-3 inline-flex items-center justify-center w-full px-8 py-5 border border-white/20 text-white rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-white/10 transition-all"
+              >
+                Cotizar por WhatsApp
+              </a>
             </div>
           </motion.div>
         </motion.div>
 
         {/* Comparison Table */}
         <div className="max-w-5xl mx-auto mb-32">
-          <h2 className="text-4xl fn-serif italic text-[#2A2624] mb-12 text-center">Technical Comparison</h2>
+          <h2 className="text-4xl fn-serif italic text-[#2A2624] mb-12 text-center">Comparativa técnica</h2>
 
           <div className="overflow-x-auto pb-4 md:pb-0">
             <div className="min-w-[600px] bg-white/60 backdrop-blur-md rounded-[2rem] border border-[#2A2624]/5 overflow-hidden shadow-sm">
               <div className="grid grid-cols-3 border-b border-[#2A2624]/5 bg-[#2A2624]/[0.02]">
-                <div className="p-6 md:p-8 font-serif italic text-[#2A2624] text-lg md:text-xl">Feature</div>
-                <div className="p-6 md:p-8 font-serif italic text-[#2A2624] text-center text-lg md:text-xl">Home</div>
-                <div className="p-6 md:p-8 font-serif italic text-[#2A2624] text-center text-lg md:text-xl">Professional</div>
+                <div className="p-6 md:p-8 font-serif italic text-[#2A2624] text-lg md:text-xl">Característica</div>
+                <div className="p-6 md:p-8 font-serif italic text-[#2A2624] text-center text-lg md:text-xl">Casa</div>
+                <div className="p-6 md:p-8 font-serif italic text-[#2A2624] text-center text-lg md:text-xl">Profesional</div>
               </div>
 
               {[
-                { label: 'Ideal For', home: 'Home Use (1-2 users)', pro: 'Studio / Commercial' },
-                { label: 'Structure', home: 'Walnut & Standard Steel', pro: 'Walnut & Reinforced Steel' },
-                { label: 'Carriage', home: 'Silent Glide', pro: 'Silent Glide + Heavy Duty' },
-                { label: 'Footbar', home: '3 Positions', pro: '5 Positions Quick-Adjust' },
-                { label: 'Springs', home: '5 Standard', pro: '5 High-Precision' },
-                { label: 'Box & Jumpboard', home: 'Included', pro: 'Included (Studio Grade)' },
-                { label: 'Warranty', home: '1 Year', pro: '1 Year Commercial' },
+                { label: 'Ideal para', home: 'Casa (1–2 usuarios)', pro: 'Estudio / comercial' },
+                { label: 'Estructura', home: 'Nogal y acero', pro: 'Nogal y acero reforzado' },
+                { label: 'Carro', home: 'Deslizamiento silencioso', pro: 'Silencioso + uso intensivo' },
+                { label: 'Barra de pies', home: '3 posiciones', pro: 'Más posiciones / ajuste rápido' },
+                { label: 'Resortes', home: 'Set estándar', pro: 'Set de precisión' },
+                { label: 'Box y jumpboard', home: 'Incluidos', pro: 'Incluidos (grado estudio)' },
+                { label: 'Garantía', home: '1 año', pro: '1 año (uso estudio)' },
               ].map((row, i) => (
                 <div key={i} className="grid grid-cols-3 border-b border-[#2A2624]/5 last:border-0 hover:bg-white transition-colors group">
                   <div className="p-6 md:p-8 text-xs md:text-sm font-bold text-[#2A2624] uppercase tracking-wider opacity-60">{row.label}</div>
@@ -223,32 +243,32 @@ const Compare = () => {
 
           <div className="relative z-10 max-w-3xl mx-auto">
             <span className="block text-xs font-sans tracking-[0.3em] uppercase text-white/50 mb-6">
-              For Studio Owners
+              Para dueños de estudio
             </span>
             <h2 className="text-5xl md:text-6xl font-serif italic leading-tight mb-8">
-              Equipping a Studio?
+              ¿Montando un estudio?
             </h2>
             <p className="text-xl text-white/70 font-light mb-12 leading-relaxed">
-              We offer exclusive pricing for orders of 8+ units, including coordinated installation and priority support.
+              Ofrecemos precio especial para pedidos de 8+ unidades, con instalación coordinada y soporte prioritario.
             </p>
             <Link
               to="/packs/estudio"
               className="inline-flex items-center px-10 py-5 bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white hover:scale-105 transition-all"
             >
-              View Studio Packs
+              Ver packs para estudio
             </Link>
           </div>
         </div>
 
         {/* FAQ Section */}
         <div className="max-w-3xl mx-auto mt-32">
-          <h2 className="text-4xl font-serif italic text-[#2A2624] mb-16 text-center">Common Questions</h2>
+          <h2 className="text-4xl font-serif italic text-[#2A2624] mb-16 text-center">Preguntas frecuentes</h2>
           <div className="space-y-6">
             {[
-              { q: 'How long does delivery take?', a: 'We deliver nationwide in Mexico within 3 weeks. International shipping times vary by location.' },
+              { q: '¿Cuánto tarda la entrega?', a: 'Entregamos en México en 3 semanas. Envíos internacionales varían según destino.' },
               { q: '¿Qué formas de pago aceptan?', a: 'Aceptamos pago con tarjeta y transferencia. Si necesitas ayuda para cotizar, escríbenos por WhatsApp.' },
-              { q: 'Can I customize the finish?', a: 'We offer standard Walnut and Black finishes. Custom finishes are available for bulk orders.' },
-              { q: 'Is assembly required?', a: 'Our reformers arrive 90% assembled. Final setup takes about 20 minutes with included tools.' }
+              { q: '¿Puedo personalizar el acabado?', a: 'Tenemos acabados estándar y opciones bajo pedido para compras por volumen (8+).' },
+              { q: '¿Requiere instalación?', a: 'Los reformers llegan casi listos. El setup final toma ~20 minutos con las herramientas incluidas.' }
             ].map((faq, i) => (
               <details key={i} className="group bg-transparent border-b border-[#2A2624]/10 pb-6">
                 <summary className="font-serif italic text-xl text-[#2A2624] cursor-pointer hover:text-[#3E2723] transition-colors list-none flex justify-between items-center">

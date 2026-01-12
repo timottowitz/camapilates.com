@@ -55,6 +55,21 @@ const CamaDePilatesEnVenta: React.FC = () => {
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Cama de Pilates en Venta</h1>
           <p className="text-lg text-muted-foreground max-w-3xl">Compra tu cama de Pilates (Reformer) con <strong>silencio total</strong>, <strong>estabilidad sin vibraciones</strong> y acabados premium en cuero genuino, nogal y acero. Entrega <strong>3 semanas</strong> desde CDMX y <strong>garantía 1 año</strong>.</p>
 
+          <div className="mt-6 grid gap-3 md:grid-cols-3">
+            <div className="rounded-lg border border-border bg-card p-4">
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">Entrega</p>
+              <p className="mt-1 text-sm text-foreground"><strong>3 semanas</strong> en México (desde CDMX)</p>
+            </div>
+            <div className="rounded-lg border border-border bg-card p-4">
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">Garantía</p>
+              <p className="mt-1 text-sm text-foreground"><strong>1 año</strong> + soporte en español</p>
+            </div>
+            <div className="rounded-lg border border-border bg-card p-4">
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">Repuestos</p>
+              <p className="mt-1 text-sm text-foreground"><strong>Exprés</strong> (piezas y mantenimiento)</p>
+            </div>
+          </div>
+
           <div className="mt-10 grid md:grid-cols-2 gap-6">
             <Link to="/product/reformer-profesional" className="block group border border-border rounded-lg p-6 bg-card hover:border-primary/50 transition-colors">
               <h2 className="text-xl font-semibold text-foreground group-hover:text-primary">Cama de Pilates Reformer – Profesional</h2>
@@ -79,11 +94,23 @@ const CamaDePilatesEnVenta: React.FC = () => {
 
           <div className="mt-12 border border-border rounded-lg p-6 bg-card">
             <h3 className="text-lg font-semibold text-foreground mb-2">Descuento para estudios</h3>
-            <p className="text-muted-foreground">A partir de 8 unidades aplicamos <strong>20% de descuento</strong>. Coordinamos instalación y entrega por lotes. </p>
+            <p className="text-muted-foreground">A partir de 8 unidades aplicamos <strong>20% de descuento</strong>. Coordinamos instalación y entrega por lotes.</p>
             <div className="mt-4 flex flex-wrap gap-3">
-              <Link to="/products" className="inline-flex items-center px-5 py-3 rounded-md bg-[#6B4F3B] text-white hover:bg-[#5f4636]">Ver todos los productos</Link>
-              <Link to="/compare" className="inline-flex items-center px-5 py-3 rounded-md border border-foreground text-foreground hover:bg-foreground hover:text-background">Comparar Modelos</Link>
+              <Link to="/shop" className="inline-flex items-center px-5 py-3 rounded-md bg-[#6B4F3B] text-white hover:bg-[#5f4636]">Ir a la tienda</Link>
+              <Link to="/compare" className="inline-flex items-center px-5 py-3 rounded-md border border-foreground text-foreground hover:bg-foreground hover:text-background">Comparar modelos</Link>
+              <a href="https://wa.me/523222787690" className="inline-flex items-center px-5 py-3 rounded-md border border-border text-foreground hover:bg-muted">Cotizar por WhatsApp</a>
             </div>
+          </div>
+
+          <div className="mt-12 border border-border rounded-lg p-6 bg-card">
+            <h2 className="text-lg font-semibold text-foreground mb-3">Qué incluye (en la práctica)</h2>
+            <ul className="list-disc pl-5 text-muted-foreground space-y-1">
+              <li>Estructura estable para evitar vibraciones</li>
+              <li>Carro con recorrido suave y silencioso</li>
+              <li>Resortes/muelles calibrados y seguros</li>
+              <li>Garantía por escrito + repuestos disponibles</li>
+            </ul>
+            <p className="mt-3 text-sm text-muted-foreground">¿Quieres elegir rápido? Empieza por <Link to="/cama-de-pilates/precio" className="underline">precio</Link> y luego <Link to="/compare" className="underline">casa vs profesional</Link>.</p>
           </div>
         </div>
       </section>
