@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { DEFAULTS } from '@/lib/seo';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
+import { motion } from 'framer-motion';
 import { ArrowRight, BookOpen, ShoppingBag, DollarSign, Ruler, Package } from 'lucide-react';
 
 const CamaDePilatesHub: React.FC = () => {
@@ -74,7 +75,7 @@ const CamaDePilatesHub: React.FC = () => {
   };
 
   return (
-    <LuxuryLayout>
+    <LuxuryLayout headerTheme="light">
       <Helmet>
         <title>{title} | {DEFAULTS.siteName}</title>
         <meta name="description" content={desc} />
@@ -84,184 +85,298 @@ const CamaDePilatesHub: React.FC = () => {
         <script type="application/ld+json">{JSON.stringify(faq)}</script>
       </Helmet>
 
-      <section className="relative pt-32 pb-20 px-8 md:px-24 max-w-[1800px] mx-auto text-center">
-        <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-6">
-          The Definitive Guide
-        </span>
-        <h1 className="text-5xl md:text-7xl font-serif italic text-[#2A2624] leading-[0.9] mb-8">
-          Cama de Pilates
-        </h1>
-        <p className="text-lg text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed">
-          En México, “cama de Pilates” y “Reformer” se usan para hablar del mismo equipo: la máquina con carro y resortes que se ve en estudios y también en casa.
-          Aquí encuentras guía de compra, precios, dimensiones y dónde comprar tu cama de Pilates con envío desde CDMX.
-        </p>
-
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
-          <Link to="/cama-de-pilates/en-venta" className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#2A2624] text-[#EAE8E4] text-xs uppercase tracking-widest hover:bg-[#3E2723] transition-colors">
-            Cama de Pilates en venta <ArrowRight className="w-3 h-3" />
-          </Link>
-          <Link to="/cama-de-pilates/precio" className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/70 border border-[#2A2624]/10 text-[#2A2624] text-xs uppercase tracking-widest hover:bg-white transition-colors">
-            Precio 2025
-          </Link>
-          <Link to="/products" className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/70 border border-[#2A2624]/10 text-[#2A2624] text-xs uppercase tracking-widest hover:bg-white transition-colors">
-            Comparar modelos
-          </Link>
-          <Link to="/blog/dimensiones-cama-de-pilates" className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/70 border border-[#2A2624]/10 text-[#2A2624] text-xs uppercase tracking-widest hover:bg-white transition-colors">
-            Dimensiones
-          </Link>
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 px-6 md:px-24 max-w-[1800px] mx-auto overflow-hidden">
+        {/* Subtle Background Mesh */}
+        <div className="absolute top-0 left-0 right-0 h-[800px] bg-gradient-to-b from-white/40 to-transparent pointer-events-none -z-10" />
+        <div className="absolute top-40 left-1/2 -z-20 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 opacity-30 blur-3xl">
+          <div className="h-full w-full bg-gradient-to-r from-[#e0dcd9] via-[#dcd8d4] to-[#e0dcd9] rounded-full animate-pulse duration-[5000ms]" />
         </div>
 
-        <div className="mt-20 text-left max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-serif italic text-[#2A2624] mb-6">Qué revisar antes de comprar</h2>
+        <div className="text-center mb-16 md:mb-20">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="block text-xs font-bold font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-8 opacity-60"
+          >
+            The Definitive Guide
+          </motion.span>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="text-6xl md:text-9xl font-serif italic text-[#2A2624] leading-[0.85] mb-8 tracking-tighter"
+          >
+            Cama de Pilates<span className="text-[#EB4C42]">.</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="text-lg md:text-xl text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed"
+          >
+            Todo sobre el Reformer en México: guía de compra, precios, <br className="hidden md:block" />
+            dimensiones y dónde comprar con envío desde CDMX.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mt-10 flex flex-wrap justify-center gap-3"
+          >
+            <Link to="/cama-de-pilates/en-venta" className="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-[#2A2624] text-[#EAE8E4] text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#3E2723] hover:scale-105 transition-all">
+              Ver modelos en venta <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link to="/cama-de-pilates/precio" className="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-[#2A2624]/20 text-[#2A2624] text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-all">
+              Guía de precios
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* Bento Grid - Main Resources */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+          className="grid md:grid-cols-12 gap-4 mb-20"
+        >
+          {/* En Venta - Large Card */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+            }}
+            className="md:col-span-7"
+          >
+            <Link
+              to="/cama-de-pilates/en-venta"
+              className="group block h-full bg-[#1C1917] text-[#EAE8E4] rounded-[2rem] p-10 md:p-14 relative overflow-hidden transition-all duration-700 hover:-translate-y-2 hover:shadow-2xl"
+            >
+              <div className="absolute top-0 right-0 w-1/2 h-full opacity-20 bg-gradient-to-l from-white/10 to-transparent pointer-events-none" />
+              <ShoppingBag className="w-8 h-8 mb-8 opacity-40 group-hover:opacity-70 transition-opacity" strokeWidth={1.5} />
+              <h2 className="text-4xl md:text-5xl font-serif italic mb-4 group-hover:text-white transition-colors">
+                Modelos en Venta
+              </h2>
+              <p className="text-white/60 font-light text-lg mb-8 max-w-md">
+                Reformers con entrega 3 semanas en México y garantía 1 año.
+              </p>
+              <span className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-white/50 group-hover:text-white transition-colors">
+                Ver opciones <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Link>
+          </motion.div>
+
+          {/* Precio - Medium Card */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+            }}
+            className="md:col-span-5"
+          >
+            <Link
+              to="/cama-de-pilates/precio"
+              className="group block h-full bg-[#F5F4F0] rounded-[2rem] p-10 md:p-14 transition-all duration-700 hover:-translate-y-2 hover:shadow-xl hover:bg-white"
+            >
+              <DollarSign className="w-8 h-8 text-[#3E2723] mb-8 opacity-40 group-hover:opacity-70 transition-opacity" strokeWidth={1.5} />
+              <h2 className="text-3xl md:text-4xl font-serif italic text-[#2A2624] mb-4 group-hover:text-[#EB4C42] transition-colors">
+                Guía de Precios
+              </h2>
+              <p className="text-[#5D5550] font-light mb-8">
+                Rangos 2025: MXN 25,000–50,000. Qué incluye cada nivel.
+              </p>
+              <span className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-[#3E2723]/60 group-hover:text-[#2A2624] transition-colors">
+                Ver precios <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Link>
+          </motion.div>
+
+          {/* Dimensiones */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+            }}
+            className="md:col-span-4"
+          >
+            <Link
+              to="/blog/dimensiones-cama-de-pilates"
+              className="group block h-full bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:bg-white hover:shadow-lg hover:-translate-y-1"
+            >
+              <Ruler className="w-6 h-6 text-[#3E2723] mb-6 opacity-40 group-hover:opacity-70 transition-opacity" strokeWidth={1.5} />
+              <h2 className="text-2xl font-serif italic text-[#2A2624] mb-2 group-hover:text-[#EB4C42] transition-colors">
+                Dimensiones
+              </h2>
+              <p className="text-sm text-[#5D5550] font-light mb-6">
+                Medidas y espacio de instalación.
+              </p>
+              <span className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-[#3E2723]/60 group-hover:text-[#2A2624] transition-colors">
+                Ver guía <ArrowRight className="ml-2 w-4 h-4" />
+              </span>
+            </Link>
+          </motion.div>
+
+          {/* Comparar */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+            }}
+            className="md:col-span-4"
+          >
+            <Link
+              to="/compare"
+              className="group block h-full bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:bg-white hover:shadow-lg hover:-translate-y-1"
+            >
+              <BookOpen className="w-6 h-6 text-[#3E2723] mb-6 opacity-40 group-hover:opacity-70 transition-opacity" strokeWidth={1.5} />
+              <h2 className="text-2xl font-serif italic text-[#2A2624] mb-2 group-hover:text-[#EB4C42] transition-colors">
+                Casa vs Profesional
+              </h2>
+              <p className="text-sm text-[#5D5550] font-light mb-6">
+                Comparativa técnica detallada.
+              </p>
+              <span className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-[#3E2723]/60 group-hover:text-[#2A2624] transition-colors">
+                Comparar <ArrowRight className="ml-2 w-4 h-4" />
+              </span>
+            </Link>
+          </motion.div>
+
+          {/* Pack Estudios */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+            }}
+            className="md:col-span-4"
+          >
+            <Link
+              to="/packs/estudio"
+              className="group block h-full bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:bg-white hover:shadow-lg hover:-translate-y-1"
+            >
+              <Package className="w-6 h-6 text-[#3E2723] mb-6 opacity-40 group-hover:opacity-70 transition-opacity" strokeWidth={1.5} />
+              <h2 className="text-2xl font-serif italic text-[#2A2624] mb-2 group-hover:text-[#EB4C42] transition-colors">
+                Pack Estudios
+              </h2>
+              <p className="text-sm text-[#5D5550] font-light mb-6">
+                20% descuento en 8+ unidades.
+              </p>
+              <span className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-[#3E2723]/60 group-hover:text-[#2A2624] transition-colors">
+                Cotizar <ArrowRight className="ml-2 w-4 h-4" />
+              </span>
+            </Link>
+          </motion.div>
+        </motion.div>
+
+        {/* What to Check Section */}
+        <div className="max-w-5xl mx-auto mb-24">
+          <h2 className="text-4xl font-serif italic text-[#2A2624] mb-12 text-center">Qué revisar antes de comprar</h2>
           <div className="grid md:grid-cols-2 gap-4">
-            <div className="p-6 border border-[#2A2624]/10 rounded-sm bg-white/50">
-              <h3 className="text-lg font-semibold text-[#2A2624]">Silencio y recorrido</h3>
-              <p className="mt-2 text-sm text-[#5D5550] font-light leading-relaxed">
-                El “ruido” casi siempre viene de tolerancias flojas, ruedas y alineación. Si vas a usarla en departamento o estudio, prioriza estabilidad y un carro sin vibración.
-              </p>
-            </div>
-            <div className="p-6 border border-[#2A2624]/10 rounded-sm bg-white/50">
-              <h3 className="text-lg font-semibold text-[#2A2624]">Materiales reales</h3>
-              <p className="mt-2 text-sm text-[#5D5550] font-light leading-relaxed">
-                Cuero genuino vs vinipiel, madera sólida (nogal) vs laminados, y acero estructural marcan durabilidad y sensación. Esto explica gran parte del precio.
-              </p>
-            </div>
-            <div className="p-6 border border-[#2A2624]/10 rounded-sm bg-white/50">
-              <h3 className="text-lg font-semibold text-[#2A2624]">Para casa vs estudio</h3>
-              <p className="mt-2 text-sm text-[#5D5550] font-light leading-relaxed">
-                Para casa: tamaño y estética. Para estudio: rigidez, uso intensivo, repuestos y soporte. Si dudas, empieza en <Link to="/compare" className="underline decoration-[#2A2624]/30 hover:decoration-[#2A2624]">comparar modelos</Link>.
-              </p>
-            </div>
-            <div className="p-6 border border-[#2A2624]/10 rounded-sm bg-white/50">
-              <h3 className="text-lg font-semibold text-[#2A2624]">Entrega, garantía y repuestos</h3>
-              <p className="mt-2 text-sm text-[#5D5550] font-light leading-relaxed">
-                En México, la diferencia real está en logística: tiempos de entrega, garantía clara y repuestos. Verifica esto antes de decidir.
-              </p>
-            </div>
+            {[
+              {
+                title: 'Silencio y recorrido',
+                desc: 'El "ruido" casi siempre viene de tolerancias flojas, ruedas y alineación. Prioriza estabilidad y un carro sin vibración.',
+              },
+              {
+                title: 'Materiales reales',
+                desc: 'Cuero genuino vs vinipiel, madera sólida (nogal) vs laminados, y acero estructural marcan durabilidad y sensación.',
+              },
+              {
+                title: 'Para casa vs estudio',
+                desc: 'Para casa: tamaño y estética. Para estudio: rigidez, uso intensivo, repuestos y soporte.',
+              },
+              {
+                title: 'Entrega, garantía y repuestos',
+                desc: 'En México, la diferencia real está en logística: tiempos de entrega, garantía clara y repuestos disponibles.',
+              },
+            ].map((item, i) => (
+              <div key={i} className="p-6 md:p-8 bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-2xl hover:bg-white hover:shadow-md transition-all duration-500">
+                <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">{item.title}</h3>
+                <p className="text-[#5D5550] font-light text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="mt-16 text-left max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-serif italic text-[#2A2624] mb-6">Guías recomendadas</h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            <Link to="/blog/mejor-cama-de-pilates-para-casa" className="group p-6 border border-[#2A2624]/10 rounded-sm bg-white/50 hover:bg-white transition-colors">
-              <h3 className="text-lg font-semibold text-[#2A2624] group-hover:text-[#3E2723]">Mejor cama de Pilates para casa</h3>
-              <p className="mt-1 text-sm text-[#5D5550] font-light">Cómo elegir por espacio, presupuesto y accesorios.</p>
-            </Link>
-            <Link to="/blog/precio-cama-de-pilates-2025" className="group p-6 border border-[#2A2624]/10 rounded-sm bg-white/50 hover:bg-white transition-colors">
-              <h3 className="text-lg font-semibold text-[#2A2624] group-hover:text-[#3E2723]">Precio de la cama de Pilates 2025</h3>
-              <p className="mt-1 text-sm text-[#5D5550] font-light">Rangos reales en México y qué incluye cada nivel.</p>
-            </Link>
-            <Link to="/blog/mejores-marcas-cama-de-pilates" className="group p-6 border border-[#2A2624]/10 rounded-sm bg-white/50 hover:bg-white transition-colors">
-              <h3 className="text-lg font-semibold text-[#2A2624] group-hover:text-[#3E2723]">Mejores marcas de cama de Pilates</h3>
-              <p className="mt-1 text-sm text-[#5D5550] font-light">Criterios para comparar calidad, garantía y soporte.</p>
-            </Link>
-            <Link to="/blog/reformer-casa-vs-profesional" className="group p-6 border border-[#2A2624]/10 rounded-sm bg-white/50 hover:bg-white transition-colors">
-              <h3 className="text-lg font-semibold text-[#2A2624] group-hover:text-[#3E2723]">Reformer para casa vs profesional</h3>
-              <p className="mt-1 text-sm text-[#5D5550] font-light">Diferencias clave para decidir sin pagar de más.</p>
-            </Link>
-          </div>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Link to="/cama-de-pilates/en-venta" className="group p-8 border border-[#2A2624]/10 rounded-sm bg-white/50 hover:bg-white transition-colors text-left">
-            <ShoppingBag className="w-6 h-6 text-[#3E2723] mb-4" />
-            <h2 className="text-xl font-serif italic text-[#2A2624] mb-2 group-hover:text-[#3E2723] transition-colors">
-              Modelos en Venta
-            </h2>
-            <p className="text-sm text-[#5D5550] font-light mb-4">
-              Compra Reformers con entrega 3 semanas en México y garantía 1 año.
-            </p>
-            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#2A2624]">
-              Ver opciones <ArrowRight className="w-3 h-3" />
-            </div>
-          </Link>
-
-          <Link to="/cama-de-pilates/precio" className="group p-8 border border-[#2A2624]/10 rounded-sm bg-white/50 hover:bg-white transition-colors text-left">
-            <DollarSign className="w-6 h-6 text-[#3E2723] mb-4" />
-            <h2 className="text-xl font-serif italic text-[#2A2624] mb-2 group-hover:text-[#3E2723] transition-colors">
-              Guía de Precios
-            </h2>
-            <p className="text-sm text-[#5D5550] font-light mb-4">
-              Rangos 2025: MXN 25,000–50,000. Qué incluye y cómo comparar.
-            </p>
-            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#2A2624]">
-              Ver precios <ArrowRight className="w-3 h-3" />
-            </div>
-          </Link>
-
-          <Link to="/blog/dimensiones-cama-de-pilates" className="group p-8 border border-[#2A2624]/10 rounded-sm bg-white/50 hover:bg-white transition-colors text-left">
-            <Ruler className="w-6 h-6 text-[#3E2723] mb-4" />
-            <h2 className="text-xl font-serif italic text-[#2A2624] mb-2 group-hover:text-[#3E2723] transition-colors">
-              Dimensiones
-            </h2>
-            <p className="text-sm text-[#5D5550] font-light mb-4">
-              Medidas típicas, espacio lateral/trasero y consejos de instalación.
-            </p>
-            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#2A2624]">
-              Ver guía <ArrowRight className="w-3 h-3" />
-            </div>
-          </Link>
-
-          <Link to="/product/reformer-profesional" className="group p-8 border border-[#2A2624]/10 rounded-sm bg-[#2A2624] text-[#EAE8E4] hover:bg-[#3E2723] transition-colors text-left">
-            <div className="w-6 h-6 mb-4 border border-[#EAE8E4] rounded-full flex items-center justify-center text-[10px]">P</div>
-            <h2 className="text-xl font-serif italic text-[#EAE8E4] mb-2">
+        {/* Product Cards */}
+        <div className="grid lg:grid-cols-2 gap-6 mb-24">
+          <Link
+            to="/product/reformer-profesional"
+            className="group block bg-[#2A2624] text-[#EAE8E4] rounded-[2rem] p-10 md:p-14 transition-all duration-700 hover:-translate-y-2 hover:shadow-2xl"
+          >
+            <div className="w-10 h-10 mb-8 border border-[#EAE8E4]/30 rounded-full flex items-center justify-center text-xs font-serif italic opacity-60">P</div>
+            <h2 className="text-3xl md:text-4xl font-serif italic mb-4 group-hover:text-white transition-colors">
               Reformer de Estudio
             </h2>
-            <p className="text-sm text-white/70 font-light mb-4">
-              Silencio total, tolerancias precisas y estética premium.
+            <p className="text-white/60 font-light mb-8 max-w-md">
+              Silencio total, tolerancias precisas y estética premium para uso intensivo.
             </p>
-            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#EAE8E4]">
-              Ver Profesional <ArrowRight className="w-3 h-3" />
-            </div>
+            <span className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-white/50 group-hover:text-white transition-colors">
+              Ver Profesional <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </span>
           </Link>
 
-          <Link to="/product/reformer-casa" className="group p-8 border border-[#2A2624]/10 rounded-sm bg-[#EAE8E4] hover:bg-white transition-colors text-left">
-            <div className="w-6 h-6 mb-4 border border-[#2A2624] rounded-full flex items-center justify-center text-[10px] text-[#2A2624]">H</div>
-            <h2 className="text-xl font-serif italic text-[#2A2624] mb-2">
+          <Link
+            to="/product/reformer-casa"
+            className="group block bg-[#EAE8E4] rounded-[2rem] p-10 md:p-14 transition-all duration-700 hover:-translate-y-2 hover:shadow-2xl hover:bg-white"
+          >
+            <div className="w-10 h-10 mb-8 border border-[#2A2624]/30 rounded-full flex items-center justify-center text-xs font-serif italic text-[#2A2624] opacity-60">H</div>
+            <h2 className="text-3xl md:text-4xl font-serif italic text-[#2A2624] mb-4 group-hover:text-[#EB4C42] transition-colors">
               Reformer de Casa
             </h2>
-            <p className="text-sm text-[#5D5550] font-light mb-4">
-              Compacto y silencioso con cuero genuino. Entrega 3 semanas.
+            <p className="text-[#5D5550] font-light mb-8 max-w-md">
+              Compacto y silencioso con cuero genuino. Entrega en 3 semanas.
             </p>
-            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#2A2624]">
-              Ver Casa <ArrowRight className="w-3 h-3" />
-            </div>
-          </Link>
-
-          <Link to="/packs/estudio" className="group p-8 border border-[#2A2624]/10 rounded-sm bg-white/50 hover:bg-white transition-colors text-left">
-            <Package className="w-6 h-6 text-[#3E2723] mb-4" />
-            <h2 className="text-xl font-serif italic text-[#2A2624] mb-2 group-hover:text-[#3E2723] transition-colors">
-              Pack Estudios (8+)
-            </h2>
-            <p className="text-sm text-[#5D5550] font-light mb-4">
-              20% de descuento, instalación coordinada y soporte.
-            </p>
-            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#2A2624]">
-              Cotizar ahora <ArrowRight className="w-3 h-3" />
-            </div>
+            <span className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-[#3E2723]/60 group-hover:text-[#2A2624] transition-colors">
+              Ver Casa <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </span>
           </Link>
         </div>
 
-        <div className="mt-16 text-left max-w-4xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-serif italic text-[#2A2624] mb-6">FAQ</h2>
-          <div className="space-y-6">
-            <div className="border border-[#2A2624]/10 rounded-sm bg-white/50 p-6">
-              <h3 className="text-lg font-semibold text-[#2A2624]">¿Qué es una cama de Pilates (Reformer)?</h3>
-              <p className="mt-2 text-sm text-[#5D5550] font-light leading-relaxed">Es un equipo con carro deslizante y resistencia por resortes que permite cientos de ejercicios para fuerza, control y movilidad, tanto en casa como en estudio.</p>
-            </div>
-            <div className="border border-[#2A2624]/10 rounded-sm bg-white/50 p-6">
-              <h3 className="text-lg font-semibold text-[#2A2624]">¿Cuánto cuesta una cama de Pilates en México?</h3>
-              <p className="mt-2 text-sm text-[#5D5550] font-light leading-relaxed">Como referencia, una opción para casa suele iniciar alrededor de MXN 25,000 y una de estudio ronda MXN 50,000 (varía por materiales, tolerancias, accesorios y garantía).</p>
-            </div>
-            <div className="border border-[#2A2624]/10 rounded-sm bg-white/50 p-6">
-              <h3 className="text-lg font-semibold text-[#2A2624]">¿Qué diferencia hay entre un reformer para casa y uno profesional?</h3>
-              <p className="mt-2 text-sm text-[#5D5550] font-light leading-relaxed">El profesional está pensado para uso intensivo diario y máxima estabilidad; el de casa busca un formato más compacto manteniendo seguridad y recorrido suave.</p>
-            </div>
-            <div className="border border-[#2A2624]/10 rounded-sm bg-white/50 p-6">
-              <h3 className="text-lg font-semibold text-[#2A2624]">¿Qué espacio necesito para instalar una cama de Pilates?</h3>
-              <p className="mt-2 text-sm text-[#5D5550] font-light leading-relaxed">Considera el largo del equipo más espacio lateral para entrar/salir y un margen trasero para accesorios. Revisa la guía de dimensiones antes de comprar.</p>
-            </div>
+        {/* Recommended Guides */}
+        <div className="max-w-5xl mx-auto mb-24">
+          <h2 className="text-4xl font-serif italic text-[#2A2624] mb-12 text-center">Guías recomendadas</h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            {[
+              { href: '/blog/mejor-cama-de-pilates-para-casa', title: 'Mejor cama de Pilates para casa', desc: 'Cómo elegir por espacio, presupuesto y accesorios.' },
+              { href: '/blog/precio-cama-de-pilates-2025', title: 'Precio de la cama de Pilates 2025', desc: 'Rangos reales en México y qué incluye cada nivel.' },
+              { href: '/blog/mejores-marcas-cama-de-pilates', title: 'Mejores marcas de cama de Pilates', desc: 'Criterios para comparar calidad, garantía y soporte.' },
+              { href: '/blog/reformer-casa-vs-profesional', title: 'Reformer para casa vs profesional', desc: 'Diferencias clave para decidir sin pagar de más.' },
+            ].map((guide, i) => (
+              <Link
+                key={i}
+                to={guide.href}
+                className="group p-6 md:p-8 bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-2xl hover:bg-white hover:shadow-md transition-all duration-500"
+              >
+                <h3 className="text-lg font-serif italic text-[#2A2624] mb-2 group-hover:text-[#EB4C42] transition-colors">{guide.title}</h3>
+                <p className="text-sm text-[#5D5550] font-light">{guide.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-4xl font-serif italic text-[#2A2624] mb-12 text-center">Preguntas frecuentes</h2>
+          <div className="space-y-4">
+            {[
+              { q: '¿Qué es una cama de Pilates (Reformer)?', a: 'Es un equipo con carro deslizante y resistencia por resortes que permite cientos de ejercicios para fuerza, control y movilidad, tanto en casa como en estudio.' },
+              { q: '¿Cuánto cuesta una cama de Pilates en México?', a: 'Como referencia, una opción para casa suele iniciar alrededor de MXN 25,000 y una de estudio ronda MXN 50,000 (varía por materiales, tolerancias, accesorios y garantía).' },
+              { q: '¿Qué diferencia hay entre un reformer para casa y uno profesional?', a: 'El profesional está pensado para uso intensivo diario y máxima estabilidad; el de casa busca un formato más compacto manteniendo seguridad y recorrido suave.' },
+              { q: '¿Qué espacio necesito para instalar una cama de Pilates?', a: 'Considera el largo del equipo más espacio lateral para entrar/salir y un margen trasero para accesorios. Revisa la guía de dimensiones antes de comprar.' },
+            ].map((faqItem, i) => (
+              <details key={i} className="group bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-2xl overflow-hidden">
+                <summary className="p-6 md:p-8 font-serif italic text-xl text-[#2A2624] cursor-pointer hover:text-[#3E2723] transition-colors list-none flex justify-between items-center">
+                  {faqItem.q}
+                  <span className="text-[#3E2723] group-open:rotate-45 transition-transform text-2xl font-light ml-4 flex-shrink-0">+</span>
+                </summary>
+                <div className="px-6 md:px-8 pb-6 md:pb-8 text-[#5D5550] font-light leading-relaxed">
+                  <p>{faqItem.a}</p>
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </section>

@@ -3,8 +3,9 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
-import { ContextualImage } from '@/components/ContextualImage';
-import { Check, Info, DollarSign } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Check, Star, Shield, Zap, DollarSign, ArrowRight } from 'lucide-react';
+import BackLink from '@/components/ui/back-link';
 
 const CamaDePilatesPrecio: React.FC = () => {
   const origin = getOrigin();
@@ -25,7 +26,7 @@ const CamaDePilatesPrecio: React.FC = () => {
   };
 
   return (
-    <LuxuryLayout>
+    <LuxuryLayout headerTheme="light">
       <Helmet>
         <title>{title} | {DEFAULTS.siteName}</title>
         <meta name="description" content={desc} />
@@ -34,230 +35,267 @@ const CamaDePilatesPrecio: React.FC = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-8 md:px-24 max-w-[1800px] mx-auto">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div>
-            <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-6">
-              Guía de precios en México
-            </span>
-            <h1 className="text-5xl md:text-7xl font-serif italic text-[#2A2624] leading-[0.9] mb-8">
-              Precio de <br />
-              <span className="not-italic font-light font-sans tracking-tight">Cama de Pilates.</span>
-            </h1>
-            <p className="text-lg text-[#5D5550] font-light max-w-xl leading-relaxed mb-8">
-              Rangos de referencia en México y qué incluye realmente el precio: materiales (cuero, nogal, acero), tolerancias para el silencio, muelles, garantía y servicio.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link to="/compare" className="inline-flex items-center px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors">
-                Ver Modelos
-              </Link>
-              <Link to="/cama-de-pilates/en-venta" className="inline-flex items-center px-8 py-4 border border-[#2A2624]/20 text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#EAE8E4] transition-colors">
-                Guía de Compra
-              </Link>
-            </div>
-          </div>
-          <div className="relative aspect-square md:aspect-[4/3] rounded-sm overflow-hidden">
-            <ContextualImage
-              placeholderId="pricing-hero"
-              pageType="pricing"
-              pageSlug="hero"
-              location="hero-right"
-              aspectRatio="4:3"
-              alt="Detalle de materiales premium"
-              className="w-full h-full object-cover"
-            />
-          </div>
+      <section className="relative pt-32 pb-20 px-6 md:px-24 max-w-[1800px] mx-auto overflow-hidden">
+        <BackLink className="mb-8 hidden md:inline-flex opacity-60 hover:opacity-100 transition-opacity" fallbackTo="/cama-de-pilates" label="Volver" />
+
+        {/* Subtle Background Mesh */}
+        <div className="absolute top-0 left-0 right-0 h-[800px] bg-gradient-to-b from-white/40 to-transparent pointer-events-none -z-10" />
+        <div className="absolute top-40 left-1/2 -z-20 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 opacity-30 blur-3xl">
+          <div className="h-full w-full bg-gradient-to-r from-[#e0dcd9] via-[#dcd8d4] to-[#e0dcd9] rounded-full animate-pulse duration-[5000ms]" />
         </div>
-      </section>
 
-      {/* Pricing Tiers */}
-      <section className="py-24 px-8 md:px-24 bg-white/40 border-t border-[#2A2624]/10">
-        <div className="max-w-[1800px] mx-auto">
-          <div className="max-w-4xl mx-auto mb-12 text-center">
-            <p className="text-sm md:text-base text-[#5D5550] font-light leading-relaxed">
-              Si buscas “precio de cama de pilates” en México, aquí tienes una referencia clara y práctica.
-              La diferencia no es solo estética: suele estar en estabilidad, silencio, materiales y soporte.
-            </p>
-          </div>
+        <div className="text-center mb-16 md:mb-20">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="block text-xs font-bold font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-8 opacity-60"
+          >
+            Guía de Precios 2025
+          </motion.span>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="text-5xl md:text-8xl font-serif italic text-[#2A2624] leading-[0.85] mb-8 tracking-tighter"
+          >
+            Precio de Cama de Pilates<span className="text-[#EB4C42]">.</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="text-lg md:text-xl text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed"
+          >
+            Rangos de referencia en México y qué incluye el precio: <br className="hidden md:block" />
+            materiales, tolerancias, garantía y servicio.
+          </motion.p>
 
-          <div className="overflow-x-auto border border-[#2A2624]/10 bg-white/50 rounded-sm mb-12">
-            <table className="w-full min-w-[720px] text-left">
-              <thead className="bg-[#2A2624]/[0.03]">
-                <tr>
-                  <th className="p-4 text-xs uppercase tracking-widest text-[#2A2624]">Tipo</th>
-                  <th className="p-4 text-xs uppercase tracking-widest text-[#2A2624]">Rango (MXN)</th>
-                  <th className="p-4 text-xs uppercase tracking-widest text-[#2A2624]">Uso ideal</th>
-                  <th className="p-4 text-xs uppercase tracking-widest text-[#2A2624]">Qué suele incluir</th>
-                  <th className="p-4 text-xs uppercase tracking-widest text-[#2A2624]">Riesgo común</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[#2A2624]/10">
-                <tr>
-                  <td className="p-4 text-sm text-[#2A2624] font-semibold">Casa</td>
-                  <td className="p-4 text-sm text-[#2A2624]">$25,000–$40,000</td>
-                  <td className="p-4 text-sm text-[#5D5550] font-light">Hogar / uso moderado</td>
-                  <td className="p-4 text-sm text-[#5D5550] font-light">Reformer + set básico (varía)</td>
-                  <td className="p-4 text-sm text-[#5D5550] font-light">Carro ruidoso / poca estabilidad</td>
-                </tr>
-                <tr>
-                  <td className="p-4 text-sm text-[#2A2624] font-semibold">Estudio</td>
-                  <td className="p-4 text-sm text-[#2A2624]">$45,000–$70,000</td>
-                  <td className="p-4 text-sm text-[#5D5550] font-light">Uso intensivo diario</td>
-                  <td className="p-4 text-sm text-[#5D5550] font-light">Estructura robusta + accesorios</td>
-                  <td className="p-4 text-sm text-[#5D5550] font-light">Refacciones lentas / garantía confusa</td>
-                </tr>
-                <tr>
-                  <td className="p-4 text-sm text-[#2A2624] font-semibold">Usada</td>
-                  <td className="p-4 text-sm text-[#2A2624]">$15,000–$35,000</td>
-                  <td className="p-4 text-sm text-[#5D5550] font-light">Si puedes inspeccionarla</td>
-                  <td className="p-4 text-sm text-[#5D5550] font-light">Depende del vendedor</td>
-                  <td className="p-4 text-sm text-[#5D5550] font-light">Desgaste en ruedas/resortes</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Home Tier */}
-            <div className="group border border-[#2A2624]/10 rounded-sm p-8 md:p-12 bg-white/50 hover:bg-white transition-colors duration-500">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <h2 className="text-3xl font-serif italic text-[#2A2624] mb-2">Home Edition</h2>
-                  <p className="text-xs uppercase tracking-widest text-[#5D5550]">Para tu santuario personal</p>
-                </div>
-                <div className="text-right">
-                  <div className="text-sm text-[#5D5550]">Desde</div>
-                  <div className="text-2xl font-serif italic text-[#2A2624]">$35,000 <span className="text-sm font-sans not-italic text-[#5D5550]">MXN</span></div>
-                </div>
-              </div>
-              <ul className="space-y-4 mb-8 border-t border-[#2A2624]/10 pt-6">
-                <li className="flex items-start gap-3 text-sm text-[#5D5550] font-light">
-                  <Check className="w-4 h-4 text-[#3E2723] mt-0.5" />
-                  <span>Estructura de madera con cuero genuino</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm text-[#5D5550] font-light">
-                  <Check className="w-4 h-4 text-[#3E2723] mt-0.5" />
-                  <span>Recorrido suave y silencioso</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm text-[#5D5550] font-light">
-                  <Check className="w-4 h-4 text-[#3E2723] mt-0.5" />
-                  <span>Entrega 3 semanas en México</span>
-                </li>
-              </ul>
-              <Link to="/product/reformer-casa" className="block w-full py-4 text-center border border-[#2A2624] text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors">
-                Ver Detalles
-              </Link>
-            </div>
-
-            {/* Studio Tier */}
-            <div className="group border border-[#2A2624]/10 rounded-sm p-8 md:p-12 bg-[#2A2624] text-[#EAE8E4]">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <h2 className="text-3xl font-serif italic text-[#EAE8E4] mb-2">Studio Professional</h2>
-                  <p className="text-xs uppercase tracking-widest text-white/60">Uso comercial intensivo</p>
-                </div>
-                <div className="text-right">
-                  <div className="text-sm text-white/60">Alrededor de</div>
-                  <div className="text-2xl font-serif italic text-[#EAE8E4]">$50,000 <span className="text-sm font-sans not-italic text-white/60">MXN</span></div>
-                </div>
-              </div>
-              <ul className="space-y-4 mb-8 border-t border-white/10 pt-6">
-                <li className="flex items-start gap-3 text-sm text-white/80 font-light">
-                  <Check className="w-4 h-4 text-[#EAE8E4] mt-0.5" />
-                  <span>Cuero genuino, nogal y acero estructural</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm text-white/80 font-light">
-                  <Check className="w-4 h-4 text-[#EAE8E4] mt-0.5" />
-                  <span>Tolerancias precisas: silencio total</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm text-white/80 font-light">
-                  <Check className="w-4 h-4 text-[#EAE8E4] mt-0.5" />
-                  <span>Garantía 1 año • Repuestos exprés</span>
-                </li>
-              </ul>
-              <Link to="/product/reformer-profesional" className="block w-full py-4 text-center bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white transition-colors">
-                Ver Detalles
-              </Link>
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mt-10 flex flex-wrap justify-center gap-3"
+          >
+            <Link to="/compare" className="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-[#2A2624] text-[#EAE8E4] text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#3E2723] hover:scale-105 transition-all">
+              Ver modelos <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link to="/cama-de-pilates/en-venta" className="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-[#2A2624]/20 text-[#2A2624] text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-all">
+              Guía de compra
+            </Link>
+          </motion.div>
         </div>
-      </section>
 
-      {/* What Influences Price */}
-      <section className="py-24 px-8 md:px-24">
-        <div className="max-w-[1800px] mx-auto">
-          <h2 className="text-3xl font-serif italic text-[#2A2624] mb-12 text-center">Qué sube (o baja) el precio</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-8 border border-[#2A2624]/10 rounded-sm bg-white/50">
-              <div className="w-10 h-10 rounded-full bg-[#2A2624] flex items-center justify-center mb-6">
-                <Star className="w-5 h-5 text-[#EAE8E4]" />
-              </div>
-              <h3 className="text-xl font-serif italic text-[#2A2624] mb-4">Premium Materials</h3>
-              <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                El uso de cuero genuino (no vinipiel), madera sólida de nogal y acero estructural eleva el costo pero garantiza durabilidad y estética superior.
-              </p>
-            </div>
-            <div className="p-8 border border-[#2A2624]/10 rounded-sm bg-white/50">
-              <div className="w-10 h-10 rounded-full bg-[#2A2624] flex items-center justify-center mb-6">
-                <Info className="w-5 h-5 text-[#EAE8E4]" />
-              </div>
-              <h3 className="text-xl font-serif italic text-[#2A2624] mb-4">Precision & Silence</h3>
-              <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                Lograr un recorrido sin fricción ni ruido requiere tolerancias de ingeniería más estrictas y componentes de mayor calidad.
-              </p>
-            </div>
-            <div className="p-8 border border-[#2A2624]/10 rounded-sm bg-white/50">
-              <div className="w-10 h-10 rounded-full bg-[#2A2624] flex items-center justify-center mb-6">
-                <Shield className="w-5 h-5 text-[#EAE8E4]" />
-              </div>
-              <h3 className="text-xl font-serif italic text-[#2A2624] mb-4">Service & Warranty</h3>
-              <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                Incluimos garantía real de 1 año, soporte en español y disponibilidad inmediata de repuestos desde CDMX.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-12 max-w-4xl mx-auto border border-[#2A2624]/10 rounded-sm bg-white/50 p-8">
-            <h3 className="text-xl font-serif italic text-[#2A2624] mb-4">Checklist rápido (60 segundos)</h3>
-            <ul className="grid md:grid-cols-2 gap-3 text-sm text-[#5D5550] font-light">
-              <li>¿Se siente estable sin vibraciones?</li>
-              <li>¿El carro se desliza sin ruido?</li>
-              <li>¿Incluye muelles/resortes confiables?</li>
-              <li>¿Hay garantía por escrito y repuestos?</li>
-              <li>¿Incluye box/jumpboard/correas (si los necesitas)?</li>
-              <li>¿Entrega real en México (tiempo estimado)?</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Studio Discount Banner */}
-      <section className="py-24 px-8 md:px-24 bg-[#2A2624] text-[#EAE8E4]">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#EAE8E4]/10 mb-8">
-            <DollarSign className="w-8 h-8 text-[#EAE8E4]" />
-          </div>
-          <h2 className="text-3xl md:text-4xl font-serif italic mb-6">Studio Volume Pricing</h2>
-          <p className="text-lg text-white/70 font-light mb-8 max-w-2xl mx-auto">
-            A partir de 8 unidades aplicamos un <strong>20% de descuento</strong>. Coordinamos instalación profesional y entrega por lotes para tu apertura.
+        {/* Quick Price Context */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="max-w-4xl mx-auto mb-16 p-6 md:p-8 bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-2xl text-center"
+        >
+          <p className="text-[#5D5550] font-light leading-relaxed">
+            La diferencia de precio entre reformers no es solo estética: suele estar en <strong className="text-[#2A2624]">estabilidad</strong>, <strong className="text-[#2A2624]">silencio</strong>, <strong className="text-[#2A2624]">materiales reales</strong> y <strong className="text-[#2A2624]">soporte post-venta</strong>.
           </p>
-          <Link to="/packs/estudio" className="inline-flex items-center px-8 py-4 bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white transition-colors">
-            Ver Packs de Estudio
-          </Link>
+        </motion.div>
+
+        {/* Pricing Table */}
+        <div className="max-w-5xl mx-auto mb-20">
+          <div className="overflow-x-auto pb-4 md:pb-0">
+            <div className="min-w-[700px] bg-white/60 backdrop-blur-md rounded-[2rem] border border-[#2A2624]/5 overflow-hidden shadow-sm">
+              <div className="grid grid-cols-5 border-b border-[#2A2624]/5 bg-[#2A2624]/[0.02]">
+                <div className="p-6 md:p-8 font-serif italic text-[#2A2624] text-lg">Tipo</div>
+                <div className="p-6 md:p-8 font-serif italic text-[#2A2624] text-lg">Rango (MXN)</div>
+                <div className="p-6 md:p-8 font-serif italic text-[#2A2624] text-lg">Uso ideal</div>
+                <div className="p-6 md:p-8 font-serif italic text-[#2A2624] text-lg">Qué incluye</div>
+                <div className="p-6 md:p-8 font-serif italic text-[#2A2624] text-lg">Riesgo común</div>
+              </div>
+
+              {[
+                { type: 'Casa', range: '$25,000–$40,000', use: 'Hogar / uso moderado', includes: 'Reformer + set básico', risk: 'Carro ruidoso / poca estabilidad' },
+                { type: 'Estudio', range: '$45,000–$70,000', use: 'Uso intensivo diario', includes: 'Estructura robusta + accesorios', risk: 'Refacciones lentas / garantía confusa' },
+                { type: 'Usada', range: '$15,000–$35,000', use: 'Si puedes inspeccionarla', includes: 'Depende del vendedor', risk: 'Desgaste en ruedas/resortes' },
+              ].map((row, i) => (
+                <div key={i} className="grid grid-cols-5 border-b border-[#2A2624]/5 last:border-0 hover:bg-white transition-colors group">
+                  <div className="p-6 md:p-8 text-sm font-semibold text-[#2A2624]">{row.type}</div>
+                  <div className="p-6 md:p-8 text-sm text-[#2A2624] group-hover:text-[#EB4C42] transition-colors">{row.range}</div>
+                  <div className="p-6 md:p-8 text-sm text-[#5D5550] font-light">{row.use}</div>
+                  <div className="p-6 md:p-8 text-sm text-[#5D5550] font-light">{row.includes}</div>
+                  <div className="p-6 md:p-8 text-sm text-[#5D5550] font-light">{row.risk}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Pricing Cards */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
+          className="grid lg:grid-cols-2 gap-6 md:gap-8 mb-24"
+        >
+          {/* Home Edition */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 40 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+            }}
+            className="group bg-[#F5F4F0] rounded-[2rem] p-10 md:p-14 transition-all duration-700 hover:-translate-y-2 hover:shadow-2xl hover:bg-white"
+          >
+            <div className="flex justify-between items-start mb-8">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-serif italic text-[#2A2624] mb-2 group-hover:text-[#EB4C42] transition-colors">
+                  Home Edition
+                </h2>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-[#5D5550] font-bold opacity-60">Para tu santuario personal</p>
+              </div>
+              <div className="text-right">
+                <p className="text-sm text-[#5D5550] font-light">Desde</p>
+                <p className="text-3xl font-serif italic text-[#2A2624]">$35,000</p>
+                <p className="text-xs text-[#5D5550]">MXN</p>
+              </div>
+            </div>
+            <ul className="space-y-4 mb-10 border-t border-[#2A2624]/10 pt-8">
+              {[
+                'Estructura de madera con cuero genuino',
+                'Recorrido suave y silencioso',
+                'Entrega 3 semanas en México',
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-3 text-[#5D5550] font-light">
+                  <Check className="w-5 h-5 text-[#3E2723] mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <Link
+              to="/product/reformer-casa"
+              className="block w-full py-5 text-center border border-[#2A2624] text-[#2A2624] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-all"
+            >
+              Ver detalles
+            </Link>
+          </motion.div>
+
+          {/* Studio Professional */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 40 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+            }}
+            className="group bg-[#1C1917] text-[#EAE8E4] rounded-[2rem] p-10 md:p-14 transition-all duration-700 hover:-translate-y-2 hover:shadow-2xl"
+          >
+            <div className="flex justify-between items-start mb-8">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-serif italic text-[#EAE8E4] mb-2 group-hover:text-white transition-colors">
+                  Studio Professional
+                </h2>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-bold">Uso comercial intensivo</p>
+              </div>
+              <div className="text-right">
+                <p className="text-sm text-white/50 font-light">Alrededor de</p>
+                <p className="text-3xl font-serif italic text-[#EAE8E4]">$50,000</p>
+                <p className="text-xs text-white/50">MXN</p>
+              </div>
+            </div>
+            <ul className="space-y-4 mb-10 border-t border-white/10 pt-8">
+              {[
+                'Cuero genuino, nogal y acero estructural',
+                'Tolerancias precisas: silencio total',
+                'Garantía 1 año + repuestos exprés',
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-3 text-white/70 font-light">
+                  <Check className="w-5 h-5 text-[#EAE8E4] mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <Link
+              to="/product/reformer-profesional"
+              className="block w-full py-5 text-center bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-all"
+            >
+              Ver detalles
+            </Link>
+          </motion.div>
+        </motion.div>
+
+        {/* What Influences Price */}
+        <div className="max-w-5xl mx-auto mb-24">
+          <h2 className="text-4xl font-serif italic text-[#2A2624] mb-12 text-center">Qué sube (o baja) el precio</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              {
+                icon: Star,
+                title: 'Materiales Premium',
+                desc: 'Cuero genuino (no vinipiel), madera sólida de nogal y acero estructural garantizan durabilidad.',
+              },
+              {
+                icon: Zap,
+                title: 'Precisión y Silencio',
+                desc: 'Tolerancias de ingeniería más estrictas logran un recorrido sin fricción ni ruido.',
+              },
+              {
+                icon: Shield,
+                title: 'Servicio y Garantía',
+                desc: 'Garantía real de 1 año, soporte en español y repuestos disponibles desde CDMX.',
+              },
+            ].map((item, i) => (
+              <div key={i} className="p-6 md:p-8 bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-2xl hover:bg-white hover:shadow-md transition-all duration-500">
+                <item.icon className="w-6 h-6 text-[#3E2723] mb-6 opacity-60" strokeWidth={1.5} />
+                <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">{item.title}</h3>
+                <p className="text-[#5D5550] font-light text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Quick Checklist */}
+        <div className="max-w-4xl mx-auto mb-24 p-8 md:p-12 bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-[2rem]">
+          <h3 className="text-2xl font-serif italic text-[#2A2624] mb-8 text-center">Checklist rápido (60 segundos)</h3>
+          <div className="grid md:grid-cols-2 gap-4">
+            {[
+              '¿Se siente estable sin vibraciones?',
+              '¿El carro se desliza sin ruido?',
+              '¿Incluye muelles/resortes confiables?',
+              '¿Hay garantía por escrito y repuestos?',
+              '¿Incluye box/jumpboard/correas?',
+              '¿Entrega real en México (tiempo estimado)?',
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-3 p-4 bg-white/60 rounded-xl">
+                <div className="w-5 h-5 rounded-full border border-[#2A2624]/20 flex items-center justify-center text-xs text-[#3E2723]">
+                  {i + 1}
+                </div>
+                <span className="text-sm text-[#5D5550] font-light">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Studio Volume CTA */}
+        <div className="bg-[#2A2624] text-[#EAE8E4] rounded-[2rem] p-10 md:p-20 text-center relative overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 -z-0 h-[400px] w-[800px] -translate-x-1/2 -translate-y-1/2 opacity-20 blur-3xl rounded-full bg-blue-900/40 pointer-events-none" />
+
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <DollarSign className="w-12 h-12 mx-auto mb-8 opacity-40" strokeWidth={1} />
+            <span className="block text-xs font-sans tracking-[0.3em] uppercase text-white/50 mb-6">
+              Precio especial
+            </span>
+            <h2 className="text-4xl md:text-5xl font-serif italic leading-tight mb-6">
+              20% descuento en 8+ unidades
+            </h2>
+            <p className="text-lg md:text-xl text-white/70 font-light mb-10 leading-relaxed">
+              Coordinamos instalación profesional y entrega por lotes para tu apertura.
+            </p>
+            <Link
+              to="/packs/estudio"
+              className="inline-flex items-center px-10 py-5 bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:scale-105 transition-all"
+            >
+              Ver packs de estudio
+            </Link>
+          </div>
         </div>
       </section>
-
     </LuxuryLayout>
   );
 };
-
-// Helper icons
-function Star(props: React.SVGProps<SVGSVGElement>) {
-  return <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-}
-
-function Shield(props: React.SVGProps<SVGSVGElement>) {
-  return <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
-}
 
 export default CamaDePilatesPrecio;
