@@ -33,7 +33,7 @@ const BlogCard21: React.FC<{ post: BlogMeta; large?: boolean }> = ({ post, large
     <Reveal>
     <Link to={`/blog/${post.slug}`} className={`group block rounded-xl overflow-hidden border border-border bg-card hover:border-primary/50 transition-colors ${large ? 'md:col-span-2' : ''}`}>
       <div className={`relative w-full ${large ? 'aspect-[2/1]' : 'aspect-[4/3]'} bg-muted`}> 
-        <img src={img} alt={post.title} loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+        <img src={img} alt={post.title} loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" />
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 p-4">
           <div className="inline-flex items-center rounded-md bg-black/60 text-white text-xs px-2 py-0.5">{post.category}</div>

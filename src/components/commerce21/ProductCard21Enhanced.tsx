@@ -40,15 +40,13 @@ const ProductCard21Enhanced: React.FC<Props> = ({
       <div className="p-3">
         {/* Image Section */}
         <div className="relative aspect-square w-full overflow-hidden rounded-[2rem] bg-[#F2F0ED] mb-4">
-          {/* Product Image with Hover Swap */}
+          {/* Product Image */}
           <img
-            src={isHovered && product.hoverImage ? product.hoverImage : product.image}
+            src={product.image}
             alt={`${product.name} - ${product.category === 'Reformers' ? 'cama de pilates reformer' : product.category?.toLowerCase() || 'equipo de pilates'} Edelweiss de ${(product.materials || []).slice(0, 2).join(' y ') || 'materiales premium'} - comprar en Mexico`}
             loading="lazy"
             decoding="async"
-            className={`h-full w-full object-cover transition-transform duration-700 ease-out ${isHovered && !product.hoverImage ? 'scale-110' : 'scale-100'
-              } ${isHovered && product.hoverImage ? 'animate-fade-in' : ''}`}
-            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+            className={`h-full w-full object-cover transition-transform duration-700 ease-out ${isHovered ? 'scale-110' : 'scale-100'}`}
           />
 
           {/* Overlay on Hover */}

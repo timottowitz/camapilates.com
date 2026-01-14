@@ -9,7 +9,6 @@ const ShopHeaderAddon: React.FC<{ src?: string; alt?: string; href?: string }>
       className="h-16 w-auto md:h-20 shadow-sm rounded"
       loading="lazy"
       decoding="async"
-      onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
     />
   );
   return (

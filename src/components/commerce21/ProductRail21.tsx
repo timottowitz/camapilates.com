@@ -198,16 +198,15 @@ const ProductRailCard: React.FC<{ product: Product; index: number }> = ({ produc
       {/* Image Container */}
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-t-[1.5rem] bg-[#F2F0ED]">
         <img
-          src={isHovered && product.hoverImage ? product.hoverImage : product.image}
+          src={product.image}
           alt={`${product.name} - ${product.category === 'Reformers' ? 'cama de pilates reformer' : (product.category?.toLowerCase() || 'equipo de pilates')} Edelweiss Mexico`}
           loading="lazy"
           decoding="async"
           className={`
             h-full w-full object-cover
             transition-transform duration-700 ease-out
-            ${isHovered && !product.hoverImage ? 'scale-110' : 'scale-100'}
+            ${isHovered ? 'scale-110' : 'scale-100'}
           `}
-          onError={(e) => { e.currentTarget.style.display = 'none'; }}
         />
 
         {/* Badges */}

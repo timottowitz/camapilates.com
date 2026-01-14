@@ -25,7 +25,6 @@ const Gallery21: React.FC<Props> = ({ images, altPrefix = 'Producto', productCat
             alt={`${seoAltPrefix} - vista ${idx + 1} de ${images.length} - comprar en Mexico`}
             className="h-full w-full object-cover"
             loading="eager"
-            onError={(e) => { e.currentTarget.style.display = 'none'; }}
           />
         )}
       </div>

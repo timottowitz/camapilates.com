@@ -75,7 +75,7 @@ export const Finishes: React.FC<{
       <div className="mt-4 grid sm:grid-cols-2 gap-4">
         <div className="rounded-lg border border-border bg-card overflow-hidden">
           <div className="aspect-video w-full bg-muted grid place-content-center">
-            <img src={FINISHES[value].img} alt={FINISHES[value].name} className="h-full w-full object-cover cursor-zoom-in" loading="lazy" onClick={() => setOpen(true)} onError={(e) => ((e.currentTarget.style.display = 'none'))} />
+            <img src={FINISHES[value].img} alt={FINISHES[value].name} className="h-full w-full object-cover cursor-zoom-in" loading="lazy" onClick={() => setOpen(true)} />
             {/* if image missing, keep neutral background */}
           </div>
         </div>

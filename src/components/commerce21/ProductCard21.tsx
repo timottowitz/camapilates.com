@@ -39,7 +39,6 @@ const ProductCard21: React.FC<Props> = ({ product, onQuickView }) => {
             loading="lazy"
             decoding="async"
             className="h-full w-full object-cover group-hover:scale-[1.02] transition-transform"
-            onError={(e) => { e.currentTarget.style.display = 'none'; }}
           />
         </div>
         <div className="mt-3">
