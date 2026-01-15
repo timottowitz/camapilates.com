@@ -86,7 +86,13 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
         <div className="px-6 -mt-12 mb-4 flex justify-between items-end">
           <Avatar className="w-24 h-24 border-4 border-white shadow-md bg-[#EAE8E4]">
             {avatarUrl ? (
-              <AvatarImage src={avatarUrl} alt={teacher.fullName.value} className="object-cover" />
+              <AvatarImage 
+                src={avatarUrl} 
+                alt={teacher.fullName.value} 
+                className="object-cover"
+                loading="lazy"
+                decoding="async"
+              />
             ) : (
               <AvatarFallback className="bg-[#EAE8E4] text-[#2A2624] text-xl font-serif">
                 {teacher.fullName.value.slice(0, 2).toUpperCase()}

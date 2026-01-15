@@ -1,11 +1,12 @@
-import React, { useMemo, useState } from 'react';
-import { useParams, Link, useSearchParams } from 'react-router-dom';
+import React, { useMemo, useState, useCallback } from 'react';
+import { useParams, Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useQuery } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
 import { Filter, Search, ChevronRight } from 'lucide-react';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import TeacherCard from '@/components/teachers/TeacherCard';
+import TeacherCardSkeleton from '@/components/teachers/TeacherCardSkeleton';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
@@ -75,15 +76,33 @@ interface Teacher {
 
 const CityTeachers: React.FC = () => {
   const { city: citySlug } = useParams<{ city: string }>();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const [showFilters, setShowFilters] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedSpecs, setSelectedSpecs] = useState<string[]>([]);
 
-  React.useEffect(() => {
-    const q = searchParams.get('q');
-    if (q) setSearchTerm(q);
+  // URL-based filter state
+  const searchTerm = searchParams.get('q') || '';
+  const selectedSpecs = useMemo(() => {
+    const specs = searchParams.get('spec');
+    return specs ? specs.split(',').filter(Boolean) : [];
   }, [searchParams]);
+
+  // Update URL when filters change
+  const updateFilters = useCallback((newSearch: string, newSpecs: string[]) => {
+    const params = new URLSearchParams();
+    if (newSearch) params.set('q', newSearch);
+    if (newSpecs.length > 0) params.set('spec', newSpecs.join(','));
+    setSearchParams(params, { replace: true });
+  }, [setSearchParams]);
+
+  const setSearchTerm = useCallback((term: string) => {
+    updateFilters(term, selectedSpecs);
+  }, [updateFilters, selectedSpecs]);
+
+  const setSelectedSpecs = useCallback((specs: string[] | ((prev: string[]) => string[])) => {
+    const newSpecs = typeof specs === 'function' ? specs(selectedSpecs) : specs;
+    updateFilters(searchTerm, newSpecs);
+  }, [updateFilters, searchTerm, selectedSpecs]);
 
   const queryArgs = hasConvex && citySlug ? { citySlug: citySlug === 'cdmx' ? 'ciudad-de-mexico' : citySlug } : 'skip';
   const teachersQuery = useQuery(
@@ -318,11 +337,12 @@ const CityTeachers: React.FC = () => {
                 ))}
               </div>
             ) : isConvexLoading && teachers.length === 0 ? (
-              <div className="text-center py-24 bg-[#F9F9F9] rounded-lg border border-dashed border-[#2A2624]/10">
-                <div className="animate-pulse">
-                  <div className="w-12 h-12 bg-[#2A2624]/10 rounded-full mx-auto mb-4" />
-                  <p className="text-[#5D5550] text-lg font-light">Cargando instructores...</p>
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <div key={i} className="h-[420px]">
+                    <TeacherCardSkeleton />
+                  </div>
+                ))}
               </div>
             ) : (
               <div className="text-center py-24 bg-[#F9F9F9] rounded-lg border border-dashed border-[#2A2624]/10">

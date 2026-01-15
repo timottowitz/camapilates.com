@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useQuery } from 'convex/react';
@@ -8,9 +8,19 @@ import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { hasConvex } from '@/lib/convexProvider';
-import { getTeacherCities } from '@/data/teachers';
+import { getTeacherCities, getTeachersByCitySlug } from '@/data/teachers';
 import BackLink from '@/components/ui/back-link';
 import { motion, AnimatePresence } from 'framer-motion';
+
+// Prefetch city data on hover
+const prefetchedCities = new Set<string>();
+const prefetchCity = (citySlug: string) => {
+  if (prefetchedCities.has(citySlug)) return;
+  prefetchedCities.add(citySlug);
+  // Trigger the import of seed data (already loaded, but ensures it's ready)
+  const normalizedSlug = citySlug === 'cdmx' ? 'ciudad-de-mexico' : citySlug;
+  getTeachersByCitySlug(normalizedSlug);
+};
 
 const TeachersLanding: React.FC = () => {
   const pageTitle = 'Instructores de Pilates Certificados en México';
@@ -186,6 +196,7 @@ const TeachersLanding: React.FC = () => {
                 <Link
                   to={`/instructores-pilates/${city.slug}`}
                   className="group relative block bg-[#F5F4F0] rounded-[1.5rem] p-6 md:p-8 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:bg-white border border-transparent hover:border-[#2A2624]/5"
+                  onMouseEnter={() => prefetchCity(city.slug)}
                 >
                   <div className="flex items-start justify-between mb-8">
                     <div className="w-14 h-14 rounded-full bg-[#EAE8E4] group-hover:bg-[#2A2624] text-[#2A2624] group-hover:text-[#EAE8E4] flex items-center justify-center transition-colors duration-500">
