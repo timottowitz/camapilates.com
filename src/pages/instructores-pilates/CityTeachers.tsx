@@ -85,10 +85,14 @@ const CityTeachers: React.FC = () => {
     if (q) setSearchTerm(q);
   }, [searchParams]);
 
+  const queryArgs = hasConvex && citySlug ? { citySlug: citySlug === 'cdmx' ? 'ciudad-de-mexico' : citySlug } : 'skip';
   const teachersQuery = useQuery(
     api.teachers.getByCity,
-    hasConvex && citySlug ? { citySlug: citySlug === 'cdmx' ? 'ciudad-de-mexico' : citySlug } : 'skip'
+    queryArgs
   ) as Teacher[] | undefined;
+
+  // Loading state: Convex query is enabled but hasn't returned yet
+  const isConvexLoading = hasConvex && queryArgs !== 'skip' && teachersQuery === undefined;
 
   const teachers = React.useMemo(() => {
     if (!citySlug) return [];
@@ -184,7 +188,11 @@ const CityTeachers: React.FC = () => {
           
           <div className="flex flex-col md:flex-row gap-6 md:items-center justify-between">
              <p className="text-[#5D5550] font-light text-lg">
-               {teachers.length} profesionales certificados encontrados
+               {isConvexLoading && teachers.length === 0 ? (
+                 <span className="animate-pulse">Cargando profesionales...</span>
+               ) : (
+                 `${teachers.length} profesionales certificados encontrados`
+               )}
              </p>
              
              <div className="md:hidden">
@@ -308,6 +316,13 @@ const CityTeachers: React.FC = () => {
                     <TeacherCard teacher={teacher} />
                   </div>
                 ))}
+              </div>
+            ) : isConvexLoading && teachers.length === 0 ? (
+              <div className="text-center py-24 bg-[#F9F9F9] rounded-lg border border-dashed border-[#2A2624]/10">
+                <div className="animate-pulse">
+                  <div className="w-12 h-12 bg-[#2A2624]/10 rounded-full mx-auto mb-4" />
+                  <p className="text-[#5D5550] text-lg font-light">Cargando instructores...</p>
+                </div>
               </div>
             ) : (
               <div className="text-center py-24 bg-[#F9F9F9] rounded-lg border border-dashed border-[#2A2624]/10">
