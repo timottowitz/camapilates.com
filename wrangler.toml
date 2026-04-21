@@ -5,7 +5,7 @@ compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "dist"
 
 [env.production]
-vars = { NODE_ENV = "production", VITE_CONVEX_URL = "https://spotted-raven-102.convex.cloud" }
+vars = { NODE_ENV = "production" }
 
 [env.preview]
-vars = { NODE_ENV = "development", VITE_CONVEX_URL = "https://spotted-raven-102.convex.cloud" }
+vars = { NODE_ENV = "development" }
