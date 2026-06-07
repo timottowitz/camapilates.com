@@ -26,12 +26,15 @@ import {
   Clock,
   Users,
   Award,
+  type LucideIcon,
 } from 'lucide-react';
 import { GooglePlacesPhoto } from '@/components/studio/GooglePlacesPhoto';
 import { GoogleReviews } from '@/components/studio/GoogleReviews';
 import { citySlug } from '@/utils/slug';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { getOrigin, generateStudioSchema } from '@/lib/seo';
+import { hasConvex } from '@/lib/convexProvider';
+import localData from '@/data/studios.json';
 
 // City name mapping
 const cityNameMap: Record<string, string> = {
@@ -57,7 +60,7 @@ const placeTypeTranslations: Record<string, string> = {
   'establishment': 'Establecimiento',
 };
 
-const InfoItem = ({ icon: Icon, title, children }: { icon: any, title: string, children: React.ReactNode }) => (
+const InfoItem = ({ icon: Icon, title, children }: { icon: LucideIcon, title: string, children: React.ReactNode }) => (
   <div className="flex gap-4 p-4 rounded-lg bg-[#F9F8F6] border border-[#2A2624]/5">
     <div className="mt-1">
       <div className="w-8 h-8 rounded-full bg-[#2A2624]/5 flex items-center justify-center">
@@ -78,14 +81,38 @@ const StudioDetail: React.FC = () => {
   const cityName = city ? cityNameMap[city.toLowerCase()] || city : '';
   const normalizedCitySlug = cityName ? citySlug(cityName) : city || '';
 
-  // Simple Convex queries
-  const studioData = useQuery(
+  const remoteStudioData = useQuery(
     api.studios.getBySlug,
-    cityName && studioSlug ? { city: cityName, slug: studioSlug } : 'skip'
+    hasConvex && cityName && studioSlug ? { city: cityName, slug: studioSlug } : 'skip'
   );
+  const fallbackStudioData = (localData.studios as Array<(typeof localData.studios)[number] & {
+    contact?: {
+      phone?: string;
+      website?: string;
+      whatsapp?: string;
+      bookingUrl?: string;
+    };
+    googlePlaceId?: string | null;
+    description?: string;
+    generatedSummary?: {
+      overview?: string;
+      vibe?: string;
+      highlight?: string;
+      reviewInsights?: string;
+    };
+    hours?: Record<string, string>;
+    social?: {
+      instagram?: string;
+      facebook?: string;
+    };
+  }>).find((candidate) => (
+    candidate.slug === studioSlug &&
+    citySlug(candidate.address.city) === normalizedCitySlug
+  ));
+  const studioData = remoteStudioData || fallbackStudioData;
 
   // Loading state
-  if (studioData === undefined) {
+  if (studioData === undefined && hasConvex) {
     return (
       <LuxuryLayout>
         <div className="min-h-screen pt-32 px-4">

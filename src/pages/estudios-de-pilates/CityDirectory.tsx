@@ -1,10 +1,10 @@
-import React, { useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import StudioList from "@/components/studios/StudioList";
-import StudioFilters from "@/components/studios/StudioFilters";
+import StudioFilters, { FilterOptions } from "@/components/studios/StudioFilters";
 import StudioSearch from "@/components/studios/StudioSearch";
 import { StudioMap } from "@/components/maps/StudioMap";
 import { Button } from "@/components/ui/button";
@@ -28,6 +28,15 @@ import {
 import { citySlug } from "@/utils/slug";
 import LuxuryLayout from "@/components/layout/LuxuryLayout";
 import { generateCityDirectorySchema } from "@/lib/seo";
+import { hasConvex } from "@/lib/convexProvider";
+import localData from "@/data/studios.json";
+
+type StudioRecord = (typeof localData.studios)[number] & {
+  contact?: {
+    phone?: string;
+    website?: string;
+  };
+};
 
 // Simple city name mapping
 const cityNameMap: Record<string, string> = {
@@ -47,9 +56,24 @@ const CityDirectory: React.FC = () => {
   const cityName = city ? cityNameMap[city.toLowerCase()] || city : "";
   const normalizedSlug = cityName ? citySlug(cityName) : city || "";
 
-  // Simple Convex queries - that's it
-  const studios = useQuery(api.studios.getByCity, cityName ? { city: cityName } : "skip");
-  const cityData = useQuery(api.cities.getBySlug, normalizedSlug ? { slug: normalizedSlug } : "skip");
+  useEffect(() => {
+    if (city && normalizedSlug && city !== normalizedSlug) {
+      navigate(`/estudios-de-pilates/${normalizedSlug}`, { replace: true });
+    }
+  }, [city, navigate, normalizedSlug]);
+
+  const remoteStudios = useQuery(api.studios.getByCity, hasConvex && cityName ? { city: cityName } : "skip");
+  const remoteCityData = useQuery(api.cities.getBySlug, hasConvex && normalizedSlug ? { slug: normalizedSlug } : "skip");
+  const fallbackStudios = useMemo(
+    () => (localData.studios as StudioRecord[]).filter((studio) => citySlug(studio.address.city) === normalizedSlug),
+    [normalizedSlug]
+  );
+  const fallbackCityData = useMemo(
+    () => localData.cities.find((candidate) => candidate.slug === normalizedSlug),
+    [normalizedSlug]
+  );
+  const studios = Array.isArray(remoteStudios) && remoteStudios.length > 0 ? remoteStudios : fallbackStudios;
+  const cityData = remoteCityData || fallbackCityData;
 
   // UI state for filters/search
   const [searchTerm, setSearchTerm] = useState("");
@@ -57,18 +81,16 @@ const CityDirectory: React.FC = () => {
   const [viewTab, setViewTab] = useState<"list" | "map">("list");
   const [sortBy, setSortBy] = useState<string>("rating");
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<FilterOptions>({
     neighborhoods: [] as string[],
     priceRange: [0, 2000] as [number, number],
     rating: 0,
     classTypes: [] as string[],
     equipment: [] as string[],
     amenities: [] as string[],
-    distance: undefined as number | undefined,
   });
 
-  // Loading = data not yet returned from Convex
-  const isLoading = studios === undefined;
+  const isLoading = hasConvex && remoteStudios === undefined && fallbackStudios.length === 0;
 
   // Process filter options from studios
   const availableOptions = useMemo(() => {
@@ -159,8 +181,13 @@ const CityDirectory: React.FC = () => {
       classTypes: [],
       equipment: [],
       amenities: [],
-      distance: undefined,
     });
+  };
+
+  const handleViewTabChange = (value: string) => {
+    if (value === "list" || value === "map") {
+      setViewTab(value);
+    }
   };
 
   // SEO
@@ -207,7 +234,7 @@ const CityDirectory: React.FC = () => {
             Encuentra el estudio perfecto para tu práctica de Pilates.
           </p>
           <div className="flex items-center justify-center gap-8 text-sm text-[#5D5550]">
-            <span className="font-medium">{filteredStudios.length} estudios</span>
+            <span className="font-medium">{filteredStudios.length} estudios encontrados</span>
             {cityData?.neighborhoods?.length && (
               <span className="font-medium">{cityData.neighborhoods.length} colonias</span>
             )}
@@ -314,7 +341,7 @@ const CityDirectory: React.FC = () => {
             )}
 
             {/* View Tabs */}
-            <Tabs value={viewTab} onValueChange={(v: any) => setViewTab(v)} className="w-full">
+            <Tabs value={viewTab} onValueChange={handleViewTabChange} className="w-full">
               <TabsList className="grid w-full max-w-md grid-cols-2 mb-12">
                 <TabsTrigger value="list">
                   <List className="w-4 h-4 mr-2" />
