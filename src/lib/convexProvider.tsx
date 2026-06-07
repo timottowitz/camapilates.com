@@ -1,13 +1,20 @@
 import React from 'react';
 import { ConvexReactClient, ConvexProvider } from 'convex/react';
 
+const PRODUCTION_CONVEX_URL = 'https://scintillating-hornet-482.convex.cloud';
+
 function resolveConvexUrl(): string | null {
+  const env = import.meta.env;
+
   try {
-    const envUrl = (import.meta as any).env?.VITE_CONVEX_URL as string | undefined;
-    if (!envUrl) return null;
-    return new URL(envUrl).origin;
+    const envUrl = env.VITE_CONVEX_URL;
+    if (envUrl) return new URL(envUrl).origin;
+
+    const host = window.location.hostname;
+    const isHostedBuild = env.PROD || /camadepilates\.com$|pages\.dev$/i.test(host);
+    return isHostedBuild ? PRODUCTION_CONVEX_URL : null;
   } catch {
-    return null;
+    return env.PROD ? PRODUCTION_CONVEX_URL : null;
   }
 }
 

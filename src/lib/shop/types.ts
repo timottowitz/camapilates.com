@@ -49,4 +49,4 @@ export type Product = {
   customQuote?: boolean;
 };
 
-export type Region = 'MX' | 'US' | 'DE';\n
+export type Region = 'MX' | 'US' | 'DE';

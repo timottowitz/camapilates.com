@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
-import { Dialog, DialogContent, DialogHeader } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -192,8 +192,10 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
       setTimeout(() => {
         onClose();
       }, 5000);
-    } catch (error: any) {
-      setErrors({ submit: error.message || 'Error al enviar el formulario' });
+    } catch (error: unknown) {
+      setErrors({
+        submit: error instanceof Error ? error.message : 'Error al enviar el formulario',
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -215,6 +217,7 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
     return (
       <Dialog open={isOpen} onOpenChange={handleClose}>
         <DialogContent className="sm:max-w-md bg-white rounded-2xl border-[#2A2624]/10">
+          <DialogTitle className="sr-only">Registro exitoso</DialogTitle>
           <div className="text-center py-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-[#3E2723] rounded-full mb-6">
               <CheckCircle2 className="w-8 h-8 text-white" />
@@ -249,6 +252,7 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-lg bg-white rounded-2xl border-[#2A2624]/10 shadow-2xl">
         <DialogHeader>
+          <DialogTitle className="sr-only">Pre-registro para certificación de Pilates</DialogTitle>
           {/* Progress Indicator */}
           <div className="flex items-center justify-center gap-2 mb-6">
             {[1, 2, 3].map((s) => (
