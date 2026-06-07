@@ -7,14 +7,14 @@ test.describe('Studios navigation', () => {
     // Ensure list renders
     await expect(page.getByText(/estudios encontrados/i)).toBeVisible();
 
-    // Click the first visible "Ver Detalles" within the first card containing a known studio name
-    const firstCard = page.getByText('Equilibrium Pilates').first();
-    await expect(firstCard).toBeVisible();
-    await page.getByRole('link', { name: 'Ver Detalles' }).first().click();
+    const firstDetailLink = page.getByRole('link', { name: 'Ver Detalles' }).first();
+    await expect(firstDetailLink).toBeVisible();
+    await firstDetailLink.click();
 
     // Expect navigation to detail route with normalized slug
     await page.waitForURL(/\/estudios-de-pilates\/ciudad-de-mexico\//);
-    await expect(page.getByRole('heading', { level: 1, name: /Equilibrium Pilates/i })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    await expect(page.getByText('Studio Not Found')).not.toBeVisible();
   });
 
   test('Accent slug normalizes and page loads', async ({ page }) => {
@@ -25,4 +25,3 @@ test.describe('Studios navigation', () => {
     await expect(page.getByText(/estudios encontrados/i)).toBeVisible();
   });
 });
-

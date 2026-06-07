@@ -72,7 +72,15 @@ const CityDirectory: React.FC = () => {
     () => localData.cities.find((candidate) => candidate.slug === normalizedSlug),
     [normalizedSlug]
   );
-  const studios = Array.isArray(remoteStudios) && remoteStudios.length > 0 ? remoteStudios : fallbackStudios;
+  const studios = useMemo(() => {
+    if (!Array.isArray(remoteStudios) || remoteStudios.length === 0) {
+      return fallbackStudios;
+    }
+
+    const remoteKeys = new Set(remoteStudios.map((studio) => studio.slug));
+    const missingFallbackStudios = fallbackStudios.filter((studio) => !remoteKeys.has(studio.slug));
+    return [...remoteStudios, ...missingFallbackStudios];
+  }, [fallbackStudios, remoteStudios]);
   const cityData = remoteCityData || fallbackCityData;
 
   // UI state for filters/search
