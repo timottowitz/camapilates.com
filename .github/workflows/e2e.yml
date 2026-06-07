@@ -11,7 +11,6 @@ jobs:
     container:
       image: mcr.microsoft.com/playwright:v1.57.0-noble
     env:
-      NODE_ENV: production
       VITE_CONVEX_URL: ${{ secrets.VITE_CONVEX_URL }}
       VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
       VITE_SITE_URL: ${{ secrets.VITE_SITE_URL }}
@@ -25,7 +24,7 @@ jobs:
           set +e
           node --version | tee npm-ci-output.log
           npm --version | tee -a npm-ci-output.log
-          npm ci 2>&1 | tee -a npm-ci-output.log
+          npm ci --include=dev 2>&1 | tee -a npm-ci-output.log
           install_exit=${PIPESTATUS[0]}
           exit "$install_exit"
 
