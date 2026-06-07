@@ -29,7 +29,12 @@ jobs:
         run: npm ci
 
       - name: Run E2E tests
-        run: npm run test:e2e
+        shell: bash
+        run: |
+          set +e
+          npm run test:e2e 2>&1 | tee e2e-output.log
+          test_exit=${PIPESTATUS[0]}
+          exit "$test_exit"
 
       - name: Upload Playwright failure output
         if: failure()
@@ -37,6 +42,7 @@ jobs:
         with:
           name: playwright-failure-output
           path: |
+            e2e-output.log
             test-results/
             playwright-report/
           if-no-files-found: ignore
