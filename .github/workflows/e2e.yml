@@ -8,6 +8,11 @@ on:
 jobs:
   e2e:
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: production
+      VITE_CONVEX_URL: ${{ secrets.VITE_CONVEX_URL }}
+      VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
+      VITE_SITE_URL: ${{ secrets.VITE_SITE_URL }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -15,7 +20,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
 
       - name: Install dependencies
@@ -26,4 +31,3 @@ jobs:
 
       - name: Run E2E tests
         run: npm run test:e2e
-
