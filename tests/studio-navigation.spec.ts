@@ -2,7 +2,25 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Studios navigation', () => {
   test('City directory -> studio detail loads', async ({ page }) => {
-    await page.goto('/estudios-de-pilates/ciudad-de-mexico');
+    const consoleErrors: string[] = [];
+    const failedRequests: string[] = [];
+    page.on('console', (msg) => {
+      if (msg.type() === 'error') consoleErrors.push(msg.text());
+    });
+    page.on('requestfailed', (request) => {
+      if (request.url().includes('google-analytics.com/g/collect')) return;
+      failedRequests.push(`${request.method()} ${request.url()} ${request.failure()?.errorText || ''}`);
+    });
+    const response = await page.goto('/estudios-de-pilates/ciudad-de-mexico');
+    expect({
+      status: response?.status(),
+      consoleErrors,
+      failedRequests,
+    }).toMatchObject({
+      status: expect.any(Number),
+      consoleErrors: [],
+      failedRequests: [],
+    });
 
     // Ensure list renders
     await expect(page.getByText(/estudios encontrados/i)).toBeVisible();
