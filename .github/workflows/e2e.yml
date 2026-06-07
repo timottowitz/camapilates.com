@@ -46,3 +46,14 @@ jobs:
             test-results/
             playwright-report/
           if-no-files-found: ignore
+
+      - name: Summarize E2E failure
+        if: failure()
+        shell: bash
+        run: |
+          {
+            echo '### E2E failure output'
+            echo '```text'
+            cat e2e-output.log || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
