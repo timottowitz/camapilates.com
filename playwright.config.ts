@@ -6,7 +6,7 @@ export default defineConfig({
   expect: { timeout: 5000 },
   retries: 0,
   fullyParallel: true,
-  reporter: 'list',
+  reporter: process.env.CI ? [['github'], ['list']] : 'list',
   use: {
     baseURL: 'http://127.0.0.1:4173',
     trace: 'on-first-retry',
@@ -31,4 +31,3 @@ export default defineConfig({
     },
   ],
 });
-
