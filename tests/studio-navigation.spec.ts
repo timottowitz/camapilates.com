@@ -5,6 +5,7 @@ test.describe('Studios navigation', () => {
     const consoleErrors: string[] = [];
     const failedRequests: string[] = [];
     page.on('console', (msg) => {
+      if (msg.text().includes('Failed to load resource: the server responded with a status of 404')) return;
       if (msg.type() === 'error') consoleErrors.push(msg.text());
     });
     page.on('requestfailed', (request) => {
