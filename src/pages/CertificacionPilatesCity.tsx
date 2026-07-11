@@ -54,7 +54,7 @@ const CITY_DATA: Record<CityKey, { name: string; variants: string[] }> = {
   }
 };
 
-const PRIMARY_WHATSAPP = 'https://wa.me/523222787690?text=';
+const PRIMARY_WHATSAPP = 'https://wa.me/525548468190?text=';
 
 const FEATURED = STOTT_COURSES.find(c => c.featured) || STOTT_COURSES[0];
 

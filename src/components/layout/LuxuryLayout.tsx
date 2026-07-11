@@ -42,7 +42,7 @@ const LuxuryLayout = ({ children, className = "", noPadding = false, headerTheme
                             <h4 className="text-xs uppercase tracking-[0.2em] mb-6 text-white/40">Contacto</h4>
                             <ul className="space-y-4 text-sm font-light text-white/80">
                                 <li><a href="mailto:hello@camadepilates.com" className="hover:text-white transition-colors">hello@camadepilates.com</a></li>
-                                <li><a href="https://wa.me/523222787690" className="hover:text-white transition-colors">Soporte WhatsApp</a></li>
+                                <li><a href="https://wa.me/525548468190" className="hover:text-white transition-colors">Soporte WhatsApp</a></li>
                             </ul>
                         </div>
                     </div>
