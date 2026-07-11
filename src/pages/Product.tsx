@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { CreditCard, MessageCircle, Package, ShieldCheck, Info } from 'lucide-react';
 import { ReviewsPreview } from '@/components/ui/reviews-preview';
 import { Finishes, FINISHES, type FinishKey } from '@/components/product/Finishes';
@@ -9,8 +9,8 @@ import products from '@/content/products.json';
 import { ContextualImage } from '@/components/ContextualImage';
 import type { FinishKey, Product as PType } from '@/lib/shop/types';
 import { toCategorySlug } from '@/lib/shop/catalog';
-import ShoprocketBuyButton from '@/components/commerce21/ShoprocketBuyButton';
 import { beginCheckout, viewItem } from '@/lib/shop/analytics';
+import { productWhatsAppUrl } from '@/lib/shop/whatsapp';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import TrustStrip from '@/components/ui/trust-strip';
 import { EnhancedGallery } from '@/components/commerce21/EnhancedGallery';
@@ -75,6 +75,7 @@ const ProductPage: React.FC = () => {
   }, [finish, safeProd]);
   const priceToShow = activeVariant?.price || safeProd.price;
   const displaySku = activeVariant?.sku || safeProd.sku;
+  const buyWhatsAppUrl = productWhatsAppUrl(safeProd, priceToShow, displaySku);
 
   const productSchema = {
     '@context': 'https://schema.org',
@@ -144,15 +145,6 @@ const ProductPage: React.FC = () => {
     ...(activeVariant?.sku ? [{ '@type': 'PropertyValue', name: 'variant_sku', value: activeVariant.sku }] : []),
     ...((finish === 'mycelium' || (safeProd.finishes || []).includes('mycelium')) ? [{ '@type': 'PropertyValue', name: 'material_brand', value: 'Mylo (micelio)' }] : []),
   ];
-
-  const openBuyModal = useCallback(() => {
-    const root = document.getElementById('sr-buy-pdp');
-    if (!root) return;
-    const candidates = Array.from(root.querySelectorAll('button, a')) as HTMLElement[];
-    const match = candidates.find((el) => /ver|view|producto|product|comprar|add to cart|agregar/i.test(el.textContent || ''));
-    if (match) (match as HTMLButtonElement).click();
-    else root.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, []);
 
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -331,16 +323,18 @@ const ProductPage: React.FC = () => {
               )}
 
               <div className="flex flex-col gap-4 pt-2">
-                <ShoprocketBuyButton
-                  rootId="sr-buy-pdp"
-                  productId={prod.productId}
-                  publishableKey={prod.publishableKey}
-                  onBeforeOpen={() => beginCheckout({ product: prod as PType })}
-                  className="w-full !bg-[#2A2624] !text-[#EAE8E4] !rounded-full !py-5 !uppercase !tracking-[0.2em] !text-xs !font-bold hover:!bg-[#3E2723] hover:!scale-[1.02] transition-all duration-300 shadow-xl shadow-[#2A2624]/10"
-                />
+                <a
+                  href={buyWhatsAppUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => beginCheckout({ product: prod as PType })}
+                  className="w-full flex items-center justify-center gap-2 bg-[#2A2624] text-[#EAE8E4] rounded-full py-5 uppercase tracking-[0.2em] text-xs font-bold hover:bg-[#3E2723] hover:scale-[1.02] transition-all duration-300 shadow-xl shadow-[#2A2624]/10"
+                >
+                  <MessageCircle className="h-4 w-4" /> Comprar por WhatsApp
+                </a>
 
                 <div className="grid grid-cols-2 gap-3">
-                  <a href="https://wa.me/523222787690" className="flex items-center justify-center gap-2 px-4 py-3 border border-[#2A2624]/20 rounded-full text-[10px] uppercase tracking-[0.2em] text-[#2A2624] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors">
+                  <a href={buyWhatsAppUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 px-4 py-3 border border-[#2A2624]/20 rounded-full text-[10px] uppercase tracking-[0.2em] text-[#2A2624] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors">
                     WhatsApp
                   </a>
                   <a href="tel:+523222787690" className="flex items-center justify-center gap-2 px-4 py-3 border border-[#2A2624]/20 rounded-full text-[10px] uppercase tracking-[0.2em] text-[#2A2624] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors">
@@ -435,10 +429,9 @@ const ProductPage: React.FC = () => {
         productName={prod.name}
         price={Number(priceToShow)}
         currency={prod.currency}
-        onAddToCart={() => {
-          beginCheckout({ product: prod as PType });
-          openBuyModal();
-        }}
+        whatsappUrl={buyWhatsAppUrl}
+        onBuy={() => beginCheckout({ product: prod as PType })}
+        warranty={prod.warranty}
         productSlug={prod.slug}
       />
     </LuxuryLayout >

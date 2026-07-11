@@ -1,8 +1,9 @@
 import React from 'react';
 import type { Product, FinishKey } from '@/lib/shop/types';
 import Gallery21 from './Gallery21';
-import ShoprocketBuyButton from './ShoprocketBuyButton';
+import { MessageCircle } from 'lucide-react';
 import { beginCheckout } from '@/lib/shop/analytics';
+import { productWhatsAppUrl } from '@/lib/shop/whatsapp';
 import { FINISHES } from '@/components/product/Finishes';
 
 type Props = {
@@ -51,8 +52,16 @@ const QuickView21: React.FC<Props> = ({ product, onClose }) => {
                 </div>
               ) : null}
               <div className="mt-4">
-                <ShoprocketBuyButton productId={product.productId} publishableKey={product.publishableKey} onBeforeOpen={() => beginCheckout({ product })} />
-                <div className="mt-2 text-xs text-muted-foreground">Se abrirá un popup seguro para completar tu compra.</div>
+                <a
+                  href={productWhatsAppUrl(product, priceToShow, displaySku)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => beginCheckout({ product })}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 transition-colors"
+                >
+                  <MessageCircle className="h-4 w-4" /> Comprar por WhatsApp
+                </a>
+                <div className="mt-2 text-xs text-muted-foreground">Se abrirá WhatsApp con los datos de este producto para completar tu compra.</div>
               </div>
             </div>
           </div>

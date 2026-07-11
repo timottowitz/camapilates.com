@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingCart, Heart, Share2, Phone } from 'lucide-react';
+import { MessageCircle, Heart, Share2, Phone } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 interface StickyMobileCTAProps {
   productName: string;
   price: number;
   currency?: string;
-  onAddToCart: () => void;
+  whatsappUrl: string; // pre-filled WhatsApp link for this product
+  onBuy?: () => void; // e.g., analytics
+  warranty?: string;
   productSlug?: string;
   className?: string;
 }
@@ -15,7 +17,9 @@ export function StickyMobileCTA({
   productName,
   price,
   currency = 'MXN',
-  onAddToCart,
+  whatsappUrl,
+  onBuy,
+  warranty = '1 año',
   productSlug = '',
   className = ''
 }: StickyMobileCTAProps) {
@@ -109,20 +113,23 @@ export function StickyMobileCTA({
         {/* CTA buttons row */}
         <div className="flex items-center gap-2">
           <a
-            href="https://wa.me/523222787690"
-            className="flex-shrink-0 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-green-600 text-white font-medium hover:bg-green-700 transition-colors shadow-md"
+            href="tel:+523222787690"
+            className="flex-shrink-0 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-border bg-background text-foreground font-medium hover:bg-muted transition-colors shadow-md"
+            aria-label="Llamar"
           >
             <Phone className="h-4 w-4" />
-            <span className="text-sm">WhatsApp</span>
           </a>
 
-          <button
-            onClick={onAddToCart}
-            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-all shadow-md hover:shadow-lg transform active:scale-95"
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={onBuy}
+            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-green-600 text-white font-medium hover:bg-green-700 transition-all shadow-md hover:shadow-lg transform active:scale-95"
           >
-            <ShoppingCart className="h-4 w-4" />
-            <span className="text-sm font-semibold">Agregar al carrito</span>
-          </button>
+            <MessageCircle className="h-4 w-4" />
+            <span className="text-sm font-semibold">Comprar por WhatsApp</span>
+          </a>
         </div>
 
         {/* Trust indicator */}
@@ -132,7 +139,7 @@ export function StickyMobileCTA({
             <span>Envío gratis</span>
           </div>
           <span>•</span>
-          <span>Garantía 1 año</span>
+          <span>Garantía {warranty}</span>
           <span>•</span>
           <span>Pago seguro</span>
         </div>
