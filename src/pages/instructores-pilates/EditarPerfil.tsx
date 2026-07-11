@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { Id } from '../../../convex/_generated/dataModel';
+import { useLoadTimeout } from '@/hooks/useLoadTimeout';
 
 // Specializations options
 const SPECIALIZATIONS = [
@@ -77,6 +78,9 @@ const EditarPerfil: React.FC = () => {
     api.instructorProfile.getMyProfile,
     token ? { token } : 'skip'
   );
+
+  // Escape the loading spinner if the backend never responds.
+  const loadTimedOut = useLoadTimeout(checkingAuth || !profileData);
 
   useEffect(() => {
     if (sessionData !== undefined) {
@@ -277,12 +281,33 @@ const EditarPerfil: React.FC = () => {
   const origin = getOrigin();
 
   // Loading state
-  if (checkingAuth || !profileData) {
+  if ((checkingAuth || !profileData) && !loadTimedOut) {
     return (
       <LuxuryLayout>
         <section className="relative pt-24 pb-20 px-8 md:px-24 max-w-[800px] mx-auto text-center">
           <Loader2 className="w-8 h-8 animate-spin mx-auto text-[#8B7355]" />
           <p className="mt-4 text-[#5D5550]">Cargando perfil...</p>
+        </section>
+      </LuxuryLayout>
+    );
+  }
+
+  // Data never arrived (backend unreachable): offer a retry instead of a
+  // spinner that never ends.
+  if ((checkingAuth || !profileData) && loadTimedOut) {
+    return (
+      <LuxuryLayout>
+        <section className="relative pt-24 pb-20 px-8 md:px-24 max-w-[600px] mx-auto text-center">
+          <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
+          <p className="text-[#5D5550] mb-6">
+            No pudimos cargar tu perfil por un problema de conexión. Inténtalo de nuevo.
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="bg-[#3E2723] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#5D4037] transition-colors"
+          >
+            Reintentar
+          </button>
         </section>
       </LuxuryLayout>
     );
