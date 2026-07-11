@@ -22,7 +22,7 @@ const CITIES = [
   { key: 'queretaro', name: 'Querétaro', kw: ['certificación pilates querétaro'] },
 ];
 
-const PRIMARY_WHATSAPP_BASE = 'https://wa.me/523222787690?text=';
+const PRIMARY_WHATSAPP_BASE = 'https://wa.me/525548468190?text=';
 const PRIMARY_WHATSAPP = `${PRIMARY_WHATSAPP_BASE}${encodeURIComponent('Hola, quiero inscribirme a la certificación STOTT PILATES® en CDMX')}`;
 
 const FEATURED = STOTT_COURSES.find(c => c.featured) || STOTT_COURSES[0];

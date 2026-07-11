@@ -262,7 +262,7 @@ const EdelweissNav: React.FC<EdelweissNavProps> = ({ darkBackground = false }) =
                   <a href="mailto:hello@camadepilates.com" className="hover:text-[#F5F4F1]/70 transition-colors">
                     hello@camadepilates.com
                   </a>
-                  <a href="https://wa.me/523222787690" className="hover:text-[#F5F4F1]/70 transition-colors">
+                  <a href="https://wa.me/525548468190" className="hover:text-[#F5F4F1]/70 transition-colors">
                     WhatsApp
                   </a>
                 </div>

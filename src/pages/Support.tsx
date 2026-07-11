@@ -30,7 +30,7 @@ const Support: React.FC = () => {
             </p>
 
             <div className="flex flex-col gap-6">
-              <a href="https://wa.me/523222787690" className="group flex items-center gap-4 p-6 border border-[#2A2624]/10 rounded-sm hover:bg-white transition-colors">
+              <a href="https://wa.me/525548468190" className="group flex items-center gap-4 p-6 border border-[#2A2624]/10 rounded-sm hover:bg-white transition-colors">
                 <div className="w-12 h-12 rounded-full bg-[#2A2624] flex items-center justify-center text-[#EAE8E4] group-hover:bg-[#3E2723] transition-colors">
                   <MessageCircle className="w-6 h-6" />
                 </div>
