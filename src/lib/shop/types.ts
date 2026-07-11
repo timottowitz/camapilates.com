@@ -38,6 +38,7 @@ export type Product = {
   finishes?: FinishKey[];
   materials?: string[];
   warranty?: string;
+  deliveryTime?: string; // e.g., "6–8 semanas (fabricación bajo pedido)"
   variants?: ProductVariant[];
   bestSeller?: boolean;
   isNew?: boolean;

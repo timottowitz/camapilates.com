@@ -40,10 +40,10 @@ const ProductPage: React.FC = () => {
   const [agg, setAgg] = useState<{ ratingValue: string; reviewCount: number } | undefined>(undefined);
 
   const estimate = useMemo(() => {
-    if (region === 'MX') return '3 semanas';
+    if (region === 'MX') return safeProd.deliveryTime || '3 semanas';
     if (region === 'US') return '4–5 semanas (estimado)';
     return '4–6 semanas (estimado)';
-  }, [region]);
+  }, [region, safeProd]);
 
   const onChangeRegion = (value: 'MX' | 'US' | 'DE') => {
     setRegion(value);
@@ -57,16 +57,18 @@ const ProductPage: React.FC = () => {
 
   const url = `${origin}/product/${safeProd.slug}`;
 
-  const materials = finish === 'mycelium'
-    ? ['cuero de micelio (sostenible)', 'madera de nogal', 'acero estructural']
-    : ['cuero genuino', 'madera de nogal', 'acero estructural'];
+  const materials = safeProd.materials?.length
+    ? safeProd.materials
+    : finish === 'mycelium'
+      ? ['cuero de micelio (sostenible)', 'madera de nogal', 'acero estructural']
+      : ['cuero genuino', 'madera de nogal', 'acero estructural'];
 
   const SPECS = {
     dimensions: '~245 × 70 × 40 cm',
     weight: '~70–95 kg (según acabado)',
     carriage: 'Recorrido suave y silencioso',
-    warranty: '1 año',
-  } as const;
+    warranty: safeProd.warranty || '1 año',
+  };
 
   const activeVariant = useMemo(() => {
     return (safeProd.variants || []).find(v => v.finish === finish);
@@ -104,8 +106,10 @@ const ProductPage: React.FC = () => {
           shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'MX' },
           deliveryTime: {
             '@type': 'ShippingDeliveryTime',
-            handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 2, unitCode: 'DAY' },
-            transitTime: { '@type': 'QuantitativeValue', minValue: 19, maxValue: 21, unitCode: 'DAY' }
+            handlingTime: safeProd.deliveryTime
+              ? { '@type': 'QuantitativeValue', minValue: 42, maxValue: 56, unitCode: 'DAY' }
+              : { '@type': 'QuantitativeValue', minValue: 0, maxValue: 2, unitCode: 'DAY' },
+            transitTime: { '@type': 'QuantitativeValue', minValue: safeProd.deliveryTime ? 0 : 19, maxValue: safeProd.deliveryTime ? 7 : 21, unitCode: 'DAY' }
           }
         },
         {
@@ -159,7 +163,9 @@ const ProductPage: React.FC = () => {
         name: '¿Cuánto tarda la entrega?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'En México la entrega estimada es de 3 semanas. Envíos a EE. UU. y Europa entre 4–6 semanas.'
+          text: safeProd.deliveryTime
+            ? `Este equipo se fabrica bajo pedido: el tiempo de producción y entrega es de 6 a 8 semanas a cualquier parte de México.`
+            : 'En México la entrega estimada es de 3 semanas. Envíos a EE. UU. y Europa entre 4–6 semanas.'
         }
       },
       {
@@ -167,7 +173,7 @@ const ProductPage: React.FC = () => {
         name: '¿Qué garantía incluye?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Garantía de 1 año que cubre defectos de fabricación en estructura, muelles y accesorios básicos. Incluye repuestos exprés y soporte en español.'
+          text: `Garantía de ${safeProd.warranty || '1 año'} que cubre defectos de fabricación en estructura, muelles y accesorios básicos. Incluye repuestos exprés y soporte en español.`
         }
       },
       {
@@ -314,13 +320,15 @@ const ProductPage: React.FC = () => {
             </motion.div>
 
             <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="space-y-8">
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs font-medium uppercase tracking-widest text-[#2A2624]">Acabado</span>
-                  <Link to="/acabados" className="text-[10px] uppercase tracking-widest text-[#5D5550] hover:text-[#2A2624] underline decoration-[#2A2624]/30 hover:decoration-[#2A2624] underline-offset-4">Ver guía</Link>
+              {(prod.finishes?.length ?? 0) > 0 && (
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs font-medium uppercase tracking-widest text-[#2A2624]">Acabado</span>
+                    <Link to="/acabados" className="text-[10px] uppercase tracking-widest text-[#5D5550] hover:text-[#2A2624] underline decoration-[#2A2624]/30 hover:decoration-[#2A2624] underline-offset-4">Ver guía</Link>
+                  </div>
+                  <Finishes value={finish} onChange={setFinish} />
                 </div>
-                <Finishes value={finish} onChange={setFinish} />
-              </div>
+              )}
 
               <div className="flex flex-col gap-4 pt-2">
                 <ShoprocketBuyButton
