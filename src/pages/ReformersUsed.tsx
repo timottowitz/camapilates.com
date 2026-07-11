@@ -42,7 +42,7 @@ const ReformersUsed: React.FC = () => {
           <div className="flex flex-wrap items-center gap-2">
             <Link to="/reformers/nuevas" className="text-xs uppercase tracking-widest text-[#3E2723] hover:opacity-70">Ver nuevas</Link>
             <span className="text-[#2A2624]/20">•</span>
-            <a href="https://wa.me/523222787690" className="text-xs uppercase tracking-widest text-[#3E2723] hover:opacity-70">Pedir checklist por WhatsApp</a>
+            <a href="https://wa.me/525548468190" className="text-xs uppercase tracking-widest text-[#3E2723] hover:opacity-70">Pedir checklist por WhatsApp</a>
           </div>
         </div>
 
@@ -85,7 +85,7 @@ const ReformersUsed: React.FC = () => {
               <div className="rounded-2xl border border-[#2A2624]/10 bg-white/60 p-6">
                 <div className="text-xs uppercase tracking-widest text-[#5D5550]">¿Quieres vender una usada?</div>
                 <p className="mt-2 text-sm text-[#2A2624]">Escríbenos por WhatsApp con fotos y ciudad. Te decimos cómo listarla y qué información incluir.</p>
-                <a href="https://wa.me/523222787690" className="mt-4 block rounded-full bg-[#3E2723] text-white px-5 py-2 text-xs uppercase tracking-widest text-center hover:opacity-90">Contactar</a>
+                <a href="https://wa.me/525548468190" className="mt-4 block rounded-full bg-[#3E2723] text-white px-5 py-2 text-xs uppercase tracking-widest text-center hover:opacity-90">Contactar</a>
               </div>
 
               <div className="rounded-2xl border border-[#2A2624]/10 bg-white/60 p-6">

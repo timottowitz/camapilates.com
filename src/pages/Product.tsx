@@ -337,7 +337,7 @@ const ProductPage: React.FC = () => {
                   <a href={buyWhatsAppUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 px-4 py-3 border border-[#2A2624]/20 rounded-full text-[10px] uppercase tracking-[0.2em] text-[#2A2624] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors">
                     WhatsApp
                   </a>
-                  <a href="tel:+523222787690" className="flex items-center justify-center gap-2 px-4 py-3 border border-[#2A2624]/20 rounded-full text-[10px] uppercase tracking-[0.2em] text-[#2A2624] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors">
+                  <a href="tel:+525548468190" className="flex items-center justify-center gap-2 px-4 py-3 border border-[#2A2624]/20 rounded-full text-[10px] uppercase tracking-[0.2em] text-[#2A2624] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors">
                     Llamar
                   </a>
                 </div>

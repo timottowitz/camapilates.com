@@ -238,7 +238,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
                 Ver packs para estudio
               </Link>
               <a
-                href="https://wa.me/523222787690"
+                href="https://wa.me/525548468190"
                 className="inline-flex items-center justify-center px-10 py-5 border border-white/20 text-white rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-white/10 transition-all"
               >
                 Cotizar por WhatsApp

@@ -218,8 +218,8 @@ const Shop: React.FC = () => {
               Shop<span className="text-[#EB4C42]">.</span>
             </p>
             <div className="flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.2em] opacity-60">
-              <a href="https://wa.me/523222787690" className="hover:text-[#EB4C42] transition-colors">WhatsApp</a>
-              <a href="tel:+523222787690" className="hover:text-[#EB4C42] transition-colors">Llamar</a>
+              <a href="https://wa.me/525548468190" className="hover:text-[#EB4C42] transition-colors">WhatsApp</a>
+              <a href="tel:+525548468190" className="hover:text-[#EB4C42] transition-colors">Llamar</a>
               <div className="hidden sm:block text-[#5D5550]">
                 <Link to="/compare" className="hover:text-[#EB4C42] transition-colors">Comparar Modelos</Link>
               </div>
