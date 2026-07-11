@@ -51,7 +51,7 @@ jobs:
           CHANGED=$(git diff --name-only "$BEFORE" "$AFTER" | grep '^src/content/blog/.*\.md$' || true)
           echo "changed=$CHANGED" >> $GITHUB_OUTPUT
 
-      - name: Register placeholders (push: changed only)
+      - name: "Register placeholders (push: changed only)"
         if: github.event_name == 'push' && steps.changed.outputs.changed != ''
         env:
           CONVEX_URL: https://spotted-raven-102.convex.cloud
@@ -59,7 +59,7 @@ jobs:
         run: |
           node scripts/register-released-blogs.js --changed="$CHANGED_FILES" --inline=3
 
-      - name: Register placeholders (manual: changed with provided list)
+      - name: "Register placeholders (manual: changed with provided list)"
         if: github.event_name == 'workflow_dispatch' && inputs.mode == 'changed' && inputs.changed_files != ''
         env:
           CONVEX_URL: https://spotted-raven-102.convex.cloud
@@ -70,7 +70,7 @@ jobs:
           echo "Changed files: $CHANGED"
           node scripts/register-released-blogs.js --changed="$CHANGED" --inline=${{ inputs.inline }}
 
-      - name: Register placeholders (manual: changed fallback to all)
+      - name: "Register placeholders (manual: changed fallback to all)"
         if: github.event_name == 'workflow_dispatch' && inputs.mode == 'changed' && inputs.changed_files == ''
         env:
           CONVEX_URL: https://spotted-raven-102.convex.cloud
@@ -78,7 +78,7 @@ jobs:
           echo "Manual dispatch (changed): no changed_files provided; falling back to all released posts."
           node scripts/register-released-blogs.js --inline=${{ inputs.inline }}
 
-      - name: Register placeholders (manual: all)
+      - name: "Register placeholders (manual: all)"
         if: github.event_name == 'workflow_dispatch' && inputs.mode == 'all'
         env:
           CONVEX_URL: https://spotted-raven-102.convex.cloud
