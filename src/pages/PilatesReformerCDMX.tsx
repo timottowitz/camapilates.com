@@ -256,7 +256,7 @@ const PilatesReformerCDMX: React.FC = () => {
                   Ver Tienda
                 </Link>
                 <a
-                  href="https://wa.me/523222787690?text=Hola,%20me%20interesa%20un%20reformer%20en%20CDMX"
+                  href="https://wa.me/525548468190?text=Hola,%20me%20interesa%20un%20reformer%20en%20CDMX"
                   className="inline-flex items-center gap-2 px-8 py-4 border border-[#2A2624] text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors"
                 >
                   <Phone className="w-4 h-4" /> WhatsApp

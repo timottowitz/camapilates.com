@@ -193,7 +193,7 @@ const StudioPack: React.FC = () => {
 
             <div className="mt-8 pt-8 border-t border-white/10 text-center">
               <p className="text-xs text-white/40 mb-2">Prefer direct contact?</p>
-              <a href="https://wa.me/523222787690" className="text-sm hover:text-white transition-colors border-b border-white/20 pb-1">Chat on WhatsApp</a>
+              <a href="https://wa.me/525548468190" className="text-sm hover:text-white transition-colors border-b border-white/20 pb-1">Chat on WhatsApp</a>
             </div>
           </div>
         </div>

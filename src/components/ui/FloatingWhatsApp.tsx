@@ -1,7 +1,7 @@
 import React from 'react';
 import { MessageCircle } from 'lucide-react';
 
-const WHATSAPP_NUMBER = '523222787690';
+const WHATSAPP_NUMBER = '525548468190';
 const DEFAULT_MESSAGE = 'Hola, tengo una pregunta sobre sus productos de Pilates.';
 
 interface FloatingWhatsAppProps {

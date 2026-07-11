@@ -146,7 +146,7 @@ export function ProductComparison({ products, onClose, className = '' }: Product
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                     <a
-                      href="https://wa.me/523222787690"
+                      href="https://wa.me/525548468190"
                       className="inline-flex items-center justify-center gap-2 w-full px-4 py-2 rounded-lg border border-border text-foreground hover:bg-muted transition-colors text-sm"
                     >
                       Consultar
@@ -172,7 +172,7 @@ export function ProductComparison({ products, onClose, className = '' }: Product
             </p>
             <div className="flex gap-2">
               <a
-                href="https://wa.me/523222787690"
+                href="https://wa.me/525548468190"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700 transition-colors text-sm font-medium"
               >
                 Hablar con experto

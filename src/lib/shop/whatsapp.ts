@@ -1,7 +1,7 @@
 import type { Product } from './types';
 import { getOrigin } from '@/lib/seo';
 
-export const WHATSAPP_PHONE = '523222787690';
+export const WHATSAPP_PHONE = '525548468190';
 
 /**
  * WhatsApp deep link with a pre-filled message referencing the product

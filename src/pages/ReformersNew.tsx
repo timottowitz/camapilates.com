@@ -280,7 +280,7 @@ const ReformersNew: React.FC = () => {
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <EnhancedButton asChild className="rounded-full bg-[#3E2723] text-white hover:bg-[#3E2723]/90">
-                  <a href="https://wa.me/523222787690">Cotizar por WhatsApp</a>
+                  <a href="https://wa.me/525548468190">Cotizar por WhatsApp</a>
                 </EnhancedButton>
                 <EnhancedButton asChild variant="outline" className="rounded-full border-[#2A2624]/20 bg-white/60">
                   <Link to="/compare">Comparar modelos</Link>
@@ -412,7 +412,7 @@ const ReformersNew: React.FC = () => {
                         <Link to="/compare">Ir a comparar</Link>
                       </EnhancedButton>
                       <EnhancedButton asChild variant="outline" className="rounded-full border-[#2A2624]/20 bg-white/60">
-                        <a href="https://wa.me/523222787690" className="inline-flex items-center gap-2">Cotizar <ArrowRight className="h-4 w-4" /></a>
+                        <a href="https://wa.me/525548468190" className="inline-flex items-center gap-2">Cotizar <ArrowRight className="h-4 w-4" /></a>
                       </EnhancedButton>
                     </div>
                   </div>

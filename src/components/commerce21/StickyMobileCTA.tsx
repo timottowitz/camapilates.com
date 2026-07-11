@@ -113,7 +113,7 @@ export function StickyMobileCTA({
         {/* CTA buttons row */}
         <div className="flex items-center gap-2">
           <a
-            href="tel:+523222787690"
+            href="tel:+525548468190"
             className="flex-shrink-0 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-border bg-background text-foreground font-medium hover:bg-muted transition-colors shadow-md"
             aria-label="Llamar"
           >
