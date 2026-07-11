@@ -2,10 +2,17 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
-import { CheckCircle2, MapPin, Calendar, MessageCircle, BookOpen, Hand, Users, Briefcase, Heart, GraduationCap } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { MapPin, Calendar, Award } from 'lucide-react';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import PreRegistrationModal from '@/components/certification/PreRegistrationModal';
+import StottPremiumProgram from '@/components/certification/StottPremiumProgram';
+import {
+  STOTT_COURSES,
+  STOTT_PROVIDER,
+  STOTT_STATUS_LABEL,
+  STOTT_VENUE,
+  formatMXN,
+} from '@/content/certification/stottCdmx';
 
 const CITIES = [
   { key: 'cdmx', name: 'Ciudad de México (CDMX)', kw: ['certificación pilates cdmx', 'certificación pilates reformer cdmx', 'certificación pilates mexico df'] },
@@ -15,30 +22,50 @@ const CITIES = [
   { key: 'queretaro', name: 'Querétaro', kw: ['certificación pilates querétaro'] },
 ];
 
-const PRIMARY_WHATSAPP = 'https://wa.me/523222787690?text=Hola%20Edelweiss%2C%20quiero%20inscribirme%20a%20la%20certificaci%C3%B3n%20de%20Pilates';
-const SUPPORT_EMAIL = 'mailto:valery@camadepilates.com?subject=Certificaci%C3%B3n%20de%20Pilates%20-%20Informaci%C3%B3n';
+const PRIMARY_WHATSAPP_BASE = 'https://wa.me/523222787690?text=';
+const PRIMARY_WHATSAPP = `${PRIMARY_WHATSAPP_BASE}${encodeURIComponent('Hola, quiero inscribirme a la certificación STOTT PILATES® en CDMX')}`;
+
+const FEATURED = STOTT_COURSES.find(c => c.featured) || STOTT_COURSES[0];
 
 const CertificacionPilates: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const origin = getOrigin();
-  const title = 'Certificación de Pilates (Reformer) en México — CDMX, Guadalajara y Monterrey';
-  const desc = 'Conecta con certificaciones de Pilates Reformer y Mat en México. Sedes en CDMX, Guadalajara y Monterrey. Requisitos, duración, costos y registro.';
+  const title = 'Certificación STOTT PILATES® en CDMX — Reformer y Mat | México';
+  const desc = 'Certifícate en STOTT PILATES® en Ciudad de México: Intensive Reformer (125h), Mat-Plus™ y niveles avanzados. Sede oficial Merrithew® en Santa Fe. Fechas, costos y registro.';
 
-  const serviceSchema = {
+  const courseSchemas = STOTT_COURSES.map(course => ({
     '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: 'Conexión con certificaciones de Pilates',
+    '@type': 'Course',
+    name: course.name,
+    description: course.tagline,
     provider: {
       '@type': 'Organization',
-      name: 'Edelweiss / camadepilates.com',
-      url: origin
+      name: STOTT_PROVIDER.name,
+      url: 'https://www.pilateseducare.com',
     },
-    areaServed: {
-      '@type': 'Country',
-      name: 'MX'
-    },
-    serviceType: 'Orientación e inscripción a certificaciones de Pilates (Reformer y Mat)'
-  };
+    ...(course.price
+      ? {
+          offers: {
+            '@type': 'Offer',
+            price: course.price,
+            priceCurrency: 'MXN',
+            availability: course.dates.some(d => d.status === 'open' || d.status === 'lastSpots')
+              ? 'https://schema.org/InStock'
+              : 'https://schema.org/SoldOut',
+          },
+        }
+      : {}),
+    hasCourseInstance: course.dates.map(d => ({
+      '@type': 'CourseInstance',
+      courseMode: course.modality === 'Presencial' ? 'Onsite' : 'Online',
+      name: `${course.shortName} — ${d.label}`,
+      location: {
+        '@type': 'Place',
+        name: STOTT_VENUE.name,
+        address: STOTT_VENUE.address,
+      },
+    })),
+  }));
 
   const cityListSchema = {
     '@context': 'https://schema.org',
@@ -57,26 +84,26 @@ const CertificacionPilates: React.FC = () => {
     mainEntity: [
       {
         '@type': 'Question',
-        name: '¿Qué modalidades existen (Mat vs Reformer)?',
+        name: '¿Qué es STOTT PILATES® y por qué es el "Gold Standard"?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'La certificación puede ser en Mat (suelo) o Reformer (aparato). Muchas escuelas ofrecen rutas combinadas. Reformer requiere práctica supervisada en aparato y horas clínicas.'
+          text: 'STOTT PILATES® es una formación contemporánea que une el método original de Joseph Pilates con la ciencia del ejercicio, la biomecánica y la rehabilitación. Está respaldada por Merrithew® y reconocida en más de 100 países.'
         }
       },
       {
         '@type': 'Question',
-        name: '¿Cuánto dura una certificación de Pilates?',
+        name: '¿Cuánto dura la certificación Intensive Reformer?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Una certificación profesional de Reformer requiere 125–150 horas incluyendo teoría, práctica y enseñanza supervisada. Edelweiss ofrece 135 horas.'
+          text: 'El Intensive Reformer suma 125 horas: 50 horas de instrucción presencial, 10 de observación, 40 de práctica personal y 25 de práctica de enseñanza. Cubre 139 ejercicios del repertorio esencial e intermedio.'
         }
       },
       {
         '@type': 'Question',
-        name: '¿Cuál es el costo estimado?',
+        name: '¿Cuál es el costo de la certificación en CDMX?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Varía por escuela y alcance: $8,000–$25,000 MXN (módulos básicos) y $30,000–$80,000 MXN (profesional completo). Verifica temario, horas clínicas y certificación emitida.'
+          text: 'Intensive Reformer: $44,000 MXN (apartado $8,000). Intensive Mat-Plus™ + Advanced Mat: $36,800 MXN con manuales oficiales incluidos. Advanced Reformer: $20,000 MXN. Grupos limitados a 12 personas.'
         }
       },
       {
@@ -84,7 +111,15 @@ const CertificacionPilates: React.FC = () => {
         name: '¿La certificación tiene validez internacional?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Depende del proveedor. Algunas certificaciones siguen estándares internacionales (p.ej., 450 h) y son aceptadas por estudios fuera de MX. Verifica avales y bolsa de trabajo.'
+          text: 'Sí. Al aprobar el Examen de Certificación Internacional (proceso independiente con costo adicional), obtienes la certificación STOTT PILATES® con validez en más de 100 países y créditos de educación continua (CECs) de Merrithew®.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Dónde se imparte el programa en Ciudad de México?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `En ${STOTT_VENUE.name}, hosting oficial de Merrithew®, ubicado en ${STOTT_VENUE.address}, con equipo Merrithew® de última generación.`
         }
       }
     ]
@@ -103,7 +138,9 @@ const CertificacionPilates: React.FC = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${origin}/certificacion-pilates`} />
         <meta property="og:image" content={`${origin}${DEFAULTS.ogImage}`} />
-        <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
+        {courseSchemas.map((schema, idx) => (
+          <script key={idx} type="application/ld+json">{JSON.stringify(schema)}</script>
+        ))}
         <script type="application/ld+json">{JSON.stringify(cityListSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
@@ -112,15 +149,16 @@ const CertificacionPilates: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-16 items-start">
           <div>
             <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-8">
-              Education
+              Education · STOTT PILATES®
             </span>
             <h1 className="text-5xl md:text-7xl font-serif italic text-[#2A2624] leading-[0.9] mb-8">
-              Master the Art <br />
-              <span className="not-italic font-light font-sans tracking-tight">of Teaching<span className="text-[#EB4C42]">.</span></span>
+              The Gold <br />
+              <span className="not-italic font-light font-sans tracking-tight">Standard<span className="text-[#EB4C42]">.</span></span>
             </h1>
             <p className="text-lg text-[#5D5550] font-light max-w-xl leading-relaxed mb-8">
-              Edelweiss te conecta con certificaciones de Pilates en México (Reformer y Mat). Sedes en CDMX, Guadalajara y Monterrey.
-              Recibe asesoría sobre requisitos, duración, costos y próximas fechas.
+              Certificación STOTT PILATES® en Ciudad de México, impartida por {STOTT_PROVIDER.name} en{' '}
+              {STOTT_VENUE.name}, hosting oficial de Merrithew® en Santa Fe. Reformer y Mat con validez
+              internacional en más de 100 países.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -137,46 +175,81 @@ const CertificacionPilates: React.FC = () => {
 
             <ul className="mt-12 grid sm:grid-cols-2 gap-4">
               <li className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span> Reformer y Mat
+                <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span> Respaldo Merrithew®
               </li>
               <li className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span> Programa 135 horas
+                <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span> Intensive Reformer 125h
               </li>
               <li className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span> Práctica supervisada
+                <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span> Grupos de 12 personas
               </li>
               <li className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span> Bolsa de trabajo
+                <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span> Validez en 100+ países
               </li>
             </ul>
           </div>
 
-          <div className="bg-white/50 border border-[#2A2624]/10 p-8 md:p-12 rounded-sm backdrop-blur-sm">
-            <h2 className="text-2xl font-serif italic text-[#2A2624] mb-8">Upcoming Locations</h2>
-            <div className="space-y-4">
-              {CITIES.slice(0, 3).map(c => (
-                <a key={c.key} href={`#${c.key}`} className="group block border border-[#2A2624]/10 rounded-sm p-6 hover:bg-white transition-colors">
-                  <div className="flex justify-between items-center mb-2">
-                    <div className="text-sm font-medium text-[#2A2624] flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-[#3E2723]" />
-                      {c.name}
-                    </div>
-                    <span className="text-xs uppercase tracking-widest text-[#3E2723] opacity-0 group-hover:opacity-100 transition-opacity">View Details</span>
-                  </div>
-                  <div className="text-xs text-[#5D5550] font-light flex items-center gap-2 ml-6">
-                    <Calendar className="h-3 w-3" /> Fechas próximas
-                  </div>
-                </a>
-              ))}
+          <div className="bg-white/50 border-2 border-[#3E2723]/30 p-8 md:p-12 rounded-sm backdrop-blur-sm">
+            <span className="inline-block mb-6 px-3 py-1 bg-[#3E2723] text-[#EAE8E4] rounded-full text-[10px] uppercase tracking-[0.2em]">
+              Programa Premium · CDMX
+            </span>
+            <h2 className="text-2xl font-serif italic text-[#2A2624] mb-2">{FEATURED.name}</h2>
+            <p className="text-sm text-[#5D5550] font-light mb-6">{FEATURED.level} · {FEATURED.modality}</p>
+
+            <div className="flex items-end justify-between mb-6 pb-6 border-b border-[#2A2624]/10">
+              <div>
+                <div className="text-3xl font-serif italic text-[#3E2723]">{FEATURED.price ? formatMXN(FEATURED.price) : ''}</div>
+                {FEATURED.deposit && (
+                  <div className="text-xs text-[#5D5550] font-light mt-1">Apartado: {formatMXN(FEATURED.deposit)}</div>
+                )}
+              </div>
+              <div className="text-right">
+                <div className="text-2xl font-serif italic text-[#2A2624]">{FEATURED.hours.total}h</div>
+                <div className="text-xs uppercase tracking-widest text-[#5D5550]">{FEATURED.exercises} ejercicios</div>
+              </div>
             </div>
-            <p className="text-xs text-[#5D5550] mt-6 text-center font-light">También disponible en Puebla y Querétaro.</p>
+
+            <div className="space-y-3 mb-8">
+              {FEATURED.dates.map(d => (
+                <div key={d.label} className="flex items-center justify-between gap-2">
+                  <span className="flex items-center gap-2 text-sm text-[#5D5550] font-light">
+                    <Calendar className="w-3.5 h-3.5 text-[#3E2723]" /> {d.label}
+                  </span>
+                  <span className="text-[10px] uppercase tracking-wider text-[#3E2723]">
+                    {STOTT_STATUS_LABEL[d.status]}
+                  </span>
+                </div>
+              ))}
+              <div className="flex items-center gap-2 text-sm text-[#5D5550] font-light">
+                <MapPin className="w-3.5 h-3.5 text-[#3E2723]" /> {STOTT_VENUE.name}, {STOTT_VENUE.area}
+              </div>
+              <div className="flex items-center gap-2 text-sm text-[#5D5550] font-light">
+                <Award className="w-3.5 h-3.5 text-[#3E2723]" /> {FEATURED.cecs.toFixed(1)} CECs Merrithew®
+              </div>
+            </div>
+
+            <a
+              href="#programa-stott"
+              className="block w-full text-center px-6 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors"
+            >
+              Ver Programa Completo
+            </a>
           </div>
         </div>
       </section>
 
+      {/* Premium STOTT PILATES program — course catalog, venue & certification path */}
+      <StottPremiumProgram
+        onPreRegister={() => setModalOpen(true)}
+        whatsappBase={PRIMARY_WHATSAPP_BASE}
+      />
+
       <section className="py-24 px-8 md:px-24 bg-white/40 border-t border-[#2A2624]/10">
         <div className="max-w-[1800px] mx-auto">
-          <h2 className="text-3xl font-serif italic text-[#2A2624] mb-12 text-center">Locations & Registration</h2>
+          <h2 className="text-3xl font-serif italic text-[#2A2624] mb-4 text-center">Otras Sedes en México</h2>
+          <p className="text-center text-[#5D5550] font-light mb-12 max-w-2xl mx-auto">
+            ¿No estás en CDMX? También te conectamos con certificaciones de Pilates (Reformer y Mat) en otras ciudades.
+          </p>
           <div className="grid md:grid-cols-2 gap-8">
             {CITIES.map((c) => (
               <div key={c.key} id={c.key} className="group border border-[#2A2624]/10 rounded-sm p-8 hover:bg-white transition-colors duration-500">
@@ -184,10 +257,12 @@ const CertificacionPilates: React.FC = () => {
                   {c.name}
                 </h3>
                 <p className="text-sm text-[#5D5550] font-light mb-8 leading-relaxed">
-                  Programas en fines de semana e intensivos. Modalidades Mat y Reformer con práctica supervisada. Cupo limitado.
+                  {c.key === 'cdmx'
+                    ? 'Sede del programa premium STOTT PILATES® en Santa Fe. Intensivos de Reformer y Mat con respaldo Merrithew®.'
+                    : 'Programas en fines de semana e intensivos. Modalidades Mat y Reformer con práctica supervisada. Cupo limitado.'}
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <a href={PRIMARY_WHATSAPP + `%20en%20${encodeURIComponent(c.name)}`} className="px-6 py-3 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-widest hover:bg-[#3E2723] transition-colors">
+                  <a href={`${PRIMARY_WHATSAPP_BASE}${encodeURIComponent(`Hola, quiero inscribirme a la certificación de Pilates en ${c.name}`)}`} className="px-6 py-3 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-widest hover:bg-[#3E2723] transition-colors">
                     Inscribirme
                   </a>
                   <button
@@ -206,44 +281,44 @@ const CertificacionPilates: React.FC = () => {
       <section className="py-24 px-8 md:px-24 border-t border-[#2A2624]/10">
         <div className="max-w-[1800px] mx-auto grid md:grid-cols-2 gap-16">
           <div>
-            <h2 className="text-3xl font-serif italic text-[#2A2624] mb-6">Requirements & Duration</h2>
+            <h2 className="text-3xl font-serif italic text-[#2A2624] mb-6">Requisitos & Duración</h2>
             <ul className="space-y-4 text-[#5D5550] font-light">
               <li className="flex items-start gap-3">
                 <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3E2723] flex-shrink-0"></span>
-                <span>Edad 18+, experiencia básica en Pilates o movimiento.</span>
+                <span>Profesionales del fitness/salud o practicantes con 30+ horas de experiencia en Pilates (Reformer para la ruta de Reformer).</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3E2723] flex-shrink-0"></span>
-                <span>Reformer: práctica supervisada y horas clínicas (observación, asistencia y enseñanza).</span>
+                <span>Intensive Reformer: 125 horas (50h instrucción + 10h observación + 40h práctica personal + 25h enseñanza).</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3E2723] flex-shrink-0"></span>
-                <span>Duración: 135 horas (84h instrucción + 51h práctica supervisada).</span>
+                <span>Intensive Mat-Plus™: 95 horas con Advanced Mat incluido en la ruta online en vivo.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3E2723] flex-shrink-0"></span>
-                <span>Evaluación teórica/práctica y proyecto final.</span>
+                <span>Carta de finalización al terminar el curso y Examen de Certificación Internacional independiente.</span>
               </li>
             </ul>
           </div>
           <div>
-            <h2 className="text-3xl font-serif italic text-[#2A2624] mb-6">Choosing a Program</h2>
+            <h2 className="text-3xl font-serif italic text-[#2A2624] mb-6">Por Qué Elegir Este Programa</h2>
             <ul className="space-y-4 text-[#5D5550] font-light">
               <li className="flex items-start gap-3">
                 <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/50 flex-shrink-0"></span>
-                <span>Revisa el plan de estudios (Mat/Reformer) y número de horas.</span>
+                <span>Método reconocido como el "Gold Standard" de la industria, con respaldo de Merrithew®.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/50 flex-shrink-0"></span>
-                <span>Confirma práctica clínica supervisada y mentoreo.</span>
+                <span>Sede oficial Merrithew® con equipo de última generación en Santa Fe, CDMX.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/50 flex-shrink-0"></span>
-                <span>Validez y avales (estándares internacionales cuando aplique).</span>
+                <span>Grupos reducidos de máximo 12 personas con atención personalizada.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/50 flex-shrink-0"></span>
-                <span>Bolsa de trabajo y red de estudios afiliados.</span>
+                <span>Créditos de educación continua (CECs) y validez internacional en más de 100 países.</span>
               </li>
             </ul>
           </div>
@@ -256,337 +331,37 @@ const CertificacionPilates: React.FC = () => {
           <div className="space-y-8">
             <div className="border-b border-white/10 pb-8">
               <h3 className="font-serif italic text-xl mb-4">¿Puedo certificarme solo en Reformer?</h3>
-              <p className="text-white/60 font-light leading-relaxed">Sí. Algunas escuelas ofrecen Reformer como módulo independiente; otras requieren base en Mat. Te guiamos según tu perfil.</p>
+              <p className="text-white/60 font-light leading-relaxed">
+                Sí. El Intensive Reformer es una certificación independiente de 125 horas. Solo necesitas
+                experiencia previa mínima de 30 horas en Reformer o ser profesional del fitness/salud.
+              </p>
             </div>
             <div className="border-b border-white/10 pb-8">
               <h3 className="font-serif italic text-xl mb-4">¿Existen opciones online?</h3>
-              <p className="text-white/60 font-light leading-relaxed">La teoría puede ser online, pero la práctica del Reformer debe ser presencial para cumplir estándares y seguridad.</p>
+              <p className="text-white/60 font-light leading-relaxed">
+                Sí. El Intensive Mat-Plus™ se imparte online en vivo (por cámara) e incluye el módulo
+                Advanced Mat. Las rutas de Reformer son 100% presenciales en Santa Fe, CDMX.
+              </p>
             </div>
             <div className="border-b border-white/10 pb-8">
-              <h3 className="font-serif italic text-xl mb-4">¿Qué costo debo considerar?</h3>
-              <p className="text-white/60 font-light leading-relaxed">Matrícula + material + horas clínicas. Pregunta por planes de pago y descuentos por pronto pago.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========== EDELWEISS 135-HOUR REFORMER CERTIFICATION ========== */}
-      {/* Section A: The Why - Reformer Specialist */}
-      <section className="py-24 px-8 md:px-24 border-t border-[#2A2624]/10">
-        <div className="max-w-[1800px] mx-auto">
-          <div className="text-center mb-16">
-            <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-6">
-              Certificación Reformer
-            </span>
-            <h2 className="text-4xl md:text-5xl font-serif italic text-[#2A2624] leading-tight mb-6">
-              135 Horas para Convertirte<br />
-              <span className="not-italic font-light font-sans tracking-tight">en Especialista de Reformer.</span>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-12 md:gap-16">
-            <div className="bg-[#2A2624]/5 border border-[#2A2624]/10 rounded-sm p-8 md:p-12">
-              <h3 className="text-xs uppercase tracking-[0.2em] text-[#5D5550] mb-6">Qué Aprenderás</h3>
-              <p className="text-lg text-[#5D5550] font-light leading-relaxed mb-6">
-                El repertorio completo de Reformer incluye más de 130 ejercicios—desde esenciales hasta avanzados—cada uno 
-                con múltiples variaciones y modificaciones. En 135 horas aprenderás a descomponer cada movimiento, 
-                adaptarlo a diferentes cuerpos, y diseñar sesiones efectivas desde el primer día.
-              </p>
-              <ul className="space-y-3 text-[#5D5550] font-light">
-                <li className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/40 flex-shrink-0"></span>
-                  <span>Anatomía funcional y biomecánica aplicada al Reformer</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/40 flex-shrink-0"></span>
-                  <span>Repertorio esencial a avanzado con progresiones</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/40 flex-shrink-0"></span>
-                  <span>Análisis postural y adaptaciones para cada cliente</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/40 flex-shrink-0"></span>
-                  <span>Cueing verbal, táctil y visual efectivo</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-white/50 border border-[#3E2723]/20 rounded-sm p-8 md:p-12">
-              <h3 className="text-xs uppercase tracking-[0.2em] text-[#3E2723] mb-6">El Programa Edelweiss</h3>
-              <p className="text-lg text-[#5D5550] font-light leading-relaxed mb-6">
-                Nuestro programa está alineado con los estándares internacionales de certificación Reformer 
-                (STOTT: 125h, Balanced Body: 134h). <strong className="text-[#3E2723]">84 horas de instrucción</strong> más 
-                <strong className="text-[#3E2723]"> 51 horas de práctica supervisada</strong>—observando, practicando en tu cuerpo 
-                y enseñando a clientes reales.
-              </p>
-              <div className="flex items-center justify-between pt-4 border-t border-[#2A2624]/10">
-                <div className="text-center">
-                  <div className="text-3xl font-serif italic text-[#3E2723]">84h</div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Instrucción</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-serif italic text-[#3E2723]">51h</div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Práctica</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-serif italic text-[#3E2723]">100%</div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Presencial</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section B: Somatic Promise - Anti-Online */}
-      <section className="py-24 px-8 md:px-24 bg-[#2A2624] text-[#EAE8E4]">
-        <div className="max-w-[1800px] mx-auto">
-          <div className="text-center mb-16">
-            <span className="block text-xs font-sans tracking-[0.3em] uppercase text-white/40 mb-6">
-              La Promesa Somática
-            </span>
-            <h2 className="text-4xl md:text-5xl font-serif italic leading-tight mb-6">
-              No Puedes Descargar<br />
-              <span className="not-italic font-light font-sans tracking-tight">"El Tacto."</span>
-            </h2>
-            <p className="text-lg text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
-              En una era de anatomía por Zoom y certificaciones híbridas, Edelweiss se mantiene firme: 
-              Pilates es una práctica kinestésica. Algunas cosas simplemente no se pueden transmitir a través de una pantalla.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="border border-white/10 rounded-sm p-8 hover:bg-white/5 transition-colors">
-              <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6">
-                <Heart className="w-6 h-6 text-white/80" />
-              </div>
-              <h3 className="text-xl font-serif italic mb-4">Empatía Somática</h3>
+              <h3 className="font-serif italic text-xl mb-4">¿Cómo funciona el pago?</h3>
               <p className="text-white/60 font-light leading-relaxed">
-                Aprende a leer el sistema nervioso de tu cliente a través de su respiración y tono—habilidades 
-                que no se pueden transmitir por una pantalla. Siente los cambios sutiles que indican 
-                disposición, fatiga o liberación emocional.
+                Apartas tu lugar con un depósito (no reembolsable) desde $5,000–$8,000 MXN según el curso,
+                y liquidas antes del primer día de clases. Hay pago con tarjeta disponible en cursos individuales
+                y descuentos por inscripción a rutas completas.
               </p>
             </div>
-
-            <div className="border border-white/10 rounded-sm p-8 hover:bg-white/5 transition-colors">
-              <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6">
-                <Hand className="w-6 h-6 text-white/80" />
-              </div>
-              <h3 className="text-xl font-serif italic mb-4">Cueing Táctil</h3>
+            <div className="border-b border-white/10 pb-8">
+              <h3 className="font-serif italic text-xl mb-4">¿El examen internacional está incluido?</h3>
               <p className="text-white/60 font-light leading-relaxed">
-                Aprenderás a usar el tacto como herramienta de enseñanza—correcciones sutiles que guían 
-                al cliente hacia la alineación correcta. Practicarás técnicas de asistencia manual con 
-                retroalimentación inmediata de tus mentores.
-              </p>
-            </div>
-
-            <div className="border border-white/10 rounded-sm p-8 hover:bg-white/5 transition-colors">
-              <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6">
-                <Users className="w-6 h-6 text-white/80" />
-              </div>
-              <h3 className="text-xl font-serif italic mb-4">100% Presencial</h3>
-              <p className="text-white/60 font-light leading-relaxed">
-                Sin atajos en línea. Sin compromisos híbridos. Cada hora de tu programa de 135 horas 
-                ocurre en el estudio, con cuerpos reales, resortes reales y retroalimentación 
-                real de mentores.
+                El examen de certificación internacional se agenda de forma independiente al finalizar tus horas
+                de práctica y tiene un costo adicional. Al terminar el curso recibes tu carta de finalización
+                (Completion Certificate) y CECs de Merrithew®.
               </p>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Section C: Curriculum - 135 Hours */}
-      <section className="py-24 px-8 md:px-24 border-t border-[#2A2624]/10">
-        <div className="max-w-[1800px] mx-auto">
-          <div className="text-center mb-16">
-            <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-6">
-              El Plan de Estudios
-            </span>
-            <h2 className="text-4xl md:text-5xl font-serif italic text-[#2A2624] leading-tight mb-6">
-              135 Horas.<br />
-              <span className="not-italic font-light font-sans tracking-tight">Especialización Completa en Reformer.</span>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Phase I */}
-            <div className="group border border-[#2A2624]/10 rounded-sm p-8 hover:bg-white/50 transition-colors">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full bg-[#3E2723]/10 flex items-center justify-center group-hover:bg-[#3E2723] transition-colors">
-                  <BookOpen className="w-5 h-5 text-[#3E2723] group-hover:text-white transition-colors" />
-                </div>
-                <div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Módulo I</div>
-                  <div className="text-2xl font-serif italic text-[#3E2723]">20h</div>
-                </div>
-              </div>
-              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Fundamentos</h3>
-              <ul className="space-y-2 text-sm text-[#5D5550] font-light">
-                <li>• Anatomía Funcional</li>
-                <li>• Principios del Movimiento</li>
-                <li>• Biomecánica del Reformer</li>
-                <li>• Evaluación Postural</li>
-              </ul>
-            </div>
-
-            {/* Phase II */}
-            <div className="group border border-[#2A2624]/10 rounded-sm p-8 hover:bg-white/50 transition-colors">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full bg-[#3E2723]/10 flex items-center justify-center group-hover:bg-[#3E2723] transition-colors">
-                  <GraduationCap className="w-5 h-5 text-[#3E2723] group-hover:text-white transition-colors" />
-                </div>
-                <div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Módulo II</div>
-                  <div className="text-2xl font-serif italic text-[#3E2723]">48h</div>
-                </div>
-              </div>
-              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Repertorio Reformer</h3>
-              <ul className="space-y-2 text-sm text-[#5D5550] font-light">
-                <li>• Ejercicios Esenciales e Intermedios</li>
-                <li>• Ejercicios Avanzados</li>
-                <li>• Progresiones y Modificaciones</li>
-                <li>• Secuencias de Clase</li>
-              </ul>
-            </div>
-
-            {/* Phase III */}
-            <div className="group border border-[#2A2624]/10 rounded-sm p-8 hover:bg-white/50 transition-colors">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full bg-[#3E2723]/10 flex items-center justify-center group-hover:bg-[#3E2723] transition-colors">
-                  <MessageCircle className="w-5 h-5 text-[#3E2723] group-hover:text-white transition-colors" />
-                </div>
-                <div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550]">Módulo III</div>
-                  <div className="text-2xl font-serif italic text-[#3E2723]">16h</div>
-                </div>
-              </div>
-              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Metodología</h3>
-              <ul className="space-y-2 text-sm text-[#5D5550] font-light">
-                <li>• Técnicas de Instrucción</li>
-                <li>• Cueing Verbal y Táctil</li>
-                <li>• Diseño de Programas</li>
-                <li>• Poblaciones Especiales</li>
-              </ul>
-            </div>
-
-            {/* Practice Hours */}
-            <div className="group border-2 border-[#3E2723]/30 bg-[#3E2723]/5 rounded-sm p-8 hover:bg-[#3E2723]/10 transition-colors">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full bg-[#3E2723] flex items-center justify-center">
-                  <Users className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <div className="text-xs uppercase tracking-widest text-[#3E2723]">Práctica</div>
-                  <div className="text-2xl font-serif italic text-[#3E2723]">51h</div>
-                </div>
-              </div>
-              <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Horas Supervisadas</h3>
-              <ul className="space-y-2 text-sm text-[#5D5550] font-light">
-                <li>• 15h Observación</li>
-                <li>• 20h Práctica Personal</li>
-                <li>• 16h Enseñanza Supervisada</li>
-                <li>• Evaluación Final</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="mt-12 text-center">
-            <div className="inline-flex items-center gap-8 bg-[#2A2624] text-[#EAE8E4] px-12 py-6 rounded-sm">
-              <div className="text-center">
-                <div className="text-3xl font-serif italic">135</div>
-                <div className="text-xs uppercase tracking-widest text-white/60">Horas Totales</div>
-              </div>
-              <div className="w-px h-12 bg-white/20"></div>
-              <div className="text-center">
-                <div className="text-3xl font-serif italic">84h</div>
-                <div className="text-xs uppercase tracking-widest text-white/60">Instrucción</div>
-              </div>
-              <div className="w-px h-12 bg-white/20"></div>
-              <div className="text-center">
-                <div className="text-3xl font-serif italic">51h</div>
-                <div className="text-xs uppercase tracking-widest text-white/60">Práctica</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section D: Practice Hours Differentiator */}
-      <section className="py-24 px-8 md:px-24 bg-white/40 border-t border-[#2A2624]/10">
-        <div className="max-w-[1800px] mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-6">
-                Práctica Supervisada
-              </span>
-              <h2 className="text-4xl md:text-5xl font-serif italic text-[#2A2624] leading-tight mb-6">
-                No Solo Teoría.<br />
-                <span className="not-italic font-light font-sans tracking-tight">Experiencia Real desde el Día Uno.</span>
-              </h2>
-              <p className="text-lg text-[#5D5550] font-light leading-relaxed mb-8">
-                Las 51 horas de práctica supervisada son el corazón de tu formación. 
-                Observas instructores certificados, practicas en tu propio cuerpo y enseñas a clientes reales 
-                bajo supervisión experta—todo antes de graduarte.
-              </p>
-              <button
-                onClick={() => setModalOpen(true)}
-                className="inline-flex items-center px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors"
-              >
-                Comienza Tu Camino
-              </button>
-            </div>
-
-            <div className="space-y-6">
-              <div className="bg-white border border-[#2A2624]/10 rounded-sm p-8">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-[#3E2723]/10 flex items-center justify-center flex-shrink-0">
-                    <span className="text-lg font-serif italic text-[#3E2723]">15h</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-serif italic text-[#2A2624] mb-2">Observación</h3>
-                    <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                      Observa clases impartidas por instructores certificados. Aprende cómo manejan 
-                      diferentes clientes, modificaciones y el flujo de una sesión profesional.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white border border-[#2A2624]/10 rounded-sm p-8">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-[#3E2723]/10 flex items-center justify-center flex-shrink-0">
-                    <span className="text-lg font-serif italic text-[#3E2723]">20h</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-serif italic text-[#2A2624] mb-2">Práctica Personal</h3>
-                    <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                      Domina cada ejercicio en tu propio cuerpo. No puedes enseñar lo que no has sentido. 
-                      Desarrolla tu práctica personal con retroalimentación de mentores.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white border border-[#2A2624]/10 rounded-sm p-8">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-[#3E2723]/10 flex items-center justify-center flex-shrink-0">
-                    <span className="text-lg font-serif italic text-[#3E2723]">16h</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-serif italic text-[#2A2624] mb-2">Enseñanza Supervisada</h3>
-                    <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                      Enseña a clientes reales bajo la guía de un mentor. Recibe retroalimentación inmediata 
-                      y gradúate con experiencia real, no solo con teoría.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* ========== END EDELWEISS 135-HOUR REFORMER CERTIFICATION ========== */}
 
       {/* Cross-sell: Equipment for Future Studios */}
       <section className="py-20 px-8 md:px-24 bg-[#EAE8E4]">
@@ -600,8 +375,8 @@ const CertificacionPilates: React.FC = () => {
                 Equipa Tu Futuro Estudio
               </h2>
               <p className="text-lg text-[#5D5550] font-light leading-relaxed mb-8">
-                Al graduarte, tendrás acceso a precios especiales en equipamiento. 
-                Reformers profesionales, sistemas de luz terapéutica y todo lo que 
+                Al graduarte, tendrás acceso a precios especiales en equipamiento.
+                Reformers profesionales, sistemas de luz terapéutica y todo lo que
                 necesitas para abrir tu propio espacio.
               </p>
               <div className="flex flex-wrap gap-4">
