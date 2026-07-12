@@ -6,6 +6,7 @@ import { api } from '../../../convex/_generated/api';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
 import { Lock, Eye, EyeOff, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
+import { useLoadTimeout } from '@/hooks/useLoadTimeout';
 
 const SetupCuenta: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -21,6 +22,7 @@ const SetupCuenta: React.FC = () => {
 
   const tokenData = useQuery(api.instructorAuth.getAccountBySetupToken, { token });
   const setupPasswordMutation = useMutation(api.instructorAuth.setupPassword);
+  const verifyTimedOut = useLoadTimeout(tokenData === undefined);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,12 +65,35 @@ const SetupCuenta: React.FC = () => {
   const origin = getOrigin();
 
   // Loading state
-  if (tokenData === undefined) {
+  if (tokenData === undefined && !verifyTimedOut) {
     return (
       <LuxuryLayout>
         <section className="relative pt-24 pb-20 px-8 md:px-24 max-w-[600px] mx-auto text-center">
           <Loader2 className="w-8 h-8 animate-spin mx-auto text-[#8B7355]" />
           <p className="mt-4 text-[#5D5550]">Verificando enlace...</p>
+        </section>
+      </LuxuryLayout>
+    );
+  }
+
+  // Verification never completed (backend unreachable): let the user retry.
+  if (tokenData === undefined && verifyTimedOut) {
+    return (
+      <LuxuryLayout>
+        <section className="relative pt-24 pb-20 px-8 md:px-24 max-w-[600px] mx-auto text-center">
+          <div className="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-6">
+            <AlertCircle className="w-8 h-8 text-red-500" />
+          </div>
+          <h1 className="text-3xl font-serif italic text-[#2A2624] mb-4">Problema de conexión</h1>
+          <p className="text-[#5D5550] mb-8">
+            No pudimos verificar tu enlace. Revisa tu conexión e inténtalo de nuevo.
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="bg-[#3E2723] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#5D4037] transition-colors"
+          >
+            Reintentar
+          </button>
         </section>
       </LuxuryLayout>
     );

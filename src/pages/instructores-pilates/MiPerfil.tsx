@@ -6,6 +6,7 @@ import { api } from '../../../convex/_generated/api';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
 import { User, Lock, Eye, EyeOff, AlertCircle, Loader2 } from 'lucide-react';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
+import { useLoadTimeout } from '@/hooks/useLoadTimeout';
 
 const MiPerfil: React.FC = () => {
   const navigate = useNavigate();
@@ -39,6 +40,13 @@ const MiPerfil: React.FC = () => {
       setCheckingSession(false);
     }
   }, [sessionData, navigate, existingToken]);
+
+  // If session validation never resolves (backend unreachable), stop blocking
+  // on the spinner and let the user log in normally instead of hanging.
+  const sessionCheckTimedOut = useLoadTimeout(checkingSession && sessionData === undefined);
+  useEffect(() => {
+    if (sessionCheckTimedOut) setCheckingSession(false);
+  }, [sessionCheckTimedOut]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

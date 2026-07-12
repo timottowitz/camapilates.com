@@ -1,8 +1,12 @@
 import './polyfills.ts';
+import { installTranslateCrashGuard } from './lib/translateCrashGuard';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import { ConvexProviderMaybe } from './lib/convexProvider';
 import './index.css';
+
+// Must run before React renders so the DOM operations are patched in time.
+installTranslateCrashGuard();
 
 // Global error handler for chunk loading failures
 // This commonly happens when a new deployment occurs and old chunks are no longer available

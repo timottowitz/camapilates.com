@@ -35,6 +35,7 @@ import { Card } from '@/components/ui/card';
 	import { hasConvex } from '@/lib/convexProvider';
 	import { normalizeTeacherSlugForUrl } from '@/lib/teacherSlug';
 	import { instagramProfileUrl, normalizeExternalUrl } from '@/lib/social';
+	import { useLoadTimeout } from '@/hooks/useLoadTimeout';
 
 interface TeacherDetail {
   _id: Id<'teachers'>;
@@ -135,6 +136,11 @@ const TeacherDetail: React.FC = () => {
   const isLiveLoading = hasConvex && Boolean(citySlug && slug) && liveTeacher === undefined;
   const teacher = liveTeacher ?? seededTeacher;
 
+  // If Convex never resolves (backend outage / blocked connection) and we have
+  // no seed fallback, stop showing the loading spinner after a grace period so
+  // the page degrades to a retry state instead of hanging forever.
+  const loadTimedOut = useLoadTimeout(isLiveLoading && !seededTeacher);
+
   // Fetch photos from Convex only when we have a real Convex teacher id
   const photos = useQuery(
     api.teachers.getPhotos,
@@ -218,11 +224,32 @@ const TeacherDetail: React.FC = () => {
     }
   };
 
-  if (isLiveLoading && !seededTeacher) {
+  if (isLiveLoading && !seededTeacher && !loadTimedOut) {
     return (
       <LuxuryLayout>
         <div className="pt-32 pb-24 text-center px-4">
           <div className="animate-pulse text-[#5D5550]">Cargando perfil...</div>
+        </div>
+      </LuxuryLayout>
+    );
+  }
+
+  // Loading never completed and there's no data to show: the backend is
+  // unreachable rather than the profile being genuinely missing.
+  if (!teacher && loadTimedOut) {
+    return (
+      <LuxuryLayout>
+        <div className="pt-32 pb-24 text-center px-4">
+          <h1 className="text-3xl font-serif text-[#2A2624] mb-4">No pudimos cargar el perfil</h1>
+          <p className="text-[#5D5550] mb-8">
+            Hubo un problema de conexión al cargar este instructor. Revisa tu conexión e inténtalo de nuevo.
+          </p>
+          <div className="flex flex-wrap gap-3 justify-center">
+            <Button onClick={() => window.location.reload()}>Reintentar</Button>
+            <Link to="/instructores-pilates">
+              <Button variant="outline">Volver al directorio</Button>
+            </Link>
+          </div>
         </div>
       </LuxuryLayout>
     );
