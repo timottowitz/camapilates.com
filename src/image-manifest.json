@@ -239,6 +239,11 @@
     "hashed": "/images/pantalon-relaxed.b5de0641.webp",
     "hash": "b5de0641"
   },
+  "/images/pilates-straps-main.webp": {
+    "original": "/images/pilates-straps-main.webp",
+    "hashed": "/images/pilates-straps-main.cfe3ac44.webp",
+    "hash": "cfe3ac44"
+  },
   "/images/pilates-straps.webp": {
     "original": "/images/pilates-straps.webp",
     "hashed": "/images/pilates-straps.aae7f6ee.webp",
@@ -449,15 +454,55 @@
     "hashed": "/images/reformer-editorial-1.76dc806c.webp",
     "hash": "76dc806c"
   },
+  "/images/reformer-home-detail.webp": {
+    "original": "/images/reformer-home-detail.webp",
+    "hashed": "/images/reformer-home-detail.4c590c00.webp",
+    "hash": "4c590c00"
+  },
+  "/images/reformer-home-medium.webp": {
+    "original": "/images/reformer-home-medium.webp",
+    "hashed": "/images/reformer-home-medium.69e855ab.webp",
+    "hash": "69e855ab"
+  },
+  "/images/reformer-home-wide.webp": {
+    "original": "/images/reformer-home-wide.webp",
+    "hashed": "/images/reformer-home-wide.8bc12a43.webp",
+    "hash": "8bc12a43"
+  },
   "/images/reformer-home.webp": {
     "original": "/images/reformer-home.webp",
     "hashed": "/images/reformer-home.1d3f4e75.webp",
     "hash": "1d3f4e75"
   },
+  "/images/reformer-mycelium-detail.webp": {
+    "original": "/images/reformer-mycelium-detail.webp",
+    "hashed": "/images/reformer-mycelium-detail.c3aba2e5.webp",
+    "hash": "c3aba2e5"
+  },
+  "/images/reformer-mycelium-wide.webp": {
+    "original": "/images/reformer-mycelium-wide.webp",
+    "hashed": "/images/reformer-mycelium-wide.456c5e89.webp",
+    "hash": "456c5e89"
+  },
   "/images/reformer-mycelium.webp": {
     "original": "/images/reformer-mycelium.webp",
     "hashed": "/images/reformer-mycelium.a39d03f1.webp",
     "hash": "a39d03f1"
+  },
+  "/images/reformer-pro-detail.webp": {
+    "original": "/images/reformer-pro-detail.webp",
+    "hashed": "/images/reformer-pro-detail.c963ca7f.webp",
+    "hash": "c963ca7f"
+  },
+  "/images/reformer-pro-medium.webp": {
+    "original": "/images/reformer-pro-medium.webp",
+    "hashed": "/images/reformer-pro-medium.4ebf89a3.webp",
+    "hash": "4ebf89a3"
+  },
+  "/images/reformer-pro-wide.webp": {
+    "original": "/images/reformer-pro-wide.webp",
+    "hashed": "/images/reformer-pro-wide.d43b2567.webp",
+    "hash": "d43b2567"
   },
   "/images/reformer-pro.webp": {
     "original": "/images/reformer-pro.webp",
@@ -473,6 +518,11 @@
     "original": "/images/shop-hero-bohemian.webp",
     "hashed": "/images/shop-hero-bohemian.afc6aa59.webp",
     "hash": "afc6aa59"
+  },
+  "/images/socks-organic-main.webp": {
+    "original": "/images/socks-organic-main.webp",
+    "hashed": "/images/socks-organic-main.09ddc0ca.webp",
+    "hash": "09ddc0ca"
   },
   "/images/socks-organic.webp": {
     "original": "/images/socks-organic.webp",

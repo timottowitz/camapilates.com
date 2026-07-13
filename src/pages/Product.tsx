@@ -179,6 +179,93 @@ const ProductPage: React.FC = () => {
     ]
   };
 
+  const galleryImages = useMemo(() => {
+    if (!prod) return [];
+    
+    if (prod.slug === 'reformer-casa') {
+      return [
+        {
+          src: '/images/reformer-home-wide.webp',
+          alt: `${prod.name} — Vista panorámica en estudio`,
+          type: 'main' as const,
+          label: 'Vista Principal (Estudio)'
+        },
+        {
+          src: '/images/reformer-home-medium.webp',
+          alt: `${prod.name} — Vista media de la cama y muelles`,
+          type: 'lifestyle' as const,
+          label: 'Vista Media'
+        },
+        {
+          src: '/images/reformer-home-detail.webp',
+          alt: `${prod.name} — Detalle de ensamble en madera nogal`,
+          type: 'detail' as const,
+          label: 'Detalle de Madera'
+        }
+      ];
+    }
+    
+    if (prod.slug === 'reformer-profesional') {
+      return [
+        {
+          src: '/images/reformer-pro-wide.webp',
+          alt: `${prod.name} — Reformer profesional de estudio`,
+          type: 'main' as const,
+          label: 'Vista Principal (Estudio)'
+        },
+        {
+          src: '/images/reformer-pro-medium.webp',
+          alt: `${prod.name} — Vista media de la estructura y barandilla`,
+          type: 'lifestyle' as const,
+          label: 'Vista Media'
+        },
+        {
+          src: '/images/reformer-pro-detail.webp',
+          alt: `${prod.name} — Detalle del sistema de muelles de precisión`,
+          type: 'detail' as const,
+          label: 'Mecánica de Precisión'
+        }
+      ];
+    }
+
+    if (prod.slug === 'reformer-mycelium') {
+      return [
+        {
+          src: '/images/reformer-mycelium-wide.webp',
+          alt: `${prod.name} — Cama de Pilates ecológica con cuero Mylo`,
+          type: 'main' as const,
+          label: 'Vista Principal'
+        },
+        {
+          src: '/images/reformer-mycelium-detail.webp',
+          alt: `${prod.name} — Close-up del material de micelio biodegradable`,
+          type: 'detail' as const,
+          label: 'Textura Micelio (Mylo)'
+        }
+      ];
+    }
+
+    // Default fallback list of images
+    const list = [];
+    if (activeVariant?.image || prod.image) {
+      list.push({
+        src: activeVariant?.image || prod.image,
+        alt: `${prod.name} — ${FINISHES[finish]?.name || ''}`,
+        type: 'main' as const,
+        label: 'Vista Principal'
+      });
+    }
+    if (prod.hoverImage) {
+      list.push({
+        src: prod.hoverImage,
+        alt: `${prod.name} — Alternativa`,
+        type: 'lifestyle' as const,
+        label: 'En contexto'
+      });
+    }
+    return list;
+  }, [prod, activeVariant?.image, finish]);
+
   const breadcrumb = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -224,27 +311,7 @@ const ProductPage: React.FC = () => {
             transition={{ duration: 1 }}
           >
             <EnhancedGallery
-              images={[
-                // Editorial image first for reformer-casa
-                ...(prod.slug === 'reformer-casa' && assets.reformerEditorial1 ? [{
-                  src: assets.reformerEditorial1,
-                  alt: 'Artistic editorial - Pilates Reformer lifestyle',
-                  type: 'main' as const,
-                  label: 'Editorial'
-                }] : []),
-                {
-                  src: activeVariant?.image || prod.image,
-                  alt: `${prod.name} — ${FINISHES[finish]?.name || ''}`,
-                  type: prod.slug === 'reformer-casa' ? 'detail' as const : 'main' as const,
-                  label: prod.slug === 'reformer-casa' ? `Acabado ${FINISHES[finish]?.name || ''}` : 'Vista principal'
-                },
-                {
-                  src: prod.image,
-                  alt: prod.name,
-                  type: 'lifestyle',
-                  label: 'En contexto'
-                }
-              ].filter(Boolean)}
+              images={galleryImages}
               showLabels={true}
             />
             <div className="mt-8 hidden md:block">
