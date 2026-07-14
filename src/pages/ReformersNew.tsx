@@ -282,10 +282,7 @@ const ReformersNew: React.FC = () => {
                 <EnhancedButton asChild className="rounded-full bg-[#3E2723] text-white hover:bg-[#3E2723]/90">
                   <a href="https://wa.me/525548468190">Cotizar por WhatsApp</a>
                 </EnhancedButton>
-                <EnhancedButton asChild variant="outline" className="rounded-full border-[#2A2624]/20 bg-white/60">
-                  <Link to="/compare">Comparar modelos</Link>
-                </EnhancedButton>
-                <Link to="/reformers/usadas" className="text-xs uppercase tracking-[0.22em] text-[#5D5550] hover:text-[#3E2723]">Ver usadas →</Link>
+
               </div>
             </div>
 

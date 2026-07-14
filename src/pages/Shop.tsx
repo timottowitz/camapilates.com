@@ -221,7 +221,7 @@ const Shop: React.FC = () => {
               <a href="https://wa.me/525548468190" className="hover:text-[#EB4C42] transition-colors">WhatsApp</a>
               <a href="tel:+525548468190" className="hover:text-[#EB4C42] transition-colors">Llamar</a>
               <div className="hidden sm:block text-[#5D5550]">
-                <Link to="/compare" className="hover:text-[#EB4C42] transition-colors">Comparar Modelos</Link>
+                <Link to="/products" className="hover:text-[#EB4C42] transition-colors">Ver Catálogo</Link>
               </div>
             </div>
           </div>
@@ -232,8 +232,8 @@ const Shop: React.FC = () => {
             subtitle="Tejidos no tóxicos & materiales premium (cuero genuino, nogal & acero). Pago seguro & entrega en 3 semanas."
             backgroundImage={assets.shopHero || DEFAULTS.ogImage}
             showTrustMetrics={false}
-            ctaPrimary={{ text: 'Ver promoción', href: '/product/reformer-profesional' }}
-            ctaSecondary={{ text: 'Comparar modelos', href: '/compare' }}
+            ctaPrimary={{ text: 'Ver promoción', href: '/product/reformer-aluminio-riel-deslizante-a068' }}
+            ctaSecondary={{ text: 'Ver Catálogo', href: '/products' }}
           />
 
           {/* Shop by category icons */}

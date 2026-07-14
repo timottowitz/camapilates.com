@@ -89,7 +89,6 @@ const EditarPerfil = lazyWithRetry(() => import('./pages/instructores-pilates/Ed
 const ResetPassword = lazyWithRetry(() => import('./pages/instructores-pilates/ResetPassword'));
 
 const ReformersNew = lazyWithRetry(() => import('./pages/ReformersNew'));
-const ReformersUsed = lazyWithRetry(() => import('./pages/ReformersUsed'));
 
 import GAListener from "@/components/analytics/GAListener";
 import FloatingCart21 from "@/components/commerce21/FloatingCart21";
@@ -129,7 +128,6 @@ const App = () => (
               <Route path="/shop" element={<Suspense fallback={<PageLoader />}><Shop /></Suspense>} />
               <Route path="/shop/category/:slug" element={<Suspense fallback={<PageLoader />}><ShopCategory /></Suspense>} />
               <Route path="/reformers/nuevas" element={<Suspense fallback={<PageLoader />}><ReformersNew /></Suspense>} />
-              <Route path="/reformers/usadas" element={<Suspense fallback={<PageLoader />}><ReformersUsed /></Suspense>} />
               <Route path="/products" element={<Suspense fallback={<PageLoader />}><Products /></Suspense>} />
               <Route path="/cama-de-pilates/en-venta" element={<Suspense fallback={<PageLoader />}><CamaDePilatesEnVenta /></Suspense>} />
               <Route path="/cama-de-pilates/precio" element={<Suspense fallback={<PageLoader />}><CamaDePilatesPrecio /></Suspense>} />

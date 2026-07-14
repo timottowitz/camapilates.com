@@ -247,15 +247,16 @@ const ProductPage: React.FC = () => {
 
     // Default fallback list of images
     const list = [];
-    if (activeVariant?.image || prod.image) {
+    const mainImg = activeVariant?.image || prod.image;
+    if (mainImg) {
       list.push({
-        src: activeVariant?.image || prod.image,
+        src: mainImg,
         alt: `${prod.name} — ${FINISHES[finish]?.name || ''}`,
         type: 'main' as const,
         label: 'Vista Principal'
       });
     }
-    if (prod.hoverImage) {
+    if (prod.hoverImage && prod.hoverImage !== mainImg) {
       list.push({
         src: prod.hoverImage,
         alt: `${prod.name} — Alternativa`,
@@ -276,7 +277,7 @@ const ProductPage: React.FC = () => {
     ]
   };
 
-  if (!prod) return <Navigate to="/compare" replace />;
+  if (!prod) return <Navigate to="/products" replace />;
 
   return (
     <LuxuryLayout headerTheme="light">

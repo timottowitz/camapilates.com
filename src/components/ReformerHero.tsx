@@ -79,12 +79,7 @@ const ReformerHero = () => {
               >
                 Ver Colección
               </Link>
-              <Link
-                to="/compare"
-                className="px-8 py-4 border border-white/30 text-white rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white/10 transition-colors duration-300 backdrop-blur-sm"
-              >
-                Comparar Modelos
-              </Link>
+
             </div>
           </FadeIn>
 
