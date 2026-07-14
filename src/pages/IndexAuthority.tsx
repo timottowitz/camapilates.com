@@ -93,7 +93,7 @@ const IndexAuthority: React.FC = () => {
       { '@type': 'ListItem', position: 1, url: `${origin}/cama-de-pilates`, name: 'Cama de Pilates' },
       { '@type': 'ListItem', position: 2, url: `${origin}/cama-de-pilates/en-venta`, name: 'Cama de Pilates en Venta' },
       { '@type': 'ListItem', position: 3, url: `${origin}/cama-de-pilates/precio`, name: 'Precio de Cama de Pilates' },
-      { '@type': 'ListItem', position: 4, url: `${origin}/products`, name: 'Comparar Modelos' },
+      { '@type': 'ListItem', position: 4, url: `${origin}/products`, name: 'Catálogo de Camas' },
     ],
   };
 

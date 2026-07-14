@@ -96,12 +96,7 @@ const Products: React.FC = () => {
               >
                 Ir a la tienda <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link
-                to="/compare"
-                className="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-[#2A2624]/20 text-[#2A2624] text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-all"
-              >
-                Comparar Casa vs Profesional
-              </Link>
+
             </motion.div>
           </div>
           <RegionNote />

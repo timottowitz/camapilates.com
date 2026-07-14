@@ -382,9 +382,7 @@ const ReformersNew: React.FC = () => {
                     <div className="mt-3 text-sm text-[#5D5550]">Quita un filtro o limpia para ver todo el catálogo de reformers.</div>
                     <div className="mt-6 flex flex-wrap gap-3">
                       <EnhancedButton onClick={clearAll} className="rounded-full bg-[#3E2723] text-white hover:bg-[#3E2723]/90">Limpiar filtros</EnhancedButton>
-                      <EnhancedButton asChild variant="outline" className="rounded-full border-[#2A2624]/20 bg-white/60">
-                        <Link to="/compare">Ir a comparar</Link>
-                      </EnhancedButton>
+
                     </div>
                   </div>
                 </EnhancedCard>
@@ -406,9 +404,6 @@ const ReformersNew: React.FC = () => {
                     </div>
                     <div className="flex flex-wrap gap-3">
                       <EnhancedButton asChild className="rounded-full bg-[#3E2723] text-white hover:bg-[#3E2723]/90">
-                        <Link to="/compare">Ir a comparar</Link>
-                      </EnhancedButton>
-                      <EnhancedButton asChild variant="outline" className="rounded-full border-[#2A2624]/20 bg-white/60">
                         <a href="https://wa.me/525548468190" className="inline-flex items-center gap-2">Cotizar <ArrowRight className="h-4 w-4" /></a>
                       </EnhancedButton>
                     </div>

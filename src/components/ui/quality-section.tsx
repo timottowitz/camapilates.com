@@ -75,7 +75,7 @@ export const QualitySection = ({
     title: "Certificado por los mejores estándares internacionales",
     description: "Todos nuestros equipos cumplen con las normativas ISO 9001 y están certificados para uso profesional en estudios y clínicas de fisioterapia.",
     buttonText: "Ver certificaciones",
-    buttonUrl: "/compare",
+    buttonUrl: "/products",
   },
   materialsTitle = "Materiales premium en cada detalle",
   materials = defaultMaterials,

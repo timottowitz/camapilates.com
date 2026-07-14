@@ -18,8 +18,8 @@ interface EnhancedHeroProps {
 export function EnhancedHero({
   title,
   subtitle,
-  ctaPrimary = { text: 'Ver promoción', href: '/product/reformer-profesional' },
-  ctaSecondary = { text: 'Comparar modelos', href: '/compare' },
+  ctaPrimary = { text: 'Ver promoción', href: '/product/reformer-aluminio-riel-deslizante-a068' },
+  ctaSecondary = { text: 'Ver Catálogo', href: '/products' },
   backgroundImage,
   videoUrl,
   showTrustMetrics = true,

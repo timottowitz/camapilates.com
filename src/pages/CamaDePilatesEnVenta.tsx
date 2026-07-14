@@ -252,8 +252,8 @@ const CamaDePilatesEnVenta: React.FC = () => {
           <p className="text-[#5D5550] font-light mb-6">
             ¿Quieres elegir rápido? Empieza por{' '}
             <Link to="/cama-de-pilates/precio" className="text-[#2A2624] underline underline-offset-4 hover:text-[#EB4C42] transition-colors">precio</Link>
-            {' '}y luego{' '}
-            <Link to="/compare" className="text-[#2A2624] underline underline-offset-4 hover:text-[#EB4C42] transition-colors">casa vs profesional</Link>.
+            {' '}y luego explora nuestro{' '}
+            <Link to="/products" className="text-[#2A2624] underline underline-offset-4 hover:text-[#EB4C42] transition-colors">catálogo completo</Link>.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
@@ -263,10 +263,10 @@ const CamaDePilatesEnVenta: React.FC = () => {
               Ir a la tienda
             </Link>
             <Link
-              to="/compare"
+              to="/products"
               className="inline-flex items-center px-8 py-4 border border-[#2A2624]/20 text-[#2A2624] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-all"
             >
-              Comparar modelos
+              Ver catálogo
             </Link>
           </div>
         </div>

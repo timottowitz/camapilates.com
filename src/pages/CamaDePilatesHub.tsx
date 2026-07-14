@@ -219,7 +219,7 @@ const CamaDePilatesHub: React.FC = () => {
             </Link>
           </motion.div>
 
-          {/* Comparar */}
+          {/* Catálogo */}
           <motion.div
             variants={{
               hidden: { opacity: 0, y: 30 },
@@ -228,18 +228,18 @@ const CamaDePilatesHub: React.FC = () => {
             className="md:col-span-4"
           >
             <Link
-              to="/compare"
+              to="/products"
               className="group block h-full bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:bg-white hover:shadow-lg hover:-translate-y-1"
             >
               <BookOpen className="w-6 h-6 text-[#3E2723] mb-6 opacity-40 group-hover:opacity-70 transition-opacity" strokeWidth={1.5} />
               <h2 className="text-2xl font-serif italic text-[#2A2624] mb-2 group-hover:text-[#EB4C42] transition-colors">
-                Casa vs Profesional
+                Modelos de Camas
               </h2>
               <p className="text-sm text-[#5D5550] font-light mb-6">
-                Comparativa técnica detallada.
+                Colección completa de reformers para casa y estudio.
               </p>
               <span className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-[#3E2723]/60 group-hover:text-[#2A2624] transition-colors">
-                Comparar <ArrowRight className="ml-2 w-4 h-4" />
+                Ver catálogo <ArrowRight className="ml-2 w-4 h-4" />
               </span>
             </Link>
           </motion.div>

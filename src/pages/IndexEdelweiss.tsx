@@ -61,17 +61,17 @@ const IndexEdelweiss = () => {
   const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: 'Cama de Pilates Reformer – Casa',
-    description: 'Reformer ecológico de madera maciza para casa. Sin plásticos, materiales orgánicos, silencioso.',
+    name: 'Reformer Profesional de Aluminio con Riel Deslizante',
+    description: 'Reformer de aluminio premium con riel deslizante y barra patentada.',
     brand: { '@type': 'Brand', name: 'Edelweiss Pilates' },
-    sku: 'HOME-REFORMER-001',
-    image: [`${origin}/og/cama-de-pilates-venta-mexico.webp`],
-    url: `${origin}/compare#casa`,
+    sku: 'EW-A068-AL',
+    image: [`${origin}/images/products/reformer-aluminio-riel-deslizante-a068.webp`],
+    url: `${origin}/product/reformer-aluminio-riel-deslizante-a068`,
     offers: {
       '@type': 'Offer',
-      url: `${origin}/compare#casa`,
+      url: `${origin}/product/reformer-aluminio-riel-deslizante-a068`,
       priceCurrency: 'MXN',
-      price: '999.00',
+      price: '45000.00',
       availability: 'https://schema.org/InStock',
       itemCondition: 'https://schema.org/NewCondition'
     }

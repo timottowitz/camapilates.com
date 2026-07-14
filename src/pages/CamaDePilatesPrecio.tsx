@@ -77,7 +77,7 @@ const CamaDePilatesPrecio: React.FC = () => {
             transition={{ delay: 0.5 }}
             className="mt-10 flex flex-wrap justify-center gap-3"
           >
-            <Link to="/compare" className="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-[#2A2624] text-[#EAE8E4] text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#3E2723] hover:scale-105 transition-all">
+            <Link to="/products" className="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-[#2A2624] text-[#EAE8E4] text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#3E2723] hover:scale-105 transition-all">
               Ver modelos <ArrowRight className="w-4 h-4" />
             </Link>
             <Link to="/cama-de-pilates/en-venta" className="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-[#2A2624]/20 text-[#2A2624] text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-all">

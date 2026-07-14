@@ -125,16 +125,16 @@ const ReformerParaCasa: React.FC = () => {
         {/* Main CTA */}
         <div className="flex flex-wrap justify-center gap-4 mb-20">
           <Link
-            to="/product/reformer-casa"
+            to="/product/reformer-aluminio-riel-deslizante-a068"
             className="px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors"
           >
-            Ver Reformer Casa
+            Ver Reformer Aluminio
           </Link>
           <Link
-            to="/compare"
+            to="/products"
             className="px-8 py-4 border border-[#2A2624] text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors"
           >
-            Comparar Modelos
+            Ver Catálogo
           </Link>
         </div>
       </section>
