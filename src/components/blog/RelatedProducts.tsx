@@ -9,33 +9,33 @@ interface RelatedProductsProps {
 }
 
 const TAG_PRODUCT_MAP: Record<string, string[]> = {
-  'reformer': ['reformer-casa', 'reformer-profesional'],
-  'cama de pilates': ['reformer-casa', 'reformer-profesional'],
-  'reformer casa': ['reformer-casa'],
-  'reformer profesional': ['reformer-profesional'],
+  'reformer': ['reformer-aluminio-riel-deslizante-a068', 'reformer-roble-barra-patentada-a107'],
+  'cama de pilates': ['reformer-aluminio-riel-deslizante-a068', 'reformer-roble-barra-patentada-a107'],
+  'reformer casa': ['reformer-aluminio-riel-deslizante-a068'],
+  'reformer profesional': ['reformer-roble-barra-patentada-a107'],
   'accesorios': ['calcetines-antideslizantes', 'cintas-de-pilates', 'calcetines-pack-3'],
   'calcetines': ['calcetines-antideslizantes', 'calcetines-pack-3'],
   'ropa': ['conjunto-fitted-organico', 'leggings-organicos-fitted', 'top-organico-fitted'],
-  'espalda': ['reformer-casa'],
-  'dolor': ['reformer-casa'],
-  'estudio': ['reformer-profesional', 'luz-terapia-studio-4'],
-  'luz': ['luz-terapia-casa', 'luz-terapia-studio-2'],
-  'terapia': ['luz-terapia-casa', 'luz-terapia-studio-2'],
-  'principiante': ['reformer-casa', 'calcetines-antideslizantes'],
-  'casa': ['reformer-casa', 'luz-terapia-casa'],
-  'profesional': ['reformer-profesional', 'luz-terapia-studio-4'],
-  'ejercicios': ['reformer-casa', 'calcetines-antideslizantes'],
+  'espalda': ['reformer-aluminio-riel-deslizante-a068'],
+  'dolor': ['reformer-aluminio-riel-deslizante-a068'],
+  'estudio': ['reformer-roble-barra-patentada-a107', 'silla-wunda-roble-premium-a101'],
+  'luz': ['silla-wunda-roble-premium-a101'],
+  'terapia': ['silla-wunda-roble-premium-a101'],
+  'principiante': ['reformer-aluminio-riel-deslizante-a068', 'calcetines-antideslizantes'],
+  'casa': ['reformer-aluminio-riel-deslizante-a068', 'silla-wunda-maple-a022m'],
+  'profesional': ['reformer-roble-barra-patentada-a107', 'silla-wunda-roble-premium-a101'],
+  'ejercicios': ['reformer-aluminio-riel-deslizante-a068', 'calcetines-antideslizantes'],
   'mantenimiento': ['cintas-de-pilates'],
-  'precio': ['reformer-casa', 'reformer-profesional'],
-  'compra': ['reformer-casa', 'reformer-profesional'],
+  'precio': ['reformer-aluminio-riel-deslizante-a068', 'reformer-roble-barra-patentada-a107'],
+  'compra': ['reformer-aluminio-riel-deslizante-a068', 'reformer-roble-barra-patentada-a107'],
 };
 
 const CATEGORY_PRODUCT_MAP: Record<string, string[]> = {
-  'Guías de compra': ['reformer-casa', 'reformer-profesional', 'calcetines-antideslizantes'],
-  'Comparativas': ['reformer-casa', 'reformer-profesional'],
-  'Ejercicios y salud': ['reformer-casa', 'calcetines-antideslizantes', 'conjunto-fitted-organico'],
+  'Guías de compra': ['reformer-aluminio-riel-deslizante-a068', 'reformer-roble-barra-patentada-a107', 'calcetines-antideslizantes'],
+  'Comparativas': ['reformer-aluminio-riel-deslizante-a068', 'reformer-roble-barra-patentada-a107'],
+  'Ejercicios y salud': ['reformer-aluminio-riel-deslizante-a068', 'calcetines-antideslizantes', 'conjunto-fitted-organico'],
   'Equipo y mantenimiento': ['cintas-de-pilates', 'calcetines-antideslizantes'],
-  'Estudio': ['reformer-profesional', 'luz-terapia-studio-4', 'luz-terapia-studio-2'],
+  'Estudio': ['reformer-roble-barra-patentada-a107', 'silla-wunda-roble-premium-a101'],
 };
 
 const RelatedProducts: React.FC<RelatedProductsProps> = ({ 

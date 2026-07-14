@@ -517,24 +517,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/product/reformer-casa</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/product/reformer-profesional</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/product/reformer-mycelium</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://camadepilates.com/product/cintas-de-pilates</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -584,42 +566,6 @@
   </url>
   <url>
     <loc>https://camadepilates.com/product/conjunto-relaxed-organico</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/product/luz-terapia-casa</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/product/luz-terapia-studio-2</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/product/luz-terapia-studio-4</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/product/luz-terapia-studio-6</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/product/luz-terapia-studio-8</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/product/luz-terapia-custom</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -865,12 +811,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/shop/category/reformers</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://camadepilates.com/shop/category/accesorios</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -883,7 +823,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/shop/category/terapia-de-luz</loc>
+    <loc>https://camadepilates.com/shop/category/reformers</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>

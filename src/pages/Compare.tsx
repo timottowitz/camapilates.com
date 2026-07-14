@@ -16,8 +16,8 @@ const Compare = () => {
   const title = 'Comparar Reformers: Casa vs Profesional | Edelweiss Pilates';
   const desc = 'Compara nuestro Reformer para casa vs profesional. Elige el ideal para tu espacio (hogar o estudio) con entrega en 3 semanas en México.';
 
-  const casa = products.find((p) => p.slug === 'reformer-casa') as unknown as ShopProduct | undefined;
-  const profesional = products.find((p) => p.slug === 'reformer-profesional') as unknown as ShopProduct | undefined;
+  const casa = products.find((p) => p.slug === 'reformer-aluminio-riel-deslizante-a068') as unknown as ShopProduct | undefined;
+  const profesional = products.find((p) => p.slug === 'reformer-roble-barra-patentada-a107') as unknown as ShopProduct | undefined;
 
   const compareSchema = generateCompareSchema();
 
@@ -137,16 +137,16 @@ const Compare = () => {
             <div className="p-8 md:p-14">
               <div className="flex justify-between items-start mb-8">
                 <div>
-                  <h2 className="text-4xl md:text-5xl font-serif italic text-[#2A2624] mb-2 group-hover:text-[#EB4C42] transition-colors">The Home</h2>
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#5D5550] font-bold opacity-60">Para casa</p>
+                  <h2 className="text-4xl md:text-5xl font-serif italic text-[#2A2624] mb-2 group-hover:text-[#EB4C42] transition-colors">{casa?.name || 'Reformer de Aluminio'}</h2>
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#5D5550] font-bold opacity-60">Aluminio</p>
                 </div>
-                <div className="text-2xl font-serif italic text-[#2A2624] opacity-50">$35,000</div>
+                <div className="text-2xl font-serif italic text-[#2A2624] opacity-50">{casa ? `$${parseFloat(casa.price).toLocaleString('es-MX')}` : ''}</div>
               </div>
               <p className="text-[#5D5550] font-light mb-12 leading-relaxed text-lg max-w-md">
-                Compacto sin sacrificar el recorrido suave y silencioso. Diseñado para integrarse en tu espacio.
+                {casa?.description || 'Estructura de aleación de aluminio reforzada con barra deslizante y riel completo.'}
               </p>
               <Link
-                to="/product/reformer-casa"
+                to={casa ? `/product/${casa.slug}` : '/products'}
                 onClick={() => { if (casa) selectModel({ model: 'casa', product: casa, source: 'compare' }); }}
                 className="inline-flex items-center justify-center w-full px-8 py-5 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
               >
@@ -180,16 +180,16 @@ const Compare = () => {
             <div className="p-8 md:p-14">
               <div className="flex justify-between items-start mb-8">
                 <div>
-                  <h2 className="text-4xl md:text-5xl font-serif italic text-[#EAE8E4] mb-2 group-hover:text-white transition-colors">The Pro</h2>
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-bold">Para estudio</p>
+                  <h2 className="text-4xl md:text-5xl font-serif italic text-[#EAE8E4] mb-2 group-hover:text-white transition-colors">{profesional?.name || 'Reformer de Roble'}</h2>
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-bold">Roble Macizo</p>
                 </div>
-                <div className="text-2xl font-serif italic text-white/50">$50,000</div>
+                <div className="text-2xl font-serif italic text-white/50">{profesional ? `$${parseFloat(profesional.price).toLocaleString('es-MX')}` : ''}</div>
               </div>
               <p className="text-white/70 font-light mb-12 leading-relaxed text-lg max-w-md">
-                Diseñado para uso continuo. Estructura reforzada y estabilidad para estudios.
+                {profesional?.description || 'Reformer clásico de madera de roble tailandés con barra de pies patentada.'}
               </p>
               <Link
-                to="/product/reformer-profesional"
+                to={profesional ? `/product/${profesional.slug}` : '/products'}
                 onClick={() => { if (profesional) selectModel({ model: 'profesional', product: profesional, source: 'compare' }); }}
                 className="inline-flex items-center justify-center w-full px-8 py-5 bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
               >
