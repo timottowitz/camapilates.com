@@ -48,6 +48,14 @@ const ProductPage: React.FC = () => {
     try { if (typeof window !== 'undefined') window.localStorage.setItem('regionPref', value); } catch { /* ignore */ }
   };
 
+  // React Router keeps this component mounted when only the slug changes, so without
+  // this a pack chosen on one machine follows you to the next one: the new product
+  // opens showing a multi-unit total nobody asked for instead of its unit price.
+  useEffect(() => {
+    setSelectedQuantity(1);
+    setFinish('walnut');
+  }, [slug]);
+
   useEffect(() => {
     if (!prod) return;
     viewItem(prod);
