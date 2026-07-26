@@ -1,36 +1,29 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { CreditCard, MessageCircle, Package, ShieldCheck, Info } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 import { ReviewsPreview } from '@/components/ui/reviews-preview';
-import { Finishes, FINISHES, type FinishKey } from '@/components/product/Finishes';
+import { Finishes, FINISHES } from '@/components/product/Finishes';
 import { Helmet } from 'react-helmet-async';
 import { getOrigin, DEFAULTS } from '@/lib/seo';
 import { useParams, Navigate, Link } from 'react-router-dom';
-import products from '@/content/products.json';
 import { ContextualImage } from '@/components/ContextualImage';
-import type { FinishKey, Product as PType } from '@/lib/shop/types';
-import { toCategorySlug } from '@/lib/shop/catalog';
+import type { FinishKey, Product } from '@/lib/shop/types';
+import { allProducts, getBySlug, toCategorySlug } from '@/lib/shop/catalog';
 import { beginCheckout, viewItem } from '@/lib/shop/analytics';
 import { productWhatsAppUrl } from '@/lib/shop/whatsapp';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import TrustStrip from '@/components/ui/trust-strip';
 import { EnhancedGallery } from '@/components/commerce21/EnhancedGallery';
 import { StickyMobileCTA } from '@/components/commerce21/StickyMobileCTA';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
-import { useConvexAssets } from '@/lib/convexAssets';
 import BackLink from '@/components/ui/back-link';
 import { motion } from 'framer-motion';
 import { isReformerBed, calculateBundlePrice, type BundleQuantity } from '@/lib/shop/bundles';
 import { BundleSelector } from '@/components/shop/BundleSelector';
 
-type Product = (typeof products)[number] & PType;
-
 const ProductPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const origin = getOrigin();
-  const prod: Product | undefined = products.find(p => p.slug === slug);
-  const assets = useConvexAssets();
+  const prod: Product | undefined = getBySlug(slug ?? '');
 
-  const safeProd = (prod || (products[0] as Product)) as Product;
+  const safeProd = prod ?? allProducts()[0];
 
   const initialRegion = ((): 'MX' | 'US' | 'DE' => {
     if (typeof window === 'undefined') return 'MX';
@@ -57,7 +50,7 @@ const ProductPage: React.FC = () => {
 
   useEffect(() => {
     if (!prod) return;
-    viewItem(prod as PType);
+    viewItem(prod);
   }, [prod]);
 
   const url = `${origin}/product/${safeProd.slug}`;
@@ -480,7 +473,7 @@ const ProductPage: React.FC = () => {
                   href={buyWhatsAppUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => beginCheckout({ product: prod as PType })}
+                  onClick={() => beginCheckout({ product: prod })}
                   className="w-full flex items-center justify-center gap-2 bg-[#2A2624] text-[#EAE8E4] rounded-full py-5 uppercase tracking-[0.2em] text-xs font-bold hover:bg-[#3E2723] hover:scale-[1.02] transition-all duration-300 shadow-xl shadow-[#2A2624]/10"
                 >
                   <MessageCircle className="h-4 w-4" /> Comprar por WhatsApp
@@ -561,7 +554,7 @@ const ProductPage: React.FC = () => {
           <div>
             <h2 className="text-4xl font-serif italic text-[#2A2624] mb-10">Related</h2>
             <div className="space-y-10">
-              {products.filter(p => p.slug !== prod.slug && p.category === prod.category).slice(0, 2).map((p) => (
+              {allProducts().filter(p => p.slug !== prod.slug && p.category === prod.category).slice(0, 2).map((p) => (
                 <Link key={p.slug} to={`/product/${p.slug}`} className="block group">
                   <div className="aspect-[4/3] overflow-hidden rounded-sm bg-[#EAE8E4] mb-4 relative">
                     <img src={p.image} alt={p.name} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
@@ -583,7 +576,7 @@ const ProductPage: React.FC = () => {
         price={Number(priceToShow)}
         currency={prod.currency}
         whatsappUrl={buyWhatsAppUrl}
-        onBuy={() => beginCheckout({ product: prod as PType })}
+        onBuy={() => beginCheckout({ product: prod })}
         warranty={prod.warranty}
         productSlug={prod.slug}
         selectedQuantity={bundleCalc.quantity}
