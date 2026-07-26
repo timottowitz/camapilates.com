@@ -1,179 +1,108 @@
-import React, { useState, useEffect } from 'react';
-import { X, Gift, Clock, CheckCircle, ArrowRight } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { X, Building2, Sparkles, ArrowRight, Tag, ShieldCheck } from 'lucide-react';
 
 interface ExitIntentPopupProps {
   onClose: () => void;
-  onSubscribe: (email: string) => void;
+  onSubscribe?: (email: string) => void;
 }
 
-export function ExitIntentPopup({ onClose, onSubscribe }: ExitIntentPopupProps) {
-  const [email, setEmail] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    setIsSuccess(true);
-    onSubscribe(email);
-
-    // Close after showing success message
-    setTimeout(() => {
-      onClose();
-    }, 2000);
-  };
-
-  if (isSuccess) {
-    return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in duration-200 p-4">
-        <div className="bg-card rounded-2xl shadow-2xl p-8 max-w-md w-full text-center animate-in zoom-in duration-300">
-          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <CheckCircle className="h-8 w-8 text-green-600" />
-          </div>
-          <h3 className="text-2xl font-bold text-foreground mb-2">¡Listo!</h3>
-          <p className="text-muted-foreground">
-            Revisa tu correo para obtener tu código de descuento
-          </p>
-        </div>
-      </div>
-    );
-  }
-
+export function ExitIntentPopup({ onClose }: ExitIntentPopupProps) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in duration-200 p-4">
-      <div className="bg-card rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full animate-in zoom-in duration-300">
-        <div className="grid md:grid-cols-2">
-          {/* Left side - Visual */}
-          <div className="relative bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-8 flex flex-col justify-center items-center text-center hidden md:flex">
-            <div className="absolute top-4 right-4">
-              <Badge variant="destructive" className="animate-pulse">
-                <Clock className="h-3 w-3 mr-1" />
-                Oferta limitada
-              </Badge>
-            </div>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md animate-in fade-in duration-300 p-4">
+      <div className="relative bg-[#2A2624] text-[#EAE8E4] rounded-3xl shadow-2xl overflow-hidden max-w-2xl w-full border border-[#EAE8E4]/15 animate-in zoom-in-95 duration-300">
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/40 text-white/80 hover:text-white hover:bg-black/70 transition-colors"
+          aria-label="Cerrar"
+        >
+          <X className="w-5 h-5" />
+        </button>
 
-            <div className="w-24 h-24 bg-primary/20 rounded-full flex items-center justify-center mb-6">
-              <Gift className="h-12 w-12 text-primary" />
-            </div>
+        <div className="grid md:grid-cols-12 items-stretch">
+          {/* Left side - Product Image */}
+          <div className="md:col-span-5 relative bg-[#1F1C1A] flex items-center justify-center p-6 min-h-[220px] md:min-h-full">
+            <span className="absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-amber-400 text-black text-[9px] font-extrabold uppercase tracking-widest flex items-center gap-1 shadow-md">
+              <Sparkles className="w-3 h-3" /> Best Seller Estudio
+            </span>
 
-            <h2 className="text-3xl font-bold text-foreground mb-3">
-              ¡Espera!
-            </h2>
-            <p className="text-xl text-foreground font-semibold mb-2">
-              10% de descuento
-            </p>
-            <p className="text-muted-foreground">
-              en tu primera compra
-            </p>
+            <img
+              src="/images/products/reformer-maple-barra-patentada-a001.webp"
+              alt="Reformer de Maple con Barra Patentada A001"
+              className="w-full h-auto max-h-[250px] object-contain transform hover:scale-105 transition-transform duration-500 drop-shadow-2xl"
+            />
 
-            {/* Benefits */}
-            <div className="mt-8 space-y-3 text-left w-full max-w-xs">
-              {[
-                'Acceso anticipado a nuevos productos',
-                'Descuentos exclusivos mensuales',
-                'Guías y tips de Pilates gratis'
-              ].map((benefit, i) => (
-                <div key={i} className="flex items-center gap-2 text-sm">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center">
-                    <CheckCircle className="h-3 w-3 text-green-600" />
-                  </div>
-                  <span className="text-muted-foreground">{benefit}</span>
-                </div>
-              ))}
+            <div className="absolute bottom-3 left-4 right-4 text-center">
+              <span className="text-[10px] text-white/60 uppercase tracking-widest block">
+                Edelweiss Maple A001
+              </span>
             </div>
           </div>
 
-          {/* Right side - Form */}
-          <div className="p-8 md:p-10 relative">
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 p-2 rounded-lg hover:bg-muted transition-colors"
-              aria-label="Cerrar"
-            >
-              <X className="h-5 w-5 text-muted-foreground" />
-            </button>
+          {/* Right side - Studio Pack Pitch & Discounts */}
+          <div className="md:col-span-7 p-6 sm:p-8 flex flex-col justify-between space-y-5">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <Building2 className="w-4 h-4 text-amber-300" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">
+                  The Studio Pack · El Pack Estudio
+                </span>
+              </div>
 
-            <div className="md:hidden mb-6 text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold mb-3">
-                <Gift className="h-5 w-5" />
-                10% OFF
+              <h2 className="text-2xl sm:text-3xl font-serif italic text-white leading-tight mb-2">
+                ¿Construyendo un nuevo Estudio?
+              </h2>
+
+              <p className="text-xs sm:text-sm text-[#EAE8E4]/80 font-light leading-relaxed mb-4">
+                Compra nuestros paquetes <strong className="text-white font-semibold">Studio Reformer</strong> y llévate el descuento a casa.
+              </p>
+
+              <div className="p-3 rounded-xl bg-[#1F1C1A] border border-amber-500/20 mb-4">
+                <p className="text-xs italic text-amber-100 font-serif leading-snug">
+                  “Nuestro Reformer de Estudio Premium para la Estética y Funcionalidad que tu Espacio Merece.”
+                </p>
+              </div>
+
+              {/* Discount Tier Pills */}
+              <div className="space-y-1.5">
+                <span className="text-[10px] uppercase tracking-widest text-[#EAE8E4]/60 font-semibold block mb-1">
+                  Descuentos Directos por Volumen:
+                </span>
+                <div className="grid grid-cols-3 gap-2">
+                  <div className="p-2 rounded-lg bg-white/5 border border-white/10 text-center">
+                    <span className="text-xs font-bold text-white block">Pack 4</span>
+                    <span className="text-[10px] text-emerald-400 font-semibold">13% OFF</span>
+                  </div>
+                  <div className="p-2 rounded-lg bg-white/5 border border-white/10 text-center">
+                    <span className="text-xs font-bold text-white block">Pack 6</span>
+                    <span className="text-[10px] text-emerald-400 font-semibold">16% OFF</span>
+                  </div>
+                  <div className="p-2 rounded-lg bg-amber-500/10 border border-amber-400/30 text-center">
+                    <span className="text-xs font-bold text-amber-200 block">Pack 8</span>
+                    <span className="text-[10px] text-amber-300 font-extrabold">20% OFF</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-              Obtén tu descuento
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              Únete a más de 1,200 instructores y recibe ofertas exclusivas
-            </p>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                  Correo electrónico
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  placeholder="tu@email.com"
-                  className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-3 px-6 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+            {/* CTA Button */}
+            <div className="space-y-3 pt-2">
+              <Link
+                to="/product/reformer-maple-barra-patentada-a001"
+                onClick={onClose}
+                className="w-full flex items-center justify-center gap-2 bg-[#EAE8E4] text-[#2A2624] rounded-full py-3.5 px-6 uppercase tracking-[0.15em] text-xs font-bold hover:bg-white hover:scale-[1.02] transition-all duration-300 shadow-xl"
               >
-                {isSubmitting ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    Enviando...
-                  </>
-                ) : (
-                  <>
-                    Obtener mi descuento
-                    <ArrowRight className="h-5 w-5" />
-                  </>
-                )}
-              </button>
+                Ver Reformer de Maple A001 & Paquetes <ArrowRight className="w-4 h-4" />
+              </Link>
 
-              <p className="text-xs text-muted-foreground text-center">
-                Al suscribirte, aceptas recibir correos promocionales. Puedes darte de baja en cualquier momento.
-              </p>
-            </form>
-
-            {/* Trust indicators */}
-            <div className="mt-6 pt-6 border-t border-border">
-              <div className="flex items-center justify-center gap-6 text-xs text-muted-foreground">
-                <div className="flex items-center gap-1">
-                  <CheckCircle className="h-3 w-3 text-green-600" />
-                  <span>Sin spam</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <CheckCircle className="h-3 w-3 text-green-600" />
-                  <span>Datos seguros</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <CheckCircle className="h-3 w-3 text-green-600" />
-                  <span>Cancela cuando quieras</span>
-                </div>
+              <div className="flex items-center justify-center gap-4 text-[10px] text-[#EAE8E4]/60">
+                <span className="flex items-center gap-1">
+                  <ShieldCheck className="w-3 h-3 text-amber-300" /> Garantía 3 Años
+                </span>
+                <span>•</span>
+                <span>Envíos a todo México</span>
               </div>
-            </div>
-
-            {/* Social proof */}
-            <div className="mt-4 text-center">
-              <p className="text-xs text-muted-foreground">
-                Únete a <span className="font-semibold text-foreground">1,247 instructores</span> que ya reciben ofertas exclusivas
-              </p>
             </div>
           </div>
         </div>
@@ -184,7 +113,7 @@ export function ExitIntentPopup({ onClose, onSubscribe }: ExitIntentPopupProps) 
 
 // Hook to manage exit intent detection
 export function useExitIntent(onExitIntent: () => void) {
-  useEffect(() => {
+  React.useEffect(() => {
     let hasShown = false;
 
     const handleMouseLeave = (e: MouseEvent) => {
@@ -198,7 +127,7 @@ export function useExitIntent(onExitIntent: () => void) {
     // Add delay to avoid triggering too early
     const timer = setTimeout(() => {
       document.addEventListener('mouseleave', handleMouseLeave);
-    }, 5000);
+    }, 4000);
 
     return () => {
       clearTimeout(timer);
