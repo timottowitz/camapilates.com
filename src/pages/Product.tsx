@@ -19,6 +19,8 @@ import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { useConvexAssets } from '@/lib/convexAssets';
 import BackLink from '@/components/ui/back-link';
 import { motion } from 'framer-motion';
+import { isReformerBed, calculateBundlePrice, type BundleQuantity } from '@/lib/shop/bundles';
+import { BundleSelector } from '@/components/shop/BundleSelector';
 
 type Product = (typeof products)[number] & PType;
 
@@ -38,6 +40,9 @@ const ProductPage: React.FC = () => {
   const [region, setRegion] = useState<'MX' | 'US' | 'DE'>(initialRegion);
   const [finish, setFinish] = useState<FinishKey>('walnut');
   const [agg, setAgg] = useState<{ ratingValue: string; reviewCount: number } | undefined>(undefined);
+  const [selectedQuantity, setSelectedQuantity] = useState<BundleQuantity>(1);
+
+  const isReformer = useMemo(() => isReformerBed(safeProd), [safeProd]);
 
   const estimate = useMemo(() => {
     if (region === 'MX') return safeProd.deliveryTime || '3 semanas';
@@ -73,9 +78,15 @@ const ProductPage: React.FC = () => {
   const activeVariant = useMemo(() => {
     return (safeProd.variants || []).find(v => v.finish === finish);
   }, [finish, safeProd]);
-  const priceToShow = activeVariant?.price || safeProd.price;
+  const basePriceToShow = activeVariant?.price || safeProd.price;
   const displaySku = activeVariant?.sku || safeProd.sku;
-  const buyWhatsAppUrl = productWhatsAppUrl(safeProd, priceToShow, displaySku);
+
+  const bundleCalc = useMemo(() => {
+    return calculateBundlePrice(basePriceToShow, isReformer ? selectedQuantity : 1);
+  }, [basePriceToShow, isReformer, selectedQuantity]);
+
+  const priceToShow = bundleCalc.quantity > 1 ? bundleCalc.discountedTotalPrice.toString() : basePriceToShow;
+  const buyWhatsAppUrl = productWhatsAppUrl(safeProd, basePriceToShow, displaySku, isReformer ? bundleCalc : undefined);
 
   const productSchema = {
     '@context': 'https://schema.org',
@@ -372,12 +383,37 @@ const ProductPage: React.FC = () => {
               <p className="text-sm text-[#5D5550] italic leading-relaxed">{prod.description}</p>
             </motion.div>
 
-            <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="flex items-baseline gap-4 border-b border-[#2A2624]/10 pb-8">
-              <div className="text-4xl font-serif italic text-[#2A2624]">$ {priceToShow} <span className="text-sm font-sans not-italic text-[#5D5550] tracking-normal">{prod.currency}</span></div>
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#3E2723] flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723] animate-pulse" /> En stock
+            <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="flex flex-col border-b border-[#2A2624]/10 pb-8 gap-2">
+              <div className="flex items-baseline gap-4">
+                <div className="text-4xl font-serif italic text-[#2A2624]">
+                  $ {Number(priceToShow).toLocaleString('es-MX')}{' '}
+                  <span className="text-sm font-sans not-italic text-[#5D5550] tracking-normal">{prod.currency}</span>
+                </div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[#3E2723] flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723] animate-pulse" /> En stock
+                </div>
               </div>
+
+              {bundleCalc.quantity > 1 && (
+                <div className="text-xs text-[#5D5550]">
+                  Original: <span className="line-through">${bundleCalc.originalTotalPrice.toLocaleString('es-MX')} {prod.currency}</span> ·{' '}
+                  <span className="font-semibold text-emerald-700">
+                    Ahorras ${bundleCalc.totalSavings.toLocaleString('es-MX')} {prod.currency} ({bundleCalc.discountPercentage}% OFF)
+                  </span>
+                </div>
+              )}
             </motion.div>
+
+            {isReformer && (
+              <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}>
+                <BundleSelector
+                  basePrice={basePriceToShow}
+                  currency={prod.currency}
+                  selectedQuantity={selectedQuantity}
+                  onSelectQuantity={setSelectedQuantity}
+                />
+              </motion.div>
+            )}
 
             <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="space-y-8">
               {(prod.finishes?.length ?? 0) > 0 && (
@@ -494,13 +530,15 @@ const ProductPage: React.FC = () => {
       </div>
 
       <StickyMobileCTA
-        productName={prod.name}
+        productName={bundleCalc.quantity > 1 ? `${prod.name} (Pack ${bundleCalc.quantity}x)` : prod.name}
         price={Number(priceToShow)}
         currency={prod.currency}
         whatsappUrl={buyWhatsAppUrl}
         onBuy={() => beginCheckout({ product: prod as PType })}
         warranty={prod.warranty}
         productSlug={prod.slug}
+        selectedQuantity={bundleCalc.quantity}
+        totalSavings={bundleCalc.totalSavings}
       />
     </LuxuryLayout >
   );

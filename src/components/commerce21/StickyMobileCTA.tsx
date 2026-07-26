@@ -11,6 +11,8 @@ interface StickyMobileCTAProps {
   warranty?: string;
   productSlug?: string;
   className?: string;
+  selectedQuantity?: number;
+  totalSavings?: number;
 }
 
 export function StickyMobileCTA({
@@ -21,7 +23,9 @@ export function StickyMobileCTA({
   onBuy,
   warranty = '1 año',
   productSlug = '',
-  className = ''
+  className = '',
+  selectedQuantity = 1,
+  totalSavings = 0
 }: StickyMobileCTAProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
