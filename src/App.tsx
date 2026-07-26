@@ -93,6 +93,7 @@ const ReformersNew = lazyWithRetry(() => import('./pages/ReformersNew'));
 import GAListener from "@/components/analytics/GAListener";
 import FloatingCart21 from "@/components/commerce21/FloatingCart21";
 import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
+import StudioPackPromoModal from "@/components/shop/StudioPackPromoModal";
 import ShoprocketLoader from "@/components/commerce21/ShoprocketLoader";
 import AdminGuard from "@/components/auth/AdminGuard";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -181,6 +182,7 @@ const App = () => (
           </ErrorBoundary>
           <FloatingCart21 />
           <FloatingWhatsApp />
+          <StudioPackPromoModal />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
