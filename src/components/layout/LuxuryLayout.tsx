@@ -34,7 +34,7 @@ const LuxuryLayout = ({ children, className = "", noPadding = false, headerTheme
                             <h4 className="text-xs uppercase tracking-[0.2em] mb-6 text-white/40">Explorar</h4>
                             <ul className="space-y-4 text-sm font-light text-white/80">
                                 <li><Link to="/shop" className="hover:text-white transition-colors">Ver Colección</Link></li>
-                                <li><Link to="/products" className="hover:text-white transition-colors">Comparar Modelos</Link></li>
+                                <li><Link to="/products" className="hover:text-white transition-colors">Catálogo</Link></li>
                                 <li><Link to="/about" className="hover:text-white transition-colors">Nuestra Historia</Link></li>
                             </ul>
                         </div>

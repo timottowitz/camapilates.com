@@ -181,10 +181,10 @@ const IndexAuthority: React.FC = () => {
                     Precio
                   </Link>
                   <Link
-                    to="/products"
+                    to="/shop"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#2A2624] text-xs font-bold uppercase tracking-[0.18em] hover:bg-[#FFFFFF] transition-colors border border-[#2A2624]/10"
                   >
-                    Comparar
+                    Tienda
                   </Link>
                 </div>
               </div>
