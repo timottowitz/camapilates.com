@@ -420,7 +420,8 @@ const ProductPage: React.FC = () => {
 
             <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="flex flex-col border-b border-[#2A2624]/10 pb-8 gap-2">
               <div className="flex items-baseline gap-4">
-                <div className="text-4xl sm:text-5xl font-serif italic text-[#2A2624]">
+                {/* translate="no": browser translation detaches React's text nodes, freezing live prices */}
+                <div translate="no" className="notranslate text-4xl sm:text-5xl font-serif italic text-[#2A2624]">
                   $ {Number(priceToShow).toLocaleString('es-MX')}{' '}
                   <span className="text-sm font-sans not-italic text-[#5D5550] tracking-normal">{prod.currency}</span>
                 </div>
@@ -432,12 +433,15 @@ const ProductPage: React.FC = () => {
               {bundleCalc.quantity > 1 ? (
                 <div className="space-y-1">
                   <p className="text-xs font-medium text-[#2A2624]">
-                    Paquete de {bundleCalc.quantity} Unidades · <span className="font-bold text-[#3E2723]">${bundleCalc.discountedUnitPrice.toLocaleString('es-MX')} {prod.currency} / unidad</span>
+                    Paquete de <span translate="no" className="notranslate">{bundleCalc.quantity}</span> Unidades · <span translate="no" className="notranslate font-bold text-[#3E2723]">${bundleCalc.discountedUnitPrice.toLocaleString('es-MX')} {prod.currency} / unidad</span>
                   </p>
                   <p className="text-xs text-[#5D5550]">
-                    Precio regular sin descuento: <span className="line-through">${bundleCalc.originalTotalPrice.toLocaleString('es-MX')} {prod.currency}</span> ·{' '}
+                    Precio regular sin descuento: <span translate="no" className="notranslate line-through">${bundleCalc.originalTotalPrice.toLocaleString('es-MX')} {prod.currency}</span> ·{' '}
                     <span className="font-bold text-emerald-700">
-                      Ahorras ${bundleCalc.totalSavings.toLocaleString('es-MX')} {prod.currency} ({bundleCalc.discountPercentage}% OFF)
+                      Ahorras{' '}
+                      <span translate="no" className="notranslate">
+                        ${bundleCalc.totalSavings.toLocaleString('es-MX')} {prod.currency} ({bundleCalc.discountPercentage}% OFF)
+                      </span>
                     </span>
                   </p>
                 </div>

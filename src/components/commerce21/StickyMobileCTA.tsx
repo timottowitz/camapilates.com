@@ -74,11 +74,12 @@ export function StickyMobileCTA({
         {/* Product info row */}
         <div className="flex items-center justify-between gap-3 mb-3">
           <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-foreground text-sm truncate">
+            {/* translate="no": browser translation detaches React's text nodes, freezing live prices */}
+            <h3 translate="no" className="notranslate font-semibold text-foreground text-sm truncate">
               {productName}
             </h3>
             <div className="flex items-baseline gap-1.5">
-              <span className="text-lg font-bold text-primary">
+              <span translate="no" className="notranslate text-lg font-bold text-primary">
                 ${price.toLocaleString('es-MX')}
               </span>
               <span className="text-xs text-muted-foreground">{currency}</span>
