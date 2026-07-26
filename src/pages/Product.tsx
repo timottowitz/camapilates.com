@@ -266,15 +266,27 @@ const ProductPage: React.FC = () => {
         },
         {
           src: '/images/products/reformer-maple-barra-patentada-a001-studio.jpg',
-          alt: `${prod.name} — Iluminación Cinematográfica de Estudio`,
+          alt: `${prod.name} — Ambiente Estudio Cinematográfico`,
           type: 'lifestyle' as const,
-          label: 'Estudio Cinematográfico'
+          label: 'Vista de Estudio'
         },
         {
           src: '/images/products/reformer-maple-barra-patentada-a001-box.jpg',
-          alt: `${prod.name} — Detalle de Caja y Extensor`,
+          alt: `${prod.name} — Detalle de Caja y Carro`,
           type: 'detail' as const,
-          label: 'Detalle de Caja y Extensor'
+          label: 'Caja y Tapicería'
+        },
+        {
+          src: '/images/products/reformer-maple-barra-patentada-a001-box-interior.jpg',
+          alt: `${prod.name} — Ensamble Interior en Madera de Maple`,
+          type: 'detail' as const,
+          label: 'Interior Madera Maple'
+        },
+        {
+          src: '/images/products/reformer-maple-barra-patentada-a001-extender.jpg',
+          alt: `${prod.name} — Extensor de Mat y Resortes Alemanes`,
+          type: 'detail' as const,
+          label: 'Extensor y Resortes'
         }
       ];
     }
