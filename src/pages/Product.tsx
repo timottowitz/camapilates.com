@@ -256,6 +256,29 @@ const ProductPage: React.FC = () => {
       ];
     }
 
+    if (prod.slug === 'reformer-maple-barra-patentada-a001') {
+      return [
+        {
+          src: '/images/products/reformer-maple-barra-patentada-a001.webp',
+          alt: `${prod.name} — Vista Principal`,
+          type: 'main' as const,
+          label: 'Vista Principal'
+        },
+        {
+          src: '/images/products/reformer-maple-barra-patentada-a001-studio.jpg',
+          alt: `${prod.name} — Iluminación Cinematográfica de Estudio`,
+          type: 'lifestyle' as const,
+          label: 'Estudio Cinematográfico'
+        },
+        {
+          src: '/images/products/reformer-maple-barra-patentada-a001-box.jpg',
+          alt: `${prod.name} — Detalle de Caja y Extensor`,
+          type: 'detail' as const,
+          label: 'Detalle de Caja y Extensor'
+        }
+      ];
+    }
+
     // Default fallback list of images
     const list = [];
     const mainImg = activeVariant?.image || prod.image;
