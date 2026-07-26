@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Sparkles, Check, Building2, Tag } from 'lucide-react';
 import {
   REFORMER_BUNDLES,
@@ -21,7 +21,21 @@ export const BundleSelector: React.FC<BundleSelectorProps> = ({
   onSelectQuantity,
   productName = 'Equipos',
 }) => {
-  const currentCalc = calculateBundlePrice(basePrice, selectedQuantity);
+  const [internalQty, setInternalQty] = useState<BundleQuantity>(selectedQuantity);
+
+  // Sync internal state when parent prop changes
+  useEffect(() => {
+    setInternalQty(selectedQuantity);
+  }, [selectedQuantity]);
+
+  const handleSelect = (qty: BundleQuantity) => {
+    setInternalQty(qty);
+    onSelectQuantity(qty);
+  };
+
+  const currentCalc = useMemo(() => {
+    return calculateBundlePrice(basePrice, internalQty);
+  }, [basePrice, internalQty]);
 
   return (
     <div className="space-y-4 my-6 p-6 rounded-2xl bg-[#F8F7F5] border border-[#2A2624]/10 shadow-sm">
@@ -46,7 +60,7 @@ export const BundleSelector: React.FC<BundleSelectorProps> = ({
       {/* Grid of Bundle Options */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
         {REFORMER_BUNDLES.map((bundle) => {
-          const isSelected = selectedQuantity === bundle.quantity;
+          const isSelected = internalQty === bundle.quantity;
           const calc = calculateBundlePrice(basePrice, bundle.quantity);
 
           return (
@@ -56,13 +70,13 @@ export const BundleSelector: React.FC<BundleSelectorProps> = ({
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                onSelectQuantity(bundle.quantity);
+                handleSelect(bundle.quantity);
               }}
               className={`
                 relative flex flex-col justify-between p-3.5 rounded-xl border text-left transition-all duration-300 cursor-pointer
                 ${
                   isSelected
-                    ? 'border-[#2A2624] bg-white ring-2 ring-[#2A2624]/20 shadow-md transform scale-[1.02]'
+                    ? 'border-[#2A2624] bg-white ring-2 ring-[#2A2624]/30 shadow-md transform scale-[1.02]'
                     : 'border-[#2A2624]/15 bg-white/60 hover:bg-white hover:border-[#2A2624]/40'
                 }
               `}
@@ -123,13 +137,13 @@ export const BundleSelector: React.FC<BundleSelectorProps> = ({
       </div>
 
       {/* Rebated Price Summary Panel */}
-      {selectedQuantity > 1 && (
+      {internalQty > 1 && (
         <div className="mt-4 p-4 rounded-xl bg-[#2A2624] text-[#EAE8E4] flex flex-col sm:flex-row sm:items-center justify-between gap-3 animate-in fade-in duration-300">
           <div>
             <div className="flex items-center gap-2 mb-0.5">
               <Sparkles className="w-3.5 h-3.5 text-amber-300" />
               <span className="text-xs font-medium uppercase tracking-wider text-amber-200">
-                The Studio Pack ({selectedQuantity}x {productName} · {currentCalc.discountPercentage}% OFF)
+                The Studio Pack ({currentCalc.quantity}x {productName} · {currentCalc.discountPercentage}% OFF)
               </span>
             </div>
             <p className="text-xs text-[#EAE8E4]/80">
