@@ -11,8 +11,7 @@ publishDate: '2025-11-19'
 author: CAMA Pilates
 slug: pilates-reformer-para-espalda
 featured: false
-heroImage: >-
-  https://spotted-raven-102.convex.cloud/api/storage/378b1d42-a2fe-4dd9-877f-b7c7af064811
+heroImage: "/images/blog/cama-pilates/hero.jpg"
 ---
 tenido revisado y pulido. Se han eliminado las repeticiones excesivas (especialmente sobre precios y tráfico), se han unificado las secciones de FAQ para evitar duplicidad y se ha asegurado que el tono sea profesional, empático y técnicamente preciso para el mercado mexicano.
 
@@ -43,8 +42,6 @@ Para casos menos severos, la personalización es vital. Según Ellie Herman en *
 <see-also limit="3" />
 
 ## Calentamiento y respiración: La base antes del movimiento
-![Calentamiento y respiración: La base antes del movimiento](https://spotted-raven-102.convex.cloud/api/storage/122cd473-245c-4f25-aa66-def820cec607)
-
 
 Antes de mover el carro, necesitas "aterrizar" en tu práctica. Tu sistema nervioso necesita calma antes de la acción para liberar la tensión acumulada por el estrés diario. Como establece Joseph Pilates en *Return to Life*, el principio del "Control" comienza obligatoriamente con la respiración; al inhalar profundo diafragmáticamente, conectas mente y cuerpo.
 
@@ -57,8 +54,6 @@ No olvides tu cuello. Ajusta la cabecera (*headrest*) de tu equipo antes de acos
 *> Nota: Si sientes dolor agudo en cualquier momento, detente y consulta con un profesional.*
 
 ## Rutina base paso a paso para una espalda sana
-![Rutina base paso a paso para una espalda sana](https://spotted-raven-102.convex.cloud/api/storage/28289c17-c06e-4f04-b97a-3d16acad826c)
-
 
 Para empezar, es vital entender que una espalda sana no se construye con esfuerzo excesivo, sino con precisión. Instituciones como el IMSS y la Secretaría de Salud recomiendan constantemente el ejercicio de bajo impacto para el manejo de dolor crónico, y aquí es donde el Reformer brilla.
 
@@ -79,8 +74,6 @@ Con la espalda apoyada y las correas en las manos, trabajarás la postura. Al ja
 Este es el favorito para la descompresión. Coloca las correas largas en tus pies. El soporte de los resortes permite que el peso de tus piernas "flote", generando un alivio inmediato en la zona lumbar y la cadera al permitir un rango de movimiento que sería difícil en el suelo.
 
 ## Progresiones y adaptaciones: De la rehabilitación al fitness
-![Progresiones y adaptaciones: De la rehabilitación al fitness](https://spotted-raven-102.convex.cloud/api/storage/1271be18-1337-4a0e-8adf-faa03195151c)
-
 
 Avanzar en tu práctica no significa cargar más peso de inmediato, sino dominar el movimiento. Como menciona Joseph Pilates, el verdadero objetivo es lograr el control total de tu cuerpo. ¿Cómo sabes si estás listo para subir la resistencia? Si logras mantener tu pelvis neutra y una respiración fluida sin tensar el cuello al empujar la barra, puedes intentar cambiar de un resorte suave a uno medio.
 

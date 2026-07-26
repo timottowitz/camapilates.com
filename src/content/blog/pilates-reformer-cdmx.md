@@ -16,8 +16,7 @@ author: CAMA Pilates
 slug: pilates-reformer-cdmx
 featured: false
 canonical: 'https://camadepilates.com/blog/pilates-reformer-cdmx'
-heroImage: >-
-  https://spotted-raven-102.convex.cloud/api/storage/28ae35a0-fc41-4838-9cf0-ed520438ceac
+heroImage: "/images/blog/why-are-the-women-in-pilates-classes-so-pretty-mexico/hero.jpg"
 ---
 
 # Pilates Reformer CDMX: Dónde entrenar y cómo elegir estudio
@@ -41,8 +40,6 @@ Ciudad de México concentra la oferta más grande de Pilates Reformer en Latinoa
 3. **Acceso a equipamiento**: la ciudad tiene importadores oficiales y fabricantes (CAMA Pilates, Universo Pilates) que garantizan refacciones y upgrades sin esperar semanas.
 
 ## Zonas y estudios representativos
-![Zonas y estudios representativos](https://spotted-raven-102.convex.cloud/api/storage/576be78a-8f5f-48ea-97ca-0ef828bfcc24)
-
 
 | Zona | Perfil | Rango promedio | Qué buscar |
 | --- | --- | --- | --- |
@@ -59,8 +56,6 @@ Ciudad de México concentra la oferta más grande de Pilates Reformer en Latinoa
 - **Principiantes absolutos** → San Ángel, Narvarte o Nápoles: grupos reducidos (máximo 5 personas) y tarifas flexibles.
 
 ## Checklist para tu visita de prueba
-![Checklist para tu visita de prueba](https://spotted-raven-102.convex.cloud/api/storage/fb8859bc-ae5c-49ca-96b9-daaa8a723b43)
-
 
 1. **Certificaciones**: pregunta por títulos PMA, Polestar, BASI o Balanced Body; evita estudios que se apoyan solo en “experiencia personal”.
 2. **Mantenimiento del Reformer**: revisa cuerdas, hombreras y resortes; pide ver el calendario de servicios (mensual/ trimestral).

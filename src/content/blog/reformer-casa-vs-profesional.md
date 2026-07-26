@@ -1,6 +1,6 @@
 ---
 description: Artículo sobre reformer-casa-vs-profesional para el público de México.
-heroImage: /images/blog/reformer-casa-vs-profesional/hero.webp
+heroImage: "/images/products/reformer-maple-barra-patentada-a001.webp"
 publishDate: '2025-10-01'
 ---
 arativa 2025: Reformer para casa vs profesional en México. Estructura, silencio, ajustes, accesorios, precio y costo total de propiedad."

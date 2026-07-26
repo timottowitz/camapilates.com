@@ -11,28 +11,19 @@ publishDate: '2025-11-22'
 author: CAMA Pilates
 slug: pilates-para-embarazo
 featured: false
-heroImage: >-
-  https://spotted-raven-102.convex.cloud/api/storage/cabbeb21-74a9-48b7-beb9-3f971c680b22
+heroImage: "/images/products/cadillac-roble-a019.webp"
 ---
 # Pilates para embarazo: Guía completa y segura
 
 > Nota: Este contenido es estrictamente informativo y educativo; no sustituye el asesoramiento, diagnóstico o tratamiento médico profesional. Consulta siempre a tu ginecólogo antes de iniciar cualquier programa de ejercicio.
 
 ## Resumen: La seguridad y eficacia del Pilates Prenatal
-![Resumen: La seguridad y eficacia del Pilates Prenatal](https://spotted-raven-102.convex.cloud/api/storage/70b6a677-f854-49b8-8e34-dc3704144634)
-
-![Resumen: La seguridad y eficacia del Pilates Prenatal](https://spotted-raven-102.convex.cloud/api/storage/df24d39b-34d8-476b-ab17-ed369d1f8abf)
-
 
 El Pilates es una herramienta terapéutica y preventiva esencial durante la gestación. Establecer una rutina adaptada es crucial, especialmente cuando consideramos el contexto mexicano: entre el 60% y el 70% de las futuras mamás sufren Dolor Lumbar Bajo (DLB). Esta alta prevalencia justifica buscar soluciones efectivas y seguras para el manejo del dolor diario. Considerando que la Tasa Anual de Nacimientos en México oscila entre 1.6 y 1.8 millones, la necesidad de preparación corporal es constante. Nuestra tesis es clara: el Pilates supervisado y adaptado es altamente efectivo para mejorar tu calidad de vida y preparar tu cuerpo para el parto.
 
 La seguridad reside en la adaptación estricta. Debemos aplicar los principios de control y respiración establecidos por Joseph Pilates, adaptándolos a la nueva biomecánica. En estudios realizados en centros especializados de CDMX o Monterrey, se observa cómo se utiliza el *Reformer* de manera segura: por ejemplo, usamos el *Box* para elevar la posición y evitar la peligrosa posición supina (boca arriba), siguiendo las modificaciones seguras descritas por Herman (2019). Este equipo, con su estabilidad y sistemas de resistencia de resortes adaptables, permite fortalecer la musculatura profunda que previene disfunciones postparto, como las relacionadas con el suelo pélvico (Lea y Wells, 2021). Recuerda siempre consultar con tu ginecólogo antes de iniciar cualquier programa de ejercicio.
 
 ## Beneficios comprobados: Más allá del dolor de espalda
-![Beneficios comprobados: Más allá del dolor de espalda](https://spotted-raven-102.convex.cloud/api/storage/b6555bc0-1619-407a-a55e-8a8e57c092f8)
-
-![Beneficios comprobados: Más allá del dolor de espalda](https://spotted-raven-102.convex.cloud/api/storage/1268c086-2fff-41f4-90c0-0ac8065334e2)
-
 
 El Pilates es famoso por aliviar el dolor de espalda, y con justa razón. De hecho, estudios de la Universidad Autónoma de Nuevo León (UANL) han demostrado que la práctica constante reduce significativamente la intensidad del dolor lumbar y pélvico durante la gestación. Pero los beneficios funcionales que obtienes van mucho más allá de esa molestia común.
 
@@ -45,8 +36,6 @@ Finalmente, abordamos la postura y el equilibrio. Es muy común desarrollar hipe
 <see-also title="Beneficios del Pilates en el Postparto" limit="3" />
 
 ## Seguridad primero: Guía por trimestres y contraindicaciones
-![Seguridad primero: Guía por trimestres y contraindicaciones](https://spotted-raven-102.convex.cloud/api/storage/50745477-0e76-45fd-82d4-27d0368e93f2)
-
 
 La seguridad es la prioridad número uno cuando practicas Pilates durante el embarazo. Es fundamental que adaptes tu rutina a medida que tu cuerpo cambia, y esto significa que tu instructor debe estar certificado en el área prenatal.
 

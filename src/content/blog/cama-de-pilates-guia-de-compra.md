@@ -16,8 +16,7 @@ author: CAMA Pilates
 slug: cama-de-pilates-guia-de-compra
 featured: false
 updatedDate: '2025-09-26'
-heroImage: >-
-  https://spotted-raven-102.convex.cloud/api/storage/9b0e0e81-5e19-4bc3-95e3-8319032437e8
+heroImage: "/images/products/reformer-maple-barra-patentada-a001-box-interior.jpg"
 ---
 
 # Guía de compra de Cama de Pilates (Reformer) 2025 — México
@@ -27,7 +26,6 @@ heroImage: >-
 ## Tipos de Reformer
 
 ![Tipos de Reformer](/images/blog/cama-de-pilates-guia-de-compra/section-1.webp)
-<small>Foto: Ambitious Studio* | Rick Barrett / Unsplash</small>
 
 ### Reformer para casa
 - Compacto, estable y silencioso; accesorios de arranque (box/correas) y footprint contenido.
@@ -42,7 +40,6 @@ heroImage: >-
 ## Materiales y acabados
 
 ![Materiales y acabados](/images/blog/cama-de-pilates-guia-de-compra/section-2.webp)
-<small>Foto: Elena Kloppenburg / Unsplash</small>
 
 - **Estructura:** acero estructural para rigidez y precisión.
 - **Madera:** nogal, estable y estética premium.
@@ -50,7 +47,6 @@ heroImage: >-
 - **Silencio:** tolerancias de riel/carro y rodamientos sellados de calidad reducen juego lateral y crujidos.
 
 ## Accesorios esenciales
-![Accesorios esenciales](https://spotted-raven-102.convex.cloud/api/storage/52020c5b-baf3-4601-86b8-54d9b6a1258b)
 
 - **Box** para ampliar repertorio y alineación.
 - **Correas cómodas** (pies/manos) de fácil limpieza.
@@ -59,7 +55,6 @@ heroImage: >-
 <shoprocket-button product="prod_reformer_profesional_placeholder" pk="sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c" />
 
 ## Espacio y medidas
-![Espacio y medidas](https://spotted-raven-102.convex.cloud/api/storage/0a78196f-e96f-4b58-9043-5162bfb4dc30)
 
 - Revisa huella (largo × ancho) y altura libre; deja margen para cambios de footbar/gearbar.
 - Considera acceso a domicilio/estudio para el equipo embalado e instalación.

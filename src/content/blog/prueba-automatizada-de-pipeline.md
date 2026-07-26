@@ -11,8 +11,7 @@ publishDate: '2025-09-28'
 author: CAMA Pilates
 slug: prueba-automatizada-de-pipeline
 featured: false
-heroImage: >-
-  https://spotted-raven-102.convex.cloud/api/storage/5ec7ba87-a607-4e35-a153-c14699b13573
+heroImage: "/images/products/reformer-maple-barra-patentada-a001-extender.jpg"
 ---
 
 # Prueba Automatizada de Pipeline – prueba-automatizada-de-pipeline
@@ -20,7 +19,6 @@ heroImage: >-
 > Nota: Contenido informativo; no es asesoramiento médico.
 
 ## Resumen
-![Resumen](https://spotted-raven-102.convex.cloud/api/storage/18c29c96-84fe-45bb-a1ff-03c677072dae)
 
 Introducción breve al tema con enfoque mexicano, beneficios principales y a quién le sirve.
 
@@ -30,7 +28,6 @@ Introducción breve al tema con enfoque mexicano, beneficios principales y a qui
 - Punto clave 3 con referencia a seguridad
 
 ## Desarrollo del tema
-![Desarrollo del tema](https://spotted-raven-102.convex.cloud/api/storage/7d02e5fd-8b82-4456-824b-35ef6caa5e08)
 
 ### Contexto en México
 Situación local, disponibilidad, costos en MXN, ciudades relevantes (CDMX, GDL, MTY).
@@ -41,7 +38,6 @@ Secuencias, progresiones y variaciones, con notas de seguridad.
 <see-also limit="3" />
 
 ## Recomendaciones CAMA Pilates
-![Recomendaciones CAMA Pilates](https://spotted-raven-102.convex.cloud/api/storage/31fdbeac-b326-4dbc-8017-80ae93a3bb36)
 
 CAMA Pilates ofrece calidad premium con ingeniería alemana y manufactura mexicana. Asesoría en español, envío nacional y garantía.
 

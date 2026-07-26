@@ -21,8 +21,7 @@ hero: instructor-pilates-transformacion-mexico.jpg
 heroAlt: >-
   Instructor de Pilates mexicano guiando a un alumno en Reformer durante clase
   de certificación
-heroImage: >-
-  https://spotted-raven-102.convex.cloud/api/storage/506bfe5a-7a41-4e6b-900f-13728827b029
+heroImage: "/images/products/reformer-aluminio-nogal-a039.webp"
 ---
 o guiando a un alumno en Reformer durante clase de certificación"
 ---

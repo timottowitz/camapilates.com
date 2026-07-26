@@ -12,8 +12,7 @@ publishDate: '2025-09-28'
 author: CAMA Pilates
 slug: networking-instructores-pilates
 featured: false
-heroImage: >-
-  https://spotted-raven-102.convex.cloud/api/storage/a1308d97-44da-4cf8-bb8e-0e716de304e0
+heroImage: "/images/products/reformer-maple-barra-patentada-a001-box-interior.jpg"
 ---
 
 # Networking Instructores Pilates – pilates instructor
@@ -21,7 +20,6 @@ heroImage: >-
 > Nota: Contenido informativo; no es asesoramiento médico.
 
 ## Resumen
-![Resumen](https://spotted-raven-102.convex.cloud/api/storage/09c58afc-2800-4dfd-b64c-20bde7abd9d2)
 
 Introducción breve al tema con enfoque mexicano, beneficios principales y a quién le sirve.
 
@@ -31,7 +29,6 @@ Introducción breve al tema con enfoque mexicano, beneficios principales y a qui
 - Punto clave 3 con referencia a seguridad
 
 ## Desarrollo del tema
-![Desarrollo del tema](https://spotted-raven-102.convex.cloud/api/storage/f8e25b26-386c-42ce-a44c-130560c9fd3e)
 
 ### Contexto en México
 Situación local, disponibilidad, costos en MXN, ciudades relevantes (CDMX, GDL, MTY).
@@ -42,7 +39,6 @@ Secuencias, progresiones y variaciones, con notas de seguridad.
 <see-also limit="3" />
 
 ## Recomendaciones CAMA Pilates
-![Recomendaciones CAMA Pilates](https://spotted-raven-102.convex.cloud/api/storage/2586eaf8-c29d-4dca-8da7-7e9d1de357d6)
 
 CAMA Pilates ofrece calidad premium con ingeniería alemana y manufactura mexicana. Asesoría en español, envío nacional y garantía.
 

@@ -41,8 +41,6 @@ Practicar Pilates en casa con tu propio reformer ofrece ventajas únicas que van
 - Para interacción social y clases grupales
 
 ## Top 10 Mejores Camas de Pilates para Casa en México 2025
-![Top 10 Mejores Camas de Pilates para Casa en México 2025](https://spotted-raven-102.convex.cloud/api/storage/dade54dc-75d6-436a-bdf7-36579c1738a1)
-
 
 ### 1. **CAMA Pilates Reformer Professional** - $65,000 MXN
 **Nuestra Recomendación Premium**
@@ -125,8 +123,6 @@ Practicar Pilates en casa con tu propio reformer ofrece ventajas únicas que van
 - Disponible en Amazon México
 
 ## Guía de Compra: Factores Esenciales a Considerar
-![Guía de Compra: Factores Esenciales a Considerar](https://spotted-raven-102.convex.cloud/api/storage/fd186da8-65db-408a-a9fd-6ca404a19891)
-
 
 ### 1. Espacio Disponible
 
@@ -186,8 +182,6 @@ Practicar Pilates en casa con tu propio reformer ofrece ventajas únicas que van
 - Peso: 45-80 kg dependiendo del modelo
 
 ## Soluciones para Espacios Pequeños: México Real
-![Soluciones para Espacios Pequeños: México Real](https://spotted-raven-102.convex.cloud/api/storage/ec0093b1-4798-40c8-9d60-2f9df4472719)
-
 
 ### Reformers Plegables: Innovación Mexicana
 

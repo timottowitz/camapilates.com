@@ -1,5 +1,5 @@
 ---
-heroImage: /images/blog/mantenimiento-cama-de-pilates/hero.webp
+heroImage: "/images/products/barril-escalera-roble-a025.webp"
 publishDate: '2025-10-01'
 ---
 

@@ -12,8 +12,7 @@ publishDate: '2025-09-28'
 author: CAMA Pilates
 slug: pilates-rehabilitacion-cancer-mama
 featured: false
-heroImage: >-
-  https://spotted-raven-102.convex.cloud/api/storage/5140ed94-1083-417c-8bab-5f6d0b1899c8
+heroImage: "/images/blog/cama-para-pilates/hero.jpg"
 ---
 
 # Pilates Rehabilitacion Cancer Mama
@@ -21,7 +20,6 @@ heroImage: >-
 > Nota: Contenido informativo; no es asesoramiento médico.
 
 ## Resumen
-![Resumen](https://spotted-raven-102.convex.cloud/api/storage/57c388ea-16e8-488b-8da0-0ab64bc3bd70)
 
 Introducción breve al tema con enfoque mexicano, beneficios principales y a quién le sirve.
 
@@ -40,7 +38,6 @@ Secuencias, progresiones y variaciones, con notas de seguridad.
 <see-also limit="3" />
 
 ## Recomendaciones CAMA Pilates
-![Recomendaciones CAMA Pilates](https://spotted-raven-102.convex.cloud/api/storage/776b841e-2d78-4e69-80e3-cdbbaa089cad)
 
 CAMA Pilates ofrece calidad premium con ingeniería alemana y manufactura mexicana. Asesoría en español, envío nacional y garantía.
 

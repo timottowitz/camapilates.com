@@ -1,5 +1,5 @@
 ---
-heroImage: /images/blog/precio-cama-de-pilates-2025/hero.webp
+heroImage: "/images/products/reformer-maple-barra-patentada-a001-studio.jpg"
 publishDate: '2025-10-01'
 ---
 

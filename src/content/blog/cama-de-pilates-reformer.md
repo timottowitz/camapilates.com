@@ -16,8 +16,7 @@ publishDate: '2025-09-24'
 author: CAMA Pilates
 slug: cama-de-pilates-reformer
 featured: true
-heroImage: >-
-  https://spotted-raven-102.convex.cloud/api/storage/ae23fb09-2007-4da1-b3c6-b194b3436662
+heroImage: "/images/products/reformer-aluminio-nogal-a039.webp"
 ---
 
 # Cama de Pilates Reformer: Guía Completa 2025 para Elegir la Mejor
@@ -25,8 +24,6 @@ heroImage: >-
 > Nota: Contenido informativo basado en evidencia científica; no sustituye asesoramiento médico profesional.
 
 ## ¿Qué es exactamente una Cama de Pilates Reformer?
-![¿Qué es exactamente una Cama de Pilates Reformer?](https://spotted-raven-102.convex.cloud/api/storage/e6cc70ea-0340-4ce6-8f58-f91e95e6205d)
-
 
 La **cama de Pilates Reformer** es el equipo más versátil y completo del método Pilates, diseñado originalmente por Joseph Pilates en los años 1920. Este innovador aparato consiste en una **plataforma deslizante (carro)** montada sobre un marco estable, equipada con un sistema de **resortes de resistencia ajustable**, poleas, cuerdas y una barra de pies fija.
 
@@ -66,8 +63,6 @@ Estudios recientes han demostrado múltiples beneficios del Pilates Reformer:
 - Mejora funcional en diversas patologías neurológicas
 
 ## Anatomía del Reformer: Componentes Esenciales
-![Anatomía del Reformer: Componentes Esenciales](https://spotted-raven-102.convex.cloud/api/storage/97df11be-962b-4987-9c65-151dfe714c25)
-
 
 ### Estructura Principal
 - **Marco (Frame)**: Base estable que soporta todo el sistema
@@ -125,8 +120,6 @@ Estudios recientes han demostrado múltiples beneficios del Pilates Reformer:
 6. **Garantía y servicio**: Cobertura y soporte técnico
 
 ## Comparativa Detallada: Casa vs. Estudio Profesional
-![Comparativa Detallada: Casa vs. Estudio Profesional](https://spotted-raven-102.convex.cloud/api/storage/98386e18-9afd-4c3c-9c90-4bcfdaebf224)
-
 
 ### Reformers para Casa
 

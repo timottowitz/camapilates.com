@@ -11,8 +11,7 @@ publishDate: '2025-11-19'
 author: CAMA Pilates
 slug: ejercicios-pilates-en-la-cama
 featured: false
-heroImage: >-
-  https://spotted-raven-102.convex.cloud/api/storage/66079c3a-1671-41b1-9a4f-d6a400cc425a
+heroImage: "/images/products/reformer-maple-barra-patentada-a001-studio.jpg"
 ---
 Aquí tienes el contenido revisado y pulido. Se han eliminado las repeticiones excesivas de frases (especialmente sobre los "estudios universitarios"), se ha unificado el rango de precios según el archivo de investigación, se ha limpiado la estructura de las FAQs y se ha asegurado un tono consistente y fluido en español mexicano.
 
@@ -31,8 +30,6 @@ Si has caminado recientemente por la Roma en CDMX o zonas de Guadalajara, seguro
 En esta guía, desmitificaremos desde el deslizamiento del carro (*carriage*) hasta el ajuste correcto de los topes de seguridad. Ya sea que busques invertir en un reformer plegable para tu departamento o simplemente entender tu primera clase en el estudio, aquí encontrarás una base segura y práctica para iniciar.
 
 ## Beneficios del Reformer: Más que una cama de ejercicios
-![Beneficios del Reformer: Más que una cama de ejercicios](https://spotted-raven-102.convex.cloud/api/storage/5af99106-b037-4f75-95fa-cc74580b05f6)
-
 
 A primera vista, el Reformer puede parecer intimidante, casi como una máquina medieval, pero te aseguro que es la herramienta más noble que encontrarás en un estudio de Pilates. Su magia radica en el sistema de resortes. A diferencia de las pesas tradicionales del gimnasio, los resortes ofrecen una resistencia progresiva que trabaja el músculo tanto en su fase de contracción como de estiramiento (concéntrica y excéntrica).
 
@@ -47,8 +44,6 @@ Hoy en día, no necesitas ir a un estudio costoso. Si vives en un departamento p
 <see-also limit="3" />
 
 ## Preparación: Seguridad y Respiración antes de mover el carro
-![Preparación: Seguridad y Respiración antes de mover el carro](https://spotted-raven-102.convex.cloud/api/storage/a5cfcddd-f779-4c78-9701-d8e02521193c)
-
 
 Antes de subirte al carro en tu estudio favorito o en casa, hay un paso crucial que no puedes saltarte: la revisión de seguridad. Tu Reformer es una máquina increíble, pero requiere respeto.
 
@@ -62,8 +57,6 @@ Una vez acostado, enfócate en tu alineación. Debes decidir entre "pelvis neutr
 *Nota: Si tienes lesiones previas, consulta con un profesional de la salud antes de iniciar.*
 
 ## Rutina Base: 4 Ejercicios Fundamentales en la Cama
-![Rutina Base: 4 Ejercicios Fundamentales en la Cama](https://spotted-raven-102.convex.cloud/api/storage/048fabde-96ea-4f65-a3fc-c1bab86a44e8)
-
 
 Ya sea que estés en una clase boutique o estrenando equipo en casa, lo primero que debes dominar no son las acrobacias, sino la base. Al subirte al carro, cambia el chip del gimnasio tradicional: aquí, menos es más. El enfoque debe estar siempre en la calidad del movimiento. De nada sirve hacer 20 repeticiones si tu alineación se pierde en la tercera; es mejor hacer 8 perfectas.
 

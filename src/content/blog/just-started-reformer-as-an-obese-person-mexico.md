@@ -11,16 +11,13 @@ publishDate: '2025-11-21'
 author: CAMA Pilates
 slug: just-started-reformer-as-an-obese-person-mexico
 featured: false
-heroImage: >-
-  https://spotted-raven-102.convex.cloud/api/storage/d844287e-8660-44f7-aa41-20c7490f9b35
+heroImage: "/images/products/cadillac-roble-a019.webp"
 ---
 # Empezando Pilates Reformer con sobrepeso u obesidad (Guía CAMA Pilates)
 
 > Nota: Este contenido es estrictamente informativo y no constituye asesoramiento médico. Consulta siempre a un profesional de la salud antes de iniciar cualquier programa de ejercicio.
 
 ## Introducción: El Reformer como puerta de entrada al movimiento en México
-![Introducción: El Reformer como puerta de entrada al movimiento en México](https://spotted-raven-102.convex.cloud/api/storage/d4a88eb3-9280-4d6a-9a5b-c685411172f2)
-
 
 Empezar cualquier rutina de ejercicio es un reto, pero si además estás lidiando con sobrepeso u obesidad, la búsqueda de movimiento se vuelve compleja y, a menudo, dolorosa. Queremos validar tu esfuerzo: sabemos que el miedo a lesionarte o la incomodidad articular son barreras reales. Este contexto es crucial en México, donde la prevalencia es alarmante. Según cifras del INEGI de 2022, el **74.1% de los adultos mexicanos** se clasifica como sobrepeso u obeso. La buena noticia es que no estás solo en la búsqueda de soluciones: se estima que el **18% de esta población** busca activamente alternativas de bajo impacto para iniciar su camino.
 
@@ -29,8 +26,6 @@ Aquí es donde el Reformer Pilates se convierte en tu mejor puerta de entrada. S
 <see-also limit="3" />
 
 ## Beneficios clave y el factor psicológico (Gimnasiofobia)
-![Beneficios clave y el factor psicológico (Gimnasiofobia)](https://spotted-raven-102.convex.cloud/api/storage/f851a198-2fc2-44c2-a5ab-afbe66023492)
-
 
 Seamos honestos: el primer paso es el más difícil. Para muchas personas en México, especialmente aquellas que viven con obesidad, la principal barrera no es física, sino psicológica: el miedo al juicio. Este fenómeno, conocido como 'gimnasiofobia', es la razón por la cual mucha gente evita los gimnasios tradicionales en zonas como Polanco (CDMX) o San Pedro Garza García (MTY). Es la ansiedad de ser evaluado por tu cuerpo o tu desempeño. Pilates, y el Reformer en particular, te ofrece un ambiente más íntimo y enfocado para superar esa barrera.
 
@@ -43,8 +38,6 @@ Para superar la gimansiofobia y asegurar el progreso, la **instrucción personal
 *Nota de Seguridad: Si tienes condiciones médicas preexistentes relacionadas con la obesidad, consulta siempre con un profesional de la salud antes de comenzar cualquier régimen de ejercicio.*
 
 ## Desarrollo técnico: Modificaciones esenciales en el Reformer
-![Desarrollo técnico: Modificaciones esenciales en el Reformer](https://spotted-raven-102.convex.cloud/api/storage/065e433d-c9e8-45dc-ab92-73c31babee55)
-
 
 La transición a la práctica de Pilates Reformer, especialmente si estás en un proceso de pérdida de peso o manejando un cuerpo con articulaciones sensibles, requiere un enfoque técnico muy específico. Entender estas adaptaciones es clave para tu seguridad y progreso.
 

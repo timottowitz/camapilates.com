@@ -12,8 +12,7 @@ publishDate: '2025-09-28'
 author: CAMA Pilates
 slug: mantenimiento-reformer-pilates
 featured: false
-heroImage: >-
-  https://spotted-raven-102.convex.cloud/api/storage/62afbf53-b0fb-40e1-9479-12f4c9104d0a
+heroImage: "/images/blog/why-are-the-women-in-pilates-classes-so-pretty-mexico/hero.jpg"
 ---
 
 # Mantenimiento Reformer Pilates
@@ -24,14 +23,12 @@ heroImage: >-
 Introducción breve al tema con enfoque mexicano, beneficios principales y a quién le sirve.
 
 ## Claves prácticas
-![Claves prácticas](https://spotted-raven-102.convex.cloud/api/storage/20b6431a-a69d-46a1-af91-9589222c3323)
 
 - Punto clave 1 con contexto mexicano
 - Punto clave 2 con recomendación accionable
 - Punto clave 3 con referencia a seguridad
 
 ## Desarrollo del tema
-![Desarrollo del tema](https://spotted-raven-102.convex.cloud/api/storage/66567fef-7f69-4631-98ba-7d2622befa02)
 
 ### Contexto en México
 Situación local, disponibilidad, costos en MXN, ciudades relevantes (CDMX, GDL, MTY).
@@ -42,7 +39,6 @@ Secuencias, progresiones y variaciones, con notas de seguridad.
 <see-also limit="3" />
 
 ## Recomendaciones CAMA Pilates
-![Recomendaciones CAMA Pilates](https://spotted-raven-102.convex.cloud/api/storage/90153d0b-2cc8-4150-b078-7b50e28e4db3)
 
 CAMA Pilates ofrece calidad premium con ingeniería alemana y manufactura mexicana. Asesoría en español, envío nacional y garantía.
 
