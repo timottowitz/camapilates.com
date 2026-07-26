@@ -29,7 +29,12 @@
     <meta property="og:title" content="Cama de Pilates | Edelweiss Pilates" />
     <meta property="og:description" content="Cama de Pilates (Reformer) para casa y estudio. Guías de compra, precios y tienda." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://camadepilates.com/" />
+    <!-- No static og:url or canonical here. Helmet sets the real ones per route, but it
+         cannot replace tags it did not create, so a hardcoded value stays in the head
+         alongside Helmet's and every inner page ends up claiming to be the homepage.
+         The remaining og/twitter tags are safe generic fallbacks for scrapers that do
+         not run JS; a URL claim is not, so it is left to Helmet (and to the requested
+         URL itself, which is the correct default when absent). -->
     <meta property="og:image" content="https://camadepilates.com/og/cama-de-pilates-venta-mexico.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -46,7 +51,6 @@
     <meta name="twitter:image:alt" content="Cama de Pilates Reformer Edelweiss - equipo premium de madera de nogal para casa y estudio en Mexico" />
 
     <!-- Additional SEO Meta Tags -->
-    <link rel="canonical" href="https://camadepilates.com/" />
     <link rel="icon" type="image/svg+xml" href="/brand/edelweiss.svg" />
 
     <!-- Google tag (gtag.js) — GA4 -->

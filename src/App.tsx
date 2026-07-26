@@ -6,14 +6,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React, { Suspense, lazy, ComponentType } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-
-// react-helmet-async derives canUseDOM at module scope. Rollup's hoisting leaves it
-// undefined when the bundle evaluates, so the built app falls back to `false`, Helmet
-// assumes it is server rendering and never touches the document: every page shipped
-// index.html's static title, description and — worst of all — its canonical pointing
-// at the homepage, with no JSON-LD at all. Vite dev serves native ESM, so this only
-// ever reproduced in a production build. Setting it explicitly restores head updates.
-(HelmetProvider as unknown as { canUseDOM: boolean }).canUseDOM = typeof document !== 'undefined';
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import Index from "./pages/Index";
 import About from "./pages/About";
