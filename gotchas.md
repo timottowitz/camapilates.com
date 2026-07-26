@@ -5,6 +5,40 @@ Traps that cost real debugging time on this project. Read before chasing a bug t
 
 ---
 
+## A hidden browser tab makes Helmet look broken
+
+**Symptom:** Every page in a production build appears to ship index.html's static
+title and description with no JSON-LD and no per-page canonical, while `vite dev`
+looks fine. It reads exactly like a bundler bug and invites a "fix" to
+`react-helmet-async`.
+
+**Cause:** Helmet defaults to `defer: true` and commits head changes inside
+`requestAnimationFrame`. Browsers suspend rAF in hidden tabs, so the commit never
+runs and the head keeps whatever index.html shipped. The automated browser pane
+reports `document.visibilityState === 'hidden'`, so anything measured through it
+sees the pre-Helmet head. Dev only looked healthy because starting the preview
+server fronts the pane for that first load.
+
+**Check this first** before concluding head management is broken:
+
+```js
+let fired = false; requestAnimationFrame(() => { fired = true; });
+setTimeout(() => console.log(document.visibilityState, fired), 1000);
+```
+
+If `fired` is false, the measurement is worthless. Route rAF through a timer for
+the rest of the session, then re-measure:
+
+```js
+window.requestAnimationFrame = (cb) => setTimeout(() => cb(performance.now()), 0);
+window.cancelAnimationFrame = (id) => clearTimeout(id);
+```
+
+Head tags are prerendered into the served HTML anyway (see below), so `curl` is the
+more reliable way to check what a crawler actually receives.
+
+---
+
 ## Browser auto-translation freezes any value React re-renders
 
 **Symptom:** A price, total, or counter updates once and then never changes, while the
@@ -69,3 +103,31 @@ curl -s https://camadepilates.com/product/<slug> | grep -oE '/assets/index-[A-Za
 
 Assets are content-hashed and immutable-cached, so during propagation two edges can
 briefly return different bytes for the same filename. Re-check before concluding.
+
+A 308 is cacheable, so a URL that redirected before a fix can keep returning the
+cached redirect for a while afterwards. Re-request with a `?cb=` buster before
+believing a straggler is a real failure.
+
+---
+
+## SEO output lives in three places that must agree
+
+`scripts/static-prerender.cjs` writes the HTML crawlers actually get,
+`scripts/generate-sitemap.cjs` writes the URL list, and the page components set the
+same tags client-side via Helmet. A URL is only correct when all three use the
+identical form, and each has already drifted once:
+
+- Both scripts must use the same `slugify` as `src/utils/slug.ts`. Percent-encoding
+  a tag or category name produces a URL the route redirects away from.
+- The prerenderer writes `<path>.html`, never `<path>/index.html`. Cloudflare Pages
+  serves `foo.html` at `/foo` with a 200 but serves `foo/index.html` only at `/foo/`,
+  308ing `/foo` to it — which contradicts every canonical and sitemap entry.
+- Do not add a `canonical` or `og:url` to `index.html`. Helmet cannot replace a tag
+  it did not create, so a hardcoded value survives alongside Helmet's and every inner
+  page ends up declaring the homepage as its canonical.
+
+Verify the whole set rather than spot-checking; the sweep is cheap:
+
+```bash
+curl -s https://camadepilates.com/sitemap.xml | grep -oE '<loc>[^<]+</loc>' | sed -E 's|</?loc>||g' | while read -r u; do echo "$(curl -s -o /dev/null -w '%{http_code}' "$u") $u"; done | grep -v '^200 '
+```
