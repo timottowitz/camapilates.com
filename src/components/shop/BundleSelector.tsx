@@ -4,7 +4,6 @@ import {
   REFORMER_BUNDLES,
   calculateBundlePrice,
   type BundleQuantity,
-  type BundlePriceCalculation,
 } from '@/lib/shop/bundles';
 
 interface BundleSelectorProps {
@@ -24,20 +23,26 @@ export const BundleSelector: React.FC<BundleSelectorProps> = ({
 
   return (
     <div className="space-y-4 my-6 p-6 rounded-2xl bg-[#F8F7F5] border border-[#2A2624]/10 shadow-sm">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Building2 className="w-4 h-4 text-[#3E2723]" />
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2A2624]">
-            Paquetes para Estudio (Precios de Mayoreo)
+      {/* Header Banner */}
+      <div className="space-y-1">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Building2 className="w-4 h-4 text-[#3E2723]" />
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#2A2624]">
+              The Studio Pack · El Pack Estudio
+            </span>
+          </div>
+          <span className="text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#3E2723] text-[#EAE8E4] font-medium">
+            Hasta 20% OFF
           </span>
         </div>
-        <span className="text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#3E2723]/10 text-[#3E2723] font-medium">
-          Hasta 20% OFF
-        </span>
+        <p className="text-xs text-[#5D5550] italic font-light pl-6">
+          ¿Construyendo un nuevo Estudio? Obtén un gran descuento en Reformers Edelweiss al equipar tu espacio.
+        </p>
       </div>
 
       {/* Grid of Bundle Options */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
         {REFORMER_BUNDLES.map((bundle) => {
           const isSelected = selectedQuantity === bundle.quantity;
           const calc = calculateBundlePrice(basePrice, bundle.quantity);
@@ -118,7 +123,7 @@ export const BundleSelector: React.FC<BundleSelectorProps> = ({
             <div className="flex items-center gap-2 mb-0.5">
               <Sparkles className="w-3.5 h-3.5 text-amber-300" />
               <span className="text-xs font-medium uppercase tracking-wider text-amber-200">
-                Paquete {selectedQuantity} Reformers ({currentCalc.discountPercentage}% Descuento Aplicado)
+                The Studio Pack ({selectedQuantity} Reformers Edelweiss · {currentCalc.discountPercentage}% OFF)
               </span>
             </div>
             <p className="text-xs text-[#EAE8E4]/80">
