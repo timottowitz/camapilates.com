@@ -11,6 +11,7 @@ interface BundleSelectorProps {
   currency?: string;
   selectedQuantity: BundleQuantity;
   onSelectQuantity: (q: BundleQuantity) => void;
+  productName?: string;
 }
 
 export const BundleSelector: React.FC<BundleSelectorProps> = ({
@@ -18,6 +19,7 @@ export const BundleSelector: React.FC<BundleSelectorProps> = ({
   currency = 'MXN',
   selectedQuantity,
   onSelectQuantity,
+  productName = 'Equipos',
 }) => {
   const currentCalc = calculateBundlePrice(basePrice, selectedQuantity);
 
@@ -37,7 +39,7 @@ export const BundleSelector: React.FC<BundleSelectorProps> = ({
           </span>
         </div>
         <p className="text-xs text-[#5D5550] italic font-light pl-6">
-          ¿Construyendo un nuevo Estudio? Obtén un gran descuento en Reformers Edelweiss al equipar tu espacio.
+          ¿Construyendo un nuevo Estudio? Obtén un gran descuento en equipos Edelweiss al equipar tu espacio.
         </p>
       </div>
 
@@ -51,12 +53,16 @@ export const BundleSelector: React.FC<BundleSelectorProps> = ({
             <button
               key={bundle.quantity}
               type="button"
-              onClick={() => onSelectQuantity(bundle.quantity)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onSelectQuantity(bundle.quantity);
+              }}
               className={`
-                relative flex flex-col justify-between p-3.5 rounded-xl border text-left transition-all duration-300
+                relative flex flex-col justify-between p-3.5 rounded-xl border text-left transition-all duration-300 cursor-pointer
                 ${
                   isSelected
-                    ? 'border-[#2A2624] bg-white ring-2 ring-[#2A2624]/10 shadow-md transform scale-[1.02]'
+                    ? 'border-[#2A2624] bg-white ring-2 ring-[#2A2624]/20 shadow-md transform scale-[1.02]'
                     : 'border-[#2A2624]/15 bg-white/60 hover:bg-white hover:border-[#2A2624]/40'
                 }
               `}
@@ -65,7 +71,7 @@ export const BundleSelector: React.FC<BundleSelectorProps> = ({
               {bundle.badge && (
                 <span
                   className={`
-                    absolute -top-2.5 right-2 text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-xs
+                    absolute -top-2.5 right-2 text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-xs pointer-events-none
                     ${
                       bundle.isBestValue
                         ? 'bg-[#3E2723] text-[#EAE8E4]'
@@ -123,7 +129,7 @@ export const BundleSelector: React.FC<BundleSelectorProps> = ({
             <div className="flex items-center gap-2 mb-0.5">
               <Sparkles className="w-3.5 h-3.5 text-amber-300" />
               <span className="text-xs font-medium uppercase tracking-wider text-amber-200">
-                The Studio Pack ({selectedQuantity} Reformers Edelweiss · {currentCalc.discountPercentage}% OFF)
+                The Studio Pack ({selectedQuantity}x {productName} · {currentCalc.discountPercentage}% OFF)
               </span>
             </div>
             <p className="text-xs text-[#EAE8E4]/80">

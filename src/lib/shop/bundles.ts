@@ -51,33 +51,26 @@ export interface BundlePriceCalculation {
 }
 
 /**
- * Check if a product is a Reformer bed that qualifies for studio volume bundles
+ * Check if a product is a Reformer or Machine (Reformers, Cadillacs, Wunda Chairs, Ladder Barrels)
+ * that qualifies for studio volume package discounts.
  */
 export function isReformerBed(p: { category?: string; name?: string; slug?: string }): boolean {
   if (!p) return false;
   const category = (p.category || '').trim().toLowerCase();
   
-  // Non-bed categories
-  if (category === 'accesorios' || category === 'ropa' || category === 'sillas y barriles') {
+  // Non-machine categories (accessories and apparel are excluded)
+  if (category === 'accesorios' || category === 'ropa') {
     return false;
   }
   
-  if (category === 'reformers') return true;
-  
-  const name = (p.name || '').toLowerCase();
-  const slug = (p.slug || '').toLowerCase();
-  
-  const isReformer = name.includes('reformer') || slug.includes('reformer');
-  const isChairOrBarrel = name.includes('silla') || name.includes('barril') || name.includes('cadillac');
-  
-  return isReformer && !isChairOrBarrel;
+  return true;
 }
 
 /**
  * Calculates unit and total rebated prices for a given base price and quantity option
  */
 export function calculateBundlePrice(basePrice: number | string, quantity: BundleQuantity): BundlePriceCalculation {
-  const priceNum = typeof basePrice === 'number' ? basePrice : parseFloat(basePrice.replace(/[^0-9.]/g, '')) || 0;
+  const priceNum = typeof basePrice === 'number' ? basePrice : parseFloat(String(basePrice).replace(/[^0-9.]/g, '')) || 0;
   
   const bundle = REFORMER_BUNDLES.find(b => b.quantity === quantity) || REFORMER_BUNDLES[0];
   const discountPercentage = bundle.discountPercentage;

@@ -408,7 +408,7 @@ const ProductPage: React.FC = () => {
 
             <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="flex flex-col border-b border-[#2A2624]/10 pb-8 gap-2">
               <div className="flex items-baseline gap-4">
-                <div className="text-4xl font-serif italic text-[#2A2624]">
+                <div className="text-4xl sm:text-5xl font-serif italic text-[#2A2624]">
                   $ {Number(priceToShow).toLocaleString('es-MX')}{' '}
                   <span className="text-sm font-sans not-italic text-[#5D5550] tracking-normal">{prod.currency}</span>
                 </div>
@@ -417,25 +417,35 @@ const ProductPage: React.FC = () => {
                 </div>
               </div>
 
-              {bundleCalc.quantity > 1 && (
-                <div className="text-xs text-[#5D5550]">
-                  Original: <span className="line-through">${bundleCalc.originalTotalPrice.toLocaleString('es-MX')} {prod.currency}</span> ·{' '}
-                  <span className="font-semibold text-emerald-700">
-                    Ahorras ${bundleCalc.totalSavings.toLocaleString('es-MX')} {prod.currency} ({bundleCalc.discountPercentage}% OFF)
-                  </span>
+              {bundleCalc.quantity > 1 ? (
+                <div className="space-y-1">
+                  <p className="text-xs font-medium text-[#2A2624]">
+                    Paquete de {bundleCalc.quantity} Unidades · <span className="font-bold text-[#3E2723]">${bundleCalc.discountedUnitPrice.toLocaleString('es-MX')} {prod.currency} / unidad</span>
+                  </p>
+                  <p className="text-xs text-[#5D5550]">
+                    Precio regular sin descuento: <span className="line-through">${bundleCalc.originalTotalPrice.toLocaleString('es-MX')} {prod.currency}</span> ·{' '}
+                    <span className="font-bold text-emerald-700">
+                      Ahorras ${bundleCalc.totalSavings.toLocaleString('es-MX')} {prod.currency} ({bundleCalc.discountPercentage}% OFF)
+                    </span>
+                  </p>
                 </div>
+              ) : (
+                <p className="text-xs text-[#5D5550]">
+                  Precio unitario individual
+                </p>
               )}
             </motion.div>
 
             {isReformer && (
-              <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}>
+              <div>
                 <BundleSelector
                   basePrice={basePriceToShow}
                   currency={prod.currency}
                   selectedQuantity={selectedQuantity}
-                  onSelectQuantity={setSelectedQuantity}
+                  onSelectQuantity={(q) => setSelectedQuantity(q)}
+                  productName={prod.name}
                 />
-              </motion.div>
+              </div>
             )}
 
             <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="space-y-8">
