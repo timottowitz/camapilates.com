@@ -26,6 +26,20 @@ function htmlEscape(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
+// Must stay identical to slugify() in src/utils/slug.ts and in generate-sitemap.cjs.
+// The blog tag and category routes redirect anything that is not already in this form,
+// so a percent-encoded value here writes the prerendered file to a URL nothing links to
+// and declares a canonical that redirects.
+function slugify(input) {
+  return (input || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
 function baseHtml(template, headMeta, bodyHtml) {
   // Inject head tags and static body content into dist/index.html
   let html = template;
@@ -199,10 +213,20 @@ function renderProduct(p, origin) {
 }
 
 function writeFileForRoute(routePath, html) {
-  // routePath like /blog/foo or /blog
-  const targetDir = path.join(DIST, routePath.replace(/^\//, ''), routePath.endsWith('/') ? '' : '/');
-  ensureDir(targetDir);
-  fs.writeFileSync(path.join(targetDir, 'index.html'), html, 'utf8');
+  // routePath like /blog/foo or /blog.
+  //
+  // Written as <path>.html rather than <path>/index.html on purpose. Cloudflare Pages
+  // serves foo.html at /foo with a 200, but serves foo/index.html only at /foo/ and
+  // 308s /foo to it. Every canonical we emit, and every URL in the sitemap, is the
+  // slashless form, so the directory layout made 141 of 278 sitemap URLs redirect and
+  // pointed each page's canonical at a URL that redirects. Same bytes, no redirect.
+  const rel = routePath.replace(/^\//, '').replace(/\/$/, '');
+  if (!rel) {
+    fs.writeFileSync(path.join(DIST, 'index.html'), html, 'utf8');
+    return;
+  }
+  ensureDir(path.join(DIST, path.dirname(rel)));
+  fs.writeFileSync(path.join(DIST, `${rel}.html`), html, 'utf8');
 }
 
 async function main() {
@@ -250,37 +274,47 @@ async function main() {
     writeFileForRoute(`/blog/${p.slug}`, html);
   }
 
-  // Simple category pages
-  const categories = Array.from(new Set(posts.map(p => p.category)));
-  for (const c of categories) {
-    const list = posts.filter(p => p.category === c).slice(0, 40);
+  // Simple category pages. Keyed by slug so the casing variants in frontmatter
+  // ("Equipo y mantenimiento" / "Equipo y Mantenimiento") render one page.
+  const categoryBySlug = new Map();
+  for (const p of posts) {
+    const slug = slugify(p.category);
+    if (slug && !categoryBySlug.has(slug)) categoryBySlug.set(slug, p.category);
+  }
+  for (const [slug, c] of categoryBySlug) {
+    const list = posts.filter(p => slugify(p.category) === slug).slice(0, 40);
     const head = {
       title: `Categoría: ${c} | camadepilates.com`,
       description: `Artículos de ${c}`,
-      canonical: `${origin}/blog/category/${encodeURIComponent(c)}`,
+      canonical: `${origin}/blog/category/${slug}`,
       ogImage: `${origin}/og/${list[0]?.slug || 'og'}.png`,
       ogType: 'website'
     };
     const body = buildIndex(list);
     const html = baseHtml(template, head, body);
-    writeFileForRoute(`/blog/category/${c}`, html);
+    writeFileForRoute(`/blog/category/${slug}`, html);
   }
 
   // Simple tag pages
-  const tagSet = new Set();
-  posts.forEach(p => (p.tags||[]).forEach(t => tagSet.add(t)));
-  for (const t of Array.from(tagSet)) {
-    const list = posts.filter(p => (p.tags||[]).includes(t)).slice(0, 40);
+  const tagBySlug = new Map();
+  for (const p of posts) {
+    for (const t of p.tags || []) {
+      const slug = slugify(t);
+      if (slug && !tagBySlug.has(slug)) tagBySlug.set(slug, t);
+    }
+  }
+  for (const [slug, t] of tagBySlug) {
+    const list = posts.filter(p => (p.tags || []).some(x => slugify(x) === slug)).slice(0, 40);
     const head = {
       title: `Etiqueta: ${t} | camadepilates.com`,
       description: `Artículos etiquetados con ${t}`,
-      canonical: `${origin}/blog/tag/${encodeURIComponent(t)}`,
+      canonical: `${origin}/blog/tag/${slug}`,
       ogImage: `${origin}/og/${list[0]?.slug || 'og'}.png`,
       ogType: 'website'
     };
     const body = buildIndex(list);
     const html = baseHtml(template, head, body);
-    writeFileForRoute(`/blog/tag/${t}`, html);
+    writeFileForRoute(`/blog/tag/${slug}`, html);
   }
 
   // Product pages
