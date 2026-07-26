@@ -61,8 +61,8 @@ export class BlogContentScanner {
   private parseMarkdown(raw: string, slug: string): BlogPost {
     const lines = raw.split('\n');
     let inFrontmatter = false;
-    let frontmatterLines: string[] = [];
-    let contentLines: string[] = [];
+    const frontmatterLines: string[] = [];
+    const contentLines: string[] = [];
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];

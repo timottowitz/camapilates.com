@@ -18,7 +18,7 @@ const GAListener = () => {
         try { gaAdd({}); } catch {}
       }
       if (/ver carrito|view cart|carrito/.test(text)) {
-        try { window.gtag && window.gtag('event', 'view_cart', {}); } catch {}
+        try { if (window.gtag) window.gtag('event', 'view_cart', {}); } catch { /* analytics is best effort */ }
       }
     };
     const obs = new MutationObserver((recs) => {
@@ -30,7 +30,7 @@ const GAListener = () => {
             const now = Date.now();
             if (now - lastPurchase > 5000) {
               lastPurchase = now;
-              try { window.gtag && window.gtag('event', 'purchase', {}); } catch {}
+              try { if (window.gtag) window.gtag('event', 'purchase', {}); } catch { /* analytics is best effort */ }
             }
           }
         }

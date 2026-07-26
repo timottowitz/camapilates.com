@@ -40,6 +40,27 @@ jobs:
           fi
           echo "src/ is type-clean"
 
+      # Scoped to the rules that cause runtime bugs rather than the whole ruleset:
+      # src/ still carries ~280 style errors (mostly no-explicit-any) and clearing
+      # those would mean inventing types. These three are at zero and must stay there
+      # — a conditional hook in ProductRail21 was crashing the tree with "Rendered
+      # more hooks than during the previous render" the moment a rail populated.
+      - name: Lint correctness rules
+        run: |
+          deno run -A npm:eslint src --quiet -f json > eslint.json 2> eslint.err || true
+          if [ ! -s eslint.json ]; then
+            echo "::error::eslint produced no output — the check cannot pass silently"
+            cat eslint.err
+            exit 1
+          fi
+          violations=$(grep -oE '"ruleId":"(react-hooks/rules-of-hooks|@typescript-eslint/no-unused-expressions|prefer-const)"' eslint.json | sort | uniq -c || true)
+          if [ -n "$violations" ]; then
+            echo "::error::Correctness lint rules violated — run: npx eslint src --quiet"
+            echo "$violations"
+            exit 1
+          fi
+          echo "correctness lint rules clean"
+
       - name: Build
         run: deno task build
         env:

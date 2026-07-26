@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const ProductRail21: React.FC<{ title: string; products: Product[] }> = ({ title, products }) => {
-  if (!products?.length) return null;
-
+  // Every hook below has to run before the empty-list bail out. When this returned
+  // early the hook count changed with the length of `products`, and React throws
+  // "Rendered more hooks than during the previous render" the moment a rail goes from
+  // empty to populated — which is exactly what happens once a query resolves.
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -20,7 +22,7 @@ const ProductRail21: React.FC<{ title: string; products: Product[] }> = ({ title
     // Calculate active index for dots
     const cardWidth = 280 + 24; // card width + gap
     const newIndex = Math.round(el.scrollLeft / cardWidth);
-    setActiveIndex(Math.min(newIndex, products.length - 1));
+    setActiveIndex(Math.min(newIndex, (products?.length ?? 1) - 1));
   };
 
   useEffect(() => {
@@ -33,7 +35,7 @@ const ProductRail21: React.FC<{ title: string; products: Product[] }> = ({ title
       el.removeEventListener('scroll', checkScroll);
       window.removeEventListener('resize', checkScroll);
     };
-  }, [products.length]);
+  }, [products?.length]);
 
   const scrollBy = (direction: 'left' | 'right') => {
     const el = scrollRef.current;
@@ -49,6 +51,8 @@ const ProductRail21: React.FC<{ title: string; products: Product[] }> = ({ title
     const cardWidth = 280 + 24;
     el.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
   };
+
+  if (!products?.length) return null;
 
   return (
     <section className="relative py-8">

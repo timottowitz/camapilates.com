@@ -112,8 +112,11 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
       
       <nav aria-label="Tabla de contenidos">
         <ul className="space-y-2">
-          {tocItems.map((item) => (
-            <li key={item.id}>
+          {/* Posts can repeat a heading, and the id is derived from the heading text,
+              so item.id alone is not unique. React warns on the collision and is free
+              to drop or duplicate the entries. */}
+          {tocItems.map((item, index) => (
+            <li key={`${item.id}-${index}`}>
               <a
                 href={`#${item.id}`}
                 onClick={(e) => {
