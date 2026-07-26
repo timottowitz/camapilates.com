@@ -6,7 +6,6 @@ description: >-
 category: Guías de compra
 tags:
   - para casa
-  - mejor cama pilates
   - reformer casa
   - pilates casa México
   - cama pilates compacta
@@ -15,8 +14,7 @@ publishDate: '2025-09-24'
 author: CAMA Pilates
 slug: mejor-cama-de-pilates-para-casa
 featured: true
-heroImage: >-
-  https://spotted-raven-102.convex.cloud/api/storage/cd433dd1-ddfe-4b24-9bf1-bb4dea87d900
+heroImage: "/images/blog/mejor-cama-de-pilates-para-casa/hero.jpg"
 ---
 
 # Mejor Cama de Pilates para Casa: Guía Definitiva 2025 México

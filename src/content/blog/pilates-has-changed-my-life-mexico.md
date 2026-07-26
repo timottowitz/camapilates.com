@@ -11,8 +11,7 @@ publishDate: '2025-11-21'
 author: CAMA Pilates
 slug: pilates-has-changed-my-life-mexico
 featured: false
-heroImage: >-
-  https://spotted-raven-102.convex.cloud/api/storage/0a8bdf83-8edb-4c1b-8585-19529453b4b2
+heroImage: "/images/blog/pilates-has-changed-my-life-mexico/hero.jpg"
 ---
 # ¡Pilates ha cambiado mi vida! (México)
 
