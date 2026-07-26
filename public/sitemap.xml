@@ -43,6 +43,30 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://camadepilates.com/cama-de-pilates/en-venta</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/cama-de-pilates/precio</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/reformers/nuevas</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/packs/estudio</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://camadepilates.com/reformer-para-casa</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -92,39 +116,75 @@
   </url>
   <url>
     <loc>https://camadepilates.com/estudios-de-pilates</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-01-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/cdmx/estudios-de-pilates</loc>
-    <lastmod>2026-07-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://camadepilates.com/instructores-pilates</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/cdmx/instructores-pilates</loc>
+    <loc>https://camadepilates.com/claim-studio</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/soporte</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/legal/terminos</loc>
+    <lastmod>2025-11-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/legal/privacidad</loc>
+    <lastmod>2025-11-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/estudios-de-pilates/ciudad-de-mexico</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/guadalajara/instructores-pilates</loc>
+    <loc>https://camadepilates.com/instructores-pilates/ciudad-de-mexico</loc>
     <lastmod>2026-07-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/monterrey/instructores-pilates</loc>
+    <loc>https://camadepilates.com/estudios-de-pilates/guadalajara</loc>
     <lastmod>2026-07-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/instructores-pilates/guadalajara</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/estudios-de-pilates/monterrey</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/instructores-pilates/monterrey</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/blog/accesorios-cama-de-pilates-esenciales</loc>
@@ -511,403 +571,397 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/product/cintas-de-pilates</loc>
-    <lastmod>2026-07-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/product/calcetines-antideslizantes</loc>
-    <lastmod>2026-07-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/product/calcetines-pack-3</loc>
-    <lastmod>2026-07-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/product/leggings-organicos-fitted</loc>
-    <lastmod>2026-07-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/product/top-organico-fitted</loc>
-    <lastmod>2026-07-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/product/conjunto-fitted-organico</loc>
-    <lastmod>2026-07-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/product/pantalon-organico-relaxed</loc>
-    <lastmod>2026-07-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/product/top-organico-relaxed</loc>
-    <lastmod>2026-07-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/product/conjunto-relaxed-organico</loc>
-    <lastmod>2026-07-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://camadepilates.com/product/reformer-aluminio-riel-deslizante-a068</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-aluminio-media-torre-a102</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-aluminio-nogal-a039</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-maple-barra-patentada-a001</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-roble-barra-patentada-a107</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/silla-wunda-roble-premium-a101</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-roble-a015</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-roble-media-torre-a016</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-roble-barra-deslizante-a017</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-roble-barra-deslizante-torre-a018</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/cadillac-roble-a019</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-roble-torre-completa-a020</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-roble-blanco-a011</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/silla-wunda-roble-a022</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/corrector-columna-roble-a024</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/barril-escalera-roble-a025</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-blanco-media-torre-a012</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-blanco-torre-completa-a081</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-maple-a015</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-maple-media-torre-a016m</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/cadillac-maple-a019m</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-maple-torre-completa-a020m</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/silla-wunda-maple-a022m</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/cama-escalera-deslizante-maple-a021</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/torre-pared-reformer-maple-a027</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-aluminio-negro-a033</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-negro-media-torre-a033t</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-negro-torre-completa-a034</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-aluminio-media-torre-acero-a038</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-aluminio-compacto-a039a</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-torre-barra-fija-a043</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-seis-en-uno-a042</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/cadillac-aluminio-a048</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-aluminio-a070</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-aluminio-media-torre-a071</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/silla-pilates-metal-a109</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-aluminio-barra-deslizante-a036</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-barra-deslizante-media-torre-a036t</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-torre-completa-aluminio-a045</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/product/reformer-aluminio-riel-fijo-a037</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/shop/category/accesorios</loc>
-    <lastmod>2026-07-14</lastmod>
+    <loc>https://camadepilates.com/product/cintas-de-pilates</loc>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/shop/category/ropa</loc>
-    <lastmod>2026-07-14</lastmod>
+    <loc>https://camadepilates.com/product/calcetines-antideslizantes</loc>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/product/calcetines-pack-3</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/product/leggings-organicos-fitted</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/product/top-organico-fitted</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/product/conjunto-fitted-organico</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/product/pantalon-organico-relaxed</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/product/top-organico-relaxed</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/product/conjunto-relaxed-organico</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/shop/category/reformers</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/shop/category/sillas-y-barriles</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://camadepilates.com/shop/category/cadillacs-y-torres</loc>
-    <lastmod>2026-07-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/blog/category/Equipo%20y%20Mantenimiento</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/category/Equipo%20y%20mantenimiento</loc>
+    <loc>https://camadepilates.com/shop/category/accesorios</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/category/Equipo%20y%20Reformer</loc>
+    <loc>https://camadepilates.com/shop/category/ropa</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/category/Estudio</loc>
+    <loc>https://camadepilates.com/blog/category/equipo-y-mantenimiento</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/category/Ejercicios%20y%20salud</loc>
+    <loc>https://camadepilates.com/blog/category/equipo-y-reformer</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/category/Gu%C3%ADas%20de%20compra</loc>
+    <loc>https://camadepilates.com/blog/category/estudio</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/category/Hacer%20Crecer%20tu%20Negocio%20de%20Pilates</loc>
+    <loc>https://camadepilates.com/blog/category/ejercicios-y-salud</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/category/Comunidad%20Pilates%20M%C3%A9xico</loc>
+    <loc>https://camadepilates.com/blog/category/guias-de-compra</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/category/Tips%20para%20Instructores%20de%20Pilates</loc>
+    <loc>https://camadepilates.com/blog/category/hacer-crecer-tu-negocio-de-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/category/Entrenamientos%20y%20bienestar</loc>
+    <loc>https://camadepilates.com/blog/category/comunidad-pilates-mexico</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/category/Comparativas</loc>
+    <loc>https://camadepilates.com/blog/category/tips-para-instructores-de-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/accesorios%20reformer</loc>
+    <loc>https://camadepilates.com/blog/category/entrenamientos-y-bienestar</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/blog/category/comparativas</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://camadepilates.com/blog/tag/accesorios-reformer</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/cama%20de%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/cama-de-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -925,19 +979,19 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/reformer%20mexico</loc>
+    <loc>https://camadepilates.com/blog/tag/reformer-mexico</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/complementos%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/complementos-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/equipo%20adicional</loc>
+    <loc>https://camadepilates.com/blog/tag/equipo-adicional</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -955,7 +1009,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/calcetines%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/calcetines-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -967,7 +1021,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/cama%20de%20pilates%20barata</loc>
+    <loc>https://camadepilates.com/blog/tag/cama-de-pilates-barata</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -979,13 +1033,13 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/reformer%20econ%C3%B3mico</loc>
+    <loc>https://camadepilates.com/blog/tag/reformer-economico</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/pilates%20M%C3%A9xico</loc>
+    <loc>https://camadepilates.com/blog/tag/pilates-mexico</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -997,25 +1051,25 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/guia%20compra%20cama%20de%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/guia-compra-cama-de-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/comprar%20reformer%20mexico</loc>
+    <loc>https://camadepilates.com/blog/tag/comprar-reformer-mexico</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/mejor%20reformer%202025</loc>
+    <loc>https://camadepilates.com/blog/tag/mejor-reformer-2025</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/reformer%20casa%20vs%20profesional</loc>
+    <loc>https://camadepilates.com/blog/tag/reformer-casa-vs-profesional</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1027,163 +1081,151 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/reformer%20para%20empezar</loc>
+    <loc>https://camadepilates.com/blog/tag/reformer-para-empezar</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/gu%C3%ADa%20inicial</loc>
+    <loc>https://camadepilates.com/blog/tag/guia-inicial</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/cama%20pilates%20principiantes</loc>
+    <loc>https://camadepilates.com/blog/tag/cama-pilates-principiantes</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/ejercicios%20b%C3%A1sicos%20reformer</loc>
+    <loc>https://camadepilates.com/blog/tag/ejercicios-basicos-reformer</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/pilates%20reformer%20M%C3%A9xico</loc>
+    <loc>https://camadepilates.com/blog/tag/pilates-reformer-mexico</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/cama%20de%20pilates%20plegable</loc>
+    <loc>https://camadepilates.com/blog/tag/cama-de-pilates-plegable</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/reformer%20plegable</loc>
+    <loc>https://camadepilates.com/blog/tag/reformer-plegable</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/espacios%20reducidos</loc>
+    <loc>https://camadepilates.com/blog/tag/espacios-reducidos</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/departamentos%20peque%C3%B1os%20M%C3%A9xico</loc>
+    <loc>https://camadepilates.com/blog/tag/departamentos-pequenos-mexico</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/pilates%20casa</loc>
+    <loc>https://camadepilates.com/blog/tag/pilates-casa</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/cama%20de%20pilates%20reformer</loc>
+    <loc>https://camadepilates.com/blog/tag/cama-de-pilates-reformer</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/reformer%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/reformer-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/cama%20pilates%20reformer</loc>
+    <loc>https://camadepilates.com/blog/tag/cama-pilates-reformer</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/que%20es%20reformer</loc>
+    <loc>https://camadepilates.com/blog/tag/que-es-reformer</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/precios%20reformer%20mexico</loc>
+    <loc>https://camadepilates.com/blog/tag/precios-reformer-mexico</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/beneficios%20pilates%20reformer</loc>
+    <loc>https://camadepilates.com/blog/tag/beneficios-pilates-reformer</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/reformer%20m%C3%A9xico</loc>
+    <loc>https://camadepilates.com/blog/tag/guia-de-compra</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/gu%C3%ADa%20de%20compra</loc>
+    <loc>https://camadepilates.com/blog/tag/cama-para-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/cama%20para%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/equipos-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/pilates%20m%C3%A9xico</loc>
+    <loc>https://camadepilates.com/blog/tag/reformer-beneficios</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/equipos%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/compra-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/reformer%20beneficios</loc>
+    <loc>https://camadepilates.com/blog/tag/marcas-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/compra%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/cama-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/marcas%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/venta-mexico</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/cama%20pilates</loc>
-    <lastmod>2026-07-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/blog/tag/venta%20mexico</loc>
-    <lastmod>2026-07-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/blog/tag/ejercicios%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/ejercicios-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1201,79 +1243,73 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/certificaci%C3%B3n%20pilates%20M%C3%A9xico</loc>
+    <loc>https://camadepilates.com/blog/tag/certificacion-pilates-mexico</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/cursos%20instructor</loc>
+    <loc>https://camadepilates.com/blog/tag/cursos-instructor</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/formaci%C3%B3n%20profesional</loc>
+    <loc>https://camadepilates.com/blog/tag/formacion-profesional</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/comunidad%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/comunidad-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/networking%20instructores</loc>
+    <loc>https://camadepilates.com/blog/tag/networking-instructores</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/eventos%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/eventos-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/certificaci%C3%B3n%20pilates%20m%C3%A9xico</loc>
+    <loc>https://camadepilates.com/blog/tag/estudios-pilates-cdmx</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/estudios%20pilates%20cdmx</loc>
+    <loc>https://camadepilates.com/blog/tag/mercado-pilates-mexico</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/mercado%20pilates%20M%C3%A9xico</loc>
+    <loc>https://camadepilates.com/blog/tag/oportunidades-negocio</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/oportunidades%20negocio</loc>
+    <loc>https://camadepilates.com/blog/tag/tendencias-fitness</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/tendencias%20fitness</loc>
+    <loc>https://camadepilates.com/blog/tag/industria-wellness</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/industria%20wellness</loc>
-    <lastmod>2026-07-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://camadepilates.com/blog/tag/franquicias%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/franquicias-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1291,127 +1327,127 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/cuanto%20mide</loc>
+    <loc>https://camadepilates.com/blog/tag/cuanto-mide</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/dise%C3%B1o%20estudio%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/diseno-estudio-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/arquitectura%20fitness</loc>
+    <loc>https://camadepilates.com/blog/tag/arquitectura-fitness</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/espacio%20movimiento</loc>
+    <loc>https://camadepilates.com/blog/tag/espacio-movimiento</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/pilates%20posparto</loc>
+    <loc>https://camadepilates.com/blog/tag/pilates-posparto</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/ejercicios%20lactancia</loc>
+    <loc>https://camadepilates.com/blog/tag/ejercicios-lactancia</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/pilates%20para%20madres</loc>
+    <loc>https://camadepilates.com/blog/tag/pilates-para-madres</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/recuperaci%C3%B3n%20posparto</loc>
+    <loc>https://camadepilates.com/blog/tag/recuperacion-posparto</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/pilates%20mam%C3%A1s</loc>
+    <loc>https://camadepilates.com/blog/tag/pilates-mamas</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/uso%20del%20reformer</loc>
+    <loc>https://camadepilates.com/blog/tag/uso-del-reformer</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/beneficios%20reformer</loc>
+    <loc>https://camadepilates.com/blog/tag/beneficios-reformer</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/certificaci%C3%B3n%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/certificacion-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/carrera%20instructor</loc>
+    <loc>https://camadepilates.com/blog/tag/carrera-instructor</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/historia%20personal</loc>
+    <loc>https://camadepilates.com/blog/tag/historia-personal</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/transformaci%C3%B3n%20profesional</loc>
+    <loc>https://camadepilates.com/blog/tag/transformacion-profesional</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/testimonio%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/testimonio-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/liderazgo%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/liderazgo-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/emprendimiento%20fitness</loc>
+    <loc>https://camadepilates.com/blog/tag/emprendimiento-fitness</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/gesti%C3%B3n%20estudio</loc>
+    <loc>https://camadepilates.com/blog/tag/gestion-estudio</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/mantenimiento%20reformer</loc>
+    <loc>https://camadepilates.com/blog/tag/mantenimiento-reformer</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/cuidado%20equipo</loc>
+    <loc>https://camadepilates.com/blog/tag/cuidado-equipo</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1423,157 +1459,157 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/marketing%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/marketing-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/redes%20sociales%20fitness</loc>
+    <loc>https://camadepilates.com/blog/tag/redes-sociales-fitness</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/promoci%C3%B3n%20estudio</loc>
+    <loc>https://camadepilates.com/blog/tag/promocion-estudio</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/para%20casa</loc>
+    <loc>https://camadepilates.com/blog/tag/para-casa</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/mejor%20cama%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/mejor-cama-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/reformer%20casa</loc>
+    <loc>https://camadepilates.com/blog/tag/reformer-casa</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/pilates%20casa%20M%C3%A9xico</loc>
+    <loc>https://camadepilates.com/blog/tag/pilates-casa-mexico</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/cama%20pilates%20compacta</loc>
+    <loc>https://camadepilates.com/blog/tag/cama-pilates-compacta</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/pilates%20terap%C3%A9utico</loc>
+    <loc>https://camadepilates.com/blog/tag/pilates-terapeutico</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/modificaciones%20ejercicios</loc>
+    <loc>https://camadepilates.com/blog/tag/modificaciones-ejercicios</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/lesiones%20comunes</loc>
+    <loc>https://camadepilates.com/blog/tag/lesiones-comunes</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/networking%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/networking-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/conexiones%20profesionales</loc>
+    <loc>https://camadepilates.com/blog/tag/conexiones-profesionales</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/crecimiento%20carrera</loc>
+    <loc>https://camadepilates.com/blog/tag/crecimiento-carrera</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/pilates%20deportivo</loc>
+    <loc>https://camadepilates.com/blog/tag/pilates-deportivo</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/atletas%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/atletas-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/rendimiento%20deportivo</loc>
+    <loc>https://camadepilates.com/blog/tag/rendimiento-deportivo</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/entrenamiento%20funcional</loc>
+    <loc>https://camadepilates.com/blog/tag/entrenamiento-funcional</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/pilates%20golf</loc>
+    <loc>https://camadepilates.com/blog/tag/pilates-golf</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/swing%20mejorado</loc>
+    <loc>https://camadepilates.com/blog/tag/swing-mejorado</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/entrenamiento%20deportivo</loc>
+    <loc>https://camadepilates.com/blog/tag/entrenamiento-deportivo</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/entrenamiento%20tenis</loc>
+    <loc>https://camadepilates.com/blog/tag/entrenamiento-tenis</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/estabilidad%20atl%C3%A9tica</loc>
+    <loc>https://camadepilates.com/blog/tag/estabilidad-atletica</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/pilates%20reformer%20cdmx</loc>
+    <loc>https://camadepilates.com/blog/tag/pilates-reformer-cdmx</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/estudio%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/estudio-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/roma%20condesa</loc>
+    <loc>https://camadepilates.com/blog/tag/roma-condesa</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1585,55 +1621,55 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/clases%20reformer</loc>
+    <loc>https://camadepilates.com/blog/tag/clases-reformer</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/rehabilitaci%C3%B3n%20c%C3%A1ncer</loc>
+    <loc>https://camadepilates.com/blog/tag/rehabilitacion-cancer</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/ejercicios%20terap%C3%A9uticos</loc>
+    <loc>https://camadepilates.com/blog/tag/ejercicios-terapeuticos</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/cama%20de%20pilates%20precio</loc>
+    <loc>https://camadepilates.com/blog/tag/cama-de-pilates-precio</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/reformer%20precio%20mexico</loc>
+    <loc>https://camadepilates.com/blog/tag/reformer-precio-mexico</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/reformer%20profesional</loc>
+    <loc>https://camadepilates.com/blog/tag/reformer-profesional</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/financiaci%C3%B3n</loc>
+    <loc>https://camadepilates.com/blog/tag/financiacion</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/alineaci%C3%B3n%20corporal</loc>
+    <loc>https://camadepilates.com/blog/tag/alineacion-corporal</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/t%C3%A9cnica%20pilates</loc>
+    <loc>https://camadepilates.com/blog/tag/tecnica-pilates</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1651,7 +1687,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://camadepilates.com/blog/tag/aut%20pipeline</loc>
+    <loc>https://camadepilates.com/blog/tag/aut-pipeline</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

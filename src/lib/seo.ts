@@ -16,6 +16,7 @@ export function toAbsoluteUrl(maybePath: string | undefined | null): string | un
 }
 
 import { getVersionedImageUrl } from '@/hooks/useVersionedImage';
+import { allProducts } from '@/lib/shop/catalog';
 
 export const DEFAULTS = {
   siteName: (import.meta as any).env?.VITE_SITE_NAME || 'CAMA Pilates',
@@ -52,6 +53,28 @@ export const ORGANIZATION = {
   telephone: '+52-322-278-7690',
   email: 'info@camadepilates.com',
 };
+
+// Google rejects a Product node that carries neither offers, review nor
+// aggregateRating, which is what flagged the two catalog entries below as invalid.
+// Read the range off the live catalog so it cannot drift away from real prices.
+function reformerAggregateOffer() {
+  const prices = allProducts()
+    .filter(p => p.category === 'Reformers')
+    .map(p => Number(p.price))
+    .filter(n => Number.isFinite(n) && n > 0);
+
+  if (!prices.length) return undefined;
+
+  return {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'MXN',
+    lowPrice: Math.min(...prices),
+    highPrice: Math.max(...prices),
+    offerCount: prices.length,
+    availability: 'https://schema.org/InStock',
+    url: `${getOrigin()}/shop/category/reformers`,
+  };
+}
 
 // Generate LocalBusiness schema for homepage
 export function generateLocalBusinessSchema() {
@@ -121,6 +144,9 @@ export function generateLocalBusinessSchema() {
             '@type': 'Product',
             name: 'Cama de Pilates Reformer Casa',
             category: 'Reformers',
+            brand: { '@type': 'Brand', name: ORGANIZATION.name },
+            url: `${getOrigin()}/shop/category/reformers`,
+            offers: reformerAggregateOffer(),
           },
         },
         {
@@ -129,6 +155,9 @@ export function generateLocalBusinessSchema() {
             '@type': 'Product',
             name: 'Cama de Pilates Reformer Profesional',
             category: 'Reformers',
+            brand: { '@type': 'Brand', name: ORGANIZATION.name },
+            url: `${getOrigin()}/shop/category/reformers`,
+            offers: reformerAggregateOffer(),
           },
         },
       ],
