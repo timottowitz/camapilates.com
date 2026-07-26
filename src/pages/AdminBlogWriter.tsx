@@ -67,15 +67,8 @@ interface BlogTopic {
   isSuggestion?: boolean; // Newly discovered topic pending acceptance
 }
 
-interface Keyword {
-  id: string;
-  term: string;
-  category: string;
-  searchVolume?: number;
-  difficulty?: 'easy' | 'medium' | 'hard';
-  usageCount: number;
-  lastUsed?: string;
-}
+// Keyword comes from utils/keywordManager; the local copy that used to live here was a
+// strict subset of it and collided with the import.
 
 // Parse TODO file into structured data
 function parsePendingFromTodo(todo: string): BlogTopic[] {
@@ -786,7 +779,7 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
             </Badge>
           ))}
           {info.getValue().length > 3 && (
-            <Badge variant="ghost" className="text-xs">
+            <Badge variant="outline" className="text-xs">
               +{info.getValue().length - 3}
             </Badge>
           )}
@@ -1812,7 +1805,7 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
                             {keyword.difficulty}
                           </Badge>
                           {keyword.searchVolume && (
-                            <Badge variant="ghost" className="text-xs">
+                            <Badge variant="outline" className="text-xs">
                               Vol: {keyword.searchVolume}
                             </Badge>
                           )}
@@ -2129,7 +2122,7 @@ ${keywordStrategy.content.longtail.map(faq => `- ¿${faq}?`).join('\n')}
                     <h4 className="font-medium mb-2">Semantic Keywords</h4>
                     <div className="flex flex-wrap gap-1">
                       {keywordStrategy.content.semantic.slice(0, 4).map(keyword => (
-                        <Badge key={keyword} variant="ghost" className="text-xs">
+                        <Badge key={keyword} variant="outline" className="text-xs">
                           {keyword}
                         </Badge>
                       ))}

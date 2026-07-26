@@ -1,7 +1,7 @@
 import './polyfills.ts';
 import { installTranslateCrashGuard } from './lib/translateCrashGuard';
 import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
+import App from './App';
 import { ConvexProviderMaybe } from './lib/convexProvider';
 import './index.css';
 

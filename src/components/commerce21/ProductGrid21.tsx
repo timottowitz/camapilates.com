@@ -1,7 +1,6 @@
 import React from 'react';
 import type { Product } from '@/lib/shop/types';
 import ProductCard21 from './ProductCard21';
-import type { Product } from '@/lib/shop/types';
 
 type Props = {
   products: Product[];

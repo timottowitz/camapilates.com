@@ -40,9 +40,11 @@ const TeachersLanding: React.FC = () => {
       return seedCities.sort((a, b) => (b.teacherCount || 0) - (a.teacherCount || 0));
     }
 
-    // Build a map of Convex counts by slug
-    const convexCounts = new Map(
-      cityCounts.map((c) => [c.citySlug, { name: c.cityName, count: c.teacherCount }])
+    // Build a map of Convex counts by slug. Annotated because the query is typed as
+    // unknown without a generated return type, which left every read off it untyped.
+    const convexCounts = new Map<string, { name: string; count: number }>(
+      (cityCounts as Array<{ citySlug: string; cityName: string; teacherCount: number }>)
+        .map((c) => [c.citySlug, { name: c.cityName, count: c.teacherCount }])
     );
 
     // Merge: use seed cities as base, overlay Convex data where higher
@@ -98,7 +100,7 @@ const TeachersLanding: React.FC = () => {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 50,
         damping: 20
       }

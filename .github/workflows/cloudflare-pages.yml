@@ -26,6 +26,20 @@ jobs:
       - name: Install dependencies
         run: deno install
 
+      # vite build transpiles without type checking, which is how a component that
+      # called slugify() without importing it reached production and crashed every
+      # blog listing page. Gate on src/ only: convex/ still has pre-existing errors
+      # and is deployed by Convex's own tooling, not by this workflow.
+      - name: Type-check src
+        run: |
+          deno run -A npm:typescript/tsc --noEmit > tsc.log 2>&1 || true
+          if grep -q '^src/' tsc.log; then
+            echo "::error::TypeScript errors in src/ — see below"
+            grep '^src/' tsc.log
+            exit 1
+          fi
+          echo "src/ is type-clean"
+
       - name: Build
         run: deno task build
         env:

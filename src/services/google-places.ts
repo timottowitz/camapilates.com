@@ -1,4 +1,4 @@
-import { Client, PlaceType1 } from '@googlemaps/google-maps-services-js';
+import { Client, Language, PlaceType1 } from '@googlemaps/google-maps-services-js';
 import Bottleneck from 'bottleneck';
 
 export interface PlaceSearchResult {
@@ -31,7 +31,10 @@ export interface PlaceDetailsResult extends PlaceSearchResult {
     author_name: string;
     rating: number;
     text: string;
-    time: number;
+    // The Places API documents this as a Unix timestamp, but the SDK types it as a
+    // string, and that single disagreement was enough to make the response cast below
+    // fail. Nothing reads it yet, so accept both rather than assert one is wrong.
+    time: number | string;
     relative_time_description: string;
   }>;
   photos?: Array<{
@@ -86,7 +89,7 @@ export class GooglePlacesService {
               location: `${location.lat},${location.lng}`,
               radius: radius || 20000, // Default 20km radius
             }),
-            language: 'es', // Spanish results
+            language: Language.es, // Spanish results
             key: this.apiKey,
           },
         });
@@ -140,7 +143,7 @@ export class GooglePlacesService {
               'photo',
               'address_component',
             ],
-            language: 'es',
+            language: Language.es,
             key: this.apiKey,
           },
         });
@@ -173,7 +176,7 @@ export class GooglePlacesService {
             radius,
             ...(type && { type: type as PlaceType1 }),
             keyword: 'pilates',
-            language: 'es',
+            language: Language.es,
             key: this.apiKey,
           },
         });

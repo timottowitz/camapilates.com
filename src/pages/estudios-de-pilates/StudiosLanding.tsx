@@ -11,11 +11,17 @@ import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { generateStudiosLandingSchema } from '@/lib/seo';
 import BackLink from '@/components/ui/back-link';
 
+// Mirrors the city records in src/data/studios.json, which is also the shape the
+// Convex query returns. The previous declaration omitted half the fields the card
+// below renders, so every read off them was an error.
 type StudiosCity = {
+  _id?: string;
   name: string;
+  state?: string;
   slug?: string;
   studioCount?: number;
-  neighborhoods?: unknown[];
+  averageRating?: number;
+  neighborhoods?: string[];
 };
 
 type StudiosDoc = {

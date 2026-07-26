@@ -752,12 +752,13 @@ const AdminTeacherClaims: React.FC = () => {
                         }
 
                         // Full name (if claimant name differs from current)
-                        if (selectedClaim?.claimantName && selectedClaim.claimantName !== teacher?.fullName?.value) {
+                        const claimantName = claimDetails?.claim?.claimantName;
+                        if (claimantName && claimantName !== teacher?.fullName?.value) {
                           fields.push({
                             key: 'fullName',
                             label: 'Name Correction',
                             current: teacher?.fullName?.value || <span className="text-sm text-gray-400">—</span>,
-                            proposed: <span className="font-medium">{selectedClaim.claimantName}</span>,
+                            proposed: <span className="font-medium">{claimantName}</span>,
                           });
                         }
 
