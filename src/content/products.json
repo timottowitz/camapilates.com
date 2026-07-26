@@ -389,7 +389,7 @@
     ],
     "warranty": "3 años",
     "deliveryTime": "6–8 semanas (fabricación bajo pedido)",
-    "bestSeller": false,
+    "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_aluminio_nogal_a039_placeholder",
     "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
@@ -414,7 +414,7 @@
     ],
     "warranty": "3 años",
     "deliveryTime": "6–8 semanas (fabricación bajo pedido)",
-    "bestSeller": false,
+    "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_maple_barra_patentada_a001_placeholder",
     "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
@@ -964,7 +964,7 @@
     ],
     "warranty": "3 años",
     "deliveryTime": "6–8 semanas (fabricación bajo pedido)",
-    "bestSeller": false,
+    "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_aluminio_negro_a033_placeholder",
     "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
