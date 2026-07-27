@@ -1,16 +1,18 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
+import { requireRouteMeta } from '@/lib/routeMeta';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 
 const LegalPrivacy: React.FC = () => {
+  const { title, description: desc } = requireRouteMeta('/legal/privacidad');
   const origin = getOrigin();
   const url = `${origin}/legal/privacidad`;
   return (
     <LuxuryLayout>
       <Helmet>
-        <title>Aviso de Privacidad | {DEFAULTS.siteName}</title>
-        <meta name="description" content="Cómo recopilamos y protegemos tus datos en Edelweiss Pilates." />
+        <title>{title}</title>
+        <meta name="description" content={desc} />
         <link rel="canonical" href={url} />
       </Helmet>
       <section className="pt-32 pb-20 px-8 md:px-24 max-w-[1800px] mx-auto">

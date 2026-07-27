@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { DEFAULTS } from '@/lib/seo';
+import { requireRouteMeta } from '@/lib/routeMeta';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
 
 const StudioPack: React.FC = () => {
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://camadepilates.com';
   const url = `${origin}/packs/estudio`;
-  const title = 'Pack para Estudios: 8+ Camas de Pilates con 20% de Descuento';
-  const desc = 'Pack para estudios: a partir de 8 camas de Pilates (Reformer) obtén 20% de descuento. Instalación coordinada, garantía 1 año y repuestos exprés. Envío desde CDMX.';
+  const { title, description: desc } = requireRouteMeta('/packs/estudio');
 
   const [qty, setQty] = useState(8);
   const unitPrice = 50000; // MXN studio reformer base
@@ -54,7 +54,7 @@ const StudioPack: React.FC = () => {
   return (
     <LuxuryLayout>
       <Helmet>
-        <title>{title} | {DEFAULTS.siteName}</title>
+        <title>{title}</title>
         <meta name="description" content={desc} />
         <link rel="canonical" href={url} />
         <meta property="og:site_name" content={DEFAULTS.siteName} />

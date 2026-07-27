@@ -2,14 +2,14 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { DEFAULTS, getOrigin, generateBreadcrumbSchema } from '@/lib/seo';
+import { requireRouteMeta } from '@/lib/routeMeta';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { MapPin, Building2, ShoppingBag, GraduationCap, ArrowRight, Phone } from 'lucide-react';
 
 const PilatesReformerCDMX: React.FC = () => {
   const origin = getOrigin();
   const url = `${origin}/pilates-reformer-cdmx`;
-  const title = 'Pilates Reformer CDMX: Estudios, Clases y Dónde Comprar | 2025';
-  const desc = 'Todo sobre Pilates Reformer en Ciudad de México: mejores estudios por zona, clases para principiantes, y dónde comprar reformers con entrega en CDMX.';
+  const { title, description: desc } = requireRouteMeta('/pilates-reformer-cdmx');
 
   const localBusinessSchema = {
     '@context': 'https://schema.org',

@@ -4,6 +4,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
+import { requireRouteMeta } from '@/lib/routeMeta';
 import { CheckCircle, Building2, ArrowLeft } from 'lucide-react';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 
@@ -15,6 +16,7 @@ const ROLES = [
 ];
 
 const ClaimStudio: React.FC = () => {
+  const { title, description: desc } = requireRouteMeta('/claim-studio');
   const [searchParams] = useSearchParams();
   const studioSlug = searchParams.get('studio') || '';
   const studioCity = searchParams.get('city') || '';
@@ -74,8 +76,8 @@ const ClaimStudio: React.FC = () => {
   return (
     <LuxuryLayout>
       <Helmet>
-        <title>Reclama Tu Estudio | {DEFAULTS.siteName}</title>
-        <meta name="description" content="Reclama tu listado de estudio de Pilates en nuestro directorio. Verifica tu negocio y obtén acceso a funciones premium." />
+        <title>{title}</title>
+        <meta name="description" content={desc} />
         <meta name="robots" content="noindex" />
         <link rel="canonical" href={`${origin}/claim-studio`} />
       </Helmet>

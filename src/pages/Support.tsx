@@ -1,17 +1,19 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
+import { requireRouteMeta } from '@/lib/routeMeta';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { MessageCircle, Mail, Shield, Wrench } from 'lucide-react';
 
 const Support: React.FC = () => {
+  const { title, description: desc } = requireRouteMeta('/soporte');
   const origin = getOrigin();
   const url = `${origin}/soporte`;
   return (
     <LuxuryLayout>
       <Helmet>
-        <title>Soporte y Garantía | {DEFAULTS.siteName}</title>
-        <meta name="description" content="Garantía 1 año, repuestos exprés y atención en español. Contáctanos por email o WhatsApp." />
+        <title>{title}</title>
+        <meta name="description" content={desc} />
         <link rel="canonical" href={url} />
       </Helmet>
 

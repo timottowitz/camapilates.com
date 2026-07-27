@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
+import { requireRouteMeta } from '@/lib/routeMeta';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
 import { Check, Star, Shield, Zap, DollarSign, ArrowRight } from 'lucide-react';
@@ -10,8 +11,7 @@ import BackLink from '@/components/ui/back-link';
 const CamaDePilatesPrecio: React.FC = () => {
   const origin = getOrigin();
   const url = `${origin}/cama-de-pilates/precio`;
-  const title = 'Precio de Cama de Pilates: Rangos en México y Qué Incluye (2025)';
-  const desc = 'Precio de cama de Pilates (Reformer) en México: rangos para casa y estudio, qué incluye y cómo comparar. Envío desde CDMX y garantía.';
+  const { title, description: desc } = requireRouteMeta('/cama-de-pilates/precio');
 
   const faq = {
     '@context': 'https://schema.org',
@@ -28,7 +28,7 @@ const CamaDePilatesPrecio: React.FC = () => {
   return (
     <LuxuryLayout headerTheme="light">
       <Helmet>
-        <title>{title} | {DEFAULTS.siteName}</title>
+        <title>{title}</title>
         <meta name="description" content={desc} />
         <link rel="canonical" href={url} />
         <script type="application/ld+json">{JSON.stringify(faq)}</script>

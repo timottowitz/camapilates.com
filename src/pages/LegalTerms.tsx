@@ -1,16 +1,18 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
+import { requireRouteMeta } from '@/lib/routeMeta';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 
 const LegalTerms: React.FC = () => {
+  const { title, description: desc } = requireRouteMeta('/legal/terminos');
   const origin = getOrigin();
   const url = `${origin}/legal/terminos`;
   return (
     <LuxuryLayout>
       <Helmet>
-        <title>Términos y Condiciones | {DEFAULTS.siteName}</title>
-        <meta name="description" content="Términos de servicio y condiciones de compra para Edelweiss Pilates." />
+        <title>{title}</title>
+        <meta name="description" content={desc} />
         <link rel="canonical" href={url} />
       </Helmet>
       <section className="pt-32 pb-20 px-8 md:px-24 max-w-[1800px] mx-auto">

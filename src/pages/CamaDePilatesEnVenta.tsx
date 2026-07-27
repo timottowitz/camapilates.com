@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
+import { requireRouteMeta } from '@/lib/routeMeta';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
 import { Truck, Shield, Package, ArrowRight } from 'lucide-react';
@@ -10,8 +11,7 @@ import BackLink from '@/components/ui/back-link';
 const CamaDePilatesEnVenta: React.FC = () => {
   const origin = getOrigin();
   const url = `${origin}/cama-de-pilates/en-venta`;
-  const title = 'Cama de Pilates en Venta: Envío en México desde CDMX';
-  const desc = 'Cama de Pilates (Reformer) en venta con entrega 3 semanas en México. Materiales premium (cuero, nogal, acero), silencio total, garantía 1 año y repuestos exprés.';
+  const { title, description: desc } = requireRouteMeta('/cama-de-pilates/en-venta');
 
   const itemList = {
     '@context': 'https://schema.org',
@@ -35,7 +35,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
   return (
     <LuxuryLayout headerTheme="light">
       <Helmet>
-        <title>{title} | {DEFAULTS.siteName}</title>
+        <title>{title}</title>
         <meta name="description" content={desc} />
         <link rel="canonical" href={url} />
         <meta property="og:site_name" content={DEFAULTS.siteName} />

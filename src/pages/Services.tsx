@@ -4,6 +4,7 @@ import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { generateServicesSchema } from '@/lib/seo';
+import { requireRouteMeta } from '@/lib/routeMeta';
 
 const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: number }) => (
   <motion.div
@@ -17,13 +18,14 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: nu
 );
 
 const Services = () => {
+  const { title, description: desc } = requireRouteMeta('/services');
   const servicesSchema = generateServicesSchema();
 
   return (
     <LuxuryLayout headerTheme="light">
       <Helmet>
-        <title>Servicios | Edelweiss Pilates</title>
-        <meta name="description" content="Servicios profesionales para estudios de Pilates: Diseño, Mantenimiento y Capacitación." />
+        <title>{title}</title>
+        <meta name="description" content={desc} />
         <link rel="canonical" href={`${window.location.origin}/services`} />
         <script type="application/ld+json">
           {JSON.stringify(servicesSchema)}

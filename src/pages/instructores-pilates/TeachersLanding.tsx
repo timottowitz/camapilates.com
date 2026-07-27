@@ -1,6 +1,7 @@
 import React, { useMemo, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { requireRouteMeta } from '@/lib/routeMeta';
 import { useQuery } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
 import { Search, MapPin, Users, ChevronRight, User } from 'lucide-react';
@@ -23,8 +24,7 @@ const prefetchCity = (citySlug: string) => {
 };
 
 const TeachersLanding: React.FC = () => {
-  const pageTitle = 'Instructores de Pilates Certificados en México';
-  const pageDescription = 'Encuentra los mejores instructores de Pilates en México. Perfiles verificados, certificaciones internacionales y especialidades en Reformer, Mat, Prenatal y más.';
+  const { title: pageTitle, description: pageDescription } = requireRouteMeta('/instructores-pilates');
 
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();

@@ -2,14 +2,14 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { DEFAULTS, getOrigin, generateBreadcrumbSchema } from '@/lib/seo';
+import { requireRouteMeta } from '@/lib/routeMeta';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { Home, Check, ArrowRight, Ruler, Volume2, Shield, Truck } from 'lucide-react';
 
 const ReformerParaCasa: React.FC = () => {
   const origin = getOrigin();
   const url = `${origin}/reformer-para-casa`;
-  const title = 'Reformer para Casa: Guía de Compra México 2025 | Edelweiss';
-  const desc = 'Elige el mejor reformer para casa en México. Comparamos tamaños, precios desde $35,000 MXN, instalación y qué buscar en un reformer casero silencioso.';
+  const { title, description: desc } = requireRouteMeta('/reformer-para-casa');
 
   const faqSchema = {
     '@context': 'https://schema.org',

@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
 import { generateAboutPageSchema } from '@/lib/seo';
+import { requireRouteMeta } from '@/lib/routeMeta';
 
 const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: number }) => (
   <motion.div
@@ -16,13 +17,14 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: nu
 );
 
 const About = () => {
+  const { title, description: desc } = requireRouteMeta('/about');
   const aboutSchema = generateAboutPageSchema();
 
   return (
     <LuxuryLayout headerTheme="light">
       <Helmet>
-        <title>Sobre Edelweiss Pilates | Ingeniería alemana, manufactura mexicana</title>
-        <meta name="description" content="Conoce Edelweiss Pilates: Reformers silenciosos y precisos en cuero genuino, nogal y acero. Ingeniería alemana con manufactura en CDMX." />
+        <title>{title}</title>
+        <meta name="description" content={desc} />
         <link rel="canonical" href={`${window.location.origin}/about`} />
         <script type="application/ld+json">
           {JSON.stringify(aboutSchema)}

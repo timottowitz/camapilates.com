@@ -471,6 +471,29 @@ async function main() {
     const html = baseHtml(template, head, body);
     writeFileForRoute(`/certificacion-pilates/${c.key}`, html);
   }
+
+  // Static landing pages. These render entirely in React, so without this they fall
+  // back to index.html and anything that does not run JS — social scrapers especially —
+  // sees the generic site title and description instead of the page's own. Titles and
+  // descriptions come from the same src/content/route-meta.json the components read,
+  // so the prerendered head and the hydrated head cannot disagree.
+  const routeMeta = JSON.parse(fs.readFileSync(path.join(ROOT, 'src', 'content', 'route-meta.json'), 'utf8'));
+  for (const [route, meta] of Object.entries(routeMeta)) {
+    const head = {
+      title: meta.title,
+      description: meta.description,
+      canonical: `${origin}${route}`,
+      ogImage: `${origin}/og/cama-de-pilates-venta-mexico.png`,
+      ogType: 'website',
+    };
+    const body = `
+    <section class="container mx-auto px-4 py-12">
+      <h1 class="text-3xl font-bold text-gray-900 mb-4">${htmlEscape(meta.title)}</h1>
+      <p class="text-lg text-gray-600 max-w-2xl">${htmlEscape(meta.description)}</p>
+    </section>`;
+    writeFileForRoute(route, baseHtml(template, head, body));
+  }
+
   console.log('Static prerender complete.');
 }
 

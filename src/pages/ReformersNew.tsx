@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { DEFAULTS, generateBreadcrumbSchema, getOrigin } from '@/lib/seo';
+import { requireRouteMeta } from '@/lib/routeMeta';
 import {
   allProducts,
   availableFinishes,
@@ -45,8 +46,7 @@ function inferUseCase(p: Product): 'casa' | 'estudio' | 'ambos' {
 
 const ReformersNew: React.FC = () => {
   const origin = getOrigin();
-  const title = 'Reformers nuevas — Modelos, filtros y comparativa';
-  const desc = 'Explora reformers nuevas en México: filtra por precio, acabados y disponibilidad. Cotiza por WhatsApp y compara modelos.';
+  const { title, description: desc } = requireRouteMeta('/reformers/nuevas');
 
   const base = useMemo(() => allProducts().filter(isReformerProduct), []);
   const finishes = useMemo(() => availableFinishes(base), [base]);
@@ -249,7 +249,7 @@ const ReformersNew: React.FC = () => {
   return (
     <LuxuryLayout>
       <Helmet>
-        <title>{title} | {DEFAULTS.siteName}</title>
+        <title>{title}</title>
         <meta name="description" content={desc} />
         <link rel="canonical" href={`${origin}/reformers/nuevas`} />
         <meta property="og:site_name" content={DEFAULTS.siteName} />

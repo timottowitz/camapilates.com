@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { DEFAULTS } from '@/lib/seo';
+import { requireRouteMeta } from '@/lib/routeMeta';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
 import { ArrowRight, BookOpen, ShoppingBag, DollarSign, Ruler, Package } from 'lucide-react';
@@ -9,8 +10,7 @@ import { ArrowRight, BookOpen, ShoppingBag, DollarSign, Ruler, Package } from 'l
 const CamaDePilatesHub: React.FC = () => {
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://camadepilates.com';
   const url = `${origin}/cama-de-pilates`;
-  const title = 'Cama de Pilates: Guía, Precios y Dónde Comprar en México (2025)';
-  const desc = 'Todo sobre la cama de Pilates (Reformer): tipos para casa y estudio, precios, dimensiones y dónde comprar en México con envío desde CDMX.';
+  const { title, description: desc } = requireRouteMeta('/cama-de-pilates');
 
   const breadcrumbs = {
     '@context': 'https://schema.org',
@@ -77,7 +77,7 @@ const CamaDePilatesHub: React.FC = () => {
   return (
     <LuxuryLayout headerTheme="light">
       <Helmet>
-        <title>{title} | {DEFAULTS.siteName}</title>
+        <title>{title}</title>
         <meta name="description" content={desc} />
         <link rel="canonical" href={url} />
         <script type="application/ld+json">{JSON.stringify(breadcrumbs)}</script>

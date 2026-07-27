@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { requireRouteMeta } from '@/lib/routeMeta';
 import { useQuery } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
 import { MapPin, Star, ArrowRight, Search, Building } from 'lucide-react';
@@ -33,8 +34,7 @@ type StudiosDoc = {
 
 const StudiosLanding: React.FC = () => {
   // SEO metadata
-  const pageTitle = 'Directorio de Estudios de Pilates en México';
-  const pageDescription = 'Encuentra los mejores estudios de Pilates en México. Directorio completo con reseñas, precios y horarios en Ciudad de México, Monterrey, Guadalajara y más ciudades.';
+  const { title: pageTitle, description: pageDescription } = requireRouteMeta('/estudios-de-pilates');
 
   // Observability for Convex fetches - fall back after grace period
   const [failover, setFailover] = React.useState(false);
