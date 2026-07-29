@@ -1,25 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { X, Building2, Sparkles, ArrowRight, Tag, ShieldCheck } from 'lucide-react';
+import { X, Building2, Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const StudioPackPromoModal: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    // Check if user previously closed the modal in this session
-    const hasClosed = sessionStorage.getItem('studio_pack_modal_closed');
-    if (!hasClosed) {
-      const timer = setTimeout(() => {
-        setIsOpen(true);
-      }, 4000); // Trigger after 4 seconds
-      return () => clearTimeout(timer);
-    }
-  }, []);
-
   const handleClose = () => {
     setIsOpen(false);
-    sessionStorage.setItem('studio_pack_modal_closed', 'true');
   };
 
   return (
@@ -77,6 +65,10 @@ export const StudioPackPromoModal: React.FC = () => {
                   <img
                     src="/images/products/reformer-maple-barra-patentada-a001.webp"
                     alt="Reformer de Maple con Barra Patentada A001"
+                    width="1024"
+                    height="1024"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-auto max-h-[260px] object-contain transform hover:scale-105 transition-transform duration-500 drop-shadow-2xl"
                   />
 
