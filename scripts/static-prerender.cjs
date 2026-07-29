@@ -8,6 +8,9 @@ const ROOT = path.resolve(__dirname, '..');
 const DIST = path.join(ROOT, 'dist');
 const CONTENT = path.join(ROOT, 'src', 'content', 'blog');
 const PRODUCTS = path.join(ROOT, 'src', 'content', 'products.json');
+const SHOP_CATEGORY_SEO = JSON.parse(
+  fs.readFileSync(path.join(ROOT, 'src', 'content', 'shop-category-seo.json'), 'utf8')
+);
 
 function ensureDir(d) { if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true }); }
 
@@ -63,6 +66,9 @@ function baseHtml(template, headMeta, bodyHtml) {
   ].join('\n');
   html = html.replace(/<\/head>/, headInsert + '\n</head>');
   // Replace root content
+  const collectionLinks = Object.entries(SHOP_CATEGORY_SEO)
+    .map(([slug, category]) => `<a href="/shop/category/${slug}" class="hover:text-black">${htmlEscape(category.navLabel)}</a>`)
+    .join('\n');
   const headerHtml = `
   <header class="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
     <div class="container flex h-16 items-center justify-between">
@@ -71,13 +77,10 @@ function baseHtml(template, headMeta, bodyHtml) {
         <span class="text-sm md:text-base font-semibold tracking-tight text-gray-900">CAMA Pilates</span>
       </a>
       <nav class="flex items-center gap-6 text-sm text-gray-700">
-        <a href="/about" class="hover:text-black">Acerca de</a>
         <a href="/shop" class="hover:text-black">Tienda</a>
-        <a href="/acabados" class="hover:text-black">Acabados</a>
-        <a href="/accesorios" class="hover:text-black">Accesorios</a>
+        ${collectionLinks}
         <a href="/blog" class="hover:text-black">Blog</a>
-        <a href="/packs/estudio" class="hover:text-black">Paquete de Estudio (8+)</a>
-        <a href="/certificacion-pilates" class="hover:text-black">Certificación</a>
+        <a href="/about" class="hover:text-black">Acerca de</a>
       </nav>
     </div>
   </header>`;
@@ -135,6 +138,69 @@ function buildShopIndex(products) {
     </a>
   `).join('\n');
   return `<div class="container mx-auto px-4 py-12"><h1 class="text-3xl font-bold text-gray-900 mb-8">Tienda</h1><div class="grid md:grid-cols-3 gap-6">${cards}</div></div>`;
+}
+
+function buildShopCategoryIndex(slug, category, products) {
+  const cards = products.map(p => `
+    <a href="/product/${htmlEscape(p.slug)}" class="block group border rounded-lg p-6 hover:border-gray-900 transition-colors">
+      <img src="${htmlEscape(p.image)}" alt="${htmlEscape(p.name)}" class="w-full h-auto rounded mb-4 border" />
+      <h2 class="font-semibold text-gray-900 group-hover:text-black">${htmlEscape(p.name)}</h2>
+      <p class="text-sm text-gray-600 mt-2">${htmlEscape(p.description)}</p>
+      <div class="mt-3 font-semibold text-gray-900">$ ${htmlEscape(p.price)} ${htmlEscape(p.currency)}</div>
+    </a>
+  `).join('\n');
+  const sections = category.sections.map(section => `
+    <section class="mt-10 max-w-3xl">
+      <h2 class="text-2xl font-bold text-gray-900">${htmlEscape(section.heading)}</h2>
+      <p class="mt-3 text-gray-700 leading-7">${htmlEscape(section.body)}</p>
+    </section>
+  `).join('\n');
+  const guides = category.guides.map(guide => `
+    <li>
+      <a href="${htmlEscape(guide.href)}" class="font-semibold text-gray-900 hover:underline">${htmlEscape(guide.label)}</a>
+      <p class="mt-1 text-sm text-gray-600">${htmlEscape(guide.description)}</p>
+    </li>
+  `).join('\n');
+  const related = Object.entries(SHOP_CATEGORY_SEO)
+    .filter(([relatedSlug]) => relatedSlug !== slug)
+    .map(([relatedSlug, relatedCategory]) => `
+      <a href="/shop/category/${relatedSlug}" class="block rounded-lg border p-4 hover:border-gray-900">
+        <h3 class="font-semibold text-gray-900">${htmlEscape(relatedCategory.navLabel)}</h3>
+      </a>
+    `).join('\n');
+  const faq = category.faq.map(item => `
+    <div class="border-t py-5">
+      <h3 class="font-semibold text-gray-900">${htmlEscape(item.question)}</h3>
+      <p class="mt-2 text-gray-700 leading-7">${htmlEscape(item.answer)}</p>
+    </div>
+  `).join('\n');
+
+  return `
+    <main class="container mx-auto px-4 py-12">
+      <nav aria-label="Migas de pan" class="text-sm text-gray-600">
+        <a href="/shop" class="hover:underline">Tienda</a> / ${htmlEscape(category.navLabel)}
+      </nav>
+      <header class="mt-6 max-w-4xl">
+        <h1 class="text-4xl font-bold text-gray-900">${htmlEscape(category.h1)}</h1>
+        <p class="mt-5 text-lg text-gray-700 leading-8">${htmlEscape(category.intro)}</p>
+        <p class="mt-3 text-sm text-gray-600">${products.length} productos</p>
+      </header>
+      <div class="grid md:grid-cols-3 gap-6 mt-10">${cards}</div>
+      <div class="mt-16">${sections}</div>
+      <aside class="mt-16">
+        <h2 class="text-2xl font-bold text-gray-900">Guías para elegir mejor</h2>
+        <ul class="mt-6 grid md:grid-cols-3 gap-6">${guides}</ul>
+      </aside>
+      <section class="mt-16">
+        <h2 class="text-2xl font-bold text-gray-900">Explora otras colecciones</h2>
+        <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">${related}</div>
+      </section>
+      <section class="mt-16">
+        <h2 class="text-2xl font-bold text-gray-900">Preguntas frecuentes</h2>
+        <div class="mt-6">${faq}</div>
+      </section>
+    </main>
+  `;
 }
 
 function readPosts() {
@@ -366,7 +432,7 @@ async function main() {
 
   
 
-  // Shop categories (new)
+  // Shop categories
   if (prods.length) {
     const catMap = new Map();
     for (const p of prods) {
@@ -374,23 +440,59 @@ async function main() {
       catMap.set(c, true);
     }
     for (const name of Array.from(catMap.keys())) {
-      const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      const slug = slugify(name);
+      const categorySeo = SHOP_CATEGORY_SEO[slug];
+      if (!categorySeo) {
+        throw new Error(`Missing shop category SEO content for "${name}" (${slug})`);
+      }
       const list = prods.filter(p => (p.category || 'Otros') === name);
       const head = {
-        title: `Tienda — ${name} | camadepilates.com`,
-        description: `Productos en la categoría ${name}`,
+        title: categorySeo.title,
+        description: categorySeo.description,
         canonical: `${origin}/shop/category/${slug}`,
         ogImage: `${origin}${list[0]?.image || '/og/cama-de-pilates-venta-mexico.png'}`,
         ogType: 'website'
       };
-      const body = buildShopIndex(list);
+      const body = buildShopCategoryIndex(slug, categorySeo, list);
       const itemList = {
         '@context': 'https://schema.org',
         '@type': 'ItemList',
         itemListElement: list.map((p, idx) => ({ '@type': 'ListItem', position: idx + 1, url: `${origin}/product/${p.slug}`, name: p.name }))
       };
+      const collectionPage = {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: categorySeo.h1,
+        description: categorySeo.description,
+        url: `${origin}/shop/category/${slug}`,
+        inLanguage: 'es-MX',
+        mainEntity: itemList,
+      };
+      const breadcrumb = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Inicio', item: origin },
+          { '@type': 'ListItem', position: 2, name: 'Tienda', item: `${origin}/shop` },
+          { '@type': 'ListItem', position: 3, name: categorySeo.h1 },
+        ],
+      };
+      const faq = {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: categorySeo.faq.map(item => ({
+          '@type': 'Question',
+          name: item.question,
+          acceptedAnswer: { '@type': 'Answer', text: item.answer },
+        })),
+      };
       let html = baseHtml(template, head, body);
-      html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(itemList)}</script>\n</head>`);
+      html = html.replace(
+        '</head>',
+        [itemList, collectionPage, breadcrumb, faq]
+          .map(schema => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`)
+          .join('\n') + '\n</head>'
+      );
       writeFileForRoute(`/shop/category/${slug}`, html);
     }
   }

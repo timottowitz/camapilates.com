@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { SHOP_CATEGORY_SEO } from '@/lib/shop/categorySeo';
 
 interface EdelweissNavProps {
   /** Use light text for dark hero backgrounds (e.g., full-bleed hero images) */
@@ -41,13 +42,17 @@ const EdelweissNav: React.FC<EdelweissNavProps> = ({ darkBackground = false }) =
   // Accent color for brand dot and active states
   const accentColor = '#CF6C63';
 
+  const collectionLinks = Object.entries(SHOP_CATEGORY_SEO).map(([slug, category]) => ({
+    to: `/shop/category/${slug}`,
+    label: category.navLabel,
+  }));
+
   const navLinks = [
     { to: '/', label: 'Home', exact: true },
     { to: '/estudios-de-pilates', label: 'Search Studio' },
     { to: '/instructores-pilates', label: 'Instructors' },
     { to: '/certificacion-pilates', label: 'Courses' },
-    { to: '/shop', label: 'Store' },
-    { to: '/products', label: 'Compare' },
+    { to: '/shop', label: 'Store', children: collectionLinks },
     { to: '/blog', label: 'Blog' },
     { to: '/about', label: 'Us' },
   ];
@@ -113,28 +118,53 @@ const EdelweissNav: React.FC<EdelweissNavProps> = ({ darkBackground = false }) =
               {navLinks.map((link) => {
                 const active = isActive(link.to, (link as { exact?: boolean }).exact);
                 return (
-                  <Link
-                    key={link.to}
-                    to={link.to}
-                    className="relative px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] transition-colors duration-200 hover:opacity-70"
-                    style={active ? { color: accentColor } : undefined}
-                  >
-                    {link.label}
-                    {/* Active indicator underline */}
-                    <AnimatePresence>
-                      {active && (
-                        <motion.span
-                          layoutId="nav-indicator"
-                          initial={{ opacity: 0, scaleX: 0 }}
-                          animate={{ opacity: 1, scaleX: 1 }}
-                          exit={{ opacity: 0, scaleX: 0 }}
-                          transition={{ type: 'spring', stiffness: 500, damping: 35 }}
-                          className="absolute bottom-0 left-4 right-4 h-[2px] rounded-full"
-                          style={{ backgroundColor: accentColor }}
-                        />
-                      )}
-                    </AnimatePresence>
-                  </Link>
+                  <div key={link.to} className="relative group">
+                    <Link
+                      to={link.to}
+                      className="relative block px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] transition-colors duration-200 hover:opacity-70"
+                      style={active ? { color: accentColor } : undefined}
+                      aria-haspopup={link.children ? 'menu' : undefined}
+                    >
+                      {link.label}
+                      <AnimatePresence>
+                        {active && (
+                          <motion.span
+                            layoutId="nav-indicator"
+                            initial={{ opacity: 0, scaleX: 0 }}
+                            animate={{ opacity: 1, scaleX: 1 }}
+                            exit={{ opacity: 0, scaleX: 0 }}
+                            transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                            className="absolute bottom-0 left-4 right-4 h-[2px] rounded-full"
+                            style={{ backgroundColor: accentColor }}
+                          />
+                        )}
+                      </AnimatePresence>
+                    </Link>
+
+                    {link.children && (
+                      <div className="invisible absolute left-1/2 top-full w-64 -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                        <div className="rounded-2xl border border-[#2A2624]/10 bg-[#F5F4F1]/95 p-2 text-[#1C1917] shadow-xl backdrop-blur-xl" role="menu">
+                          <Link
+                            to="/shop"
+                            className="block rounded-xl px-4 py-3 text-xs font-semibold uppercase tracking-[0.12em] hover:bg-[#2A2624]/5"
+                            role="menuitem"
+                          >
+                            Ver toda la tienda
+                          </Link>
+                          {link.children.map((child) => (
+                            <Link
+                              key={child.to}
+                              to={child.to}
+                              className="block rounded-xl px-4 py-3 text-sm font-medium hover:bg-[#2A2624]/5 hover:text-[#CF6C63] transition-colors"
+                              role="menuitem"
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 );
               })}
             </nav>
@@ -229,22 +259,37 @@ const EdelweissNav: React.FC<EdelweissNavProps> = ({ darkBackground = false }) =
                         },
                       }}
                     >
-                      <Link
-                        to={link.to}
-                        className="relative block py-3 text-3xl sm:text-4xl font-serif tracking-tight transition-all duration-300"
-                        style={{ color: active ? accentColor : 'rgba(245, 244, 241, 0.6)' }}
-                      >
-                        <span className="relative hover:text-[#F5F4F1] transition-colors">
-                          {link.label}
-                          {active && (
-                            <motion.span
-                              layoutId="mobile-indicator"
-                              className="absolute -left-6 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full"
-                              style={{ backgroundColor: accentColor }}
-                            />
-                          )}
-                        </span>
-                      </Link>
+                      <div className="flex flex-col items-center">
+                        <Link
+                          to={link.to}
+                          className="relative block py-3 text-3xl sm:text-4xl font-serif tracking-tight transition-all duration-300"
+                          style={{ color: active ? accentColor : 'rgba(245, 244, 241, 0.6)' }}
+                        >
+                          <span className="relative hover:text-[#F5F4F1] transition-colors">
+                            {link.label}
+                            {active && (
+                              <motion.span
+                                layoutId="mobile-indicator"
+                                className="absolute -left-6 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full"
+                                style={{ backgroundColor: accentColor }}
+                              />
+                            )}
+                          </span>
+                        </Link>
+                        {link.children && (
+                          <div className="flex max-w-sm flex-wrap justify-center gap-x-4 gap-y-2 pb-3">
+                            {link.children.map((child) => (
+                              <Link
+                                key={child.to}
+                                to={child.to}
+                                className="text-xs uppercase tracking-[0.12em] text-[#F5F4F1]/50 hover:text-[#F5F4F1] transition-colors"
+                              >
+                                {child.label}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     </motion.div>
                   );
                 })}
