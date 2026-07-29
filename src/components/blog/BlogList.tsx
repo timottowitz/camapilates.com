@@ -131,7 +131,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
           Subscribe to our newsletter for the latest updates on solar fraud cases, consumer protection laws, and expert legal insights delivered to your inbox.
         </p>
         <Link
-          to="/contact"
+          to="/soporte"
           className="inline-flex items-center bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 rounded-md font-semibold transition-colors"
         >
           Contact Us for Updates

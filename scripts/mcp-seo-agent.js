@@ -323,7 +323,7 @@ async function generateSchemaMarkup(slug, schemaTypes = ['Article']) {
         },
         "offers": {
           "@type": "Offer",
-          "url": "https://camadepilates.com/products/reformer-premium",
+          "url": "https://camadepilates.com/reformer-para-estudio",
           "priceCurrency": "MXN",
           "price": "2499.00",
           "availability": "https://schema.org/InStock",
@@ -388,7 +388,7 @@ async function analyzeInternalLinking(slug) {
       },
       {
         anchor_text: "reformer profesional",
-        target_url: "/products/reformer-premium",
+        target_url: "/reformer-para-estudio",
         relevance_score: 9,
         context: "When discussing professional equipment"
       }

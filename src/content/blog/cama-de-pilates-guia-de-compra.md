@@ -63,7 +63,7 @@ heroImage: "/images/products/reformer-maple-barra-patentada-a001-box-interior.jp
 - **Casa:** $25,000–$45,000 MXN.
 - **Profesional:** $50,000–$95,000 MXN.
 
-Consulta la **[guía de precios](/blog/precio-cama-de-pilates)** para el desglose por factores (estructura, carro/rodamientos, resortes, acabados, servicio) y TCO a 1 año.
+Consulta la **[guía de precios](/cama-de-pilates/precio)** para el desglose por factores (estructura, carro/rodamientos, resortes, acabados, servicio) y TCO a 1 año.
 
 ## Checklist de compra (10 puntos)
 1) Recorrido del carro uniforme y silencioso.
@@ -78,15 +78,15 @@ Consulta la **[guía de precios](/blog/precio-cama-de-pilates)** para el desglos
 10) Costo total en 1 año (mantenimiento + recambios + tiempo de inactividad).
 
 ## Recomendaciones CAMA Pilates
-- **Reformer Casa** — compacto, estable, materiales nobles: [/product/reformer-casa](/product/reformer-casa)
-- **Reformer Profesional** — silencio total y servicio para estudio: [/product/reformer-profesional](/product/reformer-profesional)
+- **Reformer para casa** — criterios para elegir según tu espacio: [ver guía](/reformer-para-casa)
+- **Reformer para estudio** — modelos actuales para uso profesional: [ver opciones](/reformer-para-estudio)
 - **Pack de Estudio (8+)** — 20% off e instalación coordinada: [/packs/estudio](/packs/estudio)
 
 <hub-list category="Guías de compra" limit="6" title="Más guías de compra" />
 
 ## FAQ
 ### ¿En qué rango de precio se mueven?
-Depende del uso (casa vs profesional), materiales y accesorios. Como orientación 2025: **casa $25k–$45k** y **profesional $50k–$95k** MXN. Consulta la guía de **[precios](/blog/precio-cama-de-pilates)**.
+Depende del uso (casa vs profesional), materiales y accesorios. Como orientación 2025: **casa $25k–$45k** y **profesional $50k–$95k** MXN. Consulta la guía de **[precios](/cama-de-pilates/precio)**.
 
 ### ¿Qué tamaño es mejor para casa?
 Un footprint cercano a 245 × 70 cm funciona en la mayoría de hogares; deja margen extra para cambios de footbar y movimientos laterales.

@@ -18,7 +18,7 @@ const featuredGuides = [
   {
     slug: 'cama-de-pilates-guia-de-compra',
     title: 'Cómo Elegir Tu Cama de Pilates',
-    description: 'Guía completa 2025: tamaños, materiales, presupuesto y qué buscar según tu experiencia.',
+    description: 'Guía completa: tamaños, materiales, presupuesto y qué buscar según tu experiencia.',
     category: 'Guías de compra',
     readTime: '8 min',
   },

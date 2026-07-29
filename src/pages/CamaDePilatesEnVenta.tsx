@@ -17,8 +17,8 @@ const CamaDePilatesEnVenta: React.FC = () => {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, url: `${origin}/product/reformer-profesional`, name: 'Cama de Pilates Reformer – Profesional' },
-      { '@type': 'ListItem', position: 2, url: `${origin}/product/reformer-casa`, name: 'Cama de Pilates Reformer – Casa' },
+      { '@type': 'ListItem', position: 1, url: `${origin}/reformer-para-estudio`, name: 'Cama de Pilates Reformer – Profesional' },
+      { '@type': 'ListItem', position: 2, url: `${origin}/reformer-para-casa`, name: 'Cama de Pilates Reformer – Casa' },
     ],
   };
 
@@ -124,7 +124,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
             }}
           >
             <Link
-              to="/product/reformer-profesional"
+              to="/reformer-para-estudio"
               className="group block bg-[#1C1917] text-[#EAE8E4] rounded-[2rem] overflow-hidden transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-2xl"
             >
               <div className="aspect-[16/9] overflow-hidden relative">
@@ -165,7 +165,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
             }}
           >
             <Link
-              to="/product/reformer-casa"
+              to="/reformer-para-casa"
               className="group block bg-[#F5F4F0] rounded-[2rem] overflow-hidden transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-2xl border border-transparent hover:border-[#2A2624]/5"
             >
               <div className="aspect-[16/9] overflow-hidden relative">
@@ -253,7 +253,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
             ¿Quieres elegir rápido? Empieza por{' '}
             <Link to="/cama-de-pilates/precio" className="text-[#2A2624] underline underline-offset-4 hover:text-[#EB4C42] transition-colors">precio</Link>
             {' '}y luego explora nuestro{' '}
-            <Link to="/products" className="text-[#2A2624] underline underline-offset-4 hover:text-[#EB4C42] transition-colors">catálogo completo</Link>.
+            <Link to="/shop" className="text-[#2A2624] underline underline-offset-4 hover:text-[#EB4C42] transition-colors">catálogo completo</Link>.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
@@ -263,7 +263,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
               Ir a la tienda
             </Link>
             <Link
-              to="/products"
+              to="/shop"
               className="inline-flex items-center px-8 py-4 border border-[#2A2624]/20 text-[#2A2624] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-all"
             >
               Ver catálogo

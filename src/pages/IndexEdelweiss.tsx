@@ -90,10 +90,10 @@ const IndexEdelweiss = () => {
   };
 
   const guides = [
-    { slug: 'cama-de-pilates-guia-de-compra', title: 'Cama de Pilates: Guía de compra 2025' },
-    { slug: 'precio-cama-de-pilates', title: 'Precio de Cama de Pilates' },
-    { slug: 'accesorios-cama-de-pilates', title: 'Accesorios para Cama de Pilates' },
-    { slug: 'reformer-casa-vs-profesional', title: 'Reformer para casa vs profesional' },
+    { url: '/blog/cama-de-pilates-guia-de-compra', title: 'Cama de Pilates: Guía de compra' },
+    { url: '/cama-de-pilates/precio', title: 'Precio de Cama de Pilates' },
+    { url: '/blog/accesorios-cama-de-pilates', title: 'Accesorios para Cama de Pilates' },
+    { url: '/blog/reformer-casa-vs-profesional', title: 'Reformer para casa vs profesional' },
   ];
   const guidesListSchema = {
     '@context': 'https://schema.org',
@@ -101,7 +101,7 @@ const IndexEdelweiss = () => {
     itemListElement: guides.map((g, idx) => ({
       '@type': 'ListItem',
       position: idx + 1,
-      url: `${origin}/blog/${g.slug}`,
+      url: `${origin}${g.url}`,
       name: g.title,
     })),
   };

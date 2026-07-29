@@ -69,7 +69,7 @@ function validateOne(path: string): { ok: boolean; warnings: string[]; errors: s
   if (!hasHeading(raw, /^##\s+FAQ/im)) warnings.push("Missing FAQ plan");
   if (!hasHeading(raw, /^##\s+(CTAs|Enlaces|Interlink)/im)) warnings.push("Missing CTAs/Enlaces plan");
   if (!hasHeading(raw, /^##\s+(Imagen|Imagenes|Image plan)/im)) warnings.push("Missing Image plan");
-  if (!/\/product\//.test(raw) && !/\[\/products\]/.test(raw)) warnings.push("No PDP/hub link mentioned");
+  if (!/\/product\//.test(raw) && !/\/shop\b/.test(raw)) warnings.push("No PDP/hub link mentioned");
   if (!/books_md\b|Herman|Pilates|Lea|Wells/i.test(raw)) warnings.push("No books_md references found (Herman/Pilates/Lea/Wells)");
 
   // Enhanced checks

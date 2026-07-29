@@ -66,12 +66,12 @@ const AdminTeacherLinks = lazyWithRetry(() => import('./pages/AdminTeacherLinks'
 const AdminTeacherSeeds = lazyWithRetry(() => import('./pages/AdminTeacherSeeds'));
 const AdminTeacherProfiles = lazyWithRetry(() => import('./pages/AdminTeacherProfiles'));
 const Product = lazyWithRetry(() => import('./pages/Product'));
-const Products = lazyWithRetry(() => import('./pages/Products'));
 const CamaDePilatesEnVenta = lazyWithRetry(() => import('./pages/CamaDePilatesEnVenta'));
 const CamaDePilatesPrecio = lazyWithRetry(() => import('./pages/CamaDePilatesPrecio'));
 const StudioPack = lazyWithRetry(() => import('./pages/StudioPack'));
 const CamaDePilatesHub = lazyWithRetry(() => import('./pages/CamaDePilatesHub'));
 const ReformerParaCasa = lazyWithRetry(() => import('./pages/ReformerParaCasa'));
+const ReformerParaEstudio = lazyWithRetry(() => import('./pages/ReformerParaEstudio'));
 const PilatesReformerCDMX = lazyWithRetry(() => import('./pages/PilatesReformerCDMX'));
 const CertificacionPilates = lazyWithRetry(() => import('./pages/CertificacionPilates'));
 const CertificacionPilatesCity = lazyWithRetry(() => import('./pages/CertificacionPilatesCity'));
@@ -87,8 +87,6 @@ const SetupCuenta = lazyWithRetry(() => import('./pages/instructores-pilates/Set
 const MiPerfil = lazyWithRetry(() => import('./pages/instructores-pilates/MiPerfil'));
 const EditarPerfil = lazyWithRetry(() => import('./pages/instructores-pilates/EditarPerfil'));
 const ResetPassword = lazyWithRetry(() => import('./pages/instructores-pilates/ResetPassword'));
-
-const ReformersNew = lazyWithRetry(() => import('./pages/ReformersNew'));
 
 import GAListener from "@/components/analytics/GAListener";
 import FloatingCart21 from "@/components/commerce21/FloatingCart21";
@@ -128,13 +126,12 @@ const App = () => (
               {/* Compare disabled */}
               <Route path="/shop" element={<Suspense fallback={<PageLoader />}><Shop /></Suspense>} />
               <Route path="/shop/category/:slug" element={<Suspense fallback={<PageLoader />}><ShopCategory /></Suspense>} />
-              <Route path="/reformers/nuevas" element={<Suspense fallback={<PageLoader />}><ReformersNew /></Suspense>} />
-              <Route path="/products" element={<Suspense fallback={<PageLoader />}><Products /></Suspense>} />
               <Route path="/cama-de-pilates/en-venta" element={<Suspense fallback={<PageLoader />}><CamaDePilatesEnVenta /></Suspense>} />
               <Route path="/cama-de-pilates/precio" element={<Suspense fallback={<PageLoader />}><CamaDePilatesPrecio /></Suspense>} />
               <Route path="/packs/estudio" element={<Suspense fallback={<PageLoader />}><StudioPack /></Suspense>} />
               <Route path="/cama-de-pilates" element={<Suspense fallback={<PageLoader />}><CamaDePilatesHub /></Suspense>} />
               <Route path="/reformer-para-casa" element={<Suspense fallback={<PageLoader />}><ReformerParaCasa /></Suspense>} />
+              <Route path="/reformer-para-estudio" element={<Suspense fallback={<PageLoader />}><ReformerParaEstudio /></Suspense>} />
               <Route path="/pilates-reformer-cdmx" element={<Suspense fallback={<PageLoader />}><PilatesReformerCDMX /></Suspense>} />
               <Route path="/certificacion-pilates" element={<Suspense fallback={<PageLoader />}><CertificacionPilates /></Suspense>} />
               <Route path="/certificacion-pilates/:city" element={<Suspense fallback={<PageLoader />}><CertificacionPilatesCity /></Suspense>} />

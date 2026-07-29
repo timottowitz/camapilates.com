@@ -286,7 +286,7 @@ async function listResearchStatus() {
     if (!hasHeading(raw, /^##\s+FAQ/im)) warnings.push('Missing FAQ plan');
     if (!hasHeading(raw, /^##\s+(CTAs|Enlaces|Interlink)/im)) warnings.push('Missing CTAs/Enlaces plan');
     if (!hasHeading(raw, /^##\s+(Imagen|Imagenes|Image plan)/im)) warnings.push('Missing Image plan');
-    if (!/\/product\//.test(raw) && !/\[\/products\]/.test(raw)) warnings.push('No PDP/hub link mentioned');
+    if (!/\/product\//.test(raw) && !/\/shop\b/.test(raw)) warnings.push('No PDP/hub link mentioned');
     if (!/books_md\b|Herman|Pilates|Lea|Wells/i.test(raw)) warnings.push('No books_md references found (Herman/Pilates/Lea/Wells)');
 
     rows.push({
@@ -633,7 +633,7 @@ async function enrichResearch(slug, opts = {}) {
       ctas += `- /product/${p.slug}\n  <shoprocket-button product="${p.productId || 'prod_xxx'}" pk="${p.publishableKey || 'sr_live_pk_xxx'}" />\n`;
     }
   } catch {
-    ctas += `- /products (hub)\n`;
+    ctas += `- /shop (hub)\n`;
   }
   ctas += `\n- Considera enlace a /certificacion-pilates para funnel de instructores.\n`;
   md = upsertSection(md, /^##\s+(CTAs|Enlaces|Enlaces internos|Interlink)/im, '## CTAs / Enlaces internos', ctas, opts.force);
@@ -650,7 +650,7 @@ async function enrichResearch(slug, opts = {}) {
   md = upsertSection(md, /^##\s+Referencias/im, '## Referencias (books_md / expertos)', refs, opts.force);
 
   // FAQ (5+)
-  const faq = `## FAQ\n### ¿Cuál es el espacio mínimo recomendado en casa (CDMX/MTY/GDL)?\nEn departamentos pequeños, deja 60–80 cm libres alrededor del Reformer para seguridad y recorrido.\n\n### ¿Cuánto cuesta un Reformer en México (MXN)?\nRangos orientativos: hogar desde MXN $35k–$90k; profesional desde MXN $90k–$200k+ según configuración.\n\n### ¿Qué mantenimiento requiere y cada cuánto?\nLimpieza semanal, revisión de resortes/traveler cada 3–6 meses; servicio anual si es de estudio.\n\n### ¿Hay garantía y repuestos en México?\nSí: garantía de 3 años en estructura y refacciones con entrega exprés; soporte en todo México.\n\n### ¿Cuál es la diferencia entre modelo Casa y Profesional?\nEstructura, capacidad de uso intensivo, accesorios y servicio; ver /product/reformer-casa y /product/reformer-profesional.\n`;
+  const faq = `## FAQ\n### ¿Cuál es el espacio mínimo recomendado en casa (CDMX/MTY/GDL)?\nEn departamentos pequeños, deja 60–80 cm libres alrededor del Reformer para seguridad y recorrido.\n\n### ¿Cuánto cuesta un Reformer en México (MXN)?\nRangos orientativos: hogar desde MXN $35k–$90k; profesional desde MXN $90k–$200k+ según configuración.\n\n### ¿Qué mantenimiento requiere y cada cuánto?\nLimpieza semanal, revisión de resortes/traveler cada 3–6 meses; servicio anual si es de estudio.\n\n### ¿Hay garantía y repuestos en México?\nSí: garantía de 3 años en estructura y refacciones con entrega exprés; soporte en todo México.\n\n### ¿Cuál es la diferencia entre modelo Casa y Profesional?\nEstructura, capacidad de uso intensivo, accesorios y servicio; ver /reformer-para-casa y /reformer-para-estudio.\n`;
   md = upsertSection(md, /^##\s+FAQ/im, '## FAQ', faq, opts.force);
 
   // Add MX context sections to boost depth

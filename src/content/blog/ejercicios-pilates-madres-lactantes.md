@@ -516,7 +516,7 @@ El Reformer de CAMA Pilates ofrece beneficios únicos para madres en período de
 
 **📞 ¿Tienes preguntas?** Contáctanos para una consulta gratuita sobre el mejor equipo para tu situación.
 
-**[Ver Reformers para Casa](/product/reformer-casa)** | **[Reformers Profesionales](/product/reformer-profesional)**
+**[Ver Reformers para Casa](/reformer-para-casa)** | **[Reformers Profesionales](/reformer-para-estudio)**
 
 ---
 
