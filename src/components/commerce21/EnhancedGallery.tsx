@@ -80,6 +80,9 @@ export function EnhancedGallery({
             <img
               src={selectedImage.src}
               alt={selectedImage.alt}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
               className={`
                 w-full h-full object-cover transition-transform duration-300
                 ${isZoomed ? 'scale-150 cursor-zoom-in' : 'scale-100'}
@@ -160,6 +163,9 @@ export function EnhancedGallery({
                 <img
                   src={image.src}
                   alt={image.alt}
+                  loading="lazy"
+                  fetchPriority="low"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
                 {image.type && (
