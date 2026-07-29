@@ -11,6 +11,10 @@ const PRODUCTS = path.join(ROOT, 'src', 'content', 'products.json');
 const SHOP_CATEGORY_SEO = JSON.parse(
   fs.readFileSync(path.join(ROOT, 'src', 'content', 'shop-category-seo.json'), 'utf8')
 );
+const REDIRECT_POST_SLUGS = new Set([
+  'precio-cama-de-pilates',
+  'precio-cama-de-pilates-2025',
+]);
 
 function ensureDir(d) { if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true }); }
 
@@ -88,11 +92,108 @@ function baseHtml(template, headMeta, bodyHtml) {
   return html;
 }
 
-function renderPost({ slug, title, description, category, date, content }, marked) {
-  const md = content
-    .replace(/<hub-list[^>]*\/>/g, '')
-    .replace(/<see-also[^>]*\/>/g, '')
+function shortcodeAttributes(source) {
+  const attrs = {};
+  String(source || '').replace(/(\w+)="([^"]*)"/g, (_match, key, value) => {
+    attrs[key] = value;
+    return '';
+  });
+  return attrs;
+}
+
+function renderArticleLinks(items, title) {
+  if (!items.length) return '';
+  return `<aside class="my-8"><h3 class="text-xl font-semibold mb-3">${htmlEscape(title)}</h3><ul>${items
+    .map(post => `<li><a href="/blog/${htmlEscape(post.slug)}">${htmlEscape(post.title)}</a></li>`)
+    .join('')}</ul></aside>`;
+}
+
+function relatedPosts(current, posts, limit) {
+  const currentTags = new Set(current.tags.map(tag => tag.toLowerCase()));
+  const byTag = posts.filter(post =>
+    post.slug !== current.slug &&
+    !REDIRECT_POST_SLUGS.has(post.slug) &&
+    post.tags.some(tag => currentTags.has(tag.toLowerCase()))
+  );
+  if (byTag.length >= limit) return byTag.slice(0, limit);
+
+  const selected = new Set(byTag.map(post => post.slug));
+  const byCategory = posts.filter(post =>
+    post.slug !== current.slug &&
+    !REDIRECT_POST_SLUGS.has(post.slug) &&
+    post.category === current.category &&
+    !selected.has(post.slug)
+  );
+  const merged = [...byTag, ...byCategory];
+  if (merged.length >= limit) return merged.slice(0, limit);
+
+  const mergedSlugs = new Set(merged.map(post => post.slug));
+  const fallback = posts.filter(post =>
+    post.slug !== current.slug &&
+    !REDIRECT_POST_SLUGS.has(post.slug) &&
+    !mergedSlugs.has(post.slug)
+  );
+  return [...merged, ...fallback].slice(0, limit);
+}
+
+function renderShortcodes(content, current, posts) {
+  return content
+    .replace(/<hub-list\s*([^\/>]*)\/>/g, (_match, source) => {
+      const attrs = shortcodeAttributes(source);
+      const tags = new Set(
+        String(attrs.tags || '')
+          .split(',')
+          .map(tag => tag.trim().toLowerCase())
+          .filter(Boolean)
+      );
+      const limit = Number.parseInt(attrs.limit || '20', 10);
+      const items = posts.filter(post => {
+        if (post.slug === current.slug || REDIRECT_POST_SLUGS.has(post.slug)) return false;
+        if (attrs.category && post.category.toLowerCase() !== attrs.category.toLowerCase()) return false;
+        if (tags.size && !post.tags.some(tag => tags.has(tag.toLowerCase()))) return false;
+        return true;
+      }).slice(0, Number.isFinite(limit) && limit >= 0 ? limit : 20);
+      return renderArticleLinks(items, attrs.title || 'Artículos relacionados');
+    })
+    .replace(/<see-also\s*([^\/>]*)\/>/g, (_match, source) => {
+      const attrs = shortcodeAttributes(source);
+      const limit = Number.parseInt(attrs.limit || '3', 10);
+      const safeLimit = Number.isFinite(limit) && limit >= 0 ? limit : 3;
+      return renderArticleLinks(relatedPosts(current, posts, safeLimit), 'También te puede interesar');
+    })
     .replace(/<audio-story[^>]*\/>/g, '');
+}
+
+function commercialParentLinks(post) {
+  const signals = `${post.title} ${post.description} ${post.category} ${post.tags.join(' ')}`.toLowerCase();
+  const buyingArticle =
+    ['guías de compra', 'comparativas'].includes(post.category.toLowerCase()) ||
+    /(comprar|compra|precio|barata|venta|financiaci[oó]n|mejor|elegir)/.test(signals);
+  if (!buyingArticle) return '';
+
+  const links = [];
+  if (/(reformer|cama de pilates|equipo|comparativa|guía de compra)/.test(signals)) {
+    links.push({ href: '/cama-de-pilates', label: 'Guía de cama de Pilates' });
+    links.push({ href: '/shop/category/reformers', label: 'Colección de Reformers' });
+  }
+  if (/(casa|hogar|doméstic)/.test(signals)) {
+    links.push({ href: '/reformer-para-casa', label: 'Reformer para casa' });
+  }
+  if (/(estudio|profesional|negocio)/.test(signals)) {
+    links.push({ href: '/reformer-para-estudio', label: 'Reformer para estudio' });
+    links.push({ href: '/packs/estudio', label: 'Packs para estudio' });
+  }
+  if (!links.length) return '';
+  return `<nav aria-label="Recursos de compra" class="mb-8"><ul>${links
+    .map(link => `<li><a href="${link.href}">${htmlEscape(link.label)}</a></li>`)
+    .join('')}</ul></nav>`;
+}
+
+function renderPost({ slug, title, description, category, date, tags, content }, marked, posts) {
+  const current = { slug, title, description, category, date, tags, content };
+  const md = content
+    ? renderShortcodes(content, current, posts)
+    : '';
   const article = `
     <article class="container mx-auto px-4 py-8">
       <header>
@@ -100,6 +201,7 @@ function renderPost({ slug, title, description, category, date, content }, marke
         <h1 class="text-4xl font-bold mb-4">${htmlEscape(title)}</h1>
         <p class="text-xl text-muted-foreground mb-8">${htmlEscape(description || '')}</p>
       </header>
+      ${commercialParentLinks(current)}
       <div class="prose max-w-none">${marked.parse(md)}</div>
     </article>
   `;
@@ -117,17 +219,6 @@ function buildIndex(posts) {
   return `<div class="container mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-6">Centro de Conocimiento</h1><div class="grid md:grid-cols-2 gap-4">${items}</div></div>`;
 }
 
-function buildProductsIndex(products) {
-  const cards = products.map(p => `
-    <a href="/product/${p.slug}" class="block group border rounded-lg p-6 hover:border-gray-900 transition-colors">
-      <img src="${p.image}" alt="${p.name}" class="w-full h-auto rounded mb-4 border" />
-      <h2 class="font-semibold text-gray-900 group-hover:text-black">${p.name}</h2>
-      <p class="text-sm text-gray-600 mt-2">${p.description}</p>
-      <div class="mt-3 font-semibold text-gray-900">$ ${p.price} ${p.currency}</div>
-    </a>
-  `).join('\n');
-  return `<div class="container mx-auto px-4 py-12"><h1 class="text-3xl font-bold text-gray-900 mb-8">Todos los productos</h1><div class="grid md:grid-cols-3 gap-6">${cards}</div></div>`;
-}
 function buildShopIndex(products) {
   const cards = products.map(p => `
     <a href="/product/${p.slug}" class="block group border rounded-lg p-6 hover:border-gray-900 transition-colors">
@@ -217,7 +308,7 @@ function readPosts() {
       tags: Array.isArray(data.tags) ? data.tags : [],
       content
     };
-  });
+  }).filter(post => !REDIRECT_POST_SLUGS.has(post.slug));
 }
 
 function readProducts() {
@@ -335,7 +426,7 @@ async function main() {
       ogImage: `${origin}/og/${p.slug}.png`,
       ogType: 'article'
     };
-    const body = renderPost(p, marked);
+    const body = renderPost(p, marked, posts);
     const html = baseHtml(template, head, body);
     writeFileForRoute(`/blog/${p.slug}`, html);
   }
@@ -390,26 +481,6 @@ async function main() {
     html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(schema)}</script>\n</head>`);
     writeFileForRoute(`/product/${pr.slug}`, html);
   }
-  // Products hub
-  if (prods.length) {
-    const head = {
-      title: 'Productos: Camas de Pilates y Accesorios | camadepilates.com',
-      description: 'Explora todas nuestras camas de Pilates (Reformer) y accesorios. Compra para casa o estudio.',
-      canonical: `${origin}/products`,
-      ogImage: `${origin}${prods[0].image}`,
-      ogType: 'website'
-    };
-    const body = buildProductsIndex(prods);
-    const itemList = {
-      '@context': 'https://schema.org',
-      '@type': 'ItemList',
-      itemListElement: prods.map((p, idx) => ({ '@type': 'ListItem', position: idx + 1, url: `${origin}/product/${p.slug}`, name: p.name }))
-    };
-    let html = baseHtml(template, head, body);
-    html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(itemList)}</script>\n</head>`);
-    writeFileForRoute('/products', html);
-  }
-
   // Shop hub (new)
   if (prods.length) {
     const head = {
