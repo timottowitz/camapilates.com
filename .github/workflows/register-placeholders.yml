@@ -49,7 +49,11 @@ jobs:
             AFTER=$(git rev-parse HEAD)
           fi
           CHANGED=$(git diff --name-only "$BEFORE" "$AFTER" | grep '^src/content/blog/.*\.md$' || true)
-          echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          {
+            echo 'changed<<EOF_CHANGED'
+            printf '%s\n' "$CHANGED"
+            echo 'EOF_CHANGED'
+          } >> "$GITHUB_OUTPUT"
 
       - name: "Register placeholders (push: changed only)"
         if: github.event_name == 'push' && steps.changed.outputs.changed != ''
