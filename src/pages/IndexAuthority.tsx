@@ -152,11 +152,13 @@ const IndexAuthority: React.FC = () => {
               className="flex flex-col lg:flex-row lg:items-end justify-between gap-8"
             >
               <div className="max-w-4xl">
-                {/* Brand/Logo Text styled as 'ivan.codes' example */}
-                <h1 className="font-serif text-6xl md:text-8xl lg:text-[7rem] leading-[0.9] tracking-tighter text-[#2A2624] mb-6">
+                <div className="font-serif text-6xl md:text-8xl lg:text-[7rem] leading-[0.9] tracking-tighter text-[#2A2624] mb-6">
                   Edelweiss<span className="text-[#EB4C42]">.</span>
+                </div>
+                <h1 className="font-sans text-2xl md:text-3xl text-[#2A2624] max-w-3xl leading-tight font-medium tracking-tight">
+                  Cama de Pilates Reformer en México
                 </h1>
-                <p className="font-sans text-xl md:text-2xl text-[#5D5550] max-w-2xl leading-relaxed font-normal tracking-tight">
+                <p className="mt-4 font-sans text-xl md:text-2xl text-[#5D5550] max-w-2xl leading-relaxed font-normal tracking-tight">
                   Encuentra más de <span className="text-[#EB4C42] font-medium">900 Estudios</span> de Pilates, <span className="text-[#EB4C42] font-medium">Cursos</span>, <span className="text-[#EB4C42] font-medium">Instructores</span> y <span className="text-[#EB4C42] font-medium">Reformers</span>.
                   La plataforma de Pilates más grande de México.
                 </p>
