@@ -7,6 +7,18 @@ export interface ServiceAccountCredentials {
   token_uri: string;
 }
 
+export interface AuthorizedUserCredentials {
+  type: "authorized_user";
+  client_id: string;
+  client_secret: string;
+  refresh_token: string;
+  quota_project_id?: string;
+}
+
+export type GoogleCredentials =
+  | ServiceAccountCredentials
+  | AuthorizedUserCredentials;
+
 interface SearchAnalyticsRow {
   keys: string[];
   clicks: number;
@@ -70,68 +82,91 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-export async function loadServiceAccount(
+export async function loadGoogleCredentials(
   credentialsPath: string,
   readTextFile: ReadTextFile = Deno.readTextFile,
-): Promise<ServiceAccountCredentials> {
+): Promise<GoogleCredentials> {
   let raw: string;
   try {
     raw = await readTextFile(credentialsPath);
   } catch {
-    throw new Error("Unable to read Google service account credentials file");
+    throw new Error("Unable to read Google credentials file");
   }
 
   let parsed: unknown;
   try {
     parsed = JSON.parse(raw);
   } catch {
-    throw new Error("Google service account credentials must be valid JSON");
+    throw new Error("Google credentials must be valid JSON");
   }
   if (!isRecord(parsed)) {
-    throw new Error("Google service account credentials must be a JSON object");
+    throw new Error("Google credentials must be a JSON object");
   }
 
   const requiredString = (field: string): string => {
     const value = parsed[field];
     if (typeof value !== "string" || !value.trim()) {
       throw new Error(
-        `Google service account credentials are missing required field: ${field}`,
+        `Google credentials are missing required field: ${field}`,
       );
     }
     return value;
   };
-  const clientEmail = requiredString("client_email");
-  const privateKey = requiredString("private_key");
-  const tokenUri = requiredString("token_uri");
-  if (parsed.type !== "service_account") {
-    throw new Error(
-      "Google service account credentials have invalid type",
-    );
-  }
-  if (
-    !privateKey.includes("-----BEGIN PRIVATE KEY-----") ||
-    !privateKey.includes("-----END PRIVATE KEY-----")
-  ) {
-    throw new Error(
-      "Google service account private_key is not a PKCS#8 PEM key",
-    );
-  }
-  let parsedTokenUri: URL;
-  try {
-    parsedTokenUri = new URL(tokenUri);
-  } catch {
-    throw new Error("Google service account token_uri must be a valid URL");
-  }
-  if (parsedTokenUri.protocol !== "https:") {
-    throw new Error("Google service account token_uri must use HTTPS");
+
+  if (parsed.type === "service_account") {
+    const clientEmail = requiredString("client_email");
+    const privateKey = requiredString("private_key");
+    const tokenUri = requiredString("token_uri");
+    if (
+      !privateKey.includes("-----BEGIN PRIVATE KEY-----") ||
+      !privateKey.includes("-----END PRIVATE KEY-----")
+    ) {
+      throw new Error(
+        "Google service account private_key is not a PKCS#8 PEM key",
+      );
+    }
+    let parsedTokenUri: URL;
+    try {
+      parsedTokenUri = new URL(tokenUri);
+    } catch {
+      throw new Error("Google service account token_uri must be a valid URL");
+    }
+    if (parsedTokenUri.protocol !== "https:") {
+      throw new Error("Google service account token_uri must use HTTPS");
+    }
+
+    return {
+      type: "service_account",
+      client_email: clientEmail,
+      private_key: privateKey,
+      token_uri: tokenUri,
+    };
   }
 
-  return {
-    type: "service_account",
-    client_email: clientEmail,
-    private_key: privateKey,
-    token_uri: tokenUri,
-  };
+  if (parsed.type === "authorized_user") {
+    const quotaProjectId = parsed.quota_project_id;
+    if (
+      quotaProjectId !== undefined &&
+      (typeof quotaProjectId !== "string" || !quotaProjectId.trim())
+    ) {
+      throw new Error(
+        "Google authorized user quota_project_id must be a non-empty string",
+      );
+    }
+    return {
+      type: "authorized_user",
+      client_id: requiredString("client_id"),
+      client_secret: requiredString("client_secret"),
+      refresh_token: requiredString("refresh_token"),
+      ...(typeof quotaProjectId === "string"
+        ? { quota_project_id: quotaProjectId }
+        : {}),
+    };
+  }
+
+  throw new Error(
+    "Google credentials type must be service_account or authorized_user",
+  );
 }
 
 function base64Url(bytes: Uint8Array): string {
@@ -202,34 +237,45 @@ export async function createServiceAccountJwt(
 }
 
 async function fetchAccessToken(
-  credentials: ServiceAccountCredentials,
+  credentials: GoogleCredentials,
   fetcher: typeof fetch,
   now: Date,
 ): Promise<string> {
-  const assertion = await createServiceAccountJwt(credentials, now.getTime());
-  const response = await fetcher(credentials.token_uri, {
+  const tokenUri = credentials.type === "service_account"
+    ? credentials.token_uri
+    : "https://oauth2.googleapis.com/token";
+  const requestBody = credentials.type === "service_account"
+    ? new URLSearchParams({
+      grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      assertion: await createServiceAccountJwt(credentials, now.getTime()),
+    })
+    : new URLSearchParams({
+      grant_type: "refresh_token",
+      client_id: credentials.client_id,
+      client_secret: credentials.client_secret,
+      refresh_token: credentials.refresh_token,
+    });
+  const response = await fetcher(tokenUri, {
     method: "POST",
     headers: { "content-type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({
-      grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
-      assertion,
-    }),
+    body: requestBody,
   });
   if (!response.ok) {
     throw new Error(
       `Google OAuth token request failed with status ${response.status}`,
     );
   }
-  const body: unknown = await response.json();
+  const responseBody: unknown = await response.json();
   if (
-    !isRecord(body) || typeof body.access_token !== "string" ||
-    !body.access_token
+    !isRecord(responseBody) ||
+    typeof responseBody.access_token !== "string" ||
+    !responseBody.access_token
   ) {
     throw new Error(
       "Google OAuth token response did not include an access token",
     );
   }
-  return body.access_token;
+  return responseBody.access_token;
 }
 
 function isoDate(date: Date): string {
@@ -250,6 +296,7 @@ function searchDateRange(
 async function fetchSearchAnalytics(
   siteUrl: string,
   accessToken: string,
+  quotaProjectId: string | undefined,
   fetcher: typeof fetch,
   now: Date,
 ): Promise<SearchAnalyticsRow[]> {
@@ -257,12 +304,16 @@ async function fetchSearchAnalytics(
   const endpoint = `https://searchconsole.googleapis.com/webmasters/v3/sites/${
     encodeURIComponent(siteUrl)
   }/searchAnalytics/query`;
+  const headers: Record<string, string> = {
+    authorization: `Bearer ${accessToken}`,
+    "content-type": "application/json",
+  };
+  if (quotaProjectId) {
+    headers["x-goog-user-project"] = quotaProjectId;
+  }
   const response = await fetcher(endpoint, {
     method: "POST",
-    headers: {
-      authorization: `Bearer ${accessToken}`,
-      "content-type": "application/json",
-    },
+    headers,
     body: JSON.stringify({
       startDate,
       endDate,
@@ -345,7 +396,7 @@ export async function analyzeGscOpportunities(
   now = new Date(),
 ): Promise<GscOpportunity[]> {
   const config = requireAnalyzerConfig(env);
-  const credentials = await loadServiceAccount(
+  const credentials = await loadGoogleCredentials(
     config.credentialsPath,
     readTextFile,
   );
@@ -353,6 +404,9 @@ export async function analyzeGscOpportunities(
   const rows = await fetchSearchAnalytics(
     config.siteUrl,
     accessToken,
+    credentials.type === "authorized_user"
+      ? credentials.quota_project_id
+      : undefined,
     fetcher,
     now,
   );
