@@ -8,6 +8,10 @@ const ROOT = path.resolve(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT, 'src', 'content', 'blog');
 const PUBLIC_DIR = path.join(ROOT, 'public');
 const OUT = path.join(PUBLIC_DIR, 'sitemap.xml');
+const REDIRECT_POST_SLUGS = new Set([
+  'precio-cama-de-pilates',
+  'precio-cama-de-pilates-2025',
+]);
 
 function walk(dir) {
   if (!fs.existsSync(dir)) return [];
@@ -63,14 +67,13 @@ function build() {
     '/services': 'src/pages/Services.tsx',
     '/blog': 'src/pages/Blog.tsx',
     '/shop': 'src/pages/Shop.tsx',
-    '/products': 'src/pages/Shop.tsx',
     '/certificacion-pilates': 'src/pages/CertificacionPilates.tsx',
     '/reformer-para-casa': 'src/pages/ReformerParaCasa.tsx',
+    '/reformer-para-estudio': 'src/pages/ReformerParaEstudio.tsx',
     '/pilates-reformer-cdmx': 'src/pages/PilatesReformerCDMX.tsx',
     '/cama-de-pilates': 'src/pages/CamaDePilatesHub.tsx',
     '/cama-de-pilates/en-venta': 'src/pages/CamaDePilatesEnVenta.tsx',
     '/cama-de-pilates/precio': 'src/pages/CamaDePilatesPrecio.tsx',
-    '/reformers/nuevas': 'src/pages/ReformersNew.tsx',
     '/packs/estudio': 'src/pages/StudioPack.tsx',
     '/soporte': 'src/pages/Support.tsx',
     '/legal/terminos': 'src/pages/LegalTerms.tsx',
@@ -94,13 +97,12 @@ function build() {
     { loc: `${origin}/services`, lastmod: page('/services'), changefreq: 'monthly', priority: '0.9' },
     { loc: `${origin}/blog`, lastmod: page('/blog'), changefreq: 'daily', priority: '0.9' },
     { loc: `${origin}/shop`, lastmod: page('/shop'), changefreq: 'weekly', priority: '0.8' },
-    { loc: `${origin}/products`, lastmod: page('/products'), changefreq: 'weekly', priority: '0.8' },
     { loc: `${origin}/cama-de-pilates`, lastmod: page('/cama-de-pilates'), changefreq: 'weekly', priority: '0.9' },
     { loc: `${origin}/cama-de-pilates/en-venta`, lastmod: page('/cama-de-pilates/en-venta'), changefreq: 'weekly', priority: '0.8' },
     { loc: `${origin}/cama-de-pilates/precio`, lastmod: page('/cama-de-pilates/precio'), changefreq: 'weekly', priority: '0.8' },
-    { loc: `${origin}/reformers/nuevas`, lastmod: page('/reformers/nuevas'), changefreq: 'weekly', priority: '0.8' },
     { loc: `${origin}/packs/estudio`, lastmod: page('/packs/estudio'), changefreq: 'weekly', priority: '0.8' },
     { loc: `${origin}/reformer-para-casa`, lastmod: page('/reformer-para-casa'), changefreq: 'weekly', priority: '0.9' },
+    { loc: `${origin}/reformer-para-estudio`, lastmod: page('/reformer-para-estudio'), changefreq: 'weekly', priority: '0.9' },
     { loc: `${origin}/pilates-reformer-cdmx`, lastmod: page('/pilates-reformer-cdmx'), changefreq: 'weekly', priority: '0.9' },
     { loc: `${origin}/certificacion-pilates`, lastmod: page('/certificacion-pilates'), changefreq: 'weekly', priority: '0.8' },
     { loc: `${origin}/certificacion-pilates/cdmx`, lastmod: now, changefreq: 'weekly', priority: '0.7' },
@@ -131,6 +133,7 @@ function build() {
     const raw = fs.readFileSync(file, 'utf8');
     const { data } = matter(raw);
     const slug = data.slug || toSlug(file);
+    if (REDIRECT_POST_SLUGS.has(slug)) continue;
     const lastmod = iso(data.updatedDate || data.publishDate || now);
     urls.push({
       loc: `${origin}/blog/${slug}`,

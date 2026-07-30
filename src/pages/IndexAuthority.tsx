@@ -21,7 +21,7 @@ type HubCard = {
 const IndexAuthority: React.FC = () => {
   const origin = getOrigin();
   const title = 'Cama de Pilates (Reformer) en México — Guías, Precios y Venta';
-  const desc = 'Compra tu cama de Pilates Reformer en México: modelos para casa y estudio, guía de precios 2025, dimensiones y envío desde CDMX.';
+  const desc = 'Compra tu cama de Pilates Reformer en México: modelos para casa y estudio, guía de precios, dimensiones y envío desde CDMX.';
 
   const cards = useMemo<HubCard[]>(() => (
     [
@@ -66,7 +66,7 @@ const IndexAuthority: React.FC = () => {
         eyebrow: 'EQUIPMENT',
         title: 'New Reformers',
         description: 'Shop the collection.',
-        to: '/reformers/nuevas',
+        to: '/shop/category/reformers',
         colSpan: 'md:col-span-6 lg:col-span-6',
         image: '/images/explore-reformers.webp',
         dark: true,
@@ -93,7 +93,7 @@ const IndexAuthority: React.FC = () => {
       { '@type': 'ListItem', position: 1, url: `${origin}/cama-de-pilates`, name: 'Cama de Pilates' },
       { '@type': 'ListItem', position: 2, url: `${origin}/cama-de-pilates/en-venta`, name: 'Cama de Pilates en Venta' },
       { '@type': 'ListItem', position: 3, url: `${origin}/cama-de-pilates/precio`, name: 'Precio de Cama de Pilates' },
-      { '@type': 'ListItem', position: 4, url: `${origin}/products`, name: 'Catálogo de Camas' },
+      { '@type': 'ListItem', position: 4, url: `${origin}/shop`, name: 'Catálogo de Camas' },
     ],
   };
 
@@ -285,7 +285,7 @@ const IndexAuthority: React.FC = () => {
             className="mt-16 flex flex-wrap justify-center md:justify-start gap-4"
           >
             {['Reviews', 'Warranty', 'FAQ', 'Contact'].map((link) => (
-              <Link key={link} to="/contact" className="text-xs font-bold uppercase tracking-widest text-[#5D5550] hover:text-[#EB4C42] transition-colors">
+              <Link key={link} to="/soporte" className="text-xs font-bold uppercase tracking-widest text-[#5D5550] hover:text-[#EB4C42] transition-colors">
                 {link}
               </Link>
             ))}

@@ -19,7 +19,7 @@ export function EnhancedHero({
   title,
   subtitle,
   ctaPrimary = { text: 'Ver promoción', href: '/product/reformer-aluminio-riel-deslizante-a068' },
-  ctaSecondary = { text: 'Ver Catálogo', href: '/products' },
+  ctaSecondary = { text: 'Ver Catálogo', href: '/shop' },
   backgroundImage,
   videoUrl,
   showTrustMetrics = true,

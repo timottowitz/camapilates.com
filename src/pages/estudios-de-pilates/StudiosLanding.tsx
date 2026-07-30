@@ -117,6 +117,9 @@ const StudiosLanding: React.FC = () => {
           <img
             src="/images/studios-hero.webp"
             alt="Interior de estudio de pilates en Mexico con camas reformer profesionales - directorio de estudios de pilates en Ciudad de Mexico Monterrey y Guadalajara"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-white/80" />

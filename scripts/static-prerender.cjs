@@ -11,6 +11,10 @@ const PRODUCTS = path.join(ROOT, 'src', 'content', 'products.json');
 const SHOP_CATEGORY_SEO = JSON.parse(
   fs.readFileSync(path.join(ROOT, 'src', 'content', 'shop-category-seo.json'), 'utf8')
 );
+const REDIRECT_POST_SLUGS = new Set([
+  'precio-cama-de-pilates',
+  'precio-cama-de-pilates-2025',
+]);
 
 function ensureDir(d) { if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true }); }
 
@@ -88,11 +92,124 @@ function baseHtml(template, headMeta, bodyHtml) {
   return html;
 }
 
-function renderPost({ slug, title, description, category, date, content }, marked) {
-  const md = content
-    .replace(/<hub-list[^>]*\/>/g, '')
-    .replace(/<see-also[^>]*\/>/g, '')
+function shortcodeAttributes(source) {
+  const attrs = {};
+  String(source || '').replace(/(\w+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g, (_match, key, doubleQuoted, singleQuoted) => {
+    attrs[key] = doubleQuoted ?? singleQuoted;
+    return '';
+  });
+  return attrs;
+}
+
+function normalizeHubId(value) {
+  if (!value) return undefined;
+  const normalized = `/${String(value).trim().replace(/^\/+|\/+$/g, '')}`;
+  return normalized === '/' ? undefined : normalized;
+}
+
+function renderArticleLinks(items, title) {
+  if (!items.length) return '';
+  return `<aside class="my-8"><h3 class="text-xl font-semibold mb-3">${htmlEscape(title)}</h3><ul>${items
+    .map(post => `<li><a href="/blog/${htmlEscape(post.slug)}">${htmlEscape(post.title)}</a></li>`)
+    .join('')}</ul></aside>`;
+}
+
+function relatedPosts(current, posts, limit) {
+  const currentTags = new Set(current.tags.map(tag => tag.toLowerCase()));
+  const byTag = posts.filter(post =>
+    post.slug !== current.slug &&
+    !REDIRECT_POST_SLUGS.has(post.slug) &&
+    post.tags.some(tag => currentTags.has(tag.toLowerCase()))
+  );
+  if (byTag.length >= limit) return byTag.slice(0, limit);
+
+  const selected = new Set(byTag.map(post => post.slug));
+  const byCategory = posts.filter(post =>
+    post.slug !== current.slug &&
+    !REDIRECT_POST_SLUGS.has(post.slug) &&
+    post.category === current.category &&
+    !selected.has(post.slug)
+  );
+  const merged = [...byTag, ...byCategory];
+  if (merged.length >= limit) return merged.slice(0, limit);
+
+  const mergedSlugs = new Set(merged.map(post => post.slug));
+  const fallback = posts.filter(post =>
+    post.slug !== current.slug &&
+    !REDIRECT_POST_SLUGS.has(post.slug) &&
+    !mergedSlugs.has(post.slug)
+  );
+  return [...merged, ...fallback].slice(0, limit);
+}
+
+function renderShortcodes(content, current, posts) {
+  return content
+    .replace(/<hub-list\b((?:"[^"]*"|'[^']*'|[^"'<>])*)\/>/gi, (_match, source) => {
+      const attrs = shortcodeAttributes(source);
+      const hubId = normalizeHubId(attrs.hub_id);
+      const tags = new Set(
+        String(attrs.tags || '')
+          .split(',')
+          .map(tag => tag.trim().toLowerCase())
+          .filter(Boolean)
+      );
+      const limit = Number.parseInt(attrs.limit || '20', 10);
+      const items = posts.filter(post => {
+        if (post.slug === current.slug || REDIRECT_POST_SLUGS.has(post.slug)) return false;
+        if (attrs.category && post.category.toLowerCase() !== attrs.category.toLowerCase()) return false;
+        if (tags.size && !post.tags.some(tag => tags.has(tag.toLowerCase()))) return false;
+        return true;
+      }).slice(0, Number.isFinite(limit) && limit >= 0 ? limit : 20);
+      const hubLink = hubId
+        ? `<p><a href="${htmlEscape(hubId)}">Ver guía principal</a></p>`
+        : '';
+      return `${hubLink}${renderArticleLinks(items, attrs.title || 'Artículos relacionados')}`;
+    })
+    .replace(/<see-also\b((?:"[^"]*"|'[^']*'|[^"'<>])*)\/>/gi, (_match, source) => {
+      const attrs = shortcodeAttributes(source);
+      const limit = Number.parseInt(attrs.limit || '3', 10);
+      const safeLimit = Number.isFinite(limit) && limit >= 0 ? limit : 3;
+      return renderArticleLinks(relatedPosts(current, posts, safeLimit), 'También te puede interesar');
+    })
     .replace(/<audio-story[^>]*\/>/g, '');
+}
+
+function assertNoRawRelatedShortcodes(html, route) {
+  if (/<(?:hub-list|see-also)\b/i.test(html)) {
+    throw new Error(`Unrendered related-post shortcode in ${route}`);
+  }
+}
+
+function commercialParentLinks(post) {
+  const signals = `${post.title} ${post.description} ${post.category} ${post.tags.join(' ')}`.toLowerCase();
+  const buyingArticle =
+    ['guías de compra', 'comparativas'].includes(post.category.toLowerCase()) ||
+    /(comprar|compra|precio|barata|venta|financiaci[oó]n|mejor|elegir)/.test(signals);
+  if (!buyingArticle) return '';
+
+  const links = [];
+  if (/(reformer|cama de pilates|equipo|comparativa|guía de compra)/.test(signals)) {
+    links.push({ href: '/cama-de-pilates', label: 'Guía de cama de Pilates' });
+    links.push({ href: '/shop/category/reformers', label: 'Colección de Reformers' });
+  }
+  if (/(casa|hogar|doméstic)/.test(signals)) {
+    links.push({ href: '/reformer-para-casa', label: 'Reformer para casa' });
+  }
+  if (/(estudio|profesional|negocio)/.test(signals)) {
+    links.push({ href: '/reformer-para-estudio', label: 'Reformer para estudio' });
+    links.push({ href: '/packs/estudio', label: 'Packs para estudio' });
+  }
+  if (!links.length) return '';
+  return `<nav aria-label="Recursos de compra" class="mb-8"><ul>${links
+    .map(link => `<li><a href="${link.href}">${htmlEscape(link.label)}</a></li>`)
+    .join('')}</ul></nav>`;
+}
+
+function renderPost({ slug, title, description, category, date, tags, content }, marked, posts) {
+  const current = { slug, title, description, category, date, tags, content };
+  const md = content
+    ? renderShortcodes(content, current, posts)
+    : '';
   const article = `
     <article class="container mx-auto px-4 py-8">
       <header>
@@ -100,6 +217,7 @@ function renderPost({ slug, title, description, category, date, content }, marke
         <h1 class="text-4xl font-bold mb-4">${htmlEscape(title)}</h1>
         <p class="text-xl text-muted-foreground mb-8">${htmlEscape(description || '')}</p>
       </header>
+      ${commercialParentLinks(current)}
       <div class="prose max-w-none">${marked.parse(md)}</div>
     </article>
   `;
@@ -117,17 +235,6 @@ function buildIndex(posts) {
   return `<div class="container mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-6">Centro de Conocimiento</h1><div class="grid md:grid-cols-2 gap-4">${items}</div></div>`;
 }
 
-function buildProductsIndex(products) {
-  const cards = products.map(p => `
-    <a href="/product/${p.slug}" class="block group border rounded-lg p-6 hover:border-gray-900 transition-colors">
-      <img src="${p.image}" alt="${p.name}" class="w-full h-auto rounded mb-4 border" />
-      <h2 class="font-semibold text-gray-900 group-hover:text-black">${p.name}</h2>
-      <p class="text-sm text-gray-600 mt-2">${p.description}</p>
-      <div class="mt-3 font-semibold text-gray-900">$ ${p.price} ${p.currency}</div>
-    </a>
-  `).join('\n');
-  return `<div class="container mx-auto px-4 py-12"><h1 class="text-3xl font-bold text-gray-900 mb-8">Todos los productos</h1><div class="grid md:grid-cols-3 gap-6">${cards}</div></div>`;
-}
 function buildShopIndex(products) {
   const cards = products.map(p => `
     <a href="/product/${p.slug}" class="block group border rounded-lg p-6 hover:border-gray-900 transition-colors">
@@ -138,6 +245,51 @@ function buildShopIndex(products) {
     </a>
   `).join('\n');
   return `<div class="container mx-auto px-4 py-12"><h1 class="text-3xl font-bold text-gray-900 mb-8">Tienda</h1><div class="grid md:grid-cols-3 gap-6">${cards}</div></div>`;
+}
+
+function buildStudioReformerPage(reformers) {
+  const cards = reformers.map(product => `
+    <article class="rounded-lg border p-6">
+      <a href="/product/${htmlEscape(product.slug)}">
+        <img src="${htmlEscape(product.image)}" alt="${htmlEscape(product.name)}" class="w-full h-auto rounded mb-4" />
+        <h2 class="text-xl font-semibold text-gray-900">${htmlEscape(product.name)}</h2>
+      </a>
+      <p class="mt-3 text-gray-700">${htmlEscape(product.description)}</p>
+      <p class="mt-4 font-semibold text-gray-900">$ ${htmlEscape(product.price)} ${htmlEscape(product.currency)}</p>
+    </article>
+  `).join('\n');
+
+  return `
+    <main class="container mx-auto px-4 py-12">
+      <nav aria-label="Migas de pan" class="text-sm text-gray-600">
+        <a href="/">Inicio</a> / Reformer para estudio
+      </nav>
+      <header class="mt-8 max-w-4xl">
+        <p class="text-sm uppercase tracking-wide text-gray-600">Equipamiento profesional</p>
+        <h1 class="mt-3 text-4xl font-bold text-gray-900">Reformer para estudio</h1>
+        <p class="mt-5 text-lg leading-8 text-gray-700">
+          Compara los Reformers disponibles para equipar un estudio de Pilates. Revisa cada ficha para confirmar materiales, configuración, precio y tiempo de fabricación.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="/shop/category/reformers" class="rounded border px-5 py-3 font-semibold">Ver colección completa</a>
+          <a href="/packs/estudio" class="rounded border px-5 py-3 font-semibold">Cotizar pack de estudio</a>
+        </div>
+      </header>
+      <section class="mt-14">
+        <h2 class="text-2xl font-bold text-gray-900">Modelos disponibles para estudio</h2>
+        <p class="mt-3 text-gray-700">${reformers.length} Reformers disponibles en el catálogo actual.</p>
+        <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">${cards}</div>
+      </section>
+      <aside class="mt-14">
+        <h2 class="text-2xl font-bold text-gray-900">Planifica el equipamiento de tu estudio</h2>
+        <ul class="mt-5 space-y-3">
+          <li><a href="/blog/reformer-casa-vs-profesional">Compara Reformer para casa vs profesional</a></li>
+          <li><a href="/blog/cama-de-pilates-guia-de-compra">Consulta la guía de compra de cama de Pilates</a></li>
+          <li><a href="/blog/mantenimiento-cama-de-pilates">Revisa la guía de mantenimiento del Reformer</a></li>
+        </ul>
+      </aside>
+    </main>
+  `;
 }
 
 function buildShopCategoryIndex(slug, category, products) {
@@ -217,7 +369,7 @@ function readPosts() {
       tags: Array.isArray(data.tags) ? data.tags : [],
       content
     };
-  });
+  }).filter(post => !REDIRECT_POST_SLUGS.has(post.slug));
 }
 
 function readProducts() {
@@ -306,6 +458,7 @@ async function main() {
   const origin = process.env.SITE_ORIGIN || 'https://camadepilates.com';
   const posts = readPosts().sort((a,b) => new Date(b.date) - new Date(a.date));
   const prods = readProducts();
+  const routeMeta = JSON.parse(fs.readFileSync(path.join(ROOT, 'src', 'content', 'route-meta.json'), 'utf8'));
   
   const certCities = [
     { key: 'cdmx', name: 'Ciudad de México (CDMX)' },
@@ -335,8 +488,9 @@ async function main() {
       ogImage: `${origin}/og/${p.slug}.png`,
       ogType: 'article'
     };
-    const body = renderPost(p, marked);
+    const body = renderPost(p, marked, posts);
     const html = baseHtml(template, head, body);
+    assertNoRawRelatedShortcodes(html, `/blog/${p.slug}`);
     writeFileForRoute(`/blog/${p.slug}`, html);
   }
 
@@ -390,26 +544,6 @@ async function main() {
     html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(schema)}</script>\n</head>`);
     writeFileForRoute(`/product/${pr.slug}`, html);
   }
-  // Products hub
-  if (prods.length) {
-    const head = {
-      title: 'Productos: Camas de Pilates y Accesorios | camadepilates.com',
-      description: 'Explora todas nuestras camas de Pilates (Reformer) y accesorios. Compra para casa o estudio.',
-      canonical: `${origin}/products`,
-      ogImage: `${origin}${prods[0].image}`,
-      ogType: 'website'
-    };
-    const body = buildProductsIndex(prods);
-    const itemList = {
-      '@context': 'https://schema.org',
-      '@type': 'ItemList',
-      itemListElement: prods.map((p, idx) => ({ '@type': 'ListItem', position: idx + 1, url: `${origin}/product/${p.slug}`, name: p.name }))
-    };
-    let html = baseHtml(template, head, body);
-    html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(itemList)}</script>\n</head>`);
-    writeFileForRoute('/products', html);
-  }
-
   // Shop hub (new)
   if (prods.length) {
     const head = {
@@ -428,6 +562,61 @@ async function main() {
     let html = baseHtml(template, head, body);
     html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(itemList)}</script>\n</head>`);
     writeFileForRoute('/shop', html);
+  }
+
+  // Studio Reformer landing. Keep this richer snapshot aligned with the React page
+  // and derive every product fact from products.json.
+  {
+    const route = '/reformer-para-estudio';
+    const meta = routeMeta[route];
+    const reformers = prods.filter(product => product.category === 'Reformers');
+    if (!meta || !reformers.length) {
+      throw new Error('Studio Reformer prerender requires route metadata and Reformer products');
+    }
+    const itemList = {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'Reformers para estudio',
+      numberOfItems: reformers.length,
+      itemListElement: reformers.map((product, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: `${origin}/product/${product.slug}`,
+        name: product.name,
+      })),
+    };
+    const collectionPage = {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Reformer para estudio',
+      description: meta.description,
+      url: `${origin}${route}`,
+      inLanguage: 'es-MX',
+      mainEntity: itemList,
+    };
+    const breadcrumb = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: origin },
+        { '@type': 'ListItem', position: 2, name: 'Reformer para estudio' },
+      ],
+    };
+    const head = {
+      title: meta.title,
+      description: meta.description,
+      canonical: `${origin}${route}`,
+      ogImage: `${origin}${reformers[0].image}`,
+      ogType: 'website',
+    };
+    let html = baseHtml(template, head, buildStudioReformerPage(reformers));
+    html = html.replace(
+      '</head>',
+      [breadcrumb, collectionPage, itemList]
+        .map(schema => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`)
+        .join('\n') + '\n</head>'
+    );
+    writeFileForRoute(route, html);
   }
 
   
@@ -579,8 +768,8 @@ async function main() {
   // sees the generic site title and description instead of the page's own. Titles and
   // descriptions come from the same src/content/route-meta.json the components read,
   // so the prerendered head and the hydrated head cannot disagree.
-  const routeMeta = JSON.parse(fs.readFileSync(path.join(ROOT, 'src', 'content', 'route-meta.json'), 'utf8'));
   for (const [route, meta] of Object.entries(routeMeta)) {
+    if (route === '/reformer-para-estudio') continue;
     const head = {
       title: meta.title,
       description: meta.description,

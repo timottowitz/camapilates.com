@@ -54,13 +54,13 @@ const Services = () => {
             {
               title: "Studio Design",
               desc: "We help you plan your space for optimal flow and aesthetic harmony. From layout to lighting.",
-              link: "/contact",
+              link: "/soporte",
               linkText: "Start a Project"
             },
             {
               title: "Maintenance",
               desc: "Keep your reformers gliding silently. Annual service packages and express parts delivery.",
-              link: "/contact",
+              link: "/soporte",
               linkText: "Schedule Service"
             },
             {
@@ -102,7 +102,7 @@ const Services = () => {
               we are here to support your journey with technical expertise and design guidance.
             </p>
             <Link
-              to="/contact"
+              to="/soporte"
               className="inline-block px-10 py-4 bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white transition-colors"
             >
               Contact Us

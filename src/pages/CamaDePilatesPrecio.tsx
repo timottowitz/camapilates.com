@@ -51,7 +51,7 @@ const CamaDePilatesPrecio: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="block text-xs font-bold font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-8 opacity-60"
           >
-            Guía de Precios 2025
+            Guía de Precios
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -77,7 +77,7 @@ const CamaDePilatesPrecio: React.FC = () => {
             transition={{ delay: 0.5 }}
             className="mt-10 flex flex-wrap justify-center gap-3"
           >
-            <Link to="/products" className="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-[#2A2624] text-[#EAE8E4] text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#3E2723] hover:scale-105 transition-all">
+            <Link to="/shop" className="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-[#2A2624] text-[#EAE8E4] text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#3E2723] hover:scale-105 transition-all">
               Ver modelos <ArrowRight className="w-4 h-4" />
             </Link>
             <Link to="/cama-de-pilates/en-venta" className="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-[#2A2624]/20 text-[#2A2624] text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-all">
@@ -169,7 +169,7 @@ const CamaDePilatesPrecio: React.FC = () => {
               ))}
             </ul>
             <Link
-              to="/product/reformer-casa"
+              to="/reformer-para-casa"
               className="block w-full py-5 text-center border border-[#2A2624] text-[#2A2624] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-all"
             >
               Ver detalles
@@ -210,7 +210,7 @@ const CamaDePilatesPrecio: React.FC = () => {
               ))}
             </ul>
             <Link
-              to="/product/reformer-profesional"
+              to="/reformer-para-estudio"
               className="block w-full py-5 text-center bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-all"
             >
               Ver detalles

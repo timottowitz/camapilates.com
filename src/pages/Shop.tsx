@@ -221,7 +221,7 @@ const Shop: React.FC = () => {
               <a href="https://wa.me/525548468190" className="hover:text-[#EB4C42] transition-colors">WhatsApp</a>
               <a href="tel:+525548468190" className="hover:text-[#EB4C42] transition-colors">Llamar</a>
               <div className="hidden sm:block text-[#5D5550]">
-                <Link to="/products" className="hover:text-[#EB4C42] transition-colors">Ver Catálogo</Link>
+                <Link to="/shop/category/reformers" className="hover:text-[#EB4C42] transition-colors">Ver Reformers</Link>
               </div>
             </div>
           </div>
@@ -233,7 +233,7 @@ const Shop: React.FC = () => {
             backgroundImage={assets.shopHero || DEFAULTS.ogImage}
             showTrustMetrics={false}
             ctaPrimary={{ text: 'Ver promoción', href: '/product/reformer-aluminio-riel-deslizante-a068' }}
-            ctaSecondary={{ text: 'Ver Catálogo', href: '/products' }}
+            ctaSecondary={{ text: 'Ver Reformers', href: '/shop/category/reformers' }}
           />
 
           {/* Shop by category icons */}

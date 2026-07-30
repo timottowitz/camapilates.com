@@ -26,13 +26,13 @@ const CTASection = ({
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Button asChild size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-            <Link to="/products">
+            <Link to="/shop">
               <ShoppingCart className="mr-2 h-4 w-4" />
               Ver productos
             </Link>
           </Button>
           <Button asChild variant="outline" size="sm">
-            <Link to="/products">
+            <Link to="/shop/category/reformers">
               <ArrowRight className="mr-2 h-4 w-4" />
               Ver Catálogo
             </Link>
@@ -51,7 +51,7 @@ const CTASection = ({
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              <Link to="/products" className="flex items-center gap-2">
+              <Link to="/shop" className="flex items-center gap-2">
                 <ShoppingCart className="w-5 h-5" />
                 Ver productos
               </Link>
@@ -81,7 +81,7 @@ const CTASection = ({
           {/* Schedule Button */}
           <div className="text-center">
             <Button size="lg" className="w-full mb-2 bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
-              <Link to="/products">
+              <Link to="/shop">
                 <ShoppingCart className="mr-2 h-4 w-4" />
                 Ver productos
               </Link>
@@ -92,7 +92,7 @@ const CTASection = ({
           {/* Call Button */}
           <div className="text-center">
             <Button size="lg" variant="outline" className="w-full mb-2" asChild>
-              <Link to="/products">
+              <Link to="/shop/category/reformers">
                 <ArrowRight className="mr-2 h-4 w-4" />
                 Ver Catálogo
               </Link>

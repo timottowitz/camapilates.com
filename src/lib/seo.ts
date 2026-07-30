@@ -145,7 +145,7 @@ export function generateLocalBusinessSchema() {
             name: 'Cama de Pilates Reformer Casa',
             category: 'Reformers',
             brand: { '@type': 'Brand', name: ORGANIZATION.name },
-            url: `${getOrigin()}/shop/category/reformers`,
+            url: `${getOrigin()}/reformer-para-casa`,
             offers: reformerAggregateOffer(),
           },
         },
@@ -156,7 +156,7 @@ export function generateLocalBusinessSchema() {
             name: 'Cama de Pilates Reformer Profesional',
             category: 'Reformers',
             brand: { '@type': 'Brand', name: ORGANIZATION.name },
-            url: `${getOrigin()}/shop/category/reformers`,
+            url: `${getOrigin()}/reformer-para-estudio`,
             offers: reformerAggregateOffer(),
           },
         },
@@ -705,12 +705,12 @@ export function generateServicesSchema() {
     {
       name: 'Diseño de Estudio',
       description: 'Planificación de espacios para flujo óptimo y armonía estética. Desde layout hasta iluminación.',
-      url: `${origin}/contact`,
+      url: `${origin}/soporte`,
     },
     {
       name: 'Mantenimiento',
       description: 'Mantén tus reformers deslizándose silenciosamente. Paquetes de servicio anual y entrega exprés de repuestos.',
-      url: `${origin}/contact`,
+      url: `${origin}/soporte`,
     },
     {
       name: 'Capacitación',
@@ -779,21 +779,21 @@ export function generateServicesSchema() {
 // Generate Product comparison schema
 export function generateCompareSchema() {
   const origin = getOrigin();
-  const pageUrl = `${origin}/compare`;
+  const pageUrl = `${origin}/shop`;
 
   const products = [
     {
       name: 'Edelweiss Home Reformer',
       description: 'Diseño compacto sin comprometer el deslizamiento suave y silencioso. Diseñado para integrarse perfectamente en tu espacio.',
       price: 35000,
-      url: `${origin}/product/reformer-casa`,
+      url: `${origin}/reformer-para-casa`,
       image: `${origin}/images/compare-home.webp`,
     },
     {
       name: 'Edelweiss Studio Reformer',
       description: 'Precisión de grado profesional para uso diario intensivo. El estándar para estudios de élite.',
       price: 50000,
-      url: `${origin}/product/reformer-profesional`,
+      url: `${origin}/reformer-para-estudio`,
       image: `${origin}/images/compare-studio.png`,
     },
   ];

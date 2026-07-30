@@ -115,7 +115,7 @@ const PilatesReformerCDMX: React.FC = () => {
             Pilates Reformer CDMX
           </h1>
           <p className="text-lg text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed">
-            Encuentra estudios, clases y equipo de pilates reformer en Ciudad de México. Tu guía completa para 2025.
+            Encuentra estudios, clases y equipo de pilates reformer en Ciudad de México. Una guía para comparar opciones en CDMX.
           </p>
         </div>
 

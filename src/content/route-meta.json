@@ -8,7 +8,7 @@
     "description": "Servicios profesionales para estudios de Pilates: Diseño, Mantenimiento y Capacitación."
   },
   "/cama-de-pilates": {
-    "title": "Cama de Pilates: Guía, Precios y Dónde Comprar en México (2025) | CAMA Pilates",
+    "title": "Cama de Pilates: Guía, Precios y Dónde Comprar en México | CAMA Pilates",
     "description": "Todo sobre la cama de Pilates (Reformer): tipos para casa y estudio, precios, dimensiones y dónde comprar en México con envío desde CDMX."
   },
   "/cama-de-pilates/en-venta": {
@@ -16,23 +16,23 @@
     "description": "Cama de Pilates (Reformer) en venta con entrega 3 semanas en México. Materiales premium (cuero, nogal, acero), silencio total, garantía 1 año y repuestos exprés."
   },
   "/cama-de-pilates/precio": {
-    "title": "Precio de Cama de Pilates: Rangos en México y Qué Incluye (2025) | CAMA Pilates",
+    "title": "Precio de Cama de Pilates: Rangos en México y Qué Incluye | CAMA Pilates",
     "description": "Precio de cama de Pilates (Reformer) en México: rangos para casa y estudio, qué incluye y cómo comparar. Envío desde CDMX y garantía."
-  },
-  "/reformers/nuevas": {
-    "title": "Reformers nuevas — Modelos, filtros y comparativa | CAMA Pilates",
-    "description": "Explora reformers nuevas en México: filtra por precio, acabados y disponibilidad. Cotiza por WhatsApp y compara modelos."
   },
   "/packs/estudio": {
     "title": "Pack para Estudios: 8+ Camas de Pilates con 20% de Descuento | CAMA Pilates",
     "description": "Pack para estudios: a partir de 8 camas de Pilates (Reformer) obtén 20% de descuento. Instalación coordinada, garantía 1 año y repuestos exprés. Envío desde CDMX."
   },
   "/reformer-para-casa": {
-    "title": "Reformer para Casa: Guía de Compra México 2025 | Edelweiss",
+    "title": "Reformer para Casa: Guía de Compra en México | Edelweiss",
     "description": "Elige el mejor reformer para casa en México. Comparamos tamaños, precios desde $35,000 MXN, instalación y qué buscar en un reformer casero silencioso."
   },
+  "/reformer-para-estudio": {
+    "title": "Reformer para Estudio: Modelos Profesionales en México | Edelweiss",
+    "description": "Compara Reformers disponibles para estudios de Pilates en México y revisa materiales, configuraciones, precios y tiempos de fabricación."
+  },
   "/pilates-reformer-cdmx": {
-    "title": "Pilates Reformer CDMX: Estudios, Clases y Dónde Comprar | 2025",
+    "title": "Pilates Reformer CDMX: Estudios, Clases y Dónde Comprar",
     "description": "Todo sobre Pilates Reformer en Ciudad de México: mejores estudios por zona, clases para principiantes, y dónde comprar reformers con entrega en CDMX."
   },
   "/claim-studio": {

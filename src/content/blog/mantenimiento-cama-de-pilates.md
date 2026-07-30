@@ -1,9 +1,4 @@
 ---
-heroImage: "/images/products/barril-escalera-roble-a025.webp"
-publishDate: '2025-10-01'
----
-
----
 title: "Mantenimiento y cuidado de tu Reformer de Pilates (MX 2025)"
 description: "Rutina de limpieza, calibración y seguridad para un Reformer silencioso y preciso. Señales de recambio, checklist y materiales recomendados."
 category: "Equipo y mantenimiento"
@@ -13,6 +8,7 @@ updatedDate: "2025-09-26"
 author: "CAMA Pilates"
 slug: "mantenimiento-cama-de-pilates"
 featured: false
+heroImage: "/images/products/barril-escalera-roble-a025.webp"
 ---
 
 # Mantenimiento y cuidado de tu Reformer de Pilates (MX 2025)
@@ -83,9 +79,9 @@ featured: false
 - Soporte en español y repuestos exprés para reducir paros.
 
 ## Recomendaciones CAMA Pilates
-- **Accesorios y repuestos**: [/accesorios](/accesorios)
-- **Reformer Casa** — compacto, estable y silencioso: [/product/reformer-casa](/product/reformer-casa)
-- **Reformer Profesional** — uso continuo y servicio para estudio: [/product/reformer-profesional](/product/reformer-profesional)
+- **Accesorios y repuestos**: [ver colección](/shop/category/accesorios)
+- **Reformer para casa** — compacto, estable y silencioso: [ver guía](/reformer-para-casa)
+- **Reformer para estudio** — opciones para uso profesional: [ver modelos](/reformer-para-estudio)
 
 <hub-list category="Equipo y Mantenimiento" limit="8" title="Más sobre mantenimiento y equipo" />
 

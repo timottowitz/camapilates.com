@@ -108,6 +108,7 @@ export const ContextualImage: React.FC<ContextualImageProps> = ({
 
   const paddingTop = useMemo(() => aspectToPadding(aspectRatio), [aspectRatio]);
   const url = data?.imageUrl || fallbackSrc;
+  const isHero = location.includes('hero');
 
   // If no image yet and no fallback, register silently without visual placeholder
   if (!url) {
@@ -121,7 +122,8 @@ export const ContextualImage: React.FC<ContextualImageProps> = ({
           src={url}
           alt={alt || data?.headingAbove || ''}
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', borderRadius: 8 }}
-          loading={location.includes('hero') ? 'eager' : 'lazy'}
+          loading={isHero ? 'eager' : 'lazy'}
+          fetchPriority={isHero ? 'high' : undefined}
           decoding="async"
         />
       </div>

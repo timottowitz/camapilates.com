@@ -29,8 +29,8 @@ const CamaDePilatesHub: React.FC = () => {
       { '@type': 'ListItem', position: 1, url: `${origin}/cama-de-pilates/en-venta`, name: 'Cama de Pilates en Venta' },
       { '@type': 'ListItem', position: 2, url: `${origin}/cama-de-pilates/precio`, name: 'Precio de Cama de Pilates' },
       { '@type': 'ListItem', position: 3, url: `${origin}/blog/dimensiones-cama-de-pilates`, name: 'Dimensiones de Cama de Pilates' },
-      { '@type': 'ListItem', position: 4, url: `${origin}/product/reformer-profesional`, name: 'Reformer de Estudio' },
-      { '@type': 'ListItem', position: 5, url: `${origin}/product/reformer-casa`, name: 'Reformer para Casa' },
+      { '@type': 'ListItem', position: 4, url: `${origin}/reformer-para-estudio`, name: 'Reformer de Estudio' },
+      { '@type': 'ListItem', position: 5, url: `${origin}/reformer-para-casa`, name: 'Reformer para Casa' },
       { '@type': 'ListItem', position: 6, url: `${origin}/packs/estudio`, name: 'Pack para Estudios (8+)' },
     ],
   };
@@ -186,7 +186,7 @@ const CamaDePilatesHub: React.FC = () => {
                 Guía de Precios
               </h2>
               <p className="text-[#5D5550] font-light mb-8">
-                Rangos 2025: MXN 25,000–50,000. Qué incluye cada nivel.
+                Rangos de referencia en México y qué incluye cada nivel.
               </p>
               <span className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-[#3E2723]/60 group-hover:text-[#2A2624] transition-colors">
                 Ver precios <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -228,7 +228,7 @@ const CamaDePilatesHub: React.FC = () => {
             className="md:col-span-4"
           >
             <Link
-              to="/products"
+              to="/shop/category/reformers"
               className="group block h-full bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:bg-white hover:shadow-lg hover:-translate-y-1"
             >
               <BookOpen className="w-6 h-6 text-[#3E2723] mb-6 opacity-40 group-hover:opacity-70 transition-opacity" strokeWidth={1.5} />
@@ -303,7 +303,7 @@ const CamaDePilatesHub: React.FC = () => {
         {/* Product Cards */}
         <div className="grid lg:grid-cols-2 gap-6 mb-24">
           <Link
-            to="/product/reformer-profesional"
+            to="/reformer-para-estudio"
             className="group block bg-[#2A2624] text-[#EAE8E4] rounded-[2rem] p-10 md:p-14 transition-all duration-700 hover:-translate-y-2 hover:shadow-2xl"
           >
             <div className="w-10 h-10 mb-8 border border-[#EAE8E4]/30 rounded-full flex items-center justify-center text-xs font-serif italic opacity-60">P</div>
@@ -319,7 +319,7 @@ const CamaDePilatesHub: React.FC = () => {
           </Link>
 
           <Link
-            to="/product/reformer-casa"
+            to="/reformer-para-casa"
             className="group block bg-[#EAE8E4] rounded-[2rem] p-10 md:p-14 transition-all duration-700 hover:-translate-y-2 hover:shadow-2xl hover:bg-white"
           >
             <div className="w-10 h-10 mb-8 border border-[#2A2624]/30 rounded-full flex items-center justify-center text-xs font-serif italic text-[#2A2624] opacity-60">H</div>
@@ -341,7 +341,7 @@ const CamaDePilatesHub: React.FC = () => {
           <div className="grid md:grid-cols-2 gap-4">
             {[
               { href: '/blog/mejor-cama-de-pilates-para-casa', title: 'Mejor cama de Pilates para casa', desc: 'Cómo elegir por espacio, presupuesto y accesorios.' },
-              { href: '/blog/precio-cama-de-pilates-2025', title: 'Precio de la cama de Pilates 2025', desc: 'Rangos reales en México y qué incluye cada nivel.' },
+              { href: '/cama-de-pilates/precio', title: 'Precio de la cama de Pilates', desc: 'Rangos de referencia en México y qué incluye cada nivel.' },
               { href: '/blog/mejores-marcas-cama-de-pilates', title: 'Mejores marcas de cama de Pilates', desc: 'Criterios para comparar calidad, garantía y soporte.' },
               { href: '/blog/reformer-casa-vs-profesional', title: 'Reformer para casa vs profesional', desc: 'Diferencias clave para decidir sin pagar de más.' },
             ].map((guide, i) => (

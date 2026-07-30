@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { DEFAULTS, getOrigin, generateBreadcrumbSchema } from '@/lib/seo';
+import { getOrigin, generateBreadcrumbSchema } from '@/lib/seo';
 import { requireRouteMeta } from '@/lib/routeMeta';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { Home, Check, ArrowRight, Ruler, Volume2, Shield, Truck } from 'lucide-react';
@@ -131,7 +131,7 @@ const ReformerParaCasa: React.FC = () => {
             Ver Reformer Aluminio
           </Link>
           <Link
-            to="/products"
+            to="/shop/category/reformers"
             className="px-8 py-4 border border-[#2A2624] text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors"
           >
             Ver Catálogo
@@ -223,10 +223,10 @@ const ReformerParaCasa: React.FC = () => {
               </div>
               
               <Link
-                to="/product/reformer-casa"
+                to="/shop/category/reformers"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors"
               >
-                Ver Detalles <ArrowRight className="w-4 h-4" />
+                Ver modelos <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
             
@@ -303,7 +303,7 @@ const ReformerParaCasa: React.FC = () => {
             
             <Link to="/cama-de-pilates/precio" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
               <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
-                Guía de Precios 2025
+                Guía de Precios
               </h3>
               <p className="text-sm text-[#5D5550] font-light">Rangos y qué esperar por tu dinero.</p>
             </Link>

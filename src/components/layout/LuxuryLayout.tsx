@@ -34,7 +34,9 @@ const LuxuryLayout = ({ children, className = "", noPadding = false, headerTheme
                             <h4 className="text-xs uppercase tracking-[0.2em] mb-6 text-white/40">Explorar</h4>
                             <ul className="space-y-4 text-sm font-light text-white/80">
                                 <li><Link to="/shop" className="hover:text-white transition-colors">Ver Colección</Link></li>
-                                <li><Link to="/products" className="hover:text-white transition-colors">Catálogo</Link></li>
+                                <li><Link to="/shop/category/reformers" className="hover:text-white transition-colors">Reformers</Link></li>
+                                <li><Link to="/reformer-para-casa" className="hover:text-white transition-colors">Reformer para Casa</Link></li>
+                                <li><Link to="/reformer-para-estudio" className="hover:text-white transition-colors">Reformer para Estudio</Link></li>
                                 <li><Link to="/about" className="hover:text-white transition-colors">Nuestra Historia</Link></li>
                             </ul>
                         </div>
@@ -47,7 +49,7 @@ const LuxuryLayout = ({ children, className = "", noPadding = false, headerTheme
                         </div>
                     </div>
                     <div className="mt-24 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between text-xs text-white/40 uppercase tracking-widest">
-                        <p>&copy; 2025 Edelweiss</p>
+                        <p>&copy; {new Date().getFullYear()} Edelweiss</p>
                         <div className="flex gap-8 mt-4 md:mt-0">
                             <Link to="/legal/terminos">Términos</Link>
                             <Link to="/legal/privacidad">Privacidad</Link>

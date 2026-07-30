@@ -436,7 +436,7 @@ async function verifyCamaProductIntegration(slug) {
     const productIntegration = {
       brand_mentions: camaMentions,
       product_references: camaProduct,
-      has_product_links: content.includes('/products/') || content.includes('reformer-premium'),
+      has_product_links: content.includes('/product/') || content.includes('/shop'),
       has_cta: content.match(/\b(comprar|adquirir|contactar|cotizar)\b/gi)?.length || 0,
       quality_claims: content.match(/\b(calidad premium|ingeniería alemana|manufactura mexicana)\b/gi)?.length || 0
     };

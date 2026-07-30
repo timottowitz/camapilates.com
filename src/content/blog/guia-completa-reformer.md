@@ -73,9 +73,9 @@ Progresar implica variar resistencia, rango, tempo y soportes. Mantén movimient
 ## Recomendaciones CAMA Pilates
 Nuestros Reformers priorizan estabilidad, recorrido suave y materiales premium con soporte posventa en México.
 
-- /product/reformer-casa
+- /reformer-para-casa
   <shoprocket-button product="prod_reformer_casa_placeholder" pk="sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c" />
-- /product/reformer-profesional
+- /reformer-para-estudio
   <shoprocket-button product="prod_reformer_profesional_placeholder" pk="sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c" />
 
 <hub-list category="Guías de compra" limit="5" title="Más guías de compra" />

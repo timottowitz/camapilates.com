@@ -324,7 +324,7 @@ const ProductPage: React.FC = () => {
     ]
   };
 
-  if (!prod) return <Navigate to="/products" replace />;
+  if (!prod) return <Navigate to="/shop" replace />;
 
   return (
     <LuxuryLayout headerTheme="light">
@@ -470,7 +470,7 @@ const ProductPage: React.FC = () => {
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
                     <span className="text-xs font-medium uppercase tracking-widest text-[#2A2624]">Acabado</span>
-                    <Link to="/acabados" className="text-[10px] uppercase tracking-widest text-[#5D5550] hover:text-[#2A2624] underline decoration-[#2A2624]/30 hover:decoration-[#2A2624] underline-offset-4">Ver guía</Link>
+                    <Link to="/blog/cama-de-pilates-guia-de-compra" className="text-[10px] uppercase tracking-widest text-[#5D5550] hover:text-[#2A2624] underline decoration-[#2A2624]/30 hover:decoration-[#2A2624] underline-offset-4">Ver guía</Link>
                   </div>
                   <Finishes value={finish} onChange={setFinish} />
                 </div>

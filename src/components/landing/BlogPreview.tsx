@@ -16,21 +16,21 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 const featuredGuides = [
   {
-    slug: 'cama-de-pilates-guia-de-compra',
+    href: '/blog/cama-de-pilates-guia-de-compra',
     title: 'Cómo Elegir Tu Cama de Pilates',
-    description: 'Guía completa 2025: tamaños, materiales, presupuesto y qué buscar según tu experiencia.',
+    description: 'Guía completa: tamaños, materiales, presupuesto y qué buscar según tu experiencia.',
     category: 'Guías de compra',
     readTime: '8 min',
   },
   {
-    slug: 'precio-cama-de-pilates',
+    href: '/cama-de-pilates/precio',
     title: 'Precios de Cama de Pilates en México',
     description: 'Rangos de precio por tipo, qué incluye cada nivel y cómo maximizar tu inversión.',
     category: 'Guías de compra',
     readTime: '6 min',
   },
   {
-    slug: 'reformer-casa-vs-profesional',
+    href: '/blog/reformer-casa-vs-profesional',
     title: 'Reformer para Casa vs Profesional',
     description: '¿Cuál necesitas? Diferencias clave en tamaño, resistencia y funcionalidades.',
     category: 'Comparativas',
@@ -64,9 +64,9 @@ const BlogPreview: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {featuredGuides.map((guide, index) => (
-            <FadeIn key={guide.slug} delay={index * 0.1}>
+            <FadeIn key={guide.href} delay={index * 0.1}>
               <Link
-                to={`/blog/${guide.slug}`}
+                to={guide.href}
                 className="group block bg-white/50 hover:bg-white rounded-lg p-8 transition-all duration-300 hover:shadow-lg border border-[#2A2624]/5 hover:border-[#2A2624]/10 h-full"
               >
                 <div className="flex items-center gap-3 mb-4">
