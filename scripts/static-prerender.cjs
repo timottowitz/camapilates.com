@@ -94,11 +94,17 @@ function baseHtml(template, headMeta, bodyHtml) {
 
 function shortcodeAttributes(source) {
   const attrs = {};
-  String(source || '').replace(/(\w+)="([^"]*)"/g, (_match, key, value) => {
-    attrs[key] = value;
+  String(source || '').replace(/(\w+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g, (_match, key, doubleQuoted, singleQuoted) => {
+    attrs[key] = doubleQuoted ?? singleQuoted;
     return '';
   });
   return attrs;
+}
+
+function normalizeHubId(value) {
+  if (!value) return undefined;
+  const normalized = `/${String(value).trim().replace(/^\/+|\/+$/g, '')}`;
+  return normalized === '/' ? undefined : normalized;
 }
 
 function renderArticleLinks(items, title) {
@@ -138,8 +144,9 @@ function relatedPosts(current, posts, limit) {
 
 function renderShortcodes(content, current, posts) {
   return content
-    .replace(/<hub-list\s*([^\/>]*)\/>/g, (_match, source) => {
+    .replace(/<hub-list\b((?:"[^"]*"|'[^']*'|[^"'<>])*)\/>/gi, (_match, source) => {
       const attrs = shortcodeAttributes(source);
+      const hubId = normalizeHubId(attrs.hub_id);
       const tags = new Set(
         String(attrs.tags || '')
           .split(',')
@@ -153,15 +160,24 @@ function renderShortcodes(content, current, posts) {
         if (tags.size && !post.tags.some(tag => tags.has(tag.toLowerCase()))) return false;
         return true;
       }).slice(0, Number.isFinite(limit) && limit >= 0 ? limit : 20);
-      return renderArticleLinks(items, attrs.title || 'Artículos relacionados');
+      const hubLink = hubId
+        ? `<p><a href="${htmlEscape(hubId)}">Ver guía principal</a></p>`
+        : '';
+      return `${hubLink}${renderArticleLinks(items, attrs.title || 'Artículos relacionados')}`;
     })
-    .replace(/<see-also\s*([^\/>]*)\/>/g, (_match, source) => {
+    .replace(/<see-also\b((?:"[^"]*"|'[^']*'|[^"'<>])*)\/>/gi, (_match, source) => {
       const attrs = shortcodeAttributes(source);
       const limit = Number.parseInt(attrs.limit || '3', 10);
       const safeLimit = Number.isFinite(limit) && limit >= 0 ? limit : 3;
       return renderArticleLinks(relatedPosts(current, posts, safeLimit), 'También te puede interesar');
     })
     .replace(/<audio-story[^>]*\/>/g, '');
+}
+
+function assertNoRawRelatedShortcodes(html, route) {
+  if (/<(?:hub-list|see-also)\b/i.test(html)) {
+    throw new Error(`Unrendered related-post shortcode in ${route}`);
+  }
 }
 
 function commercialParentLinks(post) {
@@ -229,6 +245,51 @@ function buildShopIndex(products) {
     </a>
   `).join('\n');
   return `<div class="container mx-auto px-4 py-12"><h1 class="text-3xl font-bold text-gray-900 mb-8">Tienda</h1><div class="grid md:grid-cols-3 gap-6">${cards}</div></div>`;
+}
+
+function buildStudioReformerPage(reformers) {
+  const cards = reformers.map(product => `
+    <article class="rounded-lg border p-6">
+      <a href="/product/${htmlEscape(product.slug)}">
+        <img src="${htmlEscape(product.image)}" alt="${htmlEscape(product.name)}" class="w-full h-auto rounded mb-4" />
+        <h2 class="text-xl font-semibold text-gray-900">${htmlEscape(product.name)}</h2>
+      </a>
+      <p class="mt-3 text-gray-700">${htmlEscape(product.description)}</p>
+      <p class="mt-4 font-semibold text-gray-900">$ ${htmlEscape(product.price)} ${htmlEscape(product.currency)}</p>
+    </article>
+  `).join('\n');
+
+  return `
+    <main class="container mx-auto px-4 py-12">
+      <nav aria-label="Migas de pan" class="text-sm text-gray-600">
+        <a href="/">Inicio</a> / Reformer para estudio
+      </nav>
+      <header class="mt-8 max-w-4xl">
+        <p class="text-sm uppercase tracking-wide text-gray-600">Equipamiento profesional</p>
+        <h1 class="mt-3 text-4xl font-bold text-gray-900">Reformer para estudio</h1>
+        <p class="mt-5 text-lg leading-8 text-gray-700">
+          Compara los Reformers disponibles para equipar un estudio de Pilates. Revisa cada ficha para confirmar materiales, configuración, precio y tiempo de fabricación.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="/shop/category/reformers" class="rounded border px-5 py-3 font-semibold">Ver colección completa</a>
+          <a href="/packs/estudio" class="rounded border px-5 py-3 font-semibold">Cotizar pack de estudio</a>
+        </div>
+      </header>
+      <section class="mt-14">
+        <h2 class="text-2xl font-bold text-gray-900">Modelos disponibles para estudio</h2>
+        <p class="mt-3 text-gray-700">${reformers.length} Reformers disponibles en el catálogo actual.</p>
+        <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">${cards}</div>
+      </section>
+      <aside class="mt-14">
+        <h2 class="text-2xl font-bold text-gray-900">Planifica el equipamiento de tu estudio</h2>
+        <ul class="mt-5 space-y-3">
+          <li><a href="/blog/reformer-casa-vs-profesional">Compara Reformer para casa vs profesional</a></li>
+          <li><a href="/blog/cama-de-pilates-guia-de-compra">Consulta la guía de compra de cama de Pilates</a></li>
+          <li><a href="/blog/mantenimiento-cama-de-pilates">Revisa la guía de mantenimiento del Reformer</a></li>
+        </ul>
+      </aside>
+    </main>
+  `;
 }
 
 function buildShopCategoryIndex(slug, category, products) {
@@ -397,6 +458,7 @@ async function main() {
   const origin = process.env.SITE_ORIGIN || 'https://camadepilates.com';
   const posts = readPosts().sort((a,b) => new Date(b.date) - new Date(a.date));
   const prods = readProducts();
+  const routeMeta = JSON.parse(fs.readFileSync(path.join(ROOT, 'src', 'content', 'route-meta.json'), 'utf8'));
   
   const certCities = [
     { key: 'cdmx', name: 'Ciudad de México (CDMX)' },
@@ -428,6 +490,7 @@ async function main() {
     };
     const body = renderPost(p, marked, posts);
     const html = baseHtml(template, head, body);
+    assertNoRawRelatedShortcodes(html, `/blog/${p.slug}`);
     writeFileForRoute(`/blog/${p.slug}`, html);
   }
 
@@ -499,6 +562,61 @@ async function main() {
     let html = baseHtml(template, head, body);
     html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(itemList)}</script>\n</head>`);
     writeFileForRoute('/shop', html);
+  }
+
+  // Studio Reformer landing. Keep this richer snapshot aligned with the React page
+  // and derive every product fact from products.json.
+  {
+    const route = '/reformer-para-estudio';
+    const meta = routeMeta[route];
+    const reformers = prods.filter(product => product.category === 'Reformers');
+    if (!meta || !reformers.length) {
+      throw new Error('Studio Reformer prerender requires route metadata and Reformer products');
+    }
+    const itemList = {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'Reformers para estudio',
+      numberOfItems: reformers.length,
+      itemListElement: reformers.map((product, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: `${origin}/product/${product.slug}`,
+        name: product.name,
+      })),
+    };
+    const collectionPage = {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Reformer para estudio',
+      description: meta.description,
+      url: `${origin}${route}`,
+      inLanguage: 'es-MX',
+      mainEntity: itemList,
+    };
+    const breadcrumb = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: origin },
+        { '@type': 'ListItem', position: 2, name: 'Reformer para estudio' },
+      ],
+    };
+    const head = {
+      title: meta.title,
+      description: meta.description,
+      canonical: `${origin}${route}`,
+      ogImage: `${origin}${reformers[0].image}`,
+      ogType: 'website',
+    };
+    let html = baseHtml(template, head, buildStudioReformerPage(reformers));
+    html = html.replace(
+      '</head>',
+      [breadcrumb, collectionPage, itemList]
+        .map(schema => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`)
+        .join('\n') + '\n</head>'
+    );
+    writeFileForRoute(route, html);
   }
 
   
@@ -650,8 +768,8 @@ async function main() {
   // sees the generic site title and description instead of the page's own. Titles and
   // descriptions come from the same src/content/route-meta.json the components read,
   // so the prerendered head and the hydrated head cannot disagree.
-  const routeMeta = JSON.parse(fs.readFileSync(path.join(ROOT, 'src', 'content', 'route-meta.json'), 'utf8'));
   for (const [route, meta] of Object.entries(routeMeta)) {
+    if (route === '/reformer-para-estudio') continue;
     const head = {
       title: meta.title,
       description: meta.description,

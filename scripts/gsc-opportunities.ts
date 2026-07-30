@@ -1,6 +1,6 @@
 /// <reference lib="deno.ns" />
 
-interface ServiceAccountCredentials {
+export interface ServiceAccountCredentials {
   type: "service_account";
   client_email: string;
   private_key: string;
@@ -204,8 +204,9 @@ export async function createServiceAccountJwt(
 async function fetchAccessToken(
   credentials: ServiceAccountCredentials,
   fetcher: typeof fetch,
+  now: Date,
 ): Promise<string> {
-  const assertion = await createServiceAccountJwt(credentials);
+  const assertion = await createServiceAccountJwt(credentials, now.getTime());
   const response = await fetcher(credentials.token_uri, {
     method: "POST",
     headers: { "content-type": "application/x-www-form-urlencoded" },
@@ -250,8 +251,9 @@ async function fetchSearchAnalytics(
   siteUrl: string,
   accessToken: string,
   fetcher: typeof fetch,
+  now: Date,
 ): Promise<SearchAnalyticsRow[]> {
-  const { startDate, endDate } = searchDateRange();
+  const { startDate, endDate } = searchDateRange(now);
   const endpoint = `https://searchconsole.googleapis.com/webmasters/v3/sites/${
     encodeURIComponent(siteUrl)
   }/searchAnalytics/query`;
@@ -340,14 +342,20 @@ export async function analyzeGscOpportunities(
   env: Environment = Deno.env,
   readTextFile: ReadTextFile = Deno.readTextFile,
   fetcher: typeof fetch = fetch,
+  now = new Date(),
 ): Promise<GscOpportunity[]> {
   const config = requireAnalyzerConfig(env);
   const credentials = await loadServiceAccount(
     config.credentialsPath,
     readTextFile,
   );
-  const accessToken = await fetchAccessToken(credentials, fetcher);
-  const rows = await fetchSearchAnalytics(config.siteUrl, accessToken, fetcher);
+  const accessToken = await fetchAccessToken(credentials, fetcher, now);
+  const rows = await fetchSearchAnalytics(
+    config.siteUrl,
+    accessToken,
+    fetcher,
+    now,
+  );
   return scoreOpportunities(rows);
 }
 
