@@ -3,11 +3,14 @@
 import {
   analyzeGscOpportunities,
   createServiceAccountJwt,
-  loadServiceAccount,
+  loadGoogleCredentials,
   requireAnalyzerConfig,
   scoreOpportunities,
 } from "./gsc-opportunities.ts";
-import type { ServiceAccountCredentials } from "./gsc-opportunities.ts";
+import type {
+  AuthorizedUserCredentials,
+  ServiceAccountCredentials,
+} from "./gsc-opportunities.ts";
 
 function assert(
   condition: unknown,
@@ -128,17 +131,17 @@ Deno.test("requireAnalyzerConfig fails loudly for missing configuration", () => 
   );
 });
 
-Deno.test("loadServiceAccount fails without exposing a missing path", async () => {
+Deno.test("loadGoogleCredentials fails without exposing a missing path", async () => {
   const missingPath = "/private/example/service-account.json";
   await assertRejects(
     () =>
-      loadServiceAccount(missingPath, () => {
+      loadGoogleCredentials(missingPath, () => {
         throw new Deno.errors.NotFound();
       }),
-    "Unable to read Google service account credentials file",
+    "Unable to read Google credentials file",
   );
   try {
-    await loadServiceAccount(missingPath, () => {
+    await loadGoogleCredentials(missingPath, () => {
       throw new Deno.errors.NotFound();
     });
   } catch (error) {
@@ -147,25 +150,28 @@ Deno.test("loadServiceAccount fails without exposing a missing path", async () =
   }
 });
 
-Deno.test("loadServiceAccount rejects malformed credentials", async () => {
+Deno.test("loadGoogleCredentials rejects malformed credentials", async () => {
   await assertRejects(
-    () => loadServiceAccount("unused", () => Promise.resolve("not json")),
+    () => loadGoogleCredentials("unused", () => Promise.resolve("not json")),
     "must be valid JSON",
   );
   await assertRejects(
     () =>
-      loadServiceAccount(
+      loadGoogleCredentials(
         "unused",
         () =>
           Promise.resolve(
-            JSON.stringify({ client_email: "reader@example.com" }),
+            JSON.stringify({
+              type: "service_account",
+              client_email: "reader@example.com",
+            }),
           ),
       ),
     "private_key",
   );
   await assertRejects(
     () =>
-      loadServiceAccount(
+      loadGoogleCredentials(
         "unused",
         () =>
           Promise.resolve(
@@ -178,6 +184,21 @@ Deno.test("loadServiceAccount rejects malformed credentials", async () => {
           ),
       ),
     "PKCS#8 PEM key",
+  );
+  await assertRejects(
+    () =>
+      loadGoogleCredentials(
+        "unused",
+        () =>
+          Promise.resolve(
+            JSON.stringify({
+              type: "authorized_user",
+              client_id: "client-id",
+              client_secret: "client-secret",
+            }),
+          ),
+      ),
+    "refresh_token",
   );
 });
 
@@ -288,6 +309,53 @@ Deno.test("analyzer exchanges OAuth JWT and queries Search Analytics", async () 
   assertEquals(
     opportunities.map((opportunity) => opportunity.query),
     ["first", "same score"],
+  );
+});
+
+Deno.test("analyzer refreshes authorized user ADC with its quota project", async () => {
+  const credentials: AuthorizedUserCredentials = {
+    type: "authorized_user",
+    client_id: "test-client-id",
+    client_secret: "test-client-secret",
+    refresh_token: "test-refresh-token",
+    quota_project_id: "test-quota-project",
+  };
+  const calls: Array<{ url: string; init?: RequestInit }> = [];
+  const fetcher = ((input: string | URL | Request, init?: RequestInit) => {
+    calls.push({ url: String(input), init });
+    if (calls.length === 1) {
+      return Promise.resolve(
+        new Response(JSON.stringify({ access_token: "test-access-token" }), {
+          status: 200,
+          headers: { "content-type": "application/json" },
+        }),
+      );
+    }
+    return Promise.resolve(
+      new Response(JSON.stringify({ rows: [] }), {
+        status: 200,
+        headers: { "content-type": "application/json" },
+      }),
+    );
+  }) as typeof fetch;
+
+  await analyzeGscOpportunities(
+    analyzerEnvironment(),
+    () => Promise.resolve(JSON.stringify(credentials)),
+    fetcher,
+    new Date("2024-02-29T12:00:00.000Z"),
+  );
+
+  assertEquals(calls.length, 2);
+  assertEquals(calls[0].url, "https://oauth2.googleapis.com/token");
+  const tokenBody = new URLSearchParams(String(calls[0].init?.body));
+  assertEquals(tokenBody.get("grant_type"), "refresh_token");
+  assertEquals(tokenBody.get("client_id"), credentials.client_id);
+  assertEquals(tokenBody.get("client_secret"), credentials.client_secret);
+  assertEquals(tokenBody.get("refresh_token"), credentials.refresh_token);
+  assertEquals(
+    new Headers(calls[1].init?.headers).get("x-goog-user-project"),
+    credentials.quota_project_id,
   );
 });
 
