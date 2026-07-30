@@ -8,8 +8,12 @@ const ROOT = path.resolve(__dirname, '..');
 const DIST = path.join(ROOT, 'dist');
 const CONTENT = path.join(ROOT, 'src', 'content', 'blog');
 const PRODUCTS = path.join(ROOT, 'src', 'content', 'products.json');
+const STUDIOS = path.join(ROOT, 'src', 'data', 'studios.json');
 const SHOP_CATEGORY_SEO = JSON.parse(
   fs.readFileSync(path.join(ROOT, 'src', 'content', 'shop-category-seo.json'), 'utf8')
+);
+const STUDIO_DIRECTORY_SEO = JSON.parse(
+  fs.readFileSync(path.join(ROOT, 'src', 'content', 'studio-directory-seo.json'), 'utf8')
 );
 const REDIRECT_POST_SLUGS = new Set([
   'precio-cama-de-pilates',
@@ -382,6 +386,14 @@ function readProducts() {
   }
 }
 
+function readStudios() {
+  try {
+    return JSON.parse(fs.readFileSync(STUDIOS, 'utf8'));
+  } catch (_error) {
+    return { cities: [], studios: [] };
+  }
+}
+
 
 function renderProduct(p, origin) {
   const productSchema = {
@@ -458,15 +470,59 @@ async function main() {
   const origin = process.env.SITE_ORIGIN || 'https://camadepilates.com';
   const posts = readPosts().sort((a,b) => new Date(b.date) - new Date(a.date));
   const prods = readProducts();
+  const studioData = readStudios();
   const routeMeta = JSON.parse(fs.readFileSync(path.join(ROOT, 'src', 'content', 'route-meta.json'), 'utf8'));
   
   const certCities = [
-    { key: 'cdmx', name: 'Ciudad de México (CDMX)' },
-    { key: 'guadalajara', name: 'Guadalajara (Jalisco)' },
-    { key: 'monterrey', name: 'Monterrey (NL)' },
-    { key: 'puebla', name: 'Puebla' },
-    { key: 'queretaro', name: 'Querétaro' },
+    { key: 'cdmx', name: 'Ciudad de México (CDMX)', shortName: 'Ciudad de México', directorySlug: 'ciudad-de-mexico' },
+    { key: 'guadalajara', name: 'Guadalajara (Jalisco)', shortName: 'Guadalajara', directorySlug: 'guadalajara' },
+    { key: 'monterrey', name: 'Monterrey (NL)', shortName: 'Monterrey', directorySlug: 'monterrey' },
+    { key: 'puebla', name: 'Puebla', shortName: 'Puebla' },
+    { key: 'queretaro', name: 'Querétaro', shortName: 'Querétaro' },
   ];
+
+  // Homepage snapshot for crawlers and native Cloudflare builds.
+  {
+    const head = {
+      title: 'Cama de Pilates (Reformer) en México — Guías, Precios y Venta | CAMA Pilates',
+      description: 'Compra tu cama de Pilates Reformer en México: modelos para casa y estudio, guía de precios, dimensiones y envío desde CDMX.',
+      canonical: `${origin}/`,
+      ogImage: `${origin}/og/cama-de-pilates-venta-mexico.png`,
+      ogType: 'website',
+    };
+    const body = `
+    <main class="container mx-auto px-4 py-16">
+      <header class="max-w-4xl">
+        <p class="text-sm uppercase tracking-widest text-gray-600">Reformers para México</p>
+        <h1 class="mt-4 text-4xl md:text-6xl font-bold text-gray-900">Cama de Pilates Reformer en México</h1>
+        <p class="mt-6 text-lg text-gray-700 leading-8">Compara modelos para casa y estudio, consulta precios y encuentra guías para elegir una cama de Pilates con envío desde CDMX.</p>
+      </header>
+      <nav aria-label="Enlaces principales" class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <a href="/shop/category/reformers" class="rounded-lg border p-6"><strong>Comprar Reformers</strong><br><span>Explora modelos y precios disponibles.</span></a>
+        <a href="/reformer-para-estudio" class="rounded-lg border p-6"><strong>Reformer para estudio</strong><br><span>Equipo profesional para uso intensivo.</span></a>
+        <a href="/reformer-para-casa" class="rounded-lg border p-6"><strong>Reformer para casa</strong><br><span>Guía para espacios residenciales.</span></a>
+        <a href="/cama-de-pilates/precio" class="rounded-lg border p-6"><strong>Precio de cama de Pilates</strong><br><span>Rangos y factores de comparación.</span></a>
+        <a href="/estudios-de-pilates" class="rounded-lg border p-6"><strong>Estudios y clases</strong><br><span>Directorio de estudios de Pilates.</span></a>
+        <a href="/certificacion-pilates" class="rounded-lg border p-6"><strong>Certificación de Pilates</strong><br><span>Formación para instructores.</span></a>
+      </nav>
+    </main>`;
+    const schema = {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'Cama de Pilates Reformer — enlaces principales',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, url: `${origin}/shop/category/reformers`, name: 'Comprar Reformers' },
+        { '@type': 'ListItem', position: 2, url: `${origin}/reformer-para-estudio`, name: 'Reformer para estudio' },
+        { '@type': 'ListItem', position: 3, url: `${origin}/reformer-para-casa`, name: 'Reformer para casa' },
+        { '@type': 'ListItem', position: 4, url: `${origin}/cama-de-pilates/precio`, name: 'Precio de cama de Pilates' },
+      ],
+    };
+    const html = baseHtml(template, head, body).replace(
+      '</head>',
+      `<script type="application/ld+json">${JSON.stringify(schema)}</script>\n</head>`,
+    );
+    writeFileForRoute('/', html);
+  }
 
   // Blog index
   const blogHead = {
@@ -739,28 +795,138 @@ async function main() {
 
   // Certification city pages (static snapshots)
   for (const c of certCities) {
+    const cityTitle = `Certificación de Pilates Reformer en ${c.shortName}`;
     const head = {
-      title: `Certificación de Pilates (Reformer) en ${c.name} | camadepilates.com`,
-      description: `Conecta con certificaciones de Pilates en ${c.name}. Reformer y Mat: requisitos, duración, costos y registro.`,
+      title: `${cityTitle} | CAMA Pilates`,
+      description: `Compara opciones de certificación de Pilates Reformer en ${c.shortName}. Revisa requisitos, duración, costos y criterios antes de solicitar fechas.`,
       canonical: `${origin}/certificacion-pilates/${c.key}`,
       ogImage: `${origin}/og/cama-de-pilates-venta-mexico.png`,
       ogType: 'website'
     };
     const certFormUrl = process.env.CERT_FORM_URL || process.env.VITE_AIRTABLE_CERT_FORM_URL || 'mailto:valery@camadepilates.com';
+    const directoryLink = c.directorySlug
+      ? `<a href="/estudios-de-pilates/${c.directorySlug}">Ver clases y estudios en ${c.shortName}</a>`
+      : '';
     const body = `
     <section class="bg-background border-b border-border">
       <div class="container mx-auto px-4 py-12">
-        <h1 class="text-3xl md:text-4xl font-bold text-foreground">Certificación de Pilates (Reformer) en ${c.name}</h1>
-        <p class="mt-4 text-lg text-muted-foreground max-w-2xl">Programas en fines de semana e intensivos. Modalidades Mat y Reformer con práctica supervisada. Cupo limitado.</p>
+        <h1 class="text-3xl md:text-4xl font-bold text-foreground">${cityTitle}</h1>
+        <p class="mt-4 text-lg text-muted-foreground max-w-2xl">Compara opciones de formación en Reformer y Mat en ${c.shortName}. Antes de inscribirte, confirma el respaldo del programa, las horas de práctica, la evaluación y el costo total.</p>
         <div class="mt-6 flex flex-wrap gap-3">
-          <a href="https://wa.me/523222787690?text=${encodeURIComponent('Hola Edelweiss, quiero inscribirme a la certificación de Pilates en ' + c.name)}" class="inline-flex items-center px-5 py-3 rounded-md bg-primary text-primary-foreground">Inscribirme en ${c.name.split(' ')[0]}</a>
+          <a href="https://wa.me/523222787690?text=${encodeURIComponent('Hola Edelweiss, quiero información sobre certificación de Pilates en ' + c.shortName)}" class="inline-flex items-center px-5 py-3 rounded-md bg-primary text-primary-foreground">Solicitar información</a>
           <a href="mailto:valery@camadepilates.com?subject=${encodeURIComponent('Certificación de Pilates - ' + c.name)}&body=${encodeURIComponent('Hola, quisiera recibir el temario, fechas y costos para la certificación de Pilates en ' + c.name + '.') }" class="inline-flex items-center px-5 py-3 rounded-md border border-foreground text-foreground">Solicitar temario</a>
           <a href="${certFormUrl}" class="inline-flex items-center px-5 py-3 rounded-md border border-foreground text-foreground">Pre-inscripción</a>
         </div>
       </div>
+    </section>
+    <section class="container mx-auto px-4 py-12">
+      <h2 class="text-2xl font-bold text-foreground">Qué comparar antes de inscribirte</h2>
+      <ul class="mt-5 space-y-3 text-muted-foreground">
+        <li>Alcance de la formación: Reformer, Mat o ruta integral.</li>
+        <li>Horas de observación, práctica y enseñanza.</li>
+        <li>Método de evaluación y organismo que respalda el certificado.</li>
+        <li>Costo total, materiales incluidos y políticas de pago.</li>
+      </ul>
+      <div class="mt-8 flex flex-wrap gap-4">
+        ${directoryLink}
+        <a href="/reformer-para-estudio">Reformers para abrir un estudio</a>
+      </div>
+      <h2 class="mt-12 text-2xl font-bold text-foreground">Preguntas frecuentes</h2>
+      <h3 class="mt-5 font-semibold">¿Una certificación de Pilates es lo mismo que tomar clases?</h3>
+      <p class="mt-2 text-muted-foreground">No. Una certificación prepara instructores; las clases son para practicar Pilates como alumno.</p>
+      <h3 class="mt-5 font-semibold">¿Cómo consulto próximas fechas y costos?</h3>
+      <p class="mt-2 text-muted-foreground">Solicita información y confirma directamente la sede, el calendario vigente, los requisitos y las políticas de pago antes de inscribirte.</p>
     </section>`;
-    const html = baseHtml(template, head, body);
+    const faq = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Una certificación de Pilates es lo mismo que tomar clases?',
+          acceptedAnswer: { '@type': 'Answer', text: 'No. Una certificación prepara instructores; las clases son para practicar Pilates como alumno.' },
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cómo consulto próximas fechas y costos?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Solicita información y confirma directamente la sede, el calendario vigente, los requisitos y las políticas de pago antes de inscribirte.' },
+        },
+      ],
+    };
+    const html = baseHtml(template, head, body).replace(
+      '</head>',
+      `<script type="application/ld+json">${JSON.stringify(faq)}</script>\n</head>`,
+    );
     writeFileForRoute(`/certificacion-pilates/${c.key}`, html);
+  }
+
+  // City directory pages (static snapshots)
+  for (const c of certCities.filter(city => ['ciudad-de-mexico', 'guadalajara', 'monterrey'].includes(city.directorySlug))) {
+    const isMonterrey = c.directorySlug === 'monterrey';
+    const cityStudios = STUDIO_DIRECTORY_SEO.cities[c.directorySlug] || (studioData.studios || [])
+      .filter(studio => slugify(studio.address?.city || '') === c.directorySlug)
+      .map(studio => ({
+        name: studio.name,
+        slug: studio.slug,
+        neighborhood: studio.address?.neighborhood,
+        rating: studio.metrics?.googleRating,
+        reviewCount: studio.metrics?.googleReviewCount,
+      }));
+    const pageTitle = isMonterrey
+      ? 'Clases y Estudios de Pilates en Monterrey | CAMA Pilates'
+      : `Estudios y Clases de Pilates en ${c.shortName} | CAMA Pilates`;
+    const pageDescription = `Encuentra clases y estudios de Pilates en ${c.shortName}. Compara ubicaciones, modalidades, reseñas y opciones de Reformer.`;
+    const head = {
+      title: pageTitle,
+      description: pageDescription,
+      canonical: `${origin}/estudios-de-pilates/${c.directorySlug}`,
+      ogImage: `${origin}/og/cama-de-pilates-venta-mexico.png`,
+      ogType: 'website',
+    };
+    const studioCards = cityStudios.length
+      ? cityStudios.map(studio => `
+        <li class="rounded-lg border p-5">
+          <a href="/estudios-de-pilates/${c.directorySlug}/${htmlEscape(studio.slug)}"><strong>${htmlEscape(studio.name)}</strong></a>
+          <p class="mt-2">${htmlEscape(studio.neighborhood || c.shortName)}${studio.rating ? ` · ${htmlEscape(studio.rating)} de 5 (${htmlEscape(studio.reviewCount || 0)} reseñas)` : ''}</p>
+        </li>
+      `).join('')
+      : '<li>Consulta el directorio para comparar perfiles y opciones disponibles.</li>';
+    const body = `
+    <main class="container mx-auto px-4 py-12">
+      <nav aria-label="Migas de pan"><a href="/estudios-de-pilates">Directorio de estudios</a></nav>
+      <header class="mt-6 max-w-4xl">
+        <h1 class="text-4xl font-bold text-gray-900">${isMonterrey ? 'Clases y estudios de Pilates en Monterrey' : `Estudios y clases de Pilates en ${c.shortName}`}</h1>
+        <p class="mt-5 text-lg text-gray-700">${pageDescription}</p>
+      </header>
+      <section class="mt-10">
+        <h2 class="text-2xl font-bold text-gray-900">Opciones en ${c.shortName}</h2>
+        <ul class="mt-5 grid md:grid-cols-2 gap-5">${studioCards}</ul>
+      </section>
+      <aside class="mt-12 border-t pt-8">
+        <h2 class="text-2xl font-bold text-gray-900">¿Buscas formación o equipo profesional?</h2>
+        <p class="mt-3 text-gray-700">Las clases del directorio son para practicar Pilates. La certificación prepara instructores y el catálogo profesional reúne equipo para estudios.</p>
+        <div class="mt-5 flex flex-wrap gap-4">
+          <a href="/certificacion-pilates/${c.key}">Certificación en ${c.shortName}</a>
+          <a href="/reformer-para-estudio">Reformers para estudio</a>
+        </div>
+      </aside>
+    </main>`;
+    const itemList = {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: `Estudios de Pilates en ${c.shortName}`,
+      itemListElement: cityStudios.map((studio, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: `${origin}/estudios-de-pilates/${c.directorySlug}/${studio.slug}`,
+        name: studio.name,
+      })),
+    };
+    const html = baseHtml(template, head, body).replace(
+      '</head>',
+      `<script type="application/ld+json">${JSON.stringify(itemList)}</script>\n</head>`,
+    );
+    writeFileForRoute(`/estudios-de-pilates/${c.directorySlug}`, html);
   }
 
   // Static landing pages. These render entirely in React, so without this they fall
@@ -788,4 +954,7 @@ async function main() {
   console.log('Static prerender complete.');
 }
 
-main().catch(console.error);
+main().catch(error => {
+  console.error(error);
+  process.exitCode = 1;
+});

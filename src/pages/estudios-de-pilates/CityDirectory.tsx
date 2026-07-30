@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/sheet";
 import { citySlug } from "@/utils/slug";
 import LuxuryLayout from "@/components/layout/LuxuryLayout";
-import { generateCityDirectorySchema } from "@/lib/seo";
+import { DEFAULTS, generateCityDirectorySchema, getOrigin } from "@/lib/seo";
 import { hasConvex } from "@/lib/convexProvider";
 import localData from "@/data/studios.json";
 
@@ -48,6 +48,32 @@ const cityNameMap: Record<string, string> = {
   guadalajara: "Guadalajara",
 };
 
+const certificationCityMap: Record<string, string> = {
+  "ciudad-de-mexico": "cdmx",
+  guadalajara: "guadalajara",
+  monterrey: "monterrey",
+  puebla: "puebla",
+  queretaro: "queretaro",
+};
+
+const cityCenters: Record<string, { lat: number; lng: number }> = {
+  "ciudad-de-mexico": { lat: 19.4326, lng: -99.1332 },
+  guadalajara: { lat: 20.6597, lng: -103.3496 },
+  monterrey: { lat: 25.6866, lng: -100.3161 },
+};
+
+function distanceKm(from: { lat: number; lng: number }, to: { lat: number; lng: number }) {
+  const radians = Math.PI / 180;
+  const latDelta = (to.lat - from.lat) * radians;
+  const lngDelta = (to.lng - from.lng) * radians;
+  const value =
+    Math.sin(latDelta / 2) ** 2 +
+    Math.cos(from.lat * radians) *
+      Math.cos(to.lat * radians) *
+      Math.sin(lngDelta / 2) ** 2;
+  return 12742 * Math.asin(Math.sqrt(value));
+}
+
 const CityDirectory: React.FC = () => {
   const { city } = useParams<{ city: string }>();
   const navigate = useNavigate();
@@ -55,6 +81,10 @@ const CityDirectory: React.FC = () => {
   // Get city name from URL slug
   const cityName = city ? cityNameMap[city.toLowerCase()] || city : "";
   const normalizedSlug = cityName ? citySlug(cityName) : city || "";
+  const origin = getOrigin();
+  const isMonterrey = normalizedSlug === "monterrey";
+  const certificationCity = certificationCityMap[normalizedSlug];
+  const mapCenter = cityCenters[normalizedSlug] || cityCenters["ciudad-de-mexico"];
 
   useEffect(() => {
     if (city && normalizedSlug && city !== normalizedSlug) {
@@ -72,15 +102,24 @@ const CityDirectory: React.FC = () => {
     () => localData.cities.find((candidate) => candidate.slug === normalizedSlug),
     [normalizedSlug]
   );
+  const validRemoteStudios = useMemo(() => {
+    if (!Array.isArray(remoteStudios)) return [];
+    const center = cityCenters[normalizedSlug];
+    if (!center) return remoteStudios;
+    return remoteStudios.filter((studio) => {
+      const coordinates = studio.address?.coordinates;
+      return coordinates && distanceKm(center, coordinates) <= 75;
+    });
+  }, [normalizedSlug, remoteStudios]);
   const studios = useMemo(() => {
-    if (!Array.isArray(remoteStudios) || remoteStudios.length === 0) {
+    if (validRemoteStudios.length === 0) {
       return fallbackStudios;
     }
 
-    const remoteKeys = new Set(remoteStudios.map((studio) => studio.slug));
+    const remoteKeys = new Set(validRemoteStudios.map((studio) => studio.slug));
     const missingFallbackStudios = fallbackStudios.filter((studio) => !remoteKeys.has(studio.slug));
-    return [...remoteStudios, ...missingFallbackStudios];
-  }, [fallbackStudios, remoteStudios]);
+    return [...validRemoteStudios, ...missingFallbackStudios];
+  }, [fallbackStudios, validRemoteStudios]);
   const cityData = remoteCityData || fallbackCityData;
 
   // UI state for filters/search
@@ -199,8 +238,12 @@ const CityDirectory: React.FC = () => {
   };
 
   // SEO
-  const pageTitle = `Estudios de Pilates en ${cityName} - ${filteredStudios.length} Opciones`;
-  const pageDescription = `Encuentra los mejores estudios de Pilates en ${cityName}. Compara ${filteredStudios.length} estudios con reseñas, precios y ubicaciones.`;
+  const pageTitle = isMonterrey
+    ? `Clases y Estudios de Pilates en Monterrey | ${DEFAULTS.siteName}`
+    : `Estudios y Clases de Pilates en ${cityName} | ${DEFAULTS.siteName}`;
+  const pageDescription = isMonterrey
+    ? "Encuentra clases y estudios de Pilates en Monterrey. Compara ubicaciones, modalidades, reseñas y opciones de Reformer."
+    : `Encuentra clases y estudios de Pilates en ${cityName}. Compara ubicaciones, modalidades, reseñas y opciones de Reformer.`;
 
   const cityDirectorySchema = generateCityDirectorySchema({
     cityName,
@@ -220,6 +263,12 @@ const CityDirectory: React.FC = () => {
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={`${origin}/estudios-de-pilates/${normalizedSlug}`} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${origin}/estudios-de-pilates/${normalizedSlug}`} />
+        <meta property="og:image" content={`${origin}${DEFAULTS.ogImage}`} />
         <script type="application/ld+json">
           {JSON.stringify(cityDirectorySchema)}
         </script>
@@ -236,7 +285,7 @@ const CityDirectory: React.FC = () => {
 
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-7xl font-serif italic text-[#2A2624] mb-8">
-            {cityName}
+            {isMonterrey ? "Clases y estudios de Pilates en Monterrey" : `Estudios y clases de Pilates en ${cityName}`}
           </h1>
           <p className="text-lg text-[#5D5550] mb-6">
             Encuentra el estudio perfecto para tu práctica de Pilates.
@@ -373,7 +422,7 @@ const CityDirectory: React.FC = () => {
               {viewTab === "map" && (
                 <StudioMap
                   studios={filteredStudios}
-                  center={{ lat: 19.4326, lng: -99.1332 }}
+                  center={mapCenter}
                   height="700px"
                   showControls={true}
                   onStudioClick={(studio) => {
@@ -382,6 +431,31 @@ const CityDirectory: React.FC = () => {
                 />
               )}
             </Tabs>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-8 md:px-24 pb-24">
+        <div className="max-w-4xl mx-auto border-t border-[#2A2624]/10 pt-12">
+          <h2 className="text-2xl font-serif italic text-[#2A2624]">¿Buscas formación o equipo profesional?</h2>
+          <p className="mt-3 text-[#5D5550] font-light">
+            Las clases del directorio son para practicar Pilates. La certificación prepara instructores y el catálogo profesional reúne equipo para estudios.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-4">
+            {certificationCity && (
+              <Link
+                to={`/certificacion-pilates/${certificationCity}`}
+                className="inline-flex items-center px-6 py-3 border border-[#2A2624]/20 rounded-full text-xs uppercase tracking-[0.15em] text-[#2A2624] hover:bg-white transition-colors"
+              >
+                Certificación en {cityName}
+              </Link>
+            )}
+            <Link
+              to="/reformer-para-estudio"
+              className="inline-flex items-center px-6 py-3 border border-[#2A2624]/20 rounded-full text-xs uppercase tracking-[0.15em] text-[#2A2624] hover:bg-white transition-colors"
+            >
+              Reformers para estudio
+            </Link>
           </div>
         </div>
       </section>

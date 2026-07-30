@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "prebuild": "node scripts/generate-og.cjs && node scripts/generate-sitemap.cjs && node scripts/generate-image-manifest.js",
-    "build": "vite build",
-    "postbuild": "node scripts/generate-image-manifest.js",
+    "build": "vite build && node scripts/static-prerender.cjs",
+    "postbuild": "node scripts/verify-seo-output.cjs && node scripts/generate-image-manifest.js",
     "build:dev": "vite build --mode development",
     "convex:dev": "convex dev",
     "convex:deploy": "convex deploy",

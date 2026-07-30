@@ -1,0 +1,93 @@
+{
+  "sourceCheckedAt": "2026-07-29",
+  "cities": {
+    "monterrey": [
+      {
+        "name": "Atoms Studio | Pilates, Barre & Yoga",
+        "slug": "atoms-studio-pilates-barre-yoga",
+        "neighborhood": "Fuentes del Valle",
+        "rating": 5,
+        "reviewCount": 162
+      },
+      {
+        "name": "Slowhouse Pilates",
+        "slug": "slowhouse-pilates",
+        "neighborhood": "Del Valle",
+        "rating": 4.9,
+        "reviewCount": 51
+      },
+      {
+        "name": "Pilates Now And Spa",
+        "slug": "pilates-now-and-spa",
+        "neighborhood": "Zona Residencial Chipinque",
+        "rating": 5,
+        "reviewCount": 45
+      },
+      {
+        "name": "Ambar Pilates Studio",
+        "slug": "ambar-pilates-studio",
+        "neighborhood": "Colonia del Valle",
+        "rating": 5,
+        "reviewCount": 44
+      },
+      {
+        "name": "GAIN Pilates Cardio",
+        "slug": "gain-pilates-cardio",
+        "neighborhood": "Lomas del Valle",
+        "rating": 5,
+        "reviewCount": 31
+      },
+      {
+        "name": "Iconic Pilates Studio - Pilates Reformer en Monterrey",
+        "slug": "iconic-pilates-studio-pilates-reformer-en-monterrey",
+        "neighborhood": "Tecnológico",
+        "rating": 4.9,
+        "reviewCount": 31
+      }
+    ],
+    "guadalajara": [
+      {
+        "name": "Fisiologika: Fisioterapia + Pilates + Ejercicio Terapéutico",
+        "slug": "fisiologika-fisioterapia-pilates-ejercicio-terapeutico",
+        "neighborhood": "Arcos Vallarta",
+        "rating": 5,
+        "reviewCount": 45
+      },
+      {
+        "name": "Pilates Korper Providencia",
+        "slug": "pilates-korper-providencia",
+        "neighborhood": "Providencia 3ra. Sección",
+        "rating": 4.6,
+        "reviewCount": 61
+      },
+      {
+        "name": "Soft Pilates Studio",
+        "slug": "soft-pilates-studio",
+        "neighborhood": "Providencia",
+        "rating": 4.6,
+        "reviewCount": 51
+      },
+      {
+        "name": "Studio M Yoga, Pilates, Barre",
+        "slug": "studio-m-yoga-pilates-barre",
+        "neighborhood": "San Rafael",
+        "rating": 4.9,
+        "reviewCount": 37
+      },
+      {
+        "name": "SORÉ STUDIO PILATES",
+        "slug": "sore-studio-pilates",
+        "neighborhood": "Arcos de Guadalupe",
+        "rating": 5,
+        "reviewCount": 33
+      },
+      {
+        "name": "Angels Pilates Reformer",
+        "slug": "angels-pilates-reformer",
+        "neighborhood": "Real de Valdepeñas",
+        "rating": 4.9,
+        "reviewCount": 34
+      }
+    ]
+  }
+}

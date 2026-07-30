@@ -7,7 +7,7 @@
     "dev:api": "deno run --allow-net --allow-read --allow-write --allow-env scripts/dev-api.ts",
     "dev:all": "deno run --allow-all scripts/dev-all.ts",
     "prebuild": "deno run --allow-read scripts/validate-content.ts && deno run --allow-all scripts/generate-og.cjs && deno run --allow-all scripts/generate-sitemap.cjs",
-    "build": "deno run --allow-all npm:vite build && deno run --allow-all scripts/static-prerender.cjs",
+    "build": "deno run --allow-all npm:vite build && deno run --allow-all scripts/static-prerender.cjs && deno run --allow-read scripts/verify-seo-output.cjs",
     "build:dev": "deno run --allow-all npm:vite build --mode development",
     "lint": "deno lint",
     "gsc:opportunities": "deno run --allow-env=GSC_SITE_URL,GOOGLE_APPLICATION_CREDENTIALS --allow-read --allow-net=oauth2.googleapis.com,searchconsole.googleapis.com scripts/gsc-opportunities.ts",
