@@ -98,7 +98,7 @@ const StudioPack: React.FC = () => {
                   <div className="text-3xl font-serif italic text-[#2A2624]">$ {unitPrice.toLocaleString()}</div>
                 </div>
                 <div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550] mb-2">Con 20% OFF</div>
+                  <div className="text-xs uppercase tracking-widest text-[#5D5550] mb-2">Precio Preferencial</div>
                   <div className="text-3xl font-serif italic text-[#3E2723]">$ {discounted.toLocaleString()}</div>
                 </div>
                 <div>

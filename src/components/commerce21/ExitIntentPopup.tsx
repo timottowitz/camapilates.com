@@ -72,15 +72,15 @@ export function ExitIntentPopup({ onClose }: ExitIntentPopupProps) {
                 <div className="grid grid-cols-3 gap-2">
                   <div className="p-2 rounded-lg bg-white/5 border border-white/10 text-center">
                     <span className="text-xs font-bold text-white block">Pack 4</span>
-                    <span className="text-[10px] text-emerald-400 font-semibold">13% OFF</span>
+                    <span className="text-[10px] text-emerald-400 font-semibold">Starter</span>
                   </div>
                   <div className="p-2 rounded-lg bg-white/5 border border-white/10 text-center">
                     <span className="text-xs font-bold text-white block">Pack 6</span>
-                    <span className="text-[10px] text-emerald-400 font-semibold">16% OFF</span>
+                    <span className="text-[10px] text-emerald-400 font-semibold">Pro</span>
                   </div>
                   <div className="p-2 rounded-lg bg-amber-500/10 border border-amber-400/30 text-center">
                     <span className="text-xs font-bold text-amber-200 block">Pack 8</span>
-                    <span className="text-[10px] text-amber-300 font-extrabold">20% OFF</span>
+                    <span className="text-[10px] text-amber-300 font-extrabold">Completo</span>
                   </div>
                 </div>
               </div>

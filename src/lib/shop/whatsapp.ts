@@ -22,7 +22,7 @@ export function productWhatsAppUrl(
   if (bundleCalc && bundleCalc.quantity > 1) {
     msgParts = [
       `Hola, me interesa comprar el Paquete de ${bundleCalc.quantity} unidades de: ${p.name}`,
-      `Descuento aplicado: ${bundleCalc.discountPercentage}% OFF (Estudio)`,
+      `Paquete Preferencial de Estudio (${bundleCalc.quantity} Unidades)`,
       `Precio Unitario: $${bundleCalc.discountedUnitPrice.toLocaleString('es-MX')} ${p.currency}`,
       `Total Paquete (${bundleCalc.quantity} Reformers): $${bundleCalc.discountedTotalPrice.toLocaleString('es-MX')} ${p.currency}`,
       `Ahorro total: $${bundleCalc.totalSavings.toLocaleString('es-MX')} ${p.currency}`,

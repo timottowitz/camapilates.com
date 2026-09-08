@@ -441,7 +441,7 @@ const ProductPage: React.FC = () => {
                     <span className="font-bold text-emerald-700">
                       Ahorras{' '}
                       <span translate="no" className="notranslate">
-                        ${bundleCalc.totalSavings.toLocaleString('es-MX')} {prod.currency} ({bundleCalc.discountPercentage}% OFF)
+                        ${bundleCalc.totalSavings.toLocaleString('es-MX')} {prod.currency}
                       </span>
                     </span>
                   </p>

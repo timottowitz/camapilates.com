@@ -12,7 +12,7 @@ export const StudioPackPromoModal: React.FC = () => {
 
   return (
     <>
-      {/* Floating Trigger Badge for Users who want to reopen */}
+      {/* Floating Trigger Badge */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
@@ -21,7 +21,7 @@ export const StudioPackPromoModal: React.FC = () => {
         >
           <Building2 className="w-4 h-4 text-amber-300 group-hover:rotate-12 transition-transform" />
           <span className="text-xs font-semibold uppercase tracking-wider">
-            El Pack Estudio · Hasta 20% OFF
+            El Pack Estudio · Paquetes Mayoristas
           </span>
         </button>
       )}
@@ -79,7 +79,7 @@ export const StudioPackPromoModal: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Right Column: High-Converting Copy & Discounts */}
+                {/* Right Column: Copy & Packages */}
                 <div className="md:col-span-7 p-6 sm:p-8 flex flex-col justify-between space-y-6">
                   <div>
                     <div className="flex items-center gap-2 mb-2">
@@ -94,7 +94,7 @@ export const StudioPackPromoModal: React.FC = () => {
                     </h2>
 
                     <p className="text-sm text-[#EAE8E4]/80 font-light leading-relaxed mb-4">
-                      Compra nuestros paquetes <strong className="text-white font-semibold">Studio Reformer</strong> y llévate el descuento directo a tu proyecto.
+                      Compra nuestros paquetes <strong className="text-white font-semibold">Studio Reformer</strong> y obtén precios especiales por volumen para tu proyecto.
                     </p>
 
                     <div className="p-3.5 rounded-xl bg-[#1F1C1A] border border-amber-500/20 mb-4">
@@ -103,23 +103,23 @@ export const StudioPackPromoModal: React.FC = () => {
                       </p>
                     </div>
 
-                    {/* Discount Tier Pills */}
+                    {/* Tier Pills without OFF text */}
                     <div className="space-y-1.5">
                       <span className="text-[10px] uppercase tracking-widest text-[#EAE8E4]/60 font-semibold block mb-1">
-                        Descuentos por Volumen:
+                        Paquetes para Estudio:
                       </span>
                       <div className="grid grid-cols-3 gap-2">
                         <div className="p-2 rounded-lg bg-white/5 border border-white/10 text-center">
                           <span className="text-xs font-bold text-white block">Pack 4</span>
-                          <span className="text-[10px] text-emerald-400 font-semibold">13% OFF</span>
+                          <span className="text-[10px] text-emerald-400 font-semibold">Starter</span>
                         </div>
                         <div className="p-2 rounded-lg bg-white/5 border border-white/10 text-center">
                           <span className="text-xs font-bold text-white block">Pack 6</span>
-                          <span className="text-[10px] text-emerald-400 font-semibold">16% OFF</span>
+                          <span className="text-[10px] text-emerald-400 font-semibold">Pro</span>
                         </div>
                         <div className="p-2 rounded-lg bg-amber-500/10 border border-amber-400/30 text-center">
                           <span className="text-xs font-bold text-amber-200 block">Pack 8</span>
-                          <span className="text-[10px] text-amber-300 font-extrabold">20% OFF</span>
+                          <span className="text-[10px] text-amber-300 font-extrabold">Completo</span>
                         </div>
                       </div>
                     </div>
@@ -132,7 +132,7 @@ export const StudioPackPromoModal: React.FC = () => {
                       onClick={handleClose}
                       className="w-full flex items-center justify-center gap-2 bg-[#EAE8E4] text-[#2A2624] rounded-full py-3.5 px-6 uppercase tracking-[0.15em] text-xs font-bold hover:bg-white hover:scale-[1.02] transition-all duration-300 shadow-xl"
                     >
-                      Ver Reformer de Maple A001 & Paquetes <ArrowRight className="w-4 h-4" />
+                      Ver Reformer A001 & Paquetes <ArrowRight className="w-4 h-4" />
                     </Link>
 
                     <div className="flex items-center justify-center gap-4 text-[10px] text-[#EAE8E4]/60">
@@ -140,7 +140,7 @@ export const StudioPackPromoModal: React.FC = () => {
                         <ShieldCheck className="w-3 h-3 text-amber-300" /> Garantía 3 Años
                       </span>
                       <span>•</span>
-                      <span>Envíos a todo México</span>
+                      <span>Envío a Todo México</span>
                     </div>
                   </div>
                 </div>

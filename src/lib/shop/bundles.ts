@@ -21,21 +21,18 @@ export const REFORMER_BUNDLES: BundleOption[] = [
     discountPercentage: 13,
     label: 'Pack 4',
     sublabel: 'Estudio Starter',
-    badge: '13% DESC.',
   },
   {
     quantity: 6,
     discountPercentage: 16,
     label: 'Pack 6',
     sublabel: 'Estudio Pro',
-    badge: '16% DESC.',
   },
   {
     quantity: 8,
     discountPercentage: 20,
     label: 'Pack 8',
     sublabel: 'Estudio Completo',
-    badge: '20% DESC.',
     isBestValue: true,
   },
 ];
