@@ -27,7 +27,7 @@ import ExitIntentPopup, { useExitIntent } from '@/components/commerce21/ExitInte
 import ProductCard21Enhanced from '@/components/commerce21/ProductCard21Enhanced';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import MobileFilterSheet, { MobileFilterTrigger } from '@/components/commerce21/MobileFilterSheet';
-import { ChevronDown, Mail, ArrowRight } from 'lucide-react';
+import { ChevronDown, Mail, ArrowRight, MapPin } from 'lucide-react';
 
 function getInitialRegion(): Region {
   if (typeof window === 'undefined') return 'MX';
@@ -235,6 +235,27 @@ const Shop: React.FC = () => {
             ctaPrimary={{ text: 'Ver promoción', href: '/product/reformer-aluminio-riel-deslizante-a068' }}
             ctaSecondary={{ text: 'Ver Reformers', href: '/shop/category/reformers' }}
           />
+
+          {/* Monterrey 7-Day Studio Package Banner */}
+          <div className="p-6 sm:p-8 rounded-3xl bg-[#2A2624] text-[#EAE8E4] border border-[#EAE8E4]/15 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 my-6">
+            <div className="space-y-2 max-w-2xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400 text-black text-[10px] font-extrabold uppercase tracking-widest">
+                <MapPin className="w-3.5 h-3.5" /> Exclusivo Monterrey & ZMM
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-serif italic text-white leading-tight">
+                ¿Abriendo Estudio en Monterrey, San Pedro o Cumbres?
+              </h3>
+              <p className="text-xs sm:text-sm text-[#EAE8E4]/80 font-light leading-relaxed">
+                Arma tu paquete de Reformers (4, 6 u 8 unidades) con despacho prioritario y <strong className="text-white font-semibold">envío asegurado a Monterrey en 7 días hábiles</strong>.
+              </p>
+            </div>
+            <Link
+              to="/pilates-reformer-monterrey"
+              className="inline-flex items-center gap-2 bg-[#EAE8E4] text-[#2A2624] px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.15em] hover:bg-white hover:scale-105 transition-all duration-300 shrink-0 shadow-lg"
+            >
+              Armar Paquete Monterrey <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
 
           {/* Shop by category icons */}
           <div>

@@ -73,6 +73,7 @@ const CamaDePilatesHub = lazyWithRetry(() => import('./pages/CamaDePilatesHub'))
 const ReformerParaCasa = lazyWithRetry(() => import('./pages/ReformerParaCasa'));
 const ReformerParaEstudio = lazyWithRetry(() => import('./pages/ReformerParaEstudio'));
 const PilatesReformerCDMX = lazyWithRetry(() => import('./pages/PilatesReformerCDMX'));
+const PilatesReformerMonterrey = lazyWithRetry(() => import('./pages/PilatesReformerMonterrey').then(m => ({ default: m.PilatesReformerMonterrey })));
 const CertificacionPilates = lazyWithRetry(() => import('./pages/CertificacionPilates'));
 const CertificacionPilatesCity = lazyWithRetry(() => import('./pages/CertificacionPilatesCity'));
 const LegalTerms = lazyWithRetry(() => import('./pages/LegalTerms'));
@@ -133,6 +134,8 @@ const App = () => (
               <Route path="/reformer-para-casa" element={<Suspense fallback={<PageLoader />}><ReformerParaCasa /></Suspense>} />
               <Route path="/reformer-para-estudio" element={<Suspense fallback={<PageLoader />}><ReformerParaEstudio /></Suspense>} />
               <Route path="/pilates-reformer-cdmx" element={<Suspense fallback={<PageLoader />}><PilatesReformerCDMX /></Suspense>} />
+              <Route path="/pilates-reformer-monterrey" element={<Suspense fallback={<PageLoader />}><PilatesReformerMonterrey /></Suspense>} />
+              <Route path="/packs/monterrey" element={<Suspense fallback={<PageLoader />}><PilatesReformerMonterrey /></Suspense>} />
               <Route path="/certificacion-pilates" element={<Suspense fallback={<PageLoader />}><CertificacionPilates /></Suspense>} />
               <Route path="/certificacion-pilates/:city" element={<Suspense fallback={<PageLoader />}><CertificacionPilatesCity /></Suspense>} />
               <Route path="/legal/terminos" element={<Suspense fallback={<PageLoader />}><LegalTerms /></Suspense>} />
