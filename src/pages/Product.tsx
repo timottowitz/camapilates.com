@@ -362,17 +362,6 @@ const ProductPage: React.FC = () => {
               images={galleryImages}
               showLabels={true}
             />
-            <div className="mt-8 hidden md:block">
-              <ContextualImage
-                placeholderId={`product-${prod.slug}-hero-1`}
-                pageType="shop"
-                pageSlug={prod.slug}
-                location="hero"
-                aspectRatio="1:1"
-                alt={prod.name}
-                fallbackSrc={activeVariant?.image || prod.image}
-              />
-            </div>
           </motion.div>
 
           {/* Right Column: Info */}
@@ -402,7 +391,7 @@ const ProductPage: React.FC = () => {
               <div className="flex items-center gap-3">
                 {(prod.isNew || prod.bestSeller) && (
                   <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#2A2624] text-[#EAE8E4] text-[10px] uppercase tracking-[0.2em]">
-                    {prod.isNew ? 'New Arrival' : 'Best Seller'}
+                    {prod.isNew ? 'Nueva Llegada' : 'Más Vendido'}
                   </span>
                 )}
                 {(/mycel/i.test(prod.name) || (prod.finishes || []).includes('mycelium')) && (
