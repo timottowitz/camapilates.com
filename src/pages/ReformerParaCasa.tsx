@@ -175,7 +175,7 @@ const ReformerParaCasa: React.FC = () => {
               <Truck className="w-8 h-8 text-[#3E2723] mb-4" />
               <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Entrega</h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                Confirma que incluya envío a domicilio. Los reformers pesan 70-95kg y requieren manejo especializado.
+                Fabricamos en México y despachamos con envío a domicilio asegurado a los 32 estados de la República Mexicana. Manejo especializado con empaque reforzado.
               </p>
             </div>
           </div>

@@ -26,7 +26,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: [
-      { '@type': 'Question', name: '¿Cuánto tarda el envío en México?', acceptedAnswer: { '@type': 'Answer', text: 'Desde CDMX entregamos en 3 semanas hábiles. Para pedidos por volumen (8+), coordinamos fechas de instalación.' } },
+      { '@type': 'Question', name: '¿Envían a todos los estados de México?', acceptedAnswer: { '@type': 'Answer', text: 'Sí. Fabricamos en México y enviamos con flete asegurado a los 32 estados de la República Mexicana. Tiempo de producción y entrega de 3 a 6–8 semanas según el modelo.' } },
       { '@type': 'Question', name: '¿Qué garantía ofrecen?', acceptedAnswer: { '@type': 'Answer', text: 'Garantía de 1 año. Repuestos exprés y soporte en español.' } },
       { '@type': 'Question', name: '¿Hay descuento para estudios?', acceptedAnswer: { '@type': 'Answer', text: 'Sí. A partir de 8 unidades aplicamos 20% de descuento y podemos coordinar instalación.' } },
     ],

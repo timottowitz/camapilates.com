@@ -164,12 +164,10 @@ const ProductPage: React.FC = () => {
     mainEntity: [
       {
         '@type': 'Question',
-        name: '¿Cuánto tarda la entrega?',
+        name: '¿Envían a cualquier estado de México?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: safeProd.deliveryTime
-            ? `Este equipo se fabrica bajo pedido: el tiempo de producción y entrega es de 6 a 8 semanas a cualquier parte de México.`
-            : 'En México la entrega estimada es de 3 semanas. Envíos a EE. UU. y Europa entre 4–6 semanas.'
+          text: 'Sí. Fabricamos en México y despachamos directamente a los 32 estados de la República Mexicana con flete especializado y empaque reforzado. Tiempo de producción y entrega: 3 a 6–8 semanas según modelo.'
         }
       },
       {

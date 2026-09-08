@@ -29,7 +29,7 @@ const LegalTerms: React.FC = () => {
 
           <h3 className="font-serif italic text-[#2A2624] mt-12 mb-4">2. Envíos y Entregas</h3>
           <p>
-            Realizamos envíos a todo México. El tiempo estimado de entrega es de 3 semanas hábiles para pedidos estándar. Para pedidos de estudio o personalizados, el tiempo puede variar y se confirmará al momento de la compra.
+            Fabricamos en México y realizamos envíos asegurados a los 32 estados de la República Mexicana (Jalisco, Nuevo León, Querétaro, Quintana Roo, Baja California, Yucatán, Puebla, Veracruz, CDMX y más). El tiempo estimado de producción y entrega oscila entre 3 y 6–8 semanas según el modelo de equipo.
           </p>
 
           <h3 className="font-serif italic text-[#2A2624] mt-12 mb-4">3. Garantía</h3>

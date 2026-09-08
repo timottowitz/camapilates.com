@@ -176,10 +176,10 @@ const Shop: React.FC = () => {
             },
             {
               "@type": "Question",
-              "name": "¿Cuánto tiempo tarda la entrega?",
+              "name": "¿A qué estados de México realizan envíos?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "La entrega en México es de 3 semanas. Para envíos a EE.UU. y Europa, el tiempo estimado es de 4-6 semanas."
+                "text": "Fabricamos en México y enviamos directamente a los 32 estados de la República Mexicana con empaque reforzado y flete asegurado (3 a 6–8 semanas según el modelo)."
               }
             },
             {

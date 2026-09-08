@@ -74,6 +74,12 @@ const EdelweissNav: React.FC<EdelweissNavProps> = ({ darkBackground = false }) =
 
   return (
     <>
+      <div className="bg-[#2A2624] text-[#EAE8E4] text-[10px] sm:text-xs font-medium py-1.5 px-4 text-center tracking-widest uppercase flex items-center justify-center gap-2 border-b border-[#EAE8E4]/10">
+        <span>🇲🇽 Fabricación Nacional</span>
+        <span className="opacity-40">•</span>
+        <span>Envíos asegurados a los 32 estados de la República Mexicana</span>
+      </div>
+
       <motion.header
         initial={false}
         animate={{
@@ -87,7 +93,7 @@ const EdelweissNav: React.FC<EdelweissNavProps> = ({ darkBackground = false }) =
         }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         className={`
-          fixed top-0 left-0 right-0 z-50
+          fixed top-[29px] sm:top-[33px] left-0 right-0 z-50
           border-b
           ${getTextColor()}
         `}

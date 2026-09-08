@@ -21,7 +21,7 @@ type HubCard = {
 const IndexAuthority: React.FC = () => {
   const origin = getOrigin();
   const title = 'Cama de Pilates (Reformer) en México — Guías, Precios y Venta';
-  const desc = 'Compra tu cama de Pilates Reformer en México: modelos para casa y estudio, guía de precios, dimensiones y envío desde CDMX.';
+  const desc = 'Compra tu cama de Pilates Reformer en México: modelos para casa y estudio. Fabricación nacional con envíos asegurados a los 32 estados de la República Mexicana.';
 
   const cards = useMemo<HubCard[]>(() => (
     [
