@@ -228,6 +228,7 @@ export const PilatesReformerMonterrey: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {reformers.map((p) => {
                     const isSelected = p.slug === selectedProductSlug;
+                    const modelBundle = calculateBundlePrice(p.price, selectedQty);
                     return (
                       <button
                         key={p.slug}
@@ -249,8 +250,14 @@ export const PilatesReformerMonterrey: React.FC = () => {
                             {p.brand}
                           </span>
                         </div>
-                        <div className="mt-3 pt-2 border-t border-[#2A2624]/10 text-xs font-bold text-[#2A2624]">
-                          ${Number(p.price).toLocaleString('es-MX')} MXN
+                        <div className="mt-3 pt-2 border-t border-[#2A2624]/10">
+                          <div translate="no" className="notranslate text-xs font-bold text-[#2A2624]">
+                            ${modelBundle.discountedUnitPrice.toLocaleString('es-MX')} MXN
+                            <span className="text-[10px] font-normal text-[#5D5550]"> / u.</span>
+                          </div>
+                          <div translate="no" className="notranslate text-[10px] text-[#5D5550] line-through">
+                            ${Number(p.price).toLocaleString('es-MX')} MXN
+                          </div>
                         </div>
                       </button>
                     );
@@ -266,6 +273,7 @@ export const PilatesReformerMonterrey: React.FC = () => {
                 <div className="grid grid-cols-3 gap-3">
                   {([4, 6, 8] as BundleQuantity[]).map((qty) => {
                     const isSelected = selectedQty === qty;
+                    const tierBundle = calculateBundlePrice(selectedProd?.price || 27160, qty);
                     return (
                       <button
                         key={qty}
@@ -279,11 +287,14 @@ export const PilatesReformerMonterrey: React.FC = () => {
                           }
                         `}
                       >
-                        <span className="block text-2xl font-serif italic font-bold">
+                        <span translate="no" className="notranslate block text-2xl font-serif italic font-bold">
                           {qty} Camas
                         </span>
                         <span className={`text-[10px] uppercase tracking-wider block mt-1 ${isSelected ? 'text-amber-200 font-semibold' : 'text-[#5D5550]'}`}>
                           {qty === 4 ? 'Studio Starter' : qty === 6 ? 'Studio Pro' : 'Estudio Completo'}
+                        </span>
+                        <span translate="no" className={`notranslate text-[10px] font-bold block mt-1.5 ${isSelected ? 'text-emerald-300' : 'text-emerald-700'}`}>
+                          ${tierBundle.discountedUnitPrice.toLocaleString('es-MX')} / u.
                         </span>
                       </button>
                     );
@@ -315,32 +326,38 @@ export const PilatesReformerMonterrey: React.FC = () => {
             </div>
 
             {/* Summary & Monterrey Delivery Checkout Card */}
-            <div className="lg:col-span-5 p-8 rounded-3xl bg-[#2A2624] text-[#EAE8E4] space-y-6 shadow-2xl border border-[#EAE8E4]/15">
+            <div
+              key={`summary-${selectedProductSlug}-${selectedQty}`}
+              className="lg:col-span-5 p-8 rounded-3xl bg-[#2A2624] text-[#EAE8E4] space-y-6 shadow-2xl border border-[#EAE8E4]/15"
+            >
               <div className="space-y-2 border-b border-white/10 pb-4">
                 <span className="text-[10px] uppercase tracking-[0.2em] text-amber-300 font-bold block">
                   Resumen de Paquete Monterrey
                 </span>
                 <h3 className="text-2xl font-serif italic text-white">
-                  Paquete de {selectedQty}x {selectedProd?.name}
+                  Paquete de <span translate="no" className="notranslate font-sans font-bold">{selectedQty}x</span>{' '}
+                  <span translate="no" className="notranslate">{selectedProd?.name}</span>
                 </h3>
               </div>
 
               <div className="space-y-3">
                 <div className="flex justify-between text-xs text-[#EAE8E4]/70">
                   <span>Precio Unitario Preferencial:</span>
-                  <span className="font-semibold text-white">
+                  <span translate="no" className="notranslate font-semibold text-white">
                     ${bundleCalc.discountedUnitPrice.toLocaleString('es-MX')} MXN
                   </span>
                 </div>
                 <div className="flex justify-between text-xs text-[#EAE8E4]/70">
                   <span>Precio Regular sin Descuento:</span>
-                  <span className="line-through">
+                  <span translate="no" className="notranslate line-through">
                     ${bundleCalc.originalTotalPrice.toLocaleString('es-MX')} MXN
                   </span>
                 </div>
                 <div className="flex justify-between text-sm text-emerald-400 font-bold pt-1">
                   <span>Ahorro Total Paquete:</span>
-                  <span>${bundleCalc.totalSavings.toLocaleString('es-MX')} MXN</span>
+                  <span translate="no" className="notranslate">
+                    ${bundleCalc.totalSavings.toLocaleString('es-MX')} MXN
+                  </span>
                 </div>
               </div>
 
@@ -348,7 +365,7 @@ export const PilatesReformerMonterrey: React.FC = () => {
                 <span className="text-[10px] uppercase tracking-widest text-[#EAE8E4]/60 block">
                   Total Final con Envío a Monterrey:
                 </span>
-                <div className="text-3xl font-serif italic font-bold text-white">
+                <div translate="no" className="notranslate text-3xl font-serif italic font-bold text-white">
                   ${bundleCalc.discountedTotalPrice.toLocaleString('es-MX')}{' '}
                   <span className="text-xs font-sans not-italic text-[#EAE8E4]/80">MXN</span>
                 </div>

@@ -90,34 +90,60 @@ const StudioPack: React.FC = () => {
         <div className="mt-24 grid lg:grid-cols-3 gap-12">
           {/* Pricing Block */}
           <div className="lg:col-span-2 space-y-12">
-            <div className="bg-white/50 border border-[#2A2624]/10 p-8 md:p-12 rounded-sm backdrop-blur-sm">
+            <div key={`studio-investment-${qty}`} className="bg-white/50 border border-[#2A2624]/10 p-8 md:p-12 rounded-sm backdrop-blur-sm">
               <h2 className="text-2xl font-serif italic text-[#2A2624] mb-8">Estimated Investment</h2>
               <div className="grid md:grid-cols-3 gap-8">
                 <div>
                   <div className="text-xs uppercase tracking-widest text-[#5D5550] mb-2">Precio Unitario</div>
-                  <div className="text-3xl font-serif italic text-[#2A2624]">$ {unitPrice.toLocaleString()}</div>
+                  <div translate="no" className="notranslate text-3xl font-serif italic text-[#2A2624]">$ {unitPrice.toLocaleString('es-MX')} MXN</div>
                 </div>
                 <div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550] mb-2">Precio Preferencial</div>
-                  <div className="text-3xl font-serif italic text-[#3E2723]">$ {discounted.toLocaleString()}</div>
+                  <div className="text-xs uppercase tracking-widest text-[#5D5550] mb-2">Precio Preferencial (-20%)</div>
+                  <div translate="no" className="notranslate text-3xl font-serif italic text-[#3E2723]">$ {discounted.toLocaleString('es-MX')} MXN</div>
                 </div>
                 <div>
-                  <div className="text-xs uppercase tracking-widest text-[#5D5550] mb-2">Total (x{qty})</div>
-                  <div className="text-3xl font-serif italic text-[#2A2624]">$ {subtotal.toLocaleString()}</div>
+                  <div className="text-xs uppercase tracking-widest text-[#5D5550] mb-2">
+                    Total (x<span translate="no" className="notranslate">{qty}</span>)
+                  </div>
+                  <div translate="no" className="notranslate text-3xl font-serif italic text-[#2A2624]">$ {subtotal.toLocaleString('es-MX')} MXN</div>
                 </div>
               </div>
 
-              <div className="mt-12 flex items-center gap-6 border-t border-[#2A2624]/10 pt-8">
-                <label htmlFor="qty" className="text-sm font-sans text-[#2A2624]">Cantidad de Reformers:</label>
-                <input
-                  id="qty"
-                  type="number"
-                  min={8}
-                  max={50}
-                  value={qty}
-                  onChange={(e) => setQty(Math.max(8, parseInt(e.target.value || '8', 10)))}
-                  className="w-24 rounded-none border-b border-[#2A2624] bg-transparent px-2 py-1 text-xl font-serif italic text-[#2A2624] focus:outline-none"
-                />
+              {/* Quick Select Presets + Custom Input */}
+              <div className="mt-8 pt-6 border-t border-[#2A2624]/10 space-y-4">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#2A2624] mr-2">Paquetes Rápidos:</span>
+                  {[8, 10, 12, 16, 20].map((preset) => (
+                    <button
+                      key={preset}
+                      type="button"
+                      onClick={() => setQty(preset)}
+                      className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                        qty === preset
+                          ? 'bg-[#2A2624] text-white shadow-sm'
+                          : 'bg-white border border-[#2A2624]/20 text-[#2A2624] hover:border-[#2A2624]'
+                      }`}
+                    >
+                      <span translate="no" className="notranslate">{preset} Camas</span>
+                    </button>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-6 pt-2">
+                  <label htmlFor="qty" className="text-sm font-sans text-[#2A2624]">O ingresa cantidad personalizada:</label>
+                  <input
+                    id="qty"
+                    type="number"
+                    min={8}
+                    max={50}
+                    value={qty}
+                    onChange={(e) => {
+                      const parsed = parseInt(e.target.value, 10);
+                      setQty(isNaN(parsed) ? 8 : Math.max(8, parsed));
+                    }}
+                    className="w-24 rounded-none border-b border-[#2A2624] bg-transparent px-2 py-1 text-xl font-serif italic text-[#2A2624] focus:outline-none"
+                  />
+                </div>
               </div>
             </div>
 

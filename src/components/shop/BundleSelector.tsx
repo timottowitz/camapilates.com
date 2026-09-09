@@ -79,16 +79,16 @@ export const BundleSelector: React.FC<BundleSelectorProps> = ({
               <div className="pt-2 border-t border-[#2A2624]/10 pointer-events-none">
                 {bundle.discountPercentage > 0 ? (
                   <>
-                    <div className="text-xs font-bold text-[#2A2624]">
+                    <div translate="no" className="notranslate text-xs font-bold text-[#2A2624]">
                       ${calc.discountedUnitPrice.toLocaleString('es-MX')}
                       <span className="text-[9px] font-normal text-[#5D5550]"> / u.</span>
                     </div>
-                    <div className="text-[10px] text-[#5D5550] line-through">
+                    <div translate="no" className="notranslate text-[10px] text-[#5D5550] line-through">
                       ${calc.originalUnitPrice.toLocaleString('es-MX')}
                     </div>
                   </>
                 ) : (
-                  <div className="text-xs font-bold text-[#2A2624]">
+                  <div translate="no" className="notranslate text-xs font-bold text-[#2A2624]">
                     ${calc.originalUnitPrice.toLocaleString('es-MX')}
                     <span className="text-[9px] font-normal text-[#5D5550]"> / u.</span>
                   </div>
@@ -101,27 +101,30 @@ export const BundleSelector: React.FC<BundleSelectorProps> = ({
 
       {/* Rebated Price Summary Panel */}
       {selectedQuantity > 1 && (
-        <div className="mt-4 p-4 rounded-xl bg-[#2A2624] text-[#EAE8E4] flex flex-col sm:flex-row sm:items-center justify-between gap-3 animate-in fade-in duration-300">
+        <div
+          key={`bundle-summary-${selectedQuantity}-${basePrice}`}
+          className="mt-4 p-4 rounded-xl bg-[#2A2624] text-[#EAE8E4] flex flex-col sm:flex-row sm:items-center justify-between gap-3 animate-in fade-in duration-300"
+        >
           <div>
             <div className="flex items-center gap-2 mb-0.5">
               <Sparkles className="w-3.5 h-3.5 text-amber-300" />
               <span className="text-xs font-medium uppercase tracking-wider text-amber-200">
-                The Studio Pack ({currentCalc.quantity}x {productName})
+                The Studio Pack (<span translate="no" className="notranslate">{currentCalc.quantity}x</span> {productName})
               </span>
             </div>
             <p className="text-xs text-[#EAE8E4]/80">
-              Precio Unitario: <span className="font-semibold text-white">${currentCalc.discountedUnitPrice.toLocaleString('es-MX')} {currency}</span>
+              Precio Unitario: <span translate="no" className="notranslate font-semibold text-white">${currentCalc.discountedUnitPrice.toLocaleString('es-MX')} {currency}</span>
             </p>
           </div>
 
           <div className="text-right sm:text-right border-t sm:border-t-0 border-[#EAE8E4]/15 pt-2 sm:pt-0">
-            <div className="text-[11px] text-[#EAE8E4]/60 line-through">
+            <div translate="no" className="notranslate text-[11px] text-[#EAE8E4]/60 line-through">
               Precio Regular: ${currentCalc.originalTotalPrice.toLocaleString('es-MX')} {currency}
             </div>
-            <div className="text-xl font-serif italic font-bold text-white">
+            <div translate="no" className="notranslate text-xl font-serif italic font-bold text-white">
               Total: ${currentCalc.discountedTotalPrice.toLocaleString('es-MX')} <span className="text-xs font-sans not-italic text-[#EAE8E4]/80">{currency}</span>
             </div>
-            <div className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-400 uppercase tracking-widest mt-0.5">
+            <div translate="no" className="notranslate inline-flex items-center gap-1 text-[10px] font-bold text-emerald-400 uppercase tracking-widest mt-0.5">
               <Tag className="w-3 h-3" /> Ahorro total: ${currentCalc.totalSavings.toLocaleString('es-MX')} {currency}
             </div>
           </div>

@@ -53,11 +53,11 @@ export function FinancingDisplay({
           <Badge variant="default" className="text-xs">0% interés</Badge>
         </div>
         <div className="space-y-3">
-          <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-bold text-primary">
+          <div key={`financing-prominent-${selectedMonths}-${price}`} className="flex items-baseline gap-2">
+            <span translate="no" className="notranslate text-3xl font-bold text-primary">
               ${calculateMonthly(selectedMonths).toLocaleString('es-MX')}
             </span>
-            <span className="text-sm text-muted-foreground">/ mes × {selectedMonths} meses</span>
+            <span className="text-sm text-muted-foreground">/ mes × <span translate="no" className="notranslate font-semibold">{selectedMonths}</span> meses</span>
           </div>
 
           <div className="grid grid-cols-3 gap-2">
@@ -118,8 +118,8 @@ export function FinancingDisplay({
         )}
       </div>
 
-      <div className="flex items-baseline gap-2">
-        <span className="text-2xl font-bold text-primary">
+      <div key={`financing-default-${selectedMonths}-${price}`} className="flex items-baseline gap-2">
+        <span translate="no" className="notranslate text-2xl font-bold text-primary">
           ${calculateMonthly(selectedMonths).toLocaleString('es-MX')}
         </span>
         <span className="text-sm text-muted-foreground">/ mes</span>

@@ -39,8 +39,14 @@ const QuickView21: React.FC<Props> = ({ product, onClose }) => {
             <div>
               <h2 className="text-xl font-semibold text-foreground">{product.name}</h2>
               <p className="mt-2 text-sm text-muted-foreground">{product.description}</p>
-              <div className="mt-2 text-xs text-muted-foreground">SKU: {displaySku}</div>
-              <div className="mt-2 text-lg font-semibold text-foreground">$ {priceToShow} {product.currency}</div>
+              <div translate="no" className="notranslate mt-2 text-xs text-muted-foreground">SKU: {displaySku}</div>
+              <div
+                key={`qv-price-${displaySku}-${finish}`}
+                translate="no"
+                className="notranslate mt-2 text-lg font-semibold text-foreground"
+              >
+                $ {Number(priceToShow).toLocaleString('es-MX')} {product.currency}
+              </div>
               {product.finishes?.length ? (
                 <div className="mt-3">
                   <div className="text-sm font-medium text-foreground mb-1">Acabado</div>

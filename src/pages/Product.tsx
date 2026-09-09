@@ -406,7 +406,11 @@ const ProductPage: React.FC = () => {
               <p className="text-sm text-[#5D5550] italic leading-relaxed">{prod.description}</p>
             </motion.div>
 
-            <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="flex flex-col border-b border-[#2A2624]/10 pb-8 gap-2">
+            <motion.div
+              key={`product-pricing-${prod.slug}-${finish}-${selectedQuantity}-${basePriceToShow}`}
+              variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
+              className="flex flex-col border-b border-[#2A2624]/10 pb-8 gap-2"
+            >
               <div className="flex items-baseline gap-4">
                 {/* translate="no": browser translation detaches React's text nodes, freezing live prices */}
                 <div translate="no" className="notranslate text-4xl sm:text-5xl font-serif italic text-[#2A2624]">

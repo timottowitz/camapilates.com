@@ -75,7 +75,7 @@ const ProductCard21Enhanced: React.FC<Props> = ({
               {product.name}
             </h3>
             <div className="text-right">
-              <span className="block text-lg font-bold text-[#2A2624] font-sans">
+              <span translate="no" className="notranslate block text-lg font-bold text-[#2A2624] font-sans">
                 ${Number(product.price).toLocaleString('es-MX')}
               </span>
             </div>
