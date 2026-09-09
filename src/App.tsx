@@ -73,7 +73,7 @@ const CamaDePilatesHub = lazyWithRetry(() => import('./pages/CamaDePilatesHub'))
 const ReformerParaCasa = lazyWithRetry(() => import('./pages/ReformerParaCasa'));
 const ReformerParaEstudio = lazyWithRetry(() => import('./pages/ReformerParaEstudio'));
 const PilatesReformerCDMX = lazyWithRetry(() => import('./pages/PilatesReformerCDMX'));
-const PilatesReformerMonterrey = lazyWithRetry(() => import('./pages/PilatesReformerMonterrey').then(m => ({ default: m.PilatesReformerMonterrey })));
+const PilatesReformerMonterrey = lazyWithRetry(() => import('./pages/PilatesReformerMonterrey'));
 const CertificacionPilates = lazyWithRetry(() => import('./pages/CertificacionPilates'));
 const CertificacionPilatesCity = lazyWithRetry(() => import('./pages/CertificacionPilatesCity'));
 const LegalTerms = lazyWithRetry(() => import('./pages/LegalTerms'));
