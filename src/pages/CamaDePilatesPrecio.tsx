@@ -152,7 +152,7 @@ const CamaDePilatesPrecio: React.FC = () => {
               </div>
               <div className="text-right">
                 <p className="text-sm text-[#5D5550] font-light">Desde</p>
-                <p className="text-3xl font-serif italic text-[#2A2624]">$35,000</p>
+                <p className="text-3xl font-serif italic text-[#2A2624]">$24,500</p>
                 <p className="text-xs text-[#5D5550]">MXN</p>
               </div>
             </div>
@@ -193,7 +193,7 @@ const CamaDePilatesPrecio: React.FC = () => {
               </div>
               <div className="text-right">
                 <p className="text-sm text-white/50 font-light">Alrededor de</p>
-                <p className="text-3xl font-serif italic text-[#EAE8E4]">$50,000</p>
+                <p className="text-3xl font-serif italic text-[#EAE8E4]">$35,000</p>
                 <p className="text-xs text-white/50">MXN</p>
               </div>
             </div>
