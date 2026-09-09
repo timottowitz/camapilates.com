@@ -17,7 +17,7 @@ import TableOfContents from '@/components/blog/TableOfContents';
 import ShareButtons from '@/components/blog/ShareButtons';
 import { Card, CardContent } from '@/components/ui/card';
 import { DEFAULTS, getOrigin, toAbsoluteUrl, generateBlogPostSchema } from '@/lib/seo';
-import { getAllPostsMeta } from '@/lib/content';
+import { getAllPostsMeta, getPostBySlug as getContentPost } from '@/lib/content';
 import HubList from '@/components/blog/HubList';
 import SeeAlso from '@/components/blog/SeeAlso';
 import RelatedProducts from '@/components/blog/RelatedProducts';
@@ -55,6 +55,9 @@ const BlogPost = () => {
 
   const blogPost = useQuery(api.blogs.getBySlug, { slug: slug || '' });
 
+  const origin = getOrigin();
+  const safeSlug = slug || '';
+
   useEffect(() => {
     if (blogPost) {
       const { content, publishDate, updatedAt, ...meta } = blogPost;
@@ -72,14 +75,19 @@ const BlogPost = () => {
         updatedDate: new Date(updatedAt).toISOString(),
       });
       setLoading(false);
-    } else if (blogPost === null) {
-      // Not found
-      setLoading(false);
+    } else {
+      // Fallback to static markdown content store if Convex returns null or is loading
+      const staticPost = safeSlug ? getContentPost(safeSlug) : null;
+      if (staticPost) {
+        const { content: staticContent, ...staticMeta } = staticPost;
+        setContent(staticContent);
+        setPostMeta(staticMeta);
+        setLoading(false);
+      } else if (blogPost === null) {
+        setLoading(false);
+      }
     }
-  }, [blogPost]);
-
-  const origin = getOrigin();
-  const safeSlug = slug || '';
+  }, [blogPost, safeSlug]);
 
   useEffect(() => {
     (async () => {
