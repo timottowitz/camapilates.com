@@ -108,8 +108,8 @@ export const PilatesReformerMonterrey: React.FC = () => {
         <meta name="geo.region" content="MX-NLE" />
         <meta name="geo.placename" content="Monterrey" />
         <script type="application/ld+json">{JSON.stringify(generateBreadcrumbSchema([
-          { name: 'Tienda', item: `${origin}/shop` },
-          { name: 'Paquetes de Estudio Monterrey', item: url },
+          { name: 'Tienda', url: `${origin}/shop` },
+          { name: 'Paquetes de Estudio Monterrey', url: url },
         ]))}</script>
         <script type="application/ld+json">{JSON.stringify(localBusinessSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
