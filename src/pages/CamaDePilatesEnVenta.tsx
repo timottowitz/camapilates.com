@@ -143,7 +143,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
                     </h2>
                     <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-bold">Para estudio</p>
                   </div>
-                  <span className="text-xl font-serif italic text-white/50">$35,000</span>
+                  <span className="text-xl font-serif italic text-white/50">$42,400</span>
                 </div>
                 <ul className="text-white/70 font-light space-y-2 mb-8 text-sm md:text-base">
                   <li>• Estructura reforzada para uso intensivo</li>
@@ -184,7 +184,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
                     </h2>
                     <p className="text-[10px] uppercase tracking-[0.2em] text-[#5D5550] font-bold opacity-60">Para hogar</p>
                   </div>
-                  <span className="text-xl font-serif italic text-[#2A2624] opacity-50">$24,500</span>
+                  <span className="text-xl font-serif italic text-[#2A2624] opacity-50">$29,700</span>
                 </div>
                 <ul className="text-[#5D5550] font-light space-y-2 mb-8 text-sm md:text-base">
                   <li>• Compacto sin sacrificar el recorrido</li>

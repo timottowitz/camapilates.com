@@ -18,7 +18,7 @@ export const REFORMER_BUNDLES: BundleOption[] = [
   },
   {
     quantity: 4,
-    discountPercentage: 13,
+    discountPercentage: 10.3448,
     label: 'Pack 4',
     sublabel: 'Estudio Starter',
   },

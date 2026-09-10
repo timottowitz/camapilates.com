@@ -171,7 +171,7 @@ const Shop: React.FC = () => {
               "name": "¿Cuánto cuesta una cama de Pilates Reformer?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Nuestros reformers van desde $24,500 MXN (modelo Casa) hasta $38,500 MXN (modelo Profesional con acabado Mycelium). Ofrecemos financiamiento a 12 meses sin intereses."
+                "text": "Nuestros reformers van desde $29,700 MXN (modelo Casa) hasta $46,600 MXN (modelo Profesional con acabado Mycelium). Ofrecemos financiamiento a 12 meses sin intereses."
               }
             },
             {

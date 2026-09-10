@@ -105,7 +105,7 @@ const ReformerParaCasa: React.FC = () => {
         {/* Quick Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
           <div className="p-6 bg-[#EAE8E4] rounded-sm text-center">
-            <p className="text-2xl font-serif italic text-[#2A2624] mb-1">$24,500</p>
+            <p className="text-2xl font-serif italic text-[#2A2624] mb-1">$29,700</p>
             <p className="text-xs uppercase tracking-widest text-[#5D5550]">Precio desde</p>
           </div>
           <div className="p-6 bg-[#EAE8E4] rounded-sm text-center">
@@ -217,7 +217,7 @@ const ReformerParaCasa: React.FC = () => {
               </ul>
               
               <div className="flex items-baseline gap-4 mb-8">
-                <span className="text-3xl font-serif italic text-[#2A2624]">$24,500</span>
+                <span className="text-3xl font-serif italic text-[#2A2624]">$29,700</span>
                 <span className="text-sm text-[#5D5550]">MXN</span>
                 <span className="text-xs text-[#3E2723] uppercase tracking-widest">o 12 MSI</span>
               </div>

@@ -233,7 +233,7 @@ const PilatesReformerCDMX: React.FC = () => {
                   </div>
                   <div>
                     <p className="font-medium text-[#2A2624]">Reformer Casa</p>
-                    <p className="text-sm text-[#5D5550]">Desde $24,500 MXN</p>
+                    <p className="text-sm text-[#5D5550]">Desde $29,700 MXN</p>
                   </div>
                 </div>
                 
@@ -243,7 +243,7 @@ const PilatesReformerCDMX: React.FC = () => {
                   </div>
                   <div>
                     <p className="font-medium text-[#2A2624]">Reformer Profesional</p>
-                    <p className="text-sm text-[#5D5550]">Desde $35,000 MXN</p>
+                    <p className="text-sm text-[#5D5550]">Desde $42,400 MXN</p>
                   </div>
                 </div>
               </div>
