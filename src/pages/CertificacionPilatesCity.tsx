@@ -73,7 +73,7 @@ const CertificacionPilatesCity: React.FC = () => {
   const desc = isCdmx
     ? `Certifícate en STOTT PILATES® en ${cityName}: Intensive Reformer (125h), Mat-Plus™ y niveles avanzados en ${STOTT_VENUE.name}, sede oficial Merrithew® en Santa Fe. Fechas, costos y registro.`
     : cohort
-      ? `Certifícate como instructora de Pilates Reformer en ${shortCityName} (${cohort.periodLabel}): 4 fines de semana presenciales (100h). Masterclass el 26 de septiembre con Gabi y Laura Munif. Lista de espera con 50% de descuento ($19,900 MXN).`
+      ? `Certifícate como instructora de Pilates Reformer en ${shortCityName} (${cohort.periodLabel}): 4 fines de semana presenciales (100h). Masterclass el 26 de septiembre con Gabi y Laura Munive. Lista de espera con 50% de descuento ($19,900 MXN).`
       : `Compara opciones de certificación de Pilates Reformer en ${shortCityName}. Revisa requisitos, duración, costos y criterios antes de solicitar fechas.`;
 
   const wa = `${PRIMARY_WHATSAPP}${encodeURIComponent(
@@ -117,7 +117,7 @@ const CertificacionPilatesCity: React.FC = () => {
           },
           {
             question: `¿Cómo obtengo el 50% de descuento en ${shortCityName}?`,
-            answer: `El precio regular es de $39,800 MXN. Las primeras 12 personas registradas en la lista de espera que asistan a la Masterclass en vivo del Sábado 26 de Septiembre con Gabi y Laura Munif obtienen el precio con beca de $19,900 MXN. Puedes apartar tu lugar con $4,500 MXN.`,
+            answer: `El precio regular es de $39,800 MXN. Las primeras 12 personas registradas en la lista de espera que asistan a la Masterclass en vivo del Sábado 26 de Septiembre con Gabi y Laura Munive obtienen el precio con beca de $19,900 MXN. Puedes apartar tu lugar con $4,500 MXN.`,
           },
           {
             question: `¿Tengo un Reformer individual asignado durante las clases?`,
@@ -270,7 +270,7 @@ const CertificacionPilatesCity: React.FC = () => {
             </h1>
             <p className="text-lg text-[#5D5550] font-light max-w-xl leading-relaxed mb-8">
               {cohort
-                ? `Programa intensivo de 100 horas estructurado en 4 fines de semana presenciales (${cohort.fullDatesLabel}). Un Reformer individual asignado por alumna(o), biomecánica clínica y metodología de enseñanza. Masterclass previa el 26 de septiembre con Gabi y Laura Munif. Lista de espera con 50% de descuento ($19,900 MXN).`
+                ? `Programa intensivo de 100 horas estructurado en 4 fines de semana presenciales (${cohort.fullDatesLabel}). Un Reformer individual asignado por alumna(o), biomecánica clínica y metodología de enseñanza. Masterclass previa el 26 de septiembre con Gabi y Laura Munive. Lista de espera con 50% de descuento ($19,900 MXN).`
                 : isCdmx
                   ? `Certificación ${STOTT_PROVIDER.method} — el "Gold Standard" de la industria — impartida por ${STOTT_PROVIDER.name} en ${STOTT_VENUE.name}, hosting oficial de Merrithew® en Santa Fe. Validez internacional en más de 100 países.`
                   : `Compara opciones de formación en Reformer y Mat en ${shortCityName}. Antes de inscribirte, confirma el respaldo del programa, las horas de práctica, la evaluación y el costo total.`}

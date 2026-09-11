@@ -135,7 +135,7 @@ Si eres preparador físico, fisioterapeuta o instructora en México y deseas esp
 * **Condición de Excelencia:** Máximo 12 alumnas(os) por sede con **1 Reformer individual exclusivo asignado** (sin turnos ni rotaciones).
 * **Beca de Lista de Espera:** 50% de descuento (\$19,900 MXN en lugar de \$39,800 MXN), congelable con un apartado oficial de \$4,500 MXN.
 
-Puedes conocer todos los detalles de la formación y reservar tu lugar en la sesión informativa gratuita con las Master Trainers internacionales **Gabi & Laura Munif** el próximo **Sábado 26 de Septiembre a las 11:00 AM CST**:
+Puedes conocer todos los detalles de la formación y reservar tu lugar en la sesión informativa gratuita con las Master Trainers internacionales **Gabi & Laura Munive** el próximo **Sábado 26 de Septiembre a las 11:00 AM CST**:
 
 👉 [Inscribirme a la Masterclass Gratuita y Lista de Espera 50% OFF](/certificacion-pilates/webinar)
 

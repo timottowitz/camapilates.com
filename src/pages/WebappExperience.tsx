@@ -193,7 +193,7 @@ const WebappExperience: React.FC = () => {
                     Comunidad de Alumnas e Instructorias CAMA Pilates
                   </h2>
                   <p className="text-xs text-stone-400 max-w-2xl leading-relaxed">
-                    Interactúa con tus formadoras Gabi & Laura Munif, formula preguntas para la Masterclass del 26 de Septiembre y conecta con colegas de Querétaro y Monterrey.
+                    Interactúa con tus formadoras Gabi & Laura Munive, formula preguntas para la Masterclass del 26 de Septiembre y conecta con colegas de Querétaro y Monterrey.
                   </p>
                 </div>
 
@@ -339,7 +339,7 @@ const WebappExperience: React.FC = () => {
                       Masterclass en Vivo: La Ruta para Certificarte en Reformer
                     </h2>
                     <p className="text-xs md:text-sm text-stone-400">
-                      Con <strong>Gabi & Laura Munif</strong> · {WEBINAR_INFO.date}
+                      Con <strong>Gabi & Laura Munive</strong> · {WEBINAR_INFO.date}
                     </p>
                   </div>
 
@@ -384,7 +384,7 @@ const WebappExperience: React.FC = () => {
                   <div className="space-y-1 text-center sm:text-left">
                     <h4 className="text-sm font-semibold text-stone-200 flex items-center gap-1.5 justify-center sm:justify-start">
                       <HelpCircle className="w-4 h-4 text-amber-400" />
-                      ¿Tienes preguntas para Gabi & Laura Munif?
+                      ¿Tienes preguntas para Gabi & Laura Munive?
                     </h4>
                     <p className="text-xs text-stone-400">
                       Deja tu duda en el hilo oficial de la comunidad de Whop para que la respondan en vivo.

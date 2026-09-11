@@ -67,7 +67,7 @@ Monterrey destaca por albergar programas de formación de primer nivel y por su 
 > Si buscas formarte profesionalmente en Pilates Reformer sin tener que pausar tus actividades semanales:  
 > • **Monterrey:** 5 de Diciembre 2026 al 17 de Enero 2027 (4 fines de semana en San Pedro). [Ver convocatoria Monterrey →](/certificacion-pilates/monterrey)  
 > • **Querétaro:** 7 al 29 de Noviembre 2026 (4 fines de semana). [Ver convocatoria Querétaro →](/certificacion-pilates/queretaro)  
-> • **Pre-Webinar en Vivo (Sáb 26 Sep · 11:00 AM CST):** Masterclass con **Gabi y Laura Munif** con beca del **50% de descuento ($19,900 MXN en vez de $39,800 MXN)** para las 12 plazas de la lista de espera.  
+> • **Pre-Webinar en Vivo (Sáb 26 Sep · 11:00 AM CST):** Masterclass con **Gabi y Laura Munive** con beca del **50% de descuento ($19,900 MXN en vez de $39,800 MXN)** para las 12 plazas de la lista de espera.  
 > 👉 [**Registrarme a la Masterclass Gratuita y asegurar 50% OFF →**](/certificacion-pilates/webinar)
 
 <see-also limit="3" />

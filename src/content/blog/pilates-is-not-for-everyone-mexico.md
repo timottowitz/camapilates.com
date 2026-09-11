@@ -54,7 +54,7 @@ La raíz del problema radica en la estandarización. Si vives en ciudades median
 > Para cerrar la brecha de instructoras calificadas en el Bajío y el Norte, CAMA abre registro para las cohortes presenciales de 100 horas:  
 > • **Querétaro:** 7 al 29 de Noviembre 2026 (4 fines de semana). [Ver sede Querétaro →](/certificacion-pilates/queretaro)  
 > • **Monterrey:** 5 Dic 2026 al 17 Ene 2027 (4 fines de semana en San Pedro). [Ver sede Monterrey →](/certificacion-pilates/monterrey)  
-> • **Masterclass Previa en Vivo (Sáb 26 Sep · 11:00 AM CST):** Sesión de orientación con **Gabi y Laura Munif** y **50% de descuento ($19,900 MXN)** para los 12 lugares de la lista de espera.  
+> • **Masterclass Previa en Vivo (Sáb 26 Sep · 11:00 AM CST):** Sesión de orientación con **Gabi y Laura Munive** y **50% de descuento ($19,900 MXN)** para los 12 lugares de la lista de espera.  
 > 👉 [**Registrarme a la Masterclass Gratuita & Lista de Espera 50% OFF →**](/certificacion-pilates/webinar)
 
 Para que tú, como cliente, te sientas seguro progresando, necesitas instructores que dominen la biomecánica. Es por eso que la industria valora tanto los programas internacionales como Polestar, STOTT o BASI. Estos programas exigen cientos de horas de práctica, anatomía profunda y un entendimiento claro de las contraindicaciones. Cuando tu instructor posee esta base, puede adaptar ejercicios complejos en el Reformer o el Cadillac, asegurando que tu progresión sea efectiva y, sobre todo, segura.

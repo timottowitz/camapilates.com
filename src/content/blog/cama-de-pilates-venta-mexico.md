@@ -101,7 +101,7 @@ Los clásicos ofrecen esa resistencia orgánica alineada a la filosofía de Cont
 > Si buscas no solo entrenar sino impartir clases o abrir tu propio estudio, abrimos convocatorias presenciales de 100 horas en fines de semana (12 lugares por ciudad):  
 > • **Querétaro:** 4 fines de semana en Noviembre 2026. [Ver cohorte Querétaro →](/certificacion-pilates/queretaro)  
 > • **Monterrey:** 4 fines de semana en Dic 2026 y Ene 2027. [Ver cohorte Monterrey →](/certificacion-pilates/monterrey)  
-> • **Masterclass Informativa en Vivo:** Sábado 26 de Septiembre, 11:00 AM CST con Gabi & Laura Munif (50% OFF en lista de espera: $19,900 MXN). [Registrarme gratis →](/certificacion-pilates/webinar)
+> • **Masterclass Informativa en Vivo:** Sábado 26 de Septiembre, 11:00 AM CST con Gabi & Laura Munive (50% OFF en lista de espera: $19,900 MXN). [Registrarme gratis →](/certificacion-pilates/webinar)
 
 ## FAQ
 

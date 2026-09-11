@@ -7,7 +7,7 @@
 - **Vínculos Comerciales CAMA:**
   - Reformer para Casa (CAMA Home Studio) para corredores que necesitan movilidad y descarga post-rodajes diarios.
   - Certificación de Instructores de Pilates Reformer (Querétaro y Monterrey) para entrenadores que trabajan con atletas.
-  - Masterclass gratuita del 26 de Septiembre con Gabi & Laura Munif sobre biomecánica funcional aplicada.
+  - Masterclass gratuita del 26 de Septiembre con Gabi & Laura Munive sobre biomecánica funcional aplicada.
 
 ---
 
@@ -77,7 +77,7 @@ El running es un movimiento repetitivo en un único plano (sagital). Cada kilóm
 ## 6. Conexión con CAMA Pilates & Embudo de Certificación
 - **Equipos CAMA:** Los Reformers CAMA con estructura de nogal y acero absorben vibraciones mecánicas y ofrecen rieles de deslizamiento silencioso y resortes de aleación de carbono calibrados en Alemania.
 - **Formación de Instructores:** Los entrenadores personales y fisioterapeutas en Querétaro y Monterrey pueden formarse en la Certificación de 100 Horas de CAMA Pilates para atender a la creciente comunidad de atletas y maratonistas.
-- **Llamado a la Masterclass (26 de Septiembre):** Registro directo para aprender biomecánica clínica con Gabi & Laura Munif y acceder a la lista de espera con 50% de descuento ($19,900 MXN).
+- **Llamado a la Masterclass (26 de Septiembre):** Registro directo para aprender biomecánica clínica con Gabi & Laura Munive y acceder a la lista de espera con 50% de descuento ($19,900 MXN).
 
 ---
 

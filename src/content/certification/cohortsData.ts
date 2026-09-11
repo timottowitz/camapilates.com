@@ -1,6 +1,6 @@
 /**
  * Datos y calendario de las cohortes de certificación en Querétaro y Monterrey.
- * Incluye la información de la Masterclass / Pre-Webinar en vivo con Gabi y Laura Munif.
+ * Incluye la información de la Masterclass / Pre-Webinar en vivo con Gabi y Laura Munive.
  */
 
 export interface CohortWeekend {
@@ -52,7 +52,7 @@ export const WEBINAR_INFO = {
       bio: "Especialista en biomecánica funcional, pedagogía del movimiento y formación de más de 400 instructores certificados en México y Latinoamérica.",
     },
     {
-      name: "Laura Munif",
+      name: "Laura Munive",
       role: "Master Instructor & Mentora de Estudios de Pilates",
       bio: "Directora técnica, formadora de instructores de alto rendimiento y consultora en desarrollo de carrera y rentabilidad para estudios de Pilates Reformer.",
     }
@@ -76,11 +76,11 @@ export const WEBINAR_INFO = {
     },
     {
       time: "12:00 PM",
-      topic: "Sesión de preguntas y respuestas en directo con Gabi y Laura Munif."
+      topic: "Sesión de preguntas y respuestas en directo con Gabi y Laura Munive."
     }
   ],
   whatsappSupportNumber: "525548468190",
-  whatsappMessage: "Hola, me registré al webinar de certificación con Gabi y Laura Munif para Querétaro y Monterrey. Quiero confirmar mi acceso y asegurar mi cupo del 50% de descuento.",
+  whatsappMessage: "Hola, me registré al webinar de certificación con Gabi y Laura Munive para Querétaro y Monterrey. Quiero confirmar mi acceso y asegurar mi cupo del 50% de descuento.",
 };
 
 export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertificationCohort> = {
@@ -227,7 +227,7 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
 export function getGoogleCalendarUrl(): string {
   const title = encodeURIComponent("Masterclass en Vivo: Certificación Pilates Reformer (Querétaro y Monterrey)");
   const details = encodeURIComponent(
-    "Webinar en vivo con Gabi y Laura Munif.\\n" +
+    "Webinar en vivo con Gabi y Laura Munive.\\n" +
     "Aprende cómo convertirte en instructora certificada de Pilates Reformer y asegura tu lugar en la lista de espera con 50% de descuento para Querétaro (Nov 2026) y Monterrey (Dic 2026 - Ene 2027).\\n\\n" +
     "Enlace de Zoom: Se enviará por WhatsApp y correo antes de iniciar.\\n" +
     "Contacto WhatsApp: https://wa.me/525548468190"
@@ -250,7 +250,7 @@ export function generateIcsContent(): string {
     "METHOD:PUBLISH",
     "BEGIN:VEVENT",
     "SUMMARY:Masterclass en Vivo: Certificación Pilates Reformer (Querétaro y Monterrey)",
-    "DESCRIPTION:Webinar con Gabi y Laura Munif. Presentación de las cohortes de Querétaro (Noviembre 2026) y Monterrey (Diciembre 2026 - Enero 2027) y apertura de los 12 cupos con 50% de descuento.",
+    "DESCRIPTION:Webinar con Gabi y Laura Munive. Presentación de las cohortes de Querétaro (Noviembre 2026) y Monterrey (Diciembre 2026 - Enero 2027) y apertura de los 12 cupos con 50% de descuento.",
     "DTSTART:20260926T170000Z",
     "DTEND:20260926T181500Z",
     "LOCATION:Transmisión en vivo vía Zoom",

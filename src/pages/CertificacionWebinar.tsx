@@ -205,7 +205,7 @@ export const CertificacionWebinar: React.FC = () => {
           </h1>
 
           <p className="text-base sm:text-xl text-[#5D5550] font-light leading-relaxed max-w-3xl mx-auto mb-8">
-            Sesión en vivo con <strong>Gabi</strong> y <strong>Laura Munif</strong>. Conoce el plan de estudios intensivo de 4 fines de semana, domina la biomecánica clínica del Reformer y asegura tu acceso a los <strong>12 cupos con 50% de descuento</strong> para Querétaro (Noviembre 2026) y Monterrey (Diciembre 2026 – Enero 2027).
+            Sesión en vivo con <strong>Gabi</strong> y <strong>Laura Munive</strong>. Conoce el plan de estudios intensivo de 4 fines de semana, domina la biomecánica clínica del Reformer y asegura tu acceso a los <strong>12 cupos con 50% de descuento</strong> para Querétaro (Noviembre 2026) y Monterrey (Diciembre 2026 – Enero 2027).
           </p>
 
           {/* Event Quick Facts Pills */}
@@ -418,7 +418,7 @@ export const CertificacionWebinar: React.FC = () => {
               </h2>
 
               <p className="text-base text-[#5D5550] max-w-xl mx-auto mb-8">
-                Hola <strong>{fullName}</strong>, tu lugar para la Masterclass en vivo con <strong>Gabi y Laura Munif</strong> del <strong>Sábado 26 de Septiembre a las 11:00 AM CST</strong> está apartado.
+                Hola <strong>{fullName}</strong>, tu lugar para la Masterclass en vivo con <strong>Gabi y Laura Munive</strong> del <strong>Sábado 26 de Septiembre a las 11:00 AM CST</strong> está apartado.
               </p>
 
               {/* Voucher Box */}
@@ -513,7 +513,7 @@ export const CertificacionWebinar: React.FC = () => {
         </div>
       </section>
 
-      {/* Authority Section: Gabi & Laura Munif */}
+      {/* Authority Section: Gabi & Laura Munive */}
       <section className="py-20 px-6 md:px-16 lg:px-24 bg-[#EAE8E4]/40 border-t border-b border-[#2A2624]/10">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-16">
@@ -521,7 +521,7 @@ export const CertificacionWebinar: React.FC = () => {
               Tus Formadoras & Mentoras
             </span>
             <h2 className="text-3xl md:text-5xl font-serif italic text-[#2A2624]">
-              Aprende con Gabi y Laura Munif
+              Aprende con Gabi y Laura Munive
             </h2>
             <p className="text-base text-[#5D5550] font-light mt-4">
               Más de 15 años de trayectoria combinada en biomecánica clínica, docencia internacional y dirección de estudios boutique de alto rendimiento en México.

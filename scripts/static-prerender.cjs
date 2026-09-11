@@ -800,9 +800,9 @@ async function main() {
     const isMonterrey = c.key === 'monterrey';
     const customTitle = `${cityTitle} | CAMA Pilates`;
     const customDesc = isQueretaro
-      ? 'Certifícate como instructora de Pilates Reformer en Querétaro (Noviembre 2026): 4 fines de semana presenciales (100h). Masterclass el 26 de septiembre con Gabi y Laura Munif. Lista de espera con 50% de descuento ($19,900 MXN).'
+      ? 'Certifícate como instructora de Pilates Reformer en Querétaro (Noviembre 2026): 4 fines de semana presenciales (100h). Masterclass el 26 de septiembre con Gabi y Laura Munive. Lista de espera con 50% de descuento ($19,900 MXN).'
       : isMonterrey
-        ? 'Certifícate como instructora de Pilates Reformer en Monterrey (Dic 2026 – Ene 2027): 4 fines de semana presenciales (100h). Masterclass el 26 de septiembre con Gabi y Laura Munif. Lista de espera con 50% de descuento ($19,900 MXN).'
+        ? 'Certifícate como instructora de Pilates Reformer en Monterrey (Dic 2026 – Ene 2027): 4 fines de semana presenciales (100h). Masterclass el 26 de septiembre con Gabi y Laura Munive. Lista de espera con 50% de descuento ($19,900 MXN).'
         : `Compara opciones de certificación de Pilates Reformer en ${c.shortName}. Revisa requisitos, duración, costos y criterios antes de solicitar fechas.`;
 
     const head = {
@@ -820,7 +820,7 @@ async function main() {
       ? `<div style="background:#2A2624;color:#EAE8E4;padding:20px;border-radius:12px;margin:24px 0;">
           <p style="font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#D9865B;margin-bottom:8px;"><strong>Convocatoria Abierta · 50% de Descuento en Lista de Espera</strong></p>
           <h2 style="font-size:20px;color:#fff;margin-bottom:8px;">${isQueretaro ? 'Cohorte Querétaro: 7 al 29 de Noviembre 2026 (4 Fines de Semana)' : 'Cohorte Monterrey: 5 Dic 2026 al 17 Ene 2027 (4 Fines de Semana)'}</h2>
-          <p style="font-size:14px;color:#d1d5db;margin-bottom:16px;">Sesión en vivo con Gabi y Laura Munif el Sábado 26 de Septiembre (11:00 AM CST). Precio especial de $19,900 MXN (Regular $39,800 MXN) limitado a 12 cupos.</p>
+          <p style="font-size:14px;color:#d1d5db;margin-bottom:16px;">Sesión en vivo con Gabi y Laura Munive el Sábado 26 de Septiembre (11:00 AM CST). Precio especial de $19,900 MXN (Regular $39,800 MXN) limitado a 12 cupos.</p>
           <a href="/certificacion-pilates/webinar" style="display:inline-block;background:#fff;color:#2A2624;padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Registrarme al Pre-Webinar →</a>
         </div>`
       : '';
@@ -883,7 +883,7 @@ async function main() {
   {
     const webinarHead = {
       title: 'Masterclass en Vivo: Certificación Pilates Reformer Querétaro y Monterrey | CAMA Pilates',
-      description: 'Sesión en vivo este Sábado 26 de Septiembre a las 11:00 AM CST con Gabi y Laura Munif. Lista de espera con 50% de descuento ($19,900 MXN) para Querétaro y Monterrey.',
+      description: 'Sesión en vivo este Sábado 26 de Septiembre a las 11:00 AM CST con Gabi y Laura Munive. Lista de espera con 50% de descuento ($19,900 MXN) para Querétaro y Monterrey.',
       canonical: `${origin}/certificacion-pilates/webinar`,
       ogImage: `${origin}/og/cama-de-pilates-venta-mexico.png`,
       ogType: 'event'
@@ -893,7 +893,7 @@ async function main() {
       <div class="container mx-auto max-w-4xl text-center">
         <p class="text-xs uppercase tracking-widest text-amber-500 font-semibold mb-3">Masterclass en Vivo · Sábado 26 de Septiembre 11:00 AM CST</p>
         <h1 class="text-3xl md:text-5xl font-serif italic mb-6">Cómo Convertirte en Instructora Certificada de Pilates Reformer en Querétaro y Monterrey</h1>
-        <p class="text-lg text-stone-300 max-w-2xl mx-auto mb-8 font-light">Sesión en vivo con Gabi y Laura Munif. Conoce el plan de estudios intensivo de 4 fines de semana y asegura tu cupo de los 12 lugares con 50% de descuento ($19,900 MXN en vez de $39,800 MXN).</p>
+        <p class="text-lg text-stone-300 max-w-2xl mx-auto mb-8 font-light">Sesión en vivo con Gabi y Laura Munive. Conoce el plan de estudios intensivo de 4 fines de semana y asegura tu cupo de los 12 lugares con 50% de descuento ($19,900 MXN en vez de $39,800 MXN).</p>
         <div class="flex flex-wrap justify-center gap-4">
           <a href="/certificacion-pilates/webinar#registro" class="px-8 py-4 rounded-full bg-white text-stone-900 text-xs uppercase tracking-widest font-semibold">Apartar Lugar en el Webinar</a>
           <a href="/certificacion-pilates/queretaro" class="px-8 py-4 rounded-full border border-stone-600 text-stone-200 text-xs uppercase tracking-widest">Cohorte Querétaro (Nov 2026)</a>

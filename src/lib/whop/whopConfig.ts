@@ -33,7 +33,7 @@ export const WHOP_CONFIG = {
       appName: 'Forums',
       url: 'https://whop.com/joined/exp_CY1aVHXdSlxCCb',
       directUrl: 'https://whop.com/exp_CY1aVHXdSlxCCb/',
-      description: 'Hilos temáticos de biomecánica, casos clínicos y preguntas para Gabi & Laura Munif',
+      description: 'Hilos temáticos de biomecánica, casos clínicos y preguntas para Gabi & Laura Munive',
     },
   },
 
@@ -98,7 +98,7 @@ export const WHOP_CONFIG = {
       {
         title: 'Bono #3: Masterclass de Negocio & Apertura de Estudio',
         value: 9900,
-        description: 'Sesión exclusiva con Gabi & Laura Munif sobre cómo llenar tus primeros 20 clientes privados y estructurar precios rentables.',
+        description: 'Sesión exclusiva con Gabi & Laura Munive sobre cómo llenar tus primeros 20 clientes privados y estructurar precios rentables.',
       },
       {
         title: 'Bono #4: Cupón de Fábrica CAMA Pilates Reformer',
@@ -108,7 +108,7 @@ export const WHOP_CONFIG = {
       {
         title: 'Bono #5: Fast-Action Webinar Bonus (Primeras 6 Alumnas por Ciudad)',
         value: 4000,
-        description: 'Sesión privada 1-a-1 de 45 minutos con Gabi o Laura Munif para diagnóstico biomecánico, corrección postural y plan de carrera.',
+        description: 'Sesión privada 1-a-1 de 45 minutos con Gabi o Laura Munive para diagnóstico biomecánico, corrección postural y plan de carrera.',
       },
     ],
     guarantee: {

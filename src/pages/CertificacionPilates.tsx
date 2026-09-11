@@ -274,9 +274,9 @@ const CertificacionPilates: React.FC = () => {
                       {c.key === 'cdmx'
                         ? 'Sede del programa premium STOTT PILATES® en Santa Fe. Intensivos de Reformer y Mat con respaldo Merrithew®.'
                         : isQueretaro
-                          ? 'Cohorte presencial de 100h en 4 fines de semana (7–8, 14–15, 21–22 y 28–29 Nov 2026). Pre-Webinar el 26 de Sep con Gabi y Laura Munif. 50% de descuento ($19,900 MXN).'
+                          ? 'Cohorte presencial de 100h en 4 fines de semana (7–8, 14–15, 21–22 y 28–29 Nov 2026). Pre-Webinar el 26 de Sep con Gabi y Laura Munive. 50% de descuento ($19,900 MXN).'
                           : isMonterrey
-                            ? 'Cohorte presencial de 100h en 4 fines de semana (5–6 y 12–13 Dic 2026, 9–10 y 16–17 Ene 2027) en San Pedro. Pre-Webinar el 26 de Sep con Gabi y Laura Munif. 50% de descuento ($19,900 MXN).'
+                            ? 'Cohorte presencial de 100h en 4 fines de semana (5–6 y 12–13 Dic 2026, 9–10 y 16–17 Ene 2027) en San Pedro. Pre-Webinar el 26 de Sep con Gabi y Laura Munive. 50% de descuento ($19,900 MXN).'
                             : 'Programas en fines de semana e intensivos. Modalidades Mat y Reformer con práctica supervisada. Cupo limitado.'}
                     </p>
                   </div>

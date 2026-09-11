@@ -44,7 +44,7 @@ export const CertificationWebinarBanner: React.FC<CertificationWebinarBannerProp
           </h3>
 
           <p className="text-xs sm:text-sm text-[#EAE8E4]/80 font-light leading-relaxed mb-4">
-            Masterclass de orientación con <strong>Gabi</strong> y <strong>Laura Munif</strong>. Conoce el programa intensivo de 4 fines de semana y asegura tu lugar en la lista de espera con <strong>50% de descuento ($19,900 MXN)</strong> antes de que se agoten los 12 cupos.
+            Masterclass de orientación con <strong>Gabi</strong> y <strong>Laura Munive</strong>. Conoce el programa intensivo de 4 fines de semana y asegura tu lugar en la lista de espera con <strong>50% de descuento ($19,900 MXN)</strong> antes de que se agoten los 12 cupos.
           </p>
 
           <div className="flex flex-wrap items-center gap-3 text-xs text-[#EAE8E4]/90">
@@ -74,7 +74,7 @@ export const CertificationWebinarBanner: React.FC<CertificationWebinarBannerProp
 
           <a
             href={`https://wa.me/${WEBINAR_INFO.whatsappSupportNumber}?text=${encodeURIComponent(
-              `Hola, vi la convocatoria para la certificación de Pilates en ${city || 'Querétaro / Monterrey'} con Gabi y Laura Munif. Quiero más información sobre el webinar y el 50% de descuento.`
+              `Hola, vi la convocatoria para la certificación de Pilates en ${city || 'Querétaro / Monterrey'} con Gabi y Laura Munive. Quiero más información sobre el webinar y el 50% de descuento.`
             )}`}
             target="_blank"
             rel="noopener noreferrer"
