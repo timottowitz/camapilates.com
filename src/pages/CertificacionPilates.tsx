@@ -397,12 +397,17 @@ export const CertificacionPilates: React.FC = () => {
           <div className="flex items-center gap-3 md:gap-4">
             <Link
               to="/"
-              className="font-mono text-xs uppercase tracking-wider text-neutral-500 hover:text-neutral-900 transition-colors"
+              className="relative group flex items-baseline gap-0.5 notranslate"
+              translate="no"
+              title="Edelweiss Pilates"
             >
-              • camadepilates.com
+              <span className="text-xl sm:text-2xl font-serif italic tracking-tight text-neutral-950 group-hover:text-neutral-700 transition-colors">
+                Edelweiss
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full mb-0.5 bg-[#B8583B]" />
             </Link>
             <span className="text-neutral-300">/</span>
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-900">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-900 hidden sm:inline">
               [ 28H BÁSICO · 48H COMPLETO ]
             </span>
           </div>

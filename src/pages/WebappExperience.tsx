@@ -255,7 +255,7 @@ const WebappExperience: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Campus Virtual & Comunidad Whop | CAMA Pilates</title>
+        <title>Campus Virtual & Comunidad Whop | Edelweiss Pilates</title>
         <meta
           name="description"
           content="Campus virtual oficial de certificación Pilates Reformer: comunidad Whop en vivo, temario de 28h y 48h, aula de masterclass y biblioteca clínica."
@@ -270,13 +270,16 @@ const WebappExperience: React.FC = () => {
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
             {/* Logo & Portal Badge */}
             <div className="flex items-center gap-3">
-              <Link to="/" className="flex items-center gap-2 group">
-                <span className="font-extrabold text-xl tracking-tight text-neutral-950 group-hover:text-neutral-700 transition-colors">
-                  CAMA
+              <Link
+                to="/"
+                className="relative group flex items-baseline gap-0.5 notranslate"
+                translate="no"
+                title="Edelweiss Pilates"
+              >
+                <span className="font-serif italic text-2xl tracking-tight text-neutral-950 group-hover:text-neutral-700 transition-colors">
+                  Edelweiss
                 </span>
-                <span className="text-[10px] tracking-[0.25em] uppercase text-neutral-400 font-semibold font-sans">
-                  Pilates
-                </span>
+                <span className="w-1.5 h-1.5 rounded-full mb-0.5 bg-[#B8583B]" />
               </Link>
 
               <div className="hidden sm:flex items-center gap-2 pl-3 border-l border-neutral-200">
@@ -374,8 +377,8 @@ const WebappExperience: React.FC = () => {
         {/* HERO SECTION — Matching Screenshot 1 Branding & Typography */}
         <section className="max-w-7xl mx-auto px-4 lg:px-8 pt-10 sm:pt-14 pb-6 w-full">
           {/* Domain micro metadata */}
-          <div className="flex items-center gap-2 text-xs font-mono text-neutral-500 mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#C8542A]" />
+          <div className="flex items-center gap-2 text-xs font-mono text-neutral-500 mb-6 notranslate" translate="no">
+            <span className="w-2 h-2 rounded-full bg-[#B8583B]" />
             <span>camadepilates.com — Campus Virtual, Formación 28h / 48h & Comunidad Whop</span>
           </div>
 
@@ -688,7 +691,7 @@ const WebappExperience: React.FC = () => {
                       </h4>
 
                       <p className="text-xs text-neutral-300 leading-relaxed">
-                        Formación clínica y pedagógica exhaustiva. Incluye tratamiento de patologías de columna (hernias, lumbalgias, escoliosis), embarazo, metodología de cueing, examen práctico individual, aval curricular y 15% de descuento en camas CAMA.
+                        Formación clínica y pedagógica exhaustiva. Incluye tratamiento de patologías de columna (hernias, lumbalgias, escoliosis), embarazo, metodología de cueing, examen práctico individual, aval curricular y 15% de descuento en camas Edelweiss Reformer.
                       </p>
 
                       <div className="pt-3 border-t border-neutral-800 grid grid-cols-2 gap-2 text-xs">
