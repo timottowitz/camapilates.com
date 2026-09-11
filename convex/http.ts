@@ -293,6 +293,8 @@ http.route({
           planName = 'Apartado de Lugar Oficial 50% OFF';
         } else if (planId === 'plan_hqgjSBEjElw3C') {
           planName = 'Colegiatura Completa Lista de Espera 50% OFF';
+        } else if (planId === 'plan_QGF4bCYeJj2Nr') {
+          planName = 'Curso Online 10 Módulos + Certificado Digital';
         } else if (planId === 'plan_ojBC2a7IkCXNT') {
           planName = 'Pase VIP Masterclass & Acceso Comunidad Whop';
         }
@@ -303,7 +305,15 @@ http.route({
             fullName: fullName || undefined,
             planId,
             planName,
-            amount: amount || (planId === 'plan_tUBQoR2eJxv5v' ? 4500 : planId === 'plan_hqgjSBEjElw3C' ? 19900 : 0),
+            amount:
+              amount ||
+              (planId === 'plan_tUBQoR2eJxv5v'
+                ? 4500
+                : planId === 'plan_hqgjSBEjElw3C'
+                  ? 19900
+                  : planId === 'plan_QGF4bCYeJj2Nr'
+                    ? 1999
+                    : 0),
             currency,
             receiptId: receiptId || undefined,
             whopUserId: whopUserId || undefined,
