@@ -12,7 +12,8 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select';
-import { CheckCircle2, ArrowLeft, ArrowRight, Loader2 } from 'lucide-react';
+import { CheckCircle2, ArrowLeft, ArrowRight, Loader2, Sparkles, Calendar, Video, MessageCircle } from 'lucide-react';
+import { getGoogleCalendarUrl, WEBINAR_INFO, CERTIFICATION_COHORTS } from '@/content/certification/cohortsData';
 
 interface PreRegistrationModalProps {
   isOpen: boolean;
@@ -175,6 +176,14 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
     setIsSubmitting(true);
     setErrors({});
 
+    const isQro = formData.city.toLowerCase().includes('quer');
+    const isMty = formData.city.toLowerCase().includes('mont');
+    const selectedCohort = isQro
+      ? 'queretaro-nov-2026'
+      : isMty
+        ? 'monterrey-dec-jan-2026-2027'
+        : undefined;
+
     try {
       await submitPreRegistration({
         fullName: formData.fullName,
@@ -184,14 +193,13 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
         experienceLevel: formData.experienceLevel as ExperienceLevel,
         preferredTimeline: formData.preferredTimeline as Timeline,
         source,
+        selectedCohort,
+        registeredForWebinar: isQro || isMty,
+        webinarDate: (isQro || isMty) ? '2026-09-26' : undefined,
+        discountClaimed: isQro || isMty,
       });
 
       setShowSuccess(true);
-
-      // Auto-close after 5 seconds
-      setTimeout(() => {
-        onClose();
-      }, 5000);
     } catch (error: unknown) {
       setErrors({
         submit: error instanceof Error ? error.message : 'Error al enviar el formulario',
@@ -212,33 +220,91 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
     }
   };
 
+  const isCohortCity = formData.city.toLowerCase().includes('quer') || formData.city.toLowerCase().includes('mont');
+  const cohortCityName = formData.city.toLowerCase().includes('quer') ? 'Querétaro' : 'Monterrey';
+  const cohortDates = formData.city.toLowerCase().includes('quer')
+    ? CERTIFICATION_COHORTS.queretaro.periodLabel
+    : CERTIFICATION_COHORTS.monterrey.periodLabel;
+
   // Success Screen
   if (showSuccess) {
     return (
       <Dialog open={isOpen} onOpenChange={handleClose}>
         <DialogContent className="sm:max-w-md bg-white rounded-2xl border-[#2A2624]/10">
           <DialogTitle className="sr-only">Registro exitoso</DialogTitle>
-          <div className="text-center py-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-[#3E2723] rounded-full mb-6">
-              <CheckCircle2 className="w-8 h-8 text-white" />
+          <div className="text-center py-6">
+            <div className="inline-flex items-center justify-center w-14 h-14 bg-[#2A2624] rounded-full mb-4">
+              <CheckCircle2 className="w-7 h-7 text-amber-300" />
             </div>
 
-            <h2 className="text-3xl font-serif italic text-[#2A2624] mb-4">
-              ¡Registro exitoso!
+            <h2 className="text-2xl font-serif italic text-[#2A2624] mb-2">
+              {isCohortCity ? '¡Lugar y Descuento del 50% Apartados!' : '¡Registro exitoso!'}
             </h2>
 
-            <p className="text-[#5D5550] leading-relaxed mb-2">
-              Te contactaremos en las próximas <strong>48 horas</strong> con información sobre las próximas certificaciones en{' '}
-              <strong>{formData.city}</strong>.
-            </p>
+            {isCohortCity ? (
+              <div className="space-y-4 text-left my-4">
+                <div className="bg-[#2A2624] text-white p-4 rounded-xl text-xs space-y-2">
+                  <div className="flex items-center gap-1.5 text-amber-300 font-semibold uppercase tracking-wider text-[11px]">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>Beneficio de Lista de Espera</span>
+                  </div>
+                  <p className="text-stone-300 leading-relaxed">
+                    Tu precio especial de <strong>$19,900 MXN</strong> (antes $39,800 MXN) ha quedado registrado para la cohorte de <strong>{cohortCityName} ({cohortDates})</strong>.
+                  </p>
+                  <p className="text-[11px] text-stone-400">
+                    Apartado oficial con solo $4,500 MXN (cupo limitado a 12 lugares).
+                  </p>
+                </div>
 
-            <p className="text-sm text-[#5D5550]/70 mt-6">
-              Esta ventana se cerrará automáticamente...
-            </p>
+                <div className="border border-[#2A2624]/15 rounded-xl p-3.5 text-xs text-[#5D5550] space-y-2 bg-[#F7F5F0]">
+                  <div className="flex items-center gap-1.5 font-medium text-[#2A2624]">
+                    <Video className="w-4 h-4 text-[#8C6D58]" />
+                    <span>Masterclass Pre-Webinar Informativa</span>
+                  </div>
+                  <p className="text-[11px] leading-relaxed">
+                    <strong>{WEBINAR_INFO.dateFormatted}</strong> con Gabi y Laura Munif. Conocerás el temario detallado de los 4 fines de semana y la apertura preferente.
+                  </p>
+                  <div className="pt-1">
+                    <a
+                      href={getGoogleCalendarUrl()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-1.5 w-full py-2 bg-white hover:bg-stone-100 border border-stone-300 rounded-lg text-xs font-medium text-[#2A2624] transition-colors"
+                    >
+                      <Calendar className="w-3.5 h-3.5" />
+                      Agregar al Google Calendar
+                    </a>
+                  </div>
+                </div>
+
+                <div className="pt-2 flex flex-col gap-2">
+                  <a
+                    href={`https://wa.me/525549425550?text=${encodeURIComponent(`Hola, acabo de registrarme a la lista de espera para la Certificación en ${cohortCityName} con 50% de descuento. ¿Me comparten los detalles?`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 w-full py-2.5 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    Confirmar por WhatsApp VIP
+                  </a>
+                  <a
+                    href="/certificacion-pilates/webinar"
+                    className="text-center text-xs text-[#8C6D58] hover:underline pt-1"
+                  >
+                    Ver programa completo del evento →
+                  </a>
+                </div>
+              </div>
+            ) : (
+              <p className="text-[#5D5550] leading-relaxed mb-2 text-sm">
+                Te contactaremos en las próximas <strong>48 horas</strong> con información sobre las próximas certificaciones en{' '}
+                <strong>{formData.city}</strong>.
+              </p>
+            )}
 
             <Button
               onClick={onClose}
-              className="mt-8 bg-[#2A2624] hover:bg-[#3E2723] text-white"
+              className="mt-4 w-full bg-[#2A2624] hover:bg-[#3E2723] text-white text-xs uppercase tracking-wider"
             >
               Cerrar
             </Button>
@@ -280,6 +346,18 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
                 </h2>
                 <p className="text-sm text-[#5D5550]">Paso 1 de 3</p>
               </div>
+
+              {(isCohortCity || defaultCity.toLowerCase().includes('quer') || defaultCity.toLowerCase().includes('mont')) && (
+                <div className="bg-[#2A2624] text-white p-3 rounded-xl text-xs space-y-1">
+                  <div className="flex items-center gap-1.5 text-amber-300 font-semibold uppercase tracking-wider text-[10px]">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>Convocatoria 2026 · 50% OFF en Lista de Espera</span>
+                  </div>
+                  <p className="text-stone-300 leading-snug">
+                    Asegura tu lugar preferente para <strong>{cohortCityName} ({cohortDates})</strong> a $19,900 MXN en lugar de $39,800 MXN e invitación a la Masterclass el 26 de Septiembre.
+                  </p>
+                </div>
+              )}
 
               <div className="space-y-4">
                 <div>
