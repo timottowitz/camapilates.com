@@ -80,6 +80,7 @@
     "@tiptap/react": "^3.11.0",
     "@tiptap/starter-kit": "^3.11.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
+    "@whop/checkout": "^0.6.0",
     "ai": "5.0.57",
     "autoprefixer": "^10.4.20",
     "axios": "^1.12.2",

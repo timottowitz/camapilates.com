@@ -27,6 +27,9 @@ import {
   getGoogleCalendarUrl,
   generateIcsContent
 } from '@/content/certification/cohortsData';
+import { IrresistibleOfferStack } from '@/components/certification/IrresistibleOfferStack';
+import { WhopCheckoutModal } from '@/components/whop/WhopCheckoutModal';
+import { WHOP_CONFIG } from '@/lib/whop/whopConfig';
 
 interface TimeRemaining {
   days: number;
@@ -48,6 +51,8 @@ export const CertificacionWebinar: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
+  const [checkoutPlan, setCheckoutPlan] = useState<string>(WHOP_CONFIG.plans.apartado.id);
 
   // Countdown timer to September 26, 2026 11:00 AM CST
   const [timeLeft, setTimeLeft] = useState<TimeRemaining>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -432,6 +437,38 @@ export const CertificacionWebinar: React.FC = () => {
                 </p>
               </div>
 
+              {/* Fast-Action Whop Lock-in Card */}
+              <div className="bg-[#2A2624] text-white p-6 rounded-2xl border border-amber-400/40 text-left max-w-md mx-auto mb-8 shadow-xl space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-[10px] font-bold uppercase tracking-wider">
+                    ¿Quieres congelar tu lugar HOY?
+                  </span>
+                  <span className="text-amber-300 font-bold text-sm">$4,500 MXN</span>
+                </div>
+                <p className="text-xs text-stone-300 leading-relaxed">
+                  Para no depender de la conexión el día del webinar, puedes apartar tu lugar con <strong>$4,500 MXN</strong> a través de Whop, congelar tu precio del 50% y obtener acceso anticipado al Campus y la Comunidad.
+                </p>
+                <div className="flex flex-col gap-2 pt-1">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setCheckoutPlan(WHOP_CONFIG.plans.apartado.id);
+                      setCheckoutOpen(true);
+                    }}
+                    className="w-full py-3 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-xs uppercase tracking-wider text-center transition-all shadow-md flex items-center justify-center gap-2"
+                  >
+                    <span>Apartar Lugar Ahora en Whop ($4,500 MXN)</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                  <Link
+                    to="/app"
+                    className="w-full py-2.5 px-4 rounded-xl border border-stone-700 bg-stone-900/90 text-stone-300 hover:text-white font-medium text-xs uppercase tracking-wider text-center transition-all"
+                  >
+                    Entrar a la Webapp & Comunidad →
+                  </Link>
+                </div>
+              </div>
+
               {/* Action Buttons: Calendar & WhatsApp */}
               <div className="space-y-4 max-w-md mx-auto">
                 <p className="text-xs font-semibold uppercase tracking-widest text-[#2A2624]">
@@ -666,6 +703,13 @@ export const CertificacionWebinar: React.FC = () => {
         </div>
       </section>
 
+      {/* Irresistible Offer Stack (Jason Fladlien Framework) */}
+      <section className="py-12 px-6 md:px-16 lg:px-24 bg-[#12100E]">
+        <div className="max-w-6xl mx-auto">
+          <IrresistibleOfferStack city={cohort.includes('monterrey') ? 'monterrey' : 'queretaro'} />
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section className="py-20 px-6 md:px-16 lg:px-24 bg-white border-t border-[#2A2624]/10">
         <div className="max-w-4xl mx-auto">
@@ -693,7 +737,7 @@ export const CertificacionWebinar: React.FC = () => {
                 ¿Cómo funciona el 50% de descuento ($19,900 MXN)?
               </h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                El costo regular de la formación de 100 horas es de $39,800 MXN. Para las cohortes de Querétaro y Monterrey, liberamos 12 becas por ciudad del 50% ($19,900 MXN) que se asignan por orden de pre-registro y asistencia al webinar. Puedes congelar tu precio con $4,500 MXN.
+                El costo regular de la formación de 100 horas es de $39,800 MXN. Para las cohortes de Querétaro y Monterrey, liberamos 12 becas por ciudad del 50% ($19,900 MXN) que se asignan por orden de pre-registro y asistencia al webinar. Puedes congelar tu precio con $4,500 MXN a través de Whop.
               </p>
             </div>
 
@@ -727,6 +771,15 @@ export const CertificacionWebinar: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Whop Checkout Modal */}
+      <WhopCheckoutModal
+        isOpen={checkoutOpen}
+        onClose={() => setCheckoutOpen(false)}
+        planId={checkoutPlan}
+        cohort={cohort}
+        prefill={{ email, fullName, phone }}
+      />
     </LuxuryLayout>
   );
 };

@@ -74,5 +74,17 @@
   "/webinar": {
     "title": "Masterclass en Vivo: Certificación Pilates Reformer Querétaro y Monterrey | CAMA Pilates",
     "description": "Masterclass en vivo este Sábado 26 de Septiembre con Gabi y Laura Munif. Lista de espera con 50% de descuento ($19,900 MXN) para Querétaro y Monterrey."
+  },
+  "/app": {
+    "title": "Campus Virtual & Comunidad Reformer México | CAMA Pilates",
+    "description": "Plataforma de formación y comunidad para instructores de Pilates Reformer en México. Clases grabadas, foros clínicos, biblioteca y networking impulsado por Whop."
+  },
+  "/campus": {
+    "title": "Campus Virtual de Certificación Reformer | CAMA Pilates",
+    "description": "Accede a tus módulos de certificación de 100 horas, masterclasses grabadas, material descargable y exámenes con CAMA Pilates en Whop."
+  },
+  "/comunidad": {
+    "title": "Comunidad Reformer México — Whop Hub | CAMA Pilates",
+    "description": "Únete a la red más activa de instructores y dueños de estudios de Pilates Reformer en México. Foros de discusión, casos clínicos y networking en vivo."
   }
 }

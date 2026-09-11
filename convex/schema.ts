@@ -536,6 +536,26 @@ export default defineSchema({
     .index('by_status', ['status'])
     .index('by_submitted', ['submittedAt']),
 
+  // Whop Payments & Enrollments
+  whopPayments: defineTable({
+    email: v.string(),
+    fullName: v.optional(v.string()),
+    phone: v.optional(v.string()),
+    planId: v.string(),
+    planName: v.string(),
+    amount: v.number(),
+    currency: v.string(),
+    receiptId: v.optional(v.string()),
+    whopUserId: v.optional(v.string()),
+    cohort: v.optional(v.string()),
+    paymentStatus: v.string(), // 'completed' | 'pending' | 'failed'
+    source: v.optional(v.string()),
+    createdAt: v.number(),
+  })
+    .index('by_email', ['email'])
+    .index('by_plan', ['planId'])
+    .index('by_created', ['createdAt']),
+
   // Teachers Directory
   teachers: defineTable({
     // === IDENTITY ===

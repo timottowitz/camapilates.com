@@ -35,6 +35,8 @@ const LuxuryLayout = ({ children, className = "", noPadding = false, headerTheme
                             <ul className="space-y-4 text-sm font-light text-white/80">
                                 <li><Link to="/shop" className="hover:text-white transition-colors">Ver Colección</Link></li>
                                 <li><Link to="/shop/category/reformers" className="hover:text-white transition-colors">Reformers</Link></li>
+                                <li><Link to="/certificacion-pilates" className="hover:text-white transition-colors">Certificación Reformer</Link></li>
+                                <li><Link to="/app" className="hover:text-white transition-colors">Campus Virtual & Comunidad</Link></li>
                                 <li><Link to="/reformer-para-casa" className="hover:text-white transition-colors">Reformer para Casa</Link></li>
                                 <li><Link to="/reformer-para-estudio" className="hover:text-white transition-colors">Reformer para Estudio</Link></li>
                                 <li><Link to="/about" className="hover:text-white transition-colors">Nuestra Historia</Link></li>

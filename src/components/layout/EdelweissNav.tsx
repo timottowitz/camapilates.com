@@ -52,6 +52,7 @@ const EdelweissNav: React.FC<EdelweissNavProps> = ({ darkBackground = false }) =
     { to: '/estudios-de-pilates', label: 'Search Studio' },
     { to: '/instructores-pilates', label: 'Instructors' },
     { to: '/certificacion-pilates', label: 'Courses' },
+    { to: '/app', label: 'Campus' },
     { to: '/shop', label: 'Store', children: collectionLinks },
     { to: '/blog', label: 'Blog' },
     { to: '/about', label: 'Us' },

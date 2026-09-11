@@ -55,6 +55,7 @@ import type * as teachers from "../teachers.js";
 import type * as teachersAdmin from "../teachersAdmin.js";
 import type * as testGooglePlaces from "../testGooglePlaces.js";
 import type * as topics from "../topics.js";
+import type * as whopPayments from "../whopPayments.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -107,6 +108,7 @@ declare const fullApi: ApiFromModules<{
   teachersAdmin: typeof teachersAdmin;
   testGooglePlaces: typeof testGooglePlaces;
   topics: typeof topics;
+  whopPayments: typeof whopPayments;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

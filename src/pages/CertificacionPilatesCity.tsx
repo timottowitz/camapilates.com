@@ -17,6 +17,8 @@ import {
   STOTT_VENUE,
   formatMXN,
 } from '@/content/certification/stottCdmx';
+import { WhopCheckoutModal } from '@/components/whop/WhopCheckoutModal';
+import { WHOP_CONFIG } from '@/lib/whop/whopConfig';
 
 type CityKey = 'cdmx' | 'guadalajara' | 'monterrey' | 'puebla' | 'queretaro';
 
@@ -52,6 +54,8 @@ const FEATURED = STOTT_COURSES.find(c => c.featured) || STOTT_COURSES[0];
 
 const CertificacionPilatesCity: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [whopCheckoutOpen, setWhopCheckoutOpen] = useState(false);
+  const [whopPlan, setWhopPlan] = useState<string>(WHOP_CONFIG.plans.apartado.id);
   const { city } = useParams();
   const origin = getOrigin();
   const key = (city || 'cdmx').toLowerCase() as CityKey;
@@ -276,16 +280,25 @@ const CertificacionPilatesCity: React.FC = () => {
               {cohort ? (
                 <>
                   <button
-                    onClick={() => setModalOpen(true)}
-                    className="px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors shadow-md"
+                    onClick={() => {
+                      setWhopPlan(WHOP_CONFIG.plans.apartado.id);
+                      setWhopCheckoutOpen(true);
+                    }}
+                    className="px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors shadow-md font-semibold"
                   >
-                    Apartar con 50% OFF ($19,900)
+                    Apartar con 50% OFF ($4,500 MXN)
+                  </button>
+                  <button
+                    onClick={() => setModalOpen(true)}
+                    className="px-6 py-4 border border-[#2A2624]/30 text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#EAE8E4] transition-colors"
+                  >
+                    Pre-registro gratis
                   </button>
                   <Link
                     to="/certificacion-pilates/webinar"
-                    className="px-8 py-4 border border-[#2A2624]/30 text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#EAE8E4] transition-colors flex items-center gap-2"
+                    className="px-6 py-4 bg-[#3E2723]/10 border border-[#3E2723]/30 text-[#3E2723] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723]/20 transition-colors flex items-center gap-2"
                   >
-                    <span>Pre-Webinar 26 Sep</span>
+                    <span>Masterclass 26 Sep</span>
                   </Link>
                 </>
               ) : (
@@ -447,16 +460,25 @@ const CertificacionPilatesCity: React.FC = () => {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button
-                onClick={() => setModalOpen(true)}
+                onClick={() => {
+                  setWhopPlan(WHOP_CONFIG.plans.apartado.id);
+                  setWhopCheckoutOpen(true);
+                }}
                 className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#EAE8E4] text-[#2A2624] text-xs uppercase tracking-[0.2em] font-semibold hover:bg-white transition-colors shadow-lg"
               >
-                Apartar mi lugar con 50% OFF
+                Apartar mi lugar con 50% OFF ($4,500 MXN)
+              </button>
+              <button
+                onClick={() => setModalOpen(true)}
+                className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/30 text-white text-xs uppercase tracking-[0.2em] hover:bg-white/10 transition-colors"
+              >
+                Pre-registro sin costo
               </button>
               <Link
                 to="/certificacion-pilates/webinar"
-                className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/30 text-white text-xs uppercase tracking-[0.2em] hover:bg-white/10 transition-colors"
+                className="w-full sm:w-auto px-8 py-4 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-100 text-xs uppercase tracking-[0.2em] hover:bg-emerald-500/30 transition-colors"
               >
-                Registrarme a la Masterclass (26 Sep)
+                Masterclass (26 Sep)
               </Link>
             </div>
           </div>
@@ -584,6 +606,13 @@ const CertificacionPilatesCity: React.FC = () => {
         onClose={() => setModalOpen(false)}
         defaultCity={cityName}
         source={`/certificacion-pilates/${key}`}
+      />
+
+      <WhopCheckoutModal
+        isOpen={whopCheckoutOpen}
+        onClose={() => setWhopCheckoutOpen(false)}
+        planId={whopPlan}
+        cohort={cohort ? (key === 'queretaro' ? 'queretaro-nov-2026' : 'monterrey-dec-jan-2026-2027') : undefined}
       />
     </LuxuryLayout>
   );
