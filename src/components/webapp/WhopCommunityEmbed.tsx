@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   MessageSquare,
   Users,
@@ -6,15 +6,14 @@ import {
   Sparkles,
   Smartphone,
   Shield,
-  HelpCircle,
   GraduationCap,
   MessagesSquare,
   Maximize2,
   Minimize2,
   RefreshCw,
   BookOpen,
-  CreditCard,
   UserCheck,
+  CheckCircle2,
 } from 'lucide-react';
 import { WHOP_CONFIG } from '@/lib/whop/whopConfig';
 import { WhopForumReader } from './WhopForumReader';
@@ -33,6 +32,16 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
   const [activeTab, setActiveTab] = useState<WhopEmbedTab>(initialTab);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [iframeKey, setIframeKey] = useState(0);
+  const [enrollmentData, setEnrollmentData] = useState<any>(null);
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('cama_pilates_whop_enrollment');
+      if (saved) {
+        setEnrollmentData(JSON.parse(saved));
+      }
+    } catch (_) {}
+  }, []);
 
   const activeExperience =
     activeTab === 'chat'
@@ -58,7 +67,7 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
       {/* Community Top Navigation Bar */}
       <div className="bg-neutral-50/80 border-b border-neutral-200/80 px-6 py-4 flex flex-wrap items-center justify-between gap-3 shrink-0">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-neutral-900 text-white flex items-center justify-center font-bold text-xs shadow-sm">
+          <div className="w-9 h-9 rounded-2xl bg-neutral-900 text-white flex items-center justify-center font-bold text-xs shadow-sm">
             CAMA
           </div>
           <div>
@@ -76,12 +85,12 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
           </div>
         </div>
 
-        {/* Experience Switcher */}
+        {/* Experience Switcher Tabs */}
         <div className="flex items-center gap-1.5 bg-neutral-100/80 p-1.5 rounded-2xl border border-neutral-200/80 overflow-x-auto scrollbar-none max-w-full">
           <button
             type="button"
             onClick={() => setActiveTab('reader')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap shrink-0 transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
               activeTab === 'reader'
                 ? 'bg-neutral-900 text-white font-semibold shadow-xs'
                 : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200/60'
@@ -94,7 +103,7 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
           <button
             type="button"
             onClick={() => setActiveTab('forum')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap shrink-0 transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
               activeTab === 'forum'
                 ? 'bg-neutral-900 text-white font-semibold shadow-xs'
                 : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200/60'
@@ -107,7 +116,7 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
           <button
             type="button"
             onClick={() => setActiveTab('chat')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap shrink-0 transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
               activeTab === 'chat'
                 ? 'bg-neutral-900 text-white font-semibold shadow-xs'
                 : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200/60'
@@ -120,27 +129,27 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
           <button
             type="button"
             onClick={() => setActiveTab('courses')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap shrink-0 transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
               activeTab === 'courses'
                 ? 'bg-neutral-900 text-white font-semibold shadow-xs'
                 : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200/60'
             }`}
           >
             <GraduationCap className="w-3.5 h-3.5" />
-            <span>Campus LMS</span>
+            <span>Campus LMS (100h)</span>
           </button>
 
           <button
             type="button"
             onClick={() => setActiveTab('portal')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap shrink-0 transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
               activeTab === 'portal'
                 ? 'bg-neutral-900 text-white font-semibold shadow-xs'
                 : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200/60'
             }`}
           >
             <UserCheck className="w-3.5 h-3.5" />
-            <span>Portal Alumna</span>
+            <span>Mi Membresía</span>
           </button>
         </div>
 
@@ -184,27 +193,72 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
         </div>
       </div>
 
-      {/* Sub-header with Channel Information */}
-      <div className="bg-neutral-50/50 px-6 py-2.5 border-b border-neutral-200/70 flex items-center justify-between text-xs text-neutral-500 shrink-0">
-        <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto py-0.5 scrollbar-none">
-          <span className="font-mono text-[11px] uppercase tracking-wider text-neutral-400 whitespace-nowrap">// CANALES:</span>
-          <span className="px-2.5 py-0.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-[11px] font-mono whitespace-nowrap shadow-xs">
-            #webinar-vip-lobby
-          </span>
-          <span className="px-2.5 py-0.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-[11px] font-mono whitespace-nowrap shadow-xs">
-            #anuncios-oficiales
-          </span>
-          <span className="px-2.5 py-0.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-[11px] font-mono whitespace-nowrap shadow-xs">
-            #preguntas-laura-munive
-          </span>
-          <span className="px-2.5 py-0.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-[11px] font-mono whitespace-nowrap shadow-xs">
-            #cohorte-queretaro-nov
-          </span>
-          <span className="px-2.5 py-0.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-[11px] font-mono whitespace-nowrap shadow-xs">
-            #cohorte-monterrey-dic-ene
-          </span>
+      {/* Member Sync Status Banner */}
+      {enrollmentData ? (
+        <div className="bg-emerald-50/70 border-b border-emerald-200/70 px-6 py-2.5 flex items-center justify-between text-xs text-emerald-900">
+          <div className="flex items-center gap-2">
+            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+            <span>
+              <strong>Alumna Verificada:</strong> Tu membresía para <strong className="uppercase">{enrollmentData.cohort || 'Cohorte 2026'}</strong> está activa. Tienes acceso prioritario a canales privados y soporte.
+            </span>
+          </div>
+          <a
+            href={WHOP_CONFIG.customerPortalUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-semibold text-emerald-800 hover:underline flex items-center gap-1 shrink-0"
+          >
+            <span>Ver Recibo en Whop</span>
+            <ExternalLink className="w-3 h-3" />
+          </a>
         </div>
-        <span className="text-[11px] text-neutral-400 font-mono hidden md:inline ml-2 whitespace-nowrap">
+      ) : (
+        <div className="bg-neutral-50 px-6 py-2.5 border-b border-neutral-200/70 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-neutral-600">
+          <div className="flex items-center gap-2">
+            <Sparkles className="w-3.5 h-3.5 text-[#BF4A20] shrink-0" />
+            <span>
+              <strong>Comunidad Abierta & Canales Oficiales:</strong> Consulta dudas en el foro en vivo o accede a los canales de chat.
+            </span>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="font-mono text-[11px] text-neutral-500">240+ Alumnas Activas</span>
+            <span className="text-neutral-300">·</span>
+            <a
+              href="/app?tab=pagos"
+              className="text-neutral-900 hover:underline font-semibold"
+            >
+              Apartar Cupo →
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* Channels Directory Strip */}
+      <div className="bg-neutral-50/40 px-6 py-2.5 border-b border-neutral-200/60 flex items-center justify-between text-xs text-neutral-500 shrink-0">
+        <div className="flex items-center gap-2 sm:gap-2.5 overflow-x-auto py-0.5 scrollbar-none">
+          <span className="font-mono text-[11px] uppercase tracking-wider text-neutral-400 whitespace-nowrap">// CANALES WHOP:</span>
+          {[
+            { tag: '#webinar-vip-lobby', name: 'Lobby VIP' },
+            { tag: '#anuncios-oficiales', name: 'Avisos de Cohortes' },
+            { tag: '#preguntas-laura-munive', name: 'Mentoría Técnica' },
+            { tag: '#casos-clinicos', name: 'Patologías & Biomecánica' },
+            { tag: '#cohorte-queretaro-nov', name: 'Querétaro' },
+            { tag: '#cohorte-monterrey-dic', name: 'Monterrey' },
+            { tag: '#bolsa-trabajo', name: 'Estudios & Empleo' },
+          ].map((ch, idx) => (
+            <a
+              key={idx}
+              href={WHOP_CONFIG.communityUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white border border-neutral-200 text-neutral-700 hover:border-neutral-400 text-[11px] font-mono whitespace-nowrap shadow-xs transition-colors"
+              title={`Abrir canal ${ch.tag} en Whop`}
+            >
+              <span>{ch.tag}</span>
+            </a>
+          ))}
+        </div>
+        <span className="text-[11px] text-neutral-400 font-mono hidden lg:inline ml-2 whitespace-nowrap">
           {activeExperience.description}
         </span>
       </div>
@@ -222,7 +276,7 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
         ) : (
           <div className="flex flex-col h-full w-full">
             {/* Whop Auth & Direct Access Banner */}
-            <div className="bg-neutral-50 border-b border-neutral-200 px-6 py-2.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs shrink-0">
+            <div className="bg-white border-b border-neutral-200 px-6 py-2.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs shrink-0">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-3.5 h-3.5 text-orange-500 shrink-0" />
                 <span className="text-neutral-600 text-[11px] sm:text-xs">
@@ -233,7 +287,7 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
                 href={activeExperience.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold rounded-full transition-all shadow-xs shrink-0"
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold rounded-full transition-all shadow-xs shrink-0"
               >
                 <span>Abrir {activeExperience.name}</span>
                 <ExternalLink className="w-3 h-3" />
@@ -250,7 +304,7 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
                 loading="lazy"
               />
 
-              {/* Quick Open Overlay in case of iframe blocking or direct full experience preference */}
+              {/* Quick Open Overlay */}
               <div className="absolute bottom-4 right-4 z-10 flex items-center gap-2">
                 <a
                   href={activeExperience.url}

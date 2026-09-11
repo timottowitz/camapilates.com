@@ -16,6 +16,11 @@ import {
   PlayCircle,
   HelpCircle,
   UserCheck,
+  ShieldCheck,
+  Award,
+  Users,
+  Compass,
+  Zap,
 } from 'lucide-react';
 import { WHOP_CONFIG } from '@/lib/whop/whopConfig';
 import { WhopCommunityEmbed } from '@/components/webapp/WhopCommunityEmbed';
@@ -60,7 +65,6 @@ const WebappExperience: React.FC = () => {
 
   const handleSelectTab = (tab: WebappTab) => {
     setActiveTab(tab);
-    // Smoothly scroll to content if clicking from cards
     const element = document.getElementById('capability-section');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -72,7 +76,7 @@ const WebappExperience: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Campus Virtual & Certificación Reformer | CAMA Pilates</title>
+        <title>Campus Virtual & Comunidad Whop | CAMA Pilates</title>
         <meta
           name="description"
           content="Campus virtual oficial de certificación Pilates Reformer: comunidad Whop en vivo, temario de 100 horas, aula de masterclass y biblioteca clínica."
@@ -353,7 +357,8 @@ const WebappExperience: React.FC = () => {
 
           {/* TAB 2: COMUNIDAD WHOP */}
           {activeTab === 'comunidad' && (
-            <div className="space-y-6">
+            <div className="space-y-8">
+              {/* Community Banner with Live Stats */}
               <div className="bg-white border border-neutral-200/90 rounded-[28px] p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-xs">
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
@@ -366,7 +371,7 @@ const WebappExperience: React.FC = () => {
                     Comunidad de Alumnas e Instructoras CAMA Pilates
                   </h2>
                   <p className="text-xs sm:text-sm text-neutral-600 max-w-2xl leading-relaxed">
-                    Interactúa con tus formadoras Gabi & Laura Munive, formula preguntas para la Masterclass del 26 de Septiembre y conecta con colegas de Querétaro y Monterrey.
+                    Interactúa con tus formadoras Gabi & Laura Munive, debate casos clínicos de patologías y conecta con la red de graduadas en Querétaro y Monterrey.
                   </p>
                 </div>
 
@@ -392,8 +397,87 @@ const WebappExperience: React.FC = () => {
                 </div>
               </div>
 
+              {/* 4 Community Highlights / Channels Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="bg-white border border-neutral-200/90 rounded-2xl p-5 space-y-2 shadow-xs">
+                  <div className="flex items-center justify-between">
+                    <span className="px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-800 font-mono text-[10px] font-bold">
+                      #anuncios-oficiales
+                    </span>
+                    <span className="text-[10px] font-mono text-neutral-400">Oficial</span>
+                  </div>
+                  <h4 className="text-sm font-bold text-neutral-900">Avisos & Sedes</h4>
+                  <p className="text-xs text-neutral-500 leading-relaxed">
+                    Ubicaciones exactas en Juriquilla y San Pedro, horarios y recordatorios de fechas.
+                  </p>
+                </div>
+
+                <div className="bg-white border border-neutral-200/90 rounded-2xl p-5 space-y-2 shadow-xs">
+                  <div className="flex items-center justify-between">
+                    <span className="px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-800 font-mono text-[10px] font-bold">
+                      #preguntas-laura
+                    </span>
+                    <span className="text-[10px] font-mono text-neutral-400">Mentoría</span>
+                  </div>
+                  <h4 className="text-sm font-bold text-neutral-900">Dudas Anatómicas</h4>
+                  <p className="text-xs text-neutral-500 leading-relaxed">
+                    Canal directo con Laura Munive para resolver biomecánica y ajustes en clase.
+                  </p>
+                </div>
+
+                <div className="bg-white border border-neutral-200/90 rounded-2xl p-5 space-y-2 shadow-xs">
+                  <div className="flex items-center justify-between">
+                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-mono text-[10px] font-bold">
+                      #casos-clinicos
+                    </span>
+                    <span className="text-[10px] font-mono text-neutral-400">Clínica</span>
+                  </div>
+                  <h4 className="text-sm font-bold text-neutral-900">Patologías & Carga</h4>
+                  <p className="text-xs text-neutral-500 leading-relaxed">
+                    Análisis de casos reales de alumnos con hernias, escoliosis y contraindicaciones.
+                  </p>
+                </div>
+
+                <div className="bg-white border border-neutral-200/90 rounded-2xl p-5 space-y-2 shadow-xs">
+                  <div className="flex items-center justify-between">
+                    <span className="px-2.5 py-0.5 rounded-full bg-neutral-100 text-neutral-800 font-mono text-[10px] font-bold">
+                      #bolsa-trabajo
+                    </span>
+                    <span className="text-[10px] font-mono text-neutral-400">Empleo</span>
+                  </div>
+                  <h4 className="text-sm font-bold text-neutral-900">Red de Estudios</h4>
+                  <p className="text-xs text-neutral-500 leading-relaxed">
+                    Vacantes y oportunidades de docencia en estudios certificados de México.
+                  </p>
+                </div>
+              </div>
+
               {/* The Embedded Whop Experience */}
               <WhopCommunityEmbed initialTab="reader" />
+
+              {/* Community Values & Ethical Framework */}
+              <div className="bg-neutral-50 border border-neutral-200 rounded-[28px] p-6 sm:p-8 space-y-4">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="w-5 h-5 text-[#14323D]" />
+                  <h3 className="text-base font-bold text-neutral-900 tracking-tight">
+                    Valores & Código de Ética de la Comunidad CAMA Pilates
+                  </h3>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-neutral-600 leading-relaxed">
+                  <div className="space-y-1">
+                    <p className="font-bold text-neutral-900">1. Rigor Anatómico</p>
+                    <p>Todo ajuste o ejercicio se fundamenta en biomecánica y evidencia clínica, no en modas pasajeras.</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="font-bold text-neutral-900">2. Confidencialidad Alumno</p>
+                    <p>Los casos clínicos compartidos en foros protegen la identidad y privacidad médica de tus alumnos.</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="font-bold text-neutral-900">3. Mentoría Colaborativa</p>
+                    <p>Fomentamos el crecimiento mutuo y el intercambio honesto entre instructoras de todas las ciudades.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
 
@@ -699,6 +783,45 @@ const WebappExperience: React.FC = () => {
                     >
                       Obtener Pase Gratuito
                     </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Offer Stack & Bonuses Sync Box */}
+              <div className="bg-white border border-neutral-200/90 rounded-[28px] p-6 sm:p-8 space-y-6 shadow-xs">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-neutral-100 pb-4">
+                  <div>
+                    <span className="px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-800 font-mono text-[10px] font-bold uppercase tracking-wider">
+                      Paquete de Valor Completo (Stack de 5 Bonos)
+                    </span>
+                    <h3 className="text-xl font-bold text-neutral-900 tracking-tight mt-1">
+                      Todo lo que incluye tu inscripción oficial a la formación
+                    </h3>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-xs font-mono text-neutral-400 line-through">Valor Total: ${WHOP_CONFIG.offerStack.totalValue.toLocaleString('es-MX')} MXN</span>
+                    <p className="text-lg font-bold text-neutral-900">Preventa: ${WHOP_CONFIG.offerStack.waitlistPrice.toLocaleString('es-MX')} MXN</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {WHOP_CONFIG.offerStack.bonuses.map((bonus, idx) => (
+                    <div key={idx} className="p-4 rounded-2xl bg-neutral-50/70 border border-neutral-200/70 space-y-1.5">
+                      <div className="flex items-center justify-between">
+                        <span className="font-bold text-xs text-neutral-900">{bonus.title}</span>
+                        <span className="font-mono text-[11px] font-semibold text-neutral-500">${bonus.value.toLocaleString('es-MX')} MXN</span>
+                      </div>
+                      <p className="text-xs text-neutral-600 leading-relaxed">{bonus.description}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Risk-free Guarantee */}
+                <div className="p-5 rounded-2xl bg-teal-50/50 border border-teal-200/80 flex items-start gap-3 text-xs text-teal-950">
+                  <ShieldCheck className="w-5 h-5 text-teal-700 shrink-0 mt-0.5" />
+                  <div className="space-y-1">
+                    <p className="font-bold text-sm text-teal-900">{WHOP_CONFIG.offerStack.guarantee.title}</p>
+                    <p className="text-teal-800 leading-relaxed">{WHOP_CONFIG.offerStack.guarantee.description}</p>
                   </div>
                 </div>
               </div>
