@@ -233,6 +233,7 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
             <div className="space-y-4">
               <div className="rounded-2xl overflow-hidden min-h-[460px] bg-neutral-50 border border-neutral-200">
                 <WhopCheckoutEmbed
+                  key={activePlan.id}
                   planId={activePlan.id}
                   returnUrl={returnUrl}
                   locale="es"

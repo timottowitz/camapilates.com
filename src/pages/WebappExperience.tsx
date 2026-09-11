@@ -363,7 +363,7 @@ const WebappExperience: React.FC = () => {
                     </span>
                   </div>
                   <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900">
-                    Comunidad de Alumnas e Instructorias CAMA Pilates
+                    Comunidad de Alumnas e Instructoras CAMA Pilates
                   </h2>
                   <p className="text-xs sm:text-sm text-neutral-600 max-w-2xl leading-relaxed">
                     Interactúa con tus formadoras Gabi & Laura Munive, formula preguntas para la Masterclass del 26 de Septiembre y conecta con colegas de Querétaro y Monterrey.
@@ -393,7 +393,7 @@ const WebappExperience: React.FC = () => {
               </div>
 
               {/* The Embedded Whop Experience */}
-              <WhopCommunityEmbed initialTab="forum" />
+              <WhopCommunityEmbed initialTab="reader" />
             </div>
           )}
 

@@ -77,11 +77,11 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
         </div>
 
         {/* Experience Switcher */}
-        <div className="flex items-center gap-1.5 bg-neutral-100/80 p-1.5 rounded-2xl border border-neutral-200/80 overflow-x-auto scrollbar-none">
+        <div className="flex items-center gap-1.5 bg-neutral-100/80 p-1.5 rounded-2xl border border-neutral-200/80 overflow-x-auto scrollbar-none max-w-full">
           <button
             type="button"
             onClick={() => setActiveTab('reader')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap shrink-0 transition-all ${
               activeTab === 'reader'
                 ? 'bg-neutral-900 text-white font-semibold shadow-xs'
                 : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200/60'
@@ -94,7 +94,7 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
           <button
             type="button"
             onClick={() => setActiveTab('forum')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap shrink-0 transition-all ${
               activeTab === 'forum'
                 ? 'bg-neutral-900 text-white font-semibold shadow-xs'
                 : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200/60'
@@ -107,7 +107,7 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
           <button
             type="button"
             onClick={() => setActiveTab('chat')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap shrink-0 transition-all ${
               activeTab === 'chat'
                 ? 'bg-neutral-900 text-white font-semibold shadow-xs'
                 : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200/60'
@@ -120,7 +120,7 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
           <button
             type="button"
             onClick={() => setActiveTab('courses')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap shrink-0 transition-all ${
               activeTab === 'courses'
                 ? 'bg-neutral-900 text-white font-semibold shadow-xs'
                 : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200/60'
@@ -133,7 +133,7 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
           <button
             type="button"
             onClick={() => setActiveTab('portal')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap shrink-0 transition-all ${
               activeTab === 'portal'
                 ? 'bg-neutral-900 text-white font-semibold shadow-xs'
                 : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200/60'
