@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams, Link } from 'react-router-dom';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
-import { Calendar, MapPin, ArrowLeft, Award } from 'lucide-react';
+import { Calendar, MapPin, ArrowLeft, Award, Clock } from 'lucide-react';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import PreRegistrationModal from '@/components/certification/PreRegistrationModal';
 import StottPremiumProgram from '@/components/certification/StottPremiumProgram';

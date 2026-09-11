@@ -102,7 +102,7 @@ const WebappExperience: React.FC = () => {
             <div className="hidden md:flex items-center gap-3 bg-stone-900/80 px-3.5 py-1.5 rounded-full border border-stone-800 text-xs">
               <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-stone-300">
-                Masterclass en Vivo: <strong>{WEBINAR_INFO.dateFormatted}</strong>
+                Masterclass en Vivo: <strong>{WEBINAR_INFO.date}</strong>
               </span>
               <a
                 href={getGoogleCalendarUrl()}
@@ -284,22 +284,16 @@ const WebappExperience: React.FC = () => {
                       {weekend.title}
                     </h3>
 
-                    <p className="text-xs text-stone-400 leading-relaxed">
+                    <p className="text-xs text-stone-400 leading-relaxed mb-3">
                       {weekend.description}
                     </p>
 
-                    <div className="pt-2 border-t border-stone-800/80">
-                      <p className="text-[11px] uppercase tracking-wider text-stone-400 font-semibold mb-2">
-                        Contenidos Clave:
-                      </p>
-                      <ul className="space-y-1.5">
-                        {weekend.topics.map((t, idx) => (
-                          <li key={idx} className="flex items-center gap-2 text-xs text-stone-300">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                            <span>{t}</span>
-                          </li>
-                        ))}
-                      </ul>
+                    <div className="pt-3 border-t border-stone-800/80 flex items-center justify-between text-xs text-stone-400">
+                      <span className="flex items-center gap-1.5 text-stone-300">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                        Modalidad Presencial Intensiva
+                      </span>
+                      <span className="font-semibold text-amber-300">{weekend.hours} Horas</span>
                     </div>
                   </div>
                 ))}
@@ -345,7 +339,7 @@ const WebappExperience: React.FC = () => {
                       Masterclass en Vivo: La Ruta para Certificarte en Reformer
                     </h2>
                     <p className="text-xs md:text-sm text-stone-400">
-                      Con <strong>Gabi & Laura Munif</strong> · {WEBINAR_INFO.dateFormatted}
+                      Con <strong>Gabi & Laura Munif</strong> · {WEBINAR_INFO.date}
                     </p>
                   </div>
 
@@ -380,7 +374,7 @@ const WebappExperience: React.FC = () => {
                       Transmisión en Vivo Programada
                     </h3>
                     <p className="text-xs text-stone-400">
-                      La sala abrirá 15 minutos antes de la hora acordada ({WEBINAR_INFO.timeLabel}). El enlace directo de acceso se enviará a tu correo y se activará en esta pantalla.
+                      La sala abrirá 15 minutos antes de la hora acordada ({WEBINAR_INFO.time}). El enlace directo de acceso se enviará a tu correo y se activará en esta pantalla.
                     </p>
                   </div>
                 </div>

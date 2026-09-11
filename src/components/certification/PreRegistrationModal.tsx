@@ -262,7 +262,7 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
                     <span>Masterclass Pre-Webinar Informativa</span>
                   </div>
                   <p className="text-[11px] leading-relaxed">
-                    <strong>{WEBINAR_INFO.dateFormatted}</strong> con Gabi y Laura Munif. Conocerás el temario detallado de los 4 fines de semana y la apertura preferente.
+                    <strong>{WEBINAR_INFO.date}</strong> con Gabi y Laura Munif. Conocerás el temario detallado de los 4 fines de semana y la apertura preferente.
                   </p>
                   <div className="pt-1">
                     <a
