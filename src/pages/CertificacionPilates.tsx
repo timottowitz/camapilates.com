@@ -434,7 +434,7 @@ export const CertificacionPilates: React.FC = () => {
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 text-amber-900 font-mono text-xs uppercase tracking-wider border border-amber-200 font-medium">
                 <Video className="w-3.5 h-3.5 text-amber-700" />
-                <span>Webinar Gratuito de Orientación · Vía Google Meet</span>
+                <span>Webinar Informativo Gratuito · Online en Vivo</span>
               </div>
 
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-neutral-900 tracking-tight leading-tight">
@@ -612,7 +612,7 @@ export const CertificacionPilates: React.FC = () => {
                     </button>
 
                     <div className="text-[11px] font-mono text-center text-neutral-500">
-                      ✓ Acceso 100% Gratuito vía Google Meet · Beca 50% garantizada
+                      ✓ Sesión informativa 100% gratuita · Cupos presenciales limitados
                     </div>
                   </form>
                 ) : (
@@ -632,7 +632,7 @@ export const CertificacionPilates: React.FC = () => {
                             ? 'Monterrey'
                             : 'Querétaro y Monterrey'}
                         </strong>
-                        . Te enviaremos el enlace de Google Meet para el sábado 26 de septiembre a las 11:00 AM CST.
+                        . Te enviaremos el enlace para unirte a la transmisión en vivo del sábado 26 de septiembre a las 11:00 AM CST.
                       </p>
                     </div>
 

@@ -189,7 +189,7 @@ export const CertificacionWebinar: React.FC = () => {
       <div className="bg-[#2A2624] text-[#EAE8E4] py-2.5 px-4 text-center text-xs md:text-sm font-sans tracking-wide border-b border-[#3E2723]">
         <span className="inline-flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <strong>EVENTO ONLINE 100% GRATUITO:</strong> Masterclass en vivo vía Google Meet · Cupo limitado a 12 becas presenciales por ciudad.
+          <strong>SESIÓN INFORMATIVA EN VIVO (SIN COSTO):</strong> Conoce a fondo el plan de estudios del Curso de Pilates Reformer con Gabi y Laura Munive.
         </span>
       </div>
 
@@ -197,26 +197,26 @@ export const CertificacionWebinar: React.FC = () => {
       <section className="relative pt-16 pb-20 px-6 md:px-16 lg:px-24 max-w-7xl mx-auto">
         <div className="text-center max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 text-xs uppercase tracking-[0.2em] font-medium mb-6">
-            <Video className="w-3.5 h-3.5 text-emerald-400" /> Masterclass Online Gratuita · Vía Google Meet
+            <Video className="w-3.5 h-3.5 text-emerald-400" /> Sesión Informativa Online en Vivo · Sábado 26 de Septiembre
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-serif italic text-[#2A2624] leading-[1.08] mb-6">
-            Cómo Convertirte en Instructora Certificada de Pilates Reformer en Querétaro y Monterrey
+            Conoce de Qué Trata el Curso de Pilates Reformer (Querétaro y Monterrey)
           </h1>
 
           <p className="text-base sm:text-xl text-[#5D5550] font-light leading-relaxed max-w-3xl mx-auto mb-8">
-            Sesión informativa <strong>100% online y gratuita vía Google Meet</strong> con <strong>Gabi</strong> y <strong>Laura Munive</strong>. Conéctate desde cualquier lugar sin traslados. Conoce las modalidades presenciales de <strong>Curso Básico (28h · $25,000 MXN)</strong> y <strong>Certificación Completa (48h · $38,000 MXN)</strong>, domina la biomecánica clínica del Reformer y asegura tu acceso a los <strong>12 cupos exclusivos por sede</strong> para Querétaro (Noviembre 2026) y Monterrey (Diciembre 2026 – Enero 2027).
+            Acompaña en vivo a <strong>Gabi</strong> y <strong>Laura Munive</strong> en este webinar gratuito. Te explicaremos en detalle el temario del curso, la biomecánica clínica, las modalidades de <strong>Curso Básico (28h)</strong> y <strong>Curso Completo (48h)</strong>, las fechas presenciales en Querétaro y Monterrey, y cómo asegurar tu lugar en los grupos reducidos de 12 personas con Reformer individual.
           </p>
 
           {/* Event Quick Facts Pills */}
           <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 text-xs md:text-sm text-[#2A2624] mb-10">
             <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-900 font-semibold shadow-sm">
               <Sparkles className="w-4 h-4 text-emerald-600" />
-              <span><strong>Costo:</strong> 100% Gratuito ($0 MXN)</span>
+              <span><strong>Acceso:</strong> 100% Gratuito ($0 MXN)</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/90 border border-[#2A2624]/10 shadow-sm">
               <Video className="w-4 h-4 text-[#D9865B]" />
-              <span><strong>Modalidad:</strong> Online (Google Meet)</span>
+              <span><strong>Formato:</strong> Webinar Online en Vivo</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/80 border border-[#2A2624]/10 shadow-sm">
               <Calendar className="w-4 h-4 text-[#D9865B]" />
@@ -231,7 +231,7 @@ export const CertificacionWebinar: React.FC = () => {
           {/* Countdown Clock (Jason Fladlien Scarcity Pattern) */}
           <div className="bg-[#2A2624] text-[#EAE8E4] rounded-2xl p-6 max-w-2xl mx-auto mb-12 shadow-xl border border-[#3E2723]">
             <p className="text-xs uppercase tracking-[0.25em] text-[#D9865B] mb-3 font-semibold">
-              Tiempo restante para el inicio de la transmisión en Google Meet:
+              La sesión informativa en vivo comienza en:
             </p>
             <div className="grid grid-cols-4 gap-3 text-center">
               <div className="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
@@ -262,13 +262,13 @@ export const CertificacionWebinar: React.FC = () => {
 
               <div className="text-center mb-8">
                 <span className="text-xs uppercase tracking-[0.2em] text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full font-bold inline-block mb-2 border border-emerald-200">
-                  Registro 100% Gratuito · Online vía Google Meet
+                  Webinar Informativo Gratuito · Online en Vivo
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-serif italic text-[#2A2624]">
-                  Aparta tu acceso gratis y asegura tu cupo de 50% de descuento
+                  Regístrate a la sesión informativa del curso
                 </h2>
                 <p className="text-sm text-[#5D5550] mt-2 max-w-xl mx-auto">
-                  Asistir a la Masterclass no tiene costo. Al registrarte te garantizamos enlace directo a la sala de Google Meet y participas por una de las 12 becas del 50% para las cohortes presenciales de Querétaro y Monterrey.
+                  Asistir no tiene ningún costo. En esta sesión te explicaremos a detalle el contenido del curso, las fechas presenciales en Querétaro y Monterrey, y resolveremos todas tus dudas directamente con las formadoras.
                 </p>
               </div>
 
@@ -320,13 +320,13 @@ export const CertificacionWebinar: React.FC = () => {
                       placeholder="4421234567 ó 8181234567"
                       className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#2A2624] text-sm text-gray-800"
                     />
-                    <span className="text-[11px] text-gray-500 mt-1 block">Te enviaremos el link directo de Google Meet y tu voucher del 50%.</span>
+                    <span className="text-[11px] text-gray-500 mt-1 block">Te enviaremos el enlace para unirte a la sesión y el temario del curso.</span>
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-xs uppercase tracking-wider text-[#2A2624] font-semibold mb-2">
-                    Sede de tu interés para la posterior formación presencial *
+                    Sede de tu interés para el curso presencial *
                   </label>
                   <div className="grid sm:grid-cols-3 gap-3">
                     <button
@@ -339,7 +339,7 @@ export const CertificacionWebinar: React.FC = () => {
                       }`}
                     >
                       <div className="font-semibold text-sm">Querétaro</div>
-                      <div className="text-xs opacity-80 mt-1">Noviembre 2026 (4 fines de semana)</div>
+                      <div className="text-xs opacity-80 mt-1">Noviembre 2026 (Fines de semana)</div>
                     </button>
 
                     <button
@@ -352,7 +352,7 @@ export const CertificacionWebinar: React.FC = () => {
                       }`}
                     >
                       <div className="font-semibold text-sm">Monterrey</div>
-                      <div className="text-xs opacity-80 mt-1">Dic 2026 – Ene 2027 (4 fines de semana)</div>
+                      <div className="text-xs opacity-80 mt-1">Dic 2026 – Ene 2027 (Fines de semana)</div>
                     </button>
 
                     <button
@@ -372,16 +372,16 @@ export const CertificacionWebinar: React.FC = () => {
 
                 <div>
                   <label className="block text-xs uppercase tracking-wider text-[#2A2624] font-semibold mb-2">
-                    Tu experiencia con Pilates
+                    Tu experiencia actual con Pilates
                   </label>
                   <select
                     value={experienceLevel}
                     onChange={(e) => setExperienceLevel(e.target.value)}
                     className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#2A2624] text-sm text-gray-800 bg-white"
                   >
-                    <option value="beginner">Principiante (quiero empezar desde cero)</option>
+                    <option value="beginner">Principiante (quiero aprender desde las bases)</option>
                     <option value="some-experience">Practicante habitual (tomo clases de Reformer con regularidad)</option>
-                    <option value="advanced">Avanzada / Instructor(a) de fitness o yoga buscando especializarse</option>
+                    <option value="advanced">Avanzada / Instructora de fitness o yoga buscando especializarse</option>
                   </select>
                 </div>
 
@@ -394,7 +394,7 @@ export const CertificacionWebinar: React.FC = () => {
                     'Registrando...'
                   ) : (
                     <>
-                      <span>Quiero mi acceso gratis a Google Meet & lista 50% OFF ($0 MXN)</span>
+                      <span>Registrarme Gratis al Webinar Informativo</span>
                       <ArrowRight className="w-5 h-5" />
                     </>
                   )}
@@ -402,27 +402,27 @@ export const CertificacionWebinar: React.FC = () => {
 
                 <div className="flex items-center justify-center gap-2 text-xs text-gray-500">
                   <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                  <span>Acceso 100% gratuito. Tus datos están protegidos. Sin spam.</span>
+                  <span>Acceso 100% gratuito. Te enviaremos el enlace directo antes de la sesión. Sin spam.</span>
                 </div>
               </form>
             </div>
           ) : (
-            /* Confirmation & Future Pacing Screen (Jason Fladlien Thank You Blueprint) */
+            /* Confirmation & Future Pacing Screen */
             <div className="bg-white rounded-3xl p-8 sm:p-12 shadow-2xl border-2 border-emerald-500/30 text-center animate-in fade-in zoom-in-95 duration-500">
               <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center mb-6">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
 
               <span className="px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold uppercase tracking-wider inline-block mb-3">
-                ¡Registro 100% Gratuito Confirmado!
+                ¡Registro al Webinar Confirmado!
               </span>
 
               <h2 className="text-3xl font-serif italic text-[#2A2624] mb-4">
-                Tienes reservado tu acceso a Google Meet y tu voucher del 50%
+                Tu lugar para la sesión informativa está reservado
               </h2>
 
               <p className="text-base text-[#5D5550] max-w-xl mx-auto mb-8">
-                Hola <strong>{fullName}</strong>, tu lugar para la Masterclass online en vivo con <strong>Gabi y Laura Munive</strong> vía <strong>Google Meet</strong> del <strong>Sábado 26 de Septiembre a las 11:00 AM CST</strong> está confirmado sin costo.
+                Hola <strong>{fullName}</strong>, tu registro para la sesión informativa online en vivo con <strong>Gabi y Laura Munive</strong> del <strong>Sábado 26 de Septiembre a las 11:00 AM CST</strong> está listo. Te enviaremos el enlace de acceso por WhatsApp y correo antes de iniciar.
               </p>
 
               {/* Voucher Box */}
@@ -450,7 +450,7 @@ export const CertificacionWebinar: React.FC = () => {
                   <span className="text-amber-300 font-bold text-sm">$400 MXN</span>
                 </div>
                 <p className="text-xs text-stone-300 leading-relaxed">
-                  Asistir al webinar en Google Meet es <strong>100% GRATUITO</strong>. Si ya estás decidida a certificarte y quieres asegurar desde hoy tu lugar para el Curso Básico (28h · $25,000) o la Certificación Completa (48h · $38,000), puedes pre-reservar tu lugar presencial con <strong>$400 MXN</strong> a través de Whop.
+                  Asistir al webinar informativo es <strong>100% GRATUITO</strong>. Si ya tienes claro que quieres cursar la formación presencial y prefieres congelar desde hoy tu lugar para el Curso Básico (28h · $25,000) o el Curso Completo (48h · $38,000), puedes pre-reservar tu cupo presencial con <strong>$400 MXN</strong> a través de Whop.
                 </p>
                 <div className="flex flex-col gap-2 pt-1">
                   <button
@@ -461,7 +461,7 @@ export const CertificacionWebinar: React.FC = () => {
                     }}
                     className="w-full py-3 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-xs uppercase tracking-wider text-center transition-all shadow-md flex items-center justify-center gap-2"
                   >
-                    <span>Pre-reservar Lugar Presencial en Whop ($400 MXN)</span>
+                    <span>Pre-reservar Lugar Presencial ($400 MXN)</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                   <button
@@ -472,13 +472,13 @@ export const CertificacionWebinar: React.FC = () => {
                     }}
                     className="w-full py-2.5 px-4 rounded-xl border border-emerald-500/50 bg-emerald-950/40 text-emerald-300 hover:text-white font-medium text-xs uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2"
                   >
-                    <span>Reclamar Pase VIP Gratuito en Whop ($0 MXN)</span>
+                    <span>Unirme a la Comunidad Whop ($0 MXN)</span>
                   </button>
                   <Link
                     to="/app"
                     className="w-full py-2 px-4 rounded-xl text-stone-400 hover:text-white font-medium text-[11px] uppercase tracking-wider text-center transition-all"
                   >
-                    Explorar Webapp & Comunidad Whop →
+                    Explorar Campus y Comunidad →
                   </Link>
                 </div>
               </div>
@@ -486,7 +486,7 @@ export const CertificacionWebinar: React.FC = () => {
               {/* Action Buttons: Calendar & WhatsApp */}
               <div className="space-y-4 max-w-md mx-auto">
                 <p className="text-xs font-semibold uppercase tracking-widest text-[#2A2624]">
-                  Pasos Cruciales para No Perderte la Sesión:
+                  Pasos para guardar la fecha:
                 </p>
 
                 <div className="grid grid-cols-2 gap-3">
@@ -515,7 +515,7 @@ export const CertificacionWebinar: React.FC = () => {
                   className="w-full py-4 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm uppercase tracking-wider flex items-center justify-center gap-3 shadow-lg transition-all"
                 >
                   <MessageCircle className="w-5 h-5" />
-                  <span>Confirmar vía WhatsApp y Recibir Acceso VIP</span>
+                  <span>Confirmar mi registro por WhatsApp</span>
                 </a>
               </div>
 
@@ -740,16 +740,16 @@ export const CertificacionWebinar: React.FC = () => {
                 ¿El webinar del 26 de Septiembre tiene algún costo?
               </h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                <strong>No, es 100% gratuito ($0 MXN).</strong> Asistir no tiene ningún costo ni compromiso. Solo requerimos tu registro previo para enviarte tu enlace directo de acceso a la sala de Google Meet y los materiales previos descargables.
+                <strong>No, es 100% gratuito.</strong> Asistir no tiene ningún costo ni compromiso. Solo requerimos tu registro para enviarte el enlace directo a la transmisión y el temario detallado del curso.
               </p>
             </div>
 
             <div className="p-6 rounded-2xl bg-[#EAE8E4]/30 border border-[#2A2624]/10">
               <h3 className="font-serif text-lg text-[#2A2624] mb-2 font-semibold">
-                ¿El webinar es presencial o por Google Meet?
+                ¿El webinar es presencial o en línea?
               </h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                <strong>El webinar es 100% ONLINE vía Google Meet.</strong> Puedes conectarte desde tu casa, estudio o celular desde cualquier parte de México o el mundo. Lo que se realiza de manera presencial son las prácticas intensivas que inician en Noviembre 2026 en Querétaro y en Dic 2026 – Ene 2027 en Monterrey para quienes decidan matricularse.
+                <strong>El webinar es 100% ONLINE.</strong> Puedes conectarte desde tu computadora o celular desde cualquier lugar. En esta sesión explicaremos a fondo de qué trata el curso y cómo se llevarán a cabo las prácticas presenciales en Querétaro (Noviembre 2026) y Monterrey (Dic 2026 – Ene 2027) para quienes decidan matricularse.
               </p>
             </div>
 
