@@ -49,42 +49,42 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
 
   return (
     <div
-      className={`flex flex-col bg-[#161412] border border-stone-800 rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 ${
+      className={`flex flex-col bg-white border border-neutral-200/90 rounded-[28px] overflow-hidden shadow-sm transition-all duration-300 ${
         isFullscreen
           ? 'fixed inset-0 z-50 rounded-none w-screen h-screen'
           : className
       }`}
     >
       {/* Community Top Navigation Bar */}
-      <div className="bg-[#201D1A] border-b border-stone-800 px-4 py-3 flex flex-wrap items-center justify-between gap-3 shrink-0">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-amber-400/20 text-amber-300 border border-amber-400/30 flex items-center justify-center font-bold text-xs">
+      <div className="bg-neutral-50/80 border-b border-neutral-200/80 px-6 py-4 flex flex-wrap items-center justify-between gap-3 shrink-0">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-xl bg-neutral-900 text-white flex items-center justify-center font-bold text-xs shadow-sm">
             CAMA
           </div>
           <div>
-            <div className="flex items-center gap-1.5">
-              <h3 className="text-sm font-semibold text-stone-200">
+            <div className="flex items-center gap-2">
+              <h3 className="text-sm font-bold text-neutral-900 tracking-tight">
                 Comunidad Oficial Reformer México
               </h3>
-              <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                Whop Live
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-mono font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                [ WHOP LIVE ]
               </span>
             </div>
-            <p className="text-[11px] text-stone-400">
+            <p className="text-xs text-neutral-500">
               Campus virtual oficial y red de instructoras de Querétaro y Monterrey
             </p>
           </div>
         </div>
 
         {/* Experience Switcher */}
-        <div className="flex items-center gap-1 bg-stone-900/90 p-1 rounded-xl border border-stone-800 overflow-x-auto scrollbar-none">
+        <div className="flex items-center gap-1.5 bg-neutral-100/80 p-1.5 rounded-2xl border border-neutral-200/80 overflow-x-auto scrollbar-none">
           <button
             type="button"
             onClick={() => setActiveTab('reader')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
               activeTab === 'reader'
-                ? 'bg-amber-400 text-stone-950 font-semibold shadow-sm'
-                : 'text-stone-400 hover:text-stone-200 hover:bg-stone-800/60'
+                ? 'bg-neutral-900 text-white font-semibold shadow-xs'
+                : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200/60'
             }`}
           >
             <BookOpen className="w-3.5 h-3.5" />
@@ -94,10 +94,10 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
           <button
             type="button"
             onClick={() => setActiveTab('forum')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
               activeTab === 'forum'
-                ? 'bg-amber-400 text-stone-950 font-semibold shadow-sm'
-                : 'text-stone-400 hover:text-stone-200 hover:bg-stone-800/60'
+                ? 'bg-neutral-900 text-white font-semibold shadow-xs'
+                : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200/60'
             }`}
           >
             <MessagesSquare className="w-3.5 h-3.5" />
@@ -107,10 +107,10 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
           <button
             type="button"
             onClick={() => setActiveTab('chat')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
               activeTab === 'chat'
-                ? 'bg-amber-400 text-stone-950 font-semibold shadow-sm'
-                : 'text-stone-400 hover:text-stone-200 hover:bg-stone-800/60'
+                ? 'bg-neutral-900 text-white font-semibold shadow-xs'
+                : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200/60'
             }`}
           >
             <MessageSquare className="w-3.5 h-3.5" />
@@ -120,10 +120,10 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
           <button
             type="button"
             onClick={() => setActiveTab('courses')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
               activeTab === 'courses'
-                ? 'bg-amber-400 text-stone-950 font-semibold shadow-sm'
-                : 'text-stone-400 hover:text-stone-200 hover:bg-stone-800/60'
+                ? 'bg-neutral-900 text-white font-semibold shadow-xs'
+                : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200/60'
             }`}
           >
             <GraduationCap className="w-3.5 h-3.5" />
@@ -133,10 +133,10 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
           <button
             type="button"
             onClick={() => setActiveTab('portal')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
               activeTab === 'portal'
-                ? 'bg-amber-400 text-stone-950 font-semibold shadow-sm'
-                : 'text-stone-400 hover:text-stone-200 hover:bg-stone-800/60'
+                ? 'bg-neutral-900 text-white font-semibold shadow-xs'
+                : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200/60'
             }`}
           >
             <UserCheck className="w-3.5 h-3.5" />
@@ -150,7 +150,7 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
             <button
               type="button"
               onClick={handleRefresh}
-              className="p-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-300 hover:text-white transition-colors"
+              className="p-2 rounded-xl bg-white hover:bg-neutral-100 text-neutral-700 border border-neutral-200 shadow-xs transition-colors"
               title="Recargar frame"
             >
               <RefreshCw className="w-3.5 h-3.5" />
@@ -160,7 +160,7 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
           <button
             type="button"
             onClick={() => setIsFullscreen(!isFullscreen)}
-            className="p-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-300 hover:text-white transition-colors"
+            className="p-2 rounded-xl bg-white hover:bg-neutral-100 text-neutral-700 border border-neutral-200 shadow-xs transition-colors"
             title={isFullscreen ? 'Salir de pantalla completa' : 'Pantalla completa'}
           >
             {isFullscreen ? (
@@ -174,44 +174,44 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
             href={activeExperience.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-200 text-xs font-medium border border-stone-700 transition-all"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white hover:bg-neutral-100 text-neutral-800 text-xs font-medium border border-neutral-200 shadow-xs transition-all"
           >
-            <Smartphone className="w-3.5 h-3.5 text-amber-400" />
+            <Smartphone className="w-3.5 h-3.5 text-neutral-700" />
             <span className="hidden sm:inline">Abrir en</span>
             <span>Whop</span>
-            <ExternalLink className="w-3 h-3 text-stone-400 ml-0.5" />
+            <ExternalLink className="w-3 h-3 text-neutral-400 ml-0.5" />
           </a>
         </div>
       </div>
 
       {/* Sub-header with Channel Information */}
-      <div className="bg-[#191613] px-4 py-2 border-b border-stone-800/60 flex items-center justify-between text-xs text-stone-400 shrink-0">
-        <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto py-1 scrollbar-none">
-          <span className="font-semibold text-stone-300 whitespace-nowrap">Canales activos:</span>
-          <span className="px-2 py-0.5 rounded bg-stone-800/70 text-amber-300 text-[11px] font-mono whitespace-nowrap">
+      <div className="bg-neutral-50/50 px-6 py-2.5 border-b border-neutral-200/70 flex items-center justify-between text-xs text-neutral-500 shrink-0">
+        <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto py-0.5 scrollbar-none">
+          <span className="font-mono text-[11px] uppercase tracking-wider text-neutral-400 whitespace-nowrap">// CANALES:</span>
+          <span className="px-2.5 py-0.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-[11px] font-mono whitespace-nowrap shadow-xs">
             #webinar-vip-lobby
           </span>
-          <span className="px-2 py-0.5 rounded bg-stone-800/70 text-stone-300 text-[11px] font-mono whitespace-nowrap">
+          <span className="px-2.5 py-0.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-[11px] font-mono whitespace-nowrap shadow-xs">
             #anuncios-oficiales
           </span>
-          <span className="px-2 py-0.5 rounded bg-stone-800/70 text-stone-300 text-[11px] font-mono whitespace-nowrap">
+          <span className="px-2.5 py-0.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-[11px] font-mono whitespace-nowrap shadow-xs">
             #preguntas-laura-munive
           </span>
-          <span className="px-2 py-0.5 rounded bg-stone-800/70 text-stone-300 text-[11px] font-mono whitespace-nowrap">
+          <span className="px-2.5 py-0.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-[11px] font-mono whitespace-nowrap shadow-xs">
             #cohorte-queretaro-nov
           </span>
-          <span className="px-2 py-0.5 rounded bg-stone-800/70 text-stone-300 text-[11px] font-mono whitespace-nowrap">
+          <span className="px-2.5 py-0.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-[11px] font-mono whitespace-nowrap shadow-xs">
             #cohorte-monterrey-dic-ene
           </span>
         </div>
-        <span className="text-[11px] text-stone-500 hidden md:inline ml-2 whitespace-nowrap">
+        <span className="text-[11px] text-neutral-400 font-mono hidden md:inline ml-2 whitespace-nowrap">
           {activeExperience.description}
         </span>
       </div>
 
       {/* Main Content Area */}
       <div
-        className={`relative w-full bg-stone-950 ${
+        className={`relative w-full bg-neutral-100 ${
           isFullscreen ? 'flex-1' : 'h-[680px]'
         }`}
       >
@@ -220,42 +220,63 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
             <WhopForumReader />
           </div>
         ) : (
-          <>
-            <iframe
-              key={iframeKey}
-              src={activeExperience.directUrl}
-              title={activeExperience.name}
-              className="w-full h-full border-0"
-              allow="camera; microphone; fullscreen; clipboard-write"
-              loading="lazy"
-            />
-
-            {/* Quick Open Overlay in case of iframe blocking or direct full experience preference */}
-            <div className="absolute bottom-4 right-4 z-10 flex items-center gap-2">
+          <div className="flex flex-col h-full w-full">
+            {/* Whop Auth & Direct Access Banner */}
+            <div className="bg-neutral-50 border-b border-neutral-200 px-6 py-2.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs shrink-0">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-3.5 h-3.5 text-orange-500 shrink-0" />
+                <span className="text-neutral-600 text-[11px] sm:text-xs">
+                  <strong>Acceso Oficial Whop:</strong> Si tu navegador bloquea cookies de terceros o deseas iniciar sesión con Google/Apple sin restricciones, abre en nueva pestaña.
+                </span>
+              </div>
               <a
                 href={activeExperience.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-400 hover:bg-amber-300 text-stone-950 text-xs font-bold uppercase tracking-wider shadow-xl transition-all"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold rounded-full transition-all shadow-xs shrink-0"
               >
-                <span>Abrir {activeExperience.name} Completo</span>
-                <ExternalLink className="w-3.5 h-3.5" />
+                <span>Abrir {activeExperience.name}</span>
+                <ExternalLink className="w-3 h-3" />
               </a>
             </div>
-          </>
+
+            <div className="relative flex-1 w-full h-full bg-white">
+              <iframe
+                key={iframeKey}
+                src={activeExperience.directUrl}
+                title={activeExperience.name}
+                className="w-full h-full border-0"
+                allow="camera; microphone; fullscreen; clipboard-write; payment; autoplay; encrypted-media"
+                loading="lazy"
+              />
+
+              {/* Quick Open Overlay in case of iframe blocking or direct full experience preference */}
+              <div className="absolute bottom-4 right-4 z-10 flex items-center gap-2">
+                <a
+                  href={activeExperience.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold uppercase tracking-wider shadow-lg transition-all"
+                >
+                  <span>Abrir {activeExperience.name} Completo</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+          </div>
         )}
       </div>
 
       {/* Footer Info */}
-      <div className="bg-[#201D1A] border-t border-stone-800 px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-stone-400 shrink-0">
+      <div className="bg-neutral-50/90 border-t border-neutral-200/80 px-6 py-3.5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-neutral-500 shrink-0">
         <div className="flex items-center gap-2">
-          <Shield className="w-4 h-4 text-emerald-400" />
+          <Shield className="w-4 h-4 text-emerald-600" />
           <span>Acceso privado protegido por Whop. Disponible en Web, iOS y Android.</span>
         </div>
         <div className="flex items-center gap-3">
           <a
             href="/certificacion-pilates/webinar"
-            className="text-amber-400 hover:underline"
+            className="text-neutral-800 hover:text-neutral-950 font-medium underline"
           >
             Detalles Masterclass 26 Sep →
           </a>
@@ -263,7 +284,7 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
             href={WHOP_CONFIG.customerPortalUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-stone-300 hover:text-white flex items-center gap-1"
+            className="text-neutral-700 hover:text-neutral-950 font-medium flex items-center gap-1"
           >
             Mi Cuenta Whop
             <ExternalLink className="w-3 h-3" />

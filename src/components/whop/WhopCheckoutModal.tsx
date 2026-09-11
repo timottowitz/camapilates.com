@@ -89,119 +89,119 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl bg-[#1C1917] border-stone-800 text-stone-100 p-0 overflow-hidden shadow-2xl rounded-2xl">
-        <DialogHeader className="p-6 pb-4 border-b border-stone-800/80 bg-[#24201D]">
+      <DialogContent className="max-w-2xl max-h-[92vh] flex flex-col bg-white border border-neutral-200 text-neutral-900 p-0 overflow-hidden shadow-2xl rounded-3xl">
+        <DialogHeader className="p-6 pb-4 border-b border-neutral-200/80 bg-neutral-50/60 shrink-0">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="px-2.5 py-1 rounded-full bg-amber-400/10 text-amber-300 border border-amber-400/20 text-[11px] font-semibold uppercase tracking-wider">
+              <span className="px-2.5 py-0.5 rounded-full bg-neutral-900 text-white font-mono text-[10px] font-semibold uppercase tracking-wider">
                 Whop Secure Checkout
               </span>
-              <span className="text-xs text-stone-400 flex items-center gap-1">
-                <Lock className="w-3 h-3 text-emerald-400" />
+              <span className="text-xs font-mono text-neutral-500 flex items-center gap-1">
+                <Lock className="w-3 h-3 text-emerald-600" />
                 Cifrado 256-bit
               </span>
             </div>
             <div className="text-right">
-              <span className="text-xl font-serif font-bold text-amber-200">
+              <span className="text-2xl font-bold tracking-tight text-neutral-900">
                 ${activePlan.price.toLocaleString('es-MX')} MXN
               </span>
             </div>
           </div>
 
-          <DialogTitle className="text-lg font-serif italic text-stone-100 mt-2">
+          <DialogTitle className="text-xl font-bold tracking-tight text-neutral-900 mt-2">
             {activePlan.name}
           </DialogTitle>
-          <p className="text-xs text-stone-400 mt-1">
+          <p className="text-xs text-neutral-600 mt-1">
             {activePlan.tagline}
           </p>
 
           {/* Quick Plan Switcher */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4 pt-2 border-t border-stone-800/60">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4 pt-2 border-t border-neutral-200/80">
             <button
               type="button"
               onClick={() => setActivePlanId(WHOP_CONFIG.plans.apartado.id)}
-              className={`text-left p-2 rounded-lg border text-xs transition-all ${
+              className={`text-left p-2.5 rounded-xl border text-xs transition-all ${
                 activePlanId === WHOP_CONFIG.plans.apartado.id
-                  ? 'border-amber-400/60 bg-amber-400/10 text-amber-200 font-semibold'
-                  : 'border-stone-800 bg-stone-900/50 text-stone-400 hover:border-stone-700'
+                  ? 'border-neutral-900 bg-neutral-900 text-white shadow-sm'
+                  : 'border-neutral-200 bg-white text-neutral-600 hover:border-neutral-300 hover:bg-neutral-50'
               }`}
             >
-              <div className="text-[11px] font-semibold text-stone-200">Apartar Cupo</div>
-              <div className="text-amber-300 font-bold text-xs">$4,500 MXN</div>
-              <p className="text-[9px] text-stone-400 mt-0.5">Congela 50% OFF</p>
+              <div className={`text-[11px] font-bold ${activePlanId === WHOP_CONFIG.plans.apartado.id ? 'text-white' : 'text-neutral-900'}`}>Apartar Cupo</div>
+              <div className={`font-mono text-xs font-semibold ${activePlanId === WHOP_CONFIG.plans.apartado.id ? 'text-orange-300' : 'text-orange-600'}`}>$4,500 MXN</div>
+              <p className={`text-[9px] mt-0.5 ${activePlanId === WHOP_CONFIG.plans.apartado.id ? 'text-neutral-300' : 'text-neutral-400'}`}>Congela 50% OFF</p>
             </button>
 
             <button
               type="button"
               onClick={() => setActivePlanId(WHOP_CONFIG.plans.colegiaturaCompleta.id)}
-              className={`text-left p-2 rounded-lg border text-xs transition-all ${
+              className={`text-left p-2.5 rounded-xl border text-xs transition-all ${
                 activePlanId === WHOP_CONFIG.plans.colegiaturaCompleta.id
-                  ? 'border-amber-400/60 bg-amber-400/10 text-amber-200 font-semibold'
-                  : 'border-stone-800 bg-stone-900/50 text-stone-400 hover:border-stone-700'
+                  ? 'border-neutral-900 bg-neutral-900 text-white shadow-sm'
+                  : 'border-neutral-200 bg-white text-neutral-600 hover:border-neutral-300 hover:bg-neutral-50'
               }`}
             >
-              <div className="text-[11px] font-semibold text-stone-200">Colegiatura Total</div>
-              <div className="text-amber-300 font-bold text-xs">$19,900 MXN</div>
-              <p className="text-[9px] text-stone-400 mt-0.5">Ahorro $19,900</p>
+              <div className={`text-[11px] font-bold ${activePlanId === WHOP_CONFIG.plans.colegiaturaCompleta.id ? 'text-white' : 'text-neutral-900'}`}>Colegiatura Total</div>
+              <div className={`font-mono text-xs font-semibold ${activePlanId === WHOP_CONFIG.plans.colegiaturaCompleta.id ? 'text-orange-300' : 'text-orange-600'}`}>$19,900 MXN</div>
+              <p className={`text-[9px] mt-0.5 ${activePlanId === WHOP_CONFIG.plans.colegiaturaCompleta.id ? 'text-neutral-300' : 'text-neutral-400'}`}>Ahorro $19,900</p>
             </button>
 
             <button
               type="button"
               onClick={() => setActivePlanId(WHOP_CONFIG.plans.cursoOnline.id)}
-              className={`text-left p-2 rounded-lg border text-xs transition-all ${
+              className={`text-left p-2.5 rounded-xl border text-xs transition-all ${
                 activePlanId === WHOP_CONFIG.plans.cursoOnline.id
-                  ? 'border-amber-400/60 bg-amber-400/10 text-amber-200 font-semibold'
-                  : 'border-stone-800 bg-stone-900/50 text-stone-400 hover:border-stone-700'
+                  ? 'border-neutral-900 bg-neutral-900 text-white shadow-sm'
+                  : 'border-neutral-200 bg-white text-neutral-600 hover:border-neutral-300 hover:bg-neutral-50'
               }`}
             >
-              <div className="text-[11px] font-semibold text-stone-200">Curso Digital</div>
-              <div className="text-amber-300 font-bold text-xs">$1,999 MXN</div>
-              <p className="text-[9px] text-stone-400 mt-0.5">10 Módulos Whop</p>
+              <div className={`text-[11px] font-bold ${activePlanId === WHOP_CONFIG.plans.cursoOnline.id ? 'text-white' : 'text-neutral-900'}`}>Curso Digital</div>
+              <div className={`font-mono text-xs font-semibold ${activePlanId === WHOP_CONFIG.plans.cursoOnline.id ? 'text-orange-300' : 'text-orange-600'}`}>$1,999 MXN</div>
+              <p className={`text-[9px] mt-0.5 ${activePlanId === WHOP_CONFIG.plans.cursoOnline.id ? 'text-neutral-300' : 'text-neutral-400'}`}>10 Módulos Whop</p>
             </button>
 
             <button
               type="button"
               onClick={() => setActivePlanId(WHOP_CONFIG.plans.paseVipWebinar.id)}
-              className={`text-left p-2 rounded-lg border text-xs transition-all ${
+              className={`text-left p-2.5 rounded-xl border text-xs transition-all ${
                 activePlanId === WHOP_CONFIG.plans.paseVipWebinar.id
-                  ? 'border-amber-400/60 bg-amber-400/10 text-amber-200 font-semibold'
-                  : 'border-stone-800 bg-stone-900/50 text-stone-400 hover:border-stone-700'
+                  ? 'border-neutral-900 bg-neutral-900 text-white shadow-sm'
+                  : 'border-neutral-200 bg-white text-neutral-600 hover:border-neutral-300 hover:bg-neutral-50'
               }`}
             >
-              <div className="text-[11px] font-semibold text-stone-200">Pase VIP</div>
-              <div className="text-emerald-400 font-bold text-xs">Gratis</div>
-              <p className="text-[9px] text-stone-400 mt-0.5">Acceso Masterclass</p>
+              <div className={`text-[11px] font-bold ${activePlanId === WHOP_CONFIG.plans.paseVipWebinar.id ? 'text-white' : 'text-neutral-900'}`}>Pase VIP</div>
+              <div className={`font-mono text-xs font-semibold ${activePlanId === WHOP_CONFIG.plans.paseVipWebinar.id ? 'text-emerald-300' : 'text-emerald-600'}`}>Gratis</div>
+              <p className={`text-[9px] mt-0.5 ${activePlanId === WHOP_CONFIG.plans.paseVipWebinar.id ? 'text-neutral-300' : 'text-neutral-400'}`}>Acceso Masterclass</p>
             </button>
           </div>
         </DialogHeader>
-
-        <div className="p-6">
+ 
+        <div className="p-6 flex-1 overflow-y-auto">
           {completed ? (
             <div className="text-center py-8 space-y-4">
-              <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
+              <div className="w-16 h-16 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-600 flex items-center justify-center mx-auto">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
 
-              <h3 className="text-2xl font-serif italic text-amber-200">
+              <h3 className="text-2xl font-bold tracking-tight text-neutral-900">
                 ¡Tu lugar y acceso a la Comunidad Whop están confirmados!
               </h3>
 
-              <p className="text-sm text-stone-300 max-w-md mx-auto leading-relaxed">
+              <p className="text-sm text-neutral-600 max-w-md mx-auto leading-relaxed">
                 Hemos enviado tu recibo oficial a tu correo. Tu cuenta ha sido activada en el nuevo campus virtual y comunidad oficial de Whop.
               </p>
 
               <div className="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
                 <a
                   href="/app"
-                  className="px-6 py-3 bg-amber-400 hover:bg-amber-300 text-stone-900 font-semibold rounded-full text-xs uppercase tracking-widest transition-all"
+                  className="px-6 py-3 bg-neutral-900 hover:bg-neutral-800 text-white font-semibold rounded-full text-xs uppercase tracking-wider transition-all shadow-sm"
                 >
-                  Entrar a la Webapp / Campus →
+                  Entrar al Campus Virtual →
                 </a>
                 <a
                   href={WHOP_CONFIG.communityUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3 border border-stone-700 hover:border-stone-500 text-stone-200 font-medium rounded-full text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all"
+                  className="px-6 py-3 border border-neutral-300 hover:border-neutral-400 text-neutral-800 font-medium rounded-full text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all"
                 >
                   Abrir Whop Community
                   <ExternalLink className="w-3.5 h-3.5" />
@@ -210,11 +210,11 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
             </div>
           ) : embedError ? (
             <div className="text-center py-8 space-y-4">
-              <AlertCircle className="w-12 h-12 text-amber-400 mx-auto" />
-              <h4 className="text-lg font-medium text-stone-200">
+              <AlertCircle className="w-12 h-12 text-orange-500 mx-auto" />
+              <h4 className="text-lg font-bold text-neutral-900">
                 Completar pago seguro en Whop
               </h4>
-              <p className="text-xs text-stone-400 max-w-md mx-auto">
+              <p className="text-xs text-neutral-600 max-w-md mx-auto">
                 Haz clic en el enlace para abrir la pasarela protegida de Whop con Apple Pay, Google Pay o tarjeta bancaria:
               </p>
               <div className="pt-2">
@@ -222,7 +222,7 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
                   href={activePlan.directLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-8 py-3.5 bg-amber-400 hover:bg-amber-300 text-stone-900 font-semibold text-xs uppercase tracking-widest rounded-full transition-all shadow-lg"
+                  className="inline-flex items-center gap-2 px-8 py-3.5 bg-neutral-900 hover:bg-neutral-800 text-white font-semibold text-xs uppercase tracking-wider rounded-full transition-all shadow-md"
                 >
                   Abrir Checkout Seguro en Whop (${activePlan.price.toLocaleString('es-MX')} MXN)
                   <ExternalLink className="w-4 h-4" />
@@ -231,27 +231,28 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
             </div>
           ) : (
             <div className="space-y-4">
-              <div className="rounded-xl overflow-hidden min-h-[460px] bg-stone-950/80 border border-stone-800/80">
+              <div className="rounded-2xl overflow-hidden min-h-[460px] bg-neutral-50 border border-neutral-200">
                 <WhopCheckoutEmbed
                   planId={activePlan.id}
                   returnUrl={returnUrl}
-                  theme="dark"
+                  locale="es"
+                  theme="light"
                   themeOptions={{
                     accentColor: 'amber',
-                    backgroundColor: '#1C1917',
-                    borderRadius: 12,
+                    backgroundColor: '#FFFFFF',
+                    borderRadius: 16,
                     buttonText: activePlan.price === 0 ? 'Obtener Pase Gratuito' : 'Confirmar Pago Seguro',
                   }}
                   onComplete={handleComplete}
                   prefill={prefill}
                   fallback={
                     <div className="p-8 text-center space-y-4">
-                      <p className="text-xs text-stone-400">Cargando pasarela de pago protegida de Whop...</p>
+                      <p className="text-xs text-neutral-500">Cargando pasarela de pago protegida de Whop...</p>
                       <a
                         href={activePlan.directLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-6 py-2.5 bg-amber-400 text-stone-900 text-xs font-semibold rounded-full"
+                        className="inline-flex items-center gap-2 px-6 py-2.5 bg-neutral-900 text-white text-xs font-semibold rounded-full"
                       >
                         Continuar directamente en Whop →
                       </a>
@@ -260,16 +261,16 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
                 />
               </div>
 
-              <div className="flex items-center justify-between text-[11px] text-stone-500 pt-2 border-t border-stone-800/40">
+              <div className="flex items-center justify-between text-[11px] text-neutral-500 pt-2 border-t border-neutral-200">
                 <span className="flex items-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
                   Garantía de Satisfacción 100% (Riesgo Cero)
                 </span>
                 <a
                   href={activePlan.directLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-amber-400 hover:underline flex items-center gap-1"
+                  className="text-neutral-700 hover:text-neutral-900 font-medium underline flex items-center gap-1"
                 >
                   ¿Problemas al cargar? Abrir directo en Whop
                   <ExternalLink className="w-3 h-3" />
