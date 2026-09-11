@@ -84,9 +84,9 @@ async function main() {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      title: 'Reformer Pilates Español — Mexico Reformer Community',
-      headline: 'Reformer Pilates Español · Formación Clínica en Cada Movimiento',
-      description: 'Campus virtual oficial de Reformer Pilates en Español con Gabi y Laura Munive. Certificación y práctica clínica intensiva en Reformer con cama profesional individual exclusiva por alumna (sin turnos compartidos). Sedes en Querétaro y Monterrey.',
+      title: 'CAMA PILATES — Mexico Reformer Community',
+      headline: 'Formación clínica en cada movimiento · Certificación Reformer México',
+      description: 'Campus virtual oficial de CAMA Pilates en México con Gabi y Laura Munive. Curso Básico (28h · $25,000 MXN) y Certificación Completa (48h · $38,000 MXN) con máquina profesional exclusiva por alumna (sin turnos compartidos). Sedes en Querétaro y Monterrey.',
       gallery_images: [
         { id: bannerFile.id },
         { id: logoFile.id },

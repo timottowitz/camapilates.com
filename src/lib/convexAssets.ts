@@ -77,9 +77,9 @@ const FALLBACKS = {
   edelweissLogo: '/brand/edelweiss.svg',
   featureSilence: '/images/feature-detox.webp',
   heroVideo: '', // No local fallback for video
-  whopCommunityLogo: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/2b74c997-b04f-4a82-a10c-3907ceb461d5/image.png',
-  whopCommunityBanner: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/5e6c8658-f79e-437f-b6ee-7f790be096e6/image.png',
-  whopCommunityAvatar: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/b27fb309-8288-4f18-9ef2-5ef89c475416/image.png',
+  whopCommunityLogo: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/8c12fa13-98d2-4816-989b-ac6237daa378/image.png',
+  whopCommunityBanner: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/ba8cca77-5f54-4ae0-af22-46c62d88764c/image.png',
+  whopCommunityAvatar: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/197e8078-8219-46ac-b54a-fc0db01e09ec/image.png',
 } as const;
 
 /**
