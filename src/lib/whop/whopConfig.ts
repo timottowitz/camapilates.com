@@ -12,9 +12,9 @@ export const WHOP_CONFIG = {
   customerPortalUrl: 'https://whop.com/@me/settings/memberships',
 
   assets: {
-    bannerUrl: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/5d540670-90dc-487a-975e-f475fcca30d2/image.png',
-    logoUrl: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/67455e5d-beab-40de-b319-34c1170a0b4d/image.png',
-    avatarUrl: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/6d274429-d43a-41fe-9c96-868433bc5f26/image.png',
+    bannerUrl: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/6bfbe26a-0e40-4ae9-bb16-5be451863df0/image.png',
+    logoUrl: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/a168f029-281a-4c4d-9133-0aee68a97b54/image.png',
+    avatarUrl: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/612c1ce7-d55f-423a-9fab-fae7462b2551/image.png',
     localBanner: '/images/whop/whop-community-banner.png',
     localLogo: '/images/whop/whop-community-logo.png',
     localAvatar: '/images/whop/whop-community-avatar.png',
@@ -27,7 +27,7 @@ export const WHOP_CONFIG = {
       appName: 'Courses',
       url: 'https://whop.com/joined/exp_q4ce6BU5Av2iKZ',
       directUrl: 'https://whop.com/exp_q4ce6BU5Av2iKZ/',
-      description: 'Campus y temario de 100 horas de formación presencial y teórica',
+      description: 'Campus y temario oficial: Curso Básico (28 horas) y Certificación Completa (48 horas)',
     },
     chat: {
       id: 'exp_YDogCARDIL9mxE',

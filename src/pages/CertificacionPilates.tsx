@@ -30,6 +30,7 @@ import {
 } from 'lucide-react';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
 import { EditorialFeatureCards } from '@/components/webapp/EditorialFeatureCards';
+import { CourseModuleEditorialCard } from '@/components/webapp/CourseModuleEditorialCard';
 import { WhopForumReader } from '@/components/webapp/WhopForumReader';
 import { WhopCheckoutModal } from '@/components/whop/WhopCheckoutModal';
 import { WHOP_CONFIG } from '@/lib/whop/whopConfig';
@@ -354,7 +355,7 @@ export const CertificacionPilates: React.FC = () => {
         name: '¿Qué validez tiene el certificado al concluir?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'El certificado avala 100 horas profesionales de formación biomecánica, repertorio esencial e intermedio, adaptaciones para patologías de columna y docencia práctica, con validez curricular ante estudios de Pilates en todo México y Latinoamérica.',
+          text: 'El aval certifica la modalidad cursada: Curso Básico (28 horas presenciales) o Certificación Profesional Completa (48 horas presenciales + campus virtual), con validez curricular ante estudios de Pilates en todo México y Latinoamérica.',
         },
       },
       {
@@ -997,80 +998,15 @@ export const CertificacionPilates: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white border border-neutral-200/90 rounded-[24px] p-7 shadow-sm">
-                <div className="inline-block px-3 py-1 rounded-full bg-neutral-100 font-mono text-xs uppercase tracking-wider text-neutral-700 font-semibold mb-4">
-                  MÓDULO 1 · 14H PRESENCIALES · BÁSICO (28H) & COMPLETO
-                </div>
-                <h3 className="text-xl font-bold text-neutral-900 mb-2">
-                  Anatomía Funcional Aplicada & Repertorio Esencial
-                </h3>
-                <p className="text-neutral-600 text-sm leading-relaxed mb-4">
-                  Biomecánica de la pelvis, caja torácica y columna. Principios de respiración, centrado y
-                  ejecución técnica de los 35 ejercicios esenciales (Footwork, Bridging, Feet in Straps,
-                  Abdominal Series).
-                </p>
-                <ul className="text-xs font-mono text-neutral-500 space-y-1.5">
-                  <li>• Ajuste de barra de pies y resortes según antropometría</li>
-                  <li>• Análisis de vectores de fuerza y cargas en decúbito supino</li>
-                  <li>• Identificación de compensaciones lumbo-pélvicas</li>
-                </ul>
-              </div>
-
-              <div className="bg-white border border-neutral-200/90 rounded-[24px] p-7 shadow-sm">
-                <div className="inline-block px-3 py-1 rounded-full bg-neutral-100 font-mono text-xs uppercase tracking-wider text-neutral-700 font-semibold mb-4">
-                  MÓDULO 2 · 14H PRESENCIALES · CIERRE CURSO BÁSICO (28H)
-                </div>
-                <h3 className="text-xl font-bold text-neutral-900 mb-2">
-                  Repertorio Intermedio, Dinámica de Carro & Cargas
-                </h3>
-                <p className="text-neutral-600 text-sm leading-relaxed mb-4">
-                  Transiciones fluidas, trabajo en planos sagital y coronal, manejo de resistencia de
-                  resortes según biotipo corporal y progresiones del repertorio intermedio (Short Box, Long
-                  Stretch, Stomach Massage). Completa las 28 horas del Curso Básico.
-                </p>
-                <ul className="text-xs font-mono text-neutral-500 space-y-1.5">
-                  <li>• Coordinación neuromuscular en cadena cinética abierta y cerrada</li>
-                  <li>• Dinámica de inercia y control del retroceso del carro</li>
-                  <li>• Modulaciones de tempo y ritmo de clase</li>
-                </ul>
-              </div>
-
-              <div className="bg-white border border-neutral-200/90 rounded-[24px] p-7 shadow-sm">
-                <div className="inline-block px-3 py-1 rounded-full bg-neutral-100 font-mono text-xs uppercase tracking-wider text-neutral-700 font-semibold mb-4">
-                  MÓDULO 3 · 10H PRESENCIALES · CERTIFICACIÓN COMPLETA (48H)
-                </div>
-                <h3 className="text-xl font-bold text-neutral-900 mb-2">
-                  Modificaciones Clínicas, Patologías & Poblaciones Especiales
-                </h3>
-                <p className="text-neutral-600 text-sm leading-relaxed mb-4">
-                  Adaptaciones biomecánicas precisas para alumnos con dolor lumbar, hernias discales,
-                  escoliosis, hipermovilidad, embarazo y adultos mayores en Reformer.
-                </p>
-                <ul className="text-xs font-mono text-neutral-500 space-y-1.5">
-                  <li>• Descompresión espinal asistida por muelles</li>
-                  <li>• Protocolos contraindicados en hiperlordosis y cifosis</li>
-                  <li>• Posiciones seguras para segundo y tercer trimestre de gestación</li>
-                </ul>
-              </div>
-
-              <div className="bg-white border border-neutral-200/90 rounded-[24px] p-7 shadow-sm">
-                <div className="inline-block px-3 py-1 rounded-full bg-neutral-100 font-mono text-xs uppercase tracking-wider text-neutral-700 font-semibold mb-4">
-                  MÓDULO 4 · 10H PRESENCIALES · CIERRE CERTIFICACIÓN COMPLETA (48H)
-                </div>
-                <h3 className="text-xl font-bold text-neutral-900 mb-2">
-                  Metodología de Cueing, Práctica Supervisada & Certificación
-                </h3>
-                <p className="text-neutral-600 text-sm leading-relaxed mb-4">
-                  Comandos verbales de alta precisión, ajustes táctiles no invasivos, diseño de planes de
-                  clase privados y grupales, examen práctico individual y acreditación profesional oficial.
-                </p>
-                <ul className="text-xs font-mono text-neutral-500 space-y-1.5">
-                  <li>• Simulación de clases con retroalimentación en directo</li>
-                  <li>• Examen teórico-práctico ante docentes certificadas</li>
-                  <li>• Entrega de constancia oficial avalada (28h Básico o 48h Completo) y vinculación a estudios</li>
-                </ul>
-              </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              {CERTIFICATION_COHORTS['queretaro'].weekends.map((weekend, idx) => (
+                <CourseModuleEditorialCard
+                  key={weekend.weekendNumber}
+                  weekend={weekend}
+                  index={idx}
+                  onPreBook={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
+                />
+              ))}
             </div>
 
             {/* Practical Proof Banner */}
@@ -1132,7 +1068,7 @@ export const CertificacionPilates: React.FC = () => {
                       Alumna Verificada: {enrollmentData.customerName || 'Estudiante'}
                     </div>
                     <div className="text-xs text-emerald-700">
-                      Membresía activa en el campus virtual de 100 horas.
+                      Membresía activa en el campus virtual oficial de 28h / 48h.
                     </div>
                   </div>
                 </div>
@@ -1369,12 +1305,10 @@ export const CertificacionPilates: React.FC = () => {
             <div className="space-y-4">
               <div className="bg-white border border-neutral-200/90 rounded-2xl p-6 shadow-sm">
                 <h3 className="font-bold text-neutral-900 text-base mb-2">
-                  ¿Cómo funciona la certificación de 100 horas en Pilates Reformer?
+                  ¿Cuáles son las modalidades: Curso Básico (28h) y Certificación Completa (48h)?
                 </h3>
                 <p className="text-sm text-neutral-600 leading-relaxed">
-                  El programa consta de 56 horas presenciales intensivas distribuidas en 4 fines de semana prácticos
-                  (sábados y domingos de 9:00 AM a 4:30 PM), más 44 horas de observación guiada, práctica personal
-                  y videoteca HD en el campus virtual Whop, sumando 100 horas certificadas oficiales.
+                  El programa ofrece dos rutas formativas presenciales intensivas: el Curso Básico de 28 horas (2 fines de semana, $25,000 MXN) enfocado en anatomía funcional y repertorio esencial e intermedio; y la Certificación Completa de 48 horas (4 fines de semana, $38,000 MXN) que profundiza en patologías de columna, modificaciones clínicas, metodología de cueing, examen práctico y aval profesional con validez curricular.
                 </p>
               </div>
 
@@ -1391,12 +1325,12 @@ export const CertificacionPilates: React.FC = () => {
 
               <div className="bg-white border border-neutral-200/90 rounded-2xl p-6 shadow-sm">
                 <h3 className="font-bold text-neutral-900 text-base mb-2">
-                  ¿Cómo aseguro mi lugar con el 50% de descuento ($19,900 MXN)?
+                  ¿Cómo aseguro mi cupo presencial con la pre-reserva de $400 MXN?
                 </h3>
                 <p className="text-sm text-neutral-600 leading-relaxed">
-                  Puedes congelar tu descuento y asegurar 1 de los 12 cupos realizando una pre-reserva de $400 MXN
-                  a través de nuestra pasarela oficial de Whop (tarjeta de crédito/débito o transferencia) o liquidando
-                  la colegiatura con tu asesor.
+                  Puedes congelar 1 de los 12 cupos presenciales realizando una pre-reserva de solo $400 MXN
+                  a través de nuestra pasarela oficial de Whop (tarjeta de crédito/débito o transferencia).
+                  El saldo restante se liquida según la modalidad elegida (Curso Básico de $25,000 MXN o Certificación Completa de $38,000 MXN).
                 </p>
               </div>
 
@@ -1415,9 +1349,7 @@ export const CertificacionPilates: React.FC = () => {
                   ¿Qué validez tiene el certificado al concluir?
                 </h3>
                 <p className="text-sm text-neutral-600 leading-relaxed">
-                  El certificado avala 100 horas profesionales de formación biomecánica, repertorio esencial e
-                  intermedio, adaptaciones para patologías de columna y docencia práctica, con validez curricular
-                  ante estudios de Pilates en todo México y Latinoamérica.
+                  El certificado avala las horas profesionales cursadas (28h para el Curso Básico o 48h para la Certificación Completa) con validez curricular ante estudios de Pilates en todo México y Latinoamérica.
                 </p>
               </div>
 
@@ -1537,7 +1469,7 @@ export const CertificacionPilates: React.FC = () => {
                 Equipa Tu Futuro Estudio con Precios Preferenciales
               </h2>
               <p className="text-neutral-600 leading-relaxed mb-8">
-                Al graduarte de la certificación de 100 horas, accedes a un 15% de descuento directo en la
+                Al graduarte de cualquiera de nuestras modalidades formativas (28h Básico o 48h Completo), accedes a un 15% de descuento directo en la
                 compra de camas de Pilates Reformer profesionales CAMA con madera noble, cuero genuino y resortes
                 alemanes, además de financiamiento a 12 meses sin intereses.
               </p>

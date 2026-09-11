@@ -82,7 +82,7 @@ export const WEBINAR_INFO = {
     },
     {
       time: "11:15 AM",
-      topic: "Qué diferencia una certificación profesional seria (100h) de cursos acelerados sin práctica ni biomecánica clínica."
+      topic: "Qué diferencia una formación profesional seria (Curso Básico de 28h y Certificación Completa de 48h con cama individual) de cursos express sin biomecánica clínica."
     },
     {
       time: "11:35 AM",
@@ -90,7 +90,7 @@ export const WEBINAR_INFO = {
     },
     {
       time: "11:50 AM",
-      topic: "Apertura de los 12 cupos exclusivos con 50% de descuento ($19,900 MXN en vez de $39,800 MXN) para la lista de espera."
+      topic: "Apertura de los 12 cupos exclusivos por ciudad para Curso Básico ($25,000 MXN) y Certificación Completa ($38,000 MXN), con pre-reserva de solo $400 MXN."
     },
     {
       time: "12:00 PM",

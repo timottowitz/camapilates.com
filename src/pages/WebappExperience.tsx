@@ -34,10 +34,104 @@ import { WhopCommunityEmbed } from '@/components/webapp/WhopCommunityEmbed';
 import { WhopForumReader } from '@/components/webapp/WhopForumReader';
 import { WhopCheckoutModal } from '@/components/whop/WhopCheckoutModal';
 import { EditorialFeatureCards } from '@/components/webapp/EditorialFeatureCards';
+import { CourseModuleEditorialCard } from '@/components/webapp/CourseModuleEditorialCard';
 import { WEBINAR_INFO, getGoogleCalendarUrl, CERTIFICATION_COHORTS } from '@/content/certification/cohortsData';
 import { getOrigin } from '@/lib/seo';
 
 type WebappTab = 'campus' | 'comunidad' | 'webinar' | 'recursos' | 'pagos';
+
+const ONLINE_COURSE_MODULES = [
+  {
+    number: 1,
+    title: 'Fundamentos Anatómicos & Biomecánica del Reformer',
+    description: 'Alineación de columna neutra, plano lumbopélvico, respiración costodiafragmática y análisis de vectores articulares.',
+    hours: '2.5 Horas',
+    lessons: '8 Lecciones',
+    badge: 'Anatomía',
+    tag: '[ MÓDULO 01 ]',
+  },
+  {
+    number: 2,
+    title: 'Sistema de Resortes, Física del Carro & Cargas',
+    description: 'Calibración de muelles progresivos (F = -k·x), física de resistencia del carro móvil y protocolos de seguridad.',
+    hours: '2.0 Horas',
+    lessons: '6 Lecciones',
+    badge: 'Mecánica',
+    tag: '[ MÓDULO 02 ]',
+  },
+  {
+    number: 3,
+    title: 'Repertorio Esencial: Footwork & Serie Supina',
+    description: 'Secuencia completa de Footwork (toes, arches, heels, tendon stretch), bridging y alineación cinemática.',
+    hours: '3.0 Horas',
+    lessons: '10 Lecciones',
+    badge: 'Esencial',
+    tag: '[ MÓDULO 03 ]',
+  },
+  {
+    number: 4,
+    title: 'Trabajo de Brazos, Correas & Articulación Pélvica',
+    description: 'Feet in straps, arm work supino y de rodillas, estabilización escapulohumeral y control del transverso abdominal.',
+    hours: '2.5 Horas',
+    lessons: '8 Lecciones',
+    badge: 'Esencial',
+    tag: '[ MÓDULO 04 ]',
+  },
+  {
+    number: 5,
+    title: 'Repertorio Intermedio: Serie Abdominal & Stomach Massage',
+    description: 'Progresiones del Stomach Massage (Round, Flat, Reach, Twist), coordinación en planos sagital y coronal.',
+    hours: '3.0 Horas',
+    lessons: '9 Lecciones',
+    badge: 'Intermedio',
+    tag: '[ MÓDULO 05 ]',
+  },
+  {
+    number: 6,
+    title: 'Short Box Series, Articulación Espinal & Extensión',
+    description: 'Trabajo sobre la caja corta (Round Back, Flat Back, Side to Side, Tree) y extensión torácica controlada.',
+    hours: '2.5 Horas',
+    lessons: '7 Lecciones',
+    badge: 'Intermedio',
+    tag: '[ MÓDULO 06 ]',
+  },
+  {
+    number: 7,
+    title: 'Dinámica de Cargas & Trabajo en Cadena Cinética',
+    description: 'Transición entre cadena abierta y cerrada, ejercicios de estabilidad unipodal y transferencias seguras de peso.',
+    hours: '2.0 Horas',
+    lessons: '6 Lecciones',
+    badge: 'Biomecánica',
+    tag: '[ MÓDULO 07 ]',
+  },
+  {
+    number: 8,
+    title: 'Patologías de Columna, Hernias & Modificaciones Clínicas',
+    description: 'Protocolos de modificación para lumbalgias, hernias L4-L5/S1, escoliosis, hiperlordosis y embarazo.',
+    hours: '3.5 Horas',
+    lessons: '11 Lecciones',
+    badge: 'Clínico',
+    tag: '[ MÓDULO 08 ]',
+  },
+  {
+    number: 9,
+    title: 'Metodología de Cueing Verbal, Ritmo & Pedagogía',
+    description: 'Comandos verbales de alta precisión (400ms), ritmo respiratorio, corrección visual y ajustes táctiles no invasivos.',
+    hours: '2.5 Horas',
+    lessons: '8 Lecciones',
+    badge: 'Pedagogía',
+    tag: '[ MÓDULO 09 ]',
+  },
+  {
+    number: 10,
+    title: 'Diseño de Clases Boutique, Negocio & Examen Digital',
+    description: 'Estructuración de sesiones boutique (50 min), retención de clientes, pricing y evaluación para certificado digital.',
+    hours: '2.5 Horas',
+    lessons: '8 Lecciones',
+    badge: 'Certificación',
+    tag: '[ MÓDULO 10 ]',
+  },
+];
 
 const WebappExperience: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -53,6 +147,7 @@ const WebappExperience: React.FC = () => {
   );
 
   const [selectedCohort, setSelectedCohort] = useState<'queretaro' | 'monterrey'>('queretaro');
+  const [curriculumView, setCurriculumView] = useState<'presencial' | 'online'>('presencial');
   const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
   const [checkoutPlanId, setCheckoutPlanId] = useState<string>(WHOP_CONFIG.plans.apartado.id);
   const [enrollmentData, setEnrollmentData] = useState<any>(null);
@@ -356,82 +451,156 @@ const WebappExperience: React.FC = () => {
           {/* TAB 1: CAMPUS & FORMACIÓN (28H / 48H) */}
           {activeTab === 'campus' && (
             <div className="space-y-8">
-              {/* Cohort selector header */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-200/80 pb-5">
+              {/* Cohort selector & Curriculum View header */}
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-neutral-200/80 pb-5">
                 <div>
                   <div className="flex items-center gap-2 font-mono text-xs text-neutral-400 mb-1">
                     <span>// CURRICULUM SYLLABUS</span>
                   </div>
                   <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900">
-                    Modalidades de Formación Presencial (28h Básica / 48h Completa)
+                    {curriculumView === 'presencial'
+                      ? 'Módulos de Formación Presencial (28h Básica / 48h Completa)'
+                      : 'Campus Virtual Whop · 10 Módulos Online con Laura Munive'}
                   </h2>
-                  <p className="text-xs sm:text-sm text-neutral-600 mt-1">
-                    Elige entre el Curso Básico de 28 horas ($25,000 MXN · 2 fines de semana) o la Certificación Profesional Completa de 48 horas ($38,000 MXN · 4 fines de semana).
+                  <p className="text-xs sm:text-sm text-neutral-600 mt-1 max-w-2xl">
+                    {curriculumView === 'presencial'
+                      ? 'Desglose módulo por módulo de los 4 fines de semana con Reformer individual asignado por alumna en Querétaro y Monterrey.'
+                      : 'Acceso ilimitado a las 10 unidades pedagógicas en video HD, biblioteca clínica y certificación digital en la plataforma Whop.'}
                   </p>
                 </div>
 
-                <div className="flex items-center gap-1.5 bg-neutral-100 p-1.5 rounded-full border border-neutral-200">
-                  <button
-                    type="button"
-                    onClick={() => setSelectedCohort('queretaro')}
-                    className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                      selectedCohort === 'queretaro'
-                        ? 'bg-neutral-900 text-white shadow-sm'
-                        : 'text-neutral-600 hover:text-neutral-900'
-                    }`}
-                  >
-                    Querétaro (Nov 2026)
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedCohort('monterrey')}
-                    className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                      selectedCohort === 'monterrey'
-                        ? 'bg-neutral-900 text-white shadow-sm'
-                        : 'text-neutral-600 hover:text-neutral-900'
-                    }`}
-                  >
-                    Monterrey (Dic-Ene)
-                  </button>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2.5 shrink-0">
+                  {/* Presencial vs Online View Switcher */}
+                  <div className="flex items-center gap-1 bg-neutral-200/80 p-1 rounded-full text-xs font-semibold">
+                    <button
+                      type="button"
+                      onClick={() => setCurriculumView('presencial')}
+                      className={`px-3.5 py-1.5 rounded-full transition-all ${
+                        curriculumView === 'presencial'
+                          ? 'bg-neutral-900 text-white shadow-xs'
+                          : 'text-neutral-700 hover:text-neutral-950'
+                      }`}
+                    >
+                      Presencial (4 Fines)
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setCurriculumView('online')}
+                      className={`px-3.5 py-1.5 rounded-full transition-all ${
+                        curriculumView === 'online'
+                          ? 'bg-neutral-900 text-white shadow-xs'
+                          : 'text-neutral-700 hover:text-neutral-950'
+                      }`}
+                    >
+                      Online (10 Módulos)
+                    </button>
+                  </div>
+
+                  {/* City Selector (Active when viewing Presencial) */}
+                  {curriculumView === 'presencial' && (
+                    <div className="flex items-center gap-1 bg-white p-1 rounded-full border border-neutral-200 text-xs font-semibold shadow-xs">
+                      <button
+                        type="button"
+                        onClick={() => setSelectedCohort('queretaro')}
+                        className={`px-3.5 py-1 rounded-full transition-all ${
+                          selectedCohort === 'queretaro'
+                            ? 'bg-neutral-900 text-white shadow-xs font-bold'
+                            : 'text-neutral-600 hover:text-neutral-900'
+                        }`}
+                      >
+                        Querétaro (Nov)
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedCohort('monterrey')}
+                        className={`px-3.5 py-1 rounded-full transition-all ${
+                          selectedCohort === 'monterrey'
+                            ? 'bg-neutral-900 text-white shadow-xs font-bold'
+                            : 'text-neutral-600 hover:text-neutral-900'
+                        }`}
+                      >
+                        Monterrey (Dic-Ene)
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
 
               {/* Syllabus Breakdown Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {currentCohortData.weekends.map((weekend) => (
-                  <div
-                    key={weekend.weekendNumber}
-                    className="bg-white border border-neutral-200/90 rounded-[24px] p-6 sm:p-7 space-y-4 shadow-xs hover:shadow-md hover:border-neutral-300 transition-all flex flex-col justify-between"
-                  >
-                    <div className="space-y-3">
-                      <div className="flex items-start justify-between gap-2">
-                        <span className="px-3 py-1 rounded-full bg-neutral-100 text-neutral-800 border border-neutral-200 font-mono text-[11px] font-semibold uppercase tracking-wider">
-                          Fin de Semana {weekend.weekendNumber} · {weekend.dates}
-                        </span>
-                        <span className="text-xs font-mono font-bold text-neutral-700 bg-neutral-100 px-2.5 py-0.5 rounded-full">
-                          {weekend.hours} Horas
-                        </span>
+              {curriculumView === 'presencial' ? (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {currentCohortData.weekends.map((weekend, idx) => (
+                    <CourseModuleEditorialCard
+                      key={weekend.weekendNumber}
+                      weekend={weekend}
+                      index={idx}
+                      onPreBook={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {ONLINE_COURSE_MODULES.map((mod) => (
+                      <div
+                        key={mod.number}
+                        className="bg-white border border-neutral-200/90 rounded-[28px] p-6 sm:p-7 flex flex-col justify-between space-y-4 hover:shadow-md transition-all shadow-xs"
+                      >
+                        <div className="space-y-3">
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="font-mono text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-neutral-100 text-neutral-800">
+                              {mod.tag}
+                            </span>
+                            <span className="font-mono text-[10px] text-neutral-400">
+                              {mod.hours}
+                            </span>
+                          </div>
+
+                          <h4 className="text-base font-bold text-neutral-900 leading-snug">
+                            {mod.title}
+                          </h4>
+
+                          <p className="text-xs text-neutral-600 leading-relaxed">
+                            {mod.description}
+                          </p>
+                        </div>
+
+                        <div className="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs">
+                          <span className="font-mono text-[11px] text-neutral-500 font-medium">
+                            {mod.lessons}
+                          </span>
+                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200">
+                            {mod.badge}
+                          </span>
+                        </div>
                       </div>
+                    ))}
+                  </div>
 
-                      <h3 className="text-lg font-bold text-neutral-900 tracking-tight">
-                        {weekend.title}
-                      </h3>
-
-                      <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-                        {weekend.description}
+                  {/* Online Course Whop Direct CTA Banner */}
+                  <div className="p-6 sm:p-8 rounded-[28px] bg-gradient-to-r from-neutral-900 via-neutral-950 to-neutral-900 text-white flex flex-col sm:flex-row items-center justify-between gap-6 border border-neutral-800 shadow-md">
+                    <div className="space-y-1.5 text-center sm:text-left">
+                      <span className="font-mono text-[10px] text-amber-300 uppercase tracking-widest font-bold">
+                        CAMPUS DIGITAL WHOP · ACCESO INMEDIATO
+                      </span>
+                      <h4 className="text-lg sm:text-xl font-bold text-white">
+                        ¿Prefieres formarte a tu propio ritmo 100% online?
+                      </h4>
+                      <p className="text-xs text-neutral-300 max-w-xl">
+                        Adquiere los 10 módulos grabados con Laura Munive, manual descargable y examen teórico para obtener tu certificación digital avalada por $1,999 MXN (50% de descuento).
                       </p>
                     </div>
 
-                    <div className="pt-4 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-500 font-medium">
-                      <span className="flex items-center gap-1.5 text-neutral-700">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        {weekend.weekendNumber <= 2 ? 'Curso Básico & Completo' : 'Exclusivo Certificación Completa'}
-                      </span>
-                      <span className="font-mono font-bold text-neutral-900">{weekend.hours} Horas</span>
-                    </div>
+                    <button
+                      type="button"
+                      onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.cursoOnline.id)}
+                      className="px-6 py-3 bg-amber-400 hover:bg-amber-300 text-neutral-950 text-xs font-bold uppercase tracking-wider rounded-full transition-all shadow-md shrink-0"
+                    >
+                      Inscribirme al Curso Online ($1,999 MXN)
+                    </button>
                   </div>
-                ))}
-              </div>
+                </div>
+              )}
 
               {/* Dual Pathway Hours & Price Comparison Cards */}
               <div className="bg-white border border-neutral-200/90 rounded-[28px] p-6 sm:p-8 space-y-6 shadow-xs">

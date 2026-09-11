@@ -195,7 +195,7 @@ const CertificacionPilatesCity: React.FC = () => {
             '@context': 'https://schema.org',
             '@type': 'Course',
             name: `Certificación Profesional de Instructor de Pilates Reformer — ${shortCityName}`,
-            description: `Programa intensivo de 100 horas presenciales y biomecánica en ${cohort.cityName}. ${cohort.fullDatesLabel}.`,
+            description: `Programa intensivo: Curso Básico (28h · $25,000 MXN) y Certificación Completa (48h · $38,000 MXN) en ${cohort.cityName}. ${cohort.fullDatesLabel}.`,
             provider: {
               '@type': 'Organization',
               name: 'CAMA Pilates',
@@ -336,7 +336,7 @@ const CertificacionPilatesCity: React.FC = () => {
               <div className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
                 <Award className="h-4 w-4 text-[#3E2723]" />{' '}
                 {cohort
-                  ? `100 horas totales · 56h presenciales intensivas · Cupo limitado a ${cohort.capacityPerCity} alumnas(os)`
+                  ? `28h Básico ($25,000) / 48h Completo ($38,000) · Cupo limitado a ${cohort.capacityPerCity} alumnas(os)`
                   : isCdmx
                     ? 'Respaldo Merrithew® · CECs incluidos'
                     : 'Horas avaladas con práctica supervisada'}
