@@ -238,7 +238,7 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
             </div>
 
             <h2 className="text-2xl font-serif italic text-[#2A2624] mb-2">
-              {isCohortCity ? '¡Lugar y Descuento del 50% Apartados!' : '¡Registro exitoso!'}
+              {isCohortCity ? '¡Pre-registro Exitoso!' : '¡Registro exitoso!'}
             </h2>
 
             {isCohortCity ? (
@@ -246,13 +246,13 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
                 <div className="bg-[#2A2624] text-white p-4 rounded-xl text-xs space-y-2">
                   <div className="flex items-center gap-1.5 text-amber-300 font-semibold uppercase tracking-wider text-[11px]">
                     <Sparkles className="w-3.5 h-3.5" />
-                    <span>Beneficio de Lista de Espera</span>
+                    <span>Cupo Preferente Registrado</span>
                   </div>
                   <p className="text-stone-300 leading-relaxed">
-                    Tu precio especial de <strong>$19,900 MXN</strong> (antes $39,800 MXN) ha quedado registrado para la cohorte de <strong>{cohortCityName} ({cohortDates})</strong>.
+                    Tu lugar preferente para <strong>{cohortCityName} ({cohortDates})</strong> ha quedado registrado. Podrás elegir entre el <strong>Curso Básico (28h · $25,000 MXN)</strong> o la <strong>Certificación Completa (48h · $38,000 MXN)</strong>.
                   </p>
                   <p className="text-[11px] text-stone-400">
-                    Apartado oficial con solo $4,500 MXN (cupo limitado a 12 lugares).
+                    Apartado oficial con solo $4,500 MXN (cupo limitado a 12 lugares por sede).
                   </p>
                 </div>
 
@@ -366,10 +366,10 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
                 <div className="bg-[#2A2624] text-white p-3 rounded-xl text-xs space-y-1">
                   <div className="flex items-center gap-1.5 text-amber-300 font-semibold uppercase tracking-wider text-[10px]">
                     <Sparkles className="w-3.5 h-3.5" />
-                    <span>Convocatoria 2026 · 50% OFF en Lista de Espera</span>
+                    <span>Convocatoria 2026 · Cupos Limitados (12 por Sede)</span>
                   </div>
                   <p className="text-stone-300 leading-snug">
-                    Asegura tu lugar preferente para <strong>{cohortCityName} ({cohortDates})</strong> a $19,900 MXN en lugar de $39,800 MXN e invitación a la Masterclass el 26 de Septiembre.
+                    Asegura tu lugar preferente para <strong>{cohortCityName} ({cohortDates})</strong>: Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN).
                   </p>
                 </div>
               )}

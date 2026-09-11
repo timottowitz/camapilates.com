@@ -745,8 +745,8 @@ async function main() {
   // Certification landing (static snapshot for SEO)
   {
     const head = {
-      title: 'Certificación Profesional de Pilates Reformer (100h) en México | Querétaro, Monterrey y CDMX | CAMA Pilates',
-      description: 'Certifícate como instructora de Pilates Reformer (100 horas): biomecánica clínica, máquina individual por alumna y comunidad Whop. Sedes en Querétaro y Monterrey con 50% de descuento.',
+      title: 'Certificación Profesional de Pilates Reformer (28h Básica / 48h Completa) en México | Querétaro, Monterrey y CDMX | CAMA Pilates',
+      description: 'Certifícate como instructora de Pilates Reformer: Curso Básico (28h · $25k) o Certificación Completa (48h · $38k). Máquina individual por alumna y comunidad Whop. Sedes en Querétaro y Monterrey.',
       canonical: `${origin}/certificacion-pilates`,
       ogImage: `${origin}/og/cama-de-pilates-venta-mexico.png`,
       ogType: 'website'
@@ -755,7 +755,7 @@ async function main() {
     <header style="background:#F8F8F6;border-bottom:1px solid #E5E5E0;padding:16px 24px;">
       <div style="max-w:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;">
         <div style="font-family:monospace;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;">
-          <a href="/" style="color:#666;text-decoration:none;">• camadepilates.com</a> / <span style="color:#111;">[ 100H CERTIFICACIÓN PROFESIONAL ]</span>
+          <a href="/" style="color:#666;text-decoration:none;">• camadepilates.com</a> / <span style="color:#111;">[ 28H / 48H CERTIFICACIÓN PROFESIONAL ]</span>
         </div>
         <div>
           <a href="/certificacion-pilates/webinar" style="display:inline-block;background:#111;color:#fff;padding:8px 18px;border-radius:999px;font-size:12px;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Apartar Cupo ($4,500 MXN)</a>
@@ -766,9 +766,9 @@ async function main() {
     <main style="background:#F8F8F6;color:#0F0F0F;padding:48px 24px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;">
       <div style="max-width:1200px;margin:0 auto;">
         <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
-          <span style="background:#ECECE9;padding:6px 14px;border-radius:999px;font-family:monospace;font-size:11px;font-weight:600;letter-spacing:1px;">• 56H PRESENCIALES PRÁCTICAS</span>
+          <span style="background:#ECECE9;padding:6px 14px;border-radius:999px;font-family:monospace;font-size:11px;font-weight:600;letter-spacing:1px;">• 28H BÁSICO ($25K) · 48H COMPLETO ($38K)</span>
           <span style="background:#ECECE9;padding:6px 14px;border-radius:999px;font-family:monospace;font-size:11px;font-weight:600;letter-spacing:1px;">[ QUERÉTARO · MONTERREY · CDMX ]</span>
-          <span style="background:#D1FAE5;color:#065F46;padding:6px 14px;border-radius:999px;font-family:monospace;font-size:11px;font-weight:600;letter-spacing:1px;">● 50% OFF LISTA DE ESPERA</span>
+          <span style="background:#D1FAE5;color:#065F46;padding:6px 14px;border-radius:999px;font-family:monospace;font-size:11px;font-weight:600;letter-spacing:1px;">● REFORMER EXCLUSIVO POR ALUMNA</span>
         </div>
 
         <h1 style="font-size:48px;line-height:1.05;font-weight:800;letter-spacing:-1.5px;margin:0 0 24px 0;max-width:900px;color:#0F0F0F;">
@@ -776,12 +776,12 @@ async function main() {
         </h1>
 
         <p style="font-size:19px;line-height:1.6;color:#4B5563;max-width:800px;margin:0 0 32px 0;">
-          Certificación profesional de 100 horas en Pilates Reformer con ingeniería del movimiento, una máquina profesional exclusiva por alumna (sin turnos compartidos) y comunidad de por vida en Whop. Impartida por las Master Trainers <strong>Gabi</strong> y <strong>Laura Munive</strong>.
+          Formación profesional en Pilates Reformer con ingeniería del movimiento, una máquina profesional exclusiva por alumna (sin turnos compartidos) y comunidad de por vida en Whop. Elige entre el Curso Básico de 28 horas ($25,000 MXN) y la Certificación Completa de 48 horas ($38,000 MXN). Impartida por las Master Trainers <strong>Gabi</strong> y <strong>Laura Munive</strong>.
         </p>
 
         <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px;">
-          <a href="/certificacion-pilates/webinar" style="display:inline-block;background:#111;color:#fff;padding:14px 28px;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Apartar Cupo con 50% OFF ($19,900 MXN) →</a>
-          <a href="https://wa.me/525548468190?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20certificaci%C3%B3n%20de%20Pilates%20Reformer" style="display:inline-block;background:#fff;border:1px solid #D1D5DB;color:#111;padding:14px 28px;border-radius:999px;font-size:13px;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Consultar por WhatsApp</a>
+          <a href="/certificacion-pilates/webinar" style="display:inline-block;background:#111;color:#fff;padding:14px 28px;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Apartar Cupo Oficial ($4,500 MXN) →</a>
+          <a href="https://wa.me/525548468190?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20Curso%20B%C3%A1sico%20(28h)%20y%20Certificaci%C3%B3n%20Completa%20(48h)" style="display:inline-block;background:#fff;border:1px solid #D1D5DB;color:#111;padding:14px 28px;border-radius:999px;font-size:13px;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Consultar por WhatsApp</a>
           <a href="/app" style="display:inline-block;background:#ECECE9;border:1px solid #D1D5DB;color:#111;padding:14px 28px;border-radius:999px;font-size:13px;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Campus Alumnas & Foros</a>
         </div>
 
@@ -789,18 +789,18 @@ async function main() {
           <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.5px;margin-bottom:20px;">Sedes y Próximas Cohortes Presenciales</h2>
           <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:24px;">
             <div style="background:#fff;border:1px solid #E5E7EB;border-radius:20px;padding:28px;">
-              <span style="display:inline-block;background:#D1FAE5;color:#065F46;font-family:monospace;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;margin-bottom:12px;">50% OFF · 12 CUPOS</span>
+              <span style="display:inline-block;background:#D1FAE5;color:#065F46;font-family:monospace;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;margin-bottom:12px;">12 CUPOS · REFORMER INDIVIDUAL</span>
               <h3 style="font-size:22px;font-weight:700;margin:0 0 8px 0;">Querétaro</h3>
-              <p style="font-size:14px;color:#4B5563;line-height:1.5;margin-bottom:16px;">4 fines de semana presenciales (7 al 29 de Noviembre de 2026) en Juriquilla / Álamos. Cupo estricto a 12 participantes con Reformer individual.</p>
-              <div style="font-size:24px;font-weight:800;color:#111;margin-bottom:16px;">$19,900 MXN <span style="font-size:14px;font-weight:normal;color:#9CA3AF;text-decoration:line-through;">$39,800 MXN</span></div>
+              <p style="font-size:14px;color:#4B5563;line-height:1.5;margin-bottom:16px;">Noviembre de 2026 en Juriquilla / Álamos. Básico (2 fines de semana, 28h) o Completo (4 fines de semana, 48h). Cupo estricto a 12 participantes.</p>
+              <div style="font-size:22px;font-weight:800;color:#111;margin-bottom:16px;">$25,000 MXN <span style="font-size:14px;font-weight:normal;color:#6B7280;">(28h Básico)</span> · $38,000 MXN <span style="font-size:14px;font-weight:normal;color:#6B7280;">(48h Completo)</span></div>
               <a href="/certificacion-pilates/queretaro" style="display:inline-block;background:#111;color:#fff;padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;text-decoration:none;text-transform:uppercase;">Ver Convocatoria Querétaro →</a>
             </div>
 
             <div style="background:#fff;border:1px solid #E5E7EB;border-radius:20px;padding:28px;">
-              <span style="display:inline-block;background:#D1FAE5;color:#065F46;font-family:monospace;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;margin-bottom:12px;">50% OFF · 12 CUPOS</span>
+              <span style="display:inline-block;background:#D1FAE5;color:#065F46;font-family:monospace;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;margin-bottom:12px;">12 CUPOS · REFORMER INDIVIDUAL</span>
               <h3 style="font-size:22px;font-weight:700;margin:0 0 8px 0;">Monterrey</h3>
-              <p style="font-size:14px;color:#4B5563;line-height:1.5;margin-bottom:16px;">4 fines de semana presenciales (5 Dic 2026 al 17 Ene 2027) en San Pedro Garza García. Práctica intensiva supervisada y Reformer exclusivo.</p>
-              <div style="font-size:24px;font-weight:800;color:#111;margin-bottom:16px;">$19,900 MXN <span style="font-size:14px;font-weight:normal;color:#9CA3AF;text-decoration:line-through;">$39,800 MXN</span></div>
+              <p style="font-size:14px;color:#4B5563;line-height:1.5;margin-bottom:16px;">5 Dic 2026 al 17 Ene 2027 en San Pedro Garza García. Básico (2 fines en diciembre, 28h) o Completo (+2 fines en enero, 48h). Práctica intensiva supervisada.</p>
+              <div style="font-size:22px;font-weight:800;color:#111;margin-bottom:16px;">$25,000 MXN <span style="font-size:14px;font-weight:normal;color:#6B7280;">(28h Básico)</span> · $38,000 MXN <span style="font-size:14px;font-weight:normal;color:#6B7280;">(48h Completo)</span></div>
               <a href="/certificacion-pilates/monterrey" style="display:inline-block;background:#111;color:#fff;padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;text-decoration:none;text-transform:uppercase;">Ver Convocatoria Monterrey →</a>
             </div>
 
@@ -815,13 +815,13 @@ async function main() {
         </section>
 
         <section style="background:#fff;border:1px solid #E5E7EB;border-radius:24px;padding:32px;margin-bottom:48px;">
-          <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">Plan de Estudios de 100 Horas (4 Fines de Semana)</h2>
+          <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">Plan de Estudios Presencial (28h Básica / 48h Completa)</h2>
           <ul style="color:#4B5563;line-height:1.8;padding-left:20px;font-size:15px;">
-            <li><strong>Módulo 1 (14h):</strong> Anatomía Funcional Aplicada & Repertorio Esencial Reformer (35 movimientos base).</li>
-            <li><strong>Módulo 2 (14h):</strong> Repertorio Intermedio, Dinámica de Carro & Manejo de Cargas según Biotipo.</li>
-            <li><strong>Módulo 3 (14h):</strong> Modificaciones Clínicas, Hernias Discales, Dolor Lumbar y Poblaciones Especiales.</li>
-            <li><strong>Módulo 4 (14h):</strong> Metodología de Cueing Preciso, Práctica de Enseñanza Supervisada y Certificación.</li>
-            <li><strong>Campus Whop (44h):</strong> Biblioteca digital HD, foros clínicos y grabaciones de por vida.</li>
+            <li><strong>Módulo 1 (14h · Fines de Sem. 1):</strong> Anatomía Funcional Aplicada & Repertorio Esencial Reformer (35 movimientos base). Parte del Curso Básico.</li>
+            <li><strong>Módulo 2 (14h · Fines de Sem. 2):</strong> Repertorio Intermedio, Dinámica de Carro & Manejo de Cargas según Biotipo. Concluye el Curso Básico (28h).</li>
+            <li><strong>Módulo 3 (10h · Fines de Sem. 3):</strong> Modificaciones Clínicas, Hernias Discales, Dolor Lumbar y Poblaciones Especiales. Exclusivo Certificación Completa.</li>
+            <li><strong>Módulo 4 (10h · Fines de Sem. 4):</strong> Metodología de Cueing Preciso, Práctica de Enseñanza en Vivo, Examen y Aval. Concluye la Certificación Completa (48h).</li>
+            <li><strong>Campus Whop Vitalicio:</strong> Videoteca digital HD, foros clínicos y grabaciones de por vida.</li>
           </ul>
         </section>
       </div>
@@ -837,9 +837,9 @@ async function main() {
     const isMonterrey = c.key === 'monterrey';
     const customTitle = `${cityTitle} | CAMA Pilates`;
     const customDesc = isQueretaro
-      ? 'Certifícate como instructora de Pilates Reformer en Querétaro (Noviembre 2026): 4 fines de semana presenciales (100h). Masterclass el 26 de septiembre con Gabi y Laura Munive. Lista de espera con 50% de descuento ($19,900 MXN).'
+      ? 'Certifícate como instructora de Pilates Reformer en Querétaro (Noviembre 2026): Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). 12 cupos exclusivos con Reformer individual.'
       : isMonterrey
-        ? 'Certifícate como instructora de Pilates Reformer en Monterrey (Dic 2026 – Ene 2027): 4 fines de semana presenciales (100h). Masterclass el 26 de septiembre con Gabi y Laura Munive. Lista de espera con 50% de descuento ($19,900 MXN).'
+        ? 'Certifícate como instructora de Pilates Reformer en Monterrey (Dic 2026 – Ene 2027): Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). 12 cupos exclusivos con Reformer individual.'
         : `Compara opciones de certificación de Pilates Reformer en ${c.shortName}. Revisa requisitos, duración, costos y criterios antes de solicitar fechas.`;
 
     const head = {

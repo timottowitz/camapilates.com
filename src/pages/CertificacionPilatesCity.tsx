@@ -68,19 +68,19 @@ const CertificacionPilatesCity: React.FC = () => {
   const title = isCdmx
     ? `Certificación STOTT PILATES® en ${cityName} — Programa Premium`
     : cohort
-      ? `Certificación Pilates Reformer en ${shortCityName} (${cohort.periodLabel}) — 50% OFF`
+      ? `Certificación Pilates Reformer en ${shortCityName} (${cohort.periodLabel}) — 28h Básico / 48h Completo`
       : `Certificación de Pilates Reformer en ${shortCityName}`;
   const desc = isCdmx
     ? `Certifícate en STOTT PILATES® en ${cityName}: Intensive Reformer (125h), Mat-Plus™ y niveles avanzados en ${STOTT_VENUE.name}, sede oficial Merrithew® en Santa Fe. Fechas, costos y registro.`
     : cohort
-      ? `Certifícate como instructora de Pilates Reformer en ${shortCityName} (${cohort.periodLabel}): 4 fines de semana presenciales (100h). Masterclass el 26 de septiembre con Gabi y Laura Munive. Lista de espera con 50% de descuento ($19,900 MXN).`
+      ? `Certifícate como instructora de Pilates Reformer en ${shortCityName} (${cohort.periodLabel}): Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). Masterclass con Gabi y Laura Munive. Cupos limitados a 12 participantes.`
       : `Compara opciones de certificación de Pilates Reformer en ${shortCityName}. Revisa requisitos, duración, costos y criterios antes de solicitar fechas.`;
 
   const wa = `${PRIMARY_WHATSAPP}${encodeURIComponent(
     isCdmx
       ? 'Hola, quiero inscribirme a la certificación STOTT PILATES® en CDMX'
       : cohort
-        ? `Hola, quiero información sobre la certificación de Pilates Reformer en ${shortCityName} (${cohort.periodLabel}) y asegurar mi cupo con 50% de descuento.`
+        ? `Hola, quiero información sobre la certificación de Pilates Reformer en ${shortCityName} (${cohort.periodLabel}) (Curso Básico 28h $25,000 / Completa 48h $38,000).`
         : `Hola Edelweiss, quiero información sobre certificación de Pilates en ${shortCityName}`
   )}`;
 
@@ -116,8 +116,8 @@ const CertificacionPilatesCity: React.FC = () => {
             answer: `La cohorte de ${shortCityName} se lleva a cabo en 4 fines de semana intensivos (${cohort.fullDatesLabel}) en horario de ${cohort.scheduleHours}.`,
           },
           {
-            question: `¿Cómo obtengo el 50% de descuento en ${shortCityName}?`,
-            answer: `El precio regular es de $39,800 MXN. Las primeras 12 personas registradas en la lista de espera que asistan a la Masterclass en vivo del Sábado 26 de Septiembre con Gabi y Laura Munive obtienen el precio con beca de $19,900 MXN. Puedes apartar tu lugar con $4,500 MXN.`,
+            question: `¿Cuáles son los costos y modalidades en ${shortCityName}?`,
+            answer: `Ofrecemos el Curso Básico de 28 horas (2 fines de semana) por $25,000 MXN y la Certificación Completa de 48 horas (4 fines de semana) por $38,000 MXN. Puedes apartar tu lugar con $4,500 MXN.`,
           },
           {
             question: `¿Tengo un Reformer individual asignado durante las clases?`,
@@ -125,7 +125,7 @@ const CertificacionPilatesCity: React.FC = () => {
           },
           {
             question: `¿Cuál es el valor del certificado emitido?`,
-            answer: `El certificado avala 100 horas profesionales de formación biomecánica, repertorio esencial e intermedio, modificaciones clínicas y docencia práctica, con validez curricular ante estudios de Pilates en todo México.`,
+            answer: `El certificado avala las horas acreditadas (28h en Curso Básico o 48h en Certificación Completa) con desglose biomecánico, repertorio y docencia práctica, con validez curricular ante estudios de Pilates en todo México.`,
           },
         ]
       : [
@@ -270,7 +270,7 @@ const CertificacionPilatesCity: React.FC = () => {
             </h1>
             <p className="text-lg text-[#5D5550] font-light max-w-xl leading-relaxed mb-8">
               {cohort
-                ? `Programa intensivo de 100 horas estructurado en 4 fines de semana presenciales (${cohort.fullDatesLabel}). Un Reformer individual asignado por alumna(o), biomecánica clínica y metodología de enseñanza. Masterclass previa el 26 de septiembre con Gabi y Laura Munive. Lista de espera con 50% de descuento ($19,900 MXN).`
+                ? `Formación presencial intensiva en ${shortCityName}: Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN) en fines de semana (${cohort.fullDatesLabel}). Un Reformer individual asignado por alumna(o) con las Master Trainers Gabi y Laura Munive.`
                 : isCdmx
                   ? `Certificación ${STOTT_PROVIDER.method} — el "Gold Standard" de la industria — impartida por ${STOTT_PROVIDER.name} en ${STOTT_VENUE.name}, hosting oficial de Merrithew® en Santa Fe. Validez internacional en más de 100 países.`
                   : `Compara opciones de formación en Reformer y Mat en ${shortCityName}. Antes de inscribirte, confirma el respaldo del programa, las horas de práctica, la evaluación y el costo total.`}
@@ -449,13 +449,13 @@ const CertificacionPilatesCity: React.FC = () => {
           {/* Pricing & Waitlist Action Box */}
           <div className="bg-[#2A2624] text-[#EAE8E4] rounded-3xl p-8 sm:p-12 shadow-xl border border-[#3E2723] text-center max-w-3xl mx-auto">
             <span className="text-xs uppercase tracking-[0.25em] text-[#D9865B] font-semibold block mb-2">
-              Inversión Especial Lista de Espera · 12 Cupos por Ciudad
+              Inversión Oficial · 12 Cupos por Sede
             </span>
-            <h3 className="text-3xl sm:text-4xl font-serif italic text-white mb-4">
-              50% de Descuento: $19,900 MXN
+            <h3 className="text-2xl sm:text-3xl font-serif italic text-white mb-4">
+              Básico: $25,000 MXN (28h) · Completo: $38,000 MXN (48h)
             </h3>
             <p className="text-sm text-[#EAE8E4]/80 max-w-xl mx-auto mb-8 font-light">
-              Precio oficial regular: <span className="line-through text-gray-400">$39,800 MXN</span>. Reserva tu lugar congelando el descuento con solo <strong>$4,500 MXN</strong> y liquida el saldo en parcialidades durante las semanas del curso.
+              Máquina individual asignada por alumna y acceso completo al campus virtual. Reserva hoy tu cupo congelando tu lugar con solo <strong>$4,500 MXN</strong>.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -466,7 +466,7 @@ const CertificacionPilatesCity: React.FC = () => {
                 }}
                 className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#EAE8E4] text-[#2A2624] text-xs uppercase tracking-[0.2em] font-semibold hover:bg-white transition-colors shadow-lg"
               >
-                Apartar mi lugar con 50% OFF ($4,500 MXN)
+                Apartar mi lugar ($4,500 MXN)
               </button>
               <button
                 onClick={() => setModalOpen(true)}
