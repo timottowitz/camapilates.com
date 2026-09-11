@@ -423,7 +423,7 @@ export const CertificacionPilates: React.FC = () => {
         </p>
 
         {/* 2-Column Webinar & Whitelist Interactive Card (Aligned with Edelweiss Clean Luxury Aesthetic) */}
-        <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-12 border-2 border-neutral-900 shadow-lg relative overflow-hidden mb-12">
+        <div id="webinar-section" className="bg-white rounded-[32px] p-6 sm:p-8 md:p-12 border-2 border-neutral-900 shadow-lg relative overflow-hidden mb-12 scroll-mt-24">
           {/* Top-right black ribbon matching cohort cards */}
           <div className="absolute top-0 right-0 bg-[#111111] text-white px-5 py-1.5 rounded-bl-2xl font-mono text-[11px] font-bold uppercase tracking-wider">
             Sábado 26 Septiembre · 11:00 AM CST
@@ -489,7 +489,11 @@ export const CertificacionPilates: React.FC = () => {
                   onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
                   className="px-6 py-3 rounded-full bg-[#111111] text-white hover:bg-neutral-800 text-xs font-bold uppercase tracking-wider transition-colors shadow-sm flex items-center gap-2"
                 >
-                  <span>Pre-reservar Cupo Inmediato ($400 MXN)</span>
+                  <span>
+                    {WHOP_CONFIG.paymentsEnabled
+                      ? 'Pre-reservar Cupo Inmediato ($400 MXN)'
+                      : 'Próximamente · Apartar Cupo ($400 MXN)'}
+                  </span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
 
@@ -669,7 +673,11 @@ export const CertificacionPilates: React.FC = () => {
                           onClick={() => handleOpenCheckout(selectedCohort === 'monterrey-dec-jan-2026-2027' ? WHOP_CONFIG.plans.apartadoMonterrey.id : WHOP_CONFIG.plans.apartadoQueretaro.id)}
                           className="w-full py-3 rounded-full bg-[#111111] text-white text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-md flex items-center justify-center gap-2"
                         >
-                          <span>Pre-reservar Cupo Ahora ($400 MXN)</span>
+                          <span>
+                            {WHOP_CONFIG.paymentsEnabled
+                              ? 'Pre-reservar Cupo Ahora ($400 MXN)'
+                              : 'Próximamente · Apartar Cupo ($400 MXN)'}
+                          </span>
                           <ArrowRight className="w-3.5 h-3.5" />
                         </button>
                       </div>
@@ -792,7 +800,9 @@ export const CertificacionPilates: React.FC = () => {
                   onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartadoQueretaro.id)}
                   className="py-3 rounded-full bg-[#111111] text-white text-xs font-semibold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-sm text-center"
                 >
-                  Pre-reservar Querétaro ($400 MXN)
+                  {WHOP_CONFIG.paymentsEnabled
+                    ? 'Pre-reservar Querétaro ($400 MXN)'
+                    : 'Próximamente · Apartar Querétaro ($400 MXN)'}
                 </button>
                 <Link
                   to="/certificacion-pilates/queretaro"
@@ -870,7 +880,9 @@ export const CertificacionPilates: React.FC = () => {
                   onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartadoMonterrey.id)}
                   className="py-3 rounded-full bg-[#111111] text-white text-xs font-semibold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-sm text-center"
                 >
-                  Pre-reservar Monterrey ($400 MXN)
+                  {WHOP_CONFIG.paymentsEnabled
+                    ? 'Pre-reservar Monterrey ($400 MXN)'
+                    : 'Próximamente · Apartar Monterrey ($400 MXN)'}
                 </button>
                 <Link
                   to="/certificacion-pilates/monterrey"
@@ -1183,13 +1195,17 @@ export const CertificacionPilates: React.FC = () => {
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.cursoBasico.id)}
                       className="w-full py-3.5 rounded-full bg-[#111111] text-white text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors text-center shadow-md"
                     >
-                      Inscribirme a Básico (${WHOP_CONFIG.plans.cursoBasico.price.toLocaleString('es-MX')} MXN)
+                      {WHOP_CONFIG.paymentsEnabled
+                        ? `Inscribirme a Básico ($${WHOP_CONFIG.plans.cursoBasico.price.toLocaleString('es-MX')} MXN)`
+                        : `Próximamente · Básico ($${WHOP_CONFIG.plans.cursoBasico.price.toLocaleString('es-MX')} MXN)`}
                     </button>
                     <button
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
                       className="w-full py-2.5 rounded-full border border-neutral-300 text-neutral-700 text-xs font-mono uppercase tracking-wider hover:border-neutral-900 transition-colors text-center"
                     >
-                      Apartar Cupo (${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN)
+                      {WHOP_CONFIG.paymentsEnabled
+                        ? `Apartar Cupo ($${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN)`
+                        : `Próximamente · Apartar ($${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN)`}
                     </button>
                   </div>
                 </div>
@@ -1227,13 +1243,17 @@ export const CertificacionPilates: React.FC = () => {
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.colegiaturaCompleta.id)}
                       className="w-full py-3.5 rounded-full bg-amber-400 text-neutral-950 text-xs font-bold uppercase tracking-wider hover:bg-amber-300 transition-colors text-center shadow-lg"
                     >
-                      Inscribirme a Completa (${WHOP_CONFIG.plans.colegiaturaCompleta.price.toLocaleString('es-MX')} MXN)
+                      {WHOP_CONFIG.paymentsEnabled
+                        ? `Inscribirme a Completa ($${WHOP_CONFIG.plans.colegiaturaCompleta.price.toLocaleString('es-MX')} MXN)`
+                        : `Próximamente · Completa ($${WHOP_CONFIG.plans.colegiaturaCompleta.price.toLocaleString('es-MX')} MXN)`}
                     </button>
                     <button
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
                       className="w-full py-2.5 rounded-full border border-neutral-700 text-neutral-300 text-xs font-mono uppercase tracking-wider hover:border-white transition-colors text-center"
                     >
-                      Apartar Cupo (${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN)
+                      {WHOP_CONFIG.paymentsEnabled
+                        ? `Apartar Cupo ($${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN)`
+                        : `Próximamente · Apartar ($${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN)`}
                     </button>
                   </div>
                 </div>
@@ -1508,7 +1528,7 @@ export const CertificacionPilates: React.FC = () => {
             onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
             className="px-5 py-2.5 rounded-full bg-[#111111] text-white text-xs font-semibold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-sm"
           >
-            Pre-reservar Cupo →
+            {WHOP_CONFIG.paymentsEnabled ? 'Pre-reservar Cupo →' : 'Próximamente · Apartar Cupo →'}
           </button>
         </div>
       </aside>

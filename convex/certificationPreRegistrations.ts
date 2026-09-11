@@ -374,3 +374,73 @@ export const getRecentSignups = query({
   },
 });
 
+/**
+ * Fast waitlist submission for paid services under construction
+ */
+export const submitServiceWaitlist = mutation({
+  args: {
+    email: v.string(),
+    fullName: v.optional(v.string()),
+    phone: v.optional(v.string()),
+    serviceOrPlan: v.optional(v.string()),
+    cohort: v.optional(v.string()),
+    source: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(args.email)) {
+      throw new Error('Email inválido');
+    }
+
+    const cohort = args.cohort || 'queretaro-nov-2026';
+    const city = cohort.includes('monterrey')
+      ? 'Monterrey'
+      : cohort.includes('queretaro')
+        ? 'Querétaro'
+        : 'Querétaro / Monterrey';
+
+    const servicePlan = args.serviceOrPlan || 'Curso Reformer';
+    const noteText = `[Lista de Espera Servicio en Construcción] Interés en: ${servicePlan} (${cohort})`;
+
+    const thirtyDaysAgo = Date.now() - (30 * 24 * 60 * 60 * 1000);
+    const existing = await ctx.db
+      .query('certificationPreRegistrations')
+      .withIndex('by_email', (q) => q.eq('email', args.email.toLowerCase()))
+      .filter((q) => q.gt(q.field('submittedAt'), thirtyDaysAgo))
+      .first();
+
+    if (existing) {
+      await ctx.db.patch(existing._id, {
+        fullName: args.fullName?.trim() || existing.fullName,
+        phone: args.phone?.trim() || existing.phone,
+        city,
+        notes: existing.notes ? `${existing.notes} | ${noteText}` : noteText,
+        source: args.source || 'service-waitlist-modal',
+        buzzNotified: false,
+        submittedAt: Date.now(),
+        status: 'new',
+      });
+      return { id: existing._id, isUpdate: true };
+    }
+
+    const id = await ctx.db.insert('certificationPreRegistrations', {
+      fullName: args.fullName?.trim() || 'Aspirante Waitlist',
+      email: args.email.toLowerCase(),
+      phone: args.phone?.trim() || '',
+      city,
+      experienceLevel: 'interesada-servicio',
+      preferredTimeline: 'asap',
+      selectedCohort: cohort,
+      registeredForWebinar: false,
+      discountClaimed: true,
+      notes: noteText,
+      buzzNotified: false,
+      source: args.source || 'service-waitlist-modal',
+      status: 'new',
+      submittedAt: Date.now(),
+    });
+
+    return { id, isUpdate: false };
+  },
+});
+

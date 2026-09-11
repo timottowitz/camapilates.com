@@ -188,7 +188,7 @@ export const IrresistibleOfferStack: React.FC<IrresistibleOfferStackProps> = ({
                 onClick={() => handleSelectPlan(city === 'queretaro' ? WHOP_CONFIG.plans.apartadoQueretaro.id : WHOP_CONFIG.plans.apartadoMonterrey.id)}
                 className="w-full py-3 bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-xs uppercase tracking-widest rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
               >
-                <span>Pre-reservar Cupo ($400 MXN)</span>
+                <span>{WHOP_CONFIG.paymentsEnabled ? 'Pre-reservar Cupo ($400 MXN)' : 'Próximamente · Apartar Cupo ($400 MXN)'}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
@@ -246,7 +246,7 @@ export const IrresistibleOfferStack: React.FC<IrresistibleOfferStackProps> = ({
                 onClick={() => handleSelectPlan(WHOP_CONFIG.plans.cursoBasico.id)}
                 className="w-full py-3 bg-stone-800 hover:bg-stone-700 text-stone-100 font-semibold text-xs uppercase tracking-widest rounded-xl transition-all border border-stone-700 flex items-center justify-center gap-2"
               >
-                <span>Inscribirme a Básico ($25,000 MXN)</span>
+                <span>{WHOP_CONFIG.paymentsEnabled ? 'Inscribirme a Básico ($25,000 MXN)' : 'Próximamente · Básico ($25,000 MXN)'}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
@@ -308,7 +308,7 @@ export const IrresistibleOfferStack: React.FC<IrresistibleOfferStackProps> = ({
                 onClick={() => handleSelectPlan(WHOP_CONFIG.plans.colegiaturaCompleta.id)}
                 className="w-full py-3 bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-xs uppercase tracking-widest rounded-xl transition-all shadow-lg flex items-center justify-center gap-2"
               >
-                <span>Inscribirme a Completa ($38,000 MXN)</span>
+                <span>{WHOP_CONFIG.paymentsEnabled ? 'Inscribirme a Completa ($38,000 MXN)' : 'Próximamente · Completa ($38,000 MXN)'}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>

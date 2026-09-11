@@ -286,7 +286,7 @@ const CertificacionPilatesCity: React.FC = () => {
                     }}
                     className="px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors shadow-md font-semibold"
                   >
-                    Pre-reservar Cupo ($400 MXN)
+                    {WHOP_CONFIG.paymentsEnabled ? 'Pre-reservar Cupo ($400 MXN)' : 'Próximamente · Apartar Cupo ($400 MXN)'}
                   </button>
                   <button
                     onClick={() => setModalOpen(true)}
@@ -466,7 +466,7 @@ const CertificacionPilatesCity: React.FC = () => {
                 }}
                 className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#EAE8E4] text-[#2A2624] text-xs uppercase tracking-[0.2em] font-semibold hover:bg-white transition-colors shadow-lg"
               >
-                Pre-reservar mi lugar ($400 MXN)
+                {WHOP_CONFIG.paymentsEnabled ? 'Pre-reservar mi lugar ($400 MXN)' : 'Próximamente · Apartar Cupo ($400 MXN)'}
               </button>
               <button
                 onClick={() => setModalOpen(true)}

@@ -345,7 +345,7 @@ const WebappExperience: React.FC = () => {
                 onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
                 className="px-5 py-2.5 bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold rounded-full shadow-sm flex items-center gap-2 transition-all"
               >
-                <span>Pre-reservar Cupo ($400 MXN)</span>
+                <span>{WHOP_CONFIG.paymentsEnabled ? 'Pre-reservar Cupo ($400 MXN)' : 'Próximamente · Apartar Cupo ($400 MXN)'}</span>
                 <ChevronRight className="w-3.5 h-3.5" />
               </button>
               <a
@@ -578,14 +578,14 @@ const WebappExperience: React.FC = () => {
                         onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.cursoBasico.id)}
                         className="w-full py-2.5 bg-neutral-900 hover:bg-neutral-800 text-white font-semibold text-xs rounded-xl transition-all shadow-xs"
                       >
-                        Inscribirme al Curso Básico ($25,000 MXN)
+                        {WHOP_CONFIG.paymentsEnabled ? 'Inscribirme al Curso Básico ($25,000 MXN)' : 'Próximamente · Curso Básico ($25,000 MXN)'}
                       </button>
                       <button
                         type="button"
                         onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
                         className="w-full py-2 bg-white hover:bg-neutral-100 text-neutral-800 border border-neutral-300 font-semibold text-xs rounded-xl transition-all"
                       >
-                        Pre-reservar Lugar con $400 MXN
+                        {WHOP_CONFIG.paymentsEnabled ? 'Pre-reservar Lugar con $400 MXN' : 'Próximamente · Apartar Cupo ($400 MXN)'}
                       </button>
                     </div>
                   </div>
@@ -629,14 +629,14 @@ const WebappExperience: React.FC = () => {
                         onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.colegiaturaCompleta.id)}
                         className="w-full py-2.5 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-bold text-xs rounded-xl transition-all shadow-xs"
                       >
-                        Inscribirme a Certificación Completa ($38,000 MXN)
+                        {WHOP_CONFIG.paymentsEnabled ? 'Inscribirme a Certificación Completa ($38,000 MXN)' : 'Próximamente · Certificación Completa ($38,000 MXN)'}
                       </button>
                       <button
                         type="button"
                         onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
                         className="w-full py-2 bg-neutral-800 hover:bg-neutral-700 text-white border border-neutral-700 font-semibold text-xs rounded-xl transition-all"
                       >
-                        Pre-reservar Lugar con $400 MXN
+                        {WHOP_CONFIG.paymentsEnabled ? 'Pre-reservar Lugar con $400 MXN' : 'Próximamente · Apartar Cupo ($400 MXN)'}
                       </button>
                     </div>
                   </div>
@@ -1186,7 +1186,7 @@ const WebappExperience: React.FC = () => {
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
                       className="w-full py-2.5 bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs uppercase tracking-wider rounded-full transition-all shadow-sm"
                     >
-                      Pre-reservar Cupo ($400 MXN)
+                      {WHOP_CONFIG.paymentsEnabled ? 'Pre-reservar Cupo ($400 MXN)' : 'Próximamente · Apartar ($400 MXN)'}
                     </button>
                   </div>
                 </div>
@@ -1214,7 +1214,7 @@ const WebappExperience: React.FC = () => {
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.cursoBasico.id)}
                       className="w-full py-2.5 bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs uppercase tracking-wider rounded-full transition-all shadow-xs"
                     >
-                      Inscribirme Básico ($25k)
+                      {WHOP_CONFIG.paymentsEnabled ? 'Inscribirme Básico ($25k)' : 'Próximamente · Básico ($25k)'}
                     </button>
                   </div>
                 </div>
@@ -1242,7 +1242,7 @@ const WebappExperience: React.FC = () => {
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.colegiaturaCompleta.id)}
                       className="w-full py-2.5 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-bold text-xs uppercase tracking-wider rounded-full transition-all shadow-sm"
                     >
-                      Pagar Completo ($38k)
+                      {WHOP_CONFIG.paymentsEnabled ? 'Pagar Completo ($38k)' : 'Próximamente · Completo ($38k)'}
                     </button>
                   </div>
                 </div>
@@ -1270,7 +1270,7 @@ const WebappExperience: React.FC = () => {
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.cursoOnline.id)}
                       className="w-full py-2.5 bg-white hover:bg-neutral-100 text-neutral-900 font-bold text-xs uppercase tracking-wider rounded-full transition-all border border-neutral-300"
                     >
-                      Comprar Online ($1,999)
+                      {WHOP_CONFIG.paymentsEnabled ? 'Comprar Online ($1,999)' : 'Próximamente · Online ($1,999)'}
                     </button>
                   </div>
                 </div>

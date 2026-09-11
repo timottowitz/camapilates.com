@@ -4,6 +4,19 @@
  */
 
 export const WHOP_CONFIG = {
+  // Global flag: deactivate direct checkouts for now while service is in preparation
+  paymentsEnabled: false,
+  serviceStatus: 'soon' as const,
+  serviceNotice: {
+    badge: 'En Preparación · Próximamente',
+    title: 'Estamos construyendo este servicio en este momento',
+    subtitle: 'Estamos preparando los últimos detalles de cupos, logística de Reformers individuales y plataforma de inscripción para Querétaro y Monterrey. No se realizará ningún cargo en este momento.',
+    webinarChannelTitle: 'Conoce el Programa en el Webinar Informativo Gratuito',
+    webinarChannelDescription: 'Descubre los temarios de 28h y 48h, resolución de dudas con las formadoras y recorrido por el estudio.',
+    waitlistTitle: 'Lista de Espera Prioritaria',
+    waitlistDescription: 'Déjanos tu correo y te notificaremos en cuanto abramos el apartado oficial de $400 MXN.',
+  },
+
   companyId: 'biz_3eUPkeAdggRnrP',
   productId: 'prod_Iv5ZnKkugonCn',
   productRoute: 'mexico-reformer-community',
