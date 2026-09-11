@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { DEFAULTS, generateBreadcrumbSchema, generateLocalBusinessSchema, getOrigin } from '@/lib/seo';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import CertificationWebinarBanner from '@/components/certification/CertificationWebinarBanner';
 
 type HubCard = {
   eyebrow: string;
@@ -26,9 +27,9 @@ const IndexAuthority: React.FC = () => {
   const cards = useMemo<HubCard[]>(() => (
     [
       {
-        eyebrow: 'DIRECTORY',
-        title: 'Pilates Studios',
-        description: 'Find top-rated studios across Mexico. Map view & reviews.',
+        eyebrow: 'DIRECTORIO',
+        title: 'Estudios de Pilates',
+        description: 'Encuentra estudios top en México. Vista de mapa y valoraciones.',
         to: '/estudios-de-pilates',
         colSpan: 'md:col-span-7 lg:col-span-6',
         rowSpan: 'md:row-span-2', // Tall anchor card
@@ -36,18 +37,18 @@ const IndexAuthority: React.FC = () => {
         dark: true,
       },
       {
-        eyebrow: 'COMMUNITY',
-        title: 'Instructors',
-        description: 'Connect with certified pros.',
+        eyebrow: 'COMUNIDAD',
+        title: 'Instructores',
+        description: 'Conecta con profesionales certificados en Reformer.',
         to: '/instructores-pilates',
         colSpan: 'md:col-span-5 lg:col-span-3',
         image: '/images/about-hero.webp',
         dark: true,
       },
       {
-        eyebrow: 'TRAINING',
-        title: 'Courses',
-        description: 'Teacher training programs.',
+        eyebrow: 'FORMACIÓN OFICIAL',
+        title: 'Certificación 100h',
+        description: 'Querétaro y Monterrey. Avalada con Laura Munive (50% OFF).',
         to: '/certificacion-pilates',
         colSpan: 'md:col-span-5 lg:col-span-3',
         image: '/images/certification-hero.webp',
@@ -55,26 +56,26 @@ const IndexAuthority: React.FC = () => {
       },
       {
         eyebrow: 'EDITORIAL',
-        title: 'The Journal',
-        description: 'Expert guides on buying, practice, and maintenance.',
+        title: 'El Blog (The Journal)',
+        description: 'Guías expertas de compra, biomecánica y mantenimiento.',
         to: '/blog',
         colSpan: 'md:col-span-12 lg:col-span-6',
         image: '/images/studios-hero.webp',
         dark: true,
       },
       {
-        eyebrow: 'EQUIPMENT',
-        title: 'New Reformers',
-        description: 'Shop the collection.',
+        eyebrow: 'EQUIPAMIENTO',
+        title: 'Nuevos Reformers',
+        description: 'Madera de maple y aluminio. Fabricación 100% mexicana.',
         to: '/shop/category/reformers',
         colSpan: 'md:col-span-6 lg:col-span-6',
         image: '/images/explore-reformers.webp',
         dark: true,
       },
       {
-        eyebrow: 'SHOP',
-        title: 'Store',
-        description: 'Accessories & parts.',
+        eyebrow: 'TIENDA',
+        title: 'Accesorios & Cajas',
+        description: 'Cajas de estudio, tablas de salto, resortes alemanes y refacciones.',
         to: '/shop',
         colSpan: 'md:col-span-6 lg:col-span-6',
         image: '/images/hero-shop.webp',
@@ -279,6 +280,16 @@ const IndexAuthority: React.FC = () => {
             ))}
           </motion.div>
 
+          {/* Featured Certification & Webinar Banner */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-12"
+          >
+            <CertificationWebinarBanner />
+          </motion.div>
+
           {/* Quick Links Footer */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -286,9 +297,15 @@ const IndexAuthority: React.FC = () => {
             viewport={{ once: true }}
             className="mt-16 flex flex-wrap justify-center md:justify-start gap-4"
           >
-            {['Reviews', 'Warranty', 'FAQ', 'Contact'].map((link) => (
-              <Link key={link} to="/soporte" className="text-xs font-bold uppercase tracking-widest text-[#5D5550] hover:text-[#EB4C42] transition-colors">
-                {link}
+            {[
+              { label: 'Reseñas', to: '/soporte' },
+              { label: 'Garantía 5 Años', to: '/soporte' },
+              { label: 'Preguntas Frecuentes', to: '/soporte' },
+              { label: 'Contacto Directo', to: '/soporte' },
+              { label: 'Campus Virtual & Whop', to: '/app' },
+            ].map((link) => (
+              <Link key={link.label} to={link.to} className="text-xs font-bold uppercase tracking-widest text-[#5D5550] hover:text-[#EB4C42] transition-colors">
+                {link.label}
               </Link>
             ))}
           </motion.div>

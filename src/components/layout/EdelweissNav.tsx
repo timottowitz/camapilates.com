@@ -48,14 +48,14 @@ const EdelweissNav: React.FC<EdelweissNavProps> = ({ darkBackground = false }) =
   }));
 
   const navLinks = [
-    { to: '/', label: 'Home', exact: true },
-    { to: '/estudios-de-pilates', label: 'Search Studio' },
-    { to: '/instructores-pilates', label: 'Instructors' },
-    { to: '/certificacion-pilates', label: 'Courses' },
+    { to: '/', label: 'Inicio', exact: true },
+    { to: '/estudios-de-pilates', label: 'Estudios' },
+    { to: '/instructores-pilates', label: 'Instructores' },
+    { to: '/certificacion-pilates', label: 'Certificación' },
     { to: '/app', label: 'Campus' },
-    { to: '/shop', label: 'Store', children: collectionLinks },
+    { to: '/shop', label: 'Tienda', children: collectionLinks },
     { to: '/blog', label: 'Blog' },
-    { to: '/about', label: 'Us' },
+    { to: '/about', label: 'Nosotros' },
   ];
 
   const isActive = (path: string, exact?: boolean) => {
