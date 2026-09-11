@@ -23,6 +23,8 @@ import {
   Zap,
   Loader2,
   Lock,
+  Copy,
+  Check,
 } from 'lucide-react';
 import { useConvex } from 'convex/react';
 import { api } from '../../convex/_generated/api';
@@ -54,6 +56,13 @@ const WebappExperience: React.FC = () => {
   const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
   const [checkoutPlanId, setCheckoutPlanId] = useState<string>(WHOP_CONFIG.plans.apartado.id);
   const [enrollmentData, setEnrollmentData] = useState<any>(null);
+  const [copiedAsset, setCopiedAsset] = useState<string | null>(null);
+
+  const handleCopyAssetUrl = (url: string, label: string) => {
+    navigator.clipboard.writeText(url);
+    setCopiedAsset(label);
+    setTimeout(() => setCopiedAsset(null), 2500);
+  };
 
   // Member verification modal state
   const [verifyModalOpen, setVerifyModalOpen] = useState(false);
@@ -555,7 +564,7 @@ const WebappExperience: React.FC = () => {
                 <div className="relative w-full aspect-[2/1] sm:aspect-[2.4/1] max-h-[360px] overflow-hidden border-b border-neutral-200/80 bg-neutral-100">
                   <img
                     src={WHOP_CONFIG.assets.bannerUrl}
-                    alt="Comunidad Whop CAMA Pilates México"
+                    alt="Comunidad Whop Edelweiss Pilates México"
                     className="w-full h-full object-cover object-center"
                   />
                 </div>
@@ -568,34 +577,224 @@ const WebappExperience: React.FC = () => {
                       </span>
                     </div>
                     <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900">
-                      Comunidad de Alumnas e Instructoras CAMA Pilates
+                      Comunidad de Alumnas e Instructoras Edelweiss Pilates
                     </h2>
                     <p className="text-xs sm:text-sm text-neutral-600 max-w-2xl leading-relaxed">
                       Interactúa con tus formadoras Gabi & Laura Munive, debate casos clínicos de patologías y conecta con la red de graduadas en Querétaro y Monterrey.
                     </p>
                   </div>
 
-                <div className="flex items-center gap-2.5 shrink-0">
+                  <div className="flex items-center gap-2.5 shrink-0">
+                    <a
+                      href={WHOP_CONFIG.experiences.forums.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 bg-white hover:bg-neutral-100 text-neutral-800 text-xs font-semibold rounded-full border border-neutral-200 shadow-xs flex items-center gap-1.5 transition-all"
+                    >
+                      <span>Abrir Foros Whop</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                    <a
+                      href={WHOP_CONFIG.experiences.chat.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2 bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-bold rounded-full flex items-center gap-1.5 transition-all shadow-sm"
+                    >
+                      <span>Entrar al Chat en Vivo</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Asset Download Hub for Whop Community Branding */}
+              <div className="bg-neutral-900 text-white rounded-[28px] p-6 sm:p-8 space-y-6 shadow-md border border-neutral-800">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-neutral-800 pb-5">
+                  <div className="space-y-1.5">
+                    <div className="flex items-center gap-2">
+                      <span className="px-2.5 py-0.5 rounded-full bg-amber-400/10 text-amber-300 border border-amber-400/20 font-mono text-[10px] font-bold uppercase tracking-wider">
+                        [ BRAND IDENTITY KIT · EDELWEISS ]
+                      </span>
+                      <span className="text-[11px] font-mono text-neutral-400">Archivos Originales PNG</span>
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+                      Assets Oficiales para la Comunidad Whop
+                    </h3>
+                    <p className="text-xs sm:text-sm text-neutral-300 max-w-2xl leading-relaxed">
+                      Descarga los archivos originales en alta resolución (2000px, 1024px, 512px) con composiciones fotográficas reales y el diseño editorial exclusivo para el encabezado, logotipo y avatar de Whop.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-2 shrink-0">
+                    <a
+                      href="https://whop.com/dashboard/company/biz_3eUPkeAdggRnrP/settings"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-semibold rounded-full border border-neutral-700 flex items-center gap-1.5 transition-all"
+                    >
+                      <span>Ajustes Whop Dashboard</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-neutral-400" />
+                    </a>
+                  </div>
+                </div>
+
+                {/* 3 Download Cards Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                  {/* CARD 1: HEADER BANNER */}
+                  <div className="bg-neutral-950/70 border border-neutral-800 rounded-2xl p-4 flex flex-col justify-between space-y-4">
+                    <div className="space-y-3">
+                      <div className="relative aspect-[2/1] rounded-xl overflow-hidden border border-neutral-800 bg-neutral-900 group">
+                        <img
+                          src={WHOP_CONFIG.assets.bannerUrl}
+                          alt="Edelweiss Pilates Community Header Banner"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/70 backdrop-blur-xs text-[10px] font-mono text-amber-300 font-semibold">
+                          2000 × 1000 px
+                        </div>
+                      </div>
+                      <div>
+                        <div className="flex items-center justify-between text-[11px] font-mono text-neutral-400">
+                          <span>Header Banner Oficial</span>
+                          <span>825 KB · PNG</span>
+                        </div>
+                        <h4 className="text-sm font-bold text-white mt-1">Banner Comunidad Whop</h4>
+                        <p className="text-xs text-neutral-400 mt-1 leading-relaxed">
+                          Composición con 3 cards fotográficas (Teal, Terracota, Sage), planos cinemáticos y tipografía oficial Edelweiss Pilates.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="pt-2 border-t border-neutral-800/80 flex flex-col sm:flex-row gap-2">
+                      <a
+                        href="/images/whop/whop-community-banner.png"
+                        download="edelweiss-community-banner.png"
+                        className="flex-1 px-3 py-2 bg-amber-500 hover:bg-amber-400 text-neutral-950 font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-sm"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                        <span>Descargar PNG</span>
+                      </a>
+                      <button
+                        type="button"
+                        onClick={() => handleCopyAssetUrl(WHOP_CONFIG.assets.bannerUrl, 'banner')}
+                        className="px-3 py-2 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-medium rounded-xl flex items-center justify-center gap-1 transition-all"
+                        title="Copiar URL directa de Whop CDN"
+                      >
+                        {copiedAsset === 'banner' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                        <span className="hidden sm:inline">{copiedAsset === 'banner' ? 'Copiado' : 'CDN'}</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* CARD 2: OFFICIAL LOGO */}
+                  <div className="bg-neutral-950/70 border border-neutral-800 rounded-2xl p-4 flex flex-col justify-between space-y-4">
+                    <div className="space-y-3">
+                      <div className="relative aspect-square max-h-[160px] mx-auto rounded-xl overflow-hidden border border-neutral-800 bg-neutral-900 group">
+                        <img
+                          src={WHOP_CONFIG.assets.logoUrl}
+                          alt="Edelweiss Pilates Official Logo"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/70 backdrop-blur-xs text-[10px] font-mono text-amber-300 font-semibold">
+                          1024 × 1024 px
+                        </div>
+                      </div>
+                      <div>
+                        <div className="flex items-center justify-between text-[11px] font-mono text-neutral-400">
+                          <span>Logo Oficial Cuadrado</span>
+                          <span>187 KB · PNG</span>
+                        </div>
+                        <h4 className="text-sm font-bold text-white mt-1">Logotipo Edelweiss</h4>
+                        <p className="text-xs text-neutral-400 mt-1 leading-relaxed">
+                          Emblema circular en Slate Teal con corona dorada, flor alpina Edelweiss y texto Pilates Apparatus.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="pt-2 border-t border-neutral-800/80 flex flex-col sm:flex-row gap-2">
+                      <a
+                        href="/images/whop/whop-community-logo.png"
+                        download="edelweiss-community-logo.png"
+                        className="flex-1 px-3 py-2 bg-amber-500 hover:bg-amber-400 text-neutral-950 font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-sm"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                        <span>Descargar PNG</span>
+                      </a>
+                      <button
+                        type="button"
+                        onClick={() => handleCopyAssetUrl(WHOP_CONFIG.assets.logoUrl, 'logo')}
+                        className="px-3 py-2 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-medium rounded-xl flex items-center justify-center gap-1 transition-all"
+                        title="Copiar URL directa de Whop CDN"
+                      >
+                        {copiedAsset === 'logo' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                        <span className="hidden sm:inline">{copiedAsset === 'logo' ? 'Copiado' : 'CDN'}</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* CARD 3: APP AVATAR */}
+                  <div className="bg-neutral-950/70 border border-neutral-800 rounded-2xl p-4 flex flex-col justify-between space-y-4">
+                    <div className="space-y-3">
+                      <div className="relative aspect-square max-h-[160px] mx-auto rounded-full overflow-hidden border-2 border-amber-400/40 bg-neutral-900 group shadow-md">
+                        <img
+                          src={WHOP_CONFIG.assets.avatarUrl}
+                          alt="Edelweiss Pilates App Avatar"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute top-2 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded bg-black/80 backdrop-blur-xs text-[10px] font-mono text-amber-300 font-semibold">
+                          512 × 512 px
+                        </div>
+                      </div>
+                      <div>
+                        <div className="flex items-center justify-between text-[11px] font-mono text-neutral-400">
+                          <span>Avatar Circular Icon</span>
+                          <span>142 KB · PNG</span>
+                        </div>
+                        <h4 className="text-sm font-bold text-white mt-1">Avatar de Aplicación</h4>
+                        <p className="text-xs text-neutral-400 mt-1 leading-relaxed">
+                          Ícono optimizado para chat móvil, perfiles de comunidad y notificaciones con el símbolo Edelweiss.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="pt-2 border-t border-neutral-800/80 flex flex-col sm:flex-row gap-2">
+                      <a
+                        href="/images/whop/whop-community-avatar.png"
+                        download="edelweiss-community-avatar.png"
+                        className="flex-1 px-3 py-2 bg-amber-500 hover:bg-amber-400 text-neutral-950 font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-sm"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                        <span>Descargar PNG</span>
+                      </a>
+                      <button
+                        type="button"
+                        onClick={() => handleCopyAssetUrl(WHOP_CONFIG.assets.avatarUrl, 'avatar')}
+                        className="px-3 py-2 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-medium rounded-xl flex items-center justify-center gap-1 transition-all"
+                        title="Copiar URL directa de Whop CDN"
+                      >
+                        {copiedAsset === 'avatar' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                        <span className="hidden sm:inline">{copiedAsset === 'avatar' ? 'Copiado' : 'CDN'}</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Instructions Footer */}
+                <div className="bg-neutral-950 border border-neutral-800/80 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-neutral-400">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                    <span>Los 3 assets ya están sincronizados y alojados en Whop S3 CDN con HTTP 200 garantizado.</span>
+                  </div>
                   <a
-                    href={WHOP_CONFIG.experiences.forums.url}
+                    href="https://whop.com/dashboard/company/biz_3eUPkeAdggRnrP/products/prod_Iv5ZnKkugonCn"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-white hover:bg-neutral-100 text-neutral-800 text-xs font-semibold rounded-full border border-neutral-200 shadow-xs flex items-center gap-1.5 transition-all"
+                    className="text-amber-400 hover:text-amber-300 font-semibold inline-flex items-center gap-1 hover:underline"
                   >
-                    <span>Abrir Foros Whop</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                  <a
-                    href={WHOP_CONFIG.experiences.chat.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-5 py-2 bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-bold rounded-full flex items-center gap-1.5 transition-all shadow-sm"
-                  >
-                    <span>Entrar al Chat en Vivo</span>
+                    <span>Editar galería en Whop</span>
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>
-              </div>
               </div>
 
               {/* 4 Community Highlights / Channels Cards */}
@@ -661,7 +860,7 @@ const WebappExperience: React.FC = () => {
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-5 h-5 text-[#14323D]" />
                   <h3 className="text-base font-bold text-neutral-900 tracking-tight">
-                    Valores & Código de Ética de la Comunidad CAMA Pilates
+                    Valores & Código de Ética de la Comunidad Edelweiss Pilates
                   </h3>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-neutral-600 leading-relaxed">

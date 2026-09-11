@@ -143,7 +143,7 @@ export const EditorialFeatureCards: React.FC<EditorialFeatureCardsProps> = ({
           <div className="absolute inset-0 bg-gradient-to-t from-[#6E240B] via-[#9B3714] to-[#BF4A20]">
             <img
               src="/images/about-hero.webp"
-              alt="Comunidad de Instructoras CAMA Pilates"
+              alt="Comunidad de Instructoras Edelweiss Pilates"
               className="w-full h-full object-cover object-center opacity-85 filter contrast-110 saturate-110 group-hover:scale-105 transition-transform duration-700"
             />
             {/* Warm Golden Hour Gradient Tint */}

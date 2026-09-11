@@ -11,6 +11,20 @@ export interface CohortWeekend {
   title: string;
   description: string;
   hours: number;
+  image?: string;
+  localImage?: string;
+  bracketTag?: string;
+  colorTheme?: {
+    bg: string;
+    headerGradient: string;
+    accent: string;
+    badgeBorder: string;
+    badgeBg: string;
+    badgeText: string;
+    pillBg: string;
+    pillText: string;
+  };
+  competencies?: string[];
 }
 
 export interface CityCertificationCohort {
@@ -121,6 +135,24 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
         title: "Módulo I: Anatomía Funcional Aplicada & Repertorio Esencial Reformer",
         description: "Biomecánica de la pelvis, caja torácica y columna. Principios de respiración, centrado y ejecución técnica de los 35 ejercicios esenciales (Footwork, Bridging, Feet in Straps, Abdominal Series). Parte del Curso Básico (28h).",
         hours: 14,
+        image: "https://assets-2-prod.whop.com/public/uploads/2026-09-11/28c65fb2-8459-443d-ade5-67790beaf2bd/image.webp",
+        localImage: "/images/courses/module-1-biomechanics.webp",
+        bracketTag: "[ 14 HORAS · BÁSICO & COMPLETO ]",
+        colorTheme: {
+          bg: "#14323D",
+          headerGradient: "from-[#183D4A] via-[#14323D] to-transparent",
+          accent: "text-teal-200",
+          badgeBorder: "border-teal-300/30",
+          badgeBg: "bg-teal-900/40",
+          badgeText: "text-teal-100",
+          pillBg: "bg-teal-50",
+          pillText: "text-teal-800",
+        },
+        competencies: [
+          "Biomecánica articular, eje lumbopélvico y alineación C1-L5",
+          "Calibración de barra de pies y resortes según antropometría",
+          "Dominio técnico de los 35 ejercicios esenciales de Reformer",
+        ],
       },
       {
         weekendNumber: 2,
@@ -130,6 +162,24 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
         title: "Módulo II: Repertorio Intermedio, Dinámica de Carro & Cargas",
         description: "Transiciones fluidas, trabajo en planos sagital y coronal, manejo de resistencia de resortes (muelles) según biotipo corporal y progresiones del repertorio intermedio. Concluye el Curso Básico (28h totales).",
         hours: 14,
+        image: "https://assets-2-prod.whop.com/public/uploads/2026-09-11/4bd1938d-5e92-48d1-b506-e60d17410e01/image.webp",
+        localImage: "/images/courses/module-2-intermediate.webp",
+        bracketTag: "[ 14 HORAS · CIERRE BÁSICO 28H ]",
+        colorTheme: {
+          bg: "#B8583B",
+          headerGradient: "from-[#C8542A] via-[#B8583B] to-transparent",
+          accent: "text-orange-200",
+          badgeBorder: "border-orange-300/30",
+          badgeBg: "bg-orange-950/40",
+          badgeText: "text-orange-100",
+          pillBg: "bg-orange-50",
+          pillText: "text-orange-800",
+        },
+        competencies: [
+          "Dinámica de inercia y control del retroceso del carro móvil",
+          "Física de resortes (F = -k·x) y regulación de resistencia de 24.5 kg",
+          "Repertorio intermedio (Short Box, Teaser, Long Stretch, Stomach Massage)",
+        ],
       },
       {
         weekendNumber: 3,
@@ -139,6 +189,24 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
         title: "Módulo III: Modificaciones Clínicas, Poblaciones Especiales & Columna",
         description: "Adaptaciones precisas para alumnos con dolor lumbar, hernias discales, escoliosis, hipermovilidad, embarazo y adultos mayores en Reformer. Requisito de la Certificación Completa (48h).",
         hours: 10,
+        image: "https://assets-2-prod.whop.com/public/uploads/2026-09-11/714793a2-98af-4899-849a-da91d54bdb8f/image.webp",
+        localImage: "/images/courses/module-3-clinical.webp",
+        bracketTag: "[ 10 HORAS · EXCLUSIVO COMPLETA 48H ]",
+        colorTheme: {
+          bg: "#72927C",
+          headerGradient: "from-[#7A9A84] via-[#72927C] to-transparent",
+          accent: "text-emerald-200",
+          badgeBorder: "border-emerald-900/20",
+          badgeBg: "bg-emerald-950/20",
+          badgeText: "text-neutral-900",
+          pillBg: "bg-emerald-50",
+          pillText: "text-emerald-800",
+        },
+        competencies: [
+          "Descompresión espinal asistida por resortes en dolor lumbar L4-L5",
+          "Protocolos clínicos seguros en hernias discales, escoliosis y cifosis",
+          "Adaptaciones seguras para embarazo (2° y 3° trimestre) y adultos mayores",
+        ],
       },
       {
         weekendNumber: 4,
@@ -148,6 +216,24 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
         title: "Módulo IV: Metodología de Cueing, Práctica Supervisada & Certificación",
         description: "Comandos verbales, ajustes táctiles no invasivos, planificación de clases privadas y grupales, examen teórico-práctico y entrega de constancias oficiales. Concluye la Certificación Completa (48h totales).",
         hours: 10,
+        image: "https://assets-2-prod.whop.com/public/uploads/2026-09-11/4fad1010-ea6d-4b64-962f-3210313b2b6f/image.webp",
+        localImage: "/images/courses/module-4-pedagogy.webp",
+        bracketTag: "[ 10 HORAS · AVAL PROFESIONAL 48H ]",
+        colorTheme: {
+          bg: "#18232C",
+          headerGradient: "from-[#23333F] via-[#18232C] to-transparent",
+          accent: "text-blue-200",
+          badgeBorder: "border-blue-300/30",
+          badgeBg: "bg-blue-950/50",
+          badgeText: "text-blue-100",
+          pillBg: "bg-neutral-100",
+          pillText: "text-neutral-800",
+        },
+        competencies: [
+          "Metodología de cueing verbal (400ms) y ajuste táctil propioceptivo",
+          "Simulación docente en vivo y diseño de secuencias individuales/grupales",
+          "Examen práctico ante Master Trainers y entrega de Aval Oficial Certificado",
+        ],
       },
     ],
     benefits: [
@@ -193,6 +279,24 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
         title: "Módulo I: Principios de Contrología, Biomecánica & Repertorio Esencial",
         description: "Fundamentos de cinemática articular, análisis postural estático/dinámico y repertorio fundamental en Reformer con atención a la estabilidad lumbopélvica. Parte del Curso Básico (28h).",
         hours: 14,
+        image: "https://assets-2-prod.whop.com/public/uploads/2026-09-11/28c65fb2-8459-443d-ade5-67790beaf2bd/image.webp",
+        localImage: "/images/courses/module-1-biomechanics.webp",
+        bracketTag: "[ 14 HORAS · BÁSICO & COMPLETO ]",
+        colorTheme: {
+          bg: "#14323D",
+          headerGradient: "from-[#183D4A] via-[#14323D] to-transparent",
+          accent: "text-teal-200",
+          badgeBorder: "border-teal-300/30",
+          badgeBg: "bg-teal-900/40",
+          badgeText: "text-teal-100",
+          pillBg: "bg-teal-50",
+          pillText: "text-teal-800",
+        },
+        competencies: [
+          "Cinemática articular, análisis postural estático y dinámico",
+          "Estabilidad lumbopélvica y regulación del centro de gravedad",
+          "Repertorio fundamental: Footwork, Spine Articulation y Cargas iniciales",
+        ],
       },
       {
         weekendNumber: 2,
@@ -202,6 +306,24 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
         title: "Módulo II: Repertorio Intermedio, Coreografía & Regulación de Fuerza",
         description: "Repertorio de coordinación y resistencia muscular. Estrategias para regular tensión de resortes y diseñar secuencias de alto impacto articular bajo. Concluye el Curso Básico (28h totales).",
         hours: 14,
+        image: "https://assets-2-prod.whop.com/public/uploads/2026-09-11/4bd1938d-5e92-48d1-b506-e60d17410e01/image.webp",
+        localImage: "/images/courses/module-2-intermediate.webp",
+        bracketTag: "[ 14 HORAS · CIERRE BÁSICO 28H ]",
+        colorTheme: {
+          bg: "#B8583B",
+          headerGradient: "from-[#C8542A] via-[#B8583B] to-transparent",
+          accent: "text-orange-200",
+          badgeBorder: "border-orange-300/30",
+          badgeBg: "bg-orange-950/40",
+          badgeText: "text-orange-100",
+          pillBg: "bg-orange-50",
+          pillText: "text-orange-800",
+        },
+        competencies: [
+          "Coordinación neuromuscular en cadena cinética abierta y cerrada",
+          "Coreografía de transiciones seguras y cadencia de clase boutique",
+          "Modulaciones de tempo y equilibrio dinámico sobre el carro móvil",
+        ],
       },
       {
         weekendNumber: 3,
@@ -211,6 +333,24 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
         title: "Módulo III: Modificaciones Clínicas, Prevención de Lesiones & Casos Reales",
         description: "Reanudación tras la pausa decembrina. Abordaje de patologías de rodilla, hombro y columna vertebral. Modificaciones seguras para el cliente boutique contemporáneo. Requisito de la Certificación Completa (48h).",
         hours: 10,
+        image: "https://assets-2-prod.whop.com/public/uploads/2026-09-11/714793a2-98af-4899-849a-da91d54bdb8f/image.webp",
+        localImage: "/images/courses/module-3-clinical.webp",
+        bracketTag: "[ 10 HORAS · EXCLUSIVO COMPLETA 48H ]",
+        colorTheme: {
+          bg: "#72927C",
+          headerGradient: "from-[#7A9A84] via-[#72927C] to-transparent",
+          accent: "text-emerald-200",
+          badgeBorder: "border-emerald-900/20",
+          badgeBg: "bg-emerald-950/20",
+          badgeText: "text-neutral-900",
+          pillBg: "bg-emerald-50",
+          pillText: "text-emerald-800",
+        },
+        competencies: [
+          "Abordaje clínico de lesiones en hombro, rodilla y columna vertebral",
+          "Diseño de modificaciones seguras para poblaciones de alto riesgo",
+          "Análisis de casos clínicos reales con supervisión de Master Trainers",
+        ],
       },
       {
         weekendNumber: 4,
@@ -220,6 +360,24 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
         title: "Módulo IV: Pedagogía de Clase, Enseñanza en Vivo & Certificación Final",
         description: "Simulación de clases grupales y privadas en vivo, evaluación práctica individual por los Master Trainers, retroalimentación clínica y graduación. Concluye la Certificación Completa (48h totales).",
         hours: 10,
+        image: "https://assets-2-prod.whop.com/public/uploads/2026-09-11/4fad1010-ea6d-4b64-962f-3210313b2b6f/image.webp",
+        localImage: "/images/courses/module-4-pedagogy.webp",
+        bracketTag: "[ 10 HORAS · AVAL PROFESIONAL 48H ]",
+        colorTheme: {
+          bg: "#18232C",
+          headerGradient: "from-[#23333F] via-[#18232C] to-transparent",
+          accent: "text-blue-200",
+          badgeBorder: "border-blue-300/30",
+          badgeBg: "bg-blue-950/50",
+          badgeText: "text-blue-100",
+          pillBg: "bg-neutral-100",
+          pillText: "text-neutral-800",
+        },
+        competencies: [
+          "Simulación de enseñanza real con retroalimentación docente en directo",
+          "Evaluación práctica individual por Gabi y Laura Munive",
+          "Graduación oficial, constancia curricular y red de estudios CAMA",
+        ],
       },
     ],
     benefits: [

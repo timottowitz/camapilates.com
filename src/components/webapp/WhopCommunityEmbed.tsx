@@ -69,13 +69,13 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
         <div className="flex items-center gap-3">
           <img
             src={WHOP_CONFIG.assets.avatarUrl}
-            alt="CAMA Pilates Logo"
+            alt="Edelweiss Pilates Logo"
             className="w-10 h-10 rounded-2xl object-cover border border-neutral-200 shadow-sm"
           />
           <div>
             <div className="flex items-center gap-2">
               <h3 className="text-sm font-bold text-neutral-900 tracking-tight">
-                Comunidad Oficial Reformer México
+                Comunidad Oficial Edelweiss Pilates México
               </h3>
               <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-mono font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
                 [ WHOP LIVE ]

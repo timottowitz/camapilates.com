@@ -6,8 +6,14 @@ async function generateAssets() {
   console.log('🎨 Launching Playwright Chromium for asset generation...');
   const browser = await chromium.launch();
 
-  // 1. GENERATE LOGO / AVATAR (1024x1024)
-  console.log('📐 Rendering Whop Community Logo (1024x1024)...');
+  // Load local base64 images for reliable rendering without an HTTP server
+  console.log('📸 Loading local photograph textures as Base64...');
+  const certHeroBase64 = `data:image/webp;base64,${fs.readFileSync('public/images/certification-hero.webp').toString('base64')}`;
+  const aboutHeroBase64 = `data:image/webp;base64,${fs.readFileSync('public/images/about-hero.webp').toString('base64')}`;
+  const edelweissHeroBase64 = `data:image/webp;base64,${fs.readFileSync('public/images/hero-edelweiss.webp').toString('base64')}`;
+
+  // 1. GENERATE LOGO (1024x1024)
+  console.log('📐 Rendering Edelweiss Whop Community Official Logo (1024x1024)...');
   const logoPage = await browser.newPage({
     viewport: { width: 1024, height: 1024 },
     deviceScaleFactor: 1,
@@ -58,7 +64,7 @@ async function generateAssets() {
     .badge {
       background: #0F0F0F;
       color: #FFFFFF;
-      padding: 8px 20px;
+      padding: 8px 22px;
       border-radius: 9999px;
       font-weight: 700;
       font-size: 13px;
@@ -78,24 +84,34 @@ async function generateAssets() {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 20px;
+      gap: 22px;
       position: relative;
       z-index: 10;
     }
     .brand-mark-card {
-      width: 380px;
-      height: 380px;
+      width: 400px;
+      height: 400px;
       background: #14323D;
       border-radius: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
-      box-shadow: 0 25px 60px rgba(20, 50, 61, 0.25), 0 0 0 1px rgba(255,255,255,0.1);
+      box-shadow: 0 30px 70px rgba(20, 50, 61, 0.28), 0 0 0 1px rgba(255,255,255,0.1);
       overflow: hidden;
     }
+    .card-photo-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.25;
+      mix-blend-mode: luminosity;
+      filter: contrast(125%);
+    }
     .brand-title {
-      font-size: 64px;
+      font-size: 56px;
       font-weight: 900;
       color: #0F0F0F;
       letter-spacing: -0.04em;
@@ -104,29 +120,29 @@ async function generateAssets() {
       text-align: center;
     }
     .brand-sub {
-      font-size: 19px;
-      font-weight: 600;
+      font-size: 18px;
+      font-weight: 700;
       color: #52525B;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       text-align: center;
-      margin-top: 6px;
+      margin-top: 8px;
     }
     .color-pills {
       display: flex;
       gap: 12px;
-      margin-top: 4px;
+      margin-top: 6px;
     }
     .pill-item {
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 7px 16px;
+      padding: 8px 18px;
       border-radius: 9999px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 13px;
       font-weight: 600;
-      border: 1px solid rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.06);
     }
     .pill-teal { background: #E0F2FE; color: #0369A1; }
     .pill-terracotta { background: #FFEDD5; color: #C2410C; }
@@ -152,14 +168,15 @@ async function generateAssets() {
     <span>• camadepilates.com</span>
     <div class="badge">
       <span class="badge-dot"></span>
-      <span>[ COMUNIDAD OFICIAL WHOP ]</span>
+      <span>[ EDELWEISS · COMUNIDAD WHOP ]</span>
     </div>
     <span>// FORMACIÓN 2026</span>
   </div>
 
   <div class="center-symbol">
     <div class="brand-mark-card">
-      <svg width="340" height="340" viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <img class="card-photo-bg" src="${certHeroBase64}" alt="Edelweiss Pilates" />
+      <svg width="360" height="360" viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: relative; z-index: 2;">
         <!-- Technical concentric blueprint guides -->
         <circle cx="170" cy="170" r="140" stroke="#38BDF8" stroke-width="1.2" stroke-dasharray="6 4" opacity="0.25"/>
         <circle cx="170" cy="170" r="100" stroke="#38BDF8" stroke-width="1" stroke-dasharray="3 3" opacity="0.3"/>
@@ -195,8 +212,8 @@ async function generateAssets() {
     </div>
 
     <div>
-      <h1 class="brand-title">CAMA PILATES</h1>
-      <p class="brand-sub">Formación Clínica Reformer</p>
+      <h1 class="brand-title">EDELWEISS</h1>
+      <p class="brand-sub">Pilates Reformer · Formación Clínica</p>
     </div>
 
     <div class="color-pills">
@@ -222,8 +239,8 @@ async function generateAssets() {
   console.log('✅ Logo captured successfully:', logoPath);
   await logoPage.close();
 
-  // 2. GENERATE SQUARE PROFILE AVATAR (512x512) for Whop community avatar
-  console.log('📐 Rendering Whop Avatar Icon (512x512)...');
+  // 2. GENERATE SQUARE PROFILE AVATAR (512x512)
+  console.log('📐 Rendering Edelweiss Whop Avatar Icon (512x512)...');
   const avatarPage = await browser.newPage({
     viewport: { width: 512, height: 512 },
     deviceScaleFactor: 1,
@@ -252,6 +269,16 @@ async function generateAssets() {
       overflow: hidden;
       color: #FFFFFF;
     }
+    .photo-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.22;
+      mix-blend-mode: luminosity;
+      filter: contrast(120%);
+    }
     .grid {
       position: absolute;
       inset: 0;
@@ -266,12 +293,12 @@ async function generateAssets() {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 14px;
     }
     .title {
-      font-size: 36px;
+      font-size: 32px;
       font-weight: 900;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.03em;
       text-align: center;
       text-transform: uppercase;
       line-height: 1;
@@ -280,16 +307,17 @@ async function generateAssets() {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       background: rgba(255, 255, 255, 0.15);
       border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 5px 14px;
+      padding: 6px 16px;
       border-radius: 9999px;
       color: #BAE6FD;
     }
   </style>
 </head>
 <body>
+  <img class="photo-bg" src="${certHeroBase64}" alt="Edelweiss Pilates" />
   <div class="grid"></div>
   <div class="symbol-box">
     <svg width="220" height="180" viewBox="0 0 220 180" fill="none">
@@ -310,8 +338,8 @@ async function generateAssets() {
       <line x1="95" y1="55" x2="130" y2="40" stroke="#38BDF8" stroke-width="1.8"/>
       <text x="135" y="44" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#BAE6FD">118°</text>
     </svg>
-    <div class="title">CAMA PILATES</div>
-    <div class="badge">[ REFORMER MÉXICO ]</div>
+    <div class="title">EDELWEISS</div>
+    <div class="badge">[ PILATES MÉXICO ]</div>
   </div>
 </body>
 </html>
@@ -324,8 +352,8 @@ async function generateAssets() {
   console.log('✅ Avatar captured successfully:', avatarPath);
   await avatarPage.close();
 
-  // 3. GENERATE HEADER BANNER (2000x1000)
-  console.log('📐 Rendering Whop Community Header Banner (2000x1000)...');
+  // 3. GENERATE HEADER BANNER (2000x1000) WITH REAL REFERENCE PHOTO COMPOSITION
+  console.log('📐 Rendering Edelweiss Whop Community Header Banner with Photo Composition (2000x1000)...');
   const bannerPage = await browser.newPage({
     viewport: { width: 2000, height: 1000 },
     deviceScaleFactor: 1,
@@ -349,7 +377,7 @@ async function generateAssets() {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 60px 80px;
+      padding: 50px 70px;
       position: relative;
       overflow: hidden;
       color: #0F0F0F;
@@ -387,6 +415,13 @@ async function generateAssets() {
       align-items: center;
       gap: 10px;
     }
+    .brand-logo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22C55E;
+      box-shadow: 0 0 8px #22C55E;
+    }
     .brand-meta {
       font-family: 'JetBrains Mono', monospace;
       font-size: 14px;
@@ -417,12 +452,12 @@ async function generateAssets() {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      margin-top: 15px;
-      margin-bottom: 15px;
+      margin-top: 10px;
+      margin-bottom: 12px;
       z-index: 10;
     }
     .headline-main {
-      font-size: 68px;
+      font-size: 64px;
       font-weight: 800;
       letter-spacing: -0.04em;
       line-height: 1.02;
@@ -430,44 +465,63 @@ async function generateAssets() {
       color: #0F0F0F;
     }
     .headline-sub {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 400;
       color: #52525B;
-      max-width: 580px;
+      max-width: 600px;
       line-height: 1.5;
       text-align: right;
     }
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      height: 480px;
+      gap: 28px;
+      height: 520px;
       z-index: 10;
     }
     .card {
-      border-radius: 36px;
-      padding: 36px;
+      border-radius: 32px;
+      padding: 30px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.12);
     }
-    .card-teal { background: #14323D; color: #FFFFFF; }
-    .card-terracotta { background: #BF4A20; color: #FFFFFF; }
-    .card-sage { background: #72927C; color: #142018; }
+    .card-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.5s ease;
+    }
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+    }
+    .card-content {
+      position: relative;
+      z-index: 10;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
     .card-header {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      z-index: 2;
+      gap: 12px;
     }
     .card-title {
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.1;
+      color: #FFFFFF;
     }
     .card-badge {
       font-family: 'JetBrains Mono', monospace;
@@ -476,19 +530,20 @@ async function generateAssets() {
       padding: 6px 14px;
       border-radius: 9999px;
       letter-spacing: 0.05em;
+      white-space: nowrap;
     }
     .card-desc {
       font-size: 14px;
       line-height: 1.5;
-      margin-top: 10px;
+      margin-top: 8px;
       max-width: 440px;
-      opacity: 0.9;
+      opacity: 0.92;
     }
     .card-vector-area {
       flex: 1;
       width: 100%;
       position: relative;
-      margin-top: 16px;
+      margin-top: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -498,9 +553,9 @@ async function generateAssets() {
       align-items: center;
       justify-content: space-between;
       border-top: 1px solid #E4E4E7;
-      padding-top: 24px;
+      padding-top: 20px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
+      font-size: 13.5px;
       color: #71717A;
       z-index: 10;
     }
@@ -511,6 +566,22 @@ async function generateAssets() {
       align-items: center;
       gap: 8px;
     }
+    .card-action-circle {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-size: 18px;
+      z-index: 15;
+    }
   </style>
 </head>
 <body>
@@ -519,10 +590,11 @@ async function generateAssets() {
   <div class="top-bar">
     <div class="brand-identity">
       <div class="brand-logo-pill">
-        <span>CAMA PILATES</span>
+        <span class="brand-logo-dot"></span>
+        <span>EDELWEISS PILATES</span>
       </div>
       <div class="brand-meta">
-        • camadepilates.com &nbsp;// &nbsp;WHOP COMMUNITY PLATFORM
+        • edelweisspilates.mx &nbsp;// &nbsp;WHOP COMMUNITY PLATFORM
       </div>
     </div>
     <div class="top-badges">
@@ -539,103 +611,139 @@ async function generateAssets() {
   </div>
 
   <div class="cards-grid">
-    <!-- CARD 1: SLATE TEAL -->
-    <div class="card card-teal">
-      <div class="card-header">
-        <div>
-          <h2 class="card-title">Formación 28h / 48h</h2>
-          <p class="card-desc" style="color: #BAE6FD;">Módulos clínicos intensivos con máquina profesional individual exclusiva por alumna.</p>
+    <!-- CARD 1: SLATE TEAL (with certification-hero.webp photo + technical blueprint) -->
+    <div class="card" style="background: #14323D;">
+      <img class="card-photo" src="${certHeroBase64}" alt="Formación 28h / 48h" style="opacity: 0.32; mix-blend-mode: luminosity; filter: contrast(125%);" />
+      <div class="card-overlay" style="background: linear-gradient(180deg, rgba(20, 50, 61, 0.92) 0%, rgba(16, 43, 53, 0.65) 50%, rgba(11, 30, 37, 0.95) 100%);"></div>
+      
+      <div class="card-content">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Formación 28h / 48h</h2>
+            <p class="card-desc" style="color: #BAE6FD;">Módulos clínicos intensivos con máquina profesional individual exclusiva por alumna.</p>
+          </div>
+          <span class="card-badge" style="background: rgba(56, 189, 248, 0.2); color: #E0F2FE; border: 1px solid rgba(56, 189, 248, 0.4);">
+            [ 28H $25K · 48H $38K ]
+          </span>
         </div>
-        <span class="card-badge" style="background: rgba(56, 189, 248, 0.2); color: #E0F2FE; border: 1px solid rgba(56, 189, 248, 0.4);">
-          [ 28H $25K · 48H $38K ]
-        </span>
+
+        <div class="card-vector-area">
+          <svg width="480" height="260" viewBox="0 0 480 260" fill="none">
+            <!-- Blueprint grid lines -->
+            <line x1="40" y1="20" x2="40" y2="240" stroke="#7FE0DE" stroke-width="0.6" stroke-dasharray="3 3" opacity="0.3"/>
+            <line x1="440" y1="20" x2="440" y2="240" stroke="#7FE0DE" stroke-width="0.6" stroke-dasharray="3 3" opacity="0.3"/>
+            
+            <!-- 3D Wireframe Box / Reformer Frame -->
+            <path d="M 70 140 L 190 90 L 410 130 L 290 180 Z" stroke="#7DD3FC" stroke-width="1.8" stroke-dasharray="5 3" opacity="0.75"/>
+            <line x1="70" y1="140" x2="70" y2="195" stroke="#7DD3FC" stroke-width="1.5" opacity="0.65"/>
+            <line x1="290" y1="180" x2="290" y2="235" stroke="#7DD3FC" stroke-width="1.5" opacity="0.65"/>
+            <line x1="410" y1="130" x2="410" y2="185" stroke="#7DD3FC" stroke-width="1.5" opacity="0.65"/>
+            <path d="M 70 195 L 290 235 L 410 185" stroke="#7DD3FC" stroke-width="1.5" opacity="0.5"/>
+
+            <!-- Biomechanical angle arc -->
+            <circle cx="210" cy="70" r="4.5" fill="#38BDF8"/>
+            <circle cx="280" cy="40" r="4.5" fill="#38BDF8"/>
+            <circle cx="340" cy="80" r="4.5" fill="#38BDF8"/>
+            <line x1="210" y1="70" x2="280" y2="40" stroke="#38BDF8" stroke-width="2"/>
+            <line x1="280" y1="40" x2="340" y2="80" stroke="#38BDF8" stroke-width="2"/>
+            <path d="M 265 52 A 20 20 0 0 1 295 55" stroke="#7DD3FC" stroke-width="1.2" stroke-dasharray="2 2" />
+            <text x="290" y="32" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#BAE6FD">118° EXT</text>
+            
+            <!-- Spring tension vector -->
+            <path d="M 120 160 Q 180 150 240 175" stroke="#FDE047" stroke-width="2" stroke-dasharray="4 3"/>
+            <circle cx="240" cy="175" r="4" fill="#FDE047"/>
+            <text x="50" y="225" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="#FDE047">[ RESORTES: 3R / 1A · 18.5kg ]</text>
+            <text x="275" y="225" font-family="'JetBrains Mono', monospace" font-size="11" fill="#7DD3FC" opacity="0.85">// AXIS: C1-L5 KINEMATICS</text>
+          </svg>
+        </div>
       </div>
-      <div class="card-vector-area">
-        <svg width="480" height="240" viewBox="0 0 480 240" fill="none">
-          <path d="M 60 135 L 180 85 L 420 125 L 300 175 Z" stroke="#7DD3FC" stroke-width="1.8" stroke-dasharray="5 3" opacity="0.7"/>
-          <line x1="60" y1="135" x2="60" y2="185" stroke="#7DD3FC" stroke-width="1.5" opacity="0.6"/>
-          <line x1="300" y1="175" x2="300" y2="225" stroke="#7DD3FC" stroke-width="1.5" opacity="0.6"/>
-          <line x1="420" y1="125" x2="420" y2="175" stroke="#7DD3FC" stroke-width="1.5" opacity="0.6"/>
-          <circle cx="210" cy="65" r="4.5" fill="#38BDF8"/>
-          <circle cx="280" cy="35" r="4.5" fill="#38BDF8"/>
-          <circle cx="340" cy="75" r="4.5" fill="#38BDF8"/>
-          <line x1="210" y1="65" x2="280" y2="35" stroke="#38BDF8" stroke-width="2"/>
-          <line x1="280" y1="35" x2="340" y2="75" stroke="#38BDF8" stroke-width="2"/>
-          <text x="290" y="28" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#BAE6FD">118° EXT</text>
-          
-          <text x="40" y="215" font-family="'JetBrains Mono', monospace" font-size="11" fill="#FDE047">[ RESORTES: 3R / 1A · 18.5kg ]</text>
-          <text x="270" y="215" font-family="'JetBrains Mono', monospace" font-size="11" fill="#7DD3FC" opacity="0.8">// AXIS: C1-L5 KINEMATICS</text>
-        </svg>
-      </div>
+      <div class="card-action-circle">↗</div>
     </div>
 
-    <!-- CARD 2: WARM TERRACOTTA -->
-    <div class="card card-terracotta">
-      <div class="card-header">
-        <div>
-          <h2 class="card-title">Comunidad Whop</h2>
-          <p class="card-desc" style="color: #FED7AA;">Red en vivo de alumnas e instructoras en México. Consultas y casos clínicos.</p>
+    <!-- CARD 2: WARM TERRACOTTA (with about-hero.webp photo + live community sync) -->
+    <div class="card" style="background: #BF4A20;">
+      <img class="card-photo" src="${aboutHeroBase64}" alt="Comunidad Whop" style="opacity: 0.85; filter: contrast(115%) saturate(110%);" />
+      <div class="card-overlay" style="background: linear-gradient(180deg, rgba(200, 84, 42, 0.88) 0%, rgba(191, 74, 32, 0.45) 45%, rgba(110, 36, 11, 0.92) 100%);"></div>
+
+      <div class="card-content">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Comunidad Whop</h2>
+            <p class="card-desc" style="color: #FED7AA;">Red en vivo de alumnas e instructoras en México. Consultas y casos clínicos.</p>
+          </div>
+          <span class="card-badge" style="background: rgba(255, 255, 255, 0.22); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.45);">
+            [ RED EN VIVO ]
+          </span>
         </div>
-        <span class="card-badge" style="background: rgba(255, 255, 255, 0.2); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.4);">
-          [ 240+ ALUMNAS ACTIVAS ]
-        </span>
+
+        <div class="card-vector-area">
+          <div style="width: 100%; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; padding-bottom: 20px;">
+            <div style="background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px); padding: 14px 20px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.2); max-width: 360px;">
+              <div style="display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: #FFEDD5; text-transform: uppercase;">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: #4ADE80; box-shadow: 0 0 8px #4ADE80;"></span>
+                <span>Whop Sync: 240+ Alumnas Activas</span>
+              </div>
+              <p style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; color: #FFFFFF; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 6px;">
+                QUERÉTARO · CDMX · MONTERREY
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="card-vector-area">
-        <svg width="480" height="240" viewBox="0 0 480 240" fill="none">
-          <circle cx="240" cy="110" r="70" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="4 4"/>
-          <circle cx="240" cy="110" r="110" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-          <circle cx="240" cy="110" r="18" fill="#FFFFFF"/>
-          <text x="230" y="116" font-family="'Plus Jakarta Sans'" font-size="14" font-weight="900" fill="#BF4A20">CP</text>
-          <circle cx="150" cy="80" r="9" fill="#FFEDD5"/>
-          <circle cx="330" cy="70" r="9" fill="#FFEDD5"/>
-          <circle cx="180" cy="160" r="9" fill="#FFEDD5"/>
-          <circle cx="310" cy="160" r="9" fill="#FFEDD5"/>
-          <line x1="240" y1="110" x2="150" y2="80" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
-          <line x1="240" y1="110" x2="330" y2="70" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
-          <line x1="240" y1="110" x2="180" y2="160" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
-          <line x1="240" y1="110" x2="310" y2="160" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
-          <text x="100" y="215" font-family="'JetBrains Mono', monospace" font-size="12" fill="#FFEDD5">[ CANALES: #CASOS-CLÍNICOS · #MENTORÍA ]</text>
-        </svg>
-      </div>
+      <div class="card-action-circle">↗</div>
     </div>
 
-    <!-- CARD 3: SAGE GREEN -->
-    <div class="card card-sage">
-      <div class="card-header">
-        <div>
-          <h2 class="card-title" style="color: #0F291E;">Mentoría Clínica</h2>
-          <p class="card-desc" style="color: #1A3D2E;">Impartida directamente por las Master Trainers Gabi y Laura Munive.</p>
+    <!-- CARD 3: SAGE GREEN (with hero-edelweiss.webp photo + clinical flowchart) -->
+    <div class="card" style="background: #72927C;">
+      <img class="card-photo" src="${edelweissHeroBase64}" alt="Mentoría Clínica" style="opacity: 0.35; filter: contrast(125%) saturate(60%);" />
+      <div class="card-overlay" style="background: linear-gradient(180deg, rgba(122, 154, 132, 0.92) 0%, rgba(114, 146, 124, 0.6) 50%, rgba(49, 72, 56, 0.95) 100%);"></div>
+
+      <div class="card-content">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title" style="color: #0F291E;">Mentoría Clínica</h2>
+            <p class="card-desc" style="color: #1A3D2E;">Impartida directamente por las Master Trainers Gabi y Laura Munive.</p>
+          </div>
+          <span class="card-badge" style="background: rgba(15, 41, 30, 0.15); color: #0F291E; border: 1px solid rgba(15, 41, 30, 0.3);">
+            [ GABI & LAURA MUNIVE ]
+          </span>
         </div>
-        <span class="card-badge" style="background: rgba(15, 41, 30, 0.15); color: #0F291E; border: 1px solid rgba(15, 41, 30, 0.3);">
-          [ GABI & LAURA MUNIVE ]
-        </span>
+
+        <div class="card-vector-area">
+          <svg width="480" height="260" viewBox="0 0 480 260" fill="none">
+            <!-- Box 1: Evaluación Postural -->
+            <rect x="25" y="40" width="165" height="42" rx="10" fill="rgba(255,255,255,0.75)" stroke="#0F291E" stroke-width="1.5"/>
+            <text x="38" y="66" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#0F291E">EVALUACIÓN POSTURAL</text>
+
+            <!-- Arrow across -->
+            <line x1="190" y1="61" x2="250" y2="61" stroke="#0F291E" stroke-width="1.8" stroke-dasharray="3 3"/>
+            <polygon points="250,61 242,57 242,65" fill="#0F291E"/>
+
+            <!-- Box 2: Patología Lumbar -->
+            <rect x="255" y="40" width="195" height="42" rx="10" fill="rgba(255,255,255,0.75)" stroke="#0F291E" stroke-width="1.5"/>
+            <text x="268" y="66" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#0F291E">PATOLOGÍA LUMBAR / MODIF</text>
+
+            <!-- Downward arrow to Box 3 -->
+            <line x1="352" y1="82" x2="352" y2="128" stroke="#0F291E" stroke-width="1.8"/>
+            <polygon points="352,128 348,120 356,120" fill="#0F291E"/>
+
+            <!-- Box 3: Docencia Práctica -->
+            <rect x="240" y="130" width="220" height="42" rx="10" fill="#0F291E"/>
+            <text x="252" y="156" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#E8F5E9">DOCENCIA PRÁCTICA SUPERV</text>
+
+            <!-- Backwards arrow to Box 4 -->
+            <line x1="240" y1="151" x2="180" y2="151" stroke="#0F291E" stroke-width="1.8" stroke-dasharray="3 3"/>
+            <polygon points="180,151 188,147 188,155" fill="#0F291E"/>
+
+            <!-- Box 4: Aval Oficial -->
+            <rect x="25" y="130" width="150" height="42" rx="10" fill="rgba(255,255,255,0.9)" stroke="#0F291E" stroke-width="1.5"/>
+            <text x="38" y="156" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="800" fill="#0F291E">AVAL OFICIAL (48H)</text>
+
+            <text x="130" y="215" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600" fill="#0F291E">// DOCENCIA PRÁCTICA CLÍNICA</text>
+          </svg>
+        </div>
       </div>
-      <div class="card-vector-area">
-        <svg width="480" height="240" viewBox="0 0 480 240" fill="none">
-          <rect x="25" y="45" width="165" height="42" rx="10" fill="rgba(255,255,255,0.7)" stroke="#0F291E" stroke-width="1.5"/>
-          <text x="38" y="71" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#0F291E">EVALUACIÓN POSTURAL</text>
-
-          <line x1="190" y1="66" x2="250" y2="66" stroke="#0F291E" stroke-width="1.8" stroke-dasharray="3 3"/>
-          <polygon points="250,66 242,62 242,70" fill="#0F291E"/>
-
-          <rect x="255" y="45" width="195" height="42" rx="10" fill="rgba(255,255,255,0.7)" stroke="#0F291E" stroke-width="1.5"/>
-          <text x="268" y="71" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#0F291E">PATOLOGÍA LUMBAR / MODIF</text>
-
-          <line x1="352" y1="87" x2="352" y2="130" stroke="#0F291E" stroke-width="1.8"/>
-          <polygon points="352,130 348,122 356,122" fill="#0F291E"/>
-
-          <rect x="240" y="133" width="220" height="42" rx="10" fill="#0F291E"/>
-          <text x="252" y="159" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#E8F5E9">DOCENCIA PRÁCTICA SUPERV</text>
-
-          <line x1="240" y1="154" x2="180" y2="154" stroke="#0F291E" stroke-width="1.8" stroke-dasharray="3 3"/>
-          <polygon points="180,154 188,150 188,158" fill="#0F291E"/>
-
-          <rect x="25" y="133" width="150" height="42" rx="10" fill="rgba(255,255,255,0.9)" stroke="#0F291E" stroke-width="1.5"/>
-          <text x="38" y="159" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="800" fill="#0F291E">AVAL OFICIAL (48H)</text>
-
-          <text x="130" y="215" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600" fill="#0F291E">// DOCENCIA PRÁCTICA CLÍNICA</text>
-        </svg>
-      </div>
+      <div class="card-action-circle" style="color: #0F291E; background: rgba(15, 41, 30, 0.15); border-color: rgba(15, 41, 30, 0.3);">↗</div>
     </div>
   </div>
 
@@ -663,7 +771,7 @@ async function generateAssets() {
   await bannerPage.close();
 
   await browser.close();
-  console.log('🎉 All 3 assets generated successfully!');
+  console.log('🎉 All 3 Edelweiss community assets generated successfully!');
 }
 
 generateAssets().catch(console.error);
