@@ -607,7 +607,7 @@ export const CertificacionWebinar: React.FC = () => {
             <div>
               <h3 className="font-serif text-lg text-[#2A2624] mb-2">Desglose Módulo por Módulo de los Fines de Semana</h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                Cómo distribuimos las 100 horas (56 presenciales intensivas) para que aprendas sin descuidar tu empleo o familia, con un Reformer individual asignado a ti.
+                Cómo distribuimos las 28 horas del Curso Básico y las 48 horas de la Certificación Completa para que aprendas sin descuidar tu empleo o familia, con un Reformer individual asignado a ti.
               </p>
             </div>
           </div>

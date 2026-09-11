@@ -873,9 +873,9 @@ const WebappExperience: React.FC = () => {
                           <span>Logo Oficial Cuadrado</span>
                           <span>187 KB · PNG</span>
                         </div>
-                        <h4 className="text-sm font-bold text-white mt-1">Logotipo Edelweiss</h4>
+                        <h4 className="text-sm font-bold text-white mt-1">Logotipo Oficial Edelweiss</h4>
                         <p className="text-xs text-neutral-400 mt-1 leading-relaxed">
-                          Emblema circular en Slate Teal con corona dorada, flor alpina Edelweiss y texto Pilates Apparatus.
+                          Tipografía Playfair Display italic con el característico punto rojo de camadepilates.com y plano técnico biomecánico.
                         </p>
                       </div>
                     </div>
@@ -921,7 +921,7 @@ const WebappExperience: React.FC = () => {
                         </div>
                         <h4 className="text-sm font-bold text-white mt-1">Avatar de Aplicación</h4>
                         <p className="text-xs text-neutral-400 mt-1 leading-relaxed">
-                          Ícono optimizado para chat móvil, perfiles de comunidad y notificaciones con el símbolo Edelweiss.
+                          Ícono optimizado para chat móvil, perfiles de comunidad y notificaciones con el logo oficial Edelweiss y punto rojo.
                         </p>
                       </div>
                     </div>
