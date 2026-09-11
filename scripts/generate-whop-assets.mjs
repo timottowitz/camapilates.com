@@ -195,7 +195,7 @@ async function generateAssets() {
     </div>
 
     <div>
-      <h1 class="brand-title" style="font-size: 50px; letter-spacing: -0.02em;">EDELWEISS PILATES</h1>
+      <h1 class="brand-title">CAMA PILATES</h1>
       <p class="brand-sub">Formación Clínica Reformer</p>
     </div>
 
@@ -310,7 +310,7 @@ async function generateAssets() {
       <line x1="95" y1="55" x2="130" y2="40" stroke="#38BDF8" stroke-width="1.8"/>
       <text x="135" y="44" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#BAE6FD">118°</text>
     </svg>
-    <div class="title" style="font-size: 22px; letter-spacing: -0.02em;">EDELWEISS PILATES</div>
+    <div class="title">CAMA PILATES</div>
     <div class="badge">[ REFORMER MÉXICO ]</div>
   </div>
 </body>
@@ -519,7 +519,7 @@ async function generateAssets() {
   <div class="top-bar">
     <div class="brand-identity">
       <div class="brand-logo-pill">
-        <span>EDELWEISS PILATES</span>
+        <span>CAMA PILATES</span>
       </div>
       <div class="brand-meta">
         • camadepilates.com &nbsp;// &nbsp;WHOP COMMUNITY PLATFORM
