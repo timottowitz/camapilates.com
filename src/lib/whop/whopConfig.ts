@@ -9,6 +9,7 @@ export const WHOP_CONFIG = {
   productRoute: 'mexico-reformer-community',
   communityUrl: 'https://whop.com/mexico-reformer-community',
   companyRouteUrl: 'https://whop.com/legalintakesoftware',
+  customerPortalUrl: 'https://whop.com/@me/settings/memberships',
 
   experiences: {
     courses: {
@@ -35,6 +36,14 @@ export const WHOP_CONFIG = {
       directUrl: 'https://whop.com/exp_CY1aVHXdSlxCCb/',
       description: 'Hilos temáticos de biomecánica, casos clínicos y preguntas para Gabi & Laura Munive',
     },
+    portal: {
+      id: 'customer_portal',
+      name: 'Portal de Alumna & Membresía Whop',
+      appName: 'Portal',
+      url: 'https://whop.com/@me/settings/memberships',
+      directUrl: 'https://whop.com/@me/settings/memberships',
+      description: 'Gestión de membresías activas, recibos de compra y datos de facturación',
+    },
   },
 
   plans: {
@@ -58,6 +67,18 @@ export const WHOP_CONFIG = {
       badge: 'Ahorro Máximo ($19,900 MXN)',
       tagline: 'Pago único de contado con todos los 5 bonos incluidos y acceso vitalicio al campus.',
       directLink: 'https://whop.com/checkout/plan_hqgjSBEjElw3C',
+      unlimitedStock: true,
+    },
+    cursoOnline: {
+      id: 'plan_QGF4bCYeJj2Nr',
+      price: 1999,
+      regularPrice: 3999,
+      discountPercent: 50,
+      currency: 'MXN',
+      name: 'Curso Online 10 Módulos + Certificado Digital',
+      badge: '100% Digital en Whop',
+      tagline: 'Acceso completo e ilimitado a los 10 módulos con Laura Munive en el campus virtual Whop y certificado.',
+      directLink: 'https://whop.com/checkout/plan_QGF4bCYeJj2Nr',
       unlimitedStock: true,
     },
     paseVipWebinar: {

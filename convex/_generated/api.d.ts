@@ -55,6 +55,7 @@ import type * as teachers from "../teachers.js";
 import type * as teachersAdmin from "../teachersAdmin.js";
 import type * as testGooglePlaces from "../testGooglePlaces.js";
 import type * as topics from "../topics.js";
+import type * as whopApi from "../whopApi.js";
 import type * as whopPayments from "../whopPayments.js";
 
 /**
@@ -108,6 +109,7 @@ declare const fullApi: ApiFromModules<{
   teachersAdmin: typeof teachersAdmin;
   testGooglePlaces: typeof testGooglePlaces;
   topics: typeof topics;
+  whopApi: typeof whopApi;
   whopPayments: typeof whopPayments;
 }>;
 export declare const api: FilterApi<

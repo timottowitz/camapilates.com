@@ -20,9 +20,11 @@ import {
   PlayCircle,
   HelpCircle,
   Lock,
+  UserCheck,
 } from 'lucide-react';
 import { WHOP_CONFIG } from '@/lib/whop/whopConfig';
 import { WhopCommunityEmbed } from '@/components/webapp/WhopCommunityEmbed';
+import { WhopForumReader } from '@/components/webapp/WhopForumReader';
 import { WhopCheckoutModal } from '@/components/whop/WhopCheckoutModal';
 import { WEBINAR_INFO, getGoogleCalendarUrl, CERTIFICATION_COHORTS } from '@/content/certification/cohortsData';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
@@ -131,6 +133,17 @@ const WebappExperience: React.FC = () => {
                   <span>Apartar Cupo ($4,500 MXN)</span>
                 </button>
               )}
+
+              <a
+                href={WHOP_CONFIG.customerPortalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-800 hover:bg-stone-700 text-stone-200 text-xs font-medium border border-stone-700 transition-all"
+                title="Acceder a tus membresías y recibos en Whop"
+              >
+                <UserCheck className="w-3.5 h-3.5 text-amber-400" />
+                <span>Mi Portal Whop</span>
+              </a>
 
               <a
                 href={WHOP_CONFIG.communityUrl}
@@ -380,25 +393,32 @@ const WebappExperience: React.FC = () => {
                 </div>
 
                 {/* Interactive Q&A linked to Whop Forum */}
-                <div className="bg-stone-900/60 border border-stone-800 rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <div className="space-y-1 text-center sm:text-left">
-                    <h4 className="text-sm font-semibold text-stone-200 flex items-center gap-1.5 justify-center sm:justify-start">
-                      <HelpCircle className="w-4 h-4 text-amber-400" />
-                      ¿Tienes preguntas para Gabi & Laura Munive?
-                    </h4>
-                    <p className="text-xs text-stone-400">
-                      Deja tu duda en el hilo oficial de la comunidad de Whop para que la respondan en vivo.
-                    </p>
+                <div className="space-y-3 pt-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-stone-800/80 pb-3">
+                    <div className="flex items-center gap-2">
+                      <HelpCircle className="w-5 h-5 text-amber-400" />
+                      <div>
+                        <h4 className="text-base font-serif italic text-stone-100 font-semibold">
+                          Consultas & Dudas en Vivo para Gabi & Laura Munive
+                        </h4>
+                        <p className="text-xs text-stone-400">
+                          Preguntas publicadas en tiempo real en la Comunidad Oficial Whop para la Masterclass del 26 de Septiembre
+                        </p>
+                      </div>
+                    </div>
+
+                    <a
+                      href={WHOP_CONFIG.experiences.forums.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-amber-300 text-xs font-semibold border border-amber-400/20 self-start sm:self-auto transition-all"
+                    >
+                      <span>Abrir Foro en Whop</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
                   </div>
-                  <a
-                    href={WHOP_CONFIG.experiences.forums.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-5 py-2.5 bg-stone-800 hover:bg-stone-700 text-amber-300 border border-amber-400/30 rounded-xl text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 transition-all shrink-0"
-                  >
-                    <span>Publicar mi Pregunta en Whop</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
+
+                  <WhopForumReader initialThreadId="post_1Cevz43didoC8sPLfCEBXj" highlightQnA={true} />
                 </div>
               </div>
             </div>
@@ -504,17 +524,17 @@ const WebappExperience: React.FC = () => {
               </div>
 
               {/* Pricing Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {/* Plan 1: Apartado */}
-                <div className="bg-gradient-to-b from-stone-900 to-stone-950 border-2 border-amber-400/40 rounded-2xl p-6 flex flex-col justify-between shadow-xl">
-                  <div className="space-y-3">
+                <div className="bg-gradient-to-b from-stone-900 to-stone-950 border-2 border-amber-400/50 rounded-2xl p-5 flex flex-col justify-between shadow-xl">
+                  <div className="space-y-2.5">
                     <span className="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-[10px] font-bold uppercase tracking-wider">
                       {WHOP_CONFIG.plans.apartado.badge}
                     </span>
-                    <h3 className="text-lg font-serif italic text-stone-100">
+                    <h3 className="text-base font-serif italic text-stone-100">
                       {WHOP_CONFIG.plans.apartado.name}
                     </h3>
-                    <p className="text-3xl font-serif font-bold text-amber-300">
+                    <p className="text-2xl font-serif font-bold text-amber-300">
                       ${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN
                     </p>
                     <p className="text-xs text-stone-400 leading-relaxed">
@@ -522,11 +542,11 @@ const WebappExperience: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-stone-800">
+                  <div className="pt-4 mt-4 border-t border-stone-800">
                     <button
                       type="button"
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
-                      className="w-full py-3 bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md"
+                      className="w-full py-2.5 bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md"
                     >
                       Apartar con $4,500 MXN
                     </button>
@@ -534,15 +554,15 @@ const WebappExperience: React.FC = () => {
                 </div>
 
                 {/* Plan 2: Colegiatura Completa */}
-                <div className="bg-stone-900/90 border border-stone-800 rounded-2xl p-6 flex flex-col justify-between shadow-lg">
-                  <div className="space-y-3">
+                <div className="bg-stone-900/90 border border-stone-800 rounded-2xl p-5 flex flex-col justify-between shadow-lg">
+                  <div className="space-y-2.5">
                     <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold uppercase tracking-wider">
                       {WHOP_CONFIG.plans.colegiaturaCompleta.badge}
                     </span>
-                    <h3 className="text-lg font-serif italic text-stone-100">
+                    <h3 className="text-base font-serif italic text-stone-100">
                       {WHOP_CONFIG.plans.colegiaturaCompleta.name}
                     </h3>
-                    <p className="text-3xl font-serif font-bold text-stone-100">
+                    <p className="text-2xl font-serif font-bold text-stone-100">
                       ${WHOP_CONFIG.plans.colegiaturaCompleta.price.toLocaleString('es-MX')} MXN
                     </p>
                     <p className="text-xs text-stone-400 leading-relaxed">
@@ -550,27 +570,55 @@ const WebappExperience: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-stone-800">
+                  <div className="pt-4 mt-4 border-t border-stone-800">
                     <button
                       type="button"
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.colegiaturaCompleta.id)}
-                      className="w-full py-3 bg-stone-800 hover:bg-stone-700 text-stone-100 font-semibold text-xs uppercase tracking-wider rounded-xl transition-all border border-stone-700"
+                      className="w-full py-2.5 bg-stone-800 hover:bg-stone-700 text-stone-100 font-semibold text-xs uppercase tracking-wider rounded-xl transition-all border border-stone-700"
                     >
                       Pagar Colegiatura Completa
                     </button>
                   </div>
                 </div>
 
-                {/* Plan 3: Pase VIP Gratuito */}
-                <div className="bg-stone-900/60 border border-stone-800/80 rounded-2xl p-6 flex flex-col justify-between shadow-md">
-                  <div className="space-y-3">
+                {/* Plan 3: Curso Online 10 Módulos */}
+                <div className="bg-stone-900/90 border border-stone-800 rounded-2xl p-5 flex flex-col justify-between shadow-lg">
+                  <div className="space-y-2.5">
+                    <span className="px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/30 text-[10px] font-bold uppercase tracking-wider">
+                      {WHOP_CONFIG.plans.cursoOnline.badge}
+                    </span>
+                    <h3 className="text-base font-serif italic text-stone-100">
+                      {WHOP_CONFIG.plans.cursoOnline.name}
+                    </h3>
+                    <p className="text-2xl font-serif font-bold text-amber-200">
+                      ${WHOP_CONFIG.plans.cursoOnline.price.toLocaleString('es-MX')} MXN
+                    </p>
+                    <p className="text-xs text-stone-400 leading-relaxed">
+                      {WHOP_CONFIG.plans.cursoOnline.tagline}
+                    </p>
+                  </div>
+
+                  <div className="pt-4 mt-4 border-t border-stone-800">
+                    <button
+                      type="button"
+                      onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.cursoOnline.id)}
+                      className="w-full py-2.5 bg-stone-800 hover:bg-stone-700 text-stone-200 font-semibold text-xs uppercase tracking-wider rounded-xl transition-all border border-stone-700"
+                    >
+                      Comprar Curso Online
+                    </button>
+                  </div>
+                </div>
+
+                {/* Plan 4: Pase VIP Gratuito */}
+                <div className="bg-stone-900/60 border border-stone-800/80 rounded-2xl p-5 flex flex-col justify-between shadow-md">
+                  <div className="space-y-2.5">
                     <span className="px-2.5 py-0.5 rounded-full bg-stone-800 text-stone-400 text-[10px] font-bold uppercase tracking-wider">
                       {WHOP_CONFIG.plans.paseVipWebinar.badge}
                     </span>
-                    <h3 className="text-lg font-serif italic text-stone-100">
+                    <h3 className="text-base font-serif italic text-stone-100">
                       {WHOP_CONFIG.plans.paseVipWebinar.name}
                     </h3>
-                    <p className="text-3xl font-serif font-bold text-stone-300">
+                    <p className="text-2xl font-serif font-bold text-stone-300">
                       Gratis
                     </p>
                     <p className="text-xs text-stone-400 leading-relaxed">
@@ -578,16 +626,44 @@ const WebappExperience: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-stone-800">
+                  <div className="pt-4 mt-4 border-t border-stone-800">
                     <button
                       type="button"
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.paseVipWebinar.id)}
-                      className="w-full py-3 bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs font-medium uppercase tracking-wider rounded-xl transition-all border border-stone-700"
+                      className="w-full py-2.5 bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs font-medium uppercase tracking-wider rounded-xl transition-all border border-stone-700"
                     >
                       Obtener Pase Gratuito
                     </button>
                   </div>
                 </div>
+              </div>
+
+              {/* Whop Customer Portal Box */}
+              <div className="bg-gradient-to-r from-[#1C1814] via-stone-900 to-[#221D18] border border-amber-500/30 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-xl">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold uppercase tracking-wider">
+                      Autogestión de Alumna
+                    </span>
+                    <span className="text-xs text-stone-400">Whop Customer Portal Oficial</span>
+                  </div>
+                  <h3 className="text-xl font-serif italic text-stone-100">
+                    ¿Ya te inscribiste o tienes una membresía activa en Whop?
+                  </h3>
+                  <p className="text-xs text-stone-400 max-w-2xl leading-relaxed">
+                    Accede a tu portal seguro de cliente en Whop para consultar comprobantes de pago, facturación electrónica, actualizar tus tarjetas o administrar tus accesos al Campus Virtual y canales de chat.
+                  </p>
+                </div>
+                <a
+                  href={WHOP_CONFIG.customerPortalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3.5 bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg flex items-center gap-2 shrink-0"
+                >
+                  <UserCheck className="w-4 h-4" />
+                  <span>Gestionar Mi Cuenta en Whop</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
             </div>
           )}

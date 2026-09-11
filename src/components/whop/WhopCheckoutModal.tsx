@@ -116,37 +116,61 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
           </p>
 
           {/* Quick Plan Switcher */}
-          <div className="grid grid-cols-2 gap-2 mt-4 pt-2 border-t border-stone-800/60">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4 pt-2 border-t border-stone-800/60">
             <button
               type="button"
               onClick={() => setActivePlanId(WHOP_CONFIG.plans.apartado.id)}
-              className={`text-left p-2.5 rounded-lg border text-xs transition-all ${
+              className={`text-left p-2 rounded-lg border text-xs transition-all ${
                 activePlanId === WHOP_CONFIG.plans.apartado.id
                   ? 'border-amber-400/60 bg-amber-400/10 text-amber-200 font-semibold'
                   : 'border-stone-800 bg-stone-900/50 text-stone-400 hover:border-stone-700'
               }`}
             >
-              <div className="flex justify-between items-center">
-                <span>Apartar Cupo</span>
-                <span className="text-amber-300 font-bold">$4,500 MXN</span>
-              </div>
-              <p className="text-[10px] text-stone-400 mt-0.5">Congela 50% OFF</p>
+              <div className="text-[11px] font-semibold text-stone-200">Apartar Cupo</div>
+              <div className="text-amber-300 font-bold text-xs">$4,500 MXN</div>
+              <p className="text-[9px] text-stone-400 mt-0.5">Congela 50% OFF</p>
             </button>
 
             <button
               type="button"
               onClick={() => setActivePlanId(WHOP_CONFIG.plans.colegiaturaCompleta.id)}
-              className={`text-left p-2.5 rounded-lg border text-xs transition-all ${
+              className={`text-left p-2 rounded-lg border text-xs transition-all ${
                 activePlanId === WHOP_CONFIG.plans.colegiaturaCompleta.id
                   ? 'border-amber-400/60 bg-amber-400/10 text-amber-200 font-semibold'
                   : 'border-stone-800 bg-stone-900/50 text-stone-400 hover:border-stone-700'
               }`}
             >
-              <div className="flex justify-between items-center">
-                <span>Colegiatura 100%</span>
-                <span className="text-amber-300 font-bold">$19,900 MXN</span>
-              </div>
-              <p className="text-[10px] text-stone-400 mt-0.5">Ahorro de $19,900</p>
+              <div className="text-[11px] font-semibold text-stone-200">Colegiatura Total</div>
+              <div className="text-amber-300 font-bold text-xs">$19,900 MXN</div>
+              <p className="text-[9px] text-stone-400 mt-0.5">Ahorro $19,900</p>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setActivePlanId(WHOP_CONFIG.plans.cursoOnline.id)}
+              className={`text-left p-2 rounded-lg border text-xs transition-all ${
+                activePlanId === WHOP_CONFIG.plans.cursoOnline.id
+                  ? 'border-amber-400/60 bg-amber-400/10 text-amber-200 font-semibold'
+                  : 'border-stone-800 bg-stone-900/50 text-stone-400 hover:border-stone-700'
+              }`}
+            >
+              <div className="text-[11px] font-semibold text-stone-200">Curso Digital</div>
+              <div className="text-amber-300 font-bold text-xs">$1,999 MXN</div>
+              <p className="text-[9px] text-stone-400 mt-0.5">10 Módulos Whop</p>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setActivePlanId(WHOP_CONFIG.plans.paseVipWebinar.id)}
+              className={`text-left p-2 rounded-lg border text-xs transition-all ${
+                activePlanId === WHOP_CONFIG.plans.paseVipWebinar.id
+                  ? 'border-amber-400/60 bg-amber-400/10 text-amber-200 font-semibold'
+                  : 'border-stone-800 bg-stone-900/50 text-stone-400 hover:border-stone-700'
+              }`}
+            >
+              <div className="text-[11px] font-semibold text-stone-200">Pase VIP</div>
+              <div className="text-emerald-400 font-bold text-xs">Gratis</div>
+              <p className="text-[9px] text-stone-400 mt-0.5">Acceso Masterclass</p>
             </button>
           </div>
         </DialogHeader>
