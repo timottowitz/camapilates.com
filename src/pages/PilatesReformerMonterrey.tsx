@@ -6,6 +6,7 @@ import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { MapPin, Building2, Truck, ShieldCheck, ArrowRight, MessageCircle, Sparkles, Clock, CheckCircle2 } from 'lucide-react';
 import { calculateBundlePrice, type BundleQuantity } from '@/lib/shop/bundles';
 import { allProducts } from '@/lib/shop/catalog';
+import CertificationWebinarBanner from '@/components/certification/CertificationWebinarBanner';
 
 export const PilatesReformerMonterrey: React.FC = () => {
   const origin = getOrigin();
@@ -432,6 +433,13 @@ export const PilatesReformerMonterrey: React.FC = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Certification Cohort & Webinar Banner for Monterrey */}
+      <section className="py-12 px-6 sm:px-12 md:px-24 bg-[#F8F7F5]">
+        <div className="max-w-[1400px] mx-auto">
+          <CertificationWebinarBanner city="monterrey" />
         </div>
       </section>
 

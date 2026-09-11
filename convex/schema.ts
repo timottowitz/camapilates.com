@@ -522,6 +522,10 @@ export default defineSchema({
     source: v.string(), // Which page they came from
     status: v.string(), // 'new' | 'contacted' | 'enrolled' | 'not-interested'
     notes: v.optional(v.string()), // Admin notes
+    selectedCohort: v.optional(v.string()), // 'queretaro-nov-2026' | 'monterrey-dec-jan-2026-2027' | 'both'
+    registeredForWebinar: v.optional(v.boolean()),
+    webinarDate: v.optional(v.string()),
+    discountClaimed: v.optional(v.boolean()),
 
     // Timestamps
     submittedAt: v.number(),

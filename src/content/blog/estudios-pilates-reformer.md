@@ -65,6 +65,13 @@ Esto nos lleva al **instructor**. No te dejes llevar solo por quien tenga más s
 
 Finalmente, observa la higiene y el ratio de alumnos. Las correas de manos y pies (*loops*) deben verse limpias y sin deshilacharse; recuerda que el sudor y el vinil son mala combinación si no se limpian tras cada uso. Busca clases donde el instructor pueda atenderte; si pagas $350 MXN o más por clase, mereces correcciones personalizadas, no ser uno más en una sala de 20 personas sin supervisión.
 
+> 🌟 **¿Quieres formarte como Instructora Certificada en Monterrey o Querétaro?**  
+> Si quieres enseñar con rigor biomecánico en estudios boutique o abrir tu propio espacio:  
+> • **Monterrey:** 5 de Diciembre 2026 al 17 de Enero 2027 (4 fines de semana en San Pedro). [Ver sede Monterrey →](/certificacion-pilates/monterrey)  
+> • **Querétaro:** 7 al 29 de Noviembre 2026 (4 fines de semana). [Ver sede Querétaro →](/certificacion-pilates/queretaro)  
+> • **Masterclass Previa en Vivo (Sábado 26 de Septiembre · 11:00 AM CST):** Sesión con **Gabi y Laura Munif** con **50% de descuento ($19,900 MXN en vez de $39,800 MXN)** para las 12 plazas de la lista de espera.  
+> 👉 [**Registrarme gratis al Webinar y asegurar 50% OFF →**](/certificacion-pilates/webinar)
+
 ## 4. Análisis de Precios: Membresías vs. Home Studio
 
 Hablemos de números claros, porque sabemos que tu pasión por el Pilates también debe alinearse con tu presupuesto. Si vives en zonas concurridas como la Roma en CDMX, San Pedro en Monterrey o Providencia en Guadalajara, ya habrás notado que el bienestar tiene un costo. Actualmente, el **costo promedio por clase oscila entre los $300 y $500 MXN** en estudios bien equipados.

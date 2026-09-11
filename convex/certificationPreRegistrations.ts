@@ -15,6 +15,10 @@ export const submitPreRegistration = mutation({
     experienceLevel: v.string(),
     preferredTimeline: v.string(),
     source: v.string(),
+    selectedCohort: v.optional(v.string()),
+    registeredForWebinar: v.optional(v.boolean()),
+    webinarDate: v.optional(v.string()),
+    discountClaimed: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
     // 1. Validate email format
@@ -25,8 +29,8 @@ export const submitPreRegistration = mutation({
 
     // 2. Validate phone format (basic check for 10 digits)
     const phoneDigits = args.phone.replace(/\D/g, '');
-    if (phoneDigits.length !== 10) {
-      throw new Error('El teléfono debe tener 10 dígitos');
+    if (phoneDigits.length < 10) {
+      throw new Error('El teléfono debe tener al menos 10 dígitos');
     }
 
     // 3. Validate required fields
@@ -35,12 +39,6 @@ export const submitPreRegistration = mutation({
     }
     if (!args.city.trim()) {
       throw new Error('La ciudad es requerida');
-    }
-    if (!['beginner', 'some-experience', 'advanced'].includes(args.experienceLevel)) {
-      throw new Error('Nivel de experiencia inválido');
-    }
-    if (!['asap', '1-3-months', '3-6-months', 'flexible'].includes(args.preferredTimeline)) {
-      throw new Error('Línea de tiempo inválida');
     }
 
     // 4. Check for duplicate (same email within last 30 days)
@@ -60,6 +58,10 @@ export const submitPreRegistration = mutation({
         experienceLevel: args.experienceLevel,
         preferredTimeline: args.preferredTimeline,
         source: args.source,
+        selectedCohort: args.selectedCohort ?? existing.selectedCohort,
+        registeredForWebinar: args.registeredForWebinar ?? existing.registeredForWebinar,
+        webinarDate: args.webinarDate ?? existing.webinarDate,
+        discountClaimed: args.discountClaimed ?? existing.discountClaimed,
         submittedAt: Date.now(),
         status: 'new', // Reset status to new
       });
@@ -75,6 +77,83 @@ export const submitPreRegistration = mutation({
       experienceLevel: args.experienceLevel,
       preferredTimeline: args.preferredTimeline,
       source: args.source,
+      selectedCohort: args.selectedCohort,
+      registeredForWebinar: args.registeredForWebinar ?? true,
+      webinarDate: args.webinarDate ?? '2026-09-26',
+      discountClaimed: args.discountClaimed ?? true,
+      status: 'new',
+      submittedAt: Date.now(),
+    });
+
+    return { id, isUpdate: false };
+  },
+});
+
+/**
+ * Fast-registration for Webinar & 50% discount waitlist
+ */
+export const registerWebinarWaitlist = mutation({
+  args: {
+    fullName: v.string(),
+    email: v.string(),
+    phone: v.string(),
+    cohort: v.string(), // 'queretaro-nov-2026' | 'monterrey-dec-jan-2026-2027' | 'both'
+    experienceLevel: v.string(),
+    source: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(args.email)) {
+      throw new Error('Email inválido');
+    }
+
+    const phoneDigits = args.phone.replace(/\D/g, '');
+    if (phoneDigits.length < 10) {
+      throw new Error('Ingresa un número de WhatsApp de 10 dígitos');
+    }
+
+    const city = args.cohort.includes('queretaro')
+      ? 'Querétaro'
+      : args.cohort.includes('monterrey')
+        ? 'Monterrey'
+        : 'Querétaro / Monterrey';
+
+    const thirtyDaysAgo = Date.now() - (30 * 24 * 60 * 60 * 1000);
+    const existing = await ctx.db
+      .query('certificationPreRegistrations')
+      .withIndex('by_email', (q) => q.eq('email', args.email.toLowerCase()))
+      .filter((q) => q.gt(q.field('submittedAt'), thirtyDaysAgo))
+      .first();
+
+    if (existing) {
+      await ctx.db.patch(existing._id, {
+        fullName: args.fullName,
+        phone: args.phone,
+        city,
+        experienceLevel: args.experienceLevel,
+        selectedCohort: args.cohort,
+        registeredForWebinar: true,
+        webinarDate: '2026-09-26',
+        discountClaimed: true,
+        source: args.source || 'webinar-landing',
+        submittedAt: Date.now(),
+        status: 'new',
+      });
+      return { id: existing._id, isUpdate: true };
+    }
+
+    const id = await ctx.db.insert('certificationPreRegistrations', {
+      fullName: args.fullName,
+      email: args.email.toLowerCase(),
+      phone: args.phone,
+      city,
+      experienceLevel: args.experienceLevel,
+      preferredTimeline: 'asap',
+      selectedCohort: args.cohort,
+      registeredForWebinar: true,
+      webinarDate: '2026-09-26',
+      discountClaimed: true,
+      source: args.source || 'webinar-landing',
       status: 'new',
       submittedAt: Date.now(),
     });

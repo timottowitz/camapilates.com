@@ -76,6 +76,7 @@ const PilatesReformerCDMX = lazyWithRetry(() => import('./pages/PilatesReformerC
 const PilatesReformerMonterrey = lazyWithRetry(() => import('./pages/PilatesReformerMonterrey'));
 const CertificacionPilates = lazyWithRetry(() => import('./pages/CertificacionPilates'));
 const CertificacionPilatesCity = lazyWithRetry(() => import('./pages/CertificacionPilatesCity'));
+const CertificacionWebinar = lazyWithRetry(() => import('./pages/CertificacionWebinar'));
 const LegalTerms = lazyWithRetry(() => import('./pages/LegalTerms'));
 const LegalPrivacy = lazyWithRetry(() => import('./pages/LegalPrivacy'));
 const Support = lazyWithRetry(() => import('./pages/Support'));
@@ -137,6 +138,8 @@ const App = () => (
               <Route path="/pilates-reformer-monterrey" element={<Suspense fallback={<PageLoader />}><PilatesReformerMonterrey /></Suspense>} />
               <Route path="/packs/monterrey" element={<Suspense fallback={<PageLoader />}><PilatesReformerMonterrey /></Suspense>} />
               <Route path="/certificacion-pilates" element={<Suspense fallback={<PageLoader />}><CertificacionPilates /></Suspense>} />
+              <Route path="/certificacion-pilates/webinar" element={<Suspense fallback={<PageLoader />}><CertificacionWebinar /></Suspense>} />
+              <Route path="/webinar" element={<Suspense fallback={<PageLoader />}><CertificacionWebinar /></Suspense>} />
               <Route path="/certificacion-pilates/:city" element={<Suspense fallback={<PageLoader />}><CertificacionPilatesCity /></Suspense>} />
               <Route path="/legal/terminos" element={<Suspense fallback={<PageLoader />}><LegalTerms /></Suspense>} />
               <Route path="/legal/privacidad" element={<Suspense fallback={<PageLoader />}><LegalPrivacy /></Suspense>} />

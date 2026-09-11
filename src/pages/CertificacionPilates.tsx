@@ -6,6 +6,7 @@ import { MapPin, Calendar, Award } from 'lucide-react';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import PreRegistrationModal from '@/components/certification/PreRegistrationModal';
 import StottPremiumProgram from '@/components/certification/StottPremiumProgram';
+import CertificationWebinarBanner from '@/components/certification/CertificationWebinarBanner';
 import {
   STOTT_COURSES,
   STOTT_PROVIDER,
@@ -246,34 +247,65 @@ const CertificacionPilates: React.FC = () => {
 
       <section className="py-24 px-8 md:px-24 bg-white/40 border-t border-[#2A2624]/10">
         <div className="max-w-[1800px] mx-auto">
-          <h2 className="text-3xl font-serif italic text-[#2A2624] mb-4 text-center">Otras Sedes en México</h2>
+          {/* Top Webinar Banner */}
+          <CertificationWebinarBanner className="mb-16" />
+
+          <h2 className="text-3xl font-serif italic text-[#2A2624] mb-4 text-center">Sedes de Certificación en México</h2>
           <p className="text-center text-[#5D5550] font-light mb-12 max-w-2xl mx-auto">
-            ¿No estás en CDMX? También te conectamos con certificaciones de Pilates (Reformer y Mat) en otras ciudades.
+            Formación profesional presencial con equipo de estudio y aval curricular. Consulta próximas cohortes y fechas disponibles.
           </p>
           <div className="grid md:grid-cols-2 gap-8">
-            {CITIES.map((c) => (
-              <div key={c.key} id={c.key} className="group border border-[#2A2624]/10 rounded-sm p-8 hover:bg-white transition-colors duration-500">
-                <h3 className="text-2xl font-serif italic text-[#2A2624] mb-4">
-                  {c.name}
-                </h3>
-                <p className="text-sm text-[#5D5550] font-light mb-8 leading-relaxed">
-                  {c.key === 'cdmx'
-                    ? 'Sede del programa premium STOTT PILATES® en Santa Fe. Intensivos de Reformer y Mat con respaldo Merrithew®.'
-                    : 'Programas en fines de semana e intensivos. Modalidades Mat y Reformer con práctica supervisada. Cupo limitado.'}
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <a href={`${PRIMARY_WHATSAPP_BASE}${encodeURIComponent(`Hola, quiero inscribirme a la certificación de Pilates en ${c.name}`)}`} className="px-6 py-3 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-widest hover:bg-[#3E2723] transition-colors">
-                    Inscribirme
-                  </a>
-                  <button
-                    onClick={() => setModalOpen(true)}
-                    className="px-6 py-3 border border-[#2A2624]/20 text-[#2A2624] rounded-full text-xs uppercase tracking-widest hover:bg-[#EAE8E4] transition-colors"
-                  >
-                    Pre-registro
-                  </button>
+            {CITIES.map((c) => {
+              const isQueretaro = c.key === 'queretaro';
+              const isMonterrey = c.key === 'monterrey';
+
+              return (
+                <div key={c.key} id={c.key} className="group border border-[#2A2624]/10 rounded-2xl p-8 hover:bg-white transition-colors duration-500 bg-white/60 shadow-sm flex flex-col justify-between">
+                  <div>
+                    {(isQueretaro || isMonterrey) && (
+                      <span className="inline-block px-3 py-1 rounded-full bg-[#2A2624] text-[#EAE8E4] text-[10px] uppercase tracking-widest font-semibold mb-3">
+                        {isQueretaro ? 'Noviembre 2026 · 50% OFF Lista de Espera' : 'Dic 2026 – Ene 2027 · 50% OFF'}
+                      </span>
+                    )}
+                    <h3 className="text-2xl font-serif italic text-[#2A2624] mb-3">
+                      {c.name}
+                    </h3>
+                    <p className="text-sm text-[#5D5550] font-light mb-6 leading-relaxed">
+                      {c.key === 'cdmx'
+                        ? 'Sede del programa premium STOTT PILATES® en Santa Fe. Intensivos de Reformer y Mat con respaldo Merrithew®.'
+                        : isQueretaro
+                          ? 'Cohorte presencial de 100h en 4 fines de semana (7–8, 14–15, 21–22 y 28–29 Nov 2026). Pre-Webinar el 26 de Sep con Gabi y Laura Munif. 50% de descuento ($19,900 MXN).'
+                          : isMonterrey
+                            ? 'Cohorte presencial de 100h en 4 fines de semana (5–6 y 12–13 Dic 2026, 9–10 y 16–17 Ene 2027) en San Pedro. Pre-Webinar el 26 de Sep con Gabi y Laura Munif. 50% de descuento ($19,900 MXN).'
+                            : 'Programas en fines de semana e intensivos. Modalidades Mat y Reformer con práctica supervisada. Cupo limitado.'}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-100">
+                    <Link
+                      to={`/certificacion-pilates/${c.key}`}
+                      className="px-6 py-3 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-widest hover:bg-[#3E2723] transition-colors"
+                    >
+                      {isQueretaro || isMonterrey ? 'Ver Cohorte & 50% OFF' : 'Ver Sede'}
+                    </Link>
+                    <button
+                      onClick={() => setModalOpen(true)}
+                      className="px-6 py-3 border border-[#2A2624]/20 text-[#2A2624] rounded-full text-xs uppercase tracking-widest hover:bg-[#EAE8E4] transition-colors"
+                    >
+                      Pre-registro
+                    </button>
+                    {(isQueretaro || isMonterrey) && (
+                      <Link
+                        to="/certificacion-pilates/webinar"
+                        className="px-6 py-3 border border-amber-600/40 text-amber-900 rounded-full text-xs uppercase tracking-widest hover:bg-amber-50 transition-colors"
+                      >
+                        Webinar 26 Sep
+                      </Link>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

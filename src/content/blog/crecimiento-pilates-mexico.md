@@ -161,6 +161,13 @@ Hospitales privados integrando Pilates:
 | Mérida Norte | $500K MXN | $380 | 9 meses | 48% |
 | Playa del Carmen | $700K MXN | $500 USD/turistas | 8 meses | 52% |
 
+> 💡 **¿Quieres emprender o enseñar en Querétaro o Monterrey?**  
+> La mayor limitante para el crecimiento de nuevos estudios en Querétaro y Monterrey es la falta de instructoras con certificación formal en Reformer.  
+> • **Cohorte Querétaro:** 7 al 29 de Noviembre 2026 (4 fines de semana). [Ver detalles Querétaro →](/certificacion-pilates/queretaro)  
+> • **Cohorte Monterrey:** 5 Dic 2026 al 17 Ene 2027 (4 fines de semana). [Ver detalles Monterrey →](/certificacion-pilates/monterrey)  
+> • **Masterclass Previa en Vivo:** Sábado 26 de Septiembre (11:00 AM CST) con **Gabi y Laura Munif**. Becas del 50% ($19,900 MXN) para los primeros 12 lugares en lista de espera.  
+> 👉 [**Apartar mi acceso gratuito al Webinar y Lista de Espera 50% OFF →**](/certificacion-pilates/webinar)
+
 ## Tecnología y Digitalización: El Futuro Híbrido
 
 ### Apps y Plataformas Digitales

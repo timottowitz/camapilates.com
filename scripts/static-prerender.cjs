@@ -796,9 +796,18 @@ async function main() {
   // Certification city pages (static snapshots)
   for (const c of certCities) {
     const cityTitle = `Certificación de Pilates Reformer en ${c.shortName}`;
+    const isQueretaro = c.key === 'queretaro';
+    const isMonterrey = c.key === 'monterrey';
+    const customTitle = `${cityTitle} | CAMA Pilates`;
+    const customDesc = isQueretaro
+      ? 'Certifícate como instructora de Pilates Reformer en Querétaro (Noviembre 2026): 4 fines de semana presenciales (100h). Masterclass el 26 de septiembre con Gabi y Laura Munif. Lista de espera con 50% de descuento ($19,900 MXN).'
+      : isMonterrey
+        ? 'Certifícate como instructora de Pilates Reformer en Monterrey (Dic 2026 – Ene 2027): 4 fines de semana presenciales (100h). Masterclass el 26 de septiembre con Gabi y Laura Munif. Lista de espera con 50% de descuento ($19,900 MXN).'
+        : `Compara opciones de certificación de Pilates Reformer en ${c.shortName}. Revisa requisitos, duración, costos y criterios antes de solicitar fechas.`;
+
     const head = {
-      title: `${cityTitle} | CAMA Pilates`,
-      description: `Compara opciones de certificación de Pilates Reformer en ${c.shortName}. Revisa requisitos, duración, costos y criterios antes de solicitar fechas.`,
+      title: customTitle,
+      description: customDesc,
       canonical: `${origin}/certificacion-pilates/${c.key}`,
       ogImage: `${origin}/og/cama-de-pilates-venta-mexico.png`,
       ogType: 'website'
@@ -807,14 +816,24 @@ async function main() {
     const directoryLink = c.directorySlug
       ? `<a href="/estudios-de-pilates/${c.directorySlug}">Ver clases y estudios en ${c.shortName}</a>`
       : '';
+    const cohortAlert = (isQueretaro || isMonterrey)
+      ? `<div style="background:#2A2624;color:#EAE8E4;padding:20px;border-radius:12px;margin:24px 0;">
+          <p style="font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#D9865B;margin-bottom:8px;"><strong>Convocatoria Abierta · 50% de Descuento en Lista de Espera</strong></p>
+          <h2 style="font-size:20px;color:#fff;margin-bottom:8px;">${isQueretaro ? 'Cohorte Querétaro: 7 al 29 de Noviembre 2026 (4 Fines de Semana)' : 'Cohorte Monterrey: 5 Dic 2026 al 17 Ene 2027 (4 Fines de Semana)'}</h2>
+          <p style="font-size:14px;color:#d1d5db;margin-bottom:16px;">Sesión en vivo con Gabi y Laura Munif el Sábado 26 de Septiembre (11:00 AM CST). Precio especial de $19,900 MXN (Regular $39,800 MXN) limitado a 12 cupos.</p>
+          <a href="/certificacion-pilates/webinar" style="display:inline-block;background:#fff;color:#2A2624;padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Registrarme al Pre-Webinar →</a>
+        </div>`
+      : '';
+
     const body = `
     <section class="bg-background border-b border-border">
       <div class="container mx-auto px-4 py-12">
         <h1 class="text-3xl md:text-4xl font-bold text-foreground">${cityTitle}</h1>
         <p class="mt-4 text-lg text-muted-foreground max-w-2xl">Compara opciones de formación en Reformer y Mat en ${c.shortName}. Antes de inscribirte, confirma el respaldo del programa, las horas de práctica, la evaluación y el costo total.</p>
+        ${cohortAlert}
         <div class="mt-6 flex flex-wrap gap-3">
-          <a href="https://wa.me/523222787690?text=${encodeURIComponent('Hola Edelweiss, quiero información sobre certificación de Pilates en ' + c.shortName)}" class="inline-flex items-center px-5 py-3 rounded-md bg-primary text-primary-foreground">Solicitar información</a>
-          <a href="mailto:valery@camadepilates.com?subject=${encodeURIComponent('Certificación de Pilates - ' + c.name)}&body=${encodeURIComponent('Hola, quisiera recibir el temario, fechas y costos para la certificación de Pilates en ' + c.name + '.') }" class="inline-flex items-center px-5 py-3 rounded-md border border-foreground text-foreground">Solicitar temario</a>
+          <a href="https://wa.me/525548468190?text=${encodeURIComponent('Hola, quiero información sobre la certificación de Pilates en ' + c.shortName)}" class="inline-flex items-center px-5 py-3 rounded-md bg-primary text-primary-foreground">Solicitar información</a>
+          <a href="/certificacion-pilates/webinar" class="inline-flex items-center px-5 py-3 rounded-md border border-foreground text-foreground">Pre-Webinar 26 Sep</a>
           <a href="${certFormUrl}" class="inline-flex items-center px-5 py-3 rounded-md border border-foreground text-foreground">Pre-inscripción</a>
         </div>
       </div>
@@ -823,7 +842,7 @@ async function main() {
       <h2 class="text-2xl font-bold text-foreground">Qué comparar antes de inscribirte</h2>
       <ul class="mt-5 space-y-3 text-muted-foreground">
         <li>Alcance de la formación: Reformer, Mat o ruta integral.</li>
-        <li>Horas de observación, práctica y enseñanza.</li>
+        <li>Horas de observación, práctica y enseñanza (100 horas recomendadas).</li>
         <li>Método de evaluación y organismo que respalda el certificado.</li>
         <li>Costo total, materiales incluidos y políticas de pago.</li>
       </ul>
@@ -858,6 +877,33 @@ async function main() {
       `<script type="application/ld+json">${JSON.stringify(faq)}</script>\n</head>`,
     );
     writeFileForRoute(`/certificacion-pilates/${c.key}`, html);
+  }
+
+  // Certification Webinar Landing (Jason Fladlien funnel prerender)
+  {
+    const webinarHead = {
+      title: 'Masterclass en Vivo: Certificación Pilates Reformer Querétaro y Monterrey | CAMA Pilates',
+      description: 'Sesión en vivo este Sábado 26 de Septiembre a las 11:00 AM CST con Gabi y Laura Munif. Lista de espera con 50% de descuento ($19,900 MXN) para Querétaro y Monterrey.',
+      canonical: `${origin}/certificacion-pilates/webinar`,
+      ogImage: `${origin}/og/cama-de-pilates-venta-mexico.png`,
+      ogType: 'event'
+    };
+    const webinarBody = `
+    <section class="bg-stone-900 text-stone-100 py-16 px-4">
+      <div class="container mx-auto max-w-4xl text-center">
+        <p class="text-xs uppercase tracking-widest text-amber-500 font-semibold mb-3">Masterclass en Vivo · Sábado 26 de Septiembre 11:00 AM CST</p>
+        <h1 class="text-3xl md:text-5xl font-serif italic mb-6">Cómo Convertirte en Instructora Certificada de Pilates Reformer en Querétaro y Monterrey</h1>
+        <p class="text-lg text-stone-300 max-w-2xl mx-auto mb-8 font-light">Sesión en vivo con Gabi y Laura Munif. Conoce el plan de estudios intensivo de 4 fines de semana y asegura tu cupo de los 12 lugares con 50% de descuento ($19,900 MXN en vez de $39,800 MXN).</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="/certificacion-pilates/webinar#registro" class="px-8 py-4 rounded-full bg-white text-stone-900 text-xs uppercase tracking-widest font-semibold">Apartar Lugar en el Webinar</a>
+          <a href="/certificacion-pilates/queretaro" class="px-8 py-4 rounded-full border border-stone-600 text-stone-200 text-xs uppercase tracking-widest">Cohorte Querétaro (Nov 2026)</a>
+          <a href="/certificacion-pilates/monterrey" class="px-8 py-4 rounded-full border border-stone-600 text-stone-200 text-xs uppercase tracking-widest">Cohorte Monterrey (Dic-Ene)</a>
+        </div>
+      </div>
+    </section>`;
+    const webinarHtml = baseHtml(template, webinarHead, webinarBody);
+    writeFileForRoute('/certificacion-pilates/webinar', webinarHtml);
+    writeFileForRoute('/webinar', webinarHtml);
   }
 
   // City directory pages (static snapshots)

@@ -113,6 +113,13 @@ El costo de las clases de Pilates con Reformer en México varía significativame
 
 Para asegurar la calidad y tu seguridad, busca estudios que enfaticen la certificación integral de sus instructores (por ejemplo, Stott, Polestar o Peak Pilates), ya que estas requieren cientos de horas de práctica. Pregunta por la proporción de alumnos por máquina; lo ideal en clase grupal es no exceder 5 personas. Aprovecha las clases de prueba que ofrecen muchos lugares en CDMX o Guadalajara. Finalmente, considera la higiene y el mantenimiento de las máquinas, pues un equipo bien cuidado, como los de Balance Body o Merrithew, es crucial para una práctica segura. No te bases solo en el precio, prioriza la experiencia del instructor.
 
+> 🎓 **¿Te apasiona el Pilates y quieres convertirte en Instructora Certificada?**  
+> CAMA abre convocatoria para formarse en Reformer en formato intensivo de fines de semana:  
+> • **Querétaro:** Noviembre 2026 (4 fines de semana). [Convocatoria Querétaro →](/certificacion-pilates/queretaro)  
+> • **Monterrey:** Diciembre 2026 – Enero 2027 (4 fines de semana). [Convocatoria Monterrey →](/certificacion-pilates/monterrey)  
+> • **Masterclass Previa (Sábado 26 de Septiembre · 11:00 AM CST):** Sesión con las Master Trainers **Gabi y Laura Munif** con beca del **50% de descuento ($19,900 MXN)** para la lista de espera.  
+> 👉 [**Registrarme a la Masterclass Gratuita y Lista de Espera 50% OFF →**](/certificacion-pilates/webinar)
+
 ### Soy principiante, ¿debo empezar con Pilates de Mat o directamente en el Reformer?
 
 Como principiante, lo más recomendable es iniciar con una combinación de clases de Mat (tapete) y Reformer, o al menos tomar algunas sesiones introductorias de Reformer. El Mat es excelente para entender la conexión mente-cuerpo y activar el 'Powerhouse' (el centro), utilizando únicamente el peso corporal. El Reformer, en cambio, utiliza resortes que proporcionan resistencia o asistencia, ayudándote a lograr una alineación correcta y a fortalecer músculos profundos que son difíciles de alcanzar en el Mat. Si tu estudio en Monterrey o Querétaro ofrece un paquete de iniciación, tómalo; esto te dará las bases necesarias para una práctica segura y efectiva en el equipo.
