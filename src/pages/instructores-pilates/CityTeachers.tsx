@@ -7,6 +7,7 @@ import { Filter, Search, ChevronRight } from 'lucide-react';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import TeacherCard from '@/components/teachers/TeacherCard';
 import TeacherCardSkeleton from '@/components/teachers/TeacherCardSkeleton';
+import CertificationWebinarBanner from '@/components/certification/CertificationWebinarBanner';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
@@ -361,6 +362,13 @@ const CityTeachers: React.FC = () => {
             )}
           </div>
         </div>
+
+        {/* Certification Cohort Banner for Queretaro and Monterrey */}
+        {(citySlug === 'queretaro' || citySlug === 'monterrey') && (
+          <div className="mt-16 pt-12 border-t border-[#2A2624]/10">
+            <CertificationWebinarBanner city={citySlug as 'queretaro' | 'monterrey'} />
+          </div>
+        )}
       </div>
     </LuxuryLayout>
   );
