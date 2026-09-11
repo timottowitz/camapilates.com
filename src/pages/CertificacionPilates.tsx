@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useSearchParams } from 'react-router-dom';
+import EdelweissNav from '@/components/layout/EdelweissNav';
 import { useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import {
@@ -391,49 +392,11 @@ export const CertificacionPilates: React.FC = () => {
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
-      {/* Editorial Navigation Header */}
-      <header className="border-b border-neutral-200/80 bg-[#F8F8F6]/90 backdrop-blur-md sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3 md:gap-4">
-            <Link
-              to="/"
-              className="relative group flex items-baseline gap-0.5 notranslate"
-              translate="no"
-              title="Edelweiss Pilates"
-            >
-              <span className="text-xl sm:text-2xl font-serif italic tracking-tight text-neutral-950 group-hover:text-neutral-700 transition-colors">
-                Edelweiss
-              </span>
-              <span className="w-1.5 h-1.5 rounded-full mb-0.5 bg-[#B8583B]" />
-            </Link>
-            <span className="text-neutral-300">/</span>
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-900 hidden sm:inline">
-              [ 28H BÁSICO · 48H COMPLETO ]
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <Link
-              to="/app"
-              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-neutral-300 text-xs font-mono uppercase tracking-wider text-neutral-700 hover:border-neutral-900 transition-colors"
-            >
-              <UserCheck className="w-3.5 h-3.5" />
-              <span>Campus Alumnas</span>
-            </Link>
-
-            <button
-              onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#111111] text-white text-xs font-semibold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-sm"
-            >
-              <span>Pre-reservar ($400 MXN)</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        </div>
-      </header>
+      {/* Global Luxury Navigation */}
+      <EdelweissNav />
 
       {/* TOP HERO: MASTERCLASS WEBINAR & COURSE WHITELIST SIGNUP (QUERÉTARO & MONTERREY) */}
-      <section className="pt-12 pb-16 px-6 max-w-7xl mx-auto border-b border-neutral-200/80">
+      <section className="pt-28 sm:pt-36 pb-16 px-6 max-w-7xl mx-auto border-b border-neutral-200/80">
         {/* Micro Monospace Badges */}
         <div className="flex flex-wrap items-center gap-2.5 mb-6">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100/90 border border-amber-300 text-amber-950 font-mono text-[11px] font-semibold uppercase tracking-wider">

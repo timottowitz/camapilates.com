@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useSearchParams, Link } from 'react-router-dom';
+import EdelweissNav from '@/components/layout/EdelweissNav';
 import {
   MessageSquare,
   GraduationCap,
@@ -265,117 +266,33 @@ const WebappExperience: React.FC = () => {
       </Helmet>
 
       <div className="min-h-screen bg-[#F8F8F6] text-neutral-900 flex flex-col selection:bg-neutral-900 selection:text-white font-sans">
-        {/* Top App Header */}
-        <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-neutral-200/80 px-4 lg:px-8 py-3.5">
-          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-            {/* Logo & Portal Badge */}
-            <div className="flex items-center gap-3">
-              <Link
-                to="/"
-                className="relative group flex items-baseline gap-0.5 notranslate"
-                translate="no"
-                title="Edelweiss Pilates"
-              >
-                <span className="font-serif italic text-2xl tracking-tight text-neutral-950 group-hover:text-neutral-700 transition-colors">
-                  Edelweiss
-                </span>
-                <span className="w-1.5 h-1.5 rounded-full mb-0.5 bg-[#B8583B]" />
-              </Link>
+        {/* Global Luxury Navigation */}
+        <EdelweissNav />
 
-              <div className="hidden sm:flex items-center gap-2 pl-3 border-l border-neutral-200">
-                <span className="px-2.5 py-0.5 rounded-full bg-neutral-100 border border-neutral-200 text-neutral-600 font-mono text-[10px] font-semibold tracking-wider uppercase flex items-center gap-1.5">
-                  <Sparkles className="w-3 h-3 text-orange-500" />
-                  Campus Virtual & Whop
+        {/* Verified Student Session Banner */}
+        {enrollmentData && (
+          <div className="max-w-7xl mx-auto px-4 lg:px-8 pt-24 sm:pt-28 pb-2 w-full">
+            <div className="flex items-center justify-between px-4 py-2.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs shadow-xs">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>
+                  Bienvenida, <strong>{enrollmentData.fullName || 'Alumna Verificada'}</strong> · {enrollmentData.planName || 'Lugar Confirmado'}
                 </span>
-                <Link
-                  to="/certificacion-pilates"
-                  className="hidden md:inline-flex items-center gap-1 text-[11px] font-mono uppercase tracking-wider text-neutral-500 hover:text-neutral-900 transition-colors ml-2"
-                >
-                  <span>• Certificación Presencial</span>
-                </Link>
               </div>
-            </div>
-
-            {/* Quick Live Masterclass Notice */}
-            <div className="hidden md:flex items-center gap-2.5 bg-neutral-50 px-3.5 py-1.5 rounded-full border border-neutral-200/80 text-xs">
-              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-neutral-600">
-                Masterclass en Vivo: <strong className="text-neutral-900">{WEBINAR_INFO.date}</strong>
-              </span>
-              <a
-                href={getGoogleCalendarUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-neutral-900 hover:text-black font-semibold underline ml-1"
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="text-[11px] text-emerald-700 hover:text-emerald-950 underline font-medium cursor-pointer"
+                title="Cerrar sesión en este navegador"
               >
-                + Calendar
-              </a>
-            </div>
-
-            {/* User status & Primary CTA */}
-            <div className="flex items-center gap-2 sm:gap-3">
-              {enrollmentData ? (
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-medium">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                  <span className="font-semibold">{enrollmentData.fullName || 'Alumna Verificada'}</span>
-                  <span className="hidden md:inline text-emerald-600">· {enrollmentData.planName || 'Lugar Confirmado'}</span>
-                  <button
-                    type="button"
-                    onClick={handleLogout}
-                    className="ml-1 text-[10px] text-emerald-700 hover:text-emerald-950 underline cursor-pointer"
-                    title="Cerrar sesión en este navegador"
-                  >
-                    (Salir)
-                  </button>
-                </div>
-              ) : (
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setVerifyModalOpen(true)}
-                    className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100 transition-colors font-medium border border-transparent hover:border-neutral-200"
-                  >
-                    <UserCheck className="w-3.5 h-3.5 text-neutral-500" />
-                    <span>¿Ya tienes cuenta?</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
-                    className="px-4 sm:px-5 py-2 bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold rounded-full transition-all shadow-sm flex items-center gap-1.5"
-                  >
-                    <span>Pre-reservar Cupo ($400 MXN)</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              )}
-
-              <a
-                href={WHOP_CONFIG.customerPortalUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white hover:bg-neutral-50 text-neutral-800 text-xs font-medium border border-neutral-200 shadow-xs transition-all"
-                title="Acceder a tus membresías y recibos en Whop"
-              >
-                <UserCheck className="w-3.5 h-3.5 text-neutral-600" />
-                <span>Mi Portal Whop</span>
-              </a>
-
-              <a
-                href={WHOP_CONFIG.communityUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-700 transition-colors"
-                title="Abrir Whop en nueva pestaña"
-              >
-                <ExternalLink className="w-4 h-4" />
-              </a>
+                Cerrar sesión
+              </button>
             </div>
           </div>
-        </header>
+        )}
 
         {/* HERO SECTION — Matching Screenshot 1 Branding & Typography */}
-        <section className="max-w-7xl mx-auto px-4 lg:px-8 pt-10 sm:pt-14 pb-6 w-full">
+        <section className={`max-w-7xl mx-auto px-4 lg:px-8 ${enrollmentData ? 'pt-6' : 'pt-24 sm:pt-32'} pb-6 w-full`}>
           {/* Domain micro metadata */}
           <div className="flex items-center gap-2 text-xs font-mono text-neutral-500 mb-6 notranslate" translate="no">
             <span className="w-2 h-2 rounded-full bg-[#B8583B]" />
