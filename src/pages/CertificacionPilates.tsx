@@ -422,59 +422,63 @@ export const CertificacionPilates: React.FC = () => {
           <strong>Gabi</strong> y <strong>Laura Munive</strong>.
         </p>
 
-        {/* 2-Column Webinar & Whitelist Interactive Card */}
-        <div className="bg-gradient-to-br from-[#1E1B18] via-[#24201D] to-[#141210] rounded-[32px] p-6 sm:p-8 md:p-12 text-white shadow-2xl border border-neutral-800 relative overflow-hidden mb-12">
-          {/* Subtle warm glow background */}
-          <div className="absolute top-0 right-0 -mt-16 -mr-16 w-96 h-96 rounded-full bg-amber-500/10 blur-3xl pointer-events-none" />
+        {/* 2-Column Webinar & Whitelist Interactive Card (Aligned with Edelweiss Clean Luxury Aesthetic) */}
+        <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-12 border-2 border-neutral-900 shadow-lg relative overflow-hidden mb-12">
+          {/* Top-right black ribbon matching cohort cards */}
+          <div className="absolute top-0 right-0 bg-[#111111] text-white px-5 py-1.5 rounded-bl-2xl font-mono text-[11px] font-bold uppercase tracking-wider">
+            Sábado 26 Septiembre · 11:00 AM CST
+          </div>
 
           <div className="relative z-10 grid lg:grid-cols-12 gap-10 items-center">
             {/* Left Column: Webinar Pitch & Countdown */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 font-mono text-xs uppercase tracking-wider border border-amber-400/30">
-                <Video className="w-3.5 h-3.5" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 text-amber-900 font-mono text-xs uppercase tracking-wider border border-amber-200 font-medium">
+                <Video className="w-3.5 h-3.5 text-amber-700" />
                 <span>Webinar Gratuito de Orientación · Vía Google Meet</span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-neutral-900 tracking-tight leading-tight">
                 Elige entre Curso Básico (28h) o Certificación Completa (48h) con cupos limitados.
               </h2>
 
-              <p className="text-sm md:text-base text-neutral-300 leading-relaxed font-light">
-                Únete a la sesión en directo con <strong>Gabi</strong> y <strong>Laura Munive</strong> el{' '}
-                <strong>sábado 26 de septiembre a las 11:00 AM CST</strong>. Conoce a detalle el mapa de 28h y 48h,
-                resuelve tus dudas y accede antes que nadie a los <strong>12 cupos exclusivos por sede</strong>:{' '}
-                <strong>Curso Básico (28h · $25,000 MXN)</strong> o <strong>Certificación Completa (48h · $38,000 MXN)</strong>.
+              <p className="text-sm md:text-base text-neutral-600 leading-relaxed font-normal">
+                Únete a la sesión en directo con <strong className="text-neutral-900 font-semibold">Gabi</strong> y{' '}
+                <strong className="text-neutral-900 font-semibold">Laura Munive</strong> el{' '}
+                <strong className="text-neutral-900 font-semibold">sábado 26 de septiembre a las 11:00 AM CST</strong>. Conoce a detalle el mapa de 28h y 48h,
+                resuelve tus dudas y accede antes que nadie a los <strong className="text-neutral-900 font-semibold">12 cupos exclusivos por sede</strong>:{' '}
+                <strong className="text-neutral-900 font-semibold">Curso Básico (28h · $25,000 MXN)</strong> o{' '}
+                <strong className="text-neutral-900 font-semibold">Certificación Completa (48h · $38,000 MXN)</strong>.
               </p>
 
               {/* Countdown Clocks */}
               <div className="pt-2">
-                <div className="text-[11px] font-mono text-amber-400/90 uppercase tracking-widest mb-2 font-semibold">
+                <div className="text-[11px] font-mono text-neutral-500 uppercase tracking-widest mb-2 font-semibold">
                   // TIEMPO RESTANTE PARA LA MASTERCLASS:
                 </div>
                 <div className="grid grid-cols-4 gap-2.5 max-w-md">
-                  <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-3 text-center">
-                    <span className="block text-2xl md:text-3xl font-mono font-bold text-white">
+                  <div className="bg-[#F8F8F6] border border-neutral-200/90 rounded-2xl p-3 text-center">
+                    <span className="block text-2xl md:text-3xl font-mono font-bold text-neutral-900">
                       {timeLeft.days.toString().padStart(2, '0')}
                     </span>
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">Días</span>
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 font-medium">Días</span>
                   </div>
-                  <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-3 text-center">
-                    <span className="block text-2xl md:text-3xl font-mono font-bold text-white">
+                  <div className="bg-[#F8F8F6] border border-neutral-200/90 rounded-2xl p-3 text-center">
+                    <span className="block text-2xl md:text-3xl font-mono font-bold text-neutral-900">
                       {timeLeft.hours.toString().padStart(2, '0')}
                     </span>
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">Horas</span>
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 font-medium">Horas</span>
                   </div>
-                  <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-3 text-center">
-                    <span className="block text-2xl md:text-3xl font-mono font-bold text-white">
+                  <div className="bg-[#F8F8F6] border border-neutral-200/90 rounded-2xl p-3 text-center">
+                    <span className="block text-2xl md:text-3xl font-mono font-bold text-neutral-900">
                       {timeLeft.minutes.toString().padStart(2, '0')}
                     </span>
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">Min</span>
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 font-medium">Min</span>
                   </div>
-                  <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-3 text-center">
-                    <span className="block text-2xl md:text-3xl font-mono font-bold text-white">
+                  <div className="bg-[#F8F8F6] border border-neutral-200/90 rounded-2xl p-3 text-center">
+                    <span className="block text-2xl md:text-3xl font-mono font-bold text-neutral-900">
                       {timeLeft.seconds.toString().padStart(2, '0')}
                     </span>
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">Seg</span>
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 font-medium">Seg</span>
                   </div>
                 </div>
               </div>
@@ -483,7 +487,7 @@ export const CertificacionPilates: React.FC = () => {
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <button
                   onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
-                  className="px-6 py-3 rounded-full bg-white text-neutral-950 text-xs font-bold uppercase tracking-wider hover:bg-neutral-100 transition-colors shadow-lg flex items-center gap-2"
+                  className="px-6 py-3 rounded-full bg-[#111111] text-white hover:bg-neutral-800 text-xs font-bold uppercase tracking-wider transition-colors shadow-sm flex items-center gap-2"
                 >
                   <span>Pre-reservar Cupo Inmediato ($400 MXN)</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -493,9 +497,9 @@ export const CertificacionPilates: React.FC = () => {
                   href={PRIMARY_WHATSAPP}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-3 rounded-full border border-white/20 text-neutral-200 text-xs font-mono uppercase tracking-wider hover:border-white/50 transition-colors flex items-center gap-2"
+                  className="px-5 py-3 rounded-full border border-neutral-300 bg-white text-neutral-800 text-xs font-mono uppercase tracking-wider hover:border-neutral-900 transition-colors flex items-center gap-2"
                 >
-                  <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
+                  <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
                   <span>Dudas por WhatsApp</span>
                 </a>
               </div>
@@ -503,15 +507,15 @@ export const CertificacionPilates: React.FC = () => {
 
             {/* Right Column: Whitelist Signup Form */}
             <div className="lg:col-span-5">
-              <div className="bg-[#2C2724] border border-white/15 rounded-3xl p-6 sm:p-7 shadow-xl">
+              <div className="bg-[#F8F8F6] border border-neutral-200/90 rounded-3xl p-6 sm:p-7 shadow-xs">
                 {!isRegistered ? (
                   <form onSubmit={handleSubmitWebinar} className="space-y-4">
                     <div>
                       <div className="flex items-center justify-between mb-1">
-                        <span className="font-mono text-xs text-amber-300 uppercase tracking-wider font-semibold">
+                        <span className="font-mono text-xs text-neutral-900 uppercase tracking-wider font-bold">
                           Paso 1 · Sede de tu Interés
                         </span>
-                        <span className="text-[10px] font-mono text-neutral-400">12 cupos máx</span>
+                        <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider">12 cupos máx</span>
                       </div>
                       <div className="grid grid-cols-2 gap-2 pt-1">
                         <button
@@ -519,12 +523,12 @@ export const CertificacionPilates: React.FC = () => {
                           onClick={() => setSelectedCohort('queretaro-nov-2026')}
                           className={`px-3 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider text-left transition-all border ${
                             selectedCohort === 'queretaro-nov-2026'
-                              ? 'bg-amber-400/20 border-amber-400 text-white font-bold'
-                              : 'bg-white/5 border-white/10 text-neutral-300 hover:border-white/30'
+                              ? 'bg-white border-neutral-900 text-neutral-950 font-bold shadow-xs ring-1 ring-neutral-900/10'
+                              : 'bg-white/60 border-neutral-200 text-neutral-600 hover:border-neutral-400 hover:bg-white'
                           }`}
                         >
-                          <div className="font-bold">Querétaro</div>
-                          <div className="text-[10px] text-neutral-400">7–29 Nov 2026</div>
+                          <div className="font-bold text-neutral-900">Querétaro</div>
+                          <div className="text-[10px] text-neutral-500">7–29 Nov 2026</div>
                         </button>
 
                         <button
@@ -532,69 +536,69 @@ export const CertificacionPilates: React.FC = () => {
                           onClick={() => setSelectedCohort('monterrey-dec-jan-2026-2027')}
                           className={`px-3 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider text-left transition-all border ${
                             selectedCohort === 'monterrey-dec-jan-2026-2027'
-                              ? 'bg-amber-400/20 border-amber-400 text-white font-bold'
-                              : 'bg-white/5 border-white/10 text-neutral-300 hover:border-white/30'
+                              ? 'bg-white border-neutral-900 text-neutral-950 font-bold shadow-xs ring-1 ring-neutral-900/10'
+                              : 'bg-white/60 border-neutral-200 text-neutral-600 hover:border-neutral-400 hover:bg-white'
                           }`}
                         >
-                          <div className="font-bold">Monterrey</div>
-                          <div className="text-[10px] text-neutral-400">Dic 26 – Ene 27</div>
+                          <div className="font-bold text-neutral-900">Monterrey</div>
+                          <div className="text-[10px] text-neutral-500">Dic 26 – Ene 27</div>
                         </button>
                       </div>
                     </div>
 
                     <div className="space-y-3 pt-1">
                       <div>
-                        <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-400 mb-1">
+                        <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-700 mb-1 font-medium">
                           Nombre Completo
                         </label>
                         <div className="relative">
-                          <User className="w-4 h-4 text-neutral-500 absolute left-3.5 top-3.5" />
+                          <User className="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5" />
                           <input
                             type="text"
                             value={fullName}
                             onChange={(e) => setFullName(e.target.value)}
                             placeholder="Ej. Sofía Morales"
-                            className="w-full bg-white/5 border border-white/15 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:border-amber-400 transition-colors"
+                            className="w-full bg-white border border-neutral-300 rounded-xl pl-10 pr-4 py-2.5 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 focus:ring-1 focus:ring-neutral-900 transition-colors shadow-xs"
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-400 mb-1">
+                        <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-700 mb-1 font-medium">
                           Correo Electrónico
                         </label>
                         <div className="relative">
-                          <Mail className="w-4 h-4 text-neutral-500 absolute left-3.5 top-3.5" />
+                          <Mail className="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5" />
                           <input
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="sofia@ejemplo.com"
-                            className="w-full bg-white/5 border border-white/15 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:border-amber-400 transition-colors"
+                            className="w-full bg-white border border-neutral-300 rounded-xl pl-10 pr-4 py-2.5 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 focus:ring-1 focus:ring-neutral-900 transition-colors shadow-xs"
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-400 mb-1">
+                        <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-700 mb-1 font-medium">
                           WhatsApp (10 Dígitos)
                         </label>
                         <div className="relative">
-                          <Phone className="w-4 h-4 text-neutral-500 absolute left-3.5 top-3.5" />
+                          <Phone className="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5" />
                           <input
                             type="tel"
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                             placeholder="55 1234 5678"
-                            className="w-full bg-white/5 border border-white/15 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:border-amber-400 transition-colors"
+                            className="w-full bg-white border border-neutral-300 rounded-xl pl-10 pr-4 py-2.5 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 focus:ring-1 focus:ring-neutral-900 transition-colors shadow-xs"
                           />
                         </div>
                       </div>
                     </div>
 
                     {errorMsg && (
-                      <div className="p-3 rounded-xl bg-rose-500/20 border border-rose-500/30 text-rose-200 text-xs flex items-center gap-2">
-                        <AlertCircle className="w-4 h-4 shrink-0" />
+                      <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-center gap-2">
+                        <AlertCircle className="w-4 h-4 shrink-0 text-rose-600" />
                         <span>{errorMsg}</span>
                       </div>
                     )}
@@ -602,26 +606,26 @@ export const CertificacionPilates: React.FC = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-3.5 rounded-full bg-amber-400 hover:bg-amber-300 text-neutral-950 text-xs font-bold uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50"
+                      className="w-full py-3.5 rounded-full bg-[#111111] hover:bg-neutral-800 text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50"
                     >
                       <span>{isSubmitting ? 'Registrando...' : 'Apartar Mi Lugar Gratis en el Webinar →'}</span>
                     </button>
 
-                    <div className="text-[11px] font-mono text-center text-neutral-400">
+                    <div className="text-[11px] font-mono text-center text-neutral-500">
                       ✓ Acceso 100% Gratuito vía Google Meet · Beca 50% garantizada
                     </div>
                   </form>
                 ) : (
                   <div className="space-y-5 text-center py-4">
-                    <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center mx-auto">
+                    <div className="w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center mx-auto">
                       <CheckCircle2 className="w-8 h-8" />
                     </div>
 
                     <div>
-                      <h3 className="text-xl font-bold text-white mb-1">¡Registro Confirmado!</h3>
-                      <p className="text-xs text-neutral-300 leading-relaxed max-w-sm mx-auto">
+                      <h3 className="text-xl font-bold text-neutral-900 mb-1">¡Registro Confirmado!</h3>
+                      <p className="text-xs text-neutral-600 leading-relaxed max-w-sm mx-auto">
                         Estás en la lista de espera prioritaria para{' '}
-                        <strong>
+                        <strong className="text-neutral-900">
                           {selectedCohort === 'queretaro-nov-2026'
                             ? 'Querétaro'
                             : selectedCohort === 'monterrey-dec-jan-2026-2027'
@@ -637,15 +641,15 @@ export const CertificacionPilates: React.FC = () => {
                         href={getGoogleCalendarUrl()}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-mono uppercase tracking-wider flex items-center justify-center gap-2 transition-colors"
+                        className="w-full py-2.5 rounded-full bg-white hover:bg-neutral-50 border border-neutral-300 text-neutral-800 text-xs font-mono uppercase tracking-wider flex items-center justify-center gap-2 transition-colors shadow-xs"
                       >
-                        <Calendar className="w-3.5 h-3.5 text-amber-400" />
+                        <Calendar className="w-3.5 h-3.5 text-amber-600" />
                         <span>+ Agregar a Google Calendar</span>
                       </a>
 
                       <button
                         onClick={handleDownloadIcs}
-                        className="w-full py-2 rounded-full text-xs font-mono text-neutral-400 hover:text-white transition-colors"
+                        className="w-full py-2 rounded-full text-xs font-mono text-neutral-500 hover:text-neutral-800 transition-colors"
                       >
                         Descargar archivo .ICS para Apple / Outlook
                       </button>
@@ -663,7 +667,7 @@ export const CertificacionPilates: React.FC = () => {
                       <div className="pt-2">
                         <button
                           onClick={() => handleOpenCheckout(selectedCohort === 'monterrey-dec-jan-2026-2027' ? WHOP_CONFIG.plans.apartadoMonterrey.id : WHOP_CONFIG.plans.apartadoQueretaro.id)}
-                          className="w-full py-3 rounded-full bg-white text-neutral-900 text-xs font-bold uppercase tracking-wider hover:bg-neutral-100 transition-colors shadow-md flex items-center justify-center gap-2"
+                          className="w-full py-3 rounded-full bg-[#111111] text-white text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-md flex items-center justify-center gap-2"
                         >
                           <span>Pre-reservar Cupo Ahora ($400 MXN)</span>
                           <ArrowRight className="w-3.5 h-3.5" />

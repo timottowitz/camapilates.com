@@ -39,7 +39,7 @@ const IndexAuthority: React.FC = () => {
       {
         eyebrow: 'COMUNIDAD',
         title: 'Instructores',
-        description: 'Conecta con profesionales certificados en Reformer.',
+        description: 'Conecta con profesionales del método Reformer.',
         to: '/instructores-pilates',
         colSpan: 'md:col-span-5 lg:col-span-3',
         image: '/images/about-hero.webp',
@@ -47,8 +47,8 @@ const IndexAuthority: React.FC = () => {
       },
       {
         eyebrow: 'FORMACIÓN OFICIAL',
-        title: 'Certificación Reformer',
-        description: 'Querétaro y Monterrey. Avalada con Laura Munive (50% OFF).',
+        title: 'Curso Reformer',
+        description: 'Querétaro y Monterrey. Aprende con Laura Munive (28h / 48h).',
         to: '/certificacion-pilates',
         colSpan: 'md:col-span-5 lg:col-span-3',
         image: '/images/certification-hero.webp',
@@ -170,6 +170,12 @@ const IndexAuthority: React.FC = () => {
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#2A2624] text-xs font-bold uppercase tracking-[0.18em] hover:bg-[#FFFFFF] transition-colors border border-[#2A2624]/10"
                   >
                     Cama de Pilates
+                  </Link>
+                  <Link
+                    to="/certificacion-pilates"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#2A2624] text-xs font-bold uppercase tracking-[0.18em] hover:bg-[#FFFFFF] transition-colors border border-[#2A2624]/10"
+                  >
+                    Cursos
                   </Link>
                   <Link
                     to="/cama-de-pilates/en-venta"
