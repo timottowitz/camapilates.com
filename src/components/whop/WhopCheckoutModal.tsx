@@ -116,7 +116,7 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
           </p>
 
           {/* Quick Plan Switcher */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4 pt-2 border-t border-neutral-200/80">
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 mt-4 pt-2 border-t border-neutral-200/80">
             <button
               type="button"
               onClick={() => setActivePlanId(WHOP_CONFIG.plans.apartado.id)}
@@ -128,7 +128,21 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
             >
               <div className={`text-[11px] font-bold ${activePlanId === WHOP_CONFIG.plans.apartado.id ? 'text-white' : 'text-neutral-900'}`}>Apartar Cupo</div>
               <div className={`font-mono text-xs font-semibold ${activePlanId === WHOP_CONFIG.plans.apartado.id ? 'text-orange-300' : 'text-orange-600'}`}>$4,500 MXN</div>
-              <p className={`text-[9px] mt-0.5 ${activePlanId === WHOP_CONFIG.plans.apartado.id ? 'text-neutral-300' : 'text-neutral-400'}`}>Congela 50% OFF</p>
+              <p className={`text-[9px] mt-0.5 ${activePlanId === WHOP_CONFIG.plans.apartado.id ? 'text-neutral-300' : 'text-neutral-400'}`}>Asegura 1 de 12</p>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setActivePlanId(WHOP_CONFIG.plans.cursoBasico.id)}
+              className={`text-left p-2.5 rounded-xl border text-xs transition-all ${
+                activePlanId === WHOP_CONFIG.plans.cursoBasico.id
+                  ? 'border-neutral-900 bg-neutral-900 text-white shadow-sm'
+                  : 'border-neutral-200 bg-white text-neutral-600 hover:border-neutral-300 hover:bg-neutral-50'
+              }`}
+            >
+              <div className={`text-[11px] font-bold ${activePlanId === WHOP_CONFIG.plans.cursoBasico.id ? 'text-white' : 'text-neutral-900'}`}>Básico 28h</div>
+              <div className={`font-mono text-xs font-semibold ${activePlanId === WHOP_CONFIG.plans.cursoBasico.id ? 'text-orange-300' : 'text-orange-600'}`}>$25,000 MXN</div>
+              <p className={`text-[9px] mt-0.5 ${activePlanId === WHOP_CONFIG.plans.cursoBasico.id ? 'text-neutral-300' : 'text-neutral-400'}`}>2 Fines de Sem</p>
             </button>
 
             <button
@@ -140,9 +154,9 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
                   : 'border-neutral-200 bg-white text-neutral-600 hover:border-neutral-300 hover:bg-neutral-50'
               }`}
             >
-              <div className={`text-[11px] font-bold ${activePlanId === WHOP_CONFIG.plans.colegiaturaCompleta.id ? 'text-white' : 'text-neutral-900'}`}>Colegiatura Total</div>
-              <div className={`font-mono text-xs font-semibold ${activePlanId === WHOP_CONFIG.plans.colegiaturaCompleta.id ? 'text-orange-300' : 'text-orange-600'}`}>$19,900 MXN</div>
-              <p className={`text-[9px] mt-0.5 ${activePlanId === WHOP_CONFIG.plans.colegiaturaCompleta.id ? 'text-neutral-300' : 'text-neutral-400'}`}>Ahorro $19,900</p>
+              <div className={`text-[11px] font-bold ${activePlanId === WHOP_CONFIG.plans.colegiaturaCompleta.id ? 'text-white' : 'text-neutral-900'}`}>Completo 48h</div>
+              <div className={`font-mono text-xs font-semibold ${activePlanId === WHOP_CONFIG.plans.colegiaturaCompleta.id ? 'text-orange-300' : 'text-orange-600'}`}>$38,000 MXN</div>
+              <p className={`text-[9px] mt-0.5 ${activePlanId === WHOP_CONFIG.plans.colegiaturaCompleta.id ? 'text-neutral-300' : 'text-neutral-400'}`}>4 Fines de Sem</p>
             </button>
 
             <button

@@ -386,8 +386,8 @@ export const CertificacionPilates: React.FC = () => {
                 los 12 cupos exclusivos con 50% de descuento ($19,900 MXN en vez de $39,800 MXN).
               </p>
               <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-neutral-400">
-                <span>• Transmisión Zoom en Directo</span>
-                <span>• 100% Gratuita</span>
+                <span className="text-emerald-400 font-bold">• 100% Gratuito ($0 MXN)</span>
+                <span>• Online vía Google Meet (En Directo)</span>
                 <span>• 50% Beca Congelada</span>
               </div>
             </div>

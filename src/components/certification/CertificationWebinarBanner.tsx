@@ -35,8 +35,8 @@ export const CertificationWebinarBanner: React.FC<CertificationWebinarBannerProp
       <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#D9865B] text-[11px] uppercase tracking-widest font-semibold mb-3">
-            <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
-            <Video className="w-3 h-3" /> Pre-Webinar en Vivo · Sábado 26 de Septiembre
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <Video className="w-3 h-3" /> Masterclass Online Gratuita · Vía Google Meet · Sábado 26 de Septiembre
           </div>
 
           <h3 className="text-xl sm:text-2xl md:text-3xl font-serif italic text-white leading-tight mb-2">
@@ -44,17 +44,17 @@ export const CertificationWebinarBanner: React.FC<CertificationWebinarBannerProp
           </h3>
 
           <p className="text-xs sm:text-sm text-[#EAE8E4]/80 font-light leading-relaxed mb-4">
-            Masterclass de orientación con <strong>Gabi</strong> y <strong>Laura Munive</strong>. Conoce el programa intensivo de 4 fines de semana y asegura tu lugar en la lista de espera con <strong>50% de descuento ($19,900 MXN)</strong> antes de que se agoten los 12 cupos.
+            Masterclass <strong>100% gratuita y online</strong> de orientación con <strong>Gabi</strong> y <strong>Laura Munive</strong>. Conoce el programa intensivo de 4 fines de semana y asegura tu lugar en la lista de espera con <strong>50% de descuento ($19,900 MXN)</strong> antes de que se agoten los 12 cupos presenciales.
           </p>
 
           <div className="flex flex-wrap items-center gap-3 text-xs text-[#EAE8E4]/90">
+            <div className="flex items-center gap-1.5 bg-emerald-500/20 text-emerald-300 px-3 py-1.5 rounded-lg border border-emerald-500/30 font-semibold">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Acceso 100% Gratuito ($0 MXN)</span>
+            </div>
             <div className="flex items-center gap-1.5 bg-white/5 px-3 py-1.5 rounded-lg border border-white/10">
               <Calendar className="w-3.5 h-3.5 text-[#D9865B]" />
               <span>{datesSubtitle}</span>
-            </div>
-            <div className="flex items-center gap-1.5 bg-white/5 px-3 py-1.5 rounded-lg border border-white/10">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span>50% OFF en Lista de Espera</span>
             </div>
             <div className="flex items-center gap-1.5 bg-white/5 px-3 py-1.5 rounded-lg border border-white/10">
               <Users className="w-3.5 h-3.5 text-[#D9865B]" />
@@ -68,7 +68,7 @@ export const CertificationWebinarBanner: React.FC<CertificationWebinarBannerProp
             to="/certificacion-pilates/webinar"
             className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full bg-[#EAE8E4] text-[#2A2624] font-medium text-xs uppercase tracking-[0.18em] hover:bg-white transition-all duration-300 shadow-md group"
           >
-            <span>Registrarme al Webinar</span>
+            <span>Registrarme Gratis al Webinar</span>
             <ArrowRight className="w-4 h-4 text-[#2A2624] group-hover:translate-x-1 transition-transform" />
           </Link>
 

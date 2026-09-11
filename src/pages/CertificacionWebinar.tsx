@@ -189,15 +189,15 @@ export const CertificacionWebinar: React.FC = () => {
       <div className="bg-[#2A2624] text-[#EAE8E4] py-2.5 px-4 text-center text-xs md:text-sm font-sans tracking-wide border-b border-[#3E2723]">
         <span className="inline-flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <strong>Convocatoria Exclusiva 2026:</strong> Cupo limitado a 12 lugares por ciudad · 50% de descuento en lista de espera.
+          <strong>EVENTO ONLINE 100% GRATUITO:</strong> Masterclass en vivo vía Google Meet · Cupo limitado a 12 becas presenciales por ciudad.
         </span>
       </div>
 
       {/* Main Hero Section */}
       <section className="relative pt-16 pb-20 px-6 md:px-16 lg:px-24 max-w-7xl mx-auto">
         <div className="text-center max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EAE8E4] border border-[#2A2624]/10 text-[#3E2723] text-xs uppercase tracking-[0.2em] font-medium mb-6">
-            <Video className="w-3.5 h-3.5 text-[#D9865B]" /> Masterclass Exclusiva en Vivo · Vía Zoom
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 text-xs uppercase tracking-[0.2em] font-medium mb-6">
+            <Video className="w-3.5 h-3.5 text-emerald-400" /> Masterclass Online Gratuita · Vía Google Meet
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-serif italic text-[#2A2624] leading-[1.08] mb-6">
@@ -205,11 +205,19 @@ export const CertificacionWebinar: React.FC = () => {
           </h1>
 
           <p className="text-base sm:text-xl text-[#5D5550] font-light leading-relaxed max-w-3xl mx-auto mb-8">
-            Sesión en vivo con <strong>Gabi</strong> y <strong>Laura Munive</strong>. Conoce el plan de estudios intensivo de 4 fines de semana, domina la biomecánica clínica del Reformer y asegura tu acceso a los <strong>12 cupos con 50% de descuento</strong> para Querétaro (Noviembre 2026) y Monterrey (Diciembre 2026 – Enero 2027).
+            Sesión informativa <strong>100% online y gratuita vía Google Meet</strong> con <strong>Gabi</strong> y <strong>Laura Munive</strong>. Conéctate desde cualquier lugar sin traslados. Conoce el plan de estudios intensivo de 4 fines de semana para las certificaciones presenciales, domina la biomecánica clínica del Reformer y asegura tu acceso a los <strong>12 cupos con 50% de descuento ($19,900 MXN)</strong> para Querétaro (Noviembre 2026) y Monterrey (Diciembre 2026 – Enero 2027).
           </p>
 
           {/* Event Quick Facts Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-4 text-xs md:text-sm text-[#2A2624] mb-10">
+          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 text-xs md:text-sm text-[#2A2624] mb-10">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-900 font-semibold shadow-sm">
+              <Sparkles className="w-4 h-4 text-emerald-600" />
+              <span><strong>Costo:</strong> 100% Gratuito ($0 MXN)</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/90 border border-[#2A2624]/10 shadow-sm">
+              <Video className="w-4 h-4 text-[#D9865B]" />
+              <span><strong>Modalidad:</strong> Online (Google Meet)</span>
+            </div>
             <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/80 border border-[#2A2624]/10 shadow-sm">
               <Calendar className="w-4 h-4 text-[#D9865B]" />
               <span><strong>Fecha:</strong> {WEBINAR_INFO.date}</span>
@@ -218,16 +226,12 @@ export const CertificacionWebinar: React.FC = () => {
               <Clock className="w-4 h-4 text-[#D9865B]" />
               <span><strong>Horario:</strong> {WEBINAR_INFO.time}</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/80 border border-[#2A2624]/10 shadow-sm">
-              <Sparkles className="w-4 h-4 text-amber-600" />
-              <span><strong>Incentivo:</strong> 50% OFF ($19,900 MXN)</span>
-            </div>
           </div>
 
           {/* Countdown Clock (Jason Fladlien Scarcity Pattern) */}
           <div className="bg-[#2A2624] text-[#EAE8E4] rounded-2xl p-6 max-w-2xl mx-auto mb-12 shadow-xl border border-[#3E2723]">
             <p className="text-xs uppercase tracking-[0.25em] text-[#D9865B] mb-3 font-semibold">
-              Tiempo restante para el inicio de la transmisión en vivo:
+              Tiempo restante para el inicio de la transmisión en Google Meet:
             </p>
             <div className="grid grid-cols-4 gap-3 text-center">
               <div className="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
@@ -254,17 +258,17 @@ export const CertificacionWebinar: React.FC = () => {
         <div id="registro" className="max-w-3xl mx-auto">
           {!isRegistered ? (
             <div className="bg-white rounded-3xl p-8 sm:p-12 shadow-2xl border border-[#2A2624]/10 relative overflow-hidden">
-              <div className="absolute top-0 right-0 left-0 h-2 bg-gradient-to-r from-[#2A2624] via-[#D9865B] to-[#3E2723]"></div>
+              <div className="absolute top-0 right-0 left-0 h-2 bg-gradient-to-r from-emerald-500 via-[#D9865B] to-[#3E2723]"></div>
 
               <div className="text-center mb-8">
-                <span className="text-xs uppercase tracking-[0.2em] text-[#D9865B] font-semibold block mb-2">
-                  Paso 1 de 2 · Registro Gratuito al Webinar & Lista de Espera
+                <span className="text-xs uppercase tracking-[0.2em] text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full font-bold inline-block mb-2 border border-emerald-200">
+                  Registro 100% Gratuito · Online vía Google Meet
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-serif italic text-[#2A2624]">
-                  Aparta tu acceso y asegura tu cupo de 50% de descuento
+                  Aparta tu acceso gratis y asegura tu cupo de 50% de descuento
                 </h2>
-                <p className="text-sm text-[#5D5550] mt-2">
-                  Solo 12 lugares con beca del 50% disponibles por ciudad. Al registrarte te garantizamos enlace directo a la sala de Zoom y atención prioritaria.
+                <p className="text-sm text-[#5D5550] mt-2 max-w-xl mx-auto">
+                  Asistir a la Masterclass no tiene costo. Al registrarte te garantizamos enlace directo a la sala de Google Meet y participas por una de las 12 becas del 50% para las cohortes presenciales de Querétaro y Monterrey.
                 </p>
               </div>
 
@@ -316,13 +320,13 @@ export const CertificacionWebinar: React.FC = () => {
                       placeholder="4421234567 ó 8181234567"
                       className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#2A2624] text-sm text-gray-800"
                     />
-                    <span className="text-[11px] text-gray-500 mt-1 block">Te enviaremos el link de Zoom y el voucher del 50%.</span>
+                    <span className="text-[11px] text-gray-500 mt-1 block">Te enviaremos el link directo de Google Meet y tu voucher del 50%.</span>
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-xs uppercase tracking-wider text-[#2A2624] font-semibold mb-2">
-                    Sede de tu interés para el curso presencial *
+                    Sede de tu interés para la posterior formación presencial *
                   </label>
                   <div className="grid sm:grid-cols-3 gap-3">
                     <button
@@ -390,7 +394,7 @@ export const CertificacionWebinar: React.FC = () => {
                     'Registrando...'
                   ) : (
                     <>
-                      <span>Quiero mi acceso al webinar & lista de espera 50% OFF</span>
+                      <span>Quiero mi acceso gratis a Google Meet & lista 50% OFF ($0 MXN)</span>
                       <ArrowRight className="w-5 h-5" />
                     </>
                   )}
@@ -398,7 +402,7 @@ export const CertificacionWebinar: React.FC = () => {
 
                 <div className="flex items-center justify-center gap-2 text-xs text-gray-500">
                   <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                  <span>Tus datos están protegidos. Sin spam, solo información académica de valor.</span>
+                  <span>Acceso 100% gratuito. Tus datos están protegidos. Sin spam.</span>
                 </div>
               </form>
             </div>
@@ -410,15 +414,15 @@ export const CertificacionWebinar: React.FC = () => {
               </div>
 
               <span className="px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold uppercase tracking-wider inline-block mb-3">
-                ¡Registro Confirmado con Éxito!
+                ¡Registro 100% Gratuito Confirmado!
               </span>
 
               <h2 className="text-3xl font-serif italic text-[#2A2624] mb-4">
-                Tienes reservado tu acceso al webinar y tu voucher del 50%
+                Tienes reservado tu acceso a Google Meet y tu voucher del 50%
               </h2>
 
               <p className="text-base text-[#5D5550] max-w-xl mx-auto mb-8">
-                Hola <strong>{fullName}</strong>, tu lugar para la Masterclass en vivo con <strong>Gabi y Laura Munive</strong> del <strong>Sábado 26 de Septiembre a las 11:00 AM CST</strong> está apartado.
+                Hola <strong>{fullName}</strong>, tu lugar para la Masterclass online en vivo con <strong>Gabi y Laura Munive</strong> vía <strong>Google Meet</strong> del <strong>Sábado 26 de Septiembre a las 11:00 AM CST</strong> está confirmado sin costo.
               </p>
 
               {/* Voucher Box */}
@@ -431,9 +435,9 @@ export const CertificacionWebinar: React.FC = () => {
                   $19,900 MXN <span className="text-sm font-sans line-through text-gray-400 font-normal">$39,800 MXN</span>
                 </div>
                 <p className="text-xs text-gray-600">
-                  Sede seleccionada: <strong>{cohort === 'queretaro-nov-2026' ? 'Querétaro (Noviembre)' : cohort === 'monterrey-dec-jan-2026-2027' ? 'Monterrey (Dic-Ene)' : 'Querétaro / Monterrey'}</strong>.
+                  Sede presencial elegida: <strong>{cohort === 'queretaro-nov-2026' ? 'Querétaro (Noviembre)' : cohort === 'monterrey-dec-jan-2026-2027' ? 'Monterrey (Dic-Ene)' : 'Querétaro / Monterrey'}</strong>.
                   <br />
-                  Este precio especial se activa y adjudica durante la transmisión en vivo a los primeros 12 lugares.
+                  Este precio especial se activa y adjudica durante la transmisión en vivo de Google Meet a los primeros 12 lugares.
                 </p>
               </div>
 
@@ -441,12 +445,12 @@ export const CertificacionWebinar: React.FC = () => {
               <div className="bg-[#2A2624] text-white p-6 rounded-2xl border border-amber-400/40 text-left max-w-md mx-auto mb-8 shadow-xl space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-[10px] font-bold uppercase tracking-wider">
-                    ¿Quieres congelar tu lugar HOY?
+                    ¿Quieres congelar tu lugar presencial HOY? (Opcional)
                   </span>
                   <span className="text-amber-300 font-bold text-sm">$4,500 MXN</span>
                 </div>
                 <p className="text-xs text-stone-300 leading-relaxed">
-                  Para no depender de la conexión el día del webinar, puedes apartar tu lugar con <strong>$4,500 MXN</strong> a través de Whop, congelar tu precio del 50% y obtener acceso anticipado al Campus y la Comunidad.
+                  Asistir al webinar en Google Meet es <strong>100% GRATUITO</strong>. Si ya estás decidida a certificarte y quieres congelar desde hoy tu precio del 50% ($19,900 MXN) sin esperar a la transmisión, puedes apartar tu lugar presencial con <strong>$4,500 MXN</strong> a través de Whop.
                 </p>
                 <div className="flex flex-col gap-2 pt-1">
                   <button
@@ -457,14 +461,24 @@ export const CertificacionWebinar: React.FC = () => {
                     }}
                     className="w-full py-3 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-xs uppercase tracking-wider text-center transition-all shadow-md flex items-center justify-center gap-2"
                   >
-                    <span>Apartar Lugar Ahora en Whop ($4,500 MXN)</span>
+                    <span>Apartar Lugar Presencial en Whop ($4,500 MXN)</span>
                     <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setCheckoutPlan(WHOP_CONFIG.plans.paseVipWebinar.id);
+                      setCheckoutOpen(true);
+                    }}
+                    className="w-full py-2.5 px-4 rounded-xl border border-emerald-500/50 bg-emerald-950/40 text-emerald-300 hover:text-white font-medium text-xs uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2"
+                  >
+                    <span>Reclamar Pase VIP Gratuito en Whop ($0 MXN)</span>
                   </button>
                   <Link
                     to="/app"
-                    className="w-full py-2.5 px-4 rounded-xl border border-stone-700 bg-stone-900/90 text-stone-300 hover:text-white font-medium text-xs uppercase tracking-wider text-center transition-all"
+                    className="w-full py-2 px-4 rounded-xl text-stone-400 hover:text-white font-medium text-[11px] uppercase tracking-wider text-center transition-all"
                   >
-                    Entrar a la Webapp & Comunidad →
+                    Explorar Webapp & Comunidad Whop →
                   </Link>
                 </div>
               </div>
@@ -728,7 +742,16 @@ export const CertificacionWebinar: React.FC = () => {
                 ¿El webinar del 26 de Septiembre tiene algún costo?
               </h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                No, es 100% gratuito. Solo requerimos tu registro previo para asegurar la capacidad de la sala de Zoom y enviarte con antelación el enlace y material descargable.
+                <strong>No, es 100% gratuito ($0 MXN).</strong> Asistir no tiene ningún costo ni compromiso. Solo requerimos tu registro previo para enviarte tu enlace directo de acceso a la sala de Google Meet y los materiales previos descargables.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-[#EAE8E4]/30 border border-[#2A2624]/10">
+              <h3 className="font-serif text-lg text-[#2A2624] mb-2 font-semibold">
+                ¿El webinar es presencial o por Google Meet?
+              </h3>
+              <p className="text-sm text-[#5D5550] font-light leading-relaxed">
+                <strong>El webinar es 100% ONLINE vía Google Meet.</strong> Puedes conectarte desde tu casa, estudio o celular desde cualquier parte de México o el mundo. Lo que se realiza de manera presencial son las prácticas clínicas intensivas de 100 horas que inician en Noviembre 2026 en Querétaro y en Dic 2026 – Ene 2027 en Monterrey para quienes decidan matricularse.
               </p>
             </div>
 
@@ -737,7 +760,7 @@ export const CertificacionWebinar: React.FC = () => {
                 ¿Cómo funciona el 50% de descuento ($19,900 MXN)?
               </h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                El costo regular de la formación de 100 horas es de $39,800 MXN. Para las cohortes de Querétaro y Monterrey, liberamos 12 becas por ciudad del 50% ($19,900 MXN) que se asignan por orden de pre-registro y asistencia al webinar. Puedes congelar tu precio con $4,500 MXN a través de Whop.
+                El costo regular de la formación presencial de 100 horas es de $39,800 MXN. Para las cohortes de Querétaro y Monterrey, liberamos 12 becas por ciudad del 50% ($19,900 MXN) que se asignan por orden de pre-registro y asistencia al webinar en Google Meet. Si deseas congelar tu beca desde hoy sin esperar al webinar, puedes apartar con $4,500 MXN en Whop.
               </p>
             </div>
 

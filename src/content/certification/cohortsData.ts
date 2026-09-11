@@ -23,8 +23,12 @@ export interface CityCertificationCohort {
   totalHours: number;
   contactHours: number;
   scheduleHours: string;
+  basicPrice: number; // $25,000 MXN (28h)
+  basicHours: number; // 28h
+  fullPrice: number; // $38,000 MXN (48h)
+  fullHours: number; // 48h
   regularPrice: number;
-  discountedPrice: number; // 50% OFF
+  discountedPrice: number;
   depositPrice: number;
   capacityPerCity: number;
   location: {
@@ -38,13 +42,13 @@ export interface CityCertificationCohort {
 }
 
 export const WEBINAR_INFO = {
-  title: "Cómo Convertirte en Instructora Certificada de Pilates Reformer en Querétaro y Monterrey",
-  subtitle: "Sesión en vivo de orientación profesional, desglose del plan de estudios de fin de semana y acceso prioritario a los 12 cupos con 50% de descuento.",
+  title: "Masterclass Gratuita: Certificación Pilates Reformer (Querétaro y Monterrey)",
+  subtitle: "Sesión online en vivo 100% GRATUITA vía Google Meet. Orientación profesional, desglose del plan de estudios y acceso prioritario a los 12 cupos con 50% de descuento para las cohortes presenciales.",
   date: "Sábado 26 de Septiembre de 2026",
   isoDateTime: "2026-09-26T11:00:00-06:00",
   isoEndDateTime: "2026-09-26T12:15:00-06:00",
   time: "11:00 AM – 12:15 PM CST (Hora de CDMX / Querétaro / Monterrey)",
-  platform: "Transmisión en vivo vía Zoom",
+  platform: "Transmisión Online en Vivo vía Google Meet (100% Gratuito)",
   hosts: [
     {
       name: "Gabi",
@@ -225,14 +229,14 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
  * Helper to generate Google Calendar Event URL
  */
 export function getGoogleCalendarUrl(): string {
-  const title = encodeURIComponent("Masterclass en Vivo: Certificación Pilates Reformer (Querétaro y Monterrey)");
+  const title = encodeURIComponent("Masterclass Gratuita Online: Certificación Pilates Reformer (Google Meet)");
   const details = encodeURIComponent(
-    "Webinar en vivo con Gabi y Laura Munive.\\n" +
-    "Aprende cómo convertirte en instructora certificada de Pilates Reformer y asegura tu lugar en la lista de espera con 50% de descuento para Querétaro (Nov 2026) y Monterrey (Dic 2026 - Ene 2027).\\n\\n" +
-    "Enlace de Zoom: Se enviará por WhatsApp y correo antes de iniciar.\\n" +
+    "Masterclass 100% GRATUITA en vivo con Gabi y Laura Munive vía Google Meet.\\n\\n" +
+    "Conoce cómo certificarte en Pilates Reformer (100h) y cómo asegurar tu lugar en la lista de espera con 50% de descuento para las cohortes presenciales en Querétaro (Nov 2026) y Monterrey (Dic 2026 - Ene 2027).\\n\\n" +
+    "Enlace de Google Meet: Se enviará por WhatsApp y correo antes de iniciar.\\n" +
     "Contacto WhatsApp: https://wa.me/525548468190"
   );
-  const location = encodeURIComponent("Transmisión en vivo vía Zoom (Enlace enviado por WhatsApp)");
+  const location = encodeURIComponent("Transmisión Online en Vivo vía Google Meet");
   const dates = "20260926T170000Z/20260926T181500Z"; // 11:00 AM CST is 17:00 UTC
 
   return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
@@ -249,11 +253,11 @@ export function generateIcsContent(): string {
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     "BEGIN:VEVENT",
-    "SUMMARY:Masterclass en Vivo: Certificación Pilates Reformer (Querétaro y Monterrey)",
-    "DESCRIPTION:Webinar con Gabi y Laura Munive. Presentación de las cohortes de Querétaro (Noviembre 2026) y Monterrey (Diciembre 2026 - Enero 2027) y apertura de los 12 cupos con 50% de descuento.",
+    "SUMMARY:Masterclass Gratuita: Certificación Pilates Reformer (Google Meet)",
+    "DESCRIPTION:Webinar 100% gratuito en vivo con Gabi y Laura Munive vía Google Meet. Presentación de las cohortes presenciales de Querétaro y Monterrey y apertura de 12 cupos con 50% de descuento.",
     "DTSTART:20260926T170000Z",
     "DTEND:20260926T181500Z",
-    "LOCATION:Transmisión en vivo vía Zoom",
+    "LOCATION:Online vía Google Meet",
     "STATUS:CONFIRMED",
     "SEQUENCE:0",
     "END:VEVENT",
