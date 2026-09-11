@@ -128,16 +128,16 @@ Tener un **Reformer profesional para casa** (como los modelos de madera de nogal
 
 ## Oportunidad para Entrenadores y Fisioterapeutas: Certificación 2026–2027
 
-Si eres preparador físico, fisioterapeuta o instructora en México y deseas especializarte en biomecánica funcional aplicada tanto a deportistas de resistencia como al público general, CAMA Pilates ha abierto la convocatoria para sus cohortes presenciales de 100 horas:
+Si eres preparador físico, fisioterapeuta o instructora en México y deseas especializarte en biomecánica funcional aplicada tanto a deportistas de resistencia como al público general, CAMA Pilates ha abierto la convocatoria para sus cohortes presenciales (Curso Básico 28h / Certificación Completa 48h):
 
-* **Cohorte Querétaro:** Noviembre de 2026 (4 fines de semana intensivos).
-* **Cohorte Monterrey:** Diciembre 2026 a Enero 2027 (4 fines de semana con receso navideño).
+* **Cohorte Querétaro:** Noviembre de 2026.
+* **Cohorte Monterrey:** Diciembre 2026 a Enero 2027.
 * **Condición de Excelencia:** Máximo 12 alumnas(os) por sede con **1 Reformer individual exclusivo asignado** (sin turnos ni rotaciones).
-* **Beca de Lista de Espera:** 50% de descuento (\$19,900 MXN en lugar de \$39,800 MXN), congelable con una pre-reserva oficial de \$400 MXN.
+* **Modalidades y Precios:** Curso Básico (28h · $25,000 MXN) y Certificación Completa (48h · $38,000 MXN), con opción de pre-reserva de $400 MXN para congelar 1 de los 12 cupos.
 
-Puedes conocer todos los detalles de la formación y reservar tu lugar en la sesión informativa gratuita con las Master Trainers internacionales **Gabi & Laura Munive** el próximo **Sábado 26 de Septiembre a las 11:00 AM CST**:
+Puedes conocer todos los detalles de la formación y reservar tu lugar en la sesión informativa 100% gratuita con las Master Trainers internacionales **Gabi & Laura Munive** el próximo **Sábado 26 de Septiembre a las 11:00 AM CST vía Google Meet**:
 
-👉 [Inscribirme a la Masterclass Gratuita y Lista de Espera 50% OFF](/certificacion-pilates/webinar)
+👉 [Inscribirme a la Masterclass Gratuita en Google Meet](/certificacion-pilates/webinar)
 
 ---
 

@@ -526,6 +526,8 @@ export default defineSchema({
     registeredForWebinar: v.optional(v.boolean()),
     webinarDate: v.optional(v.string()),
     discountClaimed: v.optional(v.boolean()),
+    buzzNotified: v.optional(v.boolean()),
+    buzzNotifiedAt: v.optional(v.number()),
 
     // Timestamps
     submittedAt: v.number(),

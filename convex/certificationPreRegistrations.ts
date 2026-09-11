@@ -62,6 +62,7 @@ export const submitPreRegistration = mutation({
         registeredForWebinar: args.registeredForWebinar ?? existing.registeredForWebinar,
         webinarDate: args.webinarDate ?? existing.webinarDate,
         discountClaimed: args.discountClaimed ?? existing.discountClaimed,
+        buzzNotified: false,
         submittedAt: Date.now(),
         status: 'new', // Reset status to new
       });
@@ -81,6 +82,7 @@ export const submitPreRegistration = mutation({
       registeredForWebinar: args.registeredForWebinar ?? true,
       webinarDate: args.webinarDate ?? '2026-09-26',
       discountClaimed: args.discountClaimed ?? true,
+      buzzNotified: false,
       status: 'new',
       submittedAt: Date.now(),
     });
@@ -136,6 +138,7 @@ export const registerWebinarWaitlist = mutation({
         webinarDate: '2026-09-26',
         discountClaimed: true,
         source: args.source || 'webinar-landing',
+        buzzNotified: false,
         submittedAt: Date.now(),
         status: 'new',
       });
@@ -153,6 +156,7 @@ export const registerWebinarWaitlist = mutation({
       registeredForWebinar: true,
       webinarDate: '2026-09-26',
       discountClaimed: true,
+      buzzNotified: false,
       source: args.source || 'webinar-landing',
       status: 'new',
       submittedAt: Date.now(),
@@ -302,3 +306,71 @@ export const updateStatus = mutation({
     return { success: true };
   },
 });
+
+/**
+ * Query unnotified pre-registrations for Buzz channel integration
+ */
+export const getUnnotifiedSignups = query({
+  args: {},
+  handler: async (ctx) => {
+    const unnotified = await ctx.db
+      .query('certificationPreRegistrations')
+      .filter((q) => q.eq(q.field('buzzNotified'), false))
+      .order('desc')
+      .take(25);
+    return unnotified;
+  },
+});
+
+/**
+ * Mark pre-registration as notified in Buzz
+ */
+export const markSignupNotified = mutation({
+  args: {
+    id: v.id('certificationPreRegistrations'),
+  },
+  handler: async (ctx, args) => {
+    await ctx.db.patch(args.id, {
+      buzzNotified: true,
+      buzzNotifiedAt: Date.now(),
+    });
+    return { success: true };
+  },
+});
+
+/**
+ * Mark all historical pre-registrations as notified to avoid startup floods
+ */
+export const markAllHistoricalNotified = mutation({
+  args: {},
+  handler: async (ctx) => {
+    const records = await ctx.db
+      .query('certificationPreRegistrations')
+      .filter((q) => q.eq(q.field('buzzNotified'), undefined))
+      .collect();
+    for (const rec of records) {
+      await ctx.db.patch(rec._id, {
+        buzzNotified: true,
+        buzzNotifiedAt: Date.now(),
+      });
+    }
+    return { updatedCount: records.length };
+  },
+});
+
+/**
+ * Query recent pre-registrations with live updates
+ */
+export const getRecentSignups = query({
+  args: {
+    limit: v.optional(v.number()),
+  },
+  handler: async (ctx, args) => {
+    const limit = args.limit || 20;
+    return await ctx.db
+      .query('certificationPreRegistrations')
+      .order('desc')
+      .take(limit);
+  },
+});
+

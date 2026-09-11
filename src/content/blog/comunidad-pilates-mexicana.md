@@ -63,12 +63,12 @@ La perla tapatía cuenta con **Culture Body Pilates Studio** como referente, con
 
 Monterrey destaca por albergar programas de formación de primer nivel y por su enfoque en Pilates para rehabilitación y acondicionamiento boutique, con alta demanda en zonas como San Pedro Garza García y Valle Oriente.
 
-> 📢 **Próximas Cohortes Presenciales: Monterrey & Querétaro (100h Avaladas)**  
+> 📢 **Próximas Cohortes Presenciales: Monterrey & Querétaro (Curso Básico 28h / Certificación Completa 48h)**  
 > Si buscas formarte profesionalmente en Pilates Reformer sin tener que pausar tus actividades semanales:  
-> • **Monterrey:** 5 de Diciembre 2026 al 17 de Enero 2027 (4 fines de semana en San Pedro). [Ver convocatoria Monterrey →](/certificacion-pilates/monterrey)  
-> • **Querétaro:** 7 al 29 de Noviembre 2026 (4 fines de semana). [Ver convocatoria Querétaro →](/certificacion-pilates/queretaro)  
-> • **Pre-Webinar en Vivo (Sáb 26 Sep · 11:00 AM CST):** Masterclass con **Gabi y Laura Munive** con beca del **50% de descuento ($19,900 MXN en vez de $39,800 MXN)** para las 12 plazas de la lista de espera.  
-> 👉 [**Registrarme a la Masterclass Gratuita y asegurar 50% OFF →**](/certificacion-pilates/webinar)
+> • **Monterrey:** 5 de Diciembre 2026 al 17 de Enero 2027 (San Pedro). [Ver convocatoria Monterrey →](/certificacion-pilates/monterrey)  
+> • **Querétaro:** 7 al 29 de Noviembre 2026. [Ver convocatoria Querétaro →](/certificacion-pilates/queretaro)  
+> • **Pre-Webinar en Vivo (Sáb 26 Sep · 11:00 AM CST):** Masterclass 100% gratuita con **Gabi y Laura Munive** vía Google Meet. Conoce las modalidades Básico (28h · $25,000 MXN) y Completo (48h · $38,000 MXN).  
+> 👉 [**Registrarme a la Masterclass Gratuita vía Google Meet →**](/certificacion-pilates/webinar)
 
 <see-also limit="3" />
 

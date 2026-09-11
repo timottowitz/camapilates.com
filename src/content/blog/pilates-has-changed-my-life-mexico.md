@@ -117,8 +117,8 @@ Para asegurar la calidad y tu seguridad, busca estudios que enfaticen la certifi
 > CAMA abre convocatoria para formarse en Reformer en formato intensivo de fines de semana:  
 > • **Querétaro:** Noviembre 2026 (4 fines de semana). [Convocatoria Querétaro →](/certificacion-pilates/queretaro)  
 > • **Monterrey:** Diciembre 2026 – Enero 2027 (4 fines de semana). [Convocatoria Monterrey →](/certificacion-pilates/monterrey)  
-> • **Masterclass Previa (Sábado 26 de Septiembre · 11:00 AM CST):** Sesión con las Master Trainers **Gabi y Laura Munive** con beca del **50% de descuento ($19,900 MXN)** para la lista de espera.  
-> 👉 [**Registrarme a la Masterclass Gratuita y Lista de Espera 50% OFF →**](/certificacion-pilates/webinar)
+> • **Masterclass Previa (Sábado 26 de Septiembre · 11:00 AM CST):** Sesión 100% gratuita vía Google Meet con las Master Trainers **Gabi y Laura Munive** y acceso a la lista de espera con pre-reserva de $400 MXN.  
+> 👉 [**Registrarme a la Masterclass Gratuita en Google Meet →**](/certificacion-pilates/webinar)
 
 ### Soy principiante, ¿debo empezar con Pilates de Mat o directamente en el Reformer?
 

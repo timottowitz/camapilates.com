@@ -47,7 +47,7 @@ const IndexAuthority: React.FC = () => {
       },
       {
         eyebrow: 'FORMACIÓN OFICIAL',
-        title: 'Certificación 100h',
+        title: 'Certificación Reformer',
         description: 'Querétaro y Monterrey. Avalada con Laura Munive (50% OFF).',
         to: '/certificacion-pilates',
         colSpan: 'md:col-span-5 lg:col-span-3',

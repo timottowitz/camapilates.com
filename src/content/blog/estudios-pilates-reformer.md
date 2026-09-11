@@ -69,8 +69,8 @@ Finalmente, observa la higiene y el ratio de alumnos. Las correas de manos y pie
 > Si quieres enseñar con rigor biomecánico en estudios boutique o abrir tu propio espacio:  
 > • **Monterrey:** 5 de Diciembre 2026 al 17 de Enero 2027 (4 fines de semana en San Pedro). [Ver sede Monterrey →](/certificacion-pilates/monterrey)  
 > • **Querétaro:** 7 al 29 de Noviembre 2026 (4 fines de semana). [Ver sede Querétaro →](/certificacion-pilates/queretaro)  
-> • **Masterclass Previa en Vivo (Sábado 26 de Septiembre · 11:00 AM CST):** Sesión con **Gabi y Laura Munive** con **50% de descuento ($19,900 MXN en vez de $39,800 MXN)** para las 12 plazas de la lista de espera.  
-> 👉 [**Registrarme gratis al Webinar y asegurar 50% OFF →**](/certificacion-pilates/webinar)
+> • **Masterclass Previa en Vivo (Sábado 26 de Septiembre · 11:00 AM CST):** Sesión 100% gratuita vía Google Meet con **Gabi y Laura Munive**. Conoce las opciones presenciales (Curso Básico 28h y Certificación Completa 48h).  
+> 👉 [**Registrarme gratis a la Masterclass en Google Meet →**](/certificacion-pilates/webinar)
 
 ## 4. Análisis de Precios: Membresías vs. Home Studio
 

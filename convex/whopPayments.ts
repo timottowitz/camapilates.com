@@ -47,6 +47,7 @@ export const recordPayment = mutation({
         discountClaimed: true,
         selectedCohort: args.cohort ?? existingReg.selectedCohort,
         notes: `Whop payment confirmed: ${args.planName} (${args.amount} ${args.currency}) - Receipt: ${args.receiptId || 'N/A'}`,
+        buzzNotified: false,
       });
     } else {
       await ctx.db.insert('certificationPreRegistrations', {
@@ -67,6 +68,7 @@ export const recordPayment = mutation({
         source: args.source || 'whop-checkout',
         status: 'enrolled',
         notes: `Whop direct enrollment: ${args.planName} (${args.amount} ${args.currency})`,
+        buzzNotified: false,
         submittedAt: Date.now(),
       });
     }

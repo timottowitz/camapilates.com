@@ -98,10 +98,10 @@ Según Herman (2017, p. 12), es crucial revisar la configuración de los resorte
 Los clásicos ofrecen esa resistencia orgánica alineada a la filosofía de Contrología de Joseph Pilates (1945, p. 34), mientras que los sistemas modernos brindan una tensión más uniforme. Finalmente, considera la logística: mover una cama profesional de madera sólida a ciudades como Monterrey o Guadalajara desde CDMX puede sumar entre $2,000 y $4,500 MXN al costo final, así que cotiza bien antes de dar el "tarjetazo".
 
 > 🌟 **¿Quieres certificarte profesionalmente en Reformer en Querétaro o Monterrey?**  
-> Si buscas no solo entrenar sino impartir clases o abrir tu propio estudio, abrimos convocatorias presenciales de 100 horas en fines de semana (12 lugares por ciudad):  
-> • **Querétaro:** 4 fines de semana en Noviembre 2026. [Ver cohorte Querétaro →](/certificacion-pilates/queretaro)  
-> • **Monterrey:** 4 fines de semana en Dic 2026 y Ene 2027. [Ver cohorte Monterrey →](/certificacion-pilates/monterrey)  
-> • **Masterclass Informativa en Vivo:** Sábado 26 de Septiembre, 11:00 AM CST con Gabi & Laura Munive (50% OFF en lista de espera: $19,900 MXN). [Registrarme gratis →](/certificacion-pilates/webinar)
+> Si buscas no solo entrenar sino impartir clases o abrir tu propio estudio, abrimos convocatorias presenciales (Curso Básico 28h / Certificación Completa 48h) en fines de semana (12 lugares por ciudad):  
+> • **Querétaro:** Noviembre 2026. [Ver cohorte Querétaro →](/certificacion-pilates/queretaro)  
+> • **Monterrey:** Dic 2026 y Ene 2027. [Ver cohorte Monterrey →](/certificacion-pilates/monterrey)  
+> • **Masterclass Informativa en Vivo:** Sábado 26 de Septiembre, 11:00 AM CST con Gabi & Laura Munive (100% gratuita vía Google Meet). [Registrarme gratis →](/certificacion-pilates/webinar)
 
 ## FAQ
 

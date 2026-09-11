@@ -138,7 +138,7 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
             }`}
           >
             <GraduationCap className="w-3.5 h-3.5" />
-            <span>Campus LMS (100h)</span>
+            <span>Campus LMS (10 Módulos)</span>
           </button>
 
           <button

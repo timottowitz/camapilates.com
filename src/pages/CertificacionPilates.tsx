@@ -747,8 +747,7 @@ export const CertificacionPilates: React.FC = () => {
               </p>
 
               <p className="text-neutral-600 text-sm leading-relaxed mb-6">
-                4 fines de semana intensivos de inmersión práctica total ({CERTIFICATION_COHORTS.queretaro.fullDatesLabel}).
-                Sábados y domingos de 9:00 AM a 4:30 PM (56 horas de contacto presencial + 44 horas en campus virtual).
+                Inmersión práctica presencial ({CERTIFICATION_COHORTS.queretaro.fullDatesLabel}): Curso Básico (2 fines de semana, 28 horas) o Certificación Completa (4 fines de semana, 48 horas presenciales + campus virtual Whop).
               </p>
 
               {/* 4 Weekends pills */}
@@ -826,8 +825,7 @@ export const CertificacionPilates: React.FC = () => {
               </p>
 
               <p className="text-neutral-600 text-sm leading-relaxed mb-6">
-                4 fines de semana intensivos de inmersión práctica total ({CERTIFICATION_COHORTS.monterrey.fullDatesLabel}).
-                Sábados y domingos de 9:00 AM a 4:30 PM (56 horas de contacto presencial + 44 horas en campus virtual).
+                Inmersión práctica presencial ({CERTIFICATION_COHORTS.monterrey.fullDatesLabel}): Curso Básico (2 fines de semana, 28 horas) o Certificación Completa (4 fines de semana, 48 horas presenciales + campus virtual Whop).
               </p>
 
               {/* 4 Weekends pills */}

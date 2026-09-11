@@ -398,7 +398,7 @@ export function getGoogleCalendarUrl(): string {
   const title = encodeURIComponent("Masterclass Gratuita Online: Certificación Pilates Reformer (Google Meet)");
   const details = encodeURIComponent(
     "Masterclass 100% GRATUITA en vivo con Gabi y Laura Munive vía Google Meet.\\n\\n" +
-    "Conoce cómo certificarte en Pilates Reformer (100h) y cómo asegurar tu lugar en la lista de espera con 50% de descuento para las cohortes presenciales en Querétaro (Nov 2026) y Monterrey (Dic 2026 - Ene 2027).\\n\\n" +
+    "Conoce cómo certificarte en Pilates Reformer (Curso Básico 28h / Certificación Completa 48h) y cómo asegurar tu lugar en la lista de espera con 50% de descuento para las cohortes presenciales en Querétaro (Nov 2026) y Monterrey (Dic 2026 - Ene 2027).\\n\\n" +
     "Enlace de Google Meet: Se enviará por WhatsApp y correo antes de iniciar.\\n" +
     "Contacto WhatsApp: https://wa.me/525548468190"
   );
