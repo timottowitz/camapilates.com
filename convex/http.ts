@@ -246,4 +246,102 @@ http.route({
   }),
 });
 
+/**
+ * Whop webhook handler for automated payment fulfillment and community status sync
+ * POST /api/webhooks/whop
+ */
+http.route({
+  path: '/api/webhooks/whop',
+  method: 'POST',
+  handler: httpAction(async (ctx, request) => {
+    try {
+      const payload: any = await request.json();
+      const action = payload.action || payload.event || payload.type;
+      const data = payload.data || payload;
+
+      if (!action || !data) {
+        return new Response(JSON.stringify({ error: 'invalid_payload' }), {
+          status: 400,
+          headers: { 'content-type': 'application/json' },
+        });
+      }
+
+      // Handle payment.succeeded or membership.went_valid
+      if (
+        action === 'payment.succeeded' ||
+        action === 'membership.went_valid' ||
+        action === 'payment.created'
+      ) {
+        const email = (
+          data.email ||
+          data.user?.email ||
+          data.customer_email ||
+          ''
+        ).toLowerCase().trim();
+
+        const planId = data.plan_id || data.plan?.id || 'whop-plan';
+        const rawAmount = typeof data.amount === 'number' ? data.amount : (data.final_amount || 0);
+        // Whop sometimes sends amount in cents if USD or integer
+        const amount = rawAmount > 100000 ? Math.round(rawAmount / 100) : rawAmount;
+        const currency = (data.currency || 'mxn').toUpperCase();
+        const receiptId = data.id || data.receipt_id || data.payment_id;
+        const whopUserId = data.user_id || data.user?.id;
+        const fullName = data.name || data.user?.name || data.user?.username;
+
+        let planName = 'Whop Membership';
+        if (planId === 'plan_tUBQoR2eJxv5v') {
+          planName = 'Apartado de Lugar Oficial 50% OFF';
+        } else if (planId === 'plan_hqgjSBEjElw3C') {
+          planName = 'Colegiatura Completa Lista de Espera 50% OFF';
+        } else if (planId === 'plan_ojBC2a7IkCXNT') {
+          planName = 'Pase VIP Masterclass & Acceso Comunidad Whop';
+        }
+
+        if (email) {
+          await ctx.runMutation(api.whopPayments.recordPayment, {
+            email,
+            fullName: fullName || undefined,
+            planId,
+            planName,
+            amount: amount || (planId === 'plan_tUBQoR2eJxv5v' ? 4500 : planId === 'plan_hqgjSBEjElw3C' ? 19900 : 0),
+            currency,
+            receiptId: receiptId || undefined,
+            whopUserId: whopUserId || undefined,
+            source: 'whop-webhook',
+          });
+        }
+      }
+
+      return new Response(JSON.stringify({ received: true, success: true }), {
+        status: 200,
+        headers: {
+          'content-type': 'application/json',
+          'access-control-allow-origin': '*',
+        },
+      });
+    } catch (err: any) {
+      console.error('Whop webhook processing error:', err);
+      return new Response(JSON.stringify({ error: err?.message || 'internal_error' }), {
+        status: 500,
+        headers: { 'content-type': 'application/json' },
+      });
+    }
+  }),
+});
+
+http.route({
+  path: '/api/webhooks/whop',
+  method: 'OPTIONS',
+  handler: httpAction(async () => {
+    return new Response(null, {
+      status: 204,
+      headers: {
+        'access-control-allow-origin': '*',
+        'access-control-allow-methods': 'POST, OPTIONS',
+        'access-control-allow-headers': 'Content-Type, Authorization, x-whop-signature',
+      },
+    });
+  }),
+});
+
 export default http;
