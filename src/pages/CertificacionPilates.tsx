@@ -68,12 +68,7 @@ export const CertificacionPilates: React.FC = () => {
   const [enrollmentData, setEnrollmentData] = useState<any>(null);
 
   // Webinar & Whitelist Fast-Registration State
-  let registerMutation: any = null;
-  try {
-    registerMutation = useMutation(api.certificationPreRegistrations.registerWebinarWaitlist);
-  } catch (_) {
-    // SSR / prerender fallback
-  }
+  const registerMutation = useMutation(api.certificationPreRegistrations.registerWebinarWaitlist);
 
   const [selectedCohort, setSelectedCohort] = useState<'queretaro-nov-2026' | 'monterrey-dec-jan-2026-2027' | 'both'>('queretaro-nov-2026');
   const [fullName, setFullName] = useState('');
@@ -698,7 +693,7 @@ export const CertificacionPilates: React.FC = () => {
 
                       <div className="pt-2">
                         <button
-                          onClick={() => handleOpenCheckout(webinarCohort === 'monterrey' ? WHOP_CONFIG.plans.apartadoMonterrey.id : WHOP_CONFIG.plans.apartadoQueretaro.id)}
+                          onClick={() => handleOpenCheckout(selectedCohort === 'monterrey-dec-jan-2026-2027' ? WHOP_CONFIG.plans.apartadoMonterrey.id : WHOP_CONFIG.plans.apartadoQueretaro.id)}
                           className="w-full py-3 rounded-full bg-white text-neutral-900 text-xs font-bold uppercase tracking-wider hover:bg-neutral-100 transition-colors shadow-md flex items-center justify-center gap-2"
                         >
                           <span>Pre-reservar Cupo Ahora ($400 MXN)</span>
@@ -921,9 +916,12 @@ export const CertificacionPilates: React.FC = () => {
       {/* SIGNATURE 3-COLOR EDITORIAL CARDS */}
       <section className="px-6 max-w-7xl mx-auto mb-16">
         <EditorialFeatureCards
-          onEnrollClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
-          onExploreCurriculum={() => handleSelectTab('curriculo')}
-          onCommunityClick={() => handleSelectTab('comunidad')}
+          activeTab={activeTab === 'curriculo' ? 'campus' : activeTab === 'comunidad' ? 'comunidad' : 'webinar'}
+          onSelectTab={(tab) => {
+            if (tab === 'campus') handleSelectTab('curriculo');
+            else if (tab === 'comunidad') handleSelectTab('comunidad');
+            else if (tab === 'webinar') handleSelectTab('oferta');
+          }}
         />
       </section>
 

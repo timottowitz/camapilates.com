@@ -281,7 +281,7 @@ const CertificacionPilatesCity: React.FC = () => {
                 <>
                   <button
                     onClick={() => {
-                      setWhopPlan(citySlug === 'monterrey' ? WHOP_CONFIG.plans.apartadoMonterrey.id : WHOP_CONFIG.plans.apartadoQueretaro.id);
+                      setWhopPlan(key === 'monterrey' ? WHOP_CONFIG.plans.apartadoMonterrey.id : WHOP_CONFIG.plans.apartadoQueretaro.id);
                       setWhopCheckoutOpen(true);
                     }}
                     className="px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors shadow-md font-semibold"
@@ -461,7 +461,7 @@ const CertificacionPilatesCity: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button
                 onClick={() => {
-                  setWhopPlan(citySlug === 'monterrey' ? WHOP_CONFIG.plans.apartadoMonterrey.id : WHOP_CONFIG.plans.apartadoQueretaro.id);
+                  setWhopPlan(key === 'monterrey' ? WHOP_CONFIG.plans.apartadoMonterrey.id : WHOP_CONFIG.plans.apartadoQueretaro.id);
                   setWhopCheckoutOpen(true);
                 }}
                 className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#EAE8E4] text-[#2A2624] text-xs uppercase tracking-[0.2em] font-semibold hover:bg-white transition-colors shadow-lg"

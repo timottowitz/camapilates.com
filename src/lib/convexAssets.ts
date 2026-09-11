@@ -51,6 +51,11 @@ export const CONVEX_IMAGE_NAMES = {
 
   // Videos
   HERO_VIDEO: 'heroVideo',
+
+  // Whop Community Branding
+  WHOP_COMMUNITY_LOGO: 'whopCommunityLogo',
+  WHOP_COMMUNITY_BANNER: 'whopCommunityBanner',
+  WHOP_COMMUNITY_AVATAR: 'whopCommunityAvatar',
 } as const;
 
 /**
@@ -72,6 +77,9 @@ const FALLBACKS = {
   edelweissLogo: '/brand/edelweiss.svg',
   featureSilence: '/images/feature-detox.webp',
   heroVideo: '', // No local fallback for video
+  whopCommunityLogo: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/2b74c997-b04f-4a82-a10c-3907ceb461d5/image.png',
+  whopCommunityBanner: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/5e6c8658-f79e-437f-b6ee-7f790be096e6/image.png',
+  whopCommunityAvatar: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/b27fb309-8288-4f18-9ef2-5ef89c475416/image.png',
 } as const;
 
 /**
@@ -93,6 +101,9 @@ export function useConvexAssets() {
   const edelweissLogo = useConvexImage(CONVEX_IMAGE_NAMES.EDELWEISS_LOGO, getVersionedImageUrl(FALLBACKS.edelweissLogo));
   const featureSilence = useConvexImage(CONVEX_IMAGE_NAMES.FEATURE_SILENCE, getVersionedImageUrl(FALLBACKS.featureSilence));
   const heroVideo = useConvexImage(CONVEX_IMAGE_NAMES.HERO_VIDEO, FALLBACKS.heroVideo);
+  const whopCommunityLogo = useConvexImage(CONVEX_IMAGE_NAMES.WHOP_COMMUNITY_LOGO, FALLBACKS.whopCommunityLogo);
+  const whopCommunityBanner = useConvexImage(CONVEX_IMAGE_NAMES.WHOP_COMMUNITY_BANNER, FALLBACKS.whopCommunityBanner);
+  const whopCommunityAvatar = useConvexImage(CONVEX_IMAGE_NAMES.WHOP_COMMUNITY_AVATAR, FALLBACKS.whopCommunityAvatar);
 
   return {
     heroEdelweiss,
@@ -108,6 +119,9 @@ export function useConvexAssets() {
     myloSpecial,
     featureSilence,
     heroVideo,
+    whopCommunityLogo,
+    whopCommunityBanner,
+    whopCommunityAvatar,
     shopHeaderAddon: edelweissLogo, // Alias for compatibility
   };
 }
