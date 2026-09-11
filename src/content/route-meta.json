@@ -68,16 +68,16 @@
     "description": "Encuentra los mejores instructores de Pilates en México. Perfiles verificados, certificaciones internacionales y especialidades en Reformer, Mat, Prenatal y más."
   },
   "/certificacion-pilates": {
-    "title": "Certificación Profesional de Pilates Reformer (100h) en México | Querétaro, Monterrey y CDMX | CAMA Pilates",
-    "description": "Certifícate como instructora de Pilates Reformer (100 horas) con ingeniería del movimiento, práctica presencial y comunidad Whop. Próximas cohortes en Querétaro y Monterrey con 50% de descuento."
+    "title": "Certificación Profesional de Pilates Reformer (28h Básica / 48h Completa) en México | Querétaro, Monterrey y CDMX | CAMA Pilates",
+    "description": "Certifícate como instructora de Pilates Reformer: Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). Máquina individual por alumna y comunidad Whop."
   },
   "/certificacion-pilates/webinar": {
     "title": "Masterclass Online Gratuita: Certificación Pilates Reformer vía Google Meet | CAMA Pilates",
-    "description": "Masterclass en vivo 100% gratuita este Sábado 26 de Septiembre vía Google Meet con Gabi y Laura Munive. Lista de espera con 50% de descuento ($19,900 MXN) para las cohortes presenciales."
+    "description": "Masterclass en vivo 100% gratuita este Sábado 26 de Septiembre vía Google Meet con Gabi y Laura Munive. Curso Básico (28h · $25,000) y Certificación Completa (48h · $38,000) para Querétaro y Monterrey."
   },
   "/webinar": {
     "title": "Masterclass Online Gratuita: Certificación Pilates Reformer vía Google Meet | CAMA Pilates",
-    "description": "Masterclass en vivo 100% gratuita este Sábado 26 de Septiembre vía Google Meet con Gabi y Laura Munive. Lista de espera con 50% de descuento ($19,900 MXN) para las cohortes presenciales."
+    "description": "Masterclass en vivo 100% gratuita este Sábado 26 de Septiembre vía Google Meet con Gabi y Laura Munive. Curso Básico (28h · $25,000) y Certificación Completa (48h · $38,000) para Querétaro y Monterrey."
   },
   "/app": {
     "title": "Campus Virtual & Comunidad Reformer México | CAMA Pilates",

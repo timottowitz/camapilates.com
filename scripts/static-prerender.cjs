@@ -855,9 +855,9 @@ async function main() {
       : '';
     const cohortAlert = (isQueretaro || isMonterrey)
       ? `<div style="background:#2A2624;color:#EAE8E4;padding:20px;border-radius:12px;margin:24px 0;">
-          <p style="font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#D9865B;margin-bottom:8px;"><strong>Convocatoria Abierta · 50% de Descuento en Lista de Espera</strong></p>
+          <p style="font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#D9865B;margin-bottom:8px;"><strong>Convocatoria Abierta · 12 Cupos por Sede</strong></p>
           <h2 style="font-size:20px;color:#fff;margin-bottom:8px;">${isQueretaro ? 'Cohorte Querétaro: 7 al 29 de Noviembre 2026 (4 Fines de Semana)' : 'Cohorte Monterrey: 5 Dic 2026 al 17 Ene 2027 (4 Fines de Semana)'}</h2>
-          <p style="font-size:14px;color:#d1d5db;margin-bottom:16px;">Sesión en vivo con Gabi y Laura Munive el Sábado 26 de Septiembre (11:00 AM CST). Precio especial de $19,900 MXN (Regular $39,800 MXN) limitado a 12 cupos.</p>
+          <p style="font-size:14px;color:#d1d5db;margin-bottom:16px;">Sesión en vivo con Gabi y Laura Munive el Sábado 26 de Septiembre (11:00 AM CST). Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). Aparta tu lugar con $4,500 MXN.</p>
           <a href="/certificacion-pilates/webinar" style="display:inline-block;background:#fff;color:#2A2624;padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Registrarme al Pre-Webinar →</a>
         </div>`
       : '';
@@ -879,7 +879,7 @@ async function main() {
       <h2 class="text-2xl font-bold text-foreground">Qué comparar antes de inscribirte</h2>
       <ul class="mt-5 space-y-3 text-muted-foreground">
         <li>Alcance de la formación: Reformer, Mat o ruta integral.</li>
-        <li>Horas de observación, práctica y enseñanza (100 horas recomendadas).</li>
+        <li>Horas de observación, práctica y enseñanza (28h Básica / 48h Completa).</li>
         <li>Método de evaluación y organismo que respalda el certificado.</li>
         <li>Costo total, materiales incluidos y políticas de pago.</li>
       </ul>
@@ -916,11 +916,11 @@ async function main() {
     writeFileForRoute(`/certificacion-pilates/${c.key}`, html);
   }
 
-  // Certification Webinar Landing (Jason Fladlien funnel prerender)
+  // Pre-Webinar registration route (static snapshot)
   {
     const webinarHead = {
       title: 'Masterclass en Vivo: Certificación Pilates Reformer Querétaro y Monterrey | CAMA Pilates',
-      description: 'Sesión en vivo este Sábado 26 de Septiembre a las 11:00 AM CST con Gabi y Laura Munive. Lista de espera con 50% de descuento ($19,900 MXN) para Querétaro y Monterrey.',
+      description: 'Sesión en vivo este Sábado 26 de Septiembre a las 11:00 AM CST con Gabi y Laura Munive. Curso Básico (28h · $25k) y Certificación Completa (48h · $38k) para Querétaro y Monterrey.',
       canonical: `${origin}/certificacion-pilates/webinar`,
       ogImage: `${origin}/og/cama-de-pilates-venta-mexico.png`,
       ogType: 'event'
@@ -930,7 +930,7 @@ async function main() {
       <div class="container mx-auto max-w-4xl text-center">
         <p class="text-xs uppercase tracking-widest text-amber-500 font-semibold mb-3">Masterclass en Vivo · Sábado 26 de Septiembre 11:00 AM CST</p>
         <h1 class="text-3xl md:text-5xl font-serif italic mb-6">Cómo Convertirte en Instructora Certificada de Pilates Reformer en Querétaro y Monterrey</h1>
-        <p class="text-lg text-stone-300 max-w-2xl mx-auto mb-8 font-light">Sesión en vivo con Gabi y Laura Munive. Conoce el plan de estudios intensivo de 4 fines de semana y asegura tu cupo de los 12 lugares con 50% de descuento ($19,900 MXN en vez de $39,800 MXN).</p>
+        <p class="text-lg text-stone-300 max-w-2xl mx-auto mb-8 font-light">Sesión en vivo con Gabi y Laura Munive. Conoce el plan presencial intensivo: Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). Cupo limitado a 12 participantes por ciudad.</p>
         <div class="flex flex-wrap justify-center gap-4">
           <a href="/certificacion-pilates/webinar#registro" class="px-8 py-4 rounded-full bg-white text-stone-900 text-xs uppercase tracking-widest font-semibold">Apartar Lugar en el Webinar</a>
           <a href="/certificacion-pilates/queretaro" class="px-8 py-4 rounded-full border border-stone-600 text-stone-200 text-xs uppercase tracking-widest">Cohorte Querétaro (Nov 2026)</a>

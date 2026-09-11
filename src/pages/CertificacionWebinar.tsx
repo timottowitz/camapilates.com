@@ -205,7 +205,7 @@ export const CertificacionWebinar: React.FC = () => {
           </h1>
 
           <p className="text-base sm:text-xl text-[#5D5550] font-light leading-relaxed max-w-3xl mx-auto mb-8">
-            Sesión informativa <strong>100% online y gratuita vía Google Meet</strong> con <strong>Gabi</strong> y <strong>Laura Munive</strong>. Conéctate desde cualquier lugar sin traslados. Conoce el plan de estudios intensivo de 4 fines de semana para las certificaciones presenciales, domina la biomecánica clínica del Reformer y asegura tu acceso a los <strong>12 cupos con 50% de descuento ($19,900 MXN)</strong> para Querétaro (Noviembre 2026) y Monterrey (Diciembre 2026 – Enero 2027).
+            Sesión informativa <strong>100% online y gratuita vía Google Meet</strong> con <strong>Gabi</strong> y <strong>Laura Munive</strong>. Conéctate desde cualquier lugar sin traslados. Conoce las modalidades presenciales de <strong>Curso Básico (28h · $25,000 MXN)</strong> y <strong>Certificación Completa (48h · $38,000 MXN)</strong>, domina la biomecánica clínica del Reformer y asegura tu acceso a los <strong>12 cupos exclusivos por sede</strong> para Querétaro (Noviembre 2026) y Monterrey (Diciembre 2026 – Enero 2027).
           </p>
 
           {/* Event Quick Facts Pills */}
@@ -428,16 +428,16 @@ export const CertificacionWebinar: React.FC = () => {
               {/* Voucher Box */}
               <div className="bg-[#EAE8E4]/60 border border-[#2A2624]/15 rounded-2xl p-6 max-w-md mx-auto mb-8 text-left">
                 <div className="flex justify-between items-center mb-3">
-                  <span className="text-xs uppercase tracking-wider text-[#3E2723] font-bold">Voucher de Beca Asignado</span>
-                  <span className="text-xs font-mono font-bold px-2 py-1 rounded bg-amber-200 text-amber-900">50% OFF</span>
+                  <span className="text-xs uppercase tracking-wider text-[#3E2723] font-bold">Opciones Presenciales</span>
+                  <span className="text-xs font-mono font-bold px-2 py-1 rounded bg-amber-200 text-amber-900">12 Cupos Máx</span>
                 </div>
                 <div className="font-serif text-2xl text-[#2A2624] mb-1">
-                  $19,900 MXN <span className="text-sm font-sans line-through text-gray-400 font-normal">$39,800 MXN</span>
+                  $25,000 (28h) · $38,000 (48h) <span className="text-sm font-sans font-normal text-gray-500">MXN</span>
                 </div>
                 <p className="text-xs text-gray-600">
                   Sede presencial elegida: <strong>{cohort === 'queretaro-nov-2026' ? 'Querétaro (Noviembre)' : cohort === 'monterrey-dec-jan-2026-2027' ? 'Monterrey (Dic-Ene)' : 'Querétaro / Monterrey'}</strong>.
                   <br />
-                  Este precio especial se activa y adjudica durante la transmisión en vivo de Google Meet a los primeros 12 lugares.
+                  Puedes apartar tu lugar con <strong>$4,500 MXN</strong> para congelar tu lugar en cualquiera de los dos tracks.
                 </p>
               </div>
 
@@ -450,7 +450,7 @@ export const CertificacionWebinar: React.FC = () => {
                   <span className="text-amber-300 font-bold text-sm">$4,500 MXN</span>
                 </div>
                 <p className="text-xs text-stone-300 leading-relaxed">
-                  Asistir al webinar en Google Meet es <strong>100% GRATUITO</strong>. Si ya estás decidida a certificarte y quieres congelar desde hoy tu precio del 50% ($19,900 MXN) sin esperar a la transmisión, puedes apartar tu lugar presencial con <strong>$4,500 MXN</strong> a través de Whop.
+                  Asistir al webinar en Google Meet es <strong>100% GRATUITO</strong>. Si ya estás decidida a certificarte y quieres asegurar desde hoy tu lugar para el Curso Básico (28h · $25,000) o la Certificación Completa (48h · $38,000), puedes apartar tu lugar presencial con <strong>$4,500 MXN</strong> a través de Whop.
                 </p>
                 <div className="flex flex-col gap-2 pt-1">
                   <button
@@ -615,9 +615,9 @@ export const CertificacionWebinar: React.FC = () => {
           <div className="flex gap-4 p-6 rounded-2xl bg-white border border-[#2A2624]/10 shadow-sm">
             <div className="w-10 h-10 rounded-xl bg-[#2A2624] text-white flex items-center justify-center flex-shrink-0 font-serif">4</div>
             <div>
-              <h3 className="font-serif text-lg text-[#2A2624] mb-2">Mecanismo de Descuento del 50% ($19,900 MXN)</h3>
+              <h3 className="font-serif text-lg text-[#2A2624] mb-2">Modalidades de Formación (28h Básico / 48h Completo)</h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                Revelaremos el enlace prioritario para asegurar uno de los 12 lugares con beca por ciudad con apartado accesible de $4,500 MXN y saldo en cómodas parcialidades.
+                Revelaremos el enlace prioritario para asegurar uno de los 12 lugares por ciudad: Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN) con apartado accesible de $4,500 MXN.
               </p>
             </div>
           </div>
@@ -657,10 +657,9 @@ export const CertificacionWebinar: React.FC = () => {
 
               <div className="pt-6 border-t border-gray-200">
                 <div className="flex items-baseline justify-between mb-4">
-                  <span className="text-xs uppercase tracking-wider text-gray-500">Inversión con Beca:</span>
+                  <span className="text-xs uppercase tracking-wider text-gray-500">Inversión Oficial:</span>
                   <div className="text-right">
-                    <span className="text-2xl font-serif text-[#2A2624] font-bold">$19,900 MXN</span>
-                    <span className="text-xs text-gray-400 line-through ml-2">$39,800 MXN</span>
+                    <span className="text-lg font-serif text-[#2A2624] font-bold">$25,000 (28h) · $38,000 (48h)</span>
                   </div>
                 </div>
                 <a
@@ -699,10 +698,9 @@ export const CertificacionWebinar: React.FC = () => {
 
               <div className="pt-6 border-t border-gray-200">
                 <div className="flex items-baseline justify-between mb-4">
-                  <span className="text-xs uppercase tracking-wider text-gray-500">Inversión con Beca:</span>
+                  <span className="text-xs uppercase tracking-wider text-gray-500">Inversión Oficial:</span>
                   <div className="text-right">
-                    <span className="text-2xl font-serif text-[#2A2624] font-bold">$19,900 MXN</span>
-                    <span className="text-xs text-gray-400 line-through ml-2">$39,800 MXN</span>
+                    <span className="text-lg font-serif text-[#2A2624] font-bold">$25,000 (28h) · $38,000 (48h)</span>
                   </div>
                 </div>
                 <a
@@ -751,16 +749,16 @@ export const CertificacionWebinar: React.FC = () => {
                 ¿El webinar es presencial o por Google Meet?
               </h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                <strong>El webinar es 100% ONLINE vía Google Meet.</strong> Puedes conectarte desde tu casa, estudio o celular desde cualquier parte de México o el mundo. Lo que se realiza de manera presencial son las prácticas clínicas intensivas de 100 horas que inician en Noviembre 2026 en Querétaro y en Dic 2026 – Ene 2027 en Monterrey para quienes decidan matricularse.
+                <strong>El webinar es 100% ONLINE vía Google Meet.</strong> Puedes conectarte desde tu casa, estudio o celular desde cualquier parte de México o el mundo. Lo que se realiza de manera presencial son las prácticas intensivas que inician en Noviembre 2026 en Querétaro y en Dic 2026 – Ene 2027 en Monterrey para quienes decidan matricularse.
               </p>
             </div>
 
             <div className="p-6 rounded-2xl bg-[#EAE8E4]/30 border border-[#2A2624]/10">
               <h3 className="font-serif text-lg text-[#2A2624] mb-2 font-semibold">
-                ¿Cómo funciona el 50% de descuento ($19,900 MXN)?
+                ¿Cuáles son las modalidades y precios de la formación presencial?
               </h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                El costo regular de la formación presencial de 100 horas es de $39,800 MXN. Para las cohortes de Querétaro y Monterrey, liberamos 12 becas por ciudad del 50% ($19,900 MXN) que se asignan por orden de pre-registro y asistencia al webinar en Google Meet. Si deseas congelar tu beca desde hoy sin esperar al webinar, puedes apartar con $4,500 MXN en Whop.
+                Ofrecemos dos rutas oficiales: el <strong>Curso Básico (28 horas en 2 fines de semana)</strong> por <strong>$25,000 MXN</strong> y la <strong>Certificación Completa (48 horas en 4 fines de semana)</strong> por <strong>$38,000 MXN</strong>. Puedes congelar tu lugar en cualquiera de las cohortes con un apartado oficial de $4,500 MXN en Whop.
               </p>
             </div>
 
@@ -769,7 +767,7 @@ export const CertificacionWebinar: React.FC = () => {
                 ¿Qué validez tiene el certificado al graduarme?
               </h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                Recibes constancia de 100 horas totales con desglose de instrucción directa, observación clínica y docencia supervisada, con aval curricular reconocido por estudios de Pilates en México e internacionalmente.
+                Recibes constancia oficial avalada (28h Básico o 48h Completo) con desglose de instrucción directa, biomecánica y docencia supervisada, con aval curricular reconocido por estudios de Pilates en México e internacionalmente.
               </p>
             </div>
 
