@@ -21,7 +21,12 @@ import {
   Users,
   Compass,
   Zap,
+  Loader2,
+  Lock,
 } from 'lucide-react';
+import { useConvex } from 'convex/react';
+import { api } from '../../convex/_generated/api';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { WHOP_CONFIG } from '@/lib/whop/whopConfig';
 import { WhopCommunityEmbed } from '@/components/webapp/WhopCommunityEmbed';
 import { WhopForumReader } from '@/components/webapp/WhopForumReader';
@@ -35,6 +40,7 @@ type WebappTab = 'campus' | 'comunidad' | 'webinar' | 'recursos' | 'pagos';
 const WebappExperience: React.FC = () => {
   const [searchParams] = useSearchParams();
   const origin = getOrigin();
+  const convex = useConvex();
 
   const tabParam = searchParams.get('tab') as WebappTab | null;
 
@@ -49,6 +55,13 @@ const WebappExperience: React.FC = () => {
   const [checkoutPlanId, setCheckoutPlanId] = useState<string>(WHOP_CONFIG.plans.apartado.id);
   const [enrollmentData, setEnrollmentData] = useState<any>(null);
 
+  // Member verification modal state
+  const [verifyModalOpen, setVerifyModalOpen] = useState(false);
+  const [verifyEmail, setVerifyEmail] = useState('');
+  const [verifying, setVerifying] = useState(false);
+  const [verifyStatus, setVerifyStatus] = useState<'idle' | 'success' | 'not_found' | 'error'>('idle');
+  const [verifyMessage, setVerifyMessage] = useState('');
+
   useEffect(() => {
     try {
       const saved = localStorage.getItem('cama_pilates_whop_enrollment');
@@ -57,6 +70,68 @@ const WebappExperience: React.FC = () => {
       }
     } catch (_) {}
   }, []);
+
+  const handleVerifySubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const cleanEmail = verifyEmail.trim().toLowerCase();
+    if (!cleanEmail || !cleanEmail.includes('@')) {
+      setVerifyStatus('error');
+      setVerifyMessage('Por favor ingresa un correo electrónico válido.');
+      return;
+    }
+
+    setVerifying(true);
+    setVerifyStatus('idle');
+    setVerifyMessage('');
+
+    try {
+      const res = await convex.query(api.whopPayments.verifyMemberAccess, {
+        email: cleanEmail,
+      });
+
+      if (res && res.verified) {
+        const session = {
+          enrolled: true,
+          email: cleanEmail,
+          fullName: res.fullName,
+          planId: res.planId,
+          planName: res.planName,
+          cohort: res.cohort,
+          type: res.type,
+          date: new Date().toISOString(),
+        };
+        try {
+          localStorage.setItem('cama_pilates_whop_enrollment', JSON.stringify(session));
+        } catch (_) {}
+        setEnrollmentData(session);
+        setVerifyStatus('success');
+        setVerifyMessage(`¡Bienvenida ${res.fullName}! Tu acceso a "${res.planName}" ha sido verificado.`);
+        setTimeout(() => {
+          setVerifyModalOpen(false);
+          setVerifyStatus('idle');
+          setVerifyEmail('');
+        }, 1500);
+      } else {
+        setVerifyStatus('not_found');
+        setVerifyMessage(
+          'No encontramos una compra o pre-registro activo con este correo. Puedes apartar tu lugar hoy mismo o abrir tu cuenta en Whop.'
+        );
+      }
+    } catch (err: any) {
+      console.error('Error verifying member access:', err);
+      setVerifyStatus('error');
+      setVerifyMessage('Ocurrió un error al verificar tu acceso. Intenta de nuevo o ingresa directamente a Whop.');
+    } finally {
+      setVerifying(false);
+    }
+  };
+
+  const handleLogout = () => {
+    try {
+      localStorage.removeItem('cama_pilates_whop_enrollment');
+    } catch (_) {}
+    setEnrollmentData(null);
+  };
 
   const handleOpenCheckout = (planId: string) => {
     setCheckoutPlanId(planId);
@@ -105,6 +180,12 @@ const WebappExperience: React.FC = () => {
                   <Sparkles className="w-3 h-3 text-orange-500" />
                   Campus Virtual & Whop
                 </span>
+                <Link
+                  to="/certificacion-pilates"
+                  className="hidden md:inline-flex items-center gap-1 text-[11px] font-mono uppercase tracking-wider text-neutral-500 hover:text-neutral-900 transition-colors ml-2"
+                >
+                  <span>• Landing Oficial (100h)</span>
+                </Link>
               </div>
             </div>
 
@@ -125,21 +206,41 @@ const WebappExperience: React.FC = () => {
             </div>
 
             {/* User status & Primary CTA */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               {enrollmentData ? (
-                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-medium">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-medium">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Lugar Confirmado</span>
+                  <span className="font-semibold">{enrollmentData.fullName || 'Alumna Verificada'}</span>
+                  <span className="hidden md:inline text-emerald-600">· {enrollmentData.planName || 'Lugar Confirmado'}</span>
+                  <button
+                    type="button"
+                    onClick={handleLogout}
+                    className="ml-1 text-[10px] text-emerald-700 hover:text-emerald-950 underline cursor-pointer"
+                    title="Cerrar sesión en este navegador"
+                  >
+                    (Salir)
+                  </button>
                 </div>
               ) : (
-                <button
-                  type="button"
-                  onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
-                  className="px-5 py-2 bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold rounded-full transition-all shadow-sm flex items-center gap-1.5"
-                >
-                  <span>Apartar Cupo ($4,500 MXN)</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setVerifyModalOpen(true)}
+                    className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100 transition-colors font-medium border border-transparent hover:border-neutral-200"
+                  >
+                    <UserCheck className="w-3.5 h-3.5 text-neutral-500" />
+                    <span>¿Ya tienes cuenta?</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
+                    className="px-4 sm:px-5 py-2 bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold rounded-full transition-all shadow-sm flex items-center gap-1.5"
+                  >
+                    <span>Apartar Cupo ($4,500 MXN)</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               )}
 
               <a
@@ -865,6 +966,108 @@ const WebappExperience: React.FC = () => {
         planId={checkoutPlanId}
         cohort={`${selectedCohort}-2026`}
       />
+
+      {/* Verify Member Access Modal */}
+      <Dialog open={verifyModalOpen} onOpenChange={setVerifyModalOpen}>
+        <DialogContent className="sm:max-w-md bg-white rounded-3xl border border-neutral-200/90 p-6 sm:p-8 shadow-xl">
+          <DialogHeader className="space-y-2 text-left">
+            <div className="w-10 h-10 rounded-2xl bg-neutral-900 text-white flex items-center justify-center mb-1">
+              <UserCheck className="w-5 h-5 text-emerald-400" />
+            </div>
+            <DialogTitle className="text-xl font-bold tracking-tight text-neutral-950">
+              Verificar Acceso de Alumna
+            </DialogTitle>
+            <p className="text-xs text-neutral-600 leading-relaxed">
+              Ingresa el correo electrónico con el que compraste en Whop o te registraste en la lista de espera para activar tu sesión en este dispositivo.
+            </p>
+          </DialogHeader>
+
+          <form onSubmit={handleVerifySubmit} className="space-y-4 mt-2">
+            <div>
+              <label htmlFor="verify-email" className="block text-xs font-semibold text-neutral-800 mb-1.5 font-mono">
+                CORREO ELECTRÓNICO
+              </label>
+              <input
+                id="verify-email"
+                type="email"
+                value={verifyEmail}
+                onChange={(e) => setVerifyEmail(e.target.value)}
+                placeholder="ejemplo@correo.com"
+                className="w-full px-4 py-3 rounded-2xl border border-neutral-200 bg-neutral-50/50 text-neutral-900 placeholder:text-neutral-400 text-sm focus:outline-hidden focus:ring-2 focus:ring-neutral-900 focus:bg-white transition-all"
+                autoFocus
+                disabled={verifying}
+              />
+            </div>
+
+            {verifyStatus === 'success' && (
+              <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>{verifyMessage}</span>
+              </div>
+            )}
+
+            {verifyStatus === 'not_found' && (
+              <div className="p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-950 text-xs space-y-2">
+                <p className="font-semibold text-amber-900">{verifyMessage}</p>
+                <div className="flex items-center gap-2 pt-1">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setVerifyModalOpen(false);
+                      handleOpenCheckout(WHOP_CONFIG.plans.apartado.id);
+                    }}
+                    className="px-3 py-1.5 bg-neutral-900 text-white rounded-full font-semibold text-[11px] hover:bg-neutral-800"
+                  >
+                    Apartar Cupo ($4,500 MXN)
+                  </button>
+                  <a
+                    href={WHOP_CONFIG.customerPortalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1.5 bg-white border border-amber-300 text-amber-900 rounded-full font-medium text-[11px] hover:bg-amber-100/50 flex items-center gap-1"
+                  >
+                    <span>Ir a Whop</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              </div>
+            )}
+
+            {verifyStatus === 'error' && (
+              <div className="p-3.5 rounded-2xl bg-rose-50 border border-rose-200 text-rose-900 text-xs">
+                {verifyMessage}
+              </div>
+            )}
+
+            <div className="pt-2 flex flex-col gap-2">
+              <button
+                type="submit"
+                disabled={verifying}
+                className="w-full py-3 bg-neutral-900 hover:bg-neutral-800 disabled:opacity-50 text-white font-semibold text-xs uppercase tracking-wider rounded-full transition-all flex items-center justify-center gap-2 shadow-sm"
+              >
+                {verifying ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Verificando membresía...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Verificar Mi Acceso</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </>
+                )}
+              </button>
+
+              <p className="text-[11px] text-center text-neutral-500 pt-1">
+                ¿Problemas para acceder? Contacta a soporte en{' '}
+                <a href="mailto:soporte@camadepilates.com" className="underline hover:text-neutral-900">
+                  soporte@camadepilates.com
+                </a>
+              </p>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };

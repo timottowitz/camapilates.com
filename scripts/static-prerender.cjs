@@ -745,50 +745,87 @@ async function main() {
   // Certification landing (static snapshot for SEO)
   {
     const head = {
-      title: 'Certificación de Pilates (Reformer) en México — CDMX, Guadalajara y Monterrey | camadepilates.com',
-      description: 'Conecta con certificaciones de Pilates Reformer y Mat en México. Sedes en CDMX, Guadalajara y Monterrey. Requisitos, duración, costos y registro.',
+      title: 'Certificación Profesional de Pilates Reformer (100h) en México | Querétaro, Monterrey y CDMX | CAMA Pilates',
+      description: 'Certifícate como instructora de Pilates Reformer (100 horas): biomecánica clínica, máquina individual por alumna y comunidad Whop. Sedes en Querétaro y Monterrey con 50% de descuento.',
       canonical: `${origin}/certificacion-pilates`,
       ogImage: `${origin}/og/cama-de-pilates-venta-mexico.png`,
       ogType: 'website'
     };
-    const certFormUrl = process.env.CERT_FORM_URL || process.env.VITE_AIRTABLE_CERT_FORM_URL || 'mailto:valery@camadepilates.com';
-    const cities = [
-      { key: 'cdmx', name: 'Ciudad de México (CDMX)' },
-      { key: 'guadalajara', name: 'Guadalajara (Jalisco)' },
-      { key: 'monterrey', name: 'Monterrey (NL)' },
-      { key: 'puebla', name: 'Puebla' },
-      { key: 'queretaro', name: 'Querétaro' },
-    ];
     const body = `
-    <section class="bg-background border-b border-border">
-      <div class="container mx-auto px-4 py-12">
-        <h1 class="text-3xl md:text-4xl font-bold text-foreground">Certificación de Pilates (Reformer) en México</h1>
-        <p class="mt-4 text-lg text-muted-foreground max-w-2xl">Edelweiss te conecta con certificaciones de Pilates en México (Reformer y Mat). Sedes en CDMX, Guadalajara y Monterrey. Recibe asesoría sobre requisitos, duración, costos y próximas fechas.</p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="https://wa.me/523222787690?text=Hola%20Edelweiss%2C%20quiero%20inscribirme%20a%20la%20certificaci%C3%B3n%20de%20Pilates" class="inline-flex items-center px-5 py-3 rounded-md bg-primary text-primary-foreground">Quiero inscribirme</a>
-          <a href="mailto:valery@camadepilates.com?subject=Certificaci%C3%B3n%20de%20Pilates%20-%20Informaci%C3%B3n" class="inline-flex items-center px-5 py-3 rounded-md border border-foreground text-foreground">Solicitar información por correo</a>
-          <a href="${certFormUrl}" class="inline-flex items-center px-5 py-3 rounded-md border border-foreground text-foreground">Formulario de pre-inscripción</a>
+    <header style="background:#F8F8F6;border-bottom:1px solid #E5E5E0;padding:16px 24px;">
+      <div style="max-w:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-family:monospace;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;">
+          <a href="/" style="color:#666;text-decoration:none;">• camadepilates.com</a> / <span style="color:#111;">[ 100H CERTIFICACIÓN PROFESIONAL ]</span>
+        </div>
+        <div>
+          <a href="/certificacion-pilates/webinar" style="display:inline-block;background:#111;color:#fff;padding:8px 18px;border-radius:999px;font-size:12px;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Apartar Cupo ($4,500 MXN)</a>
         </div>
       </div>
-    </section>
-    <section class="bg-background">
-      <div class="container mx-auto px-4 py-12">
-        <h2 class="text-2xl font-bold text-foreground mb-6">Sedes y registro</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-          ${cities.map(c => `
-            <div id="${c.key}" class="border rounded-lg p-6 bg-card">
-              <h3 class="text-xl font-semibold text-foreground">Certificación de Pilates en ${c.name}</h3>
-              <p class="text-sm text-muted-foreground mt-2">Programas en fines de semana e intensivos. Modalidades Mat y Reformer con práctica supervisada.</p>
-              <div class="mt-4 flex flex-wrap gap-3">
-                <a href="https://wa.me/523222787690?text=Hola%20Edelweiss%2C%20quiero%20inscribirme%20a%20la%20certificaci%C3%B3n%20de%20Pilates%20en%20${encodeURIComponent(c.name)}" class="inline-flex items-center px-4 py-2 rounded-md bg-primary text-primary-foreground">Inscribirme en ${c.name.split(' ')[0]}</a>
-                <a href="mailto:valery@camadepilates.com?subject=Certificaci%C3%B3n%20de%20Pilates%20-%20${encodeURIComponent(c.name)}" class="inline-flex items-center px-4 py-2 rounded-md border border-foreground text-foreground">Solicitar temario</a>
-                <a href="${certFormUrl}" class="inline-flex items-center px-4 py-2 rounded-md border border-foreground text-foreground">Pre-inscripción</a>
-              </div>
+    </header>
+
+    <main style="background:#F8F8F6;color:#0F0F0F;padding:48px 24px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;">
+      <div style="max-width:1200px;margin:0 auto;">
+        <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
+          <span style="background:#ECECE9;padding:6px 14px;border-radius:999px;font-family:monospace;font-size:11px;font-weight:600;letter-spacing:1px;">• 56H PRESENCIALES PRÁCTICAS</span>
+          <span style="background:#ECECE9;padding:6px 14px;border-radius:999px;font-family:monospace;font-size:11px;font-weight:600;letter-spacing:1px;">[ QUERÉTARO · MONTERREY · CDMX ]</span>
+          <span style="background:#D1FAE5;color:#065F46;padding:6px 14px;border-radius:999px;font-family:monospace;font-size:11px;font-weight:600;letter-spacing:1px;">● 50% OFF LISTA DE ESPERA</span>
+        </div>
+
+        <h1 style="font-size:48px;line-height:1.05;font-weight:800;letter-spacing:-1.5px;margin:0 0 24px 0;max-width:900px;color:#0F0F0F;">
+          Formación clínica en cada movimiento.
+        </h1>
+
+        <p style="font-size:19px;line-height:1.6;color:#4B5563;max-width:800px;margin:0 0 32px 0;">
+          Certificación profesional de 100 horas en Pilates Reformer con ingeniería del movimiento, una máquina profesional exclusiva por alumna (sin turnos compartidos) y comunidad de por vida en Whop. Impartida por las Master Trainers <strong>Gabi</strong> y <strong>Laura Munive</strong>.
+        </p>
+
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px;">
+          <a href="/certificacion-pilates/webinar" style="display:inline-block;background:#111;color:#fff;padding:14px 28px;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Apartar Cupo con 50% OFF ($19,900 MXN) →</a>
+          <a href="https://wa.me/525548468190?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20certificaci%C3%B3n%20de%20Pilates%20Reformer" style="display:inline-block;background:#fff;border:1px solid #D1D5DB;color:#111;padding:14px 28px;border-radius:999px;font-size:13px;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Consultar por WhatsApp</a>
+          <a href="/app" style="display:inline-block;background:#ECECE9;border:1px solid #D1D5DB;color:#111;padding:14px 28px;border-radius:999px;font-size:13px;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Campus Alumnas & Foros</a>
+        </div>
+
+        <section style="margin-bottom:48px;">
+          <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.5px;margin-bottom:20px;">Sedes y Próximas Cohortes Presenciales</h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:24px;">
+            <div style="background:#fff;border:1px solid #E5E7EB;border-radius:20px;padding:28px;">
+              <span style="display:inline-block;background:#D1FAE5;color:#065F46;font-family:monospace;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;margin-bottom:12px;">50% OFF · 12 CUPOS</span>
+              <h3 style="font-size:22px;font-weight:700;margin:0 0 8px 0;">Querétaro</h3>
+              <p style="font-size:14px;color:#4B5563;line-height:1.5;margin-bottom:16px;">4 fines de semana presenciales (7 al 29 de Noviembre de 2026) en Juriquilla / Álamos. Cupo estricto a 12 participantes con Reformer individual.</p>
+              <div style="font-size:24px;font-weight:800;color:#111;margin-bottom:16px;">$19,900 MXN <span style="font-size:14px;font-weight:normal;color:#9CA3AF;text-decoration:line-through;">$39,800 MXN</span></div>
+              <a href="/certificacion-pilates/queretaro" style="display:inline-block;background:#111;color:#fff;padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;text-decoration:none;text-transform:uppercase;">Ver Convocatoria Querétaro →</a>
             </div>
-          `).join('')}
-        </div>
+
+            <div style="background:#fff;border:1px solid #E5E7EB;border-radius:20px;padding:28px;">
+              <span style="display:inline-block;background:#D1FAE5;color:#065F46;font-family:monospace;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;margin-bottom:12px;">50% OFF · 12 CUPOS</span>
+              <h3 style="font-size:22px;font-weight:700;margin:0 0 8px 0;">Monterrey</h3>
+              <p style="font-size:14px;color:#4B5563;line-height:1.5;margin-bottom:16px;">4 fines de semana presenciales (5 Dic 2026 al 17 Ene 2027) en San Pedro Garza García. Práctica intensiva supervisada y Reformer exclusivo.</p>
+              <div style="font-size:24px;font-weight:800;color:#111;margin-bottom:16px;">$19,900 MXN <span style="font-size:14px;font-weight:normal;color:#9CA3AF;text-decoration:line-through;">$39,800 MXN</span></div>
+              <a href="/certificacion-pilates/monterrey" style="display:inline-block;background:#111;color:#fff;padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;text-decoration:none;text-transform:uppercase;">Ver Convocatoria Monterrey →</a>
+            </div>
+
+            <div style="background:#fff;border:1px solid #E5E7EB;border-radius:20px;padding:28px;">
+              <span style="display:inline-block;background:#ECECE9;color:#374151;font-family:monospace;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;margin-bottom:12px;">MERRITHEW® OFICIAL</span>
+              <h3 style="font-size:22px;font-weight:700;margin:0 0 8px 0;">Ciudad de México</h3>
+              <p style="font-size:14px;color:#4B5563;line-height:1.5;margin-bottom:16px;">Programa STOTT PILATES® Intensive Reformer (125h) e Intensive Mat-Plus™ en Santa Fe con Pilates Educare. Validez en 100+ países.</p>
+              <div style="font-size:24px;font-weight:800;color:#111;margin-bottom:16px;">$44,000 MXN <span style="font-size:12px;font-weight:normal;color:#6B7280;">(Intensive Reformer)</span></div>
+              <a href="/certificacion-pilates/cdmx" style="display:inline-block;background:#111;color:#fff;padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;text-decoration:none;text-transform:uppercase;">Ver Programa STOTT CDMX →</a>
+            </div>
+          </div>
+        </section>
+
+        <section style="background:#fff;border:1px solid #E5E7EB;border-radius:24px;padding:32px;margin-bottom:48px;">
+          <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">Plan de Estudios de 100 Horas (4 Fines de Semana)</h2>
+          <ul style="color:#4B5563;line-height:1.8;padding-left:20px;font-size:15px;">
+            <li><strong>Módulo 1 (14h):</strong> Anatomía Funcional Aplicada & Repertorio Esencial Reformer (35 movimientos base).</li>
+            <li><strong>Módulo 2 (14h):</strong> Repertorio Intermedio, Dinámica de Carro & Manejo de Cargas según Biotipo.</li>
+            <li><strong>Módulo 3 (14h):</strong> Modificaciones Clínicas, Hernias Discales, Dolor Lumbar y Poblaciones Especiales.</li>
+            <li><strong>Módulo 4 (14h):</strong> Metodología de Cueing Preciso, Práctica de Enseñanza Supervisada y Certificación.</li>
+            <li><strong>Campus Whop (44h):</strong> Biblioteca digital HD, foros clínicos y grabaciones de por vida.</li>
+          </ul>
+        </section>
       </div>
-    </section>`;
+    </main>`;
     const html = baseHtml(template, head, body);
     writeFileForRoute('/certificacion-pilates', html);
   }
@@ -981,7 +1018,7 @@ async function main() {
   // descriptions come from the same src/content/route-meta.json the components read,
   // so the prerendered head and the hydrated head cannot disagree.
   for (const [route, meta] of Object.entries(routeMeta)) {
-    if (route === '/reformer-para-estudio') continue;
+    if (route === '/reformer-para-estudio' || route === '/certificacion-pilates' || route === '/certificacion-pilates/webinar') continue;
     const head = {
       title: meta.title,
       description: meta.description,

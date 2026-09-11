@@ -89,3 +89,55 @@ export const getPaymentsByEmail = query({
       .collect();
   },
 });
+
+/**
+ * Verify member access across whopPayments and certificationPreRegistrations
+ */
+export const verifyMemberAccess = query({
+  args: { email: v.string() },
+  handler: async (ctx, args) => {
+    const cleanEmail = args.email.toLowerCase().trim();
+    if (!cleanEmail) return { verified: false, reason: 'empty_email' };
+
+    // 1. Check paid memberships first
+    const payment = await ctx.db
+      .query('whopPayments')
+      .withIndex('by_email', (q) => q.eq('email', cleanEmail))
+      .order('desc')
+      .first();
+
+    if (payment && payment.paymentStatus === 'completed') {
+      return {
+        verified: true,
+        type: 'paid_member',
+        planId: payment.planId,
+        planName: payment.planName,
+        fullName: payment.fullName || 'Alumna Verificada',
+        cohort: payment.cohort || '2026',
+        receiptId: payment.receiptId,
+        date: payment.createdAt,
+      };
+    }
+
+    // 2. Check pre-registration waitlist
+    const reg = await ctx.db
+      .query('certificationPreRegistrations')
+      .withIndex('by_email', (q) => q.eq('email', cleanEmail))
+      .first();
+
+    if (reg) {
+      return {
+        verified: true,
+        type: reg.status === 'enrolled' ? 'enrolled_student' : 'preregistered',
+        planId: 'plan_waitlist',
+        planName: reg.status === 'enrolled' ? 'Alumna Matriculada' : 'Lista de Espera 50% OFF',
+        fullName: reg.fullName || 'Aspirante Registrada',
+        cohort: reg.selectedCohort || '2026',
+        city: reg.city,
+        date: reg.submittedAt,
+      };
+    }
+
+    return { verified: false, reason: 'not_found' };
+  },
+});

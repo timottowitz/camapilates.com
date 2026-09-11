@@ -279,6 +279,13 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
 
                 <div className="pt-2 flex flex-col gap-2">
                   <a
+                    href="/app?tab=pagos"
+                    className="inline-flex items-center justify-center gap-2 w-full py-2.5 bg-[#2A2624] hover:bg-[#3E2723] text-white rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors shadow-sm"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                    Apartar Lugar con $4,500 MXN (1 de 12)
+                  </a>
+                  <a
                     href={`https://wa.me/525549425550?text=${encodeURIComponent(`Hola, acabo de registrarme a la lista de espera para la Certificación en ${cohortCityName} con 50% de descuento. ¿Me comparten los detalles?`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -287,12 +294,20 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
                     <MessageCircle className="w-4 h-4" />
                     Confirmar por WhatsApp VIP
                   </a>
-                  <a
-                    href="/certificacion-pilates/webinar"
-                    className="text-center text-xs text-[#8C6D58] hover:underline pt-1"
-                  >
-                    Ver programa completo del evento →
-                  </a>
+                  <div className="flex items-center justify-between text-xs pt-1 px-1">
+                    <a
+                      href="/app"
+                      className="text-[#8C6D58] hover:underline font-medium"
+                    >
+                      Campus Virtual & Whop →
+                    </a>
+                    <a
+                      href="/certificacion-pilates/webinar"
+                      className="text-[#8C6D58] hover:underline font-medium"
+                    >
+                      Programa Webinar →
+                    </a>
+                  </div>
                 </div>
               </div>
             ) : (
