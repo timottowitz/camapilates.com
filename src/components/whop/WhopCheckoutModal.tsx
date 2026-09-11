@@ -92,7 +92,12 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
       <DialogContent className="max-w-2xl max-h-[92vh] flex flex-col bg-white border border-neutral-200 text-neutral-900 p-0 overflow-hidden shadow-2xl rounded-3xl">
         <DialogHeader className="p-6 pb-4 border-b border-neutral-200/80 bg-neutral-50/60 shrink-0">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2.5">
+              <img
+                src={WHOP_CONFIG.assets.avatarUrl}
+                alt="CAMA Pilates"
+                className="w-7 h-7 rounded-lg object-cover border border-neutral-200"
+              />
               <span className="px-2.5 py-0.5 rounded-full bg-neutral-900 text-white font-mono text-[10px] font-semibold uppercase tracking-wider">
                 Whop Secure Checkout
               </span>

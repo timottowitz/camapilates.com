@@ -8,8 +8,17 @@ export const WHOP_CONFIG = {
   productId: 'prod_Iv5ZnKkugonCn',
   productRoute: 'mexico-reformer-community',
   communityUrl: 'https://whop.com/mexico-reformer-community',
-  companyRouteUrl: 'https://whop.com/legalintakesoftware',
+  companyRouteUrl: 'https://whop.com/pilatesreforrmermexico',
   customerPortalUrl: 'https://whop.com/@me/settings/memberships',
+
+  assets: {
+    bannerUrl: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/5e6c8658-f79e-437f-b6ee-7f790be096e6/image.png',
+    logoUrl: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/2b74c997-b04f-4a82-a10c-3907ceb461d5/image.png',
+    avatarUrl: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/b27fb309-8288-4f18-9ef2-5ef89c475416/image.png',
+    localBanner: '/images/whop/whop-community-banner.png',
+    localLogo: '/images/whop/whop-community-logo.png',
+    localAvatar: '/images/whop/whop-community-avatar.png',
+  },
 
   experiences: {
     courses: {

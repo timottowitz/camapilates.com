@@ -550,22 +550,30 @@ const WebappExperience: React.FC = () => {
           {/* TAB 2: COMUNIDAD WHOP */}
           {activeTab === 'comunidad' && (
             <div className="space-y-8">
-              {/* Community Banner with Live Stats */}
-              <div className="bg-white border border-neutral-200/90 rounded-[28px] p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-xs">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-xs font-mono uppercase tracking-wider text-neutral-500 font-bold">
-                      Canal Oficial en Vivo · Whop Sync
-                    </span>
-                  </div>
-                  <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900">
-                    Comunidad de Alumnas e Instructoras CAMA Pilates
-                  </h2>
-                  <p className="text-xs sm:text-sm text-neutral-600 max-w-2xl leading-relaxed">
-                    Interactúa con tus formadoras Gabi & Laura Munive, debate casos clínicos de patologías y conecta con la red de graduadas en Querétaro y Monterrey.
-                  </p>
+              {/* Community Banner with Visual Showcase */}
+              <div className="bg-white border border-neutral-200/90 rounded-[28px] overflow-hidden shadow-xs">
+                <div className="relative w-full aspect-[2/1] sm:aspect-[2.4/1] max-h-[360px] overflow-hidden border-b border-neutral-200/80 bg-neutral-100">
+                  <img
+                    src={WHOP_CONFIG.assets.bannerUrl}
+                    alt="Comunidad Whop CAMA Pilates México"
+                    className="w-full h-full object-cover object-center"
+                  />
                 </div>
+                <div className="p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                      <span className="text-xs font-mono uppercase tracking-wider text-neutral-500 font-bold">
+                        Canal Oficial en Vivo · Whop Sync
+                      </span>
+                    </div>
+                    <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900">
+                      Comunidad de Alumnas e Instructoras CAMA Pilates
+                    </h2>
+                    <p className="text-xs sm:text-sm text-neutral-600 max-w-2xl leading-relaxed">
+                      Interactúa con tus formadoras Gabi & Laura Munive, debate casos clínicos de patologías y conecta con la red de graduadas en Querétaro y Monterrey.
+                    </p>
+                  </div>
 
                 <div className="flex items-center gap-2.5 shrink-0">
                   <a
@@ -587,6 +595,7 @@ const WebappExperience: React.FC = () => {
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>
+              </div>
               </div>
 
               {/* 4 Community Highlights / Channels Cards */}

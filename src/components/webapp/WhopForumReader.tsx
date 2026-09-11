@@ -224,9 +224,11 @@ export const WhopForumReader: React.FC<WhopForumReaderProps> = ({
       {/* Header Bar */}
       <div className="bg-neutral-50/70 border-b border-neutral-200/80 px-6 py-4 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-2xl bg-neutral-900 text-white flex items-center justify-center font-bold text-xs shadow-sm">
-            <MessageSquare className="w-4 h-4" />
-          </div>
+          <img
+            src={WHOP_CONFIG.assets.avatarUrl}
+            alt="CAMA Pilates"
+            className="w-9 h-9 rounded-2xl object-cover border border-neutral-200 shadow-sm"
+          />
           <div>
             <div className="flex items-center gap-2">
               <h3 className="text-sm font-bold text-neutral-900 tracking-tight">

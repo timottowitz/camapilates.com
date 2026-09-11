@@ -758,7 +758,7 @@ async function main() {
           <a href="/" style="color:#666;text-decoration:none;">• camadepilates.com</a> / <span style="color:#111;">[ 28H / 48H CERTIFICACIÓN PROFESIONAL ]</span>
         </div>
         <div>
-          <a href="/certificacion-pilates/webinar" style="display:inline-block;background:#111;color:#fff;padding:8px 18px;border-radius:999px;font-size:12px;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Apartar Cupo ($4,500 MXN)</a>
+          <a href="/certificacion-pilates/webinar" style="display:inline-block;background:#111;color:#fff;padding:8px 18px;border-radius:999px;font-size:12px;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Pre-reservar Cupo ($400 MXN)</a>
         </div>
       </div>
     </header>
@@ -780,7 +780,7 @@ async function main() {
         </p>
 
         <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px;">
-          <a href="/certificacion-pilates/webinar" style="display:inline-block;background:#111;color:#fff;padding:14px 28px;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Apartar Cupo Oficial ($4,500 MXN) →</a>
+          <a href="/certificacion-pilates/webinar" style="display:inline-block;background:#111;color:#fff;padding:14px 28px;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Pre-reservar Cupo Oficial ($400 MXN) →</a>
           <a href="https://wa.me/525548468190?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20Curso%20B%C3%A1sico%20(28h)%20y%20Certificaci%C3%B3n%20Completa%20(48h)" style="display:inline-block;background:#fff;border:1px solid #D1D5DB;color:#111;padding:14px 28px;border-radius:999px;font-size:13px;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Consultar por WhatsApp</a>
           <a href="/app" style="display:inline-block;background:#ECECE9;border:1px solid #D1D5DB;color:#111;padding:14px 28px;border-radius:999px;font-size:13px;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Campus Alumnas & Foros</a>
         </div>
@@ -857,7 +857,7 @@ async function main() {
       ? `<div style="background:#2A2624;color:#EAE8E4;padding:20px;border-radius:12px;margin:24px 0;">
           <p style="font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#D9865B;margin-bottom:8px;"><strong>Convocatoria Abierta · 12 Cupos por Sede</strong></p>
           <h2 style="font-size:20px;color:#fff;margin-bottom:8px;">${isQueretaro ? 'Cohorte Querétaro: 7 al 29 de Noviembre 2026 (4 Fines de Semana)' : 'Cohorte Monterrey: 5 Dic 2026 al 17 Ene 2027 (4 Fines de Semana)'}</h2>
-          <p style="font-size:14px;color:#d1d5db;margin-bottom:16px;">Sesión en vivo con Gabi y Laura Munive el Sábado 26 de Septiembre (11:00 AM CST). Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). Aparta tu lugar con $4,500 MXN.</p>
+          <p style="font-size:14px;color:#d1d5db;margin-bottom:16px;">Sesión en vivo con Gabi y Laura Munive el Sábado 26 de Septiembre (11:00 AM CST). Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). Pre-reserva con solo $400 MXN.</p>
           <a href="/certificacion-pilates/webinar" style="display:inline-block;background:#fff;color:#2A2624;padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Registrarme al Pre-Webinar →</a>
         </div>`
       : '';
