@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useSearchParams } from 'react-router-dom';
+import { useMutation } from 'convex/react';
+import { api } from '../../convex/_generated/api';
 import {
   Sparkles,
   Calendar,
@@ -20,7 +22,11 @@ import {
   Gift,
   Flame,
   UserCheck,
-  ChevronRight
+  ChevronRight,
+  Phone,
+  Mail,
+  User,
+  AlertCircle
 } from 'lucide-react';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
 import { EditorialFeatureCards } from '@/components/webapp/EditorialFeatureCards';
@@ -30,7 +36,8 @@ import { WHOP_CONFIG } from '@/lib/whop/whopConfig';
 import {
   CERTIFICATION_COHORTS,
   WEBINAR_INFO,
-  getGoogleCalendarUrl
+  getGoogleCalendarUrl,
+  generateIcsContent
 } from '@/content/certification/cohortsData';
 import {
   STOTT_COURSES,
@@ -40,34 +47,74 @@ import {
 } from '@/content/certification/stottCdmx';
 import PreRegistrationModal from '@/components/certification/PreRegistrationModal';
 
-type CapabilityTab = 'sedes' | 'curriculo' | 'comunidad' | 'oferta' | 'faq';
+type CapabilityTab = 'curriculo' | 'comunidad' | 'oferta' | 'faq';
 
 const PRIMARY_WHATSAPP_BASE = 'https://wa.me/525548468190?text=';
 const PRIMARY_WHATSAPP = `${PRIMARY_WHATSAPP_BASE}${encodeURIComponent(
   'Hola, quiero información sobre la certificación de Pilates Reformer (100h) y apartar mi cupo con 50% de descuento.'
 )}`;
 
-const CITIES_LIST = [
-  { key: 'queretaro', name: 'Querétaro', dates: 'Noviembre 2026 (7–29 Nov)', badge: '50% OFF · 12 Cupos' },
-  { key: 'monterrey', name: 'Monterrey', dates: 'Dic 2026 – Ene 2027 (5 Dic–17 Ene)', badge: '50% OFF · 12 Cupos' },
-  { key: 'cdmx', name: 'Ciudad de México', dates: 'STOTT PILATES® Santa Fe', badge: 'Merrithew® Oficial' },
-  { key: 'guadalajara', name: 'Guadalajara', dates: 'Convocatoria 2027', badge: 'Lista de Espera' },
-  { key: 'puebla', name: 'Puebla', dates: 'Convocatoria 2027', badge: 'Lista de Espera' },
-];
-
 export const CertificacionPilates: React.FC = () => {
   const origin = getOrigin();
   const [searchParams] = useSearchParams();
-  const initialTab = (searchParams.get('tab') as CapabilityTab) || 'sedes';
+  const initialTab = (searchParams.get('tab') as CapabilityTab) || 'curriculo';
 
   const [activeTab, setActiveTab] = useState<CapabilityTab>(
-    ['sedes', 'curriculo', 'comunidad', 'oferta', 'faq'].includes(initialTab) ? initialTab : 'sedes'
+    ['curriculo', 'comunidad', 'oferta', 'faq'].includes(initialTab) ? initialTab : 'curriculo'
   );
-  const [selectedCity, setSelectedCity] = useState<'queretaro' | 'monterrey' | 'cdmx'>('queretaro');
   const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
   const [checkoutPlanId, setCheckoutPlanId] = useState<string>(WHOP_CONFIG.plans.apartado.id);
   const [preRegModalOpen, setPreRegModalOpen] = useState(false);
   const [enrollmentData, setEnrollmentData] = useState<any>(null);
+
+  // Webinar & Whitelist Fast-Registration State
+  let registerMutation: any = null;
+  try {
+    registerMutation = useMutation(api.certificationPreRegistrations.registerWebinarWaitlist);
+  } catch (_) {
+    // SSR / prerender fallback
+  }
+
+  const [selectedCohort, setSelectedCohort] = useState<'queretaro-nov-2026' | 'monterrey-dec-jan-2026-2027' | 'both'>('queretaro-nov-2026');
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+
+  // Countdown timer to September 26, 2026 11:00 AM CST
+  const [timeLeft, setTimeLeft] = useState<{ days: number; hours: number; minutes: number; seconds: number }>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+
+  useEffect(() => {
+    const target = new Date('2026-09-26T11:00:00-06:00').getTime();
+
+    const updateTimer = () => {
+      const now = new Date().getTime();
+      const diff = target - now;
+
+      if (diff <= 0) {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      setTimeLeft({ days, hours, minutes, seconds });
+    };
+
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     try {
@@ -91,30 +138,97 @@ export const CertificacionPilates: React.FC = () => {
     }
   };
 
-  const currentCohort = selectedCity === 'cdmx' ? null : CERTIFICATION_COHORTS[selectedCity];
+  const handleSubmitWebinar = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMsg('');
 
-  const title = 'Certificación Profesional de Pilates Reformer (100h) en México | CAMA Pilates';
+    if (!fullName.trim() || !email.trim() || !phone.trim()) {
+      setErrorMsg('Por favor completa tu nombre, correo y teléfono de WhatsApp.');
+      return;
+    }
+
+    const phoneDigits = phone.replace(/\D/g, '');
+    if (phoneDigits.length < 10) {
+      setErrorMsg('Por favor ingresa un número de WhatsApp válido de 10 dígitos.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      if (registerMutation) {
+        await registerMutation({
+          fullName,
+          email,
+          phone: phoneDigits,
+          cohort: selectedCohort,
+          experienceLevel: 'some-experience',
+          source: 'certificacion-pilates-hero-whitelist',
+        });
+      }
+      setIsRegistered(true);
+    } catch (err: unknown) {
+      console.warn('Convex submission fallback:', err);
+      setIsRegistered(true);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleDownloadIcs = () => {
+    const ics = generateIcsContent();
+    const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'Masterclass-Certificacion-Pilates-26Sep.ics');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const shareWaUrl = `https://wa.me/${WEBINAR_INFO.whatsappSupportNumber}?text=${encodeURIComponent(
+    `Hola Gabi y Laura, me registré a la lista de espera para la certificación en Pilates Reformer. Mi nombre es ${fullName || 'aspirante'} y me interesa la sede de ${
+      selectedCohort === 'queretaro-nov-2026'
+        ? 'Querétaro (Noviembre 2026)'
+        : selectedCohort === 'monterrey-dec-jan-2026-2027'
+        ? 'Monterrey (Dic 2026 – Ene 2027)'
+        : 'Querétaro y Monterrey'
+    }. Quiero información sobre el Curso Básico (28h · $25,000 MXN) y la Certificación Completa (48h · $38,000 MXN).`
+  )}`;
+
+  const title = 'Certificación Profesional de Pilates Reformer en México | Querétaro y Monterrey (28h Básico / 48h Completo)';
   const desc =
-    'Certifícate como instructora de Pilates Reformer (100 horas): biomecánica clínica, máquina individual exclusiva por alumna y comunidad de por vida en Whop. Sedes en Querétaro, Monterrey y CDMX con 50% de descuento.';
+    'Certificación profesional en Pilates Reformer: Curso Básico (28h · $25,000 MXN) y Certificación Completa (48h · $38,000 MXN). Querétaro (Nov 2026) y Monterrey (Dic-Ene 2027). 1:1 Reformer individual con Gabi y Laura Munive.';
 
   const courseSchemas = [
     {
       '@context': 'https://schema.org',
       '@type': 'Course',
       name: 'Certificación Profesional de Instructor de Pilates Reformer — Querétaro',
-      description: 'Programa intensivo de 100 horas presenciales y biomecánica en Querétaro. 4 fines de semana en Noviembre 2026. Respaldo curricular CAMA Pilates.',
+      description: 'Formación en Pilates Reformer en Querétaro: Curso Básico (28h) y Certificación Completa (48h). 4 fines de semana en Noviembre 2026. Respaldo curricular CAMA Pilates.',
       provider: {
         '@type': 'Organization',
         name: 'CAMA Pilates',
         url: origin,
       },
-      offers: {
-        '@type': 'Offer',
-        price: '19900',
-        priceCurrency: 'MXN',
-        availability: 'https://schema.org/InStock',
-        validFrom: '2026-01-01',
-      },
+      offers: [
+        {
+          '@type': 'Offer',
+          name: 'Curso Básico Reformer (28 Horas)',
+          price: '25000',
+          priceCurrency: 'MXN',
+          availability: 'https://schema.org/InStock',
+          validFrom: '2026-01-01',
+        },
+        {
+          '@type': 'Offer',
+          name: 'Certificación Completa Reformer (48 Horas)',
+          price: '38000',
+          priceCurrency: 'MXN',
+          availability: 'https://schema.org/InStock',
+          validFrom: '2026-01-01',
+        },
+      ],
       hasCourseInstance: {
         '@type': 'CourseInstance',
         courseMode: 'Onsite',
@@ -132,19 +246,30 @@ export const CertificacionPilates: React.FC = () => {
       '@context': 'https://schema.org',
       '@type': 'Course',
       name: 'Certificación Profesional de Instructor de Pilates Reformer — Monterrey',
-      description: 'Programa intensivo de 100 horas presenciales y biomecánica en San Pedro Garza García, Monterrey. Diciembre 2026 – Enero 2027.',
+      description: 'Formación en Pilates Reformer en Monterrey: Curso Básico (28h) y Certificación Completa (48h) en San Pedro Garza García. Diciembre 2026 – Enero 2027.',
       provider: {
         '@type': 'Organization',
         name: 'CAMA Pilates',
         url: origin,
       },
-      offers: {
-        '@type': 'Offer',
-        price: '19900',
-        priceCurrency: 'MXN',
-        availability: 'https://schema.org/InStock',
-        validFrom: '2026-01-01',
-      },
+      offers: [
+        {
+          '@type': 'Offer',
+          name: 'Curso Básico Reformer (28 Horas)',
+          price: '25000',
+          priceCurrency: 'MXN',
+          availability: 'https://schema.org/InStock',
+          validFrom: '2026-01-01',
+        },
+        {
+          '@type': 'Offer',
+          name: 'Certificación Completa Reformer (48 Horas)',
+          price: '38000',
+          priceCurrency: 'MXN',
+          availability: 'https://schema.org/InStock',
+          validFrom: '2026-01-01',
+        },
+      ],
       hasCourseInstance: {
         '@type': 'CourseInstance',
         courseMode: 'Onsite',
@@ -160,15 +285,37 @@ export const CertificacionPilates: React.FC = () => {
     },
   ];
 
-  const cityListSchema = {
+  const webinarSchema = {
     '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    itemListElement: CITIES_LIST.map((c, idx) => ({
-      '@type': 'ListItem',
-      position: idx + 1,
-      name: `Certificación de Pilates en ${c.name}`,
-      url: `${origin}/certificacion-pilates#${c.key}`,
+    '@type': 'EducationEvent',
+    name: WEBINAR_INFO.title,
+    description: WEBINAR_INFO.subtitle,
+    startDate: WEBINAR_INFO.isoDateTime,
+    endDate: WEBINAR_INFO.isoEndDateTime,
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+    location: {
+      '@type': 'VirtualLocation',
+      url: `${origin}/certificacion-pilates/webinar`,
+    },
+    performer: WEBINAR_INFO.hosts.map((h) => ({
+      '@type': 'Person',
+      name: h.name,
+      jobTitle: h.role,
     })),
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'MXN',
+      availability: 'https://schema.org/InStock',
+      validFrom: '2026-01-01',
+      url: `${origin}/certificacion-pilates/webinar`,
+    },
+    organizer: {
+      '@type': 'Organization',
+      name: 'CAMA Pilates',
+      url: origin,
+    },
   };
 
   const faqSchema = {
@@ -177,10 +324,10 @@ export const CertificacionPilates: React.FC = () => {
     mainEntity: [
       {
         '@type': 'Question',
-        name: '¿Cómo funciona la certificación de 100 horas en Pilates Reformer?',
+        name: '¿Cuáles son las modalidades y costos de la formación en Pilates Reformer?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'El programa consta de 56 horas presenciales intensivas distribuidas en 4 fines de semana prácticos, más 44 horas de observación guiada, práctica personal y videoteca HD en el campus virtual Whop, sumando 100 horas certificadas oficiales.',
+          text: 'Ofrecemos dos rutas formativas: el Curso Básico de 28 horas por $25,000 MXN (2 fines de semana con anatomía funcional y repertorio esencial e intermedio), y la Certificación Completa de 48 horas por $38,000 MXN (4 fines de semana con modificaciones clínicas, patologías de columna, metodología de cueing, examen y aval profesional).',
         },
       },
       {
@@ -193,10 +340,18 @@ export const CertificacionPilates: React.FC = () => {
       },
       {
         '@type': 'Question',
-        name: '¿Cómo aseguro mi lugar con el 50% de descuento ($19,900 MXN)?',
+        name: '¿Cómo puedo apartar mi lugar para el curso de 28h o 48h?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Puedes congelar tu descuento y asegurar 1 de los 12 cupos realizando un anticipo de $4,500 MXN a través de nuestra pasarela oficial de Whop (tarjeta o transferencia) o liquidar la colegiatura completa de $19,900 MXN.',
+          text: 'Puedes asegurar tu lugar realizando un anticipo de apartado oficial de $4,500 MXN a través de nuestra pasarela de Whop (tarjeta o transferencia) para congelar tu cupo (máximo 12 lugares por sede).',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Quiénes son las docentes que imparten la certificación?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'La formación es dirigida personalmente por las Master Trainers Gabi y Laura Munive, con más de 400 instructores formados en biomecánica y desarrollo de estudios en México.',
         },
       },
       {
@@ -236,7 +391,7 @@ export const CertificacionPilates: React.FC = () => {
             {JSON.stringify(schema)}
           </script>
         ))}
-        <script type="application/ld+json">{JSON.stringify(cityListSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(webinarSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
@@ -276,63 +431,290 @@ export const CertificacionPilates: React.FC = () => {
         </div>
       </header>
 
-      {/* Hero Section — Clean Editorial Style */}
-      <section className="pt-16 pb-12 px-6 max-w-7xl mx-auto">
+      {/* TOP HERO: MASTERCLASS WEBINAR & COURSE WHITELIST SIGNUP (QUERÉTARO & MONTERREY) */}
+      <section className="pt-12 pb-16 px-6 max-w-7xl mx-auto border-b border-neutral-200/80">
         {/* Micro Monospace Badges */}
-        <div className="flex flex-wrap items-center gap-2.5 mb-8">
-          <span className="inline-flex items-center px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-neutral-600 font-mono text-[11px] uppercase tracking-wider">
-            • FORMACIÓN 100H PROFESIONAL
+        <div className="flex flex-wrap items-center gap-2.5 mb-6">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100/90 border border-amber-300 text-amber-950 font-mono text-[11px] font-semibold uppercase tracking-wider">
+            <Sparkles className="w-3 h-3 text-amber-700" />
+            MASTERCLASS EN VIVO · SÁBADO 26 SEPTIEMBRE 11:00 AM CST
           </span>
-          <span className="inline-flex items-center px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-neutral-600 font-mono text-[11px] uppercase tracking-wider">
-            [ QUERÉTARO · MONTERREY · CDMX ]
+          <span className="inline-flex items-center px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-neutral-700 font-mono text-[11px] uppercase tracking-wider">
+            [ QUERÉTARO · MONTERREY ]
           </span>
-          <span className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 font-mono text-[11px] uppercase tracking-wider">
-            ● CONVOCATORIAS ABIERTAS
+          <span className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 font-mono text-[11px] font-semibold uppercase tracking-wider">
+            28H BÁSICO ($25,000) · 48H COMPLETO ($38,000)
           </span>
         </div>
 
         {/* Display Typography */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#0F0F0F] max-w-5xl leading-[1.03] mb-8">
-          Formación clínica en cada movimiento.
+        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#0F0F0F] max-w-5xl leading-[1.04] mb-6">
+          Formación profesional en Pilates Reformer.
         </h1>
 
-        <p className="text-lg md:text-xl text-neutral-600 font-normal max-w-3xl leading-relaxed mb-10">
-          La certificación profesional de 100 horas en Pilates Reformer con ingeniería del movimiento,
-          un Reformer profesional exclusivo por alumna(o) y comunidad de por vida integrada en Whop.
-          Impartida por las Master Trainers <strong>Gabi</strong> y <strong>Laura Munive</strong>.
+        <p className="text-base sm:text-lg md:text-xl text-neutral-600 font-normal max-w-3xl leading-relaxed mb-10">
+          Convocatorias presenciales en <strong>Querétaro (Noviembre 2026)</strong> y <strong>Monterrey (Dic 2026 – Ene 2027)</strong>.
+          Máquina individual asignada por alumna, biomecánica clínica y mentoría directa con las Master Trainers{' '}
+          <strong>Gabi</strong> y <strong>Laura Munive</strong>.
         </p>
 
-        {/* Action Button Row */}
-        <div className="flex flex-wrap items-center gap-3.5 mb-14">
-          <button
-            onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
-            className="px-7 py-3.5 rounded-full bg-[#111111] text-white text-xs md:text-sm font-semibold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-md flex items-center gap-2"
-          >
-            <span>Apartar Cupo ($4,500 MXN)</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
+        {/* 2-Column Webinar & Whitelist Interactive Card */}
+        <div className="bg-gradient-to-br from-[#1E1B18] via-[#24201D] to-[#141210] rounded-[32px] p-6 sm:p-8 md:p-12 text-white shadow-2xl border border-neutral-800 relative overflow-hidden mb-12">
+          {/* Subtle warm glow background */}
+          <div className="absolute top-0 right-0 -mt-16 -mr-16 w-96 h-96 rounded-full bg-amber-500/10 blur-3xl pointer-events-none" />
 
-          <a
-            href={PRIMARY_WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-7 py-3.5 rounded-full bg-white border border-neutral-300 text-neutral-800 text-xs md:text-sm font-semibold uppercase tracking-wider hover:border-neutral-900 transition-colors shadow-sm flex items-center gap-2"
-          >
-            <MessageSquare className="w-4 h-4 text-emerald-600" />
-            <span>Consultar por WhatsApp</span>
-          </a>
+          <div className="relative z-10 grid lg:grid-cols-12 gap-10 items-center">
+            {/* Left Column: Webinar Pitch & Countdown */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 font-mono text-xs uppercase tracking-wider border border-amber-400/30">
+                <Video className="w-3.5 h-3.5" />
+                <span>Webinar Gratuito de Orientación · Vía Google Meet</span>
+              </div>
 
-          <Link
-            to="/certificacion-pilates/webinar"
-            className="px-7 py-3.5 rounded-full bg-amber-100/70 border border-amber-300 text-amber-950 text-xs md:text-sm font-semibold uppercase tracking-wider hover:bg-amber-100 transition-colors flex items-center gap-2"
-          >
-            <Sparkles className="w-4 h-4 text-amber-700" />
-            <span>Webinar 26 Sep (50% OFF)</span>
-          </Link>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight">
+                Elige entre Curso Básico (28h) o Certificación Completa (48h) con cupos limitados.
+              </h2>
+
+              <p className="text-sm md:text-base text-neutral-300 leading-relaxed font-light">
+                Únete a la sesión en directo con <strong>Gabi</strong> y <strong>Laura Munive</strong> el{' '}
+                <strong>sábado 26 de septiembre a las 11:00 AM CST</strong>. Conoce a detalle el mapa de 28h y 48h,
+                resuelve tus dudas y accede antes que nadie a los <strong>12 cupos exclusivos por sede</strong>:{' '}
+                <strong>Curso Básico (28h · $25,000 MXN)</strong> o <strong>Certificación Completa (48h · $38,000 MXN)</strong>.
+              </p>
+
+              {/* Countdown Clocks */}
+              <div className="pt-2">
+                <div className="text-[11px] font-mono text-amber-400/90 uppercase tracking-widest mb-2 font-semibold">
+                  // TIEMPO RESTANTE PARA LA MASTERCLASS:
+                </div>
+                <div className="grid grid-cols-4 gap-2.5 max-w-md">
+                  <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-3 text-center">
+                    <span className="block text-2xl md:text-3xl font-mono font-bold text-white">
+                      {timeLeft.days.toString().padStart(2, '0')}
+                    </span>
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">Días</span>
+                  </div>
+                  <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-3 text-center">
+                    <span className="block text-2xl md:text-3xl font-mono font-bold text-white">
+                      {timeLeft.hours.toString().padStart(2, '0')}
+                    </span>
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">Horas</span>
+                  </div>
+                  <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-3 text-center">
+                    <span className="block text-2xl md:text-3xl font-mono font-bold text-white">
+                      {timeLeft.minutes.toString().padStart(2, '0')}
+                    </span>
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">Min</span>
+                  </div>
+                  <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-3 text-center">
+                    <span className="block text-2xl md:text-3xl font-mono font-bold text-white">
+                      {timeLeft.seconds.toString().padStart(2, '0')}
+                    </span>
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">Seg</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Fast-action CTA and WhatsApp */}
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <button
+                  onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
+                  className="px-6 py-3 rounded-full bg-white text-neutral-950 text-xs font-bold uppercase tracking-wider hover:bg-neutral-100 transition-colors shadow-lg flex items-center gap-2"
+                >
+                  <span>Apartar Cupo Inmediato ($4,500 MXN)</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+
+                <a
+                  href={PRIMARY_WHATSAPP}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-3 rounded-full border border-white/20 text-neutral-200 text-xs font-mono uppercase tracking-wider hover:border-white/50 transition-colors flex items-center gap-2"
+                >
+                  <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Dudas por WhatsApp</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Right Column: Whitelist Signup Form */}
+            <div className="lg:col-span-5">
+              <div className="bg-[#2C2724] border border-white/15 rounded-3xl p-6 sm:p-7 shadow-xl">
+                {!isRegistered ? (
+                  <form onSubmit={handleSubmitWebinar} className="space-y-4">
+                    <div>
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="font-mono text-xs text-amber-300 uppercase tracking-wider font-semibold">
+                          Paso 1 · Sede de tu Interés
+                        </span>
+                        <span className="text-[10px] font-mono text-neutral-400">12 cupos máx</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2 pt-1">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedCohort('queretaro-nov-2026')}
+                          className={`px-3 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider text-left transition-all border ${
+                            selectedCohort === 'queretaro-nov-2026'
+                              ? 'bg-amber-400/20 border-amber-400 text-white font-bold'
+                              : 'bg-white/5 border-white/10 text-neutral-300 hover:border-white/30'
+                          }`}
+                        >
+                          <div className="font-bold">Querétaro</div>
+                          <div className="text-[10px] text-neutral-400">7–29 Nov 2026</div>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => setSelectedCohort('monterrey-dec-jan-2026-2027')}
+                          className={`px-3 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider text-left transition-all border ${
+                            selectedCohort === 'monterrey-dec-jan-2026-2027'
+                              ? 'bg-amber-400/20 border-amber-400 text-white font-bold'
+                              : 'bg-white/5 border-white/10 text-neutral-300 hover:border-white/30'
+                          }`}
+                        >
+                          <div className="font-bold">Monterrey</div>
+                          <div className="text-[10px] text-neutral-400">Dic 26 – Ene 27</div>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3 pt-1">
+                      <div>
+                        <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-400 mb-1">
+                          Nombre Completo
+                        </label>
+                        <div className="relative">
+                          <User className="w-4 h-4 text-neutral-500 absolute left-3.5 top-3.5" />
+                          <input
+                            type="text"
+                            value={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
+                            placeholder="Ej. Sofía Morales"
+                            className="w-full bg-white/5 border border-white/15 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:border-amber-400 transition-colors"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-400 mb-1">
+                          Correo Electrónico
+                        </label>
+                        <div className="relative">
+                          <Mail className="w-4 h-4 text-neutral-500 absolute left-3.5 top-3.5" />
+                          <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="sofia@ejemplo.com"
+                            className="w-full bg-white/5 border border-white/15 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:border-amber-400 transition-colors"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-400 mb-1">
+                          WhatsApp (10 Dígitos)
+                        </label>
+                        <div className="relative">
+                          <Phone className="w-4 h-4 text-neutral-500 absolute left-3.5 top-3.5" />
+                          <input
+                            type="tel"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            placeholder="55 1234 5678"
+                            className="w-full bg-white/5 border border-white/15 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:border-amber-400 transition-colors"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {errorMsg && (
+                      <div className="p-3 rounded-xl bg-rose-500/20 border border-rose-500/30 text-rose-200 text-xs flex items-center gap-2">
+                        <AlertCircle className="w-4 h-4 shrink-0" />
+                        <span>{errorMsg}</span>
+                      </div>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full py-3.5 rounded-full bg-amber-400 hover:bg-amber-300 text-neutral-950 text-xs font-bold uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50"
+                    >
+                      <span>{isSubmitting ? 'Registrando...' : 'Apartar Mi Lugar Gratis en el Webinar →'}</span>
+                    </button>
+
+                    <div className="text-[11px] font-mono text-center text-neutral-400">
+                      ✓ Acceso 100% Gratuito vía Google Meet · Beca 50% garantizada
+                    </div>
+                  </form>
+                ) : (
+                  <div className="space-y-5 text-center py-4">
+                    <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center mx-auto">
+                      <CheckCircle2 className="w-8 h-8" />
+                    </div>
+
+                    <div>
+                      <h3 className="text-xl font-bold text-white mb-1">¡Registro Confirmado!</h3>
+                      <p className="text-xs text-neutral-300 leading-relaxed max-w-sm mx-auto">
+                        Estás en la lista de espera prioritaria para{' '}
+                        <strong>
+                          {selectedCohort === 'queretaro-nov-2026'
+                            ? 'Querétaro'
+                            : selectedCohort === 'monterrey-dec-jan-2026-2027'
+                            ? 'Monterrey'
+                            : 'Querétaro y Monterrey'}
+                        </strong>
+                        . Te enviaremos el enlace de Google Meet para el sábado 26 de septiembre a las 11:00 AM CST.
+                      </p>
+                    </div>
+
+                    <div className="space-y-2.5 pt-2">
+                      <a
+                        href={getGoogleCalendarUrl()}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-mono uppercase tracking-wider flex items-center justify-center gap-2 transition-colors"
+                      >
+                        <Calendar className="w-3.5 h-3.5 text-amber-400" />
+                        <span>+ Agregar a Google Calendar</span>
+                      </a>
+
+                      <button
+                        onClick={handleDownloadIcs}
+                        className="w-full py-2 rounded-full text-xs font-mono text-neutral-400 hover:text-white transition-colors"
+                      >
+                        Descargar archivo .ICS para Apple / Outlook
+                      </button>
+
+                      <a
+                        href={shareWaUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors shadow-sm"
+                      >
+                        <MessageSquare className="w-4 h-4" />
+                        <span>Confirmar con Gabi y Laura por WhatsApp</span>
+                      </a>
+
+                      <div className="pt-2">
+                        <button
+                          onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
+                          className="w-full py-3 rounded-full bg-white text-neutral-900 text-xs font-bold uppercase tracking-wider hover:bg-neutral-100 transition-colors shadow-md flex items-center justify-center gap-2"
+                        >
+                          <span>Apartar Cupo Ahora ($4,500 MXN)</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Value Proof Badges */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-6 border-t border-neutral-200/80">
+        {/* 4 Value Proof Metrics */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-4">
           <div className="p-4 rounded-2xl bg-white border border-neutral-200/80">
             <div className="font-mono text-2xl font-bold text-neutral-900">56h</div>
             <div className="text-xs text-neutral-500 uppercase tracking-wider font-mono mt-1">
@@ -360,7 +742,183 @@ export const CertificacionPilates: React.FC = () => {
         </div>
       </section>
 
-      {/* Signature 3-Color Editorial Cards */}
+      {/* THE 2 FLAGSHIP COHORTS SIDE-BY-SIDE: QUERÉTARO & MONTERREY */}
+      <section className="py-16 px-6 max-w-7xl mx-auto">
+        <div className="mb-10 text-center max-w-3xl mx-auto">
+          <span className="font-mono text-xs uppercase tracking-widest text-neutral-500 font-semibold">
+            // CONVOCATORIAS OFICIALES 2026–2027
+          </span>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-neutral-900 mt-2 mb-4">
+            Sedes Presenciales: Querétaro y Monterrey
+          </h2>
+          <p className="text-neutral-600 text-sm md:text-base leading-relaxed">
+            Cada sede cuenta con un máximo estricto de 12 lugares para garantizar un Reformer profesional
+            CAMA individual por alumna durante toda la formación práctica, sin turnos rotativos ni tiempos muertos.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Sede 1: Querétaro */}
+          <div className="bg-white border-2 border-neutral-900 rounded-[32px] p-8 md:p-10 shadow-lg flex flex-col justify-between relative overflow-hidden">
+            <div className="absolute top-0 right-0 bg-[#111111] text-white px-5 py-1.5 rounded-bl-2xl font-mono text-[11px] font-bold uppercase tracking-wider">
+              Noviembre 2026
+            </div>
+
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 font-mono text-[11px] font-semibold uppercase tracking-wider">
+                  50% OFF · 12 Cupos
+                </span>
+                <span className="px-3 py-1 rounded-full bg-neutral-100 text-neutral-700 font-mono text-[11px] uppercase tracking-wider">
+                  Juriquilla
+                </span>
+              </div>
+
+              <h3 className="text-3xl font-bold text-neutral-900 mb-2">
+                Querétaro · Noviembre 2026
+              </h3>
+              <p className="text-xs font-mono text-neutral-500 mb-6 flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-neutral-700" />
+                <span>{CERTIFICATION_COHORTS.queretaro.location.name} · {CERTIFICATION_COHORTS.queretaro.location.neighborhood}</span>
+              </p>
+
+              <p className="text-neutral-600 text-sm leading-relaxed mb-6">
+                4 fines de semana intensivos de inmersión práctica total ({CERTIFICATION_COHORTS.queretaro.fullDatesLabel}).
+                Sábados y domingos de 9:00 AM a 4:30 PM (56 horas de contacto presencial + 44 horas en campus virtual).
+              </p>
+
+              {/* 4 Weekends pills */}
+              <div className="grid grid-cols-2 gap-2.5 mb-8">
+                {CERTIFICATION_COHORTS.queretaro.weekends.map((w) => (
+                  <div key={w.weekendNumber} className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-200">
+                    <div className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider font-semibold">
+                      FDS {w.weekendNumber} · {w.dates}
+                    </div>
+                    <div className="font-bold text-xs text-neutral-900 mt-0.5">{w.title}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-6 border-t border-neutral-200">
+              <div className="flex items-baseline justify-between mb-4">
+                <div>
+                  <div className="text-xs font-mono uppercase tracking-wider text-neutral-400 line-through">
+                    ${CERTIFICATION_COHORTS.queretaro.regularPrice.toLocaleString('es-MX')} MXN
+                  </div>
+                  <div className="text-3xl font-bold text-neutral-900 tracking-tight">
+                    ${CERTIFICATION_COHORTS.queretaro.discountedPrice.toLocaleString('es-MX')} MXN
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-[11px] font-mono uppercase tracking-wider text-emerald-700 font-semibold">
+                    Apartado de Cupo
+                  </div>
+                  <div className="text-xl font-bold text-neutral-900">
+                    ${CERTIFICATION_COHORTS.queretaro.depositPrice.toLocaleString('es-MX')} MXN
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-3">
+                <button
+                  onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
+                  className="py-3 rounded-full bg-[#111111] text-white text-xs font-semibold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-sm text-center"
+                >
+                  Apartar Cupo ($4,500 MXN)
+                </button>
+                <Link
+                  to="/certificacion-pilates/queretaro"
+                  className="py-3 rounded-full border border-neutral-300 text-neutral-800 text-xs font-mono uppercase tracking-wider hover:border-neutral-900 text-center transition-colors"
+                >
+                  Ver Convocatoria Querétaro →
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Sede 2: Monterrey */}
+          <div className="bg-white border-2 border-neutral-900 rounded-[32px] p-8 md:p-10 shadow-lg flex flex-col justify-between relative overflow-hidden">
+            <div className="absolute top-0 right-0 bg-[#111111] text-white px-5 py-1.5 rounded-bl-2xl font-mono text-[11px] font-bold uppercase tracking-wider">
+              Dic 2026 – Ene 2027
+            </div>
+
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 font-mono text-[11px] font-semibold uppercase tracking-wider">
+                  50% OFF · 12 Cupos
+                </span>
+                <span className="px-3 py-1 rounded-full bg-neutral-100 text-neutral-700 font-mono text-[11px] uppercase tracking-wider">
+                  San Pedro Garza García
+                </span>
+              </div>
+
+              <h3 className="text-3xl font-bold text-neutral-900 mb-2">
+                Monterrey · Dic 2026 – Ene 2027
+              </h3>
+              <p className="text-xs font-mono text-neutral-500 mb-6 flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-neutral-700" />
+                <span>{CERTIFICATION_COHORTS.monterrey.location.name} · {CERTIFICATION_COHORTS.monterrey.location.neighborhood}</span>
+              </p>
+
+              <p className="text-neutral-600 text-sm leading-relaxed mb-6">
+                4 fines de semana intensivos de inmersión práctica total ({CERTIFICATION_COHORTS.monterrey.fullDatesLabel}).
+                Sábados y domingos de 9:00 AM a 4:30 PM (56 horas de contacto presencial + 44 horas en campus virtual).
+              </p>
+
+              {/* 4 Weekends pills */}
+              <div className="grid grid-cols-2 gap-2.5 mb-8">
+                {CERTIFICATION_COHORTS.monterrey.weekends.map((w) => (
+                  <div key={w.weekendNumber} className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-200">
+                    <div className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider font-semibold">
+                      FDS {w.weekendNumber} · {w.dates}
+                    </div>
+                    <div className="font-bold text-xs text-neutral-900 mt-0.5">{w.title}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-6 border-t border-neutral-200">
+              <div className="flex items-baseline justify-between mb-4">
+                <div>
+                  <div className="text-xs font-mono uppercase tracking-wider text-neutral-400 line-through">
+                    ${CERTIFICATION_COHORTS.monterrey.regularPrice.toLocaleString('es-MX')} MXN
+                  </div>
+                  <div className="text-3xl font-bold text-neutral-900 tracking-tight">
+                    ${CERTIFICATION_COHORTS.monterrey.discountedPrice.toLocaleString('es-MX')} MXN
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-[11px] font-mono uppercase tracking-wider text-emerald-700 font-semibold">
+                    Apartado de Cupo
+                  </div>
+                  <div className="text-xl font-bold text-neutral-900">
+                    ${CERTIFICATION_COHORTS.monterrey.depositPrice.toLocaleString('es-MX')} MXN
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-3">
+                <button
+                  onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
+                  className="py-3 rounded-full bg-[#111111] text-white text-xs font-semibold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-sm text-center"
+                >
+                  Apartar Cupo ($4,500 MXN)
+                </button>
+                <Link
+                  to="/certificacion-pilates/monterrey"
+                  className="py-3 rounded-full border border-neutral-300 text-neutral-800 text-xs font-mono uppercase tracking-wider hover:border-neutral-900 text-center transition-colors"
+                >
+                  Ver Convocatoria Monterrey →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SIGNATURE 3-COLOR EDITORIAL CARDS */}
       <section className="px-6 max-w-7xl mx-auto mb-16">
         <EditorialFeatureCards
           onEnrollClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
@@ -369,68 +927,14 @@ export const CertificacionPilates: React.FC = () => {
         />
       </section>
 
-      {/* Masterclass Pre-Webinar Banner */}
-      <section className="px-6 max-w-7xl mx-auto mb-16">
-        <div className="bg-gradient-to-r from-amber-900 via-[#1e1b18] to-neutral-900 text-white rounded-[28px] p-8 md:p-10 relative overflow-hidden shadow-xl border border-amber-900/30">
-          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
-            <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 font-mono text-[11px] uppercase tracking-wider mb-4 border border-amber-400/30">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Masterclass en Vivo · Sábado 26 de Septiembre 11:00 AM CST</span>
-              </div>
-              <h2 className="text-2xl md:text-4xl font-bold text-white tracking-tight mb-3">
-                Cómo Convertirte en Instructora Certificada en Querétaro y Monterrey
-              </h2>
-              <p className="text-neutral-300 text-sm md:text-base leading-relaxed mb-4">
-                Sesión de orientación con Gabi y Laura Munive. Desglose del plan de 100 horas y apertura de
-                los 12 cupos exclusivos con 50% de descuento ($19,900 MXN en vez de $39,800 MXN).
-              </p>
-              <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-neutral-400">
-                <span className="text-emerald-400 font-bold">• 100% Gratuito ($0 MXN)</span>
-                <span>• Online vía Google Meet (En Directo)</span>
-                <span>• 50% Beca Congelada</span>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0">
-              <Link
-                to="/certificacion-pilates/webinar"
-                className="px-6 py-3.5 rounded-full bg-white text-neutral-900 text-xs font-bold uppercase tracking-wider text-center hover:bg-neutral-100 transition-colors shadow-md flex items-center justify-center gap-2"
-              >
-                <span>Apartar Mi Lugar Gratis</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-              <a
-                href={getGoogleCalendarUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3.5 rounded-full border border-neutral-700 text-neutral-300 text-xs font-mono uppercase tracking-wider text-center hover:border-neutral-500 transition-colors"
-              >
-                + Google Calendar
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Capability Switcher Bar */}
+      {/* CAPABILITY SWITCHER BAR */}
       <section id="capability-workspace" className="px-6 max-w-7xl mx-auto mb-12 scroll-mt-24">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-neutral-200/90 pb-4">
           <span className="font-mono text-xs uppercase tracking-widest text-neutral-500 font-semibold">
-            // SELECCIONA CAPACIDAD:
+            // PROFUNDIZAR EN EL PROGRAMA:
           </span>
 
           <div className="flex flex-wrap items-center gap-2">
-            <button
-              onClick={() => setActiveTab('sedes')}
-              className={`px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all ${
-                activeTab === 'sedes'
-                  ? 'bg-[#111111] text-white font-bold shadow-sm'
-                  : 'bg-white border border-neutral-200 text-neutral-600 hover:border-neutral-400'
-              }`}
-            >
-              • Sedes & Fechas
-            </button>
             <button
               onClick={() => setActiveTab('curriculo')}
               className={`px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all ${
@@ -439,7 +943,7 @@ export const CertificacionPilates: React.FC = () => {
                   : 'bg-white border border-neutral-200 text-neutral-600 hover:border-neutral-400'
               }`}
             >
-              • Plan de 100 Horas
+              • Plan Curricular (28h / 48h)
             </button>
             <button
               onClick={() => setActiveTab('comunidad')}
@@ -459,7 +963,7 @@ export const CertificacionPilates: React.FC = () => {
                   : 'bg-white border border-neutral-200 text-neutral-600 hover:border-neutral-400'
               }`}
             >
-              • Colegiatura & 50% OFF
+              • Colegiatura & Planes
             </button>
             <button
               onClick={() => setActiveTab('faq')}
@@ -475,225 +979,9 @@ export const CertificacionPilates: React.FC = () => {
         </div>
       </section>
 
-      {/* Capability Workspace Panels */}
-      <main className="px-6 max-w-7xl mx-auto pb-24">
-        {/* PANEL 1: SEDES & FECHAS */}
-        {activeTab === 'sedes' && (
-          <div className="space-y-12">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-neutral-900">
-                  Próximas Cohortes Presenciales en México
-                </h2>
-                <p className="text-neutral-500 text-sm mt-1">
-                  Grupos reducidos con un Reformer individual asignado por alumna (máximo 12 lugares).
-                </p>
-              </div>
-
-              {/* City Pill Switcher */}
-              <div className="flex items-center gap-2 p-1.5 bg-white border border-neutral-200 rounded-full">
-                <button
-                  onClick={() => setSelectedCity('queretaro')}
-                  className={`px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all ${
-                    selectedCity === 'queretaro' ? 'bg-[#111111] text-white font-bold' : 'text-neutral-600 hover:text-black'
-                  }`}
-                >
-                  Querétaro (Nov 2026)
-                </button>
-                <button
-                  onClick={() => setSelectedCity('monterrey')}
-                  className={`px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all ${
-                    selectedCity === 'monterrey' ? 'bg-[#111111] text-white font-bold' : 'text-neutral-600 hover:text-black'
-                  }`}
-                >
-                  Monterrey (Dic–Ene)
-                </button>
-                <button
-                  onClick={() => setSelectedCity('cdmx')}
-                  className={`px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all ${
-                    selectedCity === 'cdmx' ? 'bg-[#111111] text-white font-bold' : 'text-neutral-600 hover:text-black'
-                  }`}
-                >
-                  CDMX (Santa Fe)
-                </button>
-              </div>
-            </div>
-
-            {/* Selected City Detail Card */}
-            {selectedCity === 'cdmx' ? (
-              <div className="bg-white border border-neutral-200/90 rounded-[28px] p-8 md:p-12 shadow-sm">
-                <div className="max-w-3xl">
-                  <span className="inline-block px-3 py-1 bg-neutral-900 text-white rounded-full font-mono text-[10px] uppercase tracking-wider mb-4">
-                    HOSTING OFICIAL MERRITHEW® · SANTA FE, CDMX
-                  </span>
-                  <h3 className="text-3xl font-bold tracking-tight text-neutral-900 mb-3">
-                    Certificación STOTT PILATES® en Ciudad de México
-                  </h3>
-                  <p className="text-neutral-600 leading-relaxed mb-8">
-                    Para alumnas en CDMX, ofrecemos la ruta STOTT PILATES® impartida por {STOTT_PROVIDER.name} en{' '}
-                    {STOTT_VENUE.name} (Santa Fe). Programas de Intensive Reformer (125h) e Intensive Mat-Plus™
-                    con validez internacional en más de 100 países.
-                  </p>
-
-                  <div className="grid sm:grid-cols-2 gap-4 mb-8">
-                    {STOTT_COURSES.map(course => (
-                      <div key={course.id} className="p-5 rounded-2xl bg-neutral-50 border border-neutral-200">
-                        <div className="text-xs font-mono uppercase tracking-wider text-neutral-500 mb-1">{course.level}</div>
-                        <div className="font-bold text-neutral-900 mb-2">{course.name}</div>
-                        <div className="text-xl font-bold text-neutral-900 mb-1">
-                          {course.price ? formatMXN(course.price) : 'Por anunciar'}
-                        </div>
-                        <div className="text-xs text-neutral-500">{course.hours.total} horas totales · {course.modality}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex flex-wrap gap-3">
-                    <a
-                      href={PRIMARY_WHATSAPP}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-6 py-3 rounded-full bg-[#111111] text-white text-xs font-semibold uppercase tracking-wider hover:bg-neutral-800"
-                    >
-                      Inscribirme a STOTT CDMX
-                    </a>
-                    <Link
-                      to="/certificacion-pilates/cdmx"
-                      className="px-6 py-3 rounded-full border border-neutral-300 text-neutral-700 text-xs font-mono uppercase tracking-wider hover:border-neutral-900"
-                    >
-                      Ver Detalles Sede CDMX →
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ) : currentCohort ? (
-              <div className="bg-white border border-neutral-200/90 rounded-[28px] p-8 md:p-12 shadow-sm">
-                <div className="grid lg:grid-cols-3 gap-10">
-                  <div className="lg:col-span-2 space-y-6">
-                    <div className="flex flex-wrap items-center gap-2.5">
-                      <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 font-mono text-[11px] font-semibold uppercase tracking-wider">
-                        50% OFF LISTA DE ESPERA
-                      </span>
-                      <span className="px-3 py-1 rounded-full bg-neutral-100 text-neutral-700 font-mono text-[11px] uppercase tracking-wider">
-                        12 CUPOS DISPONIBLES
-                      </span>
-                    </div>
-
-                    <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900">
-                      Cohorte {currentCohort.cityName} · {currentCohort.periodLabel}
-                    </h3>
-
-                    <p className="text-neutral-600 leading-relaxed">
-                      Programa intensivo presencial de 100 horas en 4 fines de semana de inmersión práctica
-                      total ({currentCohort.fullDatesLabel}) en {currentCohort.location.name} (
-                      {currentCohort.location.neighborhood}). Cada alumna cuenta con un Reformer profesional
-                      CAMA individual para toda la formación.
-                    </p>
-
-                    {/* Weekend Cards */}
-                    <div className="grid sm:grid-cols-2 gap-3.5 pt-4">
-                      {currentCohort.weekends.map(w => (
-                        <div key={w.weekendNumber} className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200">
-                          <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-500 font-semibold mb-1">
-                            Fin de Semana {w.weekendNumber} · {w.dates}
-                          </div>
-                          <div className="font-bold text-sm text-neutral-900 mb-1">{w.title}</div>
-                          <div className="text-xs text-neutral-600 leading-normal">{w.description}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Pricing Box */}
-                  <div className="bg-[#F8F8F6] border border-neutral-300 rounded-2xl p-6 flex flex-col justify-between">
-                    <div>
-                      <div className="text-xs font-mono uppercase tracking-wider text-neutral-500 mb-2">
-                        // MATRÍCULA & BECA 50%
-                      </div>
-                      <div className="text-sm text-neutral-400 line-through">
-                        ${currentCohort.regularPrice.toLocaleString('es-MX')} MXN
-                      </div>
-                      <div className="text-4xl font-bold text-neutral-900 tracking-tight mt-1">
-                        ${currentCohort.discountedPrice.toLocaleString('es-MX')} MXN
-                      </div>
-                      <div className="text-xs text-emerald-800 font-medium mt-1">
-                        Ahorro del 50% ($19,900 MXN) reservando con anticipo
-                      </div>
-
-                      <div className="my-6 p-4 rounded-xl bg-white border border-neutral-200 space-y-2">
-                        <div className="text-xs font-mono text-neutral-500 uppercase tracking-wider">
-                          Apartado Oficial de Lugar:
-                        </div>
-                        <div className="text-2xl font-bold text-neutral-900">
-                          ${currentCohort.depositPrice.toLocaleString('es-MX')} MXN
-                        </div>
-                        <p className="text-[11px] text-neutral-500 leading-tight">
-                          Congela el precio de $19,900 y asegura tu lugar en la sede.
-                        </p>
-                      </div>
-
-                      <ul className="space-y-2 text-xs text-neutral-600 mb-6 font-mono">
-                        <li className="flex items-center gap-2">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                          <span>56h Presenciales + 44h Prácticas</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                          <span>Reformer individual exclusivo</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                          <span>Acceso vitalicio a Whop</span>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div className="space-y-2.5">
-                      <button
-                        onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
-                        className="w-full py-3.5 rounded-full bg-[#111111] text-white text-xs font-semibold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-sm text-center"
-                      >
-                        Apartar Lugar (${currentCohort.depositPrice.toLocaleString('es-MX')} MXN)
-                      </button>
-
-                      <Link
-                        to={`/certificacion-pilates/${selectedCity}`}
-                        className="block w-full py-2.5 rounded-full border border-neutral-300 text-neutral-700 text-xs font-mono uppercase tracking-wider hover:border-neutral-900 text-center"
-                      >
-                        Ver Convocatoria {currentCohort.cityName} →
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : null}
-
-            {/* City Grid Overview */}
-            <div className="pt-8 border-t border-neutral-200">
-              <h3 className="text-lg font-bold text-neutral-900 mb-4">Directorio de Sedes de Certificación</h3>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
-                {CITIES_LIST.map(c => (
-                  <div key={c.key} className="p-4 rounded-2xl bg-white border border-neutral-200 hover:border-neutral-400 transition-colors">
-                    <div className="text-[10px] font-mono uppercase tracking-wider text-emerald-800 font-semibold mb-1">
-                      {c.badge}
-                    </div>
-                    <div className="font-bold text-neutral-900 mb-1">{c.name}</div>
-                    <div className="text-xs text-neutral-500 mb-3">{c.dates}</div>
-                    <Link
-                      to={`/certificacion-pilates/${c.key}`}
-                      className="text-xs font-mono uppercase tracking-wider text-neutral-700 hover:text-black font-semibold flex items-center gap-1"
-                    >
-                      <span>Ver Detalles</span>
-                      <ChevronRight className="w-3 h-3" />
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* PANEL 2: PLAN DE ESTUDIOS (100 HORAS) */}
+      {/* CAPABILITY WORKSPACE PANELS */}
+      <main className="px-6 max-w-7xl mx-auto pb-16">
+        {/* PANEL 1: PLAN DE ESTUDIOS (28H / 48H) */}
         {activeTab === 'curriculo' && (
           <div className="space-y-10">
             <div>
@@ -701,19 +989,20 @@ export const CertificacionPilates: React.FC = () => {
                 // MAPA CURRICULAR OFICIAL
               </span>
               <h2 className="text-3xl font-bold tracking-tight text-neutral-900 mt-1">
-                Estructura de Formación (100 Horas Totales)
+                Estructura de Formación (28h Básico · 48h Completo)
               </h2>
               <p className="text-neutral-600 max-w-3xl mt-2 leading-relaxed">
-                Diseñado para formar instructoras seguras, con criterio biomecánico para adaptar ejercicios
-                a cualquier patología o limitación anatómica. 56 horas presenciales intensivas + 44 horas de
-                práctica guiada y observación en videoteca digital.
+                Diseñado para formar instructoras seguras con criterio biomecánico integral. Elige entre el{' '}
+                <strong>Curso Básico (28h · $25,000 MXN)</strong> en 2 fines de semana para dominar el repertorio esencial
+                e intermedio, o la <strong>Certificación Completa (48h · $38,000 MXN)</strong> en 4 fines de semana para
+                incluir patologías de columna, modificaciones clínicas, metodología de cueing y examen práctico avalado.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-white border border-neutral-200/90 rounded-[24px] p-7 shadow-sm">
                 <div className="inline-block px-3 py-1 rounded-full bg-neutral-100 font-mono text-xs uppercase tracking-wider text-neutral-700 font-semibold mb-4">
-                  MÓDULO 1 · 14H PRESENCIALES
+                  MÓDULO 1 · 14H PRESENCIALES · BÁSICO (28H) & COMPLETO
                 </div>
                 <h3 className="text-xl font-bold text-neutral-900 mb-2">
                   Anatomía Funcional Aplicada & Repertorio Esencial
@@ -732,7 +1021,7 @@ export const CertificacionPilates: React.FC = () => {
 
               <div className="bg-white border border-neutral-200/90 rounded-[24px] p-7 shadow-sm">
                 <div className="inline-block px-3 py-1 rounded-full bg-neutral-100 font-mono text-xs uppercase tracking-wider text-neutral-700 font-semibold mb-4">
-                  MÓDULO 2 · 14H PRESENCIALES
+                  MÓDULO 2 · 14H PRESENCIALES · CIERRE CURSO BÁSICO (28H)
                 </div>
                 <h3 className="text-xl font-bold text-neutral-900 mb-2">
                   Repertorio Intermedio, Dinámica de Carro & Cargas
@@ -740,7 +1029,7 @@ export const CertificacionPilates: React.FC = () => {
                 <p className="text-neutral-600 text-sm leading-relaxed mb-4">
                   Transiciones fluidas, trabajo en planos sagital y coronal, manejo de resistencia de
                   resortes según biotipo corporal y progresiones del repertorio intermedio (Short Box, Long
-                  Stretch, Stomach Massage).
+                  Stretch, Stomach Massage). Completa las 28 horas del Curso Básico.
                 </p>
                 <ul className="text-xs font-mono text-neutral-500 space-y-1.5">
                   <li>• Coordinación neuromuscular en cadena cinética abierta y cerrada</li>
@@ -751,7 +1040,7 @@ export const CertificacionPilates: React.FC = () => {
 
               <div className="bg-white border border-neutral-200/90 rounded-[24px] p-7 shadow-sm">
                 <div className="inline-block px-3 py-1 rounded-full bg-neutral-100 font-mono text-xs uppercase tracking-wider text-neutral-700 font-semibold mb-4">
-                  MÓDULO 3 · 14H PRESENCIALES
+                  MÓDULO 3 · 10H PRESENCIALES · CERTIFICACIÓN COMPLETA (48H)
                 </div>
                 <h3 className="text-xl font-bold text-neutral-900 mb-2">
                   Modificaciones Clínicas, Patologías & Poblaciones Especiales
@@ -769,19 +1058,19 @@ export const CertificacionPilates: React.FC = () => {
 
               <div className="bg-white border border-neutral-200/90 rounded-[24px] p-7 shadow-sm">
                 <div className="inline-block px-3 py-1 rounded-full bg-neutral-100 font-mono text-xs uppercase tracking-wider text-neutral-700 font-semibold mb-4">
-                  MÓDULO 4 · 14H PRESENCIALES
+                  MÓDULO 4 · 10H PRESENCIALES · CIERRE CERTIFICACIÓN COMPLETA (48H)
                 </div>
                 <h3 className="text-xl font-bold text-neutral-900 mb-2">
                   Metodología de Cueing, Práctica Supervisada & Certificación
                 </h3>
                 <p className="text-neutral-600 text-sm leading-relaxed mb-4">
                   Comandos verbales de alta precisión, ajustes táctiles no invasivos, diseño de planes de
-                  clase privados y grupales, examen práctico y acreditación oficial.
+                  clase privados y grupales, examen práctico individual y acreditación profesional oficial.
                 </p>
                 <ul className="text-xs font-mono text-neutral-500 space-y-1.5">
                   <li>• Simulación de clases con retroalimentación en directo</li>
                   <li>• Examen teórico-práctico ante docentes certificadas</li>
-                  <li>• Entrega de constancia oficial de 100 horas y vinculación a estudios</li>
+                  <li>• Entrega de constancia oficial avalada (28h Básico o 48h Completo) y vinculación a estudios</li>
                 </ul>
               </div>
             </div>
@@ -806,7 +1095,7 @@ export const CertificacionPilates: React.FC = () => {
           </div>
         )}
 
-        {/* PANEL 3: COMUNIDAD WHOP EN VIVO */}
+        {/* PANEL 2: COMUNIDAD WHOP EN VIVO */}
         {activeTab === 'comunidad' && (
           <div className="space-y-8">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -905,7 +1194,7 @@ export const CertificacionPilates: React.FC = () => {
           </div>
         )}
 
-        {/* PANEL 4: COLEGIATURA & OFERTA 50% OFF */}
+        {/* PANEL 3: COLEGIATURA & OFERTA 50% OFF */}
         {activeTab === 'oferta' && (
           <div className="space-y-12">
             <div>
@@ -960,44 +1249,90 @@ export const CertificacionPilates: React.FC = () => {
                 ))}
               </div>
 
-              {/* Total Summary */}
-              <div className="pt-6 border-t border-neutral-200 flex flex-col md:flex-row md:items-center justify-between gap-6 bg-neutral-50 p-6 rounded-2xl">
-                <div>
-                  <div className="text-xs font-mono uppercase tracking-wider text-neutral-500">Valor Total de Mercado</div>
-                  <div className="text-2xl font-mono text-neutral-400 line-through">
-                    ${WHOP_CONFIG.offerStack.totalValue.toLocaleString('es-MX')} MXN
+              {/* Dual Tier Pricing Cards */}
+              <div className="pt-6 border-t border-neutral-200 grid md:grid-cols-2 gap-6">
+                {/* Curso Básico 28h */}
+                <div className="p-7 rounded-[24px] border-2 border-neutral-200 bg-white hover:border-neutral-900 transition-all flex flex-col justify-between shadow-sm">
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <span className="px-3 py-1 rounded-full bg-neutral-100 font-mono text-[11px] font-bold uppercase tracking-wider text-neutral-800">
+                        2 Fines de Semana · 28 Horas
+                      </span>
+                    </div>
+                    <h3 className="text-2xl font-bold text-neutral-900">Curso Básico Reformer</h3>
+                    <p className="text-xs text-neutral-600 mt-2 leading-relaxed">
+                      Repertorio esencial e intermedio, biomecánica funcional aplicada, máquina individual exclusiva por alumna y acceso completo al campus virtual en Whop.
+                    </p>
+                    <div className="mt-5 pt-4 border-t border-neutral-100">
+                      <div className="text-3xl font-bold text-neutral-900 tracking-tight">
+                        ${WHOP_CONFIG.plans.cursoBasico.price.toLocaleString('es-MX')}{' '}
+                        <span className="text-xs font-mono font-normal text-neutral-500">MXN</span>
+                      </div>
+                      <div className="text-xs text-neutral-500 mt-1">
+                        O aparta hoy tu lugar con solo <strong>${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-6 mt-4 border-t border-neutral-100 flex flex-col gap-2.5">
+                    <button
+                      onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.cursoBasico.id)}
+                      className="w-full py-3.5 rounded-full bg-[#111111] text-white text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors text-center shadow-md"
+                    >
+                      Inscribirme a Básico (${WHOP_CONFIG.plans.cursoBasico.price.toLocaleString('es-MX')} MXN)
+                    </button>
+                    <button
+                      onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
+                      className="w-full py-2.5 rounded-full border border-neutral-300 text-neutral-700 text-xs font-mono uppercase tracking-wider hover:border-neutral-900 transition-colors text-center"
+                    >
+                      Apartar Cupo (${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN)
+                    </button>
                   </div>
                 </div>
 
-                <div className="text-left md:text-right">
-                  <div className="text-xs font-mono uppercase tracking-wider text-emerald-800 font-bold">
-                    Precio Lista de Espera (50% Descuento)
+                {/* Certificación Completa 48h */}
+                <div className="p-7 rounded-[24px] border-2 border-neutral-900 bg-[#111111] text-white shadow-xl flex flex-col justify-between relative overflow-hidden">
+                  <div className="absolute top-4 right-4">
+                    <span className="px-3 py-1 rounded-full bg-amber-400 text-neutral-950 font-mono text-[10px] font-bold uppercase tracking-wider">
+                      Recomendado
+                    </span>
                   </div>
-                  <div className="text-4xl font-bold text-neutral-900 tracking-tight">
-                    ${WHOP_CONFIG.offerStack.waitlistPrice.toLocaleString('es-MX')} MXN
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="px-3 py-1 rounded-full bg-neutral-800 font-mono text-[11px] font-bold uppercase tracking-wider text-amber-300">
+                        4 Fines de Semana · 48 Horas
+                      </span>
+                    </div>
+                    <h3 className="text-2xl font-bold text-white">Certificación Completa</h3>
+                    <p className="text-xs text-neutral-300 mt-2 leading-relaxed">
+                      Formación profesional integral con patologías de columna, poblaciones especiales, metodología de cueing, examen práctico individual y acreditación oficial avalada.
+                    </p>
+                    <div className="mt-5 pt-4 border-t border-neutral-800">
+                      <div className="text-3xl font-bold text-white tracking-tight">
+                        ${WHOP_CONFIG.plans.colegiaturaCompleta.price.toLocaleString('es-MX')}{' '}
+                        <span className="text-xs font-mono font-normal text-neutral-400">MXN</span>
+                      </div>
+                      <div className="text-xs text-neutral-400 mt-1">
+                        O aparta hoy tu lugar con solo <strong>${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN</strong>
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-xs text-neutral-500 mt-0.5">
-                    O aparta tu cupo hoy con solo <strong>${WHOP_CONFIG.offerStack.depositPrice.toLocaleString('es-MX')} MXN</strong>
+
+                  <div className="pt-6 mt-4 border-t border-neutral-800 flex flex-col gap-2.5">
+                    <button
+                      onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.colegiaturaCompleta.id)}
+                      className="w-full py-3.5 rounded-full bg-amber-400 text-neutral-950 text-xs font-bold uppercase tracking-wider hover:bg-amber-300 transition-colors text-center shadow-lg"
+                    >
+                      Inscribirme a Completa (${WHOP_CONFIG.plans.colegiaturaCompleta.price.toLocaleString('es-MX')} MXN)
+                    </button>
+                    <button
+                      onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
+                      className="w-full py-2.5 rounded-full border border-neutral-700 text-neutral-300 text-xs font-mono uppercase tracking-wider hover:border-white transition-colors text-center"
+                    >
+                      Apartar Cupo (${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN)
+                    </button>
                   </div>
                 </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="grid sm:grid-cols-2 gap-4 pt-4">
-                <button
-                  onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
-                  className="py-4 rounded-full bg-[#111111] text-white text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-md text-center flex items-center justify-center gap-2"
-                >
-                  <span>Apartar Mi Cupo (${WHOP_CONFIG.offerStack.depositPrice.toLocaleString('es-MX')} MXN)</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-
-                <button
-                  onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.colegiaturaCompleta.id)}
-                  className="py-4 rounded-full bg-white border-2 border-neutral-900 text-neutral-900 text-xs font-bold uppercase tracking-wider hover:bg-neutral-100 transition-colors text-center"
-                >
-                  Pagar Colegiatura Completa (${WHOP_CONFIG.offerStack.waitlistPrice.toLocaleString('es-MX')} MXN)
-                </button>
               </div>
             </div>
 
@@ -1018,7 +1353,7 @@ export const CertificacionPilates: React.FC = () => {
           </div>
         )}
 
-        {/* PANEL 5: PREGUNTAS FRECUENTES */}
+        {/* PANEL 4: PREGUNTAS FRECUENTES */}
         {activeTab === 'faq' && (
           <div className="space-y-8 max-w-4xl mx-auto">
             <div className="text-center space-y-2 mb-10">
@@ -1069,6 +1404,16 @@ export const CertificacionPilates: React.FC = () => {
 
               <div className="bg-white border border-neutral-200/90 rounded-2xl p-6 shadow-sm">
                 <h3 className="font-bold text-neutral-900 text-base mb-2">
+                  ¿Quiénes son las docentes que imparten la certificación?
+                </h3>
+                <p className="text-sm text-neutral-600 leading-relaxed">
+                  La formación es guiada por las Master Trainers Gabi y Laura Munive, referentes en México en biomecánica,
+                  pedagogía clínica y desarrollo de instructores de alto desempeño.
+                </p>
+              </div>
+
+              <div className="bg-white border border-neutral-200/90 rounded-2xl p-6 shadow-sm">
+                <h3 className="font-bold text-neutral-900 text-base mb-2">
                   ¿Qué validez tiene el certificado al concluir?
                 </h3>
                 <p className="text-sm text-neutral-600 leading-relaxed">
@@ -1105,7 +1450,84 @@ export const CertificacionPilates: React.FC = () => {
         )}
       </main>
 
-      {/* Cross-sell: Equipment for Future Studios */}
+      {/* LOWER SECTION: EXTERNAL ALTERNATIVE IN CDMX (STOTT PILATES® MERRITHEW) */}
+      <section className="py-16 px-6 bg-neutral-100/70 border-t border-neutral-200">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-3xl mb-10">
+            <span className="font-mono text-xs uppercase tracking-widest text-neutral-500 font-semibold">
+              // OTRA OPCIÓN EN MÉXICO · PROGRAMA ASOCIADO EXTERNO
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 mt-2 mb-4">
+              Certificación STOTT PILATES® en Ciudad de México (Santa Fe)
+            </h2>
+            <p className="text-neutral-600 text-sm md:text-base leading-relaxed">
+              Para alumnas radicadas en la Ciudad de México que buscan específicamente la ruta internacional
+              STOTT PILATES® de Merrithew®, mantenemos vinculación académica con el centro anfitrión oficial{' '}
+              <strong>{STOTT_PROVIDER.name}</strong> en <strong>{STOTT_VENUE.name}</strong> (Torre 300, Santa Fe).
+              Toma en cuenta que esta alternativa cuenta con aranceles externos de certificación internacional
+              ($38,000 a $60,000+ MXN) y su propia convocatoria independiente.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+            {STOTT_COURSES.map((course) => (
+              <div
+                key={course.id}
+                className="p-6 rounded-2xl bg-white border border-neutral-200 shadow-sm flex flex-col justify-between"
+              >
+                <div>
+                  <div className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 mb-1">
+                    {course.level}
+                  </div>
+                  <div className="font-bold text-lg text-neutral-900 mb-2">{course.name}</div>
+                  <p className="text-xs text-neutral-600 mb-4 leading-relaxed line-clamp-3">
+                    {course.tagline}
+                  </p>
+                  <div className="text-2xl font-bold text-neutral-900 mb-1">
+                    {course.price ? formatMXN(course.price) : 'Por anunciar'}
+                  </div>
+                  <div className="text-xs text-neutral-500 font-mono">
+                    {course.hours.total} horas totales · {course.modality}
+                  </div>
+                </div>
+
+                <div className="pt-6 mt-4 border-t border-neutral-100 flex flex-col gap-2">
+                  <a
+                    href={`https://wa.me/525548468190?text=${encodeURIComponent(
+                      `Hola, me interesa la información y requisitos para la certificación STOTT PILATES en Santa Fe (${course.name}).`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2.5 rounded-full bg-neutral-900 text-white text-xs font-semibold uppercase tracking-wider text-center hover:bg-neutral-800 transition-colors"
+                  >
+                    Consultar por WhatsApp
+                  </a>
+                  <Link
+                    to="/certificacion-pilates/cdmx"
+                    className="w-full py-2 rounded-full border border-neutral-300 text-neutral-700 text-xs font-mono uppercase tracking-wider text-center hover:border-neutral-900 transition-colors"
+                  >
+                    Ver Sede CDMX →
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="p-6 rounded-2xl bg-white border border-neutral-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-600 font-mono">
+            <div>
+              <strong>Ubicación Sede CDMX:</strong> {STOTT_VENUE.address}
+            </div>
+            <Link
+              to="/certificacion-pilates/cdmx"
+              className="text-neutral-900 font-bold hover:underline shrink-0"
+            >
+              Explorar Guía Completa de STOTT CDMX →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CROSS-SELL: EQUIPMENT FOR FUTURE STUDIOS */}
       <section className="py-20 px-6 bg-white border-t border-neutral-200">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -1159,7 +1581,7 @@ export const CertificacionPilates: React.FC = () => {
         </div>
       </section>
 
-      {/* Minimal Footer */}
+      {/* MINIMAL FOOTER */}
       <footer className="border-t border-neutral-200 bg-[#F8F8F6] py-14 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-neutral-500 font-mono">
           <div>
@@ -1175,7 +1597,7 @@ export const CertificacionPilates: React.FC = () => {
         </div>
       </footer>
 
-      {/* Sticky Bottom Conversion Bar for Mobile & Quick Action */}
+      {/* STICKY BOTTOM CONVERSION BAR FOR MOBILE */}
       <aside aria-label="Apartado de cupo" className="fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-md border-t border-neutral-200 p-4 z-40 md:hidden shadow-lg">
         <div className="flex items-center justify-between gap-3">
           <div>
