@@ -51,7 +51,7 @@ type CapabilityTab = 'curriculo' | 'comunidad' | 'oferta' | 'faq';
 
 const PRIMARY_WHATSAPP_BASE = 'https://wa.me/525548468190?text=';
 const PRIMARY_WHATSAPP = `${PRIMARY_WHATSAPP_BASE}${encodeURIComponent(
-  'Hola, quiero información sobre la certificación de Pilates Reformer (100h) y apartar mi cupo con 50% de descuento.'
+  'Hola, me interesa información sobre el Curso Básico (28h · $25,000 MXN) y la Certificación Completa (48h · $38,000 MXN) en Pilates Reformer.'
 )}`;
 
 export const CertificacionPilates: React.FC = () => {
@@ -407,7 +407,7 @@ export const CertificacionPilates: React.FC = () => {
             </Link>
             <span className="text-neutral-300">/</span>
             <span className="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-900">
-              [ 100H CERTIFICACIÓN ]
+              [ 28H BÁSICO · 48H COMPLETO ]
             </span>
           </div>
 

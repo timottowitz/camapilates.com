@@ -154,7 +154,7 @@ const WebappExperience: React.FC = () => {
         <title>Campus Virtual & Comunidad Whop | CAMA Pilates</title>
         <meta
           name="description"
-          content="Campus virtual oficial de certificación Pilates Reformer: comunidad Whop en vivo, temario de 100 horas, aula de masterclass y biblioteca clínica."
+          content="Campus virtual oficial de certificación Pilates Reformer: comunidad Whop en vivo, temario de 28h y 48h, aula de masterclass y biblioteca clínica."
         />
         <link rel="canonical" href={`${origin}/app`} />
         <meta name="robots" content="noindex, follow" />
@@ -184,7 +184,7 @@ const WebappExperience: React.FC = () => {
                   to="/certificacion-pilates"
                   className="hidden md:inline-flex items-center gap-1 text-[11px] font-mono uppercase tracking-wider text-neutral-500 hover:text-neutral-900 transition-colors ml-2"
                 >
-                  <span>• Landing Oficial (100h)</span>
+                  <span>• Certificación Presencial</span>
                 </Link>
               </div>
             </div>
@@ -272,7 +272,7 @@ const WebappExperience: React.FC = () => {
           {/* Domain micro metadata */}
           <div className="flex items-center gap-2 text-xs font-mono text-neutral-500 mb-6">
             <span className="w-2 h-2 rounded-full bg-[#C8542A]" />
-            <span>camadepilates.com — Campus Virtual, Certificación 100h & Comunidad Whop</span>
+            <span>camadepilates.com — Campus Virtual, Formación 28h / 48h & Comunidad Whop</span>
           </div>
 
           {/* Giant Display Title */}
@@ -290,7 +290,7 @@ const WebappExperience: React.FC = () => {
             <div className="flex flex-wrap items-center gap-2">
               <span className="text-xs font-mono text-neutral-400 mr-1">// SELECT CAPABILITY:</span>
               {[
-                { id: 'campus', label: 'Formación 100h', icon: GraduationCap },
+                { id: 'campus', label: 'Formación 28h / 48h', icon: GraduationCap },
                 { id: 'comunidad', label: 'Comunidad Whop', icon: MessageSquare },
                 { id: 'webinar', label: 'Masterclass en Vivo', icon: Video },
                 { id: 'recursos', label: 'Biblioteca Clínica', icon: BookOpen },
@@ -344,7 +344,7 @@ const WebappExperience: React.FC = () => {
 
         {/* DETAILED CONTENT SECTION */}
         <main id="capability-section" className="flex-1 max-w-7xl mx-auto w-full px-4 lg:px-8 py-8 space-y-8">
-          {/* TAB 1: CAMPUS & FORMACIÓN 100H */}
+          {/* TAB 1: CAMPUS & FORMACIÓN (28H / 48H) */}
           {activeTab === 'campus' && (
             <div className="space-y-8">
               {/* Cohort selector header */}
@@ -354,10 +354,10 @@ const WebappExperience: React.FC = () => {
                     <span>// CURRICULUM SYLLABUS</span>
                   </div>
                   <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900">
-                    Plan de Estudios Académico (100 Horas Avaladas)
+                    Modalidades de Formación Presencial (28h Básica / 48h Completa)
                   </h2>
                   <p className="text-xs sm:text-sm text-neutral-600 mt-1">
-                    56 horas presenciales intensivas en 4 fines de semana + 44 horas clínicas y docencia supervisada.
+                    Elige entre el Curso Básico de 28 horas ($25,000 MXN · 2 fines de semana) o la Certificación Profesional Completa de 48 horas ($38,000 MXN · 4 fines de semana).
                   </p>
                 </div>
 
@@ -400,7 +400,7 @@ const WebappExperience: React.FC = () => {
                           Fin de Semana {weekend.weekendNumber} · {weekend.dates}
                         </span>
                         <span className="text-xs font-mono font-bold text-neutral-700 bg-neutral-100 px-2.5 py-0.5 rounded-full">
-                          {weekend.hours}
+                          {weekend.hours} Horas
                         </span>
                       </div>
 
@@ -416,7 +416,7 @@ const WebappExperience: React.FC = () => {
                     <div className="pt-4 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-500 font-medium">
                       <span className="flex items-center gap-1.5 text-neutral-700">
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        Modalidad Presencial Intensiva
+                        {weekend.weekendNumber <= 2 ? 'Curso Básico & Completo' : 'Exclusivo Certificación Completa'}
                       </span>
                       <span className="font-mono font-bold text-neutral-900">{weekend.hours} Horas</span>
                     </div>
@@ -424,32 +424,123 @@ const WebappExperience: React.FC = () => {
                 ))}
               </div>
 
-              {/* Hours Breakdown Stat Cards */}
-              <div className="bg-white border border-neutral-200/90 rounded-[28px] p-6 sm:p-8 space-y-5 shadow-xs">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-base font-bold text-neutral-900 tracking-tight">
-                    Desglose Curricular para Certificación Oficial
-                  </h3>
+              {/* Dual Pathway Hours & Price Comparison Cards */}
+              <div className="bg-white border border-neutral-200/90 rounded-[28px] p-6 sm:p-8 space-y-6 shadow-xs">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-neutral-100 pb-4">
+                  <div>
+                    <h3 className="text-base font-bold text-neutral-900 tracking-tight">
+                      Comparativa de Rutas Formativas Presenciales
+                    </h3>
+                    <p className="text-xs text-neutral-500 mt-0.5">
+                      Ambas modalidades incluyen Reformer individual asignado por alumna y acceso al campus virtual Whop.
+                    </p>
+                  </div>
                   <span className="font-mono text-xs text-neutral-400">
-                    TOTAL: 100 HORAS
+                    OPCIONES: 28H / 48H
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-                  <div className="bg-neutral-50 p-6 rounded-2xl border border-neutral-200/80">
-                    <p className="text-4xl font-extrabold tracking-tight text-[#14323D]">56h</p>
-                    <p className="text-xs font-bold text-neutral-900 mt-2">Instrucción Directa Presencial</p>
-                    <p className="text-[11px] text-neutral-500 font-mono mt-1">4 fines de semana en estudio</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Option A: Curso Básico (28h) */}
+                  <div className="bg-neutral-50/80 p-6 rounded-2xl border border-neutral-200/80 space-y-4 flex flex-col justify-between">
+                    <div className="space-y-3">
+                      <div className="flex items-start justify-between gap-2">
+                        <span className="px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-800 border border-teal-200 font-mono text-[10px] font-bold uppercase tracking-wider">
+                          2 Fines de Semana · Nivel Básico Esencial
+                        </span>
+                        <div className="text-right">
+                          <p className="text-2xl font-extrabold text-neutral-950 font-mono">$25,000</p>
+                          <p className="text-[10px] text-neutral-400 font-mono">MXN pago único</p>
+                        </div>
+                      </div>
+
+                      <h4 className="text-lg font-bold text-neutral-900">
+                        Curso Básico Reformer (28 Horas)
+                      </h4>
+
+                      <p className="text-xs text-neutral-600 leading-relaxed">
+                        Enfocado en dominar los 35 ejercicios esenciales e intermedios de Reformer, anatomía funcional, biomecánica articular y regulación precisa de resortes para impartir clases particulares con total soltura.
+                      </p>
+
+                      <div className="pt-3 border-t border-neutral-200/60 grid grid-cols-2 gap-2 text-xs">
+                        <div>
+                          <span className="text-neutral-400 font-mono block text-[10px]">DURACIÓN:</span>
+                          <strong className="text-neutral-900">28 Horas Presenciales</strong>
+                        </div>
+                        <div>
+                          <span className="text-neutral-400 font-mono block text-[10px]">CALENDARIO:</span>
+                          <strong className="text-neutral-900">Módulos I & II</strong>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2 pt-2">
+                      <button
+                        type="button"
+                        onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.cursoBasico.id)}
+                        className="w-full py-2.5 bg-neutral-900 hover:bg-neutral-800 text-white font-semibold text-xs rounded-xl transition-all shadow-xs"
+                      >
+                        Inscribirme al Curso Básico ($25,000 MXN)
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
+                        className="w-full py-2 bg-white hover:bg-neutral-100 text-neutral-800 border border-neutral-300 font-semibold text-xs rounded-xl transition-all"
+                      >
+                        Apartar Lugar con $4,500 MXN
+                      </button>
+                    </div>
                   </div>
-                  <div className="bg-neutral-50 p-6 rounded-2xl border border-neutral-200/80">
-                    <p className="text-4xl font-extrabold tracking-tight text-[#BF4A20]">24h</p>
-                    <p className="text-xs font-bold text-neutral-900 mt-2">Observación Clínica & Práctica</p>
-                    <p className="text-[11px] text-neutral-500 font-mono mt-1">Bitácora supervisada</p>
-                  </div>
-                  <div className="bg-neutral-50 p-6 rounded-2xl border border-neutral-200/80">
-                    <p className="text-4xl font-extrabold tracking-tight text-[#4E7A5A]">20h</p>
-                    <p className="text-xs font-bold text-neutral-900 mt-2">Docencia de Práctica Guiada</p>
-                    <p className="text-[11px] text-neutral-500 font-mono mt-1">Sesiones a alumnos reales</p>
+
+                  {/* Option B: Certificación Completa (48h) */}
+                  <div className="bg-gradient-to-br from-neutral-900 to-neutral-950 text-white p-6 rounded-2xl border border-neutral-800 space-y-4 flex flex-col justify-between shadow-md">
+                    <div className="space-y-3">
+                      <div className="flex items-start justify-between gap-2">
+                        <span className="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30 font-mono text-[10px] font-bold uppercase tracking-wider">
+                          4 Fines de Semana · Aval Profesional Completo
+                        </span>
+                        <div className="text-right">
+                          <p className="text-2xl font-extrabold text-amber-300 font-mono">$38,000</p>
+                          <p className="text-[10px] text-neutral-400 font-mono">MXN pago único</p>
+                        </div>
+                      </div>
+
+                      <h4 className="text-lg font-bold text-white">
+                        Certificación Completa (48 Horas)
+                      </h4>
+
+                      <p className="text-xs text-neutral-300 leading-relaxed">
+                        Formación clínica y pedagógica exhaustiva. Incluye tratamiento de patologías de columna (hernias, lumbalgias, escoliosis), embarazo, metodología de cueing, examen práctico individual, aval curricular y 15% de descuento en camas CAMA.
+                      </p>
+
+                      <div className="pt-3 border-t border-neutral-800 grid grid-cols-2 gap-2 text-xs">
+                        <div>
+                          <span className="text-neutral-400 font-mono block text-[10px]">DURACIÓN:</span>
+                          <strong className="text-white">48 Horas Presenciales</strong>
+                        </div>
+                        <div>
+                          <span className="text-neutral-400 font-mono block text-[10px]">CALENDARIO:</span>
+                          <strong className="text-white">Módulos I, II, III & IV</strong>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2 pt-2">
+                      <button
+                        type="button"
+                        onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.colegiaturaCompleta.id)}
+                        className="w-full py-2.5 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-bold text-xs rounded-xl transition-all shadow-xs"
+                      >
+                        Inscribirme a Certificación Completa ($38,000 MXN)
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
+                        className="w-full py-2 bg-neutral-800 hover:bg-neutral-700 text-white border border-neutral-700 font-semibold text-xs rounded-xl transition-all"
+                      >
+                        Apartar Lugar con $4,500 MXN
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -774,17 +865,17 @@ const WebappExperience: React.FC = () => {
               </div>
 
               {/* Pricing Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
                 {/* Plan 1: Apartado */}
-                <div className="bg-white border-2 border-neutral-900 rounded-[28px] p-6 flex flex-col justify-between shadow-lg relative overflow-hidden">
-                  <div className="space-y-3">
-                    <span className="px-3 py-1 rounded-full bg-neutral-900 text-white font-mono text-[10px] font-bold uppercase tracking-wider inline-block">
+                <div className="bg-white border-2 border-neutral-900 rounded-[24px] p-5 flex flex-col justify-between shadow-lg relative overflow-hidden">
+                  <div className="space-y-2.5">
+                    <span className="px-2.5 py-0.5 rounded-full bg-neutral-900 text-white font-mono text-[10px] font-bold uppercase tracking-wider inline-block">
                       {WHOP_CONFIG.plans.apartado.badge}
                     </span>
-                    <h3 className="text-lg font-bold text-neutral-900 tracking-tight">
+                    <h3 className="text-base font-bold text-neutral-900 tracking-tight">
                       {WHOP_CONFIG.plans.apartado.name}
                     </h3>
-                    <p className="text-3xl font-extrabold tracking-tight text-neutral-950 font-mono">
+                    <p className="text-2xl font-extrabold tracking-tight text-neutral-950 font-mono">
                       ${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN
                     </p>
                     <p className="text-xs text-neutral-600 leading-relaxed">
@@ -792,27 +883,55 @@ const WebappExperience: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-neutral-100">
+                  <div className="pt-4 mt-4 border-t border-neutral-100">
                     <button
                       type="button"
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
-                      className="w-full py-3 bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs uppercase tracking-wider rounded-full transition-all shadow-sm"
+                      className="w-full py-2.5 bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs uppercase tracking-wider rounded-full transition-all shadow-sm"
                     >
-                      Apartar con $4,500 MXN
+                      Apartar Cupo ($4,500 MXN)
                     </button>
                   </div>
                 </div>
 
-                {/* Plan 2: Colegiatura Completa */}
-                <div className="bg-white border border-neutral-200/90 rounded-[28px] p-6 flex flex-col justify-between shadow-xs hover:border-neutral-300 transition-all">
-                  <div className="space-y-3">
-                    <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 font-mono text-[10px] font-bold uppercase tracking-wider inline-block">
+                {/* Plan 2: Curso Básico (28 Horas) */}
+                <div className="bg-white border border-neutral-200/90 rounded-[24px] p-5 flex flex-col justify-between shadow-xs hover:border-neutral-300 transition-all">
+                  <div className="space-y-2.5">
+                    <span className="px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-800 border border-teal-200 font-mono text-[10px] font-bold uppercase tracking-wider inline-block">
+                      {WHOP_CONFIG.plans.cursoBasico.badge}
+                    </span>
+                    <h3 className="text-base font-bold text-neutral-900 tracking-tight">
+                      {WHOP_CONFIG.plans.cursoBasico.name}
+                    </h3>
+                    <p className="text-2xl font-extrabold tracking-tight text-neutral-950 font-mono">
+                      ${WHOP_CONFIG.plans.cursoBasico.price.toLocaleString('es-MX')} MXN
+                    </p>
+                    <p className="text-xs text-neutral-600 leading-relaxed">
+                      {WHOP_CONFIG.plans.cursoBasico.tagline}
+                    </p>
+                  </div>
+
+                  <div className="pt-4 mt-4 border-t border-neutral-100">
+                    <button
+                      type="button"
+                      onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.cursoBasico.id)}
+                      className="w-full py-2.5 bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs uppercase tracking-wider rounded-full transition-all shadow-xs"
+                    >
+                      Inscribirme Básico ($25k)
+                    </button>
+                  </div>
+                </div>
+
+                {/* Plan 3: Certificación Completa (48 Horas) */}
+                <div className="bg-white border-2 border-amber-400/80 rounded-[24px] p-5 flex flex-col justify-between shadow-md hover:border-amber-400 transition-all relative">
+                  <div className="space-y-2.5">
+                    <span className="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-900 border border-amber-300 font-mono text-[10px] font-bold uppercase tracking-wider inline-block">
                       {WHOP_CONFIG.plans.colegiaturaCompleta.badge}
                     </span>
-                    <h3 className="text-lg font-bold text-neutral-900 tracking-tight">
+                    <h3 className="text-base font-bold text-neutral-900 tracking-tight">
                       {WHOP_CONFIG.plans.colegiaturaCompleta.name}
                     </h3>
-                    <p className="text-3xl font-extrabold tracking-tight text-neutral-950 font-mono">
+                    <p className="text-2xl font-extrabold tracking-tight text-neutral-950 font-mono">
                       ${WHOP_CONFIG.plans.colegiaturaCompleta.price.toLocaleString('es-MX')} MXN
                     </p>
                     <p className="text-xs text-neutral-600 leading-relaxed">
@@ -820,27 +939,27 @@ const WebappExperience: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-neutral-100">
+                  <div className="pt-4 mt-4 border-t border-neutral-100">
                     <button
                       type="button"
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.colegiaturaCompleta.id)}
-                      className="w-full py-3 bg-white hover:bg-neutral-100 text-neutral-900 font-bold text-xs uppercase tracking-wider rounded-full transition-all border border-neutral-300"
+                      className="w-full py-2.5 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-bold text-xs uppercase tracking-wider rounded-full transition-all shadow-sm"
                     >
-                      Pagar Colegiatura Completa
+                      Pagar Completo ($38k)
                     </button>
                   </div>
                 </div>
 
-                {/* Plan 3: Curso Online 10 Módulos */}
-                <div className="bg-white border border-neutral-200/90 rounded-[28px] p-6 flex flex-col justify-between shadow-xs hover:border-neutral-300 transition-all">
-                  <div className="space-y-3">
-                    <span className="px-3 py-1 rounded-full bg-neutral-100 text-neutral-700 font-mono text-[10px] font-bold uppercase tracking-wider inline-block">
+                {/* Plan 4: Curso Online 10 Módulos */}
+                <div className="bg-white border border-neutral-200/90 rounded-[24px] p-5 flex flex-col justify-between shadow-xs hover:border-neutral-300 transition-all">
+                  <div className="space-y-2.5">
+                    <span className="px-2.5 py-0.5 rounded-full bg-neutral-100 text-neutral-700 font-mono text-[10px] font-bold uppercase tracking-wider inline-block">
                       {WHOP_CONFIG.plans.cursoOnline.badge}
                     </span>
-                    <h3 className="text-lg font-bold text-neutral-900 tracking-tight">
+                    <h3 className="text-base font-bold text-neutral-900 tracking-tight">
                       {WHOP_CONFIG.plans.cursoOnline.name}
                     </h3>
-                    <p className="text-3xl font-extrabold tracking-tight text-neutral-950 font-mono">
+                    <p className="text-2xl font-extrabold tracking-tight text-neutral-950 font-mono">
                       ${WHOP_CONFIG.plans.cursoOnline.price.toLocaleString('es-MX')} MXN
                     </p>
                     <p className="text-xs text-neutral-600 leading-relaxed">
@@ -848,27 +967,27 @@ const WebappExperience: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-neutral-100">
+                  <div className="pt-4 mt-4 border-t border-neutral-100">
                     <button
                       type="button"
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.cursoOnline.id)}
-                      className="w-full py-3 bg-white hover:bg-neutral-100 text-neutral-900 font-bold text-xs uppercase tracking-wider rounded-full transition-all border border-neutral-300"
+                      className="w-full py-2.5 bg-white hover:bg-neutral-100 text-neutral-900 font-bold text-xs uppercase tracking-wider rounded-full transition-all border border-neutral-300"
                     >
-                      Comprar Curso Online
+                      Comprar Online ($1,999)
                     </button>
                   </div>
                 </div>
 
-                {/* Plan 4: Pase VIP Gratuito */}
-                <div className="bg-neutral-50 border border-neutral-200 rounded-[28px] p-6 flex flex-col justify-between shadow-xs">
-                  <div className="space-y-3">
-                    <span className="px-3 py-1 rounded-full bg-neutral-200 text-neutral-600 font-mono text-[10px] font-bold uppercase tracking-wider inline-block">
+                {/* Plan 5: Pase VIP Gratuito */}
+                <div className="bg-neutral-50 border border-neutral-200 rounded-[24px] p-5 flex flex-col justify-between shadow-xs">
+                  <div className="space-y-2.5">
+                    <span className="px-2.5 py-0.5 rounded-full bg-neutral-200 text-neutral-600 font-mono text-[10px] font-bold uppercase tracking-wider inline-block">
                       {WHOP_CONFIG.plans.paseVipWebinar.badge}
                     </span>
-                    <h3 className="text-lg font-bold text-neutral-900 tracking-tight">
+                    <h3 className="text-base font-bold text-neutral-900 tracking-tight">
                       {WHOP_CONFIG.plans.paseVipWebinar.name}
                     </h3>
-                    <p className="text-3xl font-extrabold tracking-tight text-neutral-950 font-mono">
+                    <p className="text-2xl font-extrabold tracking-tight text-neutral-950 font-mono">
                       Gratis
                     </p>
                     <p className="text-xs text-neutral-600 leading-relaxed">
@@ -876,13 +995,13 @@ const WebappExperience: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-neutral-200">
+                  <div className="pt-4 mt-4 border-t border-neutral-200">
                     <button
                       type="button"
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.paseVipWebinar.id)}
-                      className="w-full py-3 bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold uppercase tracking-wider rounded-full transition-all shadow-sm"
+                      className="w-full py-2.5 bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold uppercase tracking-wider rounded-full transition-all shadow-sm"
                     >
-                      Obtener Pase Gratuito
+                      Pase Gratuito ($0 MXN)
                     </button>
                   </div>
                 </div>
@@ -901,7 +1020,7 @@ const WebappExperience: React.FC = () => {
                   </div>
                   <div className="text-right">
                     <span className="text-xs font-mono text-neutral-400 line-through">Valor Total: ${WHOP_CONFIG.offerStack.totalValue.toLocaleString('es-MX')} MXN</span>
-                    <p className="text-lg font-bold text-neutral-900">Preventa: ${WHOP_CONFIG.offerStack.waitlistPrice.toLocaleString('es-MX')} MXN</p>
+                    <p className="text-lg font-bold text-neutral-900">Básico 28h: $25,000 MXN · Completo 48h: $38,000 MXN</p>
                   </div>
                 </div>
 

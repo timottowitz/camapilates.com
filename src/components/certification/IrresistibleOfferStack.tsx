@@ -124,139 +124,193 @@ export const IrresistibleOfferStack: React.FC<IrresistibleOfferStackProps> = ({
             </div>
             <div className="text-right">
               <span className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-1">
-                Ahorras $58,300 MXN en total
+                Cupos Limitados por Sede (12 Máx)
               </span>
-              <p className="text-xs text-stone-400">Precio Regular: $39,800 MXN</p>
-              <p className="text-3xl md:text-4xl font-serif font-bold text-amber-300">
-                ${WHOP_CONFIG.offerStack.waitlistPrice.toLocaleString('es-MX')} MXN
+              <p className="text-xs text-stone-400">Inversión Directa Oficial</p>
+              <p className="text-2xl md:text-3xl font-serif font-bold text-amber-300">
+                ${WHOP_CONFIG.plans.cursoBasico.price.toLocaleString('es-MX')} (28h) · ${WHOP_CONFIG.plans.colegiaturaCompleta.price.toLocaleString('es-MX')} (48h)
               </p>
             </div>
           </div>
         </div>
 
         {/* Pricing Cards with Whop Checkout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
           {/* Card 1: Apartado Oficial */}
-          <div className="bg-gradient-to-b from-stone-900 to-stone-950 border-2 border-amber-400/40 rounded-2xl p-7 relative flex flex-col justify-between shadow-2xl">
-            <div className="absolute -top-3 right-6 px-3 py-1 bg-amber-400 text-stone-950 font-bold text-[11px] uppercase tracking-wider rounded-full shadow-md">
-              Recomendado para Apartar
-            </div>
-
+          <div className="bg-gradient-to-b from-stone-900 to-stone-950 border border-amber-400/40 rounded-2xl p-6 relative flex flex-col justify-between shadow-xl">
             <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="px-2.5 py-0.5 bg-amber-400/20 text-amber-300 border border-amber-400/30 text-[10px] font-mono uppercase tracking-wider rounded-full">
+                  Asegurar Cupo
+                </span>
+              </div>
+
               <div>
-                <h3 className="text-xl font-serif italic text-stone-100">
+                <h3 className="text-lg font-serif italic text-stone-100">
                   Apartado Oficial de Lugar
                 </h3>
                 <p className="text-xs text-stone-400 mt-1">
-                  Congela tu 50% de descuento y asegura uno de los 12 lugares presenciales.
+                  Congela tu cupo para el Curso Básico (28h) o la Certificación Completa (48h).
                 </p>
               </div>
 
               <div className="py-2">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-4xl font-serif font-bold text-amber-300">
+                  <span className="text-3xl font-serif font-bold text-amber-300">
                     ${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')}
                   </span>
-                  <span className="text-xs text-stone-400 uppercase">MXN Pago Único</span>
+                  <span className="text-xs text-stone-400 uppercase">MXN Anticipo</span>
                 </div>
                 <p className="text-[11px] text-emerald-400 mt-1">
-                  Resto liquidable en hasta 3 mensualidades sin intereses antes del inicio.
+                  Resto liquidable antes del inicio de tu cohorte.
                 </p>
               </div>
 
-              <ul className="space-y-2.5 text-xs text-stone-300">
+              <ul className="space-y-2 text-xs text-stone-300">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Lugar 100% garantizado en Reformer exclusivo (no compartes máquina).</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span>1 de los 12 cupos exclusivos asegurado.</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Acceso inmediato a la Comunidad Whop y canales de bienvenida.</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span>Acceso inmediato a la Comunidad Whop.</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Todos los 5 bonos de valor (\$38,400 MXN) garantizados.</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Elegible para mentoría 1-a-1 de Fast-Action.</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span>Válido para Querétaro o Monterrey.</span>
                 </li>
               </ul>
             </div>
 
-            <div className="pt-6 mt-6 border-t border-stone-800">
+            <div className="pt-5 mt-5 border-t border-stone-800">
               <button
                 type="button"
                 onClick={() => handleSelectPlan(WHOP_CONFIG.plans.apartado.id)}
-                className="w-full py-3.5 bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-xs uppercase tracking-widest rounded-xl transition-all shadow-lg flex items-center justify-center gap-2"
+                className="w-full py-3 bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-xs uppercase tracking-widest rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
               >
-                <span>Apartar Mi Lugar con $4,500 MXN</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>Apartar Lugar ($4,500 MXN)</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
-              <p className="text-center text-[10px] text-stone-500 mt-2 flex items-center justify-center gap-1">
-                <Lock className="w-3 h-3" />
-                Pago procesado de forma 100% segura por Whop
-              </p>
             </div>
           </div>
 
-          {/* Card 2: Colegiatura Completa */}
-          <div className="bg-stone-900/90 border border-stone-800 rounded-2xl p-7 relative flex flex-col justify-between shadow-xl">
+          {/* Card 2: Curso Básico 28h */}
+          <div className="bg-stone-900/90 border border-stone-800 rounded-2xl p-6 relative flex flex-col justify-between shadow-xl">
             <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="px-2.5 py-0.5 bg-stone-800 text-stone-300 border border-stone-700 text-[10px] font-mono uppercase tracking-wider rounded-full">
+                  2 Fines de Sem · 28 Horas
+                </span>
+              </div>
+
               <div>
-                <h3 className="text-xl font-serif italic text-stone-100">
-                  Colegiatura Completa (50% OFF)
+                <h3 className="text-lg font-serif italic text-stone-100">
+                  Curso Básico Reformer
                 </h3>
                 <p className="text-xs text-stone-400 mt-1">
-                  Liquida tu certificación completa con el beneficio total del webinar.
+                  Repertorio esencial e intermedio, biomecánica y máquina individual.
                 </p>
               </div>
 
               <div className="py-2">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-4xl font-serif font-bold text-stone-100">
-                    ${WHOP_CONFIG.plans.colegiaturaCompleta.price.toLocaleString('es-MX')}
+                  <span className="text-3xl font-serif font-bold text-stone-100">
+                    ${WHOP_CONFIG.plans.cursoBasico.price.toLocaleString('es-MX')}
                   </span>
-                  <span className="text-xs text-stone-400 uppercase">MXN de Contado</span>
+                  <span className="text-xs text-stone-400 uppercase">MXN Contado</span>
                 </div>
                 <p className="text-[11px] text-stone-400 mt-1">
-                  En lugar de la colegiatura regular de <span className="line-through">$39,800 MXN</span>.
+                  Incluye 28h presenciales y campus virtual en Whop.
                 </p>
               </div>
 
-              <ul className="space-y-2.5 text-xs text-stone-300">
+              <ul className="space-y-2 text-xs text-stone-300">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Certificación 100h completamente liquidada (cero cuotas pendientes).</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>28 horas presenciales en máquina propia.</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Acceso prioritario VIP al Campus Virtual en Whop.</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Manual de repertorio y biomecánica esencial.</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Cupón de \$5,000 MXN para compra de tu Reformer activado hoy.</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Garantía total de devolución "Riesgo Cero" incluida.</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Constancia de 28 horas avalada por CAMA.</span>
                 </li>
               </ul>
             </div>
 
-            <div className="pt-6 mt-6 border-t border-stone-800">
+            <div className="pt-5 mt-5 border-t border-stone-800">
+              <button
+                type="button"
+                onClick={() => handleSelectPlan(WHOP_CONFIG.plans.cursoBasico.id)}
+                className="w-full py-3 bg-stone-800 hover:bg-stone-700 text-stone-100 font-semibold text-xs uppercase tracking-widest rounded-xl transition-all border border-stone-700 flex items-center justify-center gap-2"
+              >
+                <span>Inscribirme a Básico ($25,000 MXN)</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Card 3: Certificación Completa 48h */}
+          <div className="bg-gradient-to-b from-stone-900 to-black border-2 border-amber-400 rounded-2xl p-6 relative flex flex-col justify-between shadow-2xl">
+            <div className="absolute -top-3 right-6 px-3 py-1 bg-amber-400 text-stone-950 font-bold text-[10px] uppercase tracking-wider rounded-full shadow-md">
+              Recomendado
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="px-2.5 py-0.5 bg-amber-400/20 text-amber-300 border border-amber-400/30 text-[10px] font-mono uppercase tracking-wider rounded-full">
+                  4 Fines de Sem · 48 Horas
+                </span>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-serif italic text-stone-100">
+                  Certificación Completa
+                </h3>
+                <p className="text-xs text-stone-400 mt-1">
+                  Patologías de columna, metodología de cueing y acreditación docente.
+                </p>
+              </div>
+
+              <div className="py-2">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-3xl font-serif font-bold text-amber-300">
+                    ${WHOP_CONFIG.plans.colegiaturaCompleta.price.toLocaleString('es-MX')}
+                  </span>
+                  <span className="text-xs text-stone-400 uppercase">MXN Contado</span>
+                </div>
+                <p className="text-[11px] text-emerald-400 mt-1">
+                  Formación profesional completa con aval curricular oficial.
+                </p>
+              </div>
+
+              <ul className="space-y-2 text-xs text-stone-300">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span>48 horas presenciales intensivas (4 fines de semana).</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span>Patologías clínicas, modificaciones y poblaciones especiales.</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span>Examen práctico, certificación oficial y bolsa de trabajo.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="pt-5 mt-5 border-t border-stone-800">
               <button
                 type="button"
                 onClick={() => handleSelectPlan(WHOP_CONFIG.plans.colegiaturaCompleta.id)}
-                className="w-full py-3.5 bg-stone-800 hover:bg-stone-700 text-stone-100 font-semibold text-xs uppercase tracking-widest rounded-xl transition-all border border-stone-700 flex items-center justify-center gap-2"
+                className="w-full py-3 bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-xs uppercase tracking-widest rounded-xl transition-all shadow-lg flex items-center justify-center gap-2"
               >
-                <span>Pagar Colegiatura Completa ($19,900 MXN)</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>Inscribirme a Completa ($38,000 MXN)</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
-              <p className="text-center text-[10px] text-stone-500 mt-2 flex items-center justify-center gap-1">
-                <Lock className="w-3 h-3" />
-                Acepta Apple Pay, Google Pay, Tarjetas y Split-Pay
-              </p>
             </div>
           </div>
         </div>

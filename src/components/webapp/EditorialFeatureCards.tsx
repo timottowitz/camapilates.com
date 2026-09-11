@@ -12,7 +12,7 @@ export const EditorialFeatureCards: React.FC<EditorialFeatureCardsProps> = ({
 }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
-      {/* CARD 1: FORMACIÓN 100H (SLATE TEAL) */}
+      {/* CARD 1: FORMACIÓN 28H / 48H (SLATE TEAL) */}
       <div
         onClick={() => onSelectTab('campus')}
         className={`group relative flex flex-col justify-between rounded-[28px] overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 bg-[#14323D] ${
@@ -24,14 +24,14 @@ export const EditorialFeatureCards: React.FC<EditorialFeatureCardsProps> = ({
         <div className="p-6 pb-4 bg-gradient-to-b from-[#183D4A] via-[#14323D] to-transparent z-10">
           <div className="flex items-center justify-between gap-2 mb-3">
             <h3 className="text-2xl font-bold text-white tracking-tight">
-              Formación 100h
+              Formación 28h / 48h
             </h3>
-            <span className="font-mono text-[11px] font-medium text-teal-100/90 tracking-wider px-2.5 py-1 rounded-full border border-teal-300/30 bg-teal-900/30 uppercase">
-              [ 56H PRESENCIALES ]
+            <span className="font-mono text-[10px] font-medium text-teal-100/90 tracking-wider px-2.5 py-1 rounded-full border border-teal-300/30 bg-teal-900/30 uppercase">
+              [ 28H $25K · 48H $38K ]
             </span>
           </div>
           <p className="text-xs text-teal-100/80 leading-relaxed max-w-[260px]">
-            Repertorio esencial e intermedio, análisis de resortes y biomecánica clínica en estudio.
+            Curso Básico (28h) y Certificación Completa (48h) con Reformer individual exclusivo.
           </p>
         </div>
 
@@ -250,7 +250,7 @@ export const EditorialFeatureCards: React.FC<EditorialFeatureCardsProps> = ({
             {/* Final Target Box: CERTIFICACIÓN OFICIAL */}
             <rect x="40" y="290" width="160" height="38" rx="8" stroke="#FFFFFF" strokeWidth="1.5" fill="#1C3023" fillOpacity="0.7" />
             <text x="52" y="313" fill="#FFFFFF" fontSize="9.5" fontFamily="monospace" fontWeight="700">
-              AVAL 100 HORAS
+              AVAL 28H / 48H
             </text>
 
             {/* Annotation text */}

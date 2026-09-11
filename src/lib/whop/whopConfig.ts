@@ -109,6 +109,8 @@ export const WHOP_CONFIG = {
     basicHours: 28,
     fullPrice: 38000,
     fullHours: 48,
+    waitlistPrice: 25000,
+    regularPrice: 38000,
     depositPrice: 4500,
     currency: 'MXN',
     bonuses: [
