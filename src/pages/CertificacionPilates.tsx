@@ -343,7 +343,7 @@ export const CertificacionPilates: React.FC = () => {
         name: '¿Cómo puedo apartar mi lugar para el curso de 28h o 48h?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Puedes asegurar tu lugar realizando un anticipo de apartado oficial de $4,500 MXN a través de nuestra pasarela de Whop (tarjeta o transferencia) para congelar tu cupo (máximo 12 lugares por sede).',
+          text: 'Puedes asegurar tu lugar realizando una pre-reserva oficial de solo $400 MXN a través de nuestra pasarela de Whop (tarjeta o transferencia) para congelar tu cupo (máximo 12 lugares por sede).',
         },
       },
       {
@@ -424,7 +424,7 @@ export const CertificacionPilates: React.FC = () => {
               onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
               className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#111111] text-white text-xs font-semibold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-sm"
             >
-              <span>Apartar Cupo ($4,500)</span>
+              <span>Pre-reservar ($400 MXN)</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
@@ -521,7 +521,7 @@ export const CertificacionPilates: React.FC = () => {
                   onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
                   className="px-6 py-3 rounded-full bg-white text-neutral-950 text-xs font-bold uppercase tracking-wider hover:bg-neutral-100 transition-colors shadow-lg flex items-center gap-2"
                 >
-                  <span>Apartar Cupo Inmediato ($4,500 MXN)</span>
+                  <span>Pre-reservar Cupo Inmediato ($400 MXN)</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
 
@@ -698,10 +698,10 @@ export const CertificacionPilates: React.FC = () => {
 
                       <div className="pt-2">
                         <button
-                          onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
+                          onClick={() => handleOpenCheckout(webinarCohort === 'monterrey' ? WHOP_CONFIG.plans.apartadoMonterrey.id : WHOP_CONFIG.plans.apartadoQueretaro.id)}
                           className="w-full py-3 rounded-full bg-white text-neutral-900 text-xs font-bold uppercase tracking-wider hover:bg-neutral-100 transition-colors shadow-md flex items-center justify-center gap-2"
                         >
-                          <span>Apartar Cupo Ahora ($4,500 MXN)</span>
+                          <span>Pre-reservar Cupo Ahora ($400 MXN)</span>
                           <ArrowRight className="w-3.5 h-3.5" />
                         </button>
                       </div>
@@ -822,10 +822,10 @@ export const CertificacionPilates: React.FC = () => {
 
               <div className="grid sm:grid-cols-2 gap-3">
                 <button
-                  onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
+                  onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartadoQueretaro.id)}
                   className="py-3 rounded-full bg-[#111111] text-white text-xs font-semibold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-sm text-center"
                 >
-                  Apartar Cupo ($4,500 MXN)
+                  Pre-reservar Querétaro ($400 MXN)
                 </button>
                 <Link
                   to="/certificacion-pilates/queretaro"
@@ -901,10 +901,10 @@ export const CertificacionPilates: React.FC = () => {
 
               <div className="grid sm:grid-cols-2 gap-3">
                 <button
-                  onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
+                  onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartadoMonterrey.id)}
                   className="py-3 rounded-full bg-[#111111] text-white text-xs font-semibold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-sm text-center"
                 >
-                  Apartar Cupo ($4,500 MXN)
+                  Pre-reservar Monterrey ($400 MXN)
                 </button>
                 <Link
                   to="/certificacion-pilates/monterrey"
@@ -1396,9 +1396,9 @@ export const CertificacionPilates: React.FC = () => {
                   ¿Cómo aseguro mi lugar con el 50% de descuento ($19,900 MXN)?
                 </h3>
                 <p className="text-sm text-neutral-600 leading-relaxed">
-                  Puedes congelar tu descuento y asegurar 1 de los 12 cupos realizando un anticipo de $4,500 MXN
+                  Puedes congelar tu descuento y asegurar 1 de los 12 cupos realizando una pre-reserva de $400 MXN
                   a través de nuestra pasarela oficial de Whop (tarjeta de crédito/débito o transferencia) o liquidando
-                  la colegiatura completa de $19,900 MXN.
+                  la colegiatura con tu asesor.
                 </p>
               </div>
 
@@ -1601,14 +1601,14 @@ export const CertificacionPilates: React.FC = () => {
       <aside aria-label="Apartado de cupo" className="fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-md border-t border-neutral-200 p-4 z-40 md:hidden shadow-lg">
         <div className="flex items-center justify-between gap-3">
           <div>
-            <div className="text-[10px] font-mono uppercase tracking-wider text-neutral-500">Anticipo de Cupo</div>
-            <div className="text-base font-bold text-neutral-900">$4,500 MXN</div>
+            <div className="text-[10px] font-mono uppercase tracking-wider text-neutral-500">Pre-reserva de Cupo</div>
+            <div className="text-base font-bold text-neutral-900">$400 MXN</div>
           </div>
           <button
             onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
             className="px-5 py-2.5 rounded-full bg-[#111111] text-white text-xs font-semibold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-sm"
           >
-            Apartar Cupo →
+            Pre-reservar Cupo →
           </button>
         </div>
       </aside>

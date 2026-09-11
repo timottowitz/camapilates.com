@@ -237,7 +237,7 @@ const WebappExperience: React.FC = () => {
                     onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
                     className="px-4 sm:px-5 py-2 bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold rounded-full transition-all shadow-sm flex items-center gap-1.5"
                   >
-                    <span>Apartar Cupo ($4,500 MXN)</span>
+                    <span>Pre-reservar Cupo ($400 MXN)</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -321,7 +321,7 @@ const WebappExperience: React.FC = () => {
                 onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
                 className="px-5 py-2.5 bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold rounded-full shadow-sm flex items-center gap-2 transition-all"
               >
-                <span>Apartar Cupo ($4,500 MXN)</span>
+                <span>Pre-reservar Cupo ($400 MXN)</span>
                 <ChevronRight className="w-3.5 h-3.5" />
               </button>
               <a
@@ -487,7 +487,7 @@ const WebappExperience: React.FC = () => {
                         onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
                         className="w-full py-2 bg-white hover:bg-neutral-100 text-neutral-800 border border-neutral-300 font-semibold text-xs rounded-xl transition-all"
                       >
-                        Apartar Lugar con $4,500 MXN
+                        Pre-reservar Lugar con $400 MXN
                       </button>
                     </div>
                   </div>
@@ -538,7 +538,7 @@ const WebappExperience: React.FC = () => {
                         onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
                         className="w-full py-2 bg-neutral-800 hover:bg-neutral-700 text-white border border-neutral-700 font-semibold text-xs rounded-xl transition-all"
                       >
-                        Apartar Lugar con $4,500 MXN
+                        Pre-reservar Lugar con $400 MXN
                       </button>
                     </div>
                   </div>
@@ -889,7 +889,7 @@ const WebappExperience: React.FC = () => {
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
                       className="w-full py-2.5 bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs uppercase tracking-wider rounded-full transition-all shadow-sm"
                     >
-                      Apartar Cupo ($4,500 MXN)
+                      Pre-reservar Cupo ($400 MXN)
                     </button>
                   </div>
                 </div>
@@ -1137,7 +1137,7 @@ const WebappExperience: React.FC = () => {
                     }}
                     className="px-3 py-1.5 bg-neutral-900 text-white rounded-full font-semibold text-[11px] hover:bg-neutral-800"
                   >
-                    Apartar Cupo ($4,500 MXN)
+                    Pre-reservar Cupo ($400 MXN)
                   </button>
                   <a
                     href={WHOP_CONFIG.customerPortalUrl}

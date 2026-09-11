@@ -437,7 +437,7 @@ export const CertificacionWebinar: React.FC = () => {
                 <p className="text-xs text-gray-600">
                   Sede presencial elegida: <strong>{cohort === 'queretaro-nov-2026' ? 'Querétaro (Noviembre)' : cohort === 'monterrey-dec-jan-2026-2027' ? 'Monterrey (Dic-Ene)' : 'Querétaro / Monterrey'}</strong>.
                   <br />
-                  Puedes apartar tu lugar con <strong>$4,500 MXN</strong> para congelar tu lugar en cualquiera de los dos tracks.
+                  Puedes pre-reservar tu lugar con <strong>$400 MXN</strong> para congelar tu lugar en cualquiera de los dos tracks.
                 </p>
               </div>
 
@@ -447,21 +447,21 @@ export const CertificacionWebinar: React.FC = () => {
                   <span className="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-[10px] font-bold uppercase tracking-wider">
                     ¿Quieres congelar tu lugar presencial HOY? (Opcional)
                   </span>
-                  <span className="text-amber-300 font-bold text-sm">$4,500 MXN</span>
+                  <span className="text-amber-300 font-bold text-sm">$400 MXN</span>
                 </div>
                 <p className="text-xs text-stone-300 leading-relaxed">
-                  Asistir al webinar en Google Meet es <strong>100% GRATUITO</strong>. Si ya estás decidida a certificarte y quieres asegurar desde hoy tu lugar para el Curso Básico (28h · $25,000) o la Certificación Completa (48h · $38,000), puedes apartar tu lugar presencial con <strong>$4,500 MXN</strong> a través de Whop.
+                  Asistir al webinar en Google Meet es <strong>100% GRATUITO</strong>. Si ya estás decidida a certificarte y quieres asegurar desde hoy tu lugar para el Curso Básico (28h · $25,000) o la Certificación Completa (48h · $38,000), puedes pre-reservar tu lugar presencial con <strong>$400 MXN</strong> a través de Whop.
                 </p>
                 <div className="flex flex-col gap-2 pt-1">
                   <button
                     type="button"
                     onClick={() => {
-                      setCheckoutPlan(WHOP_CONFIG.plans.apartado.id);
+                      setCheckoutPlan(cohort === 'monterrey-dec-jan-2026-2027' ? WHOP_CONFIG.plans.apartadoMonterrey.id : WHOP_CONFIG.plans.apartadoQueretaro.id);
                       setCheckoutOpen(true);
                     }}
                     className="w-full py-3 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-xs uppercase tracking-wider text-center transition-all shadow-md flex items-center justify-center gap-2"
                   >
-                    <span>Apartar Lugar Presencial en Whop ($4,500 MXN)</span>
+                    <span>Pre-reservar Lugar Presencial en Whop ($400 MXN)</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                   <button
@@ -617,7 +617,7 @@ export const CertificacionWebinar: React.FC = () => {
             <div>
               <h3 className="font-serif text-lg text-[#2A2624] mb-2">Modalidades de Formación (28h Básico / 48h Completo)</h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                Revelaremos el enlace prioritario para asegurar uno de los 12 lugares por ciudad: Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN) con apartado accesible de $4,500 MXN.
+                Revelaremos el enlace prioritario para asegurar uno de los 12 lugares por ciudad: Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN) con pre-reserva accesible de $400 MXN.
               </p>
             </div>
           </div>
@@ -758,7 +758,7 @@ export const CertificacionWebinar: React.FC = () => {
                 ¿Cuáles son las modalidades y precios de la formación presencial?
               </h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                Ofrecemos dos rutas oficiales: el <strong>Curso Básico (28 horas en 2 fines de semana)</strong> por <strong>$25,000 MXN</strong> y la <strong>Certificación Completa (48 horas en 4 fines de semana)</strong> por <strong>$38,000 MXN</strong>. Puedes congelar tu lugar en cualquiera de las cohortes con un apartado oficial de $4,500 MXN en Whop.
+                Ofrecemos dos rutas oficiales: el <strong>Curso Básico (28 horas en 2 fines de semana)</strong> por <strong>$25,000 MXN</strong> y la <strong>Certificación Completa (48 horas en 4 fines de semana)</strong> por <strong>$38,000 MXN</strong>. Puedes congelar tu lugar en cualquiera de las cohortes con una pre-reserva oficial de $400 MXN en Whop.
               </p>
             </div>
 

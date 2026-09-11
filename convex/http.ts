@@ -289,10 +289,19 @@ http.route({
         const fullName = data.name || data.user?.name || data.user?.username;
 
         let planName = 'Whop Membership';
-        if (planId === 'plan_tUBQoR2eJxv5v') {
-          planName = 'Apartado de Lugar Oficial 50% OFF';
+        let detectedCohort: string | undefined = undefined;
+        if (planId === 'plan_UhtJhB86yvRil') {
+          planName = 'Pre-reserva Sede Querétaro ($400 MXN)';
+          detectedCohort = 'queretaro-nov-2026';
+        } else if (planId === 'plan_EWWSjvyc3X7Nb') {
+          planName = 'Pre-reserva Sede Monterrey ($400 MXN)';
+          detectedCohort = 'monterrey-dec-jan-2026-2027';
+        } else if (planId === 'plan_PhK89KCzisw49') {
+          planName = 'Pre-reserva Oficial ($400 MXN)';
+        } else if (planId === 'plan_tUBQoR2eJxv5v') {
+          planName = 'Apartado Oficial de Lugar ($4,500 MXN)';
         } else if (planId === 'plan_hqgjSBEjElw3C') {
-          planName = 'Colegiatura Completa Lista de Espera 50% OFF';
+          planName = 'Certificación Completa Reformer (48 Horas)';
         } else if (planId === 'plan_QGF4bCYeJj2Nr') {
           planName = 'Curso Online 10 Módulos + Certificado Digital';
         } else if (planId === 'plan_ojBC2a7IkCXNT') {
@@ -307,16 +316,19 @@ http.route({
             planName,
             amount:
               amount ||
-              (planId === 'plan_tUBQoR2eJxv5v'
-                ? 4500
-                : planId === 'plan_hqgjSBEjElw3C'
-                  ? 19900
-                  : planId === 'plan_QGF4bCYeJj2Nr'
-                    ? 1999
-                    : 0),
+              (planId === 'plan_PhK89KCzisw49' || planId === 'plan_UhtJhB86yvRil' || planId === 'plan_EWWSjvyc3X7Nb'
+                ? 400
+                : planId === 'plan_tUBQoR2eJxv5v'
+                  ? 4500
+                  : planId === 'plan_hqgjSBEjElw3C'
+                    ? 38000
+                    : planId === 'plan_QGF4bCYeJj2Nr'
+                      ? 1999
+                      : 0),
             currency,
             receiptId: receiptId || undefined,
             whopUserId: whopUserId || undefined,
+            cohort: detectedCohort,
             source: 'whop-webhook',
           });
         }

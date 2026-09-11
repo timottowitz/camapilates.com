@@ -133,7 +133,7 @@ Si eres preparador físico, fisioterapeuta o instructora en México y deseas esp
 * **Cohorte Querétaro:** Noviembre de 2026 (4 fines de semana intensivos).
 * **Cohorte Monterrey:** Diciembre 2026 a Enero 2027 (4 fines de semana con receso navideño).
 * **Condición de Excelencia:** Máximo 12 alumnas(os) por sede con **1 Reformer individual exclusivo asignado** (sin turnos ni rotaciones).
-* **Beca de Lista de Espera:** 50% de descuento (\$19,900 MXN en lugar de \$39,800 MXN), congelable con un apartado oficial de \$4,500 MXN.
+* **Beca de Lista de Espera:** 50% de descuento (\$19,900 MXN en lugar de \$39,800 MXN), congelable con una pre-reserva oficial de \$400 MXN.
 
 Puedes conocer todos los detalles de la formación y reservar tu lugar en la sesión informativa gratuita con las Master Trainers internacionales **Gabi & Laura Munive** el próximo **Sábado 26 de Septiembre a las 11:00 AM CST**:
 

@@ -117,7 +117,7 @@ const CertificacionPilatesCity: React.FC = () => {
           },
           {
             question: `¿Cuáles son los costos y modalidades en ${shortCityName}?`,
-            answer: `Ofrecemos el Curso Básico de 28 horas (2 fines de semana) por $25,000 MXN y la Certificación Completa de 48 horas (4 fines de semana) por $38,000 MXN. Puedes apartar tu lugar con $4,500 MXN.`,
+            answer: `Ofrecemos el Curso Básico de 28 horas (2 fines de semana) por $25,000 MXN y la Certificación Completa de 48 horas (4 fines de semana) por $38,000 MXN. Puedes pre-reservar tu lugar con solo $400 MXN.`,
           },
           {
             question: `¿Tengo un Reformer individual asignado durante las clases?`,
@@ -281,12 +281,12 @@ const CertificacionPilatesCity: React.FC = () => {
                 <>
                   <button
                     onClick={() => {
-                      setWhopPlan(WHOP_CONFIG.plans.apartado.id);
+                      setWhopPlan(citySlug === 'monterrey' ? WHOP_CONFIG.plans.apartadoMonterrey.id : WHOP_CONFIG.plans.apartadoQueretaro.id);
                       setWhopCheckoutOpen(true);
                     }}
                     className="px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors shadow-md font-semibold"
                   >
-                    Apartar con 50% OFF ($4,500 MXN)
+                    Pre-reservar Cupo ($400 MXN)
                   </button>
                   <button
                     onClick={() => setModalOpen(true)}
@@ -455,18 +455,18 @@ const CertificacionPilatesCity: React.FC = () => {
               Básico: $25,000 MXN (28h) · Completo: $38,000 MXN (48h)
             </h3>
             <p className="text-sm text-[#EAE8E4]/80 max-w-xl mx-auto mb-8 font-light">
-              Máquina individual asignada por alumna y acceso completo al campus virtual. Reserva hoy tu cupo congelando tu lugar con solo <strong>$4,500 MXN</strong>.
+              Máquina individual asignada por alumna y acceso completo al campus virtual. Reserva hoy tu cupo congelando tu lugar con solo <strong>$400 MXN</strong>.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button
                 onClick={() => {
-                  setWhopPlan(WHOP_CONFIG.plans.apartado.id);
+                  setWhopPlan(citySlug === 'monterrey' ? WHOP_CONFIG.plans.apartadoMonterrey.id : WHOP_CONFIG.plans.apartadoQueretaro.id);
                   setWhopCheckoutOpen(true);
                 }}
                 className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#EAE8E4] text-[#2A2624] text-xs uppercase tracking-[0.2em] font-semibold hover:bg-white transition-colors shadow-lg"
               >
-                Apartar mi lugar ($4,500 MXN)
+                Pre-reservar mi lugar ($400 MXN)
               </button>
               <button
                 onClick={() => setModalOpen(true)}

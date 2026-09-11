@@ -147,7 +147,7 @@ export const IrresistibleOfferStack: React.FC<IrresistibleOfferStackProps> = ({
 
               <div>
                 <h3 className="text-lg font-serif italic text-stone-100">
-                  Apartado Oficial de Lugar
+                  Pre-reserva Oficial de Lugar
                 </h3>
                 <p className="text-xs text-stone-400 mt-1">
                   Congela tu cupo para el Curso Básico (28h) o la Certificación Completa (48h).
@@ -185,10 +185,10 @@ export const IrresistibleOfferStack: React.FC<IrresistibleOfferStackProps> = ({
             <div className="pt-5 mt-5 border-t border-stone-800">
               <button
                 type="button"
-                onClick={() => handleSelectPlan(WHOP_CONFIG.plans.apartado.id)}
+                onClick={() => handleSelectPlan(city === 'queretaro' ? WHOP_CONFIG.plans.apartadoQueretaro.id : WHOP_CONFIG.plans.apartadoMonterrey.id)}
                 className="w-full py-3 bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-xs uppercase tracking-widest rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
               >
-                <span>Apartar Lugar ($4,500 MXN)</span>
+                <span>Pre-reservar Cupo ($400 MXN)</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>

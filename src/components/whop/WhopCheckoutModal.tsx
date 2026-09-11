@@ -121,14 +121,16 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
               type="button"
               onClick={() => setActivePlanId(WHOP_CONFIG.plans.apartado.id)}
               className={`text-left p-2.5 rounded-xl border text-xs transition-all ${
-                activePlanId === WHOP_CONFIG.plans.apartado.id
+                activePlanId === WHOP_CONFIG.plans.apartado.id ||
+                activePlanId === WHOP_CONFIG.plans.apartadoQueretaro.id ||
+                activePlanId === WHOP_CONFIG.plans.apartadoMonterrey.id
                   ? 'border-neutral-900 bg-neutral-900 text-white shadow-sm'
                   : 'border-neutral-200 bg-white text-neutral-600 hover:border-neutral-300 hover:bg-neutral-50'
               }`}
             >
-              <div className={`text-[11px] font-bold ${activePlanId === WHOP_CONFIG.plans.apartado.id ? 'text-white' : 'text-neutral-900'}`}>Apartar Cupo</div>
-              <div className={`font-mono text-xs font-semibold ${activePlanId === WHOP_CONFIG.plans.apartado.id ? 'text-orange-300' : 'text-orange-600'}`}>$4,500 MXN</div>
-              <p className={`text-[9px] mt-0.5 ${activePlanId === WHOP_CONFIG.plans.apartado.id ? 'text-neutral-300' : 'text-neutral-400'}`}>Asegura 1 de 12</p>
+              <div className={`text-[11px] font-bold ${activePlanId === WHOP_CONFIG.plans.apartado.id || activePlanId === WHOP_CONFIG.plans.apartadoQueretaro.id || activePlanId === WHOP_CONFIG.plans.apartadoMonterrey.id ? 'text-white' : 'text-neutral-900'}`}>Pre-reserva</div>
+              <div className={`font-mono text-xs font-semibold ${activePlanId === WHOP_CONFIG.plans.apartado.id || activePlanId === WHOP_CONFIG.plans.apartadoQueretaro.id || activePlanId === WHOP_CONFIG.plans.apartadoMonterrey.id ? 'text-orange-300' : 'text-orange-600'}`}>$400 MXN</div>
+              <p className={`text-[9px] mt-0.5 ${activePlanId === WHOP_CONFIG.plans.apartado.id || activePlanId === WHOP_CONFIG.plans.apartadoQueretaro.id || activePlanId === WHOP_CONFIG.plans.apartadoMonterrey.id ? 'text-neutral-300' : 'text-neutral-400'}`}>12 cupos / sede</p>
             </button>
 
             <button

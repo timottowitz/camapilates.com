@@ -252,7 +252,7 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
                     Tu lugar preferente para <strong>{cohortCityName} ({cohortDates})</strong> ha quedado registrado. Podrás elegir entre el <strong>Curso Básico (28h · $25,000 MXN)</strong> o la <strong>Certificación Completa (48h · $38,000 MXN)</strong>.
                   </p>
                   <p className="text-[11px] text-stone-400">
-                    Apartado oficial con solo $4,500 MXN (cupo limitado a 12 lugares por sede).
+                    Pre-reserva oficial con solo $400 MXN (cupo estrictamente limitado a 12 lugares por sede).
                   </p>
                 </div>
 
@@ -283,7 +283,7 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
                     className="inline-flex items-center justify-center gap-2 w-full py-2.5 bg-[#2A2624] hover:bg-[#3E2723] text-white rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors shadow-sm"
                   >
                     <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-                    Apartar Lugar con $4,500 MXN (1 de 12)
+                    Pre-reservar Lugar con $400 MXN (1 de 12)
                   </a>
                   <a
                     href={`https://wa.me/525549425550?text=${encodeURIComponent(`Hola, acabo de registrarme a la lista de espera para la Certificación en ${cohortCityName} con 50% de descuento. ¿Me comparten los detalles?`)}`}

@@ -48,14 +48,37 @@ export const WHOP_CONFIG = {
 
   plans: {
     apartado: {
-      id: 'plan_tUBQoR2eJxv5v',
-      price: 4500,
+      id: 'plan_PhK89KCzisw49',
+      price: 400,
       currency: 'MXN',
-      name: 'Apartado Oficial de Cupo',
-      badge: 'Asegura Cupo (1 de 12)',
-      tagline: 'Congela tu lugar para el Curso Básico (28h) o la Certificación Completa (48h) en Querétaro o Monterrey.',
-      directLink: 'https://whop.com/checkout/plan_tUBQoR2eJxv5v',
-      unlimitedStock: true,
+      name: 'Pre-reserva Oficial de Cupo',
+      badge: '12 Cupos Disponibles',
+      tagline: 'Congela 1 de los 12 lugares para el curso presencial en Querétaro o Monterrey con solo $400 MXN.',
+      directLink: 'https://whop.com/checkout/plan_PhK89KCzisw49',
+      unlimitedStock: false,
+      stock: 24,
+    },
+    apartadoQueretaro: {
+      id: 'plan_UhtJhB86yvRil',
+      price: 400,
+      currency: 'MXN',
+      name: 'Pre-reserva Sede Querétaro',
+      badge: '12 Cupos · Querétaro',
+      tagline: 'Congela 1 de los 12 lugares para Querétaro (Noviembre 2026) con solo $400 MXN.',
+      directLink: 'https://whop.com/checkout/plan_UhtJhB86yvRil',
+      unlimitedStock: false,
+      stock: 12,
+    },
+    apartadoMonterrey: {
+      id: 'plan_EWWSjvyc3X7Nb',
+      price: 400,
+      currency: 'MXN',
+      name: 'Pre-reserva Sede Monterrey',
+      badge: '12 Cupos · Monterrey',
+      tagline: 'Congela 1 de los 12 lugares para Monterrey (Dic 2026 – Ene 2027) con solo $400 MXN.',
+      directLink: 'https://whop.com/checkout/plan_EWWSjvyc3X7Nb',
+      unlimitedStock: false,
+      stock: 12,
     },
     cursoBasico: {
       id: 'plan_tUBQoR2eJxv5v',
@@ -111,7 +134,7 @@ export const WHOP_CONFIG = {
     fullHours: 48,
     waitlistPrice: 25000,
     regularPrice: 38000,
-    depositPrice: 4500,
+    depositPrice: 400,
     currency: 'MXN',
     bonuses: [
       {

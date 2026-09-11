@@ -104,7 +104,7 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
     fullHours: 48,
     regularPrice: 38000,
     discountedPrice: 25000,
-    depositPrice: 4500,
+    depositPrice: 400,
     capacityPerCity: 12,
     location: {
       name: "CAMA Studio Querétaro",
@@ -156,7 +156,7 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
       "Manual impreso a color con repertorio completo y desglose anatómico biomecánico",
       "Acceso de por vida al campus virtual en Whop con videoteca HD de cada movimiento",
       "Bolsa de trabajo y vinculación prioritaria con estudios de Pilates en Querétaro y Bajío",
-      "Apartado oficial con $4,500 MXN para congelar 1 de los 12 cupos presenciales",
+      "Pre-reserva oficial con $400 MXN para congelar 1 de los 12 cupos presenciales",
     ],
   },
 
@@ -176,7 +176,7 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
     fullHours: 48,
     regularPrice: 38000,
     discountedPrice: 25000,
-    depositPrice: 4500,
+    depositPrice: 400,
     capacityPerCity: 12,
     location: {
       name: "CAMA Studio Monterrey",
@@ -228,7 +228,7 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
       "Máximo 12 personas por cohorte con Reformer exclusivo en San Pedro Garza García / Valle Oriente",
       "Manual clínico y metodológico oficial CAMA Pilates",
       "Acceso de por vida a la comunidad y campus virtual en Whop",
-      "Apartado oficial con $4,500 MXN para asegurar lugar",
+      "Pre-reserva oficial con $400 MXN para congelar 1 de los 12 cupos presenciales",
     ],
   },
 };
