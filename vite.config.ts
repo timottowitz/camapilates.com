@@ -48,5 +48,35 @@ export default defineConfig(async ({ mode }) => {
     optimizeDeps: {
       include: ["gray-matter"],
     },
+    build: {
+      target: "esnext",
+      cssCodeSplit: true,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes("node_modules")) {
+              if (/[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/.test(id)) {
+                return "react-core";
+              }
+              if (/[\\/]node_modules[\\/]react-router(-dom)?[\\/]/.test(id)) {
+                return "react-router";
+              }
+              if (/[\\/]node_modules[\\/]@radix-ui[\\/]/.test(id)) {
+                return "radix-vendor";
+              }
+              if (/[\\/]node_modules[\\/]@tanstack[\\/]/.test(id)) {
+                return "tanstack-vendor";
+              }
+              if (/[\\/]node_modules[\\/]framer-motion[\\/]/.test(id)) {
+                return "motion-vendor";
+              }
+              if (/[\\/]node_modules[\\/]lucide-react[\\/]/.test(id)) {
+                return "icons-vendor";
+              }
+            }
+          },
+        },
+      },
+    },
   };
 });

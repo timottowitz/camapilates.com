@@ -8,12 +8,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import Index from "./pages/Index";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import NotFound from "./pages/NotFound";
-import StudiosLanding from './pages/estudios-de-pilates/StudiosLanding';
-import CityDirectory from './pages/estudios-de-pilates/CityDirectory';
-import StudioDetail from './pages/estudios-de-pilates/StudioDetail';
 
 // Retry wrapper for lazy imports - handles chunk loading failures after deployments
 function lazyWithRetry<T extends ComponentType<unknown>>(
@@ -47,6 +41,14 @@ function lazyWithRetry<T extends ComponentType<unknown>>(
     throw new Error('Failed to load module after retries');
   });
 }
+
+// Lazy-loaded pages
+const About = lazyWithRetry(() => import('./pages/About'));
+const Services = lazyWithRetry(() => import('./pages/Services'));
+const NotFound = lazyWithRetry(() => import('./pages/NotFound'));
+const StudiosLanding = lazyWithRetry(() => import('./pages/estudios-de-pilates/StudiosLanding'));
+const CityDirectory = lazyWithRetry(() => import('./pages/estudios-de-pilates/CityDirectory'));
+const StudioDetail = lazyWithRetry(() => import('./pages/estudios-de-pilates/StudioDetail'));
 
 // Compare page is intentionally disabled for now (feature flag / coming soon)
 const Shop = lazyWithRetry(() => import('./pages/Shop'));
@@ -125,7 +127,7 @@ const App = () => (
           <ErrorBoundary>
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/about" element={<About />} />
+              <Route path="/about" element={<Suspense fallback={<PageLoader />}><About /></Suspense>} />
               {/* Compare disabled */}
               <Route path="/shop" element={<Suspense fallback={<PageLoader />}><Shop /></Suspense>} />
               <Route path="/shop/category/:slug" element={<Suspense fallback={<PageLoader />}><ShopCategory /></Suspense>} />
@@ -148,7 +150,7 @@ const App = () => (
               <Route path="/legal/terminos" element={<Suspense fallback={<PageLoader />}><LegalTerms /></Suspense>} />
               <Route path="/legal/privacidad" element={<Suspense fallback={<PageLoader />}><LegalPrivacy /></Suspense>} />
               <Route path="/soporte" element={<Suspense fallback={<PageLoader />}><Support /></Suspense>} />
-              <Route path="/services" element={<Services />} />
+              <Route path="/services" element={<Suspense fallback={<PageLoader />}><Services /></Suspense>} />
               <Route path="/blog" element={<Suspense fallback={<PageLoader />}><Blog /></Suspense>} />
               <Route path="/blog/:slug" element={<Suspense fallback={<PageLoader />}><BlogPost /></Suspense>} />
               <Route path="/blog/category/:category" element={<Suspense fallback={<PageLoader />}><BlogCategory /></Suspense>} />
@@ -184,7 +186,7 @@ const App = () => (
               <Route path="/reset-password" element={<Suspense fallback={<PageLoader />}><ResetPassword /></Suspense>} />
 
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
+              <Route path="*" element={<Suspense fallback={<PageLoader />}><NotFound /></Suspense>} />
             </Routes>
           </ErrorBoundary>
           <FloatingCart21 />

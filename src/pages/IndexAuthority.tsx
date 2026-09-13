@@ -240,7 +240,9 @@ const IndexAuthority: React.FC = () => {
                       src={c.image}
                       alt={c.title}
                       className="h-full w-full object-cover transition-transform duration-700 ease-[0.25,0.46,0.45,0.94] group-hover:scale-105"
-                      loading="lazy"
+                      loading={i === 0 ? "eager" : "lazy"}
+                      fetchPriority={i === 0 ? "high" : "auto"}
+                      decoding={i === 0 ? "sync" : "async"}
                     />
                     {/* Modern Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-80" />
