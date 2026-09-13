@@ -411,7 +411,31 @@ function renderProduct(p, origin) {
       priceCurrency: p.currency,
       price: p.price,
       availability: p.availability,
-      itemCondition: 'https://schema.org/NewCondition'
+      itemCondition: 'https://schema.org/NewCondition',
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'MX',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 30,
+        returnMethod: 'https://schema.org/ReturnByMail',
+        returnFees: 'https://schema.org/FreeReturn'
+      },
+      shippingDetails: [
+        {
+          '@type': 'OfferShippingDetails',
+          shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'MX' },
+          deliveryTime: {
+            '@type': 'ShippingDeliveryTime',
+            handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 2, unitCode: 'DAY' },
+            transitTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' }
+          },
+          shippingRate: {
+            '@type': 'MonetaryAmount',
+            value: '0',
+            currency: 'MXN'
+          }
+        }
+      ]
     }
   };
   const head = {
@@ -669,6 +693,137 @@ async function main() {
     html = html.replace(
       '</head>',
       [breadcrumb, collectionPage, itemList]
+        .map(schema => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`)
+        .join('\n') + '\n</head>'
+    );
+    writeFileForRoute(route, html);
+  }
+
+  // Home Reformer landing. Keep aligned with ReformerParaCasa.tsx.
+  {
+    const route = '/reformer-para-casa';
+    const meta = routeMeta[route];
+    if (!meta) {
+      throw new Error('Home Reformer prerender requires route metadata');
+    }
+    const breadcrumb = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: origin },
+        { '@type': 'ListItem', position: 2, name: 'Reformer para Casa' },
+      ],
+    };
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Qué espacio necesito para un reformer en casa?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Necesitas aproximadamente 3m x 1.5m de espacio libre. El reformer mide ~245cm de largo y ~70cm de ancho, más espacio para moverte alrededor.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cuánto cuesta un reformer para casa en México?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Un reformer de calidad para casa en México cuesta entre $35,000 y $45,000 MXN. Modelos económicos desde $15,000 MXN sacrifican durabilidad y silencio.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Es difícil instalar un reformer en casa?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'No, los reformers modernos vienen pre-ensamblados. Solo necesitas colocarlo en posición. Edelweiss incluye entrega a domicilio y guía de instalación.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Puedo practicar pilates en casa sin instructor?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí, pero recomendamos tomar algunas clases presenciales primero. Hay excelentes apps y videos para practicar en casa una vez domines los fundamentos.'
+          }
+        }
+      ]
+    };
+    const productSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: 'Edelweiss Home Reformer',
+      description: 'Reformer de pilates para casa con diseño compacto, sistema silencioso Whisper Glide y acabados premium en madera de nogal.',
+      brand: { '@type': 'Brand', name: 'Edelweiss Pilates' },
+      sku: 'EW-HOME-WALNUT',
+      image: [`${origin}/images/products/reformer-aluminio-nogal-a039.webp`],
+      url: `${origin}/reformer-para-casa`,
+      offers: {
+        '@type': 'Offer',
+        url: `${origin}/reformer-para-casa`,
+        priceCurrency: 'MXN',
+        price: '35000',
+        availability: 'https://schema.org/InStock',
+        itemCondition: 'https://schema.org/NewCondition',
+        seller: { '@type': 'Organization', name: 'CAMA Pilates' },
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          applicableCountry: 'MX',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+          merchantReturnDays: 30,
+          returnMethod: 'https://schema.org/ReturnByMail',
+          returnFees: 'https://schema.org/FreeReturn'
+        },
+        shippingDetails: [
+          {
+            '@type': 'OfferShippingDetails',
+            shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'MX' },
+            deliveryTime: {
+              '@type': 'ShippingDeliveryTime',
+              handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 2, unitCode: 'DAY' },
+              transitTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' }
+            },
+            shippingRate: {
+              '@type': 'MonetaryAmount',
+              value: '0',
+              currency: 'MXN'
+            }
+          }
+        ]
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '5',
+        reviewCount: '2'
+      }
+    };
+    const head = {
+      title: meta.title,
+      description: meta.description,
+      canonical: `${origin}${route}`,
+      ogImage: `${origin}/images/products/reformer-aluminio-nogal-a039.webp`,
+      ogType: 'website',
+    };
+    const body = `
+    <section class="container mx-auto px-4 py-12">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">${htmlEscape(meta.title)}</h1>
+      <p class="text-lg text-gray-600 max-w-2xl mb-8">${htmlEscape(meta.description)}</p>
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <img src="/images/products/reformer-aluminio-nogal-a039.webp" alt="Edelweiss Home Reformer" class="w-full h-auto rounded-lg border" />
+        <div>
+          <h2 class="text-2xl font-bold text-gray-900">Edelweiss Home Reformer</h2>
+          <p class="mt-4 text-gray-700">Reformer de pilates para casa con diseño compacto, sistema silencioso Whisper Glide y acabados premium en madera de nogal.</p>
+          <div class="mt-6 text-2xl font-bold text-gray-900">$35,000 MXN</div>
+        </div>
+      </div>
+    </section>`;
+    let html = baseHtml(template, head, body);
+    html = html.replace(
+      '</head>',
+      [breadcrumb, faqSchema, productSchema]
         .map(schema => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`)
         .join('\n') + '\n</head>'
     );
@@ -1018,7 +1173,7 @@ async function main() {
   // descriptions come from the same src/content/route-meta.json the components read,
   // so the prerendered head and the hydrated head cannot disagree.
   for (const [route, meta] of Object.entries(routeMeta)) {
-    if (route === '/reformer-para-estudio' || route === '/certificacion-pilates' || route === '/certificacion-pilates/webinar') continue;
+    if (route === '/reformer-para-estudio' || route === '/reformer-para-casa' || route === '/certificacion-pilates' || route === '/certificacion-pilates/webinar') continue;
     const head = {
       title: meta.title,
       description: meta.description,

@@ -32,6 +32,8 @@ const StudioPack: React.FC = () => {
     name: 'Pack de Estudio Edelweiss (8+ Reformers)',
     description: 'Pack para estudios con descuento del 20% a partir de 8 unidades. Instalación coordinada y garantía de 1 año.',
     brand: { '@type': 'Brand', name: 'Edelweiss Pilates' },
+    sku: 'EW-STUDIO-PACK',
+    image: [`${origin}/images/products/reformer-aluminio-media-torre-a102.webp`],
     url,
     offers: {
       '@type': 'AggregateOffer',

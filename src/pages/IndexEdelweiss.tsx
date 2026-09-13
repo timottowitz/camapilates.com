@@ -73,7 +73,31 @@ const IndexEdelweiss = () => {
       priceCurrency: 'MXN',
       price: '45000.00',
       availability: 'https://schema.org/InStock',
-      itemCondition: 'https://schema.org/NewCondition'
+      itemCondition: 'https://schema.org/NewCondition',
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'MX',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 30,
+        returnMethod: 'https://schema.org/ReturnByMail',
+        returnFees: 'https://schema.org/FreeReturn'
+      },
+      shippingDetails: [
+        {
+          '@type': 'OfferShippingDetails',
+          shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'MX' },
+          deliveryTime: {
+            '@type': 'ShippingDeliveryTime',
+            handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 2, unitCode: 'DAY' },
+            transitTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' }
+          },
+          shippingRate: {
+            '@type': 'MonetaryAmount',
+            value: '0',
+            currency: 'MXN'
+          }
+        }
+      ]
     }
   };
 

@@ -56,12 +56,41 @@ const ReformerParaCasa: React.FC = () => {
     name: 'Edelweiss Home Reformer',
     description: 'Reformer de pilates para casa con diseño compacto, sistema silencioso Whisper Glide y acabados premium en madera de nogal.',
     brand: { '@type': 'Brand', name: 'Edelweiss Pilates' },
+    sku: 'EW-HOME-WALNUT',
+    image: [`${origin}/images/products/reformer-aluminio-nogal-a039.webp`],
+    url,
     offers: {
       '@type': 'Offer',
+      url,
       priceCurrency: 'MXN',
       price: '35000',
       availability: 'https://schema.org/InStock',
-      seller: { '@type': 'Organization', name: 'CAMA Pilates' }
+      itemCondition: 'https://schema.org/NewCondition',
+      seller: { '@type': 'Organization', name: 'CAMA Pilates' },
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'MX',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 30,
+        returnMethod: 'https://schema.org/ReturnByMail',
+        returnFees: 'https://schema.org/FreeReturn'
+      },
+      shippingDetails: [
+        {
+          '@type': 'OfferShippingDetails',
+          shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'MX' },
+          deliveryTime: {
+            '@type': 'ShippingDeliveryTime',
+            handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 2, unitCode: 'DAY' },
+            transitTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' }
+          },
+          shippingRate: {
+            '@type': 'MonetaryAmount',
+            value: '0',
+            currency: 'MXN'
+          }
+        }
+      ]
     },
     aggregateRating: {
       '@type': 'AggregateRating',

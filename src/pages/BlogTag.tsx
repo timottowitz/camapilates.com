@@ -66,7 +66,7 @@ const BlogTag: React.FC = () => {
       <Helmet>
         <title>{title} | Edelweiss Pilates</title>
         <meta name="description" content={`Artículos con la etiqueta ${displayTag}`} />
-        <meta name="robots" content="index,follow" />
+        <meta name="robots" content="noindex, follow" />
         <link rel="canonical" href={`${window.location.origin}/blog/tag/${normalized}`} />
         <meta property="og:site_name" content="Edelweiss Pilates" />
         <meta property="og:locale" content="es_MX" />

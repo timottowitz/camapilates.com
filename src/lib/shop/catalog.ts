@@ -42,14 +42,42 @@ export function toItemListSchema(origin: string, list: Product[]) {
       item: {
         '@type': 'Product',
         name: p.name,
+        description: p.description,
         url: `${origin}/product/${p.slug}`,
         image: [origin + p.image],
         brand: { '@type': 'Brand', name: p.brand },
+        sku: p.sku,
         offers: {
           '@type': 'Offer',
+          url: `${origin}/product/${p.slug}`,
           priceCurrency: p.currency,
           price: p.price,
           availability: p.availability,
+          itemCondition: 'https://schema.org/NewCondition',
+          hasMerchantReturnPolicy: {
+            '@type': 'MerchantReturnPolicy',
+            applicableCountry: 'MX',
+            returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+            merchantReturnDays: 30,
+            returnMethod: 'https://schema.org/ReturnByMail',
+            returnFees: 'https://schema.org/FreeReturn'
+          },
+          shippingDetails: [
+            {
+              '@type': 'OfferShippingDetails',
+              shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'MX' },
+              deliveryTime: {
+                '@type': 'ShippingDeliveryTime',
+                handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 2, unitCode: 'DAY' },
+                transitTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' }
+              },
+              shippingRate: {
+                '@type': 'MonetaryAmount',
+                value: '0',
+                currency: 'MXN'
+              }
+            }
+          ]
         },
       },
     })),

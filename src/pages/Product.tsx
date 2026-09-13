@@ -99,10 +99,10 @@ const ProductPage: React.FC = () => {
     image: [
       ...(activeVariant?.image ? [activeVariant.image] : []),
       origin + safeProd.image,
-      '/images/finish-walnut.jpg',
-      '/images/finish-white.jpg',
-      '/images/finish-black.jpg',
-      '/images/finish-mycelium.webp'
+      origin + '/images/finish-walnut.jpg',
+      origin + '/images/finish-white.jpg',
+      origin + '/images/finish-black.jpg',
+      origin + '/images/finish-mycelium.webp'
     ],
     material: materials,
     url,
@@ -113,6 +113,14 @@ const ProductPage: React.FC = () => {
       price: priceToShow,
       availability: safeProd.availability,
       itemCondition: 'https://schema.org/NewCondition',
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'MX',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 30,
+        returnMethod: 'https://schema.org/ReturnByMail',
+        returnFees: 'https://schema.org/FreeReturn'
+      },
       shippingDetails: [
         {
           '@type': 'OfferShippingDetails',

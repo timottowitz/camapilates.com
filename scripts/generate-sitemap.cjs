@@ -116,8 +116,7 @@ function build() {
     { loc: `${origin}/certificacion-pilates/queretaro`, lastmod: now, changefreq: 'weekly', priority: '0.6' },
     { loc: `${origin}/estudios-de-pilates`, lastmod: page('/estudios-de-pilates'), changefreq: 'weekly', priority: '0.9' },
     { loc: `${origin}/instructores-pilates`, lastmod: page('/instructores-pilates'), changefreq: 'weekly', priority: '0.8' },
-    // /claim-teacher is intentionally absent: it redirects to /instructores-pilates.
-    { loc: `${origin}/claim-studio`, lastmod: page('/claim-studio'), changefreq: 'monthly', priority: '0.5' },
+    // /claim-teacher and /claim-studio are intentionally absent: /claim-teacher redirects, /claim-studio is noindexed.
     { loc: `${origin}/soporte`, lastmod: page('/soporte'), changefreq: 'monthly', priority: '0.5' },
     { loc: `${origin}/legal/terminos`, lastmod: page('/legal/terminos'), changefreq: 'yearly', priority: '0.3' },
     { loc: `${origin}/legal/privacidad`, lastmod: page('/legal/privacidad'), changefreq: 'yearly', priority: '0.3' },
@@ -192,16 +191,8 @@ function build() {
     });
   }
 
-  // Tag pages
-  for (const t of new Set(Array.from(tags, slugify))) {
-    if (!t) continue;
-    urls.push({
-      loc: `${origin}/blog/tag/${t}`,
-      lastmod: now,
-      changefreq: 'weekly',
-      priority: '0.5',
-    });
-  }
+  // Tag pages are intentionally omitted from sitemap.xml.
+  // They are thin filter pages set to noindex, follow to preserve crawl budget.
 
   const seen = new Set();
   const unique = urls.filter(u => !seen.has(u.loc) && seen.add(u.loc));
