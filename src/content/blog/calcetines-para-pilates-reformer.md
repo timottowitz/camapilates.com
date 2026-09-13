@@ -1,5 +1,5 @@
 ---
-title: 'Calcetines para Pilates Reformer: Guía 2025'
+title: 'Calcetines para Pilates Reformer [Guía de Compra 2026]'
 description: >-
   Cómo elegir calcetines antideslizantes para Reformer en México: agarre,
   materiales, tallas, higiene y marcas recomendadas.

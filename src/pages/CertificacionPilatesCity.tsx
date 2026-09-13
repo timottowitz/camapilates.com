@@ -65,11 +65,15 @@ const CertificacionPilatesCity: React.FC = () => {
 
   const cityName = data.name;
   const shortCityName = data.shortName;
-  const title = isCdmx
-    ? `Certificación STOTT PILATES® en ${cityName} — Programa Premium`
-    : cohort
-      ? `Certificación Pilates Reformer en ${shortCityName} (${cohort.periodLabel}) — 28h Básico / 48h Completo`
-      : `Certificación de Pilates Reformer en ${shortCityName}`;
+  const title = key === 'monterrey'
+    ? 'Certificación Pilates Monterrey [Fechas 2026]'
+    : key === 'queretaro'
+      ? 'Certificación Pilates Querétaro [Nov 2026]'
+      : key === 'puebla'
+        ? 'Certificación Pilates Puebla [Costos y Fechas]'
+        : isCdmx
+          ? 'Certificación Pilates CDMX [STOTT 2026]'
+          : `Certificación Pilates ${shortCityName} [2026]`;
   const desc = isCdmx
     ? `Certifícate en STOTT PILATES® en ${cityName}: Intensive Reformer (125h), Mat-Plus™ y niveles avanzados en ${STOTT_VENUE.name}, sede oficial Merrithew® en Santa Fe. Fechas, costos y registro.`
     : cohort

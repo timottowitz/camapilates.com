@@ -193,7 +193,7 @@ export const CertificacionPilates: React.FC = () => {
     }. Quiero información sobre el Curso Básico (28h · $25,000 MXN) y la Certificación Completa (48h · $38,000 MXN).`
   )}`;
 
-  const title = 'Certificación Profesional de Pilates Reformer en México | Querétaro y Monterrey (28h Básico / 48h Completo)';
+  const title = 'Certificación Pilates Reformer México [Aval Oficial] | CAMA';
   const desc =
     'Certificación profesional en Pilates Reformer: Curso Básico (28h · $25,000 MXN) y Certificación Completa (48h · $38,000 MXN). Querétaro (Nov 2026) y Monterrey (Dic-Ene 2027). 1:1 Reformer individual con Gabi y Laura Munive.';
 

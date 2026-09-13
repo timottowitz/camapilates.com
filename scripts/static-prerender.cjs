@@ -900,7 +900,7 @@ async function main() {
   // Certification landing (static snapshot for SEO)
   {
     const head = {
-      title: 'Certificación Profesional de Pilates Reformer (28h Básica / 48h Completa) en México | Querétaro, Monterrey y CDMX | CAMA Pilates',
+      title: 'Certificación Pilates Reformer México [Aval Oficial] | CAMA',
       description: 'Certifícate como instructora de Pilates Reformer: Curso Básico (28h · $25k) o Certificación Completa (48h · $38k). Máquina individual por alumna y comunidad Whop. Sedes en Querétaro y Monterrey.',
       canonical: `${origin}/certificacion-pilates`,
       ogImage: `${origin}/og/cama-de-pilates-venta-mexico.png`,
@@ -987,9 +987,20 @@ async function main() {
 
   // Certification city pages (static snapshots)
   for (const c of certCities) {
-    const cityTitle = `Certificación de Pilates Reformer en ${c.shortName}`;
     const isQueretaro = c.key === 'queretaro';
     const isMonterrey = c.key === 'monterrey';
+    const isPuebla = c.key === 'puebla';
+    const isCdmx = c.key === 'cdmx';
+    const headingTitle = `Certificación de Pilates Reformer en ${c.shortName}`;
+    const cityTitle = isMonterrey
+      ? 'Certificación Pilates Monterrey [Fechas 2026]'
+      : isQueretaro
+        ? 'Certificación Pilates Querétaro [Nov 2026]'
+        : isPuebla
+          ? 'Certificación Pilates Puebla [Costos y Fechas]'
+          : isCdmx
+            ? 'Certificación Pilates CDMX [STOTT 2026]'
+            : `Certificación Pilates ${c.shortName} [2026]`;
     const customTitle = `${cityTitle} | CAMA Pilates`;
     const customDesc = isQueretaro
       ? 'Certifícate como instructora de Pilates Reformer en Querétaro (Noviembre 2026): Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). 12 cupos exclusivos con Reformer individual.'
@@ -1020,7 +1031,7 @@ async function main() {
     const body = `
     <section class="bg-background border-b border-border">
       <div class="container mx-auto px-4 py-12">
-        <h1 class="text-3xl md:text-4xl font-bold text-foreground">${cityTitle}</h1>
+        <h1 class="text-3xl md:text-4xl font-bold text-foreground">${headingTitle}</h1>
         <p class="mt-4 text-lg text-muted-foreground max-w-2xl">Compara opciones de formación en Reformer y Mat en ${c.shortName}. Antes de inscribirte, confirma el respaldo del programa, las horas de práctica, la evaluación y el costo total.</p>
         ${cohortAlert}
         <div class="mt-6 flex flex-wrap gap-3">

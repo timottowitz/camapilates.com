@@ -1,5 +1,5 @@
 ---
-title: 'Dimensiones de una Cama de Pilates: Espacio mínimo recomendado'
+title: 'Dimensiones Cama de Pilates [Medidas Exactas 2026]'
 description: >-
   Dimensiones de una cama de Pilates: medidas típicas, espacio lateral y
   trasero, altura de techo y consejos de instalación para usar el Reformer con

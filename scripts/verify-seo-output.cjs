@@ -37,7 +37,7 @@ requireText(home, 'href="/shop/category/reformers"', 'index.html');
 const certification = read('certificacion-pilates/monterrey.html');
 requireText(
   certification,
-  '<title>Certificación de Pilates Reformer en Monterrey | CAMA Pilates</title>',
+  '<title>Certificación Pilates Monterrey [Fechas 2026] | CAMA Pilates</title>',
   'certificacion-pilates/monterrey.html',
 );
 requireText(

@@ -1,5 +1,5 @@
 ---
-title: 'Cama de Pilates de segunda mano: Qué revisar'
+title: 'Cama de Pilates Segunda Mano [Checklist 2026]'
 description: >-
   Guía práctica sobre cama de pilates de segunda mano: qué revisar con enfoque
   en México: consejos y pasos accionables.
