@@ -82,6 +82,19 @@ export const CertificacionWebinar: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const scrollToRegistro = () => {
+    document.getElementById('registro')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    if (window.location.hash === '#registro') {
+      const timer = setTimeout(() => {
+        scrollToRegistro();
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg('');
@@ -664,6 +677,10 @@ export const CertificacionWebinar: React.FC = () => {
                 </div>
                 <a
                   href="#registro"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToRegistro();
+                  }}
                   className="block text-center py-3 rounded-xl bg-[#2A2624] text-white text-xs uppercase tracking-widest hover:bg-[#3E2723] transition-colors"
                 >
                   Apartar en Querétaro
@@ -705,6 +722,10 @@ export const CertificacionWebinar: React.FC = () => {
                 </div>
                 <a
                   href="#registro"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToRegistro();
+                  }}
                   className="block text-center py-3 rounded-xl bg-[#2A2624] text-white text-xs uppercase tracking-widest hover:bg-[#3E2723] transition-colors"
                 >
                   Apartar en Monterrey
@@ -784,6 +805,10 @@ export const CertificacionWebinar: React.FC = () => {
           <div className="mt-12 text-center">
             <a
               href="#registro"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToRegistro();
+              }}
               className="inline-flex items-center gap-3 px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors shadow-lg"
             >
               <span>Subir y Registrarme en la Lista de Espera</span>

@@ -311,11 +311,18 @@ const CertificacionPilatesCity: React.FC = () => {
                     {isCdmx ? 'Inscribirme' : 'Solicitar información'}
                   </a>
                   <button
+                    type="button"
                     onClick={() => setModalOpen(true)}
                     className="px-8 py-4 border border-[#2A2624]/20 text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#EAE8E4] transition-colors"
                   >
                     Pre-registro
                   </button>
+                  <Link
+                    to="/certificacion-pilates/webinar"
+                    className="px-6 py-4 bg-[#3E2723]/10 border border-[#3E2723]/30 text-[#3E2723] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723]/20 transition-colors flex items-center gap-2"
+                  >
+                    <span>Masterclass 26 Sep</span>
+                  </Link>
                 </>
               )}
             </div>
@@ -486,6 +493,12 @@ const CertificacionPilatesCity: React.FC = () => {
               </Link>
             </div>
           </div>
+        </section>
+      )}
+
+      {!isCdmx && !cohort && (
+        <section className="py-12 px-8 md:px-24 max-w-[1800px] mx-auto">
+          <CertificationWebinarBanner className="mb-4" />
         </section>
       )}
 

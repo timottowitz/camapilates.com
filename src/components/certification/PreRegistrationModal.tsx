@@ -311,10 +311,40 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
                 </div>
               </div>
             ) : (
-              <p className="text-[#5D5550] leading-relaxed mb-2 text-sm">
-                Te contactaremos en las próximas <strong>48 horas</strong> con información sobre las próximas certificaciones en{' '}
-                <strong>{formData.city}</strong>.
-              </p>
+              <div className="space-y-4 my-4 text-left">
+                <p className="text-[#5D5550] leading-relaxed text-sm text-center">
+                  Te contactaremos en las próximas <strong>48 horas</strong> con información sobre las próximas certificaciones en{' '}
+                  <strong>{formData.city}</strong>.
+                </p>
+
+                <div className="border border-[#2A2624]/15 rounded-xl p-4 text-xs text-[#5D5550] space-y-2.5 bg-[#F7F5F0]">
+                  <div className="flex items-center gap-1.5 font-semibold text-[#2A2624]">
+                    <Video className="w-4 h-4 text-[#8C6D58]" />
+                    <span>Masterclass Online Gratuita · Sábado 26 de Septiembre</span>
+                  </div>
+                  <p className="text-[11px] text-[#5D5550] leading-relaxed">
+                    Acompáñanos a la sesión informativa en vivo con <strong>Gabi</strong> y <strong>Laura Munive</strong> para conocer a fondo el plan de estudios, biomecánica del Reformer y cómo certificar tu estudio.
+                  </p>
+                  <div className="pt-1 flex flex-col gap-2">
+                    <a
+                      href="/certificacion-pilates/webinar"
+                      className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 bg-[#2A2624] hover:bg-[#3E2723] text-white rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors text-center"
+                    >
+                      <span>Ver detalles y apartar lugar</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </a>
+                    <a
+                      href={getGoogleCalendarUrl()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-1.5 w-full py-2 bg-white hover:bg-stone-100 border border-stone-300 rounded-lg text-xs font-medium text-[#2A2624] transition-colors"
+                    >
+                      <Calendar className="w-3.5 h-3.5" />
+                      Agregar al Google Calendar
+                    </a>
+                  </div>
+                </div>
+              </div>
             )}
 
             <Button

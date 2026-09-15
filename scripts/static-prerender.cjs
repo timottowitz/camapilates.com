@@ -1015,7 +1015,7 @@ async function main() {
       ogImage: `${origin}/og/cama-de-pilates-venta-mexico.png`,
       ogType: 'website'
     };
-    const certFormUrl = process.env.CERT_FORM_URL || process.env.VITE_AIRTABLE_CERT_FORM_URL || 'mailto:valery@camadepilates.com';
+    const certFormUrl = process.env.CERT_FORM_URL || process.env.VITE_AIRTABLE_CERT_FORM_URL || `https://wa.me/525548468190?text=${encodeURIComponent('Hola, quiero hacer mi pre-registro para la certificación de Pilates en ' + c.shortName)}`;
     const directoryLink = c.directorySlug
       ? `<a href="/estudios-de-pilates/${c.directorySlug}">Ver clases y estudios en ${c.shortName}</a>`
       : '';
@@ -1102,6 +1102,14 @@ async function main() {
           <a href="/certificacion-pilates/queretaro" class="px-8 py-4 rounded-full border border-stone-600 text-stone-200 text-xs uppercase tracking-widest">Cohorte Querétaro (Nov 2026)</a>
           <a href="/certificacion-pilates/monterrey" class="px-8 py-4 rounded-full border border-stone-600 text-stone-200 text-xs uppercase tracking-widest">Cohorte Monterrey (Dic-Ene)</a>
         </div>
+      </div>
+    </section>
+    <section id="registro" class="py-16 px-4 max-w-3xl mx-auto text-center">
+      <h2 class="text-2xl md:text-3xl font-serif italic mb-4 text-stone-900">Apartar Lugar en el Webinar Gratuito</h2>
+      <p class="text-stone-600 mb-8 max-w-xl mx-auto font-light">Sesión informativa en vivo con Gabi y Laura Munive el Sábado 26 de Septiembre a las 11:00 AM CST. Conoce el plan presencial intensivo (28h / 48h) y asegura tu lugar.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="https://wa.me/525548468190?text=${encodeURIComponent('Hola, quiero apartar mi lugar en el Webinar del 26 de Septiembre para la certificación de Pilates Reformer.')}" class="px-8 py-4 rounded-full bg-stone-900 text-white text-xs uppercase tracking-widest font-semibold hover:bg-stone-800 transition-colors">Apartar mi lugar por WhatsApp →</a>
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Webinar: Certificación Pilates Reformer')}&dates=20260926T170000Z/20260926T181500Z&details=${encodeURIComponent('Sesión informativa online en vivo con Gabi y Laura Munive.')}" target="_blank" rel="noopener noreferrer" class="px-6 py-4 rounded-full border border-stone-300 text-stone-700 text-xs uppercase tracking-widest hover:bg-stone-50 transition-colors">Agregar al Calendario</a>
       </div>
     </section>`;
     const webinarHtml = baseHtml(template, webinarHead, webinarBody);

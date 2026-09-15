@@ -55,14 +55,8 @@ export default defineConfig(async ({ mode }) => {
         output: {
           manualChunks(id) {
             if (id.includes("node_modules")) {
-              if (/[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/.test(id)) {
-                return "react-core";
-              }
-              if (/[\\/]node_modules[\\/]react-router(-dom)?[\\/]/.test(id)) {
-                return "react-router";
-              }
-              if (/[\\/]node_modules[\\/]@radix-ui[\\/]/.test(id)) {
-                return "radix-vendor";
+              if (/[\\/]node_modules[\\/](react|react-dom|scheduler|react-router|react-router-dom|@radix-ui)[\\/]/.test(id)) {
+                return "react-vendor";
               }
               if (/[\\/]node_modules[\\/]@tanstack[\\/]/.test(id)) {
                 return "tanstack-vendor";
