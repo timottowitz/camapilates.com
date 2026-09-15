@@ -90,5 +90,9 @@
   "/comunidad": {
     "title": "Comunidad Reformer México — Whop Hub | CAMA Pilates",
     "description": "Únete a la red más activa de instructores y dueños de estudios de Pilates Reformer en México. Foros de discusión, casos clínicos y networking en vivo."
+  },
+  "/mapa-del-sitio": {
+    "title": "Mapa del Sitio | CAMA Pilates México",
+    "description": "Índice general de contenidos, modelos de Reformer, precios, certificaciones de Pilates y directorios de estudios de CAMA Pilates en México."
   }
 }

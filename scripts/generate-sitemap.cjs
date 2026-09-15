@@ -78,6 +78,7 @@ function build() {
     '/cama-de-pilates/precio': 'src/pages/CamaDePilatesPrecio.tsx',
     '/packs/estudio': 'src/pages/StudioPack.tsx',
     '/soporte': 'src/pages/Support.tsx',
+    '/mapa-del-sitio': 'src/pages/SitemapHtml.tsx',
     '/legal/terminos': 'src/pages/LegalTerms.tsx',
     '/legal/privacidad': 'src/pages/LegalPrivacy.tsx',
     '/claim-studio': 'src/pages/ClaimStudio.tsx',
@@ -117,6 +118,7 @@ function build() {
     { loc: `${origin}/estudios-de-pilates`, lastmod: page('/estudios-de-pilates'), changefreq: 'weekly', priority: '0.9' },
     { loc: `${origin}/instructores-pilates`, lastmod: page('/instructores-pilates'), changefreq: 'weekly', priority: '0.8' },
     // /claim-teacher and /claim-studio are intentionally absent: /claim-teacher redirects, /claim-studio is noindexed.
+    { loc: `${origin}/mapa-del-sitio`, lastmod: page('/mapa-del-sitio'), changefreq: 'weekly', priority: '0.8' },
     { loc: `${origin}/soporte`, lastmod: page('/soporte'), changefreq: 'monthly', priority: '0.5' },
     { loc: `${origin}/legal/terminos`, lastmod: page('/legal/terminos'), changefreq: 'yearly', priority: '0.3' },
     { loc: `${origin}/legal/privacidad`, lastmod: page('/legal/privacidad'), changefreq: 'yearly', priority: '0.3' },

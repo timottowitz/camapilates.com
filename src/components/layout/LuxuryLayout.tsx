@@ -19,42 +19,82 @@ const LuxuryLayout = ({ children, className = "", noPadding = false, headerTheme
                 {children}
             </main>
 
-            {/* Minimal Footer */}
-            <footer className="bg-[#2A2624] text-[#EAE8E4] py-24 px-8 md:px-24 mt-24">
+            {/* Comprehensive SEO & Internal Linking Footer */}
+            <footer className="bg-[#2A2624] text-[#EAE8E4] py-20 px-8 md:px-24 mt-24">
                 <div className="max-w-[1800px] mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-                        <div className="col-span-1 md:col-span-2">
-                            <h3 className="text-3xl font-serif italic mb-8">Edelweiss</h3>
-                            <p className="text-white/60 font-light max-w-md">
-                                El primer ecosistema de pilates libre de plásticos.
-                                Forma pura. Materiales puros. Piel sana.
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+                        <div className="lg:col-span-1">
+                            <h3 className="text-3xl font-serif italic mb-6">Edelweiss</h3>
+                            <p className="text-white/60 font-light text-sm leading-relaxed mb-6">
+                                El primer ecosistema de Pilates Reformer libre de plásticos en México.
+                                Maderas nobles, cuero genuino e ingeniería alemana.
                             </p>
+                            <div className="space-y-2 text-xs text-white/60">
+                                <p><a href="mailto:hello@camadepilates.com" className="hover:text-white transition-colors">hello@camadepilates.com</a></p>
+                                <p><a href="https://wa.me/525548468190" className="hover:text-white transition-colors">WhatsApp: +52 55 4846 8190</a></p>
+                                <p>Ciudad de México · Envíos a todo el país</p>
+                            </div>
                         </div>
+
                         <div>
-                            <h4 className="text-xs uppercase tracking-[0.2em] mb-6 text-white/40">Explorar</h4>
-                            <ul className="space-y-4 text-sm font-light text-white/80">
-                                <li><Link to="/shop" className="hover:text-white transition-colors">Ver Colección</Link></li>
-                                <li><Link to="/shop/category/reformers" className="hover:text-white transition-colors">Reformers</Link></li>
-                                <li><Link to="/certificacion-pilates" className="hover:text-white transition-colors">Certificación Reformer</Link></li>
-                                <li><Link to="/app" className="hover:text-white transition-colors">Campus Virtual & Comunidad</Link></li>
+                            <h4 className="text-xs uppercase tracking-[0.2em] mb-6 text-white/40 font-semibold">Equipamiento</h4>
+                            <ul className="space-y-3 text-xs font-light text-white/80">
+                                <li><Link to="/cama-de-pilates" className="hover:text-white transition-colors">Camas de Pilates en México</Link></li>
+                                <li><Link to="/cama-de-pilates/precio" className="hover:text-white transition-colors">Precios de Camas de Pilates</Link></li>
+                                <li><Link to="/cama-de-pilates/en-venta" className="hover:text-white transition-colors">Camas en Venta Express</Link></li>
                                 <li><Link to="/reformer-para-casa" className="hover:text-white transition-colors">Reformer para Casa</Link></li>
                                 <li><Link to="/reformer-para-estudio" className="hover:text-white transition-colors">Reformer para Estudio</Link></li>
-                                <li><Link to="/about" className="hover:text-white transition-colors">Nuestra Historia</Link></li>
+                                <li><Link to="/packs/estudio" className="hover:text-white transition-colors">Packs Estudio (8+ Camas)</Link></li>
+                                <li><Link to="/shop/category/reformers" className="hover:text-white transition-colors">Catálogo de Reformers</Link></li>
                             </ul>
                         </div>
+
                         <div>
-                            <h4 className="text-xs uppercase tracking-[0.2em] mb-6 text-white/40">Contacto</h4>
-                            <ul className="space-y-4 text-sm font-light text-white/80">
-                                <li><a href="mailto:hello@camadepilates.com" className="hover:text-white transition-colors">hello@camadepilates.com</a></li>
-                                <li><a href="https://wa.me/525548468190" className="hover:text-white transition-colors">Soporte WhatsApp</a></li>
+                            <h4 className="text-xs uppercase tracking-[0.2em] mb-6 text-white/40 font-semibold">Certificaciones</h4>
+                            <ul className="space-y-3 text-xs font-light text-white/80">
+                                <li><Link to="/certificacion-pilates" className="hover:text-white transition-colors">Certificación Reformer México</Link></li>
+                                <li><Link to="/certificacion-pilates/monterrey" className="hover:text-white transition-colors">Sede Monterrey (NL)</Link></li>
+                                <li><Link to="/certificacion-pilates/queretaro" className="hover:text-white transition-colors">Sede Querétaro</Link></li>
+                                <li><Link to="/certificacion-pilates/puebla" className="hover:text-white transition-colors">Sede Puebla</Link></li>
+                                <li><Link to="/certificacion-pilates/guadalajara" className="hover:text-white transition-colors">Sede Guadalajara</Link></li>
+                                <li><Link to="/certificacion-pilates/cdmx" className="hover:text-white transition-colors">STOTT CDMX</Link></li>
+                                <li><Link to="/app" className="hover:text-white transition-colors">Campus Virtual & Whop Hub</Link></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 className="text-xs uppercase tracking-[0.2em] mb-6 text-white/40 font-semibold">Directorio</h4>
+                            <ul className="space-y-3 text-xs font-light text-white/80">
+                                <li><Link to="/estudios-de-pilates" className="hover:text-white transition-colors">Directorio de Estudios México</Link></li>
+                                <li><Link to="/estudios-de-pilates/ciudad-de-mexico" className="hover:text-white transition-colors">Estudios en CDMX</Link></li>
+                                <li><Link to="/estudios-de-pilates/monterrey" className="hover:text-white transition-colors">Estudios en Monterrey</Link></li>
+                                <li><Link to="/estudios-de-pilates/guadalajara" className="hover:text-white transition-colors">Estudios en Guadalajara</Link></li>
+                                <li><Link to="/pilates-reformer-cdmx" className="hover:text-white transition-colors">Pilates Reformer CDMX</Link></li>
+                                <li><Link to="/instructores-pilates" className="hover:text-white transition-colors">Directorio de Instructores</Link></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 className="text-xs uppercase tracking-[0.2em] mb-6 text-white/40 font-semibold">Recursos & Tienda</h4>
+                            <ul className="space-y-3 text-xs font-light text-white/80">
+                                <li><Link to="/blog" className="hover:text-white transition-colors">The Journal (Blog)</Link></li>
+                                <li><Link to="/blog/category/guias-de-compra" className="hover:text-white transition-colors">Guías de Compra</Link></li>
+                                <li><Link to="/blog/category/comparativas" className="hover:text-white transition-colors">Comparativas de Reformer</Link></li>
+                                <li><Link to="/shop" className="hover:text-white transition-colors">Tienda Online</Link></li>
+                                <li><Link to="/shop/category/ropa" className="hover:text-white transition-colors">Ropa & Calcetines</Link></li>
+                                <li><Link to="/mapa-del-sitio" className="hover:text-white transition-colors">Mapa del Sitio</Link></li>
+                                <li><Link to="/about" className="hover:text-white transition-colors">Sobre Edelweiss</Link></li>
+                                <li><Link to="/soporte" className="hover:text-white transition-colors">Garantía & Soporte</Link></li>
                             </ul>
                         </div>
                     </div>
-                    <div className="mt-24 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between text-xs text-white/40 uppercase tracking-widest">
-                        <p>&copy; {new Date().getFullYear()} Edelweiss</p>
-                        <div className="flex gap-8 mt-4 md:mt-0">
-                            <Link to="/legal/terminos">Términos</Link>
-                            <Link to="/legal/privacidad">Privacidad</Link>
+
+                    <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-white/40 uppercase tracking-widest gap-4">
+                        <p>&copy; {new Date().getFullYear()} Edelweiss Pilates · CAMA Pilates México</p>
+                        <div className="flex gap-6">
+                            <Link to="/mapa-del-sitio" className="hover:text-white transition-colors">Mapa del Sitio</Link>
+                            <Link to="/legal/terminos" className="hover:text-white transition-colors">Términos</Link>
+                            <Link to="/legal/privacidad" className="hover:text-white transition-colors">Privacidad</Link>
                         </div>
                     </div>
                 </div>

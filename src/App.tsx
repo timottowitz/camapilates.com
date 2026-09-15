@@ -83,6 +83,7 @@ const WebappExperience = lazyWithRetry(() => import('./pages/WebappExperience'))
 const LegalTerms = lazyWithRetry(() => import('./pages/LegalTerms'));
 const LegalPrivacy = lazyWithRetry(() => import('./pages/LegalPrivacy'));
 const Support = lazyWithRetry(() => import('./pages/Support'));
+const SitemapHtml = lazyWithRetry(() => import('./pages/SitemapHtml'));
 const ClaimStudio = lazyWithRetry(() => import('./pages/ClaimStudio'));
 const TeachersLanding = lazyWithRetry(() => import('./pages/instructores-pilates/TeachersLanding'));
 const CityTeachers = lazyWithRetry(() => import('./pages/instructores-pilates/CityTeachers'));
@@ -150,6 +151,7 @@ const App = () => (
               <Route path="/legal/terminos" element={<Suspense fallback={<PageLoader />}><LegalTerms /></Suspense>} />
               <Route path="/legal/privacidad" element={<Suspense fallback={<PageLoader />}><LegalPrivacy /></Suspense>} />
               <Route path="/soporte" element={<Suspense fallback={<PageLoader />}><Support /></Suspense>} />
+              <Route path="/mapa-del-sitio" element={<Suspense fallback={<PageLoader />}><SitemapHtml /></Suspense>} />
               <Route path="/services" element={<Suspense fallback={<PageLoader />}><Services /></Suspense>} />
               <Route path="/blog" element={<Suspense fallback={<PageLoader />}><Blog /></Suspense>} />
               <Route path="/blog/:slug" element={<Suspense fallback={<PageLoader />}><BlogPost /></Suspense>} />
