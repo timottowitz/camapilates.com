@@ -17,11 +17,12 @@ const CamaDePilatesPrecio: React.FC = () => {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: [
-      { '@type': 'Question', name: '¿Cuál es el precio de una cama de Pilates para casa?', acceptedAnswer: { '@type': 'Answer', text: 'Nuestras opciones para casa inician alrededor de MXN 25,000 según acabados y accesorios incluidos.' } },
-      { '@type': 'Question', name: '¿Cuál es el precio de una cama de Pilates de estudio?', acceptedAnswer: { '@type': 'Answer', text: 'El Reformer de estudio ronda MXN 50,000 con cuero genuino, nogal y acero estructural; garantía 1 año.' } },
-      { '@type': 'Question', name: '¿Qué factores influyen en el precio?', acceptedAnswer: { '@type': 'Answer', text: 'Materiales (cuero real, maderas nobles, acero), tolerancias (silencio), muelles, garantía, servicio y tiempos de entrega.' } },
-      { '@type': 'Question', name: '¿Vale la pena comprar una cama de Pilates barata?', acceptedAnswer: { '@type': 'Answer', text: 'Solo si cumple seguridad mínima: estabilidad, resortes confiables y carro sin vibración. En equipos muy baratos suele fallar el silencio, el desgaste y el soporte/garantía.' } },
-      { '@type': 'Question', name: '¿Qué incluye normalmente el precio?', acceptedAnswer: { '@type': 'Answer', text: 'Además del reformer, revisa si incluye box, jumpboard, correas, muelles, manual y soporte; y si hay disponibilidad real de repuestos.' } },
+      { '@type': 'Question', name: '¿Cuánto cuesta una cama de Pilates en México en 2026?', acceptedAnswer: { '@type': 'Answer', text: 'En México, una cama de Pilates Reformer cuesta entre $29,700 MXN para modelos de casa y entre $42,400 y $70,000 MXN para modelos profesionales de estudio con acabados de nogal, cuero genuino y acero estructural.' } },
+      { '@type': 'Question', name: '¿Cuál es el precio de una cama de Pilates para casa?', acceptedAnswer: { '@type': 'Answer', text: 'Nuestras opciones para casa inician desde $29,700 MXN según acabados y accesorios incluidos, con estructura silenciosa y entrega rápida en México.' } },
+      { '@type': 'Question', name: '¿Cuál es el precio de una cama de Pilates de estudio?', acceptedAnswer: { '@type': 'Answer', text: 'El Reformer profesional de estudio cuesta alrededor de $42,400 MXN con cuero genuino, maderas nobles, tolerancias alemanas y garantía de 1 año con refacciones exprés.' } },
+      { '@type': 'Question', name: '¿Qué factores influyen en el precio de una cama de Pilates?', acceptedAnswer: { '@type': 'Answer', text: 'Materiales (cuero real vs vinil sintético, madera noble maciza vs aglomerado, rieles de aluminio anodizado), precisión y silencio del carro, sistema de resortes, garantía y disponibilidad de refacciones locales en México.' } },
+      { '@type': 'Question', name: '¿Vale la pena comprar una cama de Pilates barata?', acceptedAnswer: { '@type': 'Answer', text: 'Solo si cumple seguridad mínima: estabilidad estructural, resortes calibrados y carro sin vibración. En equipos de importación genéricos muy baratos suele fallar el silencio, el desgaste prematuro de poleas y la ausencia total de refacciones o soporte técnico en México.' } },
+      { '@type': 'Question', name: '¿Qué incluye normalmente el precio?', acceptedAnswer: { '@type': 'Answer', text: 'Además del Reformer completo, revisa si incluye box, jumpboard, correas dobles, juego de resortes de distintas tensiones y garantía por escrito.' } },
     ],
   };
 
@@ -51,15 +52,15 @@ const CamaDePilatesPrecio: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="block text-xs font-bold font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-8 opacity-60"
           >
-            Guía de Precios
+            Guía de Precios 2026
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl md:text-8xl font-serif italic text-[#2A2624] leading-[0.85] mb-8 tracking-tighter"
+            className="text-4xl md:text-7xl font-serif italic text-[#2A2624] leading-[0.95] mb-8 tracking-tighter"
           >
-            Precio de Cama de Pilates<span className="text-[#EB4C42]">.</span>
+            ¿Cuánto Cuesta una Cama de Pilates en México?<span className="text-[#EB4C42]">.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -67,8 +68,7 @@ const CamaDePilatesPrecio: React.FC = () => {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="text-lg md:text-xl text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed"
           >
-            Rangos de referencia en México y qué incluye el precio: <br className="hidden md:block" />
-            materiales, tolerancias, garantía y servicio.
+            Precios y modelos 2026 para casa y estudio: desde $29,700 MXN. Qué incluye el precio, diferencias de materiales, garantía y servicio técnico.
           </motion.p>
 
           <motion.div

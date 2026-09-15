@@ -111,6 +111,7 @@ const ProductPage: React.FC = () => {
       url,
       priceCurrency: safeProd.currency,
       price: priceToShow,
+      priceValidUntil: '2026-12-31',
       availability: safeProd.availability,
       itemCondition: 'https://schema.org/NewCondition',
       hasMerchantReturnPolicy: {

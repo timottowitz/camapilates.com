@@ -70,15 +70,21 @@ const CertificacionPilatesCity: React.FC = () => {
     : key === 'queretaro'
       ? 'Certificación Pilates Querétaro [Nov 2026]'
       : key === 'puebla'
-        ? 'Certificación Pilates Puebla [Costos y Fechas]'
-        : isCdmx
-          ? 'Certificación Pilates CDMX [STOTT 2026]'
-          : `Certificación Pilates ${shortCityName} [2026]`;
+        ? 'Certificación Pilates Puebla 2026: Costos, Fechas y Aval Oficial'
+        : key === 'guadalajara'
+          ? 'Certificación Pilates Guadalajara 2026 [Costos y Fechas]'
+          : isCdmx
+            ? 'Certificación Pilates CDMX [STOTT 2026]'
+            : `Certificación Pilates ${shortCityName} [2026]`;
   const desc = isCdmx
     ? `Certifícate en STOTT PILATES® en ${cityName}: Intensive Reformer (125h), Mat-Plus™ y niveles avanzados en ${STOTT_VENUE.name}, sede oficial Merrithew® en Santa Fe. Fechas, costos y registro.`
     : cohort
       ? `Certifícate como instructora de Pilates Reformer en ${shortCityName} (${cohort.periodLabel}): Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). Masterclass con Gabi y Laura Munive. Cupos limitados a 12 participantes.`
-      : `Compara opciones de certificación de Pilates Reformer en ${shortCityName}. Revisa requisitos, duración, costos y criterios antes de solicitar fechas.`;
+      : key === 'puebla'
+        ? `Certificación de Pilates Reformer en Puebla 2026: aval oficial, costos, temarios prácticos y cupos reducidos. Solicita informes y asegura tu lugar.`
+        : key === 'guadalajara'
+          ? `Certificación de Pilates Reformer en Guadalajara 2026: aval oficial, temarios de formación para instructores, costos y próximas convocatorias.`
+          : `Compara opciones de certificación de Pilates Reformer en ${shortCityName}. Revisa requisitos, duración, costos y criterios antes de solicitar fechas.`;
 
   const wa = `${PRIMARY_WHATSAPP}${encodeURIComponent(
     isCdmx
@@ -617,6 +623,41 @@ const CertificacionPilatesCity: React.FC = () => {
           </div>
         </section>
       )}
+
+      {/* Internal Linking / Equipment Section for Instructors & Studio Buyers */}
+      <section className="py-16 px-8 md:px-24 bg-[#F5F4F0] border-t border-[#2A2624]/10">
+        <div className="max-w-4xl mx-auto">
+          <span className="text-xs font-bold font-sans tracking-[0.25em] uppercase text-[#3E2723] mb-3 block opacity-70">
+            Equipamiento para Instructoras y Estudios
+          </span>
+          <h2 className="text-2xl md:text-3xl font-serif italic text-[#2A2624] mb-4">
+            ¿Planeas equipar tu espacio o abrir un estudio de Pilates en {shortCityName}?
+          </h2>
+          <p className="text-sm md:text-base text-[#5D5550] font-light leading-relaxed mb-8">
+            Diseñamos y fabricamos camas de Pilates Reformer profesionales con ingeniería alemana, nogal, roble, aluminio anodizado y cuero genuino. Envíos directos a {shortCityName} y a toda la República Mexicana con 1 año de garantía y refacciones inmediatas.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              to="/cama-de-pilates"
+              className="inline-flex items-center px-6 py-3 rounded-full bg-[#2A2624] text-[#EAE8E4] text-xs font-bold uppercase tracking-[0.15em] hover:bg-[#3E2723] hover:scale-105 transition-all"
+            >
+              Camas de Pilates Reformer en México
+            </Link>
+            <Link
+              to="/cama-de-pilates/precio"
+              className="inline-flex items-center px-6 py-3 rounded-full border border-[#2A2624]/20 bg-white text-[#2A2624] text-xs font-bold uppercase tracking-[0.15em] hover:bg-[#EAE8E4] transition-all"
+            >
+              Precios de Camas de Pilates (Desde $29,700 MXN)
+            </Link>
+            <Link
+              to="/cama-de-pilates/en-venta"
+              className="inline-flex items-center px-6 py-3 rounded-full border border-[#2A2624]/20 bg-white text-[#2A2624] text-xs font-bold uppercase tracking-[0.15em] hover:bg-[#EAE8E4] transition-all"
+            >
+              Venta de Camas con Entrega Express
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <PreRegistrationModal
         isOpen={modalOpen}
