@@ -45,20 +45,11 @@ Valery supo que debía cambiar esa narrativa.
 
 Para demostrar que el método es seguro y accesible, Valery no se limitó a dar consejos teóricos. **Se subió al Reformer en la última semana de su embarazo (Semana 38)** y grabó frente a la cámara las 10 clases prácticas del programa.
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin: 2rem 0;">
-  <div style="background: #FAF8F5; border: 1px solid rgba(42,38,36,0.1); border-radius: 6px; padding: 0.75rem; text-align: center;">
-    <img src="/images/blog/baby-pilates-reformer/valery-munive-reformer-embarazo-1.webp" alt="Valery Munive en extensión de cadera en Reformer en su semana 38 de embarazo" style="width: 100%; height: auto; border-radius: 4px; object-fit: cover;" />
-    <p style="font-size: 0.85rem; color: #5D5550; margin-top: 0.6rem; font-style: italic;">
-      <strong>Semana 38:</strong> Apertura de cadera y alivio lumbar con asistencia de resortes, sin impacto articular.
-    </p>
-  </div>
-  <div style="background: #FAF8F5; border: 1px solid rgba(42,38,36,0.1); border-radius: 6px; padding: 0.75rem; text-align: center;">
-    <img src="/images/blog/baby-pilates-reformer/valery-munive-reformer-semana-38.webp" alt="Valery Munive en el Reformer durante su embarazo en México" style="width: 100%; height: auto; border-radius: 4px; object-fit: cover;" />
-    <p style="font-size: 0.85rem; color: #5D5550; margin-top: 0.6rem; font-style: italic;">
-      <strong>Conexión y respiración:</strong> Postura erguida y respiración diafragmática para preparar el canal de parto.
-    </p>
-  </div>
-</div>
+![Valery Munive en extensión de cadera en Reformer en su semana 38 de embarazo](/images/blog/baby-pilates-reformer/valery-munive-reformer-embarazo-1.webp)
+*Semana 38: Apertura de cadera y alivio lumbar con asistencia de resortes, sin impacto articular.*
+
+![Valery Munive en el Reformer durante su embarazo en México](/images/blog/baby-pilates-reformer/valery-munive-reformer-semana-38.webp)
+*Conexión y respiración: Postura erguida y respiración diafragmática para preparar el canal de parto.*
 
 *"Quería que cualquier mujer embarazada pudiera ver que si yo podía moverme con calma y seguridad en mi última semana de gestación, ella también puede hacerlo en cualquier etapa de su embarazo con las adaptaciones correctas"*, explica.
 
@@ -92,32 +83,15 @@ En México, una sola clase grupal de Pilates en estudio cuesta entre **$330 y $4
 
 Por solo **$600 MXN (pago único)**, obtienes el curso completo de 10 clases con acceso ilimitado para siempre en el campus virtual **Whop**, para entrenar a tu propio ritmo desde tu celular, tablet o computadora.
 
-<div style="background: #FAF8F5; border: 1px solid rgba(42,38,36,0.15); border-radius: 8px; padding: 2rem; text-align: center; margin: 2.5rem 0;">
-  <span style="display: inline-block; background: #2A2624; color: #FFFFFF; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; padding: 0.3rem 0.85rem; border-radius: 50px; margin-bottom: 0.75rem;">
-    Acceso Inmediato en Whop
-  </span>
-  <h3 style="font-family: Georgia, serif; font-style: italic; font-size: 1.75rem; color: #2A2624; margin-bottom: 0.5rem;">
-    BABY PILATES EL CLUB MATERNO
-  </h3>
-  <p style="color: #5D5550; max-width: 480px; margin: 0 auto 1.25rem; font-size: 0.95rem; line-height: 1.5;">
-    10 clases clínicas en Reformer guiadas por Valery Munive en su semana 38. Aprende el método europeo para cuidar tu espalda y tu suelo pélvico.
-  </p>
-  <div style="margin-bottom: 1.25rem;">
-    <span style="font-size: 2.25rem; font-weight: 700; color: #2A2624; font-family: Georgia, serif;">$600 MXN</span>
-    <span style="display: block; font-size: 0.8rem; color: #7A726D; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem;">Pago único · Acceso de por vida</span>
-  </div>
-  <a 
-    href="https://whop.com/checkout/plan_ZFKdQDyegZt7c/?session=chs_WnYQXuLfWCesEv" 
-    target="_blank" 
-    rel="noopener noreferrer"
-    style="display: inline-block; background: #2A2624; color: #FFFFFF; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.85rem 2rem; border-radius: 4px; text-decoration: none;"
-  >
-    Comenzar Mi Curso Ahora ($600 MXN) →
-  </a>
-  <p style="font-size: 0.75rem; color: #8C827A; margin-top: 0.85rem;">
-    Pago seguro encriptado procesado por Whop · Acceso inmediato en iOS, Android y Navegador
-  </p>
-</div>
+> ### 🌸 BABY PILATES: EL CLUB MATERNO
+> **10 clases clínicas en Reformer guiadas por Valery Munive en su semana 38.**  
+> Aprende el método europeo para cuidar tu espalda, fortalecer tu suelo pélvico y llegar al parto con confianza.  
+>  
+> **Inversión:** **$600 MXN** *(Pago único · Acceso ilimitado de por vida)*  
+>  
+> 👉 [**Comenzar Mi Curso Ahora ($600 MXN) →**](https://whop.com/checkout/plan_ZFKdQDyegZt7c/?session=chs_WnYQXuLfWCesEv)  
+>  
+> *🔒 Pago 100% seguro encriptado procesado por Whop. Acceso inmediato en iPhone, Android, iPad y navegador web.*
 
 ---
 
