@@ -56,7 +56,7 @@ const IndexAuthority: React.FC = () => {
       },
       {
         eyebrow: 'EDITORIAL',
-        title: 'El Blog (The Journal)',
+        title: 'The Journal',
         description: 'Guías expertas de compra, biomecánica y mantenimiento.',
         to: '/blog',
         colSpan: 'md:col-span-12 lg:col-span-6',

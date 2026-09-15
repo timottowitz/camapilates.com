@@ -173,7 +173,7 @@ const sitemapData: SitemapSection[] = [
     ],
   },
   {
-    title: 'The Journal & Guías Esenciales (Blog)',
+    title: 'The Journal & Guías Esenciales',
     description: 'Artículos editoriales, análisis de mercado, comparativas técnicas y tutoriales de entrenamiento.',
     icon: BookOpen,
     links: [
