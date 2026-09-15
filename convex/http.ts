@@ -305,7 +305,7 @@ http.route({
         } else if (planId === 'plan_QGF4bCYeJj2Nr') {
           planName = 'Curso Online 10 Módulos + Certificado Digital';
         } else if (planId === 'plan_ojBC2a7IkCXNT') {
-          planName = 'Pase VIP Masterclass & Acceso Comunidad Whop';
+          planName = 'Pase VIP Info Day & Acceso Comunidad Whop';
         }
 
         if (email) {

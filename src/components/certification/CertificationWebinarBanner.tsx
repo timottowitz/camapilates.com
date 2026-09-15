@@ -36,7 +36,7 @@ export const CertificationWebinarBanner: React.FC<CertificationWebinarBannerProp
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#D9865B] text-[11px] uppercase tracking-widest font-semibold mb-3">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <Video className="w-3 h-3" /> Masterclass Online Gratuita · Vía Google Meet · Sábado 26 de Septiembre
+            <Video className="w-3 h-3" /> Info Day Online Gratuito · Sábado 26 de Septiembre
           </div>
 
           <h3 className="text-xl sm:text-2xl md:text-3xl font-serif italic text-white leading-tight mb-2">
@@ -44,7 +44,7 @@ export const CertificationWebinarBanner: React.FC<CertificationWebinarBannerProp
           </h3>
 
           <p className="text-xs sm:text-sm text-[#EAE8E4]/80 font-light leading-relaxed mb-4">
-            Masterclass <strong>100% gratuita y online</strong> de orientación con <strong>Gabi</strong> y <strong>Laura Munive</strong>. Conoce el Curso Básico (28h · $25,000 MXN) y el Curso Completo (48h · $38,000 MXN) y asegura 1 de los 12 cupos presenciales por sede.
+            Sesión informativa (Info Day) <strong>100% gratuita y online</strong> con <strong>Gabi</strong> y <strong>Laura Munive</strong> para explicar los próximos cursos presenciales: Curso Básico (28h · $25,000 MXN) y Curso Completo (48h · $38,000 MXN), fechas, sedes y resolución de dudas.
           </p>
 
           <div className="flex flex-wrap items-center gap-3 text-xs text-[#EAE8E4]/90">
@@ -68,7 +68,7 @@ export const CertificationWebinarBanner: React.FC<CertificationWebinarBannerProp
             to="/certificacion-pilates/webinar"
             className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full bg-[#EAE8E4] text-[#2A2624] font-medium text-xs uppercase tracking-[0.18em] hover:bg-white transition-all duration-300 shadow-md group"
           >
-            <span>Registrarme Gratis al Webinar</span>
+            <span>Registrarme Gratis al Info Day</span>
             <ArrowRight className="w-4 h-4 text-[#2A2624] group-hover:translate-x-1 transition-transform" />
           </Link>
 

@@ -259,10 +259,10 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
                 <div className="border border-[#2A2624]/15 rounded-xl p-3.5 text-xs text-[#5D5550] space-y-2 bg-[#F7F5F0]">
                   <div className="flex items-center gap-1.5 font-medium text-[#2A2624]">
                     <Video className="w-4 h-4 text-[#8C6D58]" />
-                    <span>Masterclass Pre-Webinar Informativa</span>
+                    <span>Info Day: Sesión Informativa de Próximos Cursos</span>
                   </div>
                   <p className="text-[11px] leading-relaxed">
-                    <strong>{WEBINAR_INFO.date}</strong> con Gabi y Laura Munive. Conocerás el temario detallado de los 4 fines de semana y la apertura preferente.
+                    <strong>{WEBINAR_INFO.date}</strong> con Gabi y Laura Munive. Explicación a fondo de los próximos cursos presenciales, fechas, requisitos y dudas en vivo.
                   </p>
                   <div className="pt-1">
                     <a
@@ -305,7 +305,7 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
                       href="/certificacion-pilates/webinar"
                       className="text-[#8C6D58] hover:underline font-medium"
                     >
-                      Programa Webinar →
+                      Info Day 26 Sep →
                     </a>
                   </div>
                 </div>
@@ -320,17 +320,17 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
                 <div className="border border-[#2A2624]/15 rounded-xl p-4 text-xs text-[#5D5550] space-y-2.5 bg-[#F7F5F0]">
                   <div className="flex items-center gap-1.5 font-semibold text-[#2A2624]">
                     <Video className="w-4 h-4 text-[#8C6D58]" />
-                    <span>Masterclass Online Gratuita · Sábado 26 de Septiembre</span>
+                    <span>Info Day Online Gratuito · Sábado 26 de Septiembre</span>
                   </div>
                   <p className="text-[11px] text-[#5D5550] leading-relaxed">
-                    Acompáñanos a la sesión informativa en vivo con <strong>Gabi</strong> y <strong>Laura Munive</strong> para conocer a fondo el plan de estudios, biomecánica del Reformer y cómo certificar tu estudio.
+                    Acompáñanos a la sesión informativa en vivo con <strong>Gabi</strong> y <strong>Laura Munive</strong> para conocer a detalle los próximos cursos presenciales, sedes, costos, temarios y cómo asegurar tu lugar.
                   </p>
                   <div className="pt-1 flex flex-col gap-2">
                     <a
                       href="/certificacion-pilates/webinar"
                       className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 bg-[#2A2624] hover:bg-[#3E2723] text-white rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors text-center"
                     >
-                      <span>Ver detalles y apartar lugar</span>
+                      <span>Ver detalles del Info Day</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </a>
                     <a

@@ -1,6 +1,6 @@
 /**
  * Datos y calendario de las cohortes de certificación en Querétaro y Monterrey.
- * Incluye la información de la Masterclass / Pre-Webinar en vivo con Gabi y Laura Munive.
+ * Incluye la información del Info Day / Sesión Informativa en vivo con Gabi y Laura Munive.
  */
 
 export interface CohortWeekend {
@@ -56,13 +56,13 @@ export interface CityCertificationCohort {
 }
 
 export const WEBINAR_INFO = {
-  title: "Webinar Informativo: Curso de Pilates Reformer (Querétaro y Monterrey)",
-  subtitle: "Sesión online en vivo 100% gratuita con Gabi y Laura Munive. Explicación del plan de estudios, biomecánica del Reformer, modalidades (28h / 48h) y cómo asegurar tu lugar en Querétaro y Monterrey.",
+  title: "Info Day: Próximos Cursos de Certificación Pilates Reformer (Querétaro y Monterrey)",
+  subtitle: "Sesión informativa online en vivo 100% gratuita con Gabi y Laura Munive. Explicación de los próximos cursos de certificación, plan de estudios, modalidades (28h / 48h), fechas, sedes y resolución de dudas.",
   date: "Sábado 26 de Septiembre de 2026",
   isoDateTime: "2026-09-26T11:00:00-06:00",
   isoEndDateTime: "2026-09-26T12:15:00-06:00",
   time: "11:00 AM – 12:15 PM CST (Hora de CDMX / Querétaro / Monterrey)",
-  platform: "Transmisión Online en Vivo (Webinar Gratuito)",
+  platform: "Transmisión Online en Vivo (Info Day Gratuito)",
   hosts: [
     {
       name: "Gabi",
@@ -94,11 +94,11 @@ export const WEBINAR_INFO = {
     },
     {
       time: "12:00 PM",
-      topic: "Sesión de preguntas y respuestas en directo con Gabi y Laura Munive."
+      topic: "Sesión de preguntas y respuestas en directo con Gabi y Laura Munive sobre los próximos cursos."
     }
   ],
   whatsappSupportNumber: "525548468190",
-  whatsappMessage: "Hola, me registré al webinar de certificación con Gabi y Laura Munive para Querétaro y Monterrey. Quiero confirmar mi acceso y asegurar mi cupo del 50% de descuento.",
+  whatsappMessage: "Hola, me registré al Info Day de certificación con Gabi y Laura Munive. Quiero confirmar mi acceso e información sobre los próximos cursos.",
 };
 
 export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertificationCohort> = {
@@ -395,14 +395,14 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
  * Helper to generate Google Calendar Event URL
  */
 export function getGoogleCalendarUrl(): string {
-  const title = encodeURIComponent("Webinar Informativo: Curso de Pilates Reformer");
+  const title = encodeURIComponent("Info Day: Próximos Cursos de Certificación Pilates Reformer");
   const details = encodeURIComponent(
-    "Sesión online en vivo 100% gratuita con Gabi y Laura Munive.\\n\\n" +
-    "Conoce de qué trata el Curso de Pilates Reformer (Curso Básico 28h / Curso Completo 48h), el plan de estudios, las fechas en Querétaro y Monterrey y cómo reservar tu lugar.\\n\\n" +
+    "Sesión informativa online en vivo 100% gratuita con Gabi y Laura Munive.\\n\\n" +
+    "Conoce a fondo los próximos Cursos de Pilates Reformer (Curso Básico 28h / Curso Completo 48h), el plan de estudios, las fechas en Querétaro y Monterrey y cómo reservar tu lugar.\\n\\n" +
     "El enlace de acceso se enviará por WhatsApp y correo antes de iniciar.\\n" +
     "Contacto WhatsApp: https://wa.me/525548468190"
   );
-  const location = encodeURIComponent("Online en Vivo (Webinar)");
+  const location = encodeURIComponent("Online en Vivo (Info Day)");
   const dates = "20260926T170000Z/20260926T181500Z"; // 11:00 AM CST is 17:00 UTC
 
   return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
@@ -415,15 +415,15 @@ export function generateIcsContent(): string {
   return [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//CAMA Pilates//Curso Reformer Webinar//ES",
+    "PRODID:-//CAMA Pilates//Info Day Cursos Reformer//ES",
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     "BEGIN:VEVENT",
-    "SUMMARY:Webinar Informativo: Curso de Pilates Reformer",
-    "DESCRIPTION:Sesión online 100% gratuita en vivo con Gabi y Laura Munive. Explicación del plan de estudios y sedes presenciales de Querétaro y Monterrey.",
+    "SUMMARY:Info Day: Próximos Cursos de Certificación Pilates Reformer",
+    "DESCRIPTION:Sesión informativa online 100% gratuita en vivo con Gabi y Laura Munive. Explicación de los próximos cursos de certificación y sedes presenciales de Querétaro y Monterrey.",
     "DTSTART:20260926T170000Z",
     "DTEND:20260926T181500Z",
-    "LOCATION:Online en Vivo",
+    "LOCATION:Online en Vivo (Info Day)",
     "STATUS:CONFIRMED",
     "SEQUENCE:0",
     "END:VEVENT",

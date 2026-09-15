@@ -334,7 +334,7 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
             href="/certificacion-pilates/webinar"
             className="text-neutral-800 hover:text-neutral-950 font-medium underline"
           >
-            Detalles Masterclass 26 Sep →
+            Detalles Info Day 26 Sep →
           </a>
           <a
             href={WHOP_CONFIG.customerPortalUrl}

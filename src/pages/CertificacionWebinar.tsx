@@ -138,7 +138,7 @@ export const CertificacionWebinar: React.FC = () => {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', 'Masterclass-Certificacion-Pilates-26Sep.ics');
+    link.setAttribute('download', 'Info-Day-Certificacion-Pilates-26Sep.ics');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -146,7 +146,7 @@ export const CertificacionWebinar: React.FC = () => {
 
   const canonicalUrl = `${origin}/certificacion-pilates/webinar`;
   const shareWaUrl = `https://wa.me/${WEBINAR_INFO.whatsappSupportNumber}?text=${encodeURIComponent(
-    `Hola Gabi y Laura, acabo de registrarme para la Masterclass del 26 de septiembre. Mi nombre es ${fullName || 'aspirante'} y me interesa la sede de ${cohort === 'queretaro-nov-2026' ? 'Querétaro' : cohort === 'monterrey-dec-jan-2026-2027' ? 'Monterrey' : 'Querétaro / Monterrey'}. Quiero confirmar mi 50% de descuento.`
+    `Hola Gabi y Laura, acabo de registrarme para el Info Day del 26 de septiembre. Mi nombre es ${fullName || 'aspirante'} y me interesan los próximos cursos en ${cohort === 'queretaro-nov-2026' ? 'Querétaro' : cohort === 'monterrey-dec-jan-2026-2027' ? 'Monterrey' : 'Querétaro / Monterrey'}. Quiero más detalles.`
   )}`;
 
   // Event Schema for SEO
@@ -202,7 +202,7 @@ export const CertificacionWebinar: React.FC = () => {
       <div className="bg-[#2A2624] text-[#EAE8E4] py-2.5 px-4 text-center text-xs md:text-sm font-sans tracking-wide border-b border-[#3E2723]">
         <span className="inline-flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <strong>SESIÓN INFORMATIVA EN VIVO (SIN COSTO):</strong> Conoce a fondo el plan de estudios del Curso de Pilates Reformer con Gabi y Laura Munive.
+          <strong>INFO DAY EN VIVO (SIN COSTO):</strong> Conoce a fondo los próximos cursos presenciales de Pilates Reformer con Gabi y Laura Munive.
         </span>
       </div>
 
@@ -210,15 +210,15 @@ export const CertificacionWebinar: React.FC = () => {
       <section className="relative pt-16 pb-20 px-6 md:px-16 lg:px-24 max-w-7xl mx-auto">
         <div className="text-center max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 text-xs uppercase tracking-[0.2em] font-medium mb-6">
-            <Video className="w-3.5 h-3.5 text-emerald-400" /> Sesión Informativa Online en Vivo · Sábado 26 de Septiembre
+            <Video className="w-3.5 h-3.5 text-emerald-400" /> Info Day Online en Vivo · Sábado 26 de Septiembre
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-serif italic text-[#2A2624] leading-[1.08] mb-6">
-            Conoce de Qué Trata el Curso de Pilates Reformer (Querétaro y Monterrey)
+            Info Day: Conoce los Próximos Cursos de Certificación Pilates Reformer
           </h1>
 
           <p className="text-base sm:text-xl text-[#5D5550] font-light leading-relaxed max-w-3xl mx-auto mb-8">
-            Acompaña en vivo a <strong>Gabi</strong> y <strong>Laura Munive</strong> en este webinar gratuito. Te explicaremos en detalle el temario del curso, la biomecánica clínica, las modalidades de <strong>Curso Básico (28h)</strong> y <strong>Curso Completo (48h)</strong>, las fechas presenciales en Querétaro y Monterrey, y cómo asegurar tu lugar en los grupos reducidos de 12 personas con Reformer individual.
+            Acompaña en vivo a <strong>Gabi</strong> y <strong>Laura Munive</strong> en este Info Day gratuito. Te explicaremos en detalle los próximos cursos presenciales, el temario, las modalidades de <strong>Curso Básico (28h)</strong> y <strong>Curso Completo (48h)</strong>, las fechas en Querétaro y Monterrey, y cómo asegurar tu lugar en los grupos reducidos de 12 personas con Reformer individual.
           </p>
 
           {/* Event Quick Facts Pills */}
@@ -229,7 +229,7 @@ export const CertificacionWebinar: React.FC = () => {
             </div>
             <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/90 border border-[#2A2624]/10 shadow-sm">
               <Video className="w-4 h-4 text-[#D9865B]" />
-              <span><strong>Formato:</strong> Webinar Online en Vivo</span>
+              <span><strong>Formato:</strong> Info Day Online en Vivo</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/80 border border-[#2A2624]/10 shadow-sm">
               <Calendar className="w-4 h-4 text-[#D9865B]" />
@@ -244,7 +244,7 @@ export const CertificacionWebinar: React.FC = () => {
           {/* Countdown Clock (Jason Fladlien Scarcity Pattern) */}
           <div className="bg-[#2A2624] text-[#EAE8E4] rounded-2xl p-6 max-w-2xl mx-auto mb-12 shadow-xl border border-[#3E2723]">
             <p className="text-xs uppercase tracking-[0.25em] text-[#D9865B] mb-3 font-semibold">
-              La sesión informativa en vivo comienza en:
+              El Info Day en vivo comienza en:
             </p>
             <div className="grid grid-cols-4 gap-3 text-center">
               <div className="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
@@ -275,13 +275,13 @@ export const CertificacionWebinar: React.FC = () => {
 
               <div className="text-center mb-8">
                 <span className="text-xs uppercase tracking-[0.2em] text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full font-bold inline-block mb-2 border border-emerald-200">
-                  Webinar Informativo Gratuito · Online en Vivo
+                  Info Day Gratuito · Online en Vivo
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-serif italic text-[#2A2624]">
-                  Regístrate a la sesión informativa del curso
+                  Regístrate al Info Day de los próximos cursos
                 </h2>
                 <p className="text-sm text-[#5D5550] mt-2 max-w-xl mx-auto">
-                  Asistir no tiene ningún costo. En esta sesión te explicaremos a detalle el contenido del curso, las fechas presenciales en Querétaro y Monterrey, y resolveremos todas tus dudas directamente con las formadoras.
+                  Asistir no tiene ningún costo. En esta sesión te explicaremos en detalle de qué tratan los próximos cursos presenciales en Querétaro y Monterrey, requisitos y resolveremos todas tus dudas directamente con las formadoras.
                 </p>
               </div>
 
@@ -584,13 +584,13 @@ export const CertificacionWebinar: React.FC = () => {
       <section className="py-20 px-6 md:px-16 lg:px-24 max-w-6xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-xs uppercase tracking-[0.3em] text-[#3E2723] font-semibold block mb-3">
-            Contenido de la Masterclass
+            Temas del Info Day
           </span>
           <h2 className="text-3xl md:text-5xl font-serif italic text-[#2A2624]">
-            Lo que descubrirás en vivo el 26 de Septiembre
+            Lo que explicaremos en vivo el 26 de Septiembre
           </h2>
           <p className="text-base text-[#5D5550] font-light mt-4">
-            Sin rodeos: la realidad financiera, técnica y pedagógica para vivir profesionalmente del Pilates en México.
+            Todo lo que necesitas saber sobre los próximos cursos presenciales, fechas, inversión y requisitos para certificarte.
           </p>
         </div>
 
@@ -751,26 +751,26 @@ export const CertificacionWebinar: React.FC = () => {
               Dudas Frecuentes
             </span>
             <h2 className="text-3xl font-serif italic text-[#2A2624]">
-              Preguntas sobre el Webinar y las Cohortes
+              Preguntas sobre el Info Day y los Próximos Cursos
             </h2>
           </div>
 
           <div className="space-y-6">
             <div className="p-6 rounded-2xl bg-[#EAE8E4]/30 border border-[#2A2624]/10">
               <h3 className="font-serif text-lg text-[#2A2624] mb-2 font-semibold">
-                ¿El webinar del 26 de Septiembre tiene algún costo?
+                ¿El Info Day del 26 de Septiembre tiene algún costo?
               </h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                <strong>No, es 100% gratuito.</strong> Asistir no tiene ningún costo ni compromiso. Solo requerimos tu registro para enviarte el enlace directo a la transmisión y el temario detallado del curso.
+                <strong>No, es 100% gratuito.</strong> Asistir no tiene ningún costo ni compromiso. Solo requerimos tu registro para enviarte el enlace directo a la transmisión y la información detallada de los próximos cursos.
               </p>
             </div>
 
             <div className="p-6 rounded-2xl bg-[#EAE8E4]/30 border border-[#2A2624]/10">
               <h3 className="font-serif text-lg text-[#2A2624] mb-2 font-semibold">
-                ¿El webinar es presencial o en línea?
+                ¿El Info Day es presencial o en línea?
               </h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                <strong>El webinar es 100% ONLINE.</strong> Puedes conectarte desde tu computadora o celular desde cualquier lugar. En esta sesión explicaremos a fondo de qué trata el curso y cómo se llevarán a cabo las prácticas presenciales en Querétaro (Noviembre 2026) y Monterrey (Dic 2026 – Ene 2027) para quienes decidan matricularse.
+                <strong>El Info Day es 100% ONLINE.</strong> Puedes conectarte desde tu computadora o celular desde cualquier lugar. En esta sesión explicaremos a fondo de qué tratan los próximos cursos y cómo se llevarán a cabo las prácticas presenciales en Querétaro (Noviembre 2026) y Monterrey (Dic 2026 – Ene 2027) para quienes decidan matricularse.
               </p>
             </div>
 
@@ -797,7 +797,7 @@ export const CertificacionWebinar: React.FC = () => {
                 ¿Qué pasa si no puedo estar en vivo el 26 de Septiembre a las 11:00 AM?
               </h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                Te recomendamos hacer el espacio en tu agenda, ya que los 12 cupos bonificados con 50% de descuento se adjudican en vivo durante la transmisión. Si surge algún imprevisto, regístrate de todos modos para que el equipo de admisiones te contacte si se liberan lugares en la lista de espera.
+                Te recomendamos hacer el espacio en tu agenda para poder hacer preguntas directas a las formadoras sobre los próximos cursos. Si surge algún imprevisto, regístrate de todos modos para que el equipo te comparta el resumen y te contacte si se abren fechas en tu ciudad.
               </p>
             </div>
           </div>
@@ -811,7 +811,7 @@ export const CertificacionWebinar: React.FC = () => {
               }}
               className="inline-flex items-center gap-3 px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors shadow-lg"
             >
-              <span>Subir y Registrarme en la Lista de Espera</span>
+              <span>Subir y Registrarme en el Info Day</span>
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>

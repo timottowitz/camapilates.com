@@ -135,9 +135,9 @@ Si eres preparador físico, fisioterapeuta o instructora en México y deseas esp
 * **Condición de Excelencia:** Máximo 12 alumnas(os) por sede con **1 Reformer individual exclusivo asignado** (sin turnos ni rotaciones).
 * **Modalidades y Precios:** Curso Básico (28h · $25,000 MXN) y Certificación Completa (48h · $38,000 MXN), con opción de pre-reserva de $400 MXN para congelar 1 de los 12 cupos.
 
-Puedes conocer todos los detalles de la formación y reservar tu lugar en la sesión informativa 100% gratuita con las Master Trainers internacionales **Gabi & Laura Munive** el próximo **Sábado 26 de Septiembre a las 11:00 AM CST vía Google Meet**:
+Puedes conocer todos los detalles de los próximos cursos y reservar tu lugar en el **Info Day en vivo (sesión informativa 100% gratuita)** con las Master Trainers internacionales **Gabi & Laura Munive** el próximo **Sábado 26 de Septiembre a las 11:00 AM CST vía Google Meet**:
 
-👉 [Inscribirme a la Masterclass Gratuita en Google Meet](/certificacion-pilates/webinar)
+👉 [Inscribirme al Info Day Gratuito en Google Meet](/certificacion-pilates/webinar)
 
 ---
 

@@ -177,7 +177,7 @@ export const CertificacionPilates: React.FC = () => {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', 'Masterclass-Certificacion-Pilates-26Sep.ics');
+    link.setAttribute('download', 'Info-Day-Certificacion-Pilates-26Sep.ics');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -395,13 +395,13 @@ export const CertificacionPilates: React.FC = () => {
       {/* Global Luxury Navigation */}
       <EdelweissNav />
 
-      {/* TOP HERO: MASTERCLASS WEBINAR & COURSE WHITELIST SIGNUP (QUERÉTARO & MONTERREY) */}
+      {/* TOP HERO: INFO DAY & COURSE WHITELIST SIGNUP (QUERÉTARO & MONTERREY) */}
       <section className="pt-28 sm:pt-36 pb-16 px-6 max-w-7xl mx-auto border-b border-neutral-200/80">
         {/* Micro Monospace Badges */}
         <div className="flex flex-wrap items-center gap-2.5 mb-6">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100/90 border border-amber-300 text-amber-950 font-mono text-[11px] font-semibold uppercase tracking-wider">
             <Sparkles className="w-3 h-3 text-amber-700" />
-            MASTERCLASS EN VIVO · SÁBADO 26 SEPTIEMBRE 11:00 AM CST
+            INFO DAY EN VIVO · SÁBADO 26 SEPTIEMBRE 11:00 AM CST
           </span>
           <span className="inline-flex items-center px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-neutral-700 font-mono text-[11px] uppercase tracking-wider">
             [ QUERÉTARO · MONTERREY ]
@@ -434,7 +434,7 @@ export const CertificacionPilates: React.FC = () => {
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 text-amber-900 font-mono text-xs uppercase tracking-wider border border-amber-200 font-medium">
                 <Video className="w-3.5 h-3.5 text-amber-700" />
-                <span>Webinar Informativo Gratuito · Online en Vivo</span>
+                <span>Info Day Gratuito · Online en Vivo</span>
               </div>
 
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-neutral-900 tracking-tight leading-tight">
@@ -444,7 +444,7 @@ export const CertificacionPilates: React.FC = () => {
               <p className="text-sm md:text-base text-neutral-600 leading-relaxed font-normal">
                 Únete a la sesión en directo con <strong className="text-neutral-900 font-semibold">Gabi</strong> y{' '}
                 <strong className="text-neutral-900 font-semibold">Laura Munive</strong> el{' '}
-                <strong className="text-neutral-900 font-semibold">sábado 26 de septiembre a las 11:00 AM CST</strong>. Conoce a detalle el mapa de 28h y 48h,
+                <strong className="text-neutral-900 font-semibold">sábado 26 de septiembre a las 11:00 AM CST en el Info Day</strong>. Conoce a detalle el mapa de 28h y 48h,
                 resuelve tus dudas y accede antes que nadie a los <strong className="text-neutral-900 font-semibold">12 cupos exclusivos por sede</strong>:{' '}
                 <strong className="text-neutral-900 font-semibold">Curso Básico (28h · $25,000 MXN)</strong> o{' '}
                 <strong className="text-neutral-900 font-semibold">Certificación Completa (48h · $38,000 MXN)</strong>.
@@ -453,7 +453,7 @@ export const CertificacionPilates: React.FC = () => {
               {/* Countdown Clocks */}
               <div className="pt-2">
                 <div className="text-[11px] font-mono text-neutral-500 uppercase tracking-widest mb-2 font-semibold">
-                  // TIEMPO RESTANTE PARA LA MASTERCLASS:
+                  // TIEMPO RESTANTE PARA EL INFO DAY:
                 </div>
                 <div className="grid grid-cols-4 gap-2.5 max-w-md">
                   <div className="bg-[#F8F8F6] border border-neutral-200/90 rounded-2xl p-3 text-center">

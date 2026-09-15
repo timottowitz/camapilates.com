@@ -259,7 +259,7 @@ const WebappExperience: React.FC = () => {
         <title>Campus Virtual & Comunidad Whop | Edelweiss Pilates</title>
         <meta
           name="description"
-          content="Campus virtual oficial de certificación Pilates Reformer: comunidad Whop en vivo, temario de 28h y 48h, aula de masterclass y biblioteca clínica."
+          content="Campus virtual oficial de certificación Pilates Reformer: comunidad Whop en vivo, temario de 28h y 48h, aula de info day y biblioteca clínica."
         />
         <link rel="canonical" href={`${origin}/app`} />
         <meta name="robots" content="noindex, follow" />
@@ -316,7 +316,7 @@ const WebappExperience: React.FC = () => {
               {[
                 { id: 'campus', label: 'Formación 28h / 48h', icon: GraduationCap },
                 { id: 'comunidad', label: 'Comunidad Whop', icon: MessageSquare },
-                { id: 'webinar', label: 'Masterclass en Vivo', icon: Video },
+                { id: 'webinar', label: 'Info Day en Vivo', icon: Video },
                 { id: 'recursos', label: 'Biblioteca Clínica', icon: BookOpen },
                 { id: 'pagos', label: 'Membresía & Pagos', icon: CreditCard },
               ].map((tab) => {
@@ -970,7 +970,7 @@ const WebappExperience: React.FC = () => {
             </div>
           )}
 
-          {/* TAB 3: WEBINAR & MASTERCLASS */}
+          {/* TAB 3: WEBINAR & INFO DAY */}
           {activeTab === 'webinar' && (
             <div className="space-y-6">
               <div className="bg-white border border-neutral-200/90 rounded-[28px] p-6 sm:p-8 space-y-6 shadow-xs">
@@ -981,7 +981,7 @@ const WebappExperience: React.FC = () => {
                       Aula de Transmisión Oficial
                     </span>
                     <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-neutral-900">
-                      Masterclass en Vivo: La Ruta para Certificarte en Reformer
+                      Info Day en Vivo: Conoce los Próximos Cursos de Certificación
                     </h2>
                     <p className="text-xs md:text-sm text-neutral-600">
                       Con <strong>Gabi & Laura Munive</strong> · {WEBINAR_INFO.date}
@@ -999,7 +999,7 @@ const WebappExperience: React.FC = () => {
                       Agregar al Calendario
                     </a>
                     <a
-                      href="https://wa.me/525549425550?text=Hola,%20tengo%20una%20pregunta%20sobre%20la%20Masterclass%20del%2026%20de%20Septiembre"
+                      href="https://wa.me/525549425550?text=Hola,%20tengo%20una%20pregunta%20sobre%20el%20Info%20Day%20del%2026%20de%20Septiembre"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="px-5 py-2.5 bg-white hover:bg-neutral-100 text-neutral-800 text-xs font-medium rounded-full border border-neutral-200 shadow-xs flex items-center justify-center gap-1.5 transition-all"
@@ -1034,7 +1034,7 @@ const WebappExperience: React.FC = () => {
                           Consultas & Dudas en Vivo para Gabi & Laura Munive
                         </h4>
                         <p className="text-xs text-neutral-500">
-                          Preguntas publicadas en tiempo real en la Comunidad Oficial Whop para la Masterclass del 26 de Septiembre
+                          Preguntas publicadas en tiempo real en la Comunidad Oficial Whop para el Info Day del 26 de Septiembre
                         </p>
                       </div>
                     </div>

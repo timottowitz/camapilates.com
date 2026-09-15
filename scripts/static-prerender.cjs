@@ -1085,8 +1085,8 @@ async function main() {
   // Pre-Webinar registration route (static snapshot)
   {
     const webinarHead = {
-      title: 'Masterclass en Vivo: Certificación Pilates Reformer Querétaro y Monterrey | CAMA Pilates',
-      description: 'Sesión en vivo este Sábado 26 de Septiembre a las 11:00 AM CST con Gabi y Laura Munive. Curso Básico (28h · $25k) y Certificación Completa (48h · $38k) para Querétaro y Monterrey.',
+      title: 'Info Day en Vivo: Próximos Cursos de Certificación Pilates Reformer | CAMA Pilates',
+      description: 'Sesión informativa en vivo este Sábado 26 de Septiembre a las 11:00 AM CST con Gabi y Laura Munive. Explicación de los próximos cursos: Curso Básico (28h · $25k) y Certificación Completa (48h · $38k) para Querétaro y Monterrey.',
       canonical: `${origin}/certificacion-pilates/webinar`,
       ogImage: `${origin}/og/cama-de-pilates-venta-mexico.png`,
       ogType: 'event'
@@ -1094,22 +1094,22 @@ async function main() {
     const webinarBody = `
     <section class="bg-stone-900 text-stone-100 py-16 px-4">
       <div class="container mx-auto max-w-4xl text-center">
-        <p class="text-xs uppercase tracking-widest text-amber-500 font-semibold mb-3">Masterclass en Vivo · Sábado 26 de Septiembre 11:00 AM CST</p>
-        <h1 class="text-3xl md:text-5xl font-serif italic mb-6">Cómo Convertirte en Instructora Certificada de Pilates Reformer en Querétaro y Monterrey</h1>
-        <p class="text-lg text-stone-300 max-w-2xl mx-auto mb-8 font-light">Sesión en vivo con Gabi y Laura Munive. Conoce el plan presencial intensivo: Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). Cupo limitado a 12 participantes por ciudad.</p>
+        <p class="text-xs uppercase tracking-widest text-amber-500 font-semibold mb-3">Info Day en Vivo · Sábado 26 de Septiembre 11:00 AM CST</p>
+        <h1 class="text-3xl md:text-5xl font-serif italic mb-6">Info Day: Conoce los Próximos Cursos de Certificación Pilates Reformer</h1>
+        <p class="text-lg text-stone-300 max-w-2xl mx-auto mb-8 font-light">Sesión informativa en vivo con Gabi y Laura Munive para explicar los próximos cursos presenciales: Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). Cupo limitado a 12 participantes por ciudad.</p>
         <div class="flex flex-wrap justify-center gap-4">
-          <a href="/certificacion-pilates/webinar#registro" class="px-8 py-4 rounded-full bg-white text-stone-900 text-xs uppercase tracking-widest font-semibold">Apartar Lugar en el Webinar</a>
+          <a href="/certificacion-pilates/webinar#registro" class="px-8 py-4 rounded-full bg-white text-stone-900 text-xs uppercase tracking-widest font-semibold">Apartar Lugar en el Info Day</a>
           <a href="/certificacion-pilates/queretaro" class="px-8 py-4 rounded-full border border-stone-600 text-stone-200 text-xs uppercase tracking-widest">Cohorte Querétaro (Nov 2026)</a>
           <a href="/certificacion-pilates/monterrey" class="px-8 py-4 rounded-full border border-stone-600 text-stone-200 text-xs uppercase tracking-widest">Cohorte Monterrey (Dic-Ene)</a>
         </div>
       </div>
     </section>
     <section id="registro" class="py-16 px-4 max-w-3xl mx-auto text-center">
-      <h2 class="text-2xl md:text-3xl font-serif italic mb-4 text-stone-900">Apartar Lugar en el Webinar Gratuito</h2>
-      <p class="text-stone-600 mb-8 max-w-xl mx-auto font-light">Sesión informativa en vivo con Gabi y Laura Munive el Sábado 26 de Septiembre a las 11:00 AM CST. Conoce el plan presencial intensivo (28h / 48h) y asegura tu lugar.</p>
+      <h2 class="text-2xl md:text-3xl font-serif italic mb-4 text-stone-900">Apartar Lugar en el Info Day Gratuito</h2>
+      <p class="text-stone-600 mb-8 max-w-xl mx-auto font-light">Sesión informativa en vivo con Gabi y Laura Munive el Sábado 26 de Septiembre a las 11:00 AM CST para explicar los próximos cursos de certificación (28h / 48h) y resolver tus dudas.</p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href="https://wa.me/525548468190?text=${encodeURIComponent('Hola, quiero apartar mi lugar en el Webinar del 26 de Septiembre para la certificación de Pilates Reformer.')}" class="px-8 py-4 rounded-full bg-stone-900 text-white text-xs uppercase tracking-widest font-semibold hover:bg-stone-800 transition-colors">Apartar mi lugar por WhatsApp →</a>
-        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Webinar: Certificación Pilates Reformer')}&dates=20260926T170000Z/20260926T181500Z&details=${encodeURIComponent('Sesión informativa online en vivo con Gabi y Laura Munive.')}" target="_blank" rel="noopener noreferrer" class="px-6 py-4 rounded-full border border-stone-300 text-stone-700 text-xs uppercase tracking-widest hover:bg-stone-50 transition-colors">Agregar al Calendario</a>
+        <a href="https://wa.me/525548468190?text=${encodeURIComponent('Hola, quiero apartar mi lugar en el Info Day del 26 de Septiembre para conocer los próximos cursos de certificación de Pilates Reformer.')}" class="px-8 py-4 rounded-full bg-stone-900 text-white text-xs uppercase tracking-widest font-semibold hover:bg-stone-800 transition-colors">Apartar mi lugar por WhatsApp →</a>
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Info Day: Próximos Cursos Certificación Pilates Reformer')}&dates=20260926T170000Z/20260926T181500Z&details=${encodeURIComponent('Sesión informativa online en vivo con Gabi y Laura Munive para explicar los próximos cursos.')}" target="_blank" rel="noopener noreferrer" class="px-6 py-4 rounded-full border border-stone-300 text-stone-700 text-xs uppercase tracking-widest hover:bg-stone-50 transition-colors">Agregar al Calendario</a>
       </div>
     </section>`;
     const webinarHtml = baseHtml(template, webinarHead, webinarBody);

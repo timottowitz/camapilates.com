@@ -101,7 +101,7 @@ Los clásicos ofrecen esa resistencia orgánica alineada a la filosofía de Cont
 > Si buscas no solo entrenar sino impartir clases o abrir tu propio estudio, abrimos convocatorias presenciales (Curso Básico 28h / Certificación Completa 48h) en fines de semana (12 lugares por ciudad):  
 > • **Querétaro:** Noviembre 2026. [Ver cohorte Querétaro →](/certificacion-pilates/queretaro)  
 > • **Monterrey:** Dic 2026 y Ene 2027. [Ver cohorte Monterrey →](/certificacion-pilates/monterrey)  
-> • **Masterclass Informativa en Vivo:** Sábado 26 de Septiembre, 11:00 AM CST con Gabi & Laura Munive (100% gratuita vía Google Meet). [Registrarme gratis →](/certificacion-pilates/webinar)
+> • **Info Day en Vivo (Sesión Informativa):** Sábado 26 de Septiembre, 11:00 AM CST con Gabi & Laura Munive para explicar los próximos cursos presenciales (100% gratuita vía Google Meet). [Registrarme gratis →](/certificacion-pilates/webinar)
 
 ## FAQ
 

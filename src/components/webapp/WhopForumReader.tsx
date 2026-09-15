@@ -214,7 +214,7 @@ export const WhopForumReader: React.FC<WhopForumReaderProps> = ({
     const text = `${t.title} ${t.content}`.toLowerCase();
     if (activeCategory === 'biomecanica') return text.includes('resorte') || text.includes('biomec') || text.includes('carro') || text.includes('cadencia');
     if (activeCategory === 'patologias') return text.includes('hernia') || text.includes('columna') || text.includes('ciatica') || text.includes('lumbar');
-    if (activeCategory === 'webinar') return text.includes('masterclass') || text.includes('webinar') || text.includes('septiembre') || text.includes('pregunta');
+    if (activeCategory === 'webinar') return text.includes('info day') || text.includes('infoday') || text.includes('masterclass') || text.includes('webinar') || text.includes('septiembre') || text.includes('pregunta');
     if (activeCategory === 'cohortes') return text.includes('queretaro') || text.includes('monterrey') || text.includes('sede') || text.includes('fecha');
     return true;
   });
@@ -284,7 +284,7 @@ export const WhopForumReader: React.FC<WhopForumReaderProps> = ({
           { id: 'all', label: 'Todos los Temas' },
           { id: 'biomecanica', label: 'Biomecánica & Resortes' },
           { id: 'patologias', label: 'Patologías & Modificaciones' },
-          { id: 'webinar', label: 'Masterclass 26 Sep' },
+          { id: 'webinar', label: 'Info Day 26 Sep' },
           { id: 'cohortes', label: 'Querétaro / Monterrey' },
         ].map((cat) => (
           <button

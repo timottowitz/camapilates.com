@@ -165,8 +165,8 @@ Hospitales privados integrando Pilates:
 > La mayor limitante para el crecimiento de nuevos estudios en Querétaro y Monterrey es la falta de instructoras con certificación formal en Reformer.  
 > • **Cohorte Querétaro:** 7 al 29 de Noviembre 2026 (4 fines de semana). [Ver detalles Querétaro →](/certificacion-pilates/queretaro)  
 > • **Cohorte Monterrey:** 5 Dic 2026 al 17 Ene 2027 (4 fines de semana). [Ver detalles Monterrey →](/certificacion-pilates/monterrey)  
-> • **Masterclass Previa en Vivo:** Sábado 26 de Septiembre (11:00 AM CST) con **Gabi y Laura Munive** vía Google Meet (100% gratuita). Conoce el Curso Básico (28h) y la Certificación Completa (48h).  
-> 👉 [**Apartar mi acceso gratuito a la Masterclass en Google Meet →**](/certificacion-pilates/webinar)
+> • **Info Day en Vivo (Sesión Informativa):** Sábado 26 de Septiembre (11:00 AM CST) con **Gabi y Laura Munive** vía Google Meet (100% gratuita). Conoce en detalle los próximos cursos: Curso Básico (28h) y Certificación Completa (48h).  
+> 👉 [**Apartar mi acceso gratuito al Info Day en Google Meet →**](/certificacion-pilates/webinar)
 
 ## Tecnología y Digitalización: El Futuro Híbrido
 

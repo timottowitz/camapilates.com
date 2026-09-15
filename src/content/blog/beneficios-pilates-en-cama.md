@@ -49,7 +49,7 @@ Haz las cuentas: si optas por un equipo de gama media de unos $40,000 MXN, tu in
 > Próximas cohortes presenciales (Curso Básico 28h / Certificación Completa 48h) en fines de semana con cupo limitado a 12 participantes:  
 > • **Querétaro:** Noviembre 2026. [Ver fechas Querétaro →](/certificacion-pilates/queretaro)  
 > • **Monterrey:** Dic 2026 y Ene 2027. [Ver fechas Monterrey →](/certificacion-pilates/monterrey)  
-> • **Masterclass en Vivo (Pre-Webinar):** Sábado 26 de Septiembre a las 11:00 AM CST con Gabi & Laura Munive (100% gratuita vía Google Meet). [Registrarme gratis →](/certificacion-pilates/webinar)
+> • **Info Day en Vivo (Sesión Informativa):** Sábado 26 de Septiembre a las 11:00 AM CST con Gabi & Laura Munive para explicar los próximos cursos presenciales (100% gratuita vía Google Meet). [Registrarme gratis →](/certificacion-pilates/webinar)
 
 <see-also limit="3" />
 

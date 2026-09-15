@@ -276,7 +276,7 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
             >
               <div className={`text-[11px] font-bold ${activePlanId === WHOP_CONFIG.plans.paseVipWebinar.id ? 'text-white' : 'text-neutral-900'}`}>Pase VIP</div>
               <div className={`font-mono text-xs font-semibold ${activePlanId === WHOP_CONFIG.plans.paseVipWebinar.id ? 'text-emerald-300' : 'text-emerald-600'}`}>Gratis</div>
-              <p className={`text-[9px] mt-0.5 ${activePlanId === WHOP_CONFIG.plans.paseVipWebinar.id ? 'text-neutral-300' : 'text-neutral-400'}`}>Acceso Masterclass</p>
+              <p className={`text-[9px] mt-0.5 ${activePlanId === WHOP_CONFIG.plans.paseVipWebinar.id ? 'text-neutral-300' : 'text-neutral-400'}`}>Acceso Info Day</p>
             </button>
           </div>
         </DialogHeader>

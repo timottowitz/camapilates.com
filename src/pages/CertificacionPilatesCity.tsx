@@ -79,7 +79,7 @@ const CertificacionPilatesCity: React.FC = () => {
   const desc = isCdmx
     ? `Certifícate en STOTT PILATES® en ${cityName}: Intensive Reformer (125h), Mat-Plus™ y niveles avanzados en ${STOTT_VENUE.name}, sede oficial Merrithew® en Santa Fe. Fechas, costos y registro.`
     : cohort
-      ? `Certifícate como instructora de Pilates Reformer en ${shortCityName} (${cohort.periodLabel}): Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). Masterclass con Gabi y Laura Munive. Cupos limitados a 12 participantes.`
+      ? `Certifícate como instructora de Pilates Reformer en ${shortCityName} (${cohort.periodLabel}): Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). Sesión informativa (Info Day) con Gabi y Laura Munive sobre los próximos cursos. Cupos limitados a 12 participantes.`
       : key === 'puebla'
         ? `Certificación de Pilates Reformer en Puebla 2026: aval oficial, costos, temarios prácticos y cupos reducidos. Solicita informes y asegura tu lugar.`
         : key === 'guadalajara'
@@ -308,7 +308,7 @@ const CertificacionPilatesCity: React.FC = () => {
                     to="/certificacion-pilates/webinar"
                     className="px-6 py-4 bg-[#3E2723]/10 border border-[#3E2723]/30 text-[#3E2723] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723]/20 transition-colors flex items-center gap-2"
                   >
-                    <span>Masterclass 26 Sep</span>
+                    <span>Info Day 26 Sep</span>
                   </Link>
                 </>
               ) : (
@@ -327,7 +327,7 @@ const CertificacionPilatesCity: React.FC = () => {
                     to="/certificacion-pilates/webinar"
                     className="px-6 py-4 bg-[#3E2723]/10 border border-[#3E2723]/30 text-[#3E2723] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723]/20 transition-colors flex items-center gap-2"
                   >
-                    <span>Masterclass 26 Sep</span>
+                    <span>Info Day 26 Sep</span>
                   </Link>
                 </>
               )}
@@ -495,7 +495,7 @@ const CertificacionPilatesCity: React.FC = () => {
                 to="/certificacion-pilates/webinar"
                 className="w-full sm:w-auto px-8 py-4 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-100 text-xs uppercase tracking-[0.2em] hover:bg-emerald-500/30 transition-colors"
               >
-                Masterclass (26 Sep)
+                Info Day (26 Sep)
               </Link>
             </div>
           </div>
