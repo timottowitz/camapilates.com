@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import BlogGrid21 from '@/components/editorial21/BlogGrid21';
 import FilterChips21 from '@/components/editorial21/FilterChips21';
@@ -8,6 +9,7 @@ import FeaturedRow21 from '@/components/editorial21/FeaturedRow21';
 import { loadAllBlogPosts } from '@/utils/blogUtils';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
 import { getAllCategories } from '@/lib/content';
+import { slugify } from '@/utils/slug';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { useQuery } from 'convex/react';
 import { api } from '../../convex/_generated/api';
@@ -108,10 +110,23 @@ const Blog: React.FC = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="mb-16 flex justify-center"
+              className="mb-8 flex justify-center"
             >
               <FilterChips21 items={categories.map(c => ({ label: c, value: c, count: c === 'Todos' ? posts.length : posts.filter(p => p.category === c).length }))} value={cat} onChange={(v) => { setCat(v); setVisible(9); }} />
             </motion.div>
+
+            {/* Direct crawlable category hubs for Googlebot & users */}
+            <div className="mb-14 flex flex-wrap justify-center gap-2.5 text-xs">
+              {categories.filter(c => c !== 'Todos').map(c => (
+                <Link
+                  key={c}
+                  to={`/blog/category/${slugify(c)}`}
+                  className="px-4 py-2 rounded-full border border-[#2A2624]/15 bg-white/60 text-[#2A2624] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-all font-medium"
+                >
+                  {c}
+                </Link>
+              ))}
+            </div>
 
             {/* Featured row */}
             <motion.div
@@ -153,9 +168,62 @@ const Blog: React.FC = () => {
                 transition={{ delay: 0.5, duration: 0.8 }}
                 className="lg:col-span-1"
               >
-                <div className="sticky top-32 space-y-12">
+                <div className="sticky top-32 space-y-10">
+                  {/* Essential Guides Pillar Box for internal linking & crawl budget */}
+                  <div className="p-6 bg-white/60 rounded-[2rem] border border-[#2A2624]/10 shadow-sm">
+                    <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-[#2A2624] mb-4 opacity-70">Guías Esenciales</h3>
+                    <ul className="space-y-3 text-xs">
+                      <li>
+                        <Link to="/blog/cama-de-pilates-guia-de-compra" className="text-[#2A2624] hover:text-[#EB4C42] transition-colors block font-medium">
+                          Guía Completa para Comprar Cama de Pilates
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/cama-de-pilates/precio" className="text-[#2A2624] hover:text-[#EB4C42] transition-colors block font-medium">
+                          ¿Cuánto Cuesta una Cama de Pilates en México?
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/blog/accesorios-esenciales-reformer" className="text-[#2A2624] hover:text-[#EB4C42] transition-colors block font-medium">
+                          Accesorios Indispensables para Reformer
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/blog/cama-de-pilates-plegable" className="text-[#2A2624] hover:text-[#EB4C42] transition-colors block font-medium">
+                          Camas de Pilates Plegables para Casa
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/blog/beneficios-pilates-en-cama" className="text-[#2A2624] hover:text-[#EB4C42] transition-colors block font-medium">
+                          Beneficios Clínicos de Pilates en Cama
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/blog/mantenimiento-cama-de-pilates" className="text-[#2A2624] hover:text-[#EB4C42] transition-colors block font-medium">
+                          Mantenimiento y Cuidado del Reformer
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/cama-de-pilates/en-venta" className="text-[#2A2624] hover:text-[#EB4C42] transition-colors block font-medium">
+                          Camas de Pilates Reformer en Venta
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+
                   <div>
-                    <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-[#2A2624] mb-6 opacity-40">Topics</h3>
+                    <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-[#2A2624] mb-6 opacity-40">Categorías y Temas</h3>
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {categories.filter(c => c !== 'Todos').map(c => (
+                        <Link
+                          key={c}
+                          to={`/blog/category/${slugify(c)}`}
+                          className="text-[11px] px-3 py-1.5 rounded-lg bg-[#EAE8E4] text-[#2A2624] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors font-medium"
+                        >
+                          {c}
+                        </Link>
+                      ))}
+                    </div>
                     <TagCloud21 tags={tagCounts} />
                   </div>
 
