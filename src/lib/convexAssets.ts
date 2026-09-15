@@ -108,7 +108,7 @@ export function useConvexAssets() {
   const whopCommunityLogo = useConvexImage(CONVEX_IMAGE_NAMES.WHOP_COMMUNITY_LOGO, FALLBACKS.whopCommunityLogo);
   const whopCommunityBanner = useConvexImage(CONVEX_IMAGE_NAMES.WHOP_COMMUNITY_BANNER, FALLBACKS.whopCommunityBanner);
   const whopCommunityAvatar = useConvexImage(CONVEX_IMAGE_NAMES.WHOP_COMMUNITY_AVATAR, FALLBACKS.whopCommunityAvatar);
-  const pilatesGroupClass = useConvexImage(CONVEX_IMAGE_NAMES.PILATES_GROUP_CLASS, getVersionedImageUrl(FALLBACKS.pilatesGroupClass));
+  const pilatesGroupClass = useConvexImage(CONVEX_IMAGE_NAMES.PILATES_GROUP_CLASS, FALLBACKS.pilatesGroupClass);
 
   return {
     heroEdelweiss,

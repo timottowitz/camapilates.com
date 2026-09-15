@@ -31,27 +31,29 @@ export const CertificationWebinarBanner: React.FC<CertificationWebinarBannerProp
 
   return (
     <div
-      className={`relative group overflow-hidden rounded-[2rem] bg-[#1a1715] text-[#EAE8E4] p-6 sm:p-8 md:p-10 shadow-2xl border border-white/10 hover:border-[#D9865B]/40 transition-all duration-500 ${className}`}
+      className={`relative group overflow-hidden rounded-[2rem] bg-[#141210] text-[#EAE8E4] p-6 sm:p-8 md:p-10 shadow-2xl border border-white/10 hover:border-[#D9865B]/40 transition-all duration-500 ${className}`}
     >
-      {/* Background Image - Group of women training in Pilates Reformer class */}
+      {/* Background Image - Group of women training on Pilates Reformers in sunlit boutique studio */}
       <div className="absolute inset-0 z-0 select-none overflow-hidden pointer-events-none">
         <img
-          src={pilatesGroupClass}
-          alt="Grupo de mujeres entrenando en clase de Pilates Reformer"
-          className="h-full w-full object-cover object-[center_60%] md:object-[center_45%] lg:object-[center_40%] transition-transform duration-700 ease-[0.25,0.46,0.45,0.94] group-hover:scale-105"
-          loading="lazy"
+          src={pilatesGroupClass || '/images/pilates-group-class.webp'}
+          alt="Grupo de mujeres entrenando en clase de Pilates Reformer en estudio boutique"
+          className="h-full w-full object-cover object-[center_60%] sm:object-[65%_60%] md:object-[70%_58%] lg:object-[72%_55%] transition-transform duration-700 ease-out group-hover:scale-105"
+          loading="eager"
+          decoding="async"
         />
-        {/* Layer 1: Base dark tint for overall contrast balance */}
-        <div className="absolute inset-0 bg-black/40" />
 
-        {/* Layer 2: Editorial directional gradient - deep dark vignette behind text, opening up to reveal the women & sunlit studio on the right */}
-        <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#141210]/95 via-[#141210]/85 to-[#141210]/35 md:from-[#141210]/95 md:via-[#141210]/80 md:to-[#141210]/30" />
+        {/* Directional gradient: solid dark vignette on the left behind text, transitioning to clear view of the women & reformers on the right */}
+        <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#141210]/95 via-[#141210]/75 via-45% to-transparent md:from-[#141210]/95 md:via-[#141210]/70 md:via-50% md:to-transparent" />
 
-        {/* Layer 3: Warm architectural studio glow */}
-        <div className="absolute top-0 right-0 -mt-12 -mr-12 w-96 h-96 rounded-full bg-[#D9865B]/20 blur-3xl pointer-events-none" />
+        {/* Soft right-edge shadow so buttons stay legible without obscuring the women */}
+        <div className="hidden lg:block absolute inset-y-0 right-0 w-52 bg-gradient-to-l from-[#141210]/35 to-transparent pointer-events-none" />
 
-        {/* Layer 4: Bottom shadow for grounding text & badge pills */}
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#141210]/80 to-transparent pointer-events-none" />
+        {/* Warm architectural studio ambient glow */}
+        <div className="absolute top-0 right-0 -mt-16 -mr-16 w-80 h-80 rounded-full bg-[#D9865B]/15 blur-3xl pointer-events-none" />
+
+        {/* Bottom grounding gradient for metadata pills */}
+        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#141210]/60 to-transparent pointer-events-none" />
       </div>
 
       {/* Red/terracotta accent border on hover (matching bento grid style) */}
