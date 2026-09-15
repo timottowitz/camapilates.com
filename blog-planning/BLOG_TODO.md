@@ -123,6 +123,11 @@
 
 ## CATEGORÍA: Ejercicios y salud
 
+### ✅ Baby Pilates en Reformer: La ola europea que revoluciona el embarazo en México (Método Valerie Munive)
+**Research File:** [baby-pilates-reformer-embarazo-mexico.md](./research/baby-pilates-reformer-embarazo-mexico.md)
+**Target:** Mujeres embarazadas en México y futuras madres
+**Keywords:** baby pilates, pilates prenatal mexico, pilates reformer embarazo, curso pilates prenatal, valery munive
+
 ### 🔬 Pilates para embarazo: Guía completa y segura
 **Research File:** [pilates-para-embarazo.md](./research/pilates-para-embarazo.md)
 **Target:** Mujeres embarazadas en México
