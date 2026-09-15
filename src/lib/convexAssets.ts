@@ -56,6 +56,9 @@ export const CONVEX_IMAGE_NAMES = {
   WHOP_COMMUNITY_LOGO: 'whopCommunityLogo',
   WHOP_COMMUNITY_BANNER: 'whopCommunityBanner',
   WHOP_COMMUNITY_AVATAR: 'whopCommunityAvatar',
+
+  // Certification & Training Banner
+  PILATES_GROUP_CLASS: 'pilatesGroupClass',
 } as const;
 
 /**
@@ -80,6 +83,7 @@ const FALLBACKS = {
   whopCommunityLogo: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/a168f029-281a-4c4d-9133-0aee68a97b54/image.png',
   whopCommunityBanner: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/6bfbe26a-0e40-4ae9-bb16-5be451863df0/image.png',
   whopCommunityAvatar: 'https://assets-2-prod.whop.com/public/uploads/2026-09-11/612c1ce7-d55f-423a-9fab-fae7462b2551/image.png',
+  pilatesGroupClass: '/images/pilates-group-class.webp',
 } as const;
 
 /**
@@ -104,6 +108,7 @@ export function useConvexAssets() {
   const whopCommunityLogo = useConvexImage(CONVEX_IMAGE_NAMES.WHOP_COMMUNITY_LOGO, FALLBACKS.whopCommunityLogo);
   const whopCommunityBanner = useConvexImage(CONVEX_IMAGE_NAMES.WHOP_COMMUNITY_BANNER, FALLBACKS.whopCommunityBanner);
   const whopCommunityAvatar = useConvexImage(CONVEX_IMAGE_NAMES.WHOP_COMMUNITY_AVATAR, FALLBACKS.whopCommunityAvatar);
+  const pilatesGroupClass = useConvexImage(CONVEX_IMAGE_NAMES.PILATES_GROUP_CLASS, getVersionedImageUrl(FALLBACKS.pilatesGroupClass));
 
   return {
     heroEdelweiss,
@@ -122,6 +127,7 @@ export function useConvexAssets() {
     whopCommunityLogo,
     whopCommunityBanner,
     whopCommunityAvatar,
+    pilatesGroupClass,
     shopHeaderAddon: edelweissLogo, // Alias for compatibility
   };
 }
