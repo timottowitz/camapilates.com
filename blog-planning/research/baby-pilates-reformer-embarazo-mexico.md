@@ -70,6 +70,6 @@ En Alemania y los países nórdicos (Suecia, Dinamarca), el embarazo no se conci
 4. **Valery Munive en primera persona:** "Estaba embarazada en Alemania y lo probé por primera vez".
 5. **La prueba irrefutable (Semana 38):** Galería y análisis fotográfico de Valery entrenando a término con fotos reales en fucsia.
 6. **Desglose de los 10 módulos del curso:** Qué incluye cada clase y cómo acompaña cada etapa.
-7. **Por qué $600 MXN es una decisión obvia:** Comparativa con una sola consulta o clase privada en Polanco o San Pedro ($800 - $1,200 MXN).
+7. **Por qué $600 MXN es una decisión obvia:** Comparativa con el mercado mexicano (clase individual en estudio de $330 a $400 MXN, o paquetes de $1,400 a $3,000 MXN).
 8. **Llamado a la acción (CTA Whop):** Botón directo al checkout seguro.
-9. **Preguntas Frecuentes (FAQ):** 5 preguntas clave con respuestas rigurosas para generar datos estructurados JSON-LD.
+9. **Preguntas Frecuentes (FAQ):** 4 preguntas clave con respuestas rigurosas para generar datos estructurados JSON-LD.
