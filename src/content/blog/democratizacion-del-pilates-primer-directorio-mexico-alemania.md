@@ -12,7 +12,7 @@ publishDate: "2026-09-16"
 author: "CAMA Pilates"
 slug: "democratizacion-del-pilates-primer-directorio-mexico-alemania"
 featured: true
-heroImage: "/images/press/edelweiss-press-release.webp"
+heroImage: "/images/press/edelweiss-founders-pr.webp"
 ---
 
 # Un Día Histórico para Edelweiss: La Democratización del Pilates, el Primer Directorio en México y Nuestra Expansión a Alemania
@@ -22,6 +22,9 @@ heroImage: "/images/press/edelweiss-press-release.webp"
 ---
 
 ## Resumen: Una Nueva Era de Transparencia y Accesibilidad en el Pilates
+
+![Tim Ottowitz y Valery Munive presentando el Directorio Nacional de Certificaciones de Pilates](/images/press/edelweiss-founders-pr.webp)
+*Tim Ottowitz y Valery Munive, fundadores de Edelweiss y CAMA Pilates, presentando la plataforma abierta de certificación y expansión internacional.*
 
 Hoy marca un día decisivo en la historia de **Edelweiss** y **CAMA Pilates**. Desde nuestra fundación, nos trazamos una misión categórica: **la democratización del Pilates**. Durante décadas, el acceso a una formación profesional de calidad en aparatología (Reformer, Cadillac, Silla Wunda y Barriles) y la adquisición de camas de grado comercial estuvieron reservados para unos pocos, blindados por intermediarios opacos, costos exorbitantes de importación y una fragmentación que desorientaba a quien soñaba con dedicarse a la enseñanza.
 
