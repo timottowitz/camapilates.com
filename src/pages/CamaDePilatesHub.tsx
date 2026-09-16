@@ -5,7 +5,7 @@ import { DEFAULTS } from '@/lib/seo';
 import { requireRouteMeta } from '@/lib/routeMeta';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
-import { ArrowRight, BookOpen, ShoppingBag, DollarSign, Ruler, Package } from 'lucide-react';
+import { ArrowRight, BookOpen, ShoppingBag, DollarSign, Ruler, Package, CheckCircle2, ShieldCheck, Zap } from 'lucide-react';
 
 const CamaDePilatesHub: React.FC = () => {
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://camadepilates.com';
@@ -35,43 +35,56 @@ const CamaDePilatesHub: React.FC = () => {
     ],
   };
 
+  const faqs = [
+    {
+      q: '¿Cuánto cuesta una cama de Pilates Reformer en México?',
+      a: 'En México, los precios de camas de Pilates profesionales inician desde $23,234 MXN para modelos clásicos de roble, entre $28,000 y $38,000 MXN para modelos de maple norteamericano y aluminio de alta gama, y entre $51,000 y $85,050 MXN para equipos que incorporan media torre o estructura de Cadillac. Todos nuestros precios incluyen IVA y garantía directa.'
+    },
+    {
+      q: '¿Cuál es la diferencia entre un Reformer de madera y uno de aluminio?',
+      a: 'Ambos ofrecen exactamente la misma precisión biomecánica. Los Reformers de madera maciza (como el Maple y Roble) aportan una estética orgánica, cálida y clásica sumamente cotizada en estudios boutique y residencias. Los Reformers de aluminio ofrecen una estética contemporánea e industrial, menor peso total para facilitar reubicaciones y rieles anodizados de altísima resistencia al desgaste.'
+    },
+    {
+      q: '¿Qué espacio necesito para tener un Reformer en casa o departamento?',
+      a: 'El equipo mide en promedio 240 cm de largo por 70 cm de ancho. Se aconseja disponer de una superficie de al menos 3.0 m x 1.8 m para entrar y salir con comodidad y extender los brazos lateralmente sin obstáculos.'
+    },
+    {
+      q: '¿Ofrecen opciones de pago a Meses Sin Intereses (MSI)?',
+      a: 'Sí. Aceptamos pagos con tarjeta de crédito con planes de hasta 12 Meses Sin Intereses con bancos participantes a través de nuestras pasarelas de pago certificadas. También contamos con descuentos preferenciales en pagos de contado por transferencia bancaria SPEI.'
+    },
+    {
+      q: '¿Hacen envíos a Monterrey, Guadalajara, Querétaro y todo México?',
+      a: 'Sí, realizamos envíos asegurados a las 32 entidades federativas del país. La mercancía viaja con seguro contra daños de transporte puerta a puerta en caja de exportación de madera tratada. El tiempo estimado de entrega es de 3 a 8 semanas según el acabado y modelo seleccionado.'
+    },
+    {
+      q: '¿Qué garantía tienen los Reformers y cómo se gestionan las refacciones?',
+      a: 'Ofrecemos una garantía directa de 3 años en chasis, rieles y mecanismos estructurales. Contamos con almacén local de refacciones en México con resortes de repuesto, poleas, correas de cuero y microfibra con envío exprés de 24 a 48 horas.'
+    },
+    {
+      q: '¿Cómo se calibra la resistencia de los resortes y qué combinaciones se usan?',
+      a: 'Nuestras camas incorporan un sistema de 5 resortes alemanes calibrados por código de color: 1 amarillo (25% ligero), 2 azules (50% medio) y 2 rojos (100% pesado), permitiendo graduar la resistencia con precisión para calentamiento, core abdominal o saltos pliométricos en Jumpboard.'
+    },
+    {
+      q: '¿Qué mantenimiento preventivo requiere un Reformer en México y cada cuándo se cambian los resortes?',
+      a: 'Se recomienda limpiar rieles semanalmente con microfibra seca, desinfectar la tapicería sin alcohol y revisar resortes cada 6 meses. En casa duran de 3 a 5 años; en estudios comerciales de alto flujo se sugiere renovación cada 18 a 24 meses.'
+    },
+    {
+      q: '¿Por qué un Reformer de madera maciza o aluminio estructural es superior a una cama plegable económica?',
+      a: 'Las camas plegables económicas de menos de $15,000 MXN sufren flexión en articulaciones centrales y usan ruedas plásticas ruidosas. Una estructura de Maple o Roble de 3 cm o aluminio aeronáutico absorbe vibraciones, no se descalibra y soporta hasta 180-200 kg con deslizamiento silencioso.'
+    }
+  ];
+
   const faq = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: '¿Qué es una cama de Pilates (Reformer)?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'La cama de Pilates (Reformer) es un equipo con carro deslizante y resistencia por resortes que permite ejercicios para fuerza, control y movilidad. Se usa tanto en casa como en estudio.',
-        },
+    mainEntity: faqs.map(item => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
       },
-      {
-        '@type': 'Question',
-        name: '¿Cuánto cuesta una cama de Pilates en México?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'En México, una cama de Pilates para casa suele iniciar alrededor de MXN 25,000 y una de estudio ronda MXN 50,000, dependiendo de materiales, tolerancias, accesorios y garantía.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: '¿Qué diferencia hay entre un reformer para casa y uno profesional?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'El reformer profesional prioriza rigidez estructural, estabilidad y uso diario intensivo; el reformer para casa busca un formato más compacto sin perder recorrido suave y seguro.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: '¿Qué espacio necesito para instalar una cama de Pilates?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Además del largo del equipo, considera espacio lateral para entrar/salir y un margen en la parte trasera para accesorios. Revisa nuestra guía de dimensiones antes de comprar.',
-        },
-      },
-    ],
+    })),
   };
 
   return (
@@ -270,6 +283,183 @@ const CamaDePilatesHub: React.FC = () => {
           </motion.div>
         </motion.div>
 
+        {/* Competitor Brand Comparison Section */}
+        <div className="max-w-6xl mx-auto mb-24">
+          <div className="text-center mb-12">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#EB4C42] block mb-2">Análisis de Mercado México 2026</span>
+            <h2 className="text-4xl md:text-5xl font-serif italic text-[#2A2624]">
+              CAMA Pilates vs. Otras Marcas en México
+            </h2>
+            <p className="text-[#5D5550] max-w-2xl mx-auto mt-4 font-light text-sm md:text-base">
+              Compara con total transparencia: materiales del chasis, calibración de resortes, silencio en rodamientos y disponibilidad inmediata de refacciones y garantía en el país.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto bg-white/70 backdrop-blur-md rounded-3xl border border-[#2A2624]/5 p-6 md:p-8 shadow-sm">
+            <table className="w-full text-left border-collapse text-xs md:text-sm">
+              <thead>
+                <tr className="border-b border-[#2A2624]/10 pb-4 text-[#2A2624]">
+                  <th className="p-3 md:p-4 font-serif italic text-base">Criterio</th>
+                  <th className="p-3 md:p-4 font-serif italic text-base text-[#2A2624] bg-[#2A2624]/5 rounded-t-xl">CAMA Pilates®</th>
+                  <th className="p-3 md:p-4 font-serif italic text-base text-[#5D5550]">Vanlig / Centurfit</th>
+                  <th className="p-3 md:p-4 font-serif italic text-base text-[#5D5550]">Ironside / Tayga</th>
+                  <th className="p-3 md:p-4 font-serif italic text-base text-[#5D5550]">Balanced Body / Merrithew</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#2A2624]/5 text-[#5D5550]">
+                <tr>
+                  <td className="p-3 md:p-4 font-semibold text-[#2A2624]">Origen y Manufactura</td>
+                  <td className="p-3 md:p-4 font-bold text-[#2A2624] bg-[#2A2624]/5">Ingeniería alemana · Taller en México</td>
+                  <td className="p-3 md:p-4">Importación de China (revendedor)</td>
+                  <td className="p-3 md:p-4">Marca de crossfit / fitness</td>
+                  <td className="p-3 md:p-4">Importado de EE.UU. / Canadá</td>
+                </tr>
+                <tr>
+                  <td className="p-3 md:p-4 font-semibold text-[#2A2624]">Materiales del Chasis</td>
+                  <td className="p-3 md:p-4 font-bold text-[#2A2624] bg-[#2A2624]/5">Madera maciza (Maple/Roble) o Aluminio</td>
+                  <td className="p-3 md:p-4">Acero tubular delgado o contrachapado</td>
+                  <td className="p-3 md:p-4">Aluminio plegable básico</td>
+                  <td className="p-3 md:p-4">Madera noble o aluminio extrusionado</td>
+                </tr>
+                <tr>
+                  <td className="p-3 md:p-4 font-semibold text-[#2A2624]">Sistema de Resortes</td>
+                  <td className="p-3 md:p-4 font-bold text-[#2A2624] bg-[#2A2624]/5">5 resortes alemanes de alambre de piano</td>
+                  <td className="p-3 md:p-4">Ligas o resortes sin calibración</td>
+                  <td className="p-3 md:p-4">Resortes genéricos de tensión media</td>
+                  <td className="p-3 md:p-4">Resortes patentados premium</td>
+                </tr>
+                <tr>
+                  <td className="p-3 md:p-4 font-semibold text-[#2A2624]">Rodamientos y Silencio</td>
+                  <td className="p-3 md:p-4 font-bold text-[#2A2624] bg-[#2A2624]/5">8 rodamientos sellados Whisper-Glide</td>
+                  <td className="p-3 md:p-4">Ruedas plásticas propensas a chirridos</td>
+                  <td className="p-3 md:p-4">Ruedas estándar de nylon</td>
+                  <td className="p-3 md:p-4">Ruedas de uretano de alta precisión</td>
+                </tr>
+                <tr>
+                  <td className="p-3 md:p-4 font-semibold text-[#2A2624]">Capacidad de Carga</td>
+                  <td className="p-3 md:p-4 font-bold text-[#2A2624] bg-[#2A2624]/5">Hasta 180–200 kg certificados</td>
+                  <td className="p-3 md:p-4">100–120 kg (baja estabilidad)</td>
+                  <td className="p-3 md:p-4">130–150 kg máximo</td>
+                  <td className="p-3 md:p-4">150–180 kg</td>
+                </tr>
+                <tr>
+                  <td className="p-3 md:p-4 font-semibold text-[#2A2624]">Rango de Precios (MXN)</td>
+                  <td className="p-3 md:p-4 font-bold text-[#2A2624] bg-[#2A2624]/5">$23,234 a $85,050 MXN (12 MSI)</td>
+                  <td className="p-3 md:p-4">$4,489 a $50,999 MXN (stock agotado)</td>
+                  <td className="p-3 md:p-4">$19,690 a $25,990 MXN</td>
+                  <td className="p-3 md:p-4">$90,000 a $160,000+ MXN</td>
+                </tr>
+                <tr>
+                  <td className="p-3 md:p-4 font-semibold text-[#2A2624]">Garantía y Refacciones</td>
+                  <td className="p-3 md:p-4 font-bold text-[#2A2624] bg-[#2A2624]/5 rounded-b-xl">3 años · Almacén local en MX (24-48h)</td>
+                  <td className="p-3 md:p-4 text-rose-600">3-6 meses · Sin refacciones oficiales</td>
+                  <td className="p-3 md:p-4">Garantía genérica de gimnasio</td>
+                  <td className="p-3 md:p-4">Garantía en EE.UU. · Refacciones en USD</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Spring Resistance Calibration Guide */}
+        <div className="max-w-6xl mx-auto mb-24">
+          <div className="text-center mb-12">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#3E2723] opacity-60 block mb-2">Ingeniería Biomecánica</span>
+            <h2 className="text-4xl font-serif italic text-[#2A2624]">
+              Sistema de 5 Resortes Alemanes Calibrados
+            </h2>
+            <p className="text-[#5D5550] max-w-2xl mx-auto mt-4 font-light text-sm md:text-base">
+              El resorte en Pilates asiste o desafía la estabilidad. Conoce la configuración exacta de resistencia por código de color en nuestras camas:
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="p-8 bg-amber-50/50 border border-amber-200/60 rounded-3xl">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-4 h-4 rounded-full bg-amber-400 shadow-sm" />
+                <h3 className="font-serif italic text-xl text-[#2A2624]">1 Resorte Amarillo (25%)</h3>
+              </div>
+              <p className="text-xs font-bold uppercase tracking-wider text-amber-900 mb-3">Tensión Ligera · Asistencia y Control</p>
+              <p className="text-sm text-[#5D5550] font-light leading-relaxed mb-4">
+                Menor resistencia de retorno para series de brazos sentados, rehabilitación de hombros y ejercicios donde un resorte ligero exige control abdominal máximo.
+              </p>
+              <span className="text-xs font-medium text-stone-700 bg-white px-3 py-1 rounded-full border border-stone-200">
+                Long Spine · Arm Springs
+              </span>
+            </div>
+
+            <div className="p-8 bg-sky-50/50 border border-sky-200/60 rounded-3xl">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-4 h-4 rounded-full bg-sky-500 shadow-sm" />
+                <h3 className="font-serif italic text-xl text-[#2A2624]">2 Resortes Azules (50% c/u)</h3>
+              </div>
+              <p className="text-xs font-bold uppercase tracking-wider text-sky-900 mb-3">Tensión Media · Estándar Funcional</p>
+              <p className="text-sm text-[#5D5550] font-light leading-relaxed mb-4">
+                La resistencia base para más del 60% del repertorio: Hundred, Stomach Massage, Mermaid y trabajo unilateral de cadera sin fatiga del resorte.
+              </p>
+              <span className="text-xs font-medium text-stone-700 bg-white px-3 py-1 rounded-full border border-stone-200">
+                The Hundred · Elephant · Short Box
+              </span>
+            </div>
+
+            <div className="p-8 bg-rose-50/50 border border-rose-200/60 rounded-3xl">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-4 h-4 rounded-full bg-rose-500 shadow-sm" />
+                <h3 className="font-serif italic text-xl text-[#2A2624]">2 Resortes Rojos (100% c/u)</h3>
+              </div>
+              <p className="text-xs font-bold uppercase tracking-wider text-rose-900 mb-3">Tensión Fuerte · Carga y Salto</p>
+              <p className="text-sm text-[#5D5550] font-light leading-relaxed mb-4">
+                Resistencia pesada para cuádriceps y glúteos en Footwork inicial y absorción de impacto controlada en saltos cardiovasculares con tabla de salto (Jumpboard).
+              </p>
+              <span className="text-xs font-medium text-stone-700 bg-white px-3 py-1 rounded-full border border-stone-200">
+                Footwork · Jumpboard Cardiovascular
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* 4 Pitfalls Framework */}
+        <div className="max-w-5xl mx-auto mb-24">
+          <div className="bg-[#FAF8F5] border border-[#2A2624]/10 rounded-3xl p-8 md:p-12">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#EB4C42] block mb-2">Guía del Comprador</span>
+            <h2 className="text-3xl md:text-4xl font-serif italic text-[#2A2624] mb-8">
+              4 Errores Críticos al Comprar una Cama de Pilates en México
+            </h2>
+            <div className="space-y-6">
+              {[
+                {
+                  num: '1',
+                  title: 'Elegir aparatos de menos de $10,000 MXN con ligas de goma',
+                  desc: 'Las camas con ligas o elásticos tubulares pierden tensión rápidamente, tienen carros inestables sin baleros y carecen de la biomecánica necesaria para el método Pilates real.',
+                },
+                {
+                  num: '2',
+                  title: 'Comprar equipo importado sin almacén de refacciones en México',
+                  desc: 'Un resorte o polea dañada en un equipo sin piezas locales puede dejar tu estudio sin operar durante meses esperando importaciones costosas en dólares.',
+                },
+                {
+                  num: '3',
+                  title: 'Confundir una cama plegable ligera con una de estudio comercial',
+                  desc: 'Los modelos plegables son ideales para departamentos, pero no resisten 8 horas continuas de uso con usuarios de más de 100 kg. Para estudios se requiere madera maciza o aluminio estructural indeformable.',
+                },
+                {
+                  num: '4',
+                  title: 'Ignorar las posiciones de ajuste de la barra de pies',
+                  desc: 'Una barra fija fuerza a alumnos de distintas estaturas a ángulos de rodilla lesivos. Nuestras camas cuentan con 4 a 6 posiciones para estaturas desde 1.45 m hasta 2.05 m.',
+                },
+              ].map((err, i) => (
+                <div key={i} className="flex gap-4 items-start border-b border-[#2A2624]/5 pb-5 last:border-0 last:pb-0">
+                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[#2A2624] text-[#EAE8E4] flex items-center justify-center text-xs font-bold">{err.num}</span>
+                  <div>
+                    <h3 className="text-base font-bold text-[#2A2624] mb-1">{err.title}</h3>
+                    <p className="text-sm text-[#5D5550] font-light leading-relaxed">{err.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* What to Check Section */}
         <div className="max-w-5xl mx-auto mb-24">
           <h2 className="text-4xl font-serif italic text-[#2A2624] mb-12 text-center">Qué revisar antes de comprar</h2>
@@ -361,12 +551,7 @@ const CamaDePilatesHub: React.FC = () => {
         <div className="max-w-3xl mx-auto">
           <h2 className="text-4xl font-serif italic text-[#2A2624] mb-12 text-center">Preguntas frecuentes</h2>
           <div className="space-y-4">
-            {[
-              { q: '¿Qué es una cama de Pilates (Reformer)?', a: 'Es un equipo con carro deslizante y resistencia por resortes que permite cientos de ejercicios para fuerza, control y movilidad, tanto en casa como en estudio.' },
-              { q: '¿Cuánto cuesta una cama de Pilates en México?', a: 'Como referencia, una opción para casa suele iniciar alrededor de MXN 25,000 y una de estudio ronda MXN 50,000 (varía por materiales, tolerancias, accesorios y garantía).' },
-              { q: '¿Qué diferencia hay entre un reformer para casa y uno profesional?', a: 'El profesional está pensado para uso intensivo diario y máxima estabilidad; el de casa busca un formato más compacto manteniendo seguridad y recorrido suave.' },
-              { q: '¿Qué espacio necesito para instalar una cama de Pilates?', a: 'Considera el largo del equipo más espacio lateral para entrar/salir y un margen trasero para accesorios. Revisa la guía de dimensiones antes de comprar.' },
-            ].map((faqItem, i) => (
+            {faqs.map((faqItem, i) => (
               <details key={i} className="group bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-2xl overflow-hidden">
                 <summary className="p-6 md:p-8 font-serif italic text-xl text-[#2A2624] cursor-pointer hover:text-[#3E2723] transition-colors list-none flex justify-between items-center">
                   {faqItem.q}

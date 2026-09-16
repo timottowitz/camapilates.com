@@ -427,71 +427,181 @@ function buildCamaDePilatesPage(reformers, origin) {
     </section>
 
     <!-- Technical Comparison Table -->
+    <!-- Brand Comparison Section: CAMA vs Competitors in Mexico -->
     <section class="container mx-auto px-4 pb-20 max-w-6xl">
       <div class="bg-white border border-stone-200 rounded-2xl p-6 md:p-10 shadow-sm">
-        <span class="text-xs font-bold uppercase tracking-widest text-amber-800">Comparativa Técnica</span>
+        <span class="text-xs font-bold uppercase tracking-widest text-amber-800">Análisis Comparativo de Mercado</span>
         <h2 class="text-2xl md:text-3xl font-serif italic font-bold text-stone-900 mt-1 mb-4">
-          Comparativa de Camas de Pilates: Madera vs. Aluminio vs. Importaciones
+          CAMA Pilates vs. Otras Marcas en México: Vanlig, Ironside, UCAN y Balanced Body
         </h2>
         <p class="text-stone-600 text-sm mb-8 max-w-3xl leading-relaxed">
-          Elegir la cama adecuada depende del tipo de uso (residencial intensivo vs. estudio comercial) y la estética del espacio. Conoce las especificaciones clave de nuestras líneas frente a equipos genéricos importados.
+          Al invertir en una cama de Pilates en México, las diferencias no son solo de marca: se traducen en seguridad biomecánica, durabilidad del chasis, silencio en el deslizamiento y, sobre todo, disponibilidad inmediata de refacciones y soporte técnico local. Compara con total transparencia:
         </p>
 
         <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse text-sm">
+          <table class="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr class="border-b-2 border-stone-200 bg-stone-50 text-stone-800 font-bold">
-                <th class="p-4">Característica</th>
-                <th class="p-4 text-amber-900">CAMA Madera Maciza (Maple/Roble)</th>
-                <th class="p-4 text-stone-900">CAMA Aluminio Reforzado</th>
-                <th class="p-4 text-stone-500">Reformer Genérico Importado</th>
+                <th class="p-3 md:p-4">Criterio</th>
+                <th class="p-3 md:p-4 text-emerald-900 bg-emerald-50/60 font-extrabold">CAMA Pilates®</th>
+                <th class="p-3 md:p-4">Vanlig / Centurfit</th>
+                <th class="p-3 md:p-4">Ironside / Tayga</th>
+                <th class="p-3 md:p-4">Balanced Body / Merrithew</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-stone-100 text-stone-700">
               <tr>
-                <td class="p-4 font-semibold text-stone-900">Chasis y Estructura</td>
-                <td class="p-4">Maple macizo T-3.0 cm o Roble blanco seleccionado</td>
-                <td class="p-4">Aleación de aluminio anodizado reforzada</td>
-                <td class="p-4 text-stone-500">Acero tubular delgado o MDF aglomerado</td>
+                <td class="p-3 md:p-4 font-semibold text-stone-900">Origen y Manufactura</td>
+                <td class="p-3 md:p-4 font-bold text-emerald-800 bg-emerald-50/30">Ingeniería alemana · Taller artesanal en México</td>
+                <td class="p-3 md:p-4 text-stone-600">Importación genérica de China (revendedor)</td>
+                <td class="p-3 md:p-4 text-stone-600">Marca de crossfit / fitness comercial</td>
+                <td class="p-3 md:p-4 text-stone-600">Importado de EE.UU. / Canadá</td>
               </tr>
               <tr>
-                <td class="p-4 font-semibold text-stone-900">Sistema de Resortes</td>
-                <td class="p-4">5 resortes alemanes de alambre de piano (3 tensiones)</td>
-                <td class="p-4">5 resortes alemanes de alambre de piano calibrados</td>
-                <td class="p-4 text-stone-500">Resortes genéricos sin calibración de carga</td>
+                <td class="p-3 md:p-4 font-semibold text-stone-900">Materiales del Chasis</td>
+                <td class="p-3 md:p-4 font-bold text-emerald-800 bg-emerald-50/30">Madera maciza (Maple / Roble 3cm) o Aluminio aeronáutico</td>
+                <td class="p-3 md:p-4 text-stone-600">Acero tubular delgado o contrachapado básico</td>
+                <td class="p-3 md:p-4 text-stone-600">Aluminio plegable estándar + madera multicapa</td>
+                <td class="p-3 md:p-4 text-stone-600">Madera noble o aluminio extruido premium</td>
               </tr>
               <tr>
-                <td class="p-4 font-semibold text-stone-900">Rieles y Rodamientos</td>
-                <td class="p-4">Riel interno continuo + ruedas japonesas Whisper-Glide</td>
-                <td class="p-4">Perfil de riel extrusionado sin holguras + 8 rodamientos</td>
-                <td class="p-4 text-stone-500">Ruedas plásticas propensas a ruido y vibración</td>
+                <td class="p-3 md:p-4 font-semibold text-stone-900">Calidad de Resortes</td>
+                <td class="p-3 md:p-4 font-bold text-emerald-800 bg-emerald-50/30">5 resortes alemanes calibrados (alambre de piano)</td>
+                <td class="p-3 md:p-4 text-stone-600">Ligas de caucho o resortes sin calibración elástica</td>
+                <td class="p-3 md:p-4 text-stone-600">5-6 resortes genéricos de tensión estándar</td>
+                <td class="p-3 md:p-4 text-stone-600">5 resortes patentados de alta precisión</td>
               </tr>
               <tr>
-                <td class="p-4 font-semibold text-stone-900">Capacidad de Peso</td>
-                <td class="p-4">Hasta 180 kg garantizados</td>
-                <td class="p-4">Hasta 200 kg garantizados</td>
-                <td class="p-4 text-stone-500">100–120 kg (se desestabiliza con cargas altas)</td>
+                <td class="p-3 md:p-4 font-semibold text-stone-900">Sistema de Rodamientos</td>
+                <td class="p-3 md:p-4 font-bold text-emerald-800 bg-emerald-50/30">8 rodamientos sellados japoneses Whisper-Glide (cero ruido)</td>
+                <td class="p-3 md:p-4 text-stone-600">Ruedas plásticas de fricción propensas a chirridos</td>
+                <td class="p-3 md:p-4 text-stone-600">Ruedas estándar de nylon sobre riel metálico</td>
+                <td class="p-3 md:p-4 text-stone-600">Ruedas de precisión de uretano y baleros sellados</td>
               </tr>
               <tr>
-                <td class="p-4 font-semibold text-stone-900">Garantía en México</td>
-                <td class="p-4 font-semibold text-emerald-700">3 años con servicio y refacciones locales</td>
-                <td class="p-4 font-semibold text-emerald-700">3 años con servicio y refacciones locales</td>
-                <td class="p-4 text-rose-700">Sin garantía local ni piezas de repuesto</td>
+                <td class="p-3 md:p-4 font-semibold text-stone-900">Capacidad de Carga Real</td>
+                <td class="p-3 md:p-4 font-bold text-emerald-800 bg-emerald-50/30">Hasta 180–200 kg certificados</td>
+                <td class="p-3 md:p-4 text-stone-600">100–120 kg (se flexiona con usuarios pesados)</td>
+                <td class="p-3 md:p-4 text-stone-600">130–150 kg máximo</td>
+                <td class="p-3 md:p-4 text-stone-600">150–180 kg</td>
               </tr>
               <tr>
-                <td class="p-4 font-semibold text-stone-900">Rango de Precio</td>
-                <td class="p-4 font-bold text-stone-900">Desde $23,234 a $38,667 MXN</td>
-                <td class="p-4 font-bold text-stone-900">Desde $23,488 a $69,617 MXN</td>
-                <td class="p-4 text-stone-600">$15,000 a $25,000 MXN (costos ocultos)</td>
+                <td class="p-3 md:p-4 font-semibold text-stone-900">Rango de Precios (MXN)</td>
+                <td class="p-3 md:p-4 font-bold text-emerald-800 bg-emerald-50/30">$23,234 a $85,050 MXN (12 MSI disponibles)</td>
+                <td class="p-3 md:p-4 text-stone-600">$4,489 a $50,999 MXN (stock muy limitado)</td>
+                <td class="p-3 md:p-4 text-stone-600">$19,690 a $25,990 MXN (solo 1-2 modelos)</td>
+                <td class="p-3 md:p-4 text-stone-600">$90,000 a $160,000+ MXN (altos aranceles)</td>
               </tr>
               <tr>
-                <td class="p-4 font-semibold text-stone-900">Uso Recomendado</td>
-                <td class="p-4">Estudios boutique de lujo y practicantes exigentes</td>
-                <td class="p-4">Estudios de alta rotación y departamentos modernos</td>
-                <td class="p-4 text-stone-500">Uso ocasional de baja intensidad</td>
+                <td class="p-3 md:p-4 font-semibold text-stone-900">Garantía y Refacciones</td>
+                <td class="p-3 md:p-4 font-bold text-emerald-800 bg-emerald-50/30">3 años directos · Refacciones en almacén MX en 24-48h</td>
+                <td class="p-3 md:p-4 text-rose-700">3-6 meses básica · Sin refacciones oficiales en MX</td>
+                <td class="p-3 md:p-4 text-stone-600">Garantía estándar de equipo de gimnasio</td>
+                <td class="p-3 md:p-4 text-stone-600">Garantía en EE.UU. · Refacciones en USD con semanas de espera</td>
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Spring Calibration & Biomechanical Resistance Guide -->
+    <section class="container mx-auto px-4 pb-20 max-w-6xl">
+      <div class="bg-white border border-stone-200 rounded-2xl p-6 md:p-10 shadow-sm">
+        <div class="max-w-3xl mb-8">
+          <span class="text-xs font-bold uppercase tracking-widest text-amber-800">Biometría y Resistencia</span>
+          <h2 class="text-2xl md:text-3xl font-serif italic font-bold text-stone-900 mt-1 mb-3">
+            El Sistema de 5 Resortes Alemanes de Alambre de Piano: Calibración y Uso
+          </h2>
+          <p class="text-stone-600 text-sm leading-relaxed">
+            En el método Pilates tradicional y contemporáneo, el resorte no solo crea carga: <strong>asiste o desafía la estabilidad neuromuscular</strong>. A diferencia de las pesas tradicionales, la resistencia del resorte aumenta progresivamente a medida que el carro se aleja de la barra de pies, protegiendo las articulaciones en los puntos de máxima flexión y desafiando al músculo en su elongación.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-6">
+          <div class="p-6 rounded-xl border border-amber-200 bg-amber-50/40">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="w-4 h-4 rounded-full bg-amber-400 border border-amber-600"></span>
+              <h3 class="font-bold text-stone-900 text-base">1 Resorte Amarillo (25%)</h3>
+            </div>
+            <p class="text-xs font-bold uppercase tracking-wider text-amber-900 mb-2">Tensión Ligera · Asistencia y Control</p>
+            <p class="text-xs text-stone-600 leading-relaxed mb-3">
+              Ofrece la menor resistencia de retorno. Ideal para series de brazos sentados, rehabilitación de manguito rotador, articulación de columna y ejercicios donde menos resorte exige mayor control del core abdominal para evitar que el carro choque.
+            </p>
+            <span class="inline-block bg-white text-stone-700 text-xs px-2.5 py-1 rounded border border-stone-200 font-medium">Ej: Long Spine, Arm Springs</span>
+          </div>
+
+          <div class="p-6 rounded-xl border border-sky-200 bg-sky-50/40">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="w-4 h-4 rounded-full bg-sky-500 border border-sky-700"></span>
+              <h3 class="font-bold text-stone-900 text-base">2 Resortes Azules (50% c/u)</h3>
+            </div>
+            <p class="text-xs font-bold uppercase tracking-wider text-sky-900 mb-2">Tensión Media · El Estándar Funcional</p>
+            <p class="text-xs text-stone-600 leading-relaxed mb-3">
+              La resistencia base para más del 60% del repertorio de Pilates. Brinda la estabilidad justa para la serie de Hundred, Stomach Massage, Mermaid, y trabajo unilateral de cadera. Diseñado con alambre de piano que no se fatiga con el uso continuo.
+            </p>
+            <span class="inline-block bg-white text-stone-700 text-xs px-2.5 py-1 rounded border border-stone-200 font-medium">Ej: The Hundred, Elephant, Short Box</span>
+          </div>
+
+          <div class="p-6 rounded-xl border border-rose-200 bg-rose-50/40">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700"></span>
+              <h3 class="font-bold text-stone-900 text-base">2 Resortes Rojos (100% c/u)</h3>
+            </div>
+            <p class="text-xs font-bold uppercase tracking-wider text-rose-900 mb-2">Tensión Fuerte · Carga Estructural y Salto</p>
+            <p class="text-xs text-stone-600 leading-relaxed mb-3">
+              Resistencia pesada para trabajo de grandes cadenas musculares: cuádriceps, glúteos e isquiotibiales en el Footwork inicial, así como absorción de impacto controlada en saltos cardiovasculares con la tabla de salto (Jumpboard).
+            </p>
+            <span class="inline-block bg-white text-stone-700 text-xs px-2.5 py-1 rounded border border-stone-200 font-medium">Ej: Footwork (3-4 resortes), Jumpboard</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Buyer Decision Framework: 4 Common Pitfalls in Mexico -->
+    <section class="container mx-auto px-4 pb-20 max-w-4xl">
+      <div class="bg-stone-50 border border-stone-200 rounded-2xl p-6 md:p-10">
+        <span class="text-xs font-bold uppercase tracking-widest text-amber-800">Criterios de Decisión</span>
+        <h2 class="text-2xl md:text-3xl font-serif italic font-bold text-stone-900 mt-1 mb-6">
+          4 Errores Críticos al Comprar una Cama de Pilates en México
+        </h2>
+        
+        <div class="space-y-6 text-sm text-stone-700">
+          <div class="border-b border-stone-200 pb-5">
+            <h3 class="font-bold text-base text-stone-900 mb-2 flex items-center gap-2">
+              <span class="text-rose-600 font-bold">1.</span> Caer en la trampa de camas de $4,000 – $8,000 MXN con ligas de goma
+            </h3>
+            <p class="leading-relaxed text-stone-600">
+              En plataformas de marketplace abundan aparatos anunciados como "Cama de Pilates" por menos de $8,000 pesos. Estos equipos sustituyen los resortes de acero por ligas de látex o elásticos tubulares. La curva de resistencia de una liga es inconsistente, se afloja en menos de 3 meses, el carro se traba con ruedas plásticas sin baleros y el marco inestable aumenta el riesgo de caídas o tirones musculares. Un Reformer real requiere tensión mecánica por resortes de acero al carbono.
+            </p>
+          </div>
+
+          <div class="border-b border-stone-200 pb-5">
+            <h3 class="font-bold text-base text-stone-900 mb-2 flex items-center gap-2">
+              <span class="text-amber-700 font-bold">2.</span> Comprar equipos importados sin almacén de refacciones en México
+            </h3>
+            <p class="leading-relaxed text-stone-600">
+              Los resortes, poleas y correas son consumibles sometidos a tracción continua. En un estudio comercial, un resorte roto significa una máquina fuera de servicio. Si compras marcas importadas de Asia o Norteamérica sin representación oficial en México, sustituir un resorte o una rueda puede demorar hasta 12 semanas y costar cientos de dólares en trámites aduanales. En CAMA Pilates mantenemos inventario permanente en CDMX con envíos en 24 a 48 horas a cualquier estado.
+            </p>
+          </div>
+
+          <div class="border-b border-stone-200 pb-5">
+            <h3 class="font-bold text-base text-stone-900 mb-2 flex items-center gap-2">
+              <span class="text-sky-800 font-bold">3.</span> Confundir un Reformer plegable residencial con uno de estudio comercial
+            </h3>
+            <p class="leading-relaxed text-stone-600">
+              Los Reformers plegables son una solución extraordinaria para departamentos en Polanco, Condesa, San Pedro o Providencia donde el espacio es limitado. Sin embargo, no están diseñados para operar 8 horas consecutivas al día con alumnos de 100+ kg. Si planeas abrir un estudio comercial o dar clases profesionales, necesitas una estructura rígida de Maple o aluminio anodizado que no ceda ni vibre ante cargas laterales continuas.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-base text-stone-900 mb-2 flex items-center gap-2">
+              <span class="text-emerald-800 font-bold">4.</span> Ignorar la ergonomía de la barra de pies y el soporte lumbar
+            </h3>
+            <p class="leading-relaxed text-stone-600">
+              Una barra de pies de una sola posición fija fuerza a los practicantes más altos o más bajos a adoptar ángulos de rodilla lesivos. Nuestras camas cuentan con 4 a 6 posiciones de ajuste angular y topos regulables en el riel, permitiendo calibrar la distancia exacta del carro para estaturas desde 1.45 m hasta 2.05 m.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -610,6 +720,36 @@ function buildCamaDePilatesPage(reformers, origin) {
             </summary>
             <div class="mt-4 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
               Ofrecemos una garantía directa de 3 años en chasis, rieles y mecanismos estructurales. A diferencia de las máquinas importadas donde un repuesto puede tardar meses o ser imposible de conseguir, en CAMA Pilates contamos con almacén de refacciones en México con resortes de repuesto, poleas, correas de cuero y microfibra con envío exprés de 24 a 48 horas.
+            </div>
+          </details>
+
+          <details class="bg-white border border-stone-200 rounded-2xl p-6 group">
+            <summary class="font-bold text-lg text-stone-900 cursor-pointer list-none flex justify-between items-center">
+              ¿Cómo se calibra la resistencia de los resortes y qué combinaciones se usan?
+              <span class="text-stone-400 group-open:rotate-45 transition-transform text-2xl font-light">+</span>
+            </summary>
+            <div class="mt-4 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
+              Nuestras camas incorporan un sistema de 5 resortes alemanes calibrados por código de color: 1 amarillo (25% ligero), 2 azules (50% medio) y 2 rojos (100% pesado). Para trabajo de calentamiento y brazos se usa 1 resorte azul o amarillo; para ejercicios de abdomen y estabilidad de core se emplean 1 a 2 azules; y para la serie de Footwork y salto con Jumpboard se combinan 3 a 4 resortes (ej. 2 rojos + 1 azul o 2 rojos + 2 azules).
+            </div>
+          </details>
+
+          <details class="bg-white border border-stone-200 rounded-2xl p-6 group">
+            <summary class="font-bold text-lg text-stone-900 cursor-pointer list-none flex justify-between items-center">
+              ¿Qué mantenimiento preventivo requiere un Reformer en México y cada cuánto se cambian los resortes?
+              <span class="text-stone-400 group-open:rotate-45 transition-transform text-2xl font-light">+</span>
+            </summary>
+            <div class="mt-4 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
+              El mantenimiento básico incluye limpiar los rieles semanalmente con un paño de microfibra seco (evitando lubricantes con base de silicón que atraigan polvo), desinfectar la tapicería con soluciones libres de alcohol, e inspeccionar los resortes cada 6 meses. En uso residencial, los resortes de alambre de piano duran entre 3 y 5 años sin fatiga elástica. En estudios comerciales con alto flujo (6+ clases diarias), se recomienda renovar el set de resortes cada 18 a 24 meses por seguridad.
+            </div>
+          </details>
+
+          <details class="bg-white border border-stone-200 rounded-2xl p-6 group">
+            <summary class="font-bold text-lg text-stone-900 cursor-pointer list-none flex justify-between items-center">
+              ¿Por qué un Reformer de madera maciza o aluminio estructural es superior a una cama plegable económica?
+              <span class="text-stone-400 group-open:rotate-45 transition-transform text-2xl font-light">+</span>
+            </summary>
+            <div class="mt-4 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
+              Las camas plegables económicas de menos de $15,000 MXN utilizan perfiles delgados y articulaciones centrales que con el tiempo ceden, generando un desnivel perceptible en el recorrido del carro. Además, sustituyen los rodamientos sellados por ruedas de plástico de alta fricción. Una cama de madera maciza de Maple o Roble de 3 cm o un chasis de aluminio de aviación absorbe las vibraciones por completo, no se pandea y garantiza una alineación postural impecable que protege las articulaciones.
             </div>
           </details>
         </div>
@@ -1436,6 +1576,30 @@ async function main() {
           acceptedAnswer: {
             '@type': 'Answer',
             text: 'Ofrecemos una garantía directa de 3 años en chasis, rieles y mecanismos estructurales. Contamos con almacén de refacciones en México con resortes de repuesto, poleas, correas de cuero y microfibra con envío exprés de 24 a 48 horas.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cómo se calibra la resistencia de los resortes y qué combinaciones se usan?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Nuestras camas incorporan un sistema de 5 resortes alemanes calibrados por código de color: 1 amarillo (25% ligero), 2 azules (50% medio) y 2 rojos (100% pesado), permitiendo graduar la resistencia con precisión para calentamiento, core abdominal o saltos pliométricos en Jumpboard.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Qué mantenimiento preventivo requiere un Reformer en México y cada cuándo se cambian los resortes?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Se recomienda limpiar rieles semanalmente con microfibra seca, desinfectar la tapicería sin alcohol y revisar resortes cada 6 meses. En casa duran de 3 a 5 años; en estudios comerciales de alto flujo se sugiere renovación cada 18 a 24 meses.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Por qué un Reformer de madera maciza o aluminio estructural es superior a una cama plegable económica?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Las camas plegables económicas de menos de $15,000 MXN sufren flexión en articulaciones centrales y usan ruedas plásticas ruidosas. Una estructura de Maple o Roble de 3 cm o aluminio aeronáutico absorbe vibraciones, no se descalibra y soporta hasta 180-200 kg.'
           }
         }
       ]
