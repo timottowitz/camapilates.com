@@ -1,6 +1,11 @@
 
 ## CATEGORÍA: Estudio
 
+### ✅ Un Día Histórico para Edelweiss: La Democratización del Pilates, el Primer Directorio en México y Nuestra Expansión a Alemania
+**Blog File:** [democratizacion-del-pilates-primer-directorio-mexico-alemania.md](../src/content/blog/democratizacion-del-pilates-primer-directorio-mexico-alemania.md)
+**Target:** Instructores, dueños de estudio y aspirantes a certificación en México y Alemania
+**Keywords:** certificación pilates México, Edelweiss Pilates, directorio de instructores, Pilates Alemania, formación profesional
+
 ### ✅ Pilates Reformer for Digital Nomads in Mexico
 **Research File:** [pilates-reformer-digital-nomads-mexico.md](./research/pilates-reformer-digital-nomads-mexico.md)
 **Target:** Digital nomads and expats in Mexico
