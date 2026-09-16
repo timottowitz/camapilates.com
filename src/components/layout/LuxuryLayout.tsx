@@ -41,7 +41,6 @@ const LuxuryLayout = ({ children, className = "", noPadding = false, headerTheme
                             <ul className="space-y-3 text-xs font-light text-white/80">
                                 <li><Link to="/cama-de-pilates" className="hover:text-white transition-colors">Camas de Pilates en México</Link></li>
                                 <li><Link to="/cama-de-pilates/precio" className="hover:text-white transition-colors">Precios de Camas de Pilates</Link></li>
-                                <li><Link to="/cama-de-pilates/en-venta" className="hover:text-white transition-colors">Camas en Venta Express</Link></li>
                                 <li><Link to="/reformer-para-casa" className="hover:text-white transition-colors">Reformer para Casa</Link></li>
                                 <li><Link to="/reformer-para-estudio" className="hover:text-white transition-colors">Reformer para Estudio</Link></li>
                                 <li><Link to="/packs/estudio" className="hover:text-white transition-colors">Packs Estudio (8+ Camas)</Link></li>

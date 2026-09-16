@@ -204,8 +204,8 @@ const Blog: React.FC = () => {
                         </Link>
                       </li>
                       <li>
-                        <Link to="/cama-de-pilates/en-venta" className="text-[#2A2624] hover:text-[#EB4C42] transition-colors block font-medium">
-                          Camas de Pilates Reformer en Venta
+                        <Link to="/cama-de-pilates" className="text-[#2A2624] hover:text-[#EB4C42] transition-colors block font-medium">
+                          Camas de Pilates Reformer en México
                         </Link>
                       </li>
                     </ul>

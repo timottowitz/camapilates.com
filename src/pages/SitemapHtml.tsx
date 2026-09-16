@@ -37,10 +37,10 @@ const sitemapData: SitemapSection[] = [
         badge: 'Precios',
       },
       {
-        title: 'Venta de Camas Reformer Entrega Rápida',
-        path: '/cama-de-pilates/en-venta',
-        description: 'Camas listas para entrega en 3 semanas con maderas nobles, acero y refacciones inmediatas.',
-        badge: 'Express',
+        title: 'Catálogo de Camas de Pilates Reformer',
+        path: '/shop/category/reformers',
+        description: 'Catálogo completo de 22 modelos de camas Reformer para casa y estudio en México.',
+        badge: 'Catálogo',
       },
       {
         title: 'Reformer para Casa',

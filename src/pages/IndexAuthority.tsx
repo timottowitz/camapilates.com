@@ -92,7 +92,7 @@ const IndexAuthority: React.FC = () => {
     name: 'Cama de Pilates (Reformer) — Enlaces clave',
     itemListElement: [
       { '@type': 'ListItem', position: 1, url: `${origin}/cama-de-pilates`, name: 'Cama de Pilates' },
-      { '@type': 'ListItem', position: 2, url: `${origin}/cama-de-pilates/en-venta`, name: 'Cama de Pilates en Venta' },
+      { '@type': 'ListItem', position: 2, url: `${origin}/reformer-para-casa`, name: 'Reformer para Casa' },
       { '@type': 'ListItem', position: 3, url: `${origin}/cama-de-pilates/precio`, name: 'Precio de Cama de Pilates' },
       { '@type': 'ListItem', position: 4, url: `${origin}/shop`, name: 'Catálogo de Camas' },
     ],
@@ -178,10 +178,10 @@ const IndexAuthority: React.FC = () => {
                     Cursos
                   </Link>
                   <Link
-                    to="/cama-de-pilates/en-venta"
+                    to="/shop/category/reformers"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#2A2624] text-xs font-bold uppercase tracking-[0.18em] hover:bg-[#FFFFFF] transition-colors border border-[#2A2624]/10"
                   >
-                    En venta
+                    Catálogo
                   </Link>
                   <Link
                     to="/cama-de-pilates/precio"

@@ -26,7 +26,7 @@ const CamaDePilatesHub: React.FC = () => {
     '@type': 'ItemList',
     name: 'Cama de Pilates — Recursos',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, url: `${origin}/cama-de-pilates/en-venta`, name: 'Cama de Pilates en Venta' },
+      { '@type': 'ListItem', position: 1, url: `${origin}/shop/category/reformers`, name: 'Catálogo de Reformers' },
       { '@type': 'ListItem', position: 2, url: `${origin}/cama-de-pilates/precio`, name: 'Precio de Cama de Pilates' },
       { '@type': 'ListItem', position: 3, url: `${origin}/blog/dimensiones-cama-de-pilates`, name: 'Dimensiones de Cama de Pilates' },
       { '@type': 'ListItem', position: 4, url: `${origin}/reformer-para-estudio`, name: 'Reformer de Estudio' },
@@ -126,8 +126,8 @@ const CamaDePilatesHub: React.FC = () => {
             transition={{ delay: 0.5 }}
             className="mt-10 flex flex-wrap justify-center gap-3"
           >
-            <Link to="/cama-de-pilates/en-venta" className="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-[#2A2624] text-[#EAE8E4] text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#3E2723] hover:scale-105 transition-all">
-              Ver modelos en venta <ArrowRight className="w-4 h-4" />
+            <Link to="/shop/category/reformers" className="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-[#2A2624] text-[#EAE8E4] text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#3E2723] hover:scale-105 transition-all">
+              Ver catálogo de camas <ArrowRight className="w-4 h-4" />
             </Link>
             <Link to="/cama-de-pilates/precio" className="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-[#2A2624]/20 text-[#2A2624] text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-all">
               Guía de precios
@@ -152,19 +152,19 @@ const CamaDePilatesHub: React.FC = () => {
             className="md:col-span-7"
           >
             <Link
-              to="/cama-de-pilates/en-venta"
+              to="/shop/category/reformers"
               className="group block h-full bg-[#1C1917] text-[#EAE8E4] rounded-[2rem] p-10 md:p-14 relative overflow-hidden transition-all duration-700 hover:-translate-y-2 hover:shadow-2xl"
             >
               <div className="absolute top-0 right-0 w-1/2 h-full opacity-20 bg-gradient-to-l from-white/10 to-transparent pointer-events-none" />
               <ShoppingBag className="w-8 h-8 mb-8 opacity-40 group-hover:opacity-70 transition-opacity" strokeWidth={1.5} />
               <h2 className="text-4xl md:text-5xl font-serif italic mb-4 group-hover:text-white transition-colors">
-                Modelos en Venta
+                Modelos y Venta Directa
               </h2>
               <p className="text-white/60 font-light text-lg mb-8 max-w-md">
-                Reformers con entrega 3 semanas en México y garantía 1 año.
+                22 modelos de Reformer con entrega asegurada en todo México y garantía de 3 años.
               </p>
               <span className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-white/50 group-hover:text-white transition-colors">
-                Ver opciones <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                Explorar catálogo <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </span>
             </Link>
           </motion.div>

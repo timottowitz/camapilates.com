@@ -52,7 +52,8 @@
 /blog/tag/* /blog 301
 /cama-de-pilates/ /cama-de-pilates 301
 /cama-de-pilates/precio/ /cama-de-pilates/precio 301
-/cama-de-pilates/en-venta/ /cama-de-pilates/en-venta 301
+/cama-de-pilates/en-venta /cama-de-pilates 301
+/cama-de-pilates/en-venta/ /cama-de-pilates 301
 /reformer-para-casa/ /reformer-para-casa 301
 /reformer-para-estudio/ /reformer-para-estudio 301
 /pilates-reformer-cdmx/ /pilates-reformer-cdmx 301

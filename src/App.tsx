@@ -4,7 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React, { Suspense, lazy, ComponentType } from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import Index from "./pages/Index";
@@ -132,7 +132,7 @@ const App = () => (
               {/* Compare disabled */}
               <Route path="/shop" element={<Suspense fallback={<PageLoader />}><Shop /></Suspense>} />
               <Route path="/shop/category/:slug" element={<Suspense fallback={<PageLoader />}><ShopCategory /></Suspense>} />
-              <Route path="/cama-de-pilates/en-venta" element={<Suspense fallback={<PageLoader />}><CamaDePilatesEnVenta /></Suspense>} />
+              <Route path="/cama-de-pilates/en-venta" element={<Navigate to="/cama-de-pilates" replace />} />
               <Route path="/cama-de-pilates/precio" element={<Suspense fallback={<PageLoader />}><CamaDePilatesPrecio /></Suspense>} />
               <Route path="/packs/estudio" element={<Suspense fallback={<PageLoader />}><StudioPack /></Suspense>} />
               <Route path="/cama-de-pilates" element={<Suspense fallback={<PageLoader />}><CamaDePilatesHub /></Suspense>} />

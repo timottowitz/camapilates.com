@@ -296,6 +296,485 @@ function buildStudioReformerPage(reformers) {
   `;
 }
 
+function formatMXN(price) {
+  const num = typeof price === 'string' ? parseFloat(price) : price;
+  return new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(num);
+}
+
+function calculateMSI(price, months = 12) {
+  const num = typeof price === 'string' ? parseFloat(price) : price;
+  return formatMXN(Math.round(num / months));
+}
+
+function buildCamaDePilatesPage(reformers, origin) {
+  const productCards = reformers.map(p => {
+    const msi = calculateMSI(p.price, 12);
+    const formattedPrice = formatMXN(p.price);
+    const materialsList = Array.isArray(p.materials) ? p.materials.slice(0, 3).join(' · ') : '';
+    const badge = p.bestSeller
+      ? `<span class="inline-block bg-amber-100 text-amber-900 text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider mb-2">Más Vendido</span>`
+      : '';
+    const waUrl = `https://wa.me/525548468190?text=${encodeURIComponent('Hola, me interesa información y cotización de la cama ' + p.name)}`;
+
+    return `
+    <article class="bg-white border border-stone-200 rounded-2xl p-6 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
+      <div>
+        <div class="relative overflow-hidden rounded-xl mb-4 bg-stone-50 aspect-[4/3] flex items-center justify-center">
+          <img src="${htmlEscape(p.image)}" alt="${htmlEscape(p.name)}" class="w-full h-full object-cover object-center" loading="lazy" />
+        </div>
+        ${badge}
+        <h3 class="text-xl font-bold text-stone-900 leading-snug mb-2">
+          <a href="/product/${htmlEscape(p.slug)}" class="hover:text-amber-700 transition-colors">${htmlEscape(p.name)}</a>
+        </h3>
+        <p class="text-sm text-stone-600 mb-4 line-clamp-3 leading-relaxed">${htmlEscape(p.description)}</p>
+        ${materialsList ? `<p class="text-xs text-stone-500 font-medium mb-4"><span class="text-stone-700">Materiales:</span> ${htmlEscape(materialsList)}</p>` : ''}
+      </div>
+      <div class="pt-4 border-t border-stone-100 mt-2">
+        <div class="mb-1">
+          <span class="text-2xl font-extrabold text-stone-900">${htmlEscape(formattedPrice)}</span>
+          <span class="text-xs text-stone-500 font-semibold ml-1">MXN</span>
+        </div>
+        <p class="text-xs text-emerald-700 font-semibold mb-4">Hasta 12 MSI de ${htmlEscape(msi)} MXN</p>
+        <div class="grid grid-cols-2 gap-2">
+          <a href="/product/${htmlEscape(p.slug)}" class="inline-flex items-center justify-center text-xs font-bold uppercase tracking-wider py-2.5 px-3 rounded-lg border border-stone-300 text-stone-800 hover:bg-stone-50 transition-colors text-center">
+            Ver Ficha
+          </a>
+          <a href="${htmlEscape(waUrl)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center text-xs font-bold uppercase tracking-wider py-2.5 px-3 rounded-lg bg-stone-900 text-white hover:bg-stone-800 transition-colors text-center">
+            Cotizar
+          </a>
+        </div>
+      </div>
+    </article>`;
+  }).join('\n');
+
+  return `
+  <main class="bg-[#FAF9F6] text-stone-900">
+    <!-- Hero Section -->
+    <section class="container mx-auto px-4 pt-16 pb-12 max-w-6xl">
+      <nav aria-label="Migas de pan" class="text-xs font-semibold uppercase tracking-widest text-stone-500 mb-6">
+        <a href="/" class="hover:text-stone-900">Inicio</a> / <span class="text-stone-900">Cama de Pilates</span>
+      </nav>
+      <div class="max-w-4xl">
+        <span class="inline-block bg-stone-200 text-stone-800 text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-4">
+          Manufactura de Precisión · Entrega a Todo México
+        </span>
+        <h1 class="text-4xl md:text-6xl font-serif italic font-bold tracking-tight text-stone-950 mb-6 leading-[1.05]">
+          Camas de Pilates Reformer en México: Modelos, Precios y Venta 2026
+        </h1>
+        <p class="text-lg md:text-xl text-stone-700 font-light leading-relaxed mb-8">
+          Encuentra la mejor <strong>cama de Pilates (Reformer)</strong> para equipar tu estudio boutique o practicar en casa con nivel profesional. En <strong>CAMA Pilates</strong> combinamos maderas macizas seleccionadas (Maple norteamericano y Roble blanco) y perfiles de aleación de aluminio reforzada con resortes alemanes de alambre de piano y rodamientos japoneses ultra-silenciosos. Envíos asegurados a Ciudad de México, Monterrey, Guadalajara, Querétaro, Puebla y las 32 entidades del país con garantía de 3 años y refacciones locales inmediatas.
+        </p>
+        <div class="flex flex-wrap gap-4 mb-12">
+          <a href="#catalogo" class="rounded-full bg-stone-900 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-stone-800 transition-all shadow-md">
+            Ver Catálogo de Camas (${reformers.length} Modelos) ↓
+          </a>
+          <a href="https://wa.me/525548468190?text=${encodeURIComponent('Hola, me interesa recibir asesoría y cotización para una cama de Pilates Reformer en México.')}" target="_blank" rel="noopener noreferrer" class="rounded-full bg-emerald-700 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-emerald-800 transition-all shadow-md">
+            Cotizar por WhatsApp →
+          </a>
+          <a href="/cama-de-pilates/precio" class="rounded-full border border-stone-300 bg-white text-stone-800 px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-stone-50 transition-all">
+            Guía de Precios 2026
+          </a>
+        </div>
+      </div>
+
+      <!-- Trust Badges Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 py-8 border-y border-stone-200 mb-16">
+        <div class="p-4 bg-white rounded-xl border border-stone-100 shadow-sm">
+          <div class="text-xl mb-1">🚚</div>
+          <h4 class="font-bold text-sm text-stone-900">Envío Asegurado 32 Estados</h4>
+          <p class="text-xs text-stone-600 mt-1">Flete especializado a CDMX, MTY, GDL y todo el país en 3 a 8 semanas.</p>
+        </div>
+        <div class="p-4 bg-white rounded-xl border border-stone-100 shadow-sm">
+          <div class="text-xl mb-1">🛡️</div>
+          <h4 class="font-bold text-sm text-stone-900">Garantía Directa de 3 Años</h4>
+          <p class="text-xs text-stone-600 mt-1">Cobertura total en estructura, rieles y mecanismos de carga.</p>
+        </div>
+        <div class="p-4 bg-white rounded-xl border border-stone-100 shadow-sm">
+          <div class="text-xl mb-1">💳</div>
+          <h4 class="font-bold text-sm text-stone-900">Hasta 12 MSI</h4>
+          <p class="text-xs text-stone-600 mt-1">Meses sin intereses con tarjetas participantes y transferencias seguras.</p>
+        </div>
+        <div class="p-4 bg-white rounded-xl border border-stone-100 shadow-sm">
+          <div class="text-xl mb-1">⚙️</div>
+          <h4 class="font-bold text-sm text-stone-900">Refacciones Locales Inmediatas</h4>
+          <p class="text-xs text-stone-600 mt-1">Resortes, poleas, correas y tapicerías en inventario nacional permanente.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section id="catalogo" class="container mx-auto px-4 pb-20 max-w-6xl">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-amber-800">Catálogo Oficial 2026</span>
+          <h2 class="text-3xl md:text-4xl font-serif italic font-bold text-stone-900 mt-1">
+            Modelos de Camas de Pilates en Venta
+          </h2>
+          <p class="text-stone-600 mt-2 max-w-xl text-sm">
+            Desde modelos compactos y elegantes para casa hasta Reformers clínicos con media torre para estudios profesionales de alta afluencia.
+          </p>
+        </div>
+        <div class="mt-4 md:mt-0 flex gap-2">
+          <a href="/packs/estudio" class="text-xs font-bold text-stone-800 bg-white border border-stone-300 px-4 py-2 rounded-lg hover:bg-stone-50">
+            Packs de Estudio (20% Desc.)
+          </a>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        ${productCards}
+      </div>
+    </section>
+
+    <!-- Technical Comparison Table -->
+    <section class="container mx-auto px-4 pb-20 max-w-6xl">
+      <div class="bg-white border border-stone-200 rounded-2xl p-6 md:p-10 shadow-sm">
+        <span class="text-xs font-bold uppercase tracking-widest text-amber-800">Comparativa Técnica</span>
+        <h2 class="text-2xl md:text-3xl font-serif italic font-bold text-stone-900 mt-1 mb-4">
+          Comparativa de Camas de Pilates: Madera vs. Aluminio vs. Importaciones
+        </h2>
+        <p class="text-stone-600 text-sm mb-8 max-w-3xl leading-relaxed">
+          Elegir la cama adecuada depende del tipo de uso (residencial intensivo vs. estudio comercial) y la estética del espacio. Conoce las especificaciones clave de nuestras líneas frente a equipos genéricos importados.
+        </p>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="border-b-2 border-stone-200 bg-stone-50 text-stone-800 font-bold">
+                <th class="p-4">Característica</th>
+                <th class="p-4 text-amber-900">CAMA Madera Maciza (Maple/Roble)</th>
+                <th class="p-4 text-stone-900">CAMA Aluminio Reforzado</th>
+                <th class="p-4 text-stone-500">Reformer Genérico Importado</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-100 text-stone-700">
+              <tr>
+                <td class="p-4 font-semibold text-stone-900">Chasis y Estructura</td>
+                <td class="p-4">Maple macizo T-3.0 cm o Roble blanco seleccionado</td>
+                <td class="p-4">Aleación de aluminio anodizado reforzada</td>
+                <td class="p-4 text-stone-500">Acero tubular delgado o MDF aglomerado</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-semibold text-stone-900">Sistema de Resortes</td>
+                <td class="p-4">5 resortes alemanes de alambre de piano (3 tensiones)</td>
+                <td class="p-4">5 resortes alemanes de alambre de piano calibrados</td>
+                <td class="p-4 text-stone-500">Resortes genéricos sin calibración de carga</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-semibold text-stone-900">Rieles y Rodamientos</td>
+                <td class="p-4">Riel interno continuo + ruedas japonesas Whisper-Glide</td>
+                <td class="p-4">Perfil de riel extrusionado sin holguras + 8 rodamientos</td>
+                <td class="p-4 text-stone-500">Ruedas plásticas propensas a ruido y vibración</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-semibold text-stone-900">Capacidad de Peso</td>
+                <td class="p-4">Hasta 180 kg garantizados</td>
+                <td class="p-4">Hasta 200 kg garantizados</td>
+                <td class="p-4 text-stone-500">100–120 kg (se desestabiliza con cargas altas)</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-semibold text-stone-900">Garantía en México</td>
+                <td class="p-4 font-semibold text-emerald-700">3 años con servicio y refacciones locales</td>
+                <td class="p-4 font-semibold text-emerald-700">3 años con servicio y refacciones locales</td>
+                <td class="p-4 text-rose-700">Sin garantía local ni piezas de repuesto</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-semibold text-stone-900">Rango de Precio</td>
+                <td class="p-4 font-bold text-stone-900">Desde $23,234 a $38,667 MXN</td>
+                <td class="p-4 font-bold text-stone-900">Desde $23,488 a $69,617 MXN</td>
+                <td class="p-4 text-stone-600">$15,000 a $25,000 MXN (costos ocultos)</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-semibold text-stone-900">Uso Recomendado</td>
+                <td class="p-4">Estudios boutique de lujo y practicantes exigentes</td>
+                <td class="p-4">Estudios de alta rotación y departamentos modernos</td>
+                <td class="p-4 text-stone-500">Uso ocasional de baja intensidad</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- In-depth Educational Guide Section -->
+    <section class="container mx-auto px-4 pb-20 max-w-4xl">
+      <div class="prose prose-stone max-w-none">
+        <h2 class="text-3xl font-serif italic font-bold text-stone-900 mb-6">
+          Guía Definitiva: Todo lo que Debes Saber Antes de Comprar una Cama de Pilates en México
+        </h2>
+
+        <h3 class="text-2xl font-bold text-stone-800 mt-8 mb-4">¿Qué es una Cama de Pilates (Reformer) y Por Qué es Superior al Ejercicio de Suelo?</h3>
+        <p class="text-stone-700 leading-relaxed mb-4">
+          La <strong>cama de Pilates</strong>, originalmente concebida por Joseph Pilates bajo el nombre de <em>Universal Reformer</em>, es un equipo biomecánico diseñado para fortalecer el cuerpo de manera simétrica, corregir desbalances posturales y aumentar la movilidad articular sin generar impacto sobre la columna vertebral ni las articulaciones periféricas.
+        </p>
+        <p class="text-stone-700 leading-relaxed mb-4">
+          A diferencia del Pilates en tapete (Mat Pilates), donde el practicante trabaja únicamente contra la gravedad y su propio peso corporal, el Reformer utiliza un <strong>carro deslizante montado sobre rieles de precisión</strong> y un <strong>conjunto de resortes de distintas tensiones</strong>. Esta combinación permite tanto asistir el movimiento de personas en rehabilitación o con sobrepeso, como desafiar a atletas de alto rendimiento mediante resistencias continuas en fase concéntrica y excéntrica.
+        </p>
+
+        <h3 class="text-2xl font-bold text-stone-800 mt-8 mb-4">Reformer para Casa vs. Reformer para Estudio: Claves para Decidir</h3>
+        <p class="text-stone-700 leading-relaxed mb-4">
+          Una de las preguntas más frecuentes entre compradores en México es si deben adquirir un modelo residencial o uno profesional de estudio:
+        </p>
+        <ul class="list-disc pl-6 text-stone-700 space-y-2 mb-6">
+          <li><strong>Cama de Pilates para Casa:</strong> Busca optimizar el espacio sin perder rigidez. Se prefieren modelos de perfil estilizado en aluminio o maderas nobles que se integren armónicamente con la decoración del hogar. Cuentan con ruedas de traslado frontales para mover el equipo con facilidad y admiten almacenamiento vertical o en formato compacto.</li>
+          <li><strong>Cama de Pilates de Estudio Comercial:</strong> Diseñada para resistir entre 6 y 12 sesiones continuas diarias. Requiere una base estructural indeformable (Maple norteamericano macizo de 3 cm o aluminio estructural reforzado), barra de pies con microajuste de posiciones para adaptarse velozmente a alumnos de diferentes estaturas, y tapicería de grado comercial antibacteriana resistente a desinfectantes y sudoración continua.</li>
+        </ul>
+
+        <h3 class="text-2xl font-bold text-stone-800 mt-8 mb-4">¿Cuánto Cuesta una Cama de Pilates en México en 2026?</h3>
+        <p class="text-stone-700 leading-relaxed mb-4">
+          En el mercado mexicano actual existen tres rangos de precio claramente diferenciados:
+        </p>
+        <ol class="list-decimal pl-6 text-stone-700 space-y-3 mb-6">
+          <li><strong>Gama Económica / Importación Genérica ($15,000 – $25,000 MXN):</strong> Reformers plegables ligeros fabricados con perfiles delgados y ruedas plásticas. Suelen presentar juego o vibración en el riel, ruidos metálicos molestos y una ausencia casi absoluta de refacciones en México si se rompe un resorte o una polea.</li>
+          <li><strong>Gama Intermedia & Profesional Nacional CAMA ($23,234 – $42,567 MXN):</strong> Fabricados con maderas nobles macizas (Roble o Maple) o aleaciones de aluminio reforzado, equipados con resortes alemanes de alambre de piano y rodamientos japoneses. Es el rango con mejor relación costo-beneficio del mercado mexicano, con garantía directa de 3 años y repuestos inmediatos.</li>
+          <li><strong>Gama Alta con Torre o Cadillac ($51,000 – $85,050 MXN):</strong> Estaciones híbridas que incorporan una torre de acero inoxidable con poleas superiores, barra de empuje (push-through bar) y juego extendido de resortes, permitiendo ejecutar más de 300 ejercicios clínicos y avanzados.</li>
+        </ol>
+
+        <h3 class="text-2xl font-bold text-stone-800 mt-8 mb-4">Dimensiones y Requisitos de Espacio para Instalar tu Cama</h3>
+        <p class="text-stone-700 leading-relaxed mb-4">
+          Un Reformer estándar mide aproximadamente <strong>235 cm a 246 cm de largo</strong> por <strong>68 cm a 75 cm de ancho</strong>, con una altura de carro que oscila entre 30 cm y 40 cm sobre el piso. Para practicar con total seguridad y realizar ejercicios con la barra de pies extendida y poleas abiertas, se recomienda contar con un espacio despejado de al menos <strong>3.0 metros de largo por 1.8 metros de ancho</strong>.
+        </p>
+
+        <h3 class="text-2xl font-bold text-stone-800 mt-8 mb-4">Logística y Envíos Seguros a Toda la República Mexicana</h3>
+        <p class="text-stone-700 leading-relaxed mb-4">
+          El transporte de una cama de Pilates requiere un manejo logístico especializado debido a su peso (entre 70 kg y 110 kg según acabados). En CAMA Pilates enviamos nuestras camas debidamente embaladas en cajas de madera tratada para exportación, con flete asegurado directo a domicilio en las 32 entidades federativas de México, incluyendo:
+        </p>
+        <p class="text-stone-600 text-sm font-medium mb-6">
+          Ciudad de México (CDMX) · Monterrey y Zona Metropolitana (San Pedro, Valle Oriente, Cumbres) · Guadalajara, Zapopan y Tlaquepaque · Querétaro (Juriquilla, El Campanario, Álamos) · Puebla (Angelópolis, Cholula) · Mérida · Cancún · León · Tijuana · Toluca · Cuernavaca.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="container mx-auto px-4 pb-20 max-w-4xl">
+      <div class="border-t border-stone-200 pt-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-amber-800">Preguntas Frecuentes</span>
+        <h2 class="text-3xl font-serif italic font-bold text-stone-900 mt-1 mb-8">
+          Preguntas Frecuentes sobre la Compra de Camas de Pilates en México
+        </h2>
+        <div class="space-y-4">
+          <details class="bg-white border border-stone-200 rounded-2xl p-6 group">
+            <summary class="font-bold text-lg text-stone-900 cursor-pointer list-none flex justify-between items-center">
+              ¿Cuánto cuesta una cama de Pilates Reformer en México?
+              <span class="text-stone-400 group-open:rotate-45 transition-transform text-2xl font-light">+</span>
+            </summary>
+            <div class="mt-4 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
+              En México, los precios de camas de Pilates profesionales inician desde $23,234 MXN para modelos clásicos de roble, entre $28,000 y $38,000 MXN para modelos de maple norteamericano y aluminio de alta gama, y entre $51,000 y $85,050 MXN para equipos que incorporan media torre o estructura de Cadillac. Todos nuestros precios incluyen IVA y garantía directa.
+            </div>
+          </details>
+
+          <details class="bg-white border border-stone-200 rounded-2xl p-6 group">
+            <summary class="font-bold text-lg text-stone-900 cursor-pointer list-none flex justify-between items-center">
+              ¿Cuál es la diferencia entre un Reformer de madera y uno de aluminio?
+              <span class="text-stone-400 group-open:rotate-45 transition-transform text-2xl font-light">+</span>
+            </summary>
+            <div class="mt-4 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
+              Ambos ofrecen exactamente la misma precisión biomecánica. Los Reformers de madera maciza (como el Maple y Roble) aportan una estética orgánica, cálida y clásica sumamente cotizada en estudios boutique y residencias. Los Reformers de aluminio ofrecen una estética contemporánea e industrial, menor peso total para facilitar reubicaciones y rieles anodizados de altísima resistencia al desgaste.
+            </div>
+          </details>
+
+          <details class="bg-white border border-stone-200 rounded-2xl p-6 group">
+            <summary class="font-bold text-lg text-stone-900 cursor-pointer list-none flex justify-between items-center">
+              ¿Qué espacio necesito para tener un Reformer en casa o departamento?
+              <span class="text-stone-400 group-open:rotate-45 transition-transform text-2xl font-light">+</span>
+            </summary>
+            <div class="mt-4 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
+              El equipo mide en promedio 240 cm de largo por 70 cm de ancho. Se aconseja disponer de una superficie de al menos 3.0 m x 1.8 m para entrar y salir con comodidad y extender los brazos lateralmente sin obstáculos. Muchos clientes en departamentos de CDMX, MTY y GDL ubican su Reformer en una recámara secundaria, sala o estudio.
+            </div>
+          </details>
+
+          <details class="bg-white border border-stone-200 rounded-2xl p-6 group">
+            <summary class="font-bold text-lg text-stone-900 cursor-pointer list-none flex justify-between items-center">
+              ¿Ofrecen opciones de pago a Meses Sin Intereses (MSI)?
+              <span class="text-stone-400 group-open:rotate-45 transition-transform text-2xl font-light">+</span>
+            </summary>
+            <div class="mt-4 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
+              Sí. Aceptamos pagos con tarjeta de crédito con planes de hasta 12 Meses Sin Intereses con bancos participantes a través de nuestras pasarelas de pago certificadas. También contamos con descuentos preferenciales en pagos de contado por transferencia bancaria SPEI.
+            </div>
+          </details>
+
+          <details class="bg-white border border-stone-200 rounded-2xl p-6 group">
+            <summary class="font-bold text-lg text-stone-900 cursor-pointer list-none flex justify-between items-center">
+              ¿Hacen envíos a Monterrey, Guadalajara, Querétaro y todo México?
+              <span class="text-stone-400 group-open:rotate-45 transition-transform text-2xl font-light">+</span>
+            </summary>
+            <div class="mt-4 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
+              Sí, realizamos envíos asegurados a las 32 entidades federativas del país. La mercancía viaja con seguro contra daños de transporte puerta a puerta. El tiempo estimado de producción y entrega es de 3 a 8 semanas según el acabado y modelo seleccionado.
+            </div>
+          </details>
+
+          <details class="bg-white border border-stone-200 rounded-2xl p-6 group">
+            <summary class="font-bold text-lg text-stone-900 cursor-pointer list-none flex justify-between items-center">
+              ¿Qué garantía tienen los Reformers y cómo se gestionan las refacciones?
+              <span class="text-stone-400 group-open:rotate-45 transition-transform text-2xl font-light">+</span>
+            </summary>
+            <div class="mt-4 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
+              Ofrecemos una garantía directa de 3 años en chasis, rieles y mecanismos estructurales. A diferencia de las máquinas importadas donde un repuesto puede tardar meses o ser imposible de conseguir, en CAMA Pilates contamos con almacén de refacciones en México con resortes de repuesto, poleas, correas de cuero y microfibra con envío exprés de 24 a 48 horas.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Hub Links -->
+    <section class="bg-stone-100 border-t border-stone-200 py-12">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h3 class="text-sm font-bold uppercase tracking-widest text-stone-600 mb-6">Explora Más Recursos de CAMA Pilates</h3>
+        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+          <a href="/cama-de-pilates/precio" class="p-4 bg-white rounded-xl border border-stone-200 hover:border-stone-400 transition-colors">
+            <strong class="block text-stone-900 mb-1">Guía de Precios</strong>
+            <span class="text-xs text-stone-600">Rangos de costo por modelo y nivel de equipamiento.</span>
+          </a>
+          <a href="/reformer-para-estudio" class="p-4 bg-white rounded-xl border border-stone-200 hover:border-stone-400 transition-colors">
+            <strong class="block text-stone-900 mb-1">Reformer para Estudio</strong>
+            <span class="text-xs text-stone-600">Equipos de uso rudo para abrir tu estudio boutique.</span>
+          </a>
+          <a href="/reformer-para-casa" class="p-4 bg-white rounded-xl border border-stone-200 hover:border-stone-400 transition-colors">
+            <strong class="block text-stone-900 mb-1">Reformer para Casa</strong>
+            <span class="text-xs text-stone-600">Modelos residenciales compactos y silenciosos.</span>
+          </a>
+          <a href="/certificacion-pilates" class="p-4 bg-white rounded-xl border border-stone-200 hover:border-stone-400 transition-colors">
+            <strong class="block text-stone-900 mb-1">Certificación Oficial</strong>
+            <span class="text-xs text-stone-600">Formación profesional para instructores en México.</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+}
+
+function buildCamaDePilatesPrecioPage(reformers, origin) {
+  const priceRows = reformers.slice(0, 10).map(p => {
+    const formattedPrice = formatMXN(p.price);
+    const msi = calculateMSI(p.price, 12);
+    return `
+    <tr class="border-b border-stone-100 hover:bg-stone-50">
+      <td class="p-4 font-semibold text-stone-900">
+        <a href="/product/${htmlEscape(p.slug)}" class="hover:text-amber-800 transition-colors">${htmlEscape(p.name)}</a>
+      </td>
+      <td class="p-4 text-stone-600 text-xs">${htmlEscape(p.materials ? p.materials[0] : 'Aluminio / Madera')}</td>
+      <td class="p-4 font-bold text-stone-900">${htmlEscape(formattedPrice)} MXN</td>
+      <td class="p-4 font-semibold text-emerald-700">12 MSI de ${htmlEscape(msi)}</td>
+      <td class="p-4">
+        <a href="/product/${htmlEscape(p.slug)}" class="text-xs font-bold uppercase tracking-wider text-stone-900 hover:underline">Ver Ficha →</a>
+      </td>
+    </tr>`;
+  }).join('\n');
+
+  return `
+  <main class="bg-[#FAF9F6] text-stone-900">
+    <section class="container mx-auto px-4 pt-16 pb-12 max-w-5xl">
+      <nav aria-label="Migas de pan" class="text-xs font-semibold uppercase tracking-widest text-stone-500 mb-6">
+        <a href="/" class="hover:text-stone-900">Inicio</a> / <a href="/cama-de-pilates" class="hover:text-stone-900">Cama de Pilates</a> / <span class="text-stone-900">Precio</span>
+      </nav>
+      <div class="max-w-4xl">
+        <span class="inline-block bg-amber-100 text-amber-900 text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-4">
+          Guía Transparente de Costos México 2026
+        </span>
+        <h1 class="text-4xl md:text-6xl font-serif italic font-bold tracking-tight text-stone-950 mb-6 leading-[1.05]">
+          ¿Cuánto Cuesta una Cama de Pilates en México? Precios y Presupuestos 2026
+        </h1>
+        <p class="text-lg md:text-xl text-stone-700 font-light leading-relaxed mb-8">
+          En México, el precio de una <strong>cama de Pilates Reformer</strong> profesional oscila entre <strong>$23,234 MXN y $85,050 MXN</strong>, dependiendo del tipo de chasis (madera maciza de arce/roble vs. aleación de aluminio extrusionado), la presencia de media torre o aditamentos de Cadillac, y la calidad de los rodamientos y resortes alemanes. Analizamos con total transparencia los rangos de costo, facilidades de 12 Meses Sin Intereses y qué factores determinan una inversión segura y rentable.
+        </p>
+        <div class="flex flex-wrap gap-4 mb-12">
+          <a href="/cama-de-pilates" class="rounded-full bg-stone-900 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-stone-800 transition-all shadow-md">
+            Ver Modelos y Comprar en /cama-de-pilates →
+          </a>
+          <a href="https://wa.me/525548468190?text=${encodeURIComponent('Hola, me gustaría cotizar una cama de Pilates Reformer con opciones de precio y financiamiento en México.')}" target="_blank" rel="noopener noreferrer" class="rounded-full bg-emerald-700 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-emerald-800 transition-all shadow-md">
+            Cotizar por WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Matrix Table -->
+    <section class="container mx-auto px-4 pb-16 max-w-5xl">
+      <div class="bg-white border border-stone-200 rounded-2xl p-6 md:p-8 shadow-sm mb-12">
+        <h2 class="text-2xl md:text-3xl font-serif italic font-bold text-stone-900 mb-4">
+          Tabla de Precios Oficiales CAMA Pilates 2026
+        </h2>
+        <p class="text-stone-600 text-sm mb-6">
+          Precios actualizados con entrega en todo México, IVA incluido y garantía de fábrica de 3 años.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="border-b-2 border-stone-200 bg-stone-50 text-stone-800 font-bold">
+                <th class="p-4">Modelo Reformer</th>
+                <th class="p-4">Material Principal</th>
+                <th class="p-4">Precio Contado (MXN)</th>
+                <th class="p-4">Financiamiento (MSI)</th>
+                <th class="p-4">Detalle</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${priceRows}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Content Breakdown -->
+      <div class="prose prose-stone max-w-none mb-16">
+        <h2 class="text-3xl font-serif italic font-bold text-stone-900 mb-6">
+          ¿Qué Factores Determinan el Costo de una Cama de Pilates en México?
+        </h2>
+        <p class="text-stone-700 leading-relaxed mb-4">
+          El abanico de precios en el mercado puede resultar desconcertante si no se evalúan los componentes estructurales que garantizan la seguridad del practicante y la vida útil del equipo:
+        </p>
+        <div class="grid md:grid-cols-2 gap-6 my-8 not-prose">
+          <div class="p-6 bg-white border border-stone-200 rounded-xl">
+            <h3 class="font-bold text-base text-stone-900 mb-2">1. Materiales de la Estructura</h3>
+            <p class="text-xs text-stone-600 leading-relaxed">
+              Las maderas de arce (maple) o roble blanco macizo y los perfiles de aleación de aluminio reforzada ofrecen rigidez indeformable bajo cargas pesadas. Las opciones excesivamente baratas de importación emplean MDF prensado o perfiles de acero delgado que se desajustan rápidamente.
+            </p>
+          </div>
+          <div class="p-6 bg-white border border-stone-200 rounded-xl">
+            <h3 class="font-bold text-base text-stone-900 mb-2">2. Calibración de Resortes Alemanes</h3>
+            <p class="text-xs text-stone-600 leading-relaxed">
+              El resorte es el corazón biomecánico del Reformer. Empleamos resortes de alambre de piano alemán de precisión calibrada que mantienen su coeficiente de elasticidad por años sin deformaciones peligrosas ni variaciones súbitas de resistencia.
+            </p>
+          </div>
+          <div class="p-6 bg-white border border-stone-200 rounded-xl">
+            <h3 class="font-bold text-base text-stone-900 mb-2">3. Rodamientos y Silencio del Carro</h3>
+            <p class="text-xs text-stone-600 leading-relaxed">
+              Un rodamiento japonés de precisión con ruedas de uretano de alta densidad asegura un deslizamiento sedoso y silencioso. Los carros de baja calidad generan un rechinido constante que interrumpe la concentración y el control de la respiración.
+            </p>
+          </div>
+          <div class="p-6 bg-white border border-stone-200 rounded-xl">
+            <h3 class="font-bold text-base text-stone-900 mb-2">4. Soporte Local y Refacciones en México</h3>
+            <p class="text-xs text-stone-600 leading-relaxed">
+              Comprar marcas extranjeras implica meses de espera y costosos aranceles de importación ante cualquier refacción. En CAMA Pilates contamos con stock permanente en México de resortes, poleas, correas dobles y tapicería para entrega en 24–48 horas.
+            </p>
+          </div>
+        </div>
+
+        <h3 class="text-2xl font-bold text-stone-800 mt-8 mb-4">Retorno de Inversión (ROI) para Estudios de Pilates en México</h3>
+        <p class="text-stone-700 leading-relaxed mb-4">
+          Para instructores y emprendedores que desean equipar un estudio boutique, la adquisición de Reformers es una de las inversiones con menor periodo de recuperación en el sector fitness:
+        </p>
+        <ul class="list-disc pl-6 text-stone-700 space-y-2 mb-6">
+          <li><strong>Clase Privada promedio en México (CDMX/MTY/GDL):</strong> $500 a $900 MXN por hora.</li>
+          <li><strong>Clase Grupal (paquete mensual 8 sesiones):</strong> $2,200 a $3,800 MXN por alumno al mes.</li>
+          <li><strong>Amortización:</strong> Con apenas 4 a 6 horas de ocupación diaria por máquina, una cama de $32,900 MXN recupera el 100% de su valor inicial en <strong>2 a 3 meses de operación</strong>, generando flujo neto positivo durante los años posteriores.</li>
+        </ul>
+
+        <!-- Promo Banner to /cama-de-pilates -->
+        <div class="my-10 p-8 bg-stone-900 text-white rounded-2xl text-center not-prose">
+          <h3 class="text-2xl md:text-3xl font-serif italic font-bold mb-3">¿Listo para Elegir tu Modelo de Cama de Pilates?</h3>
+          <p class="text-stone-300 text-sm max-w-xl mx-auto mb-6">
+            Visita nuestro catálogo completo de camas de Pilates Reformer con especificaciones técnicas detalladas, fotos de alta resolución y cotización directa.
+          </p>
+          <a href="/cama-de-pilates" class="inline-block bg-white text-stone-950 font-bold text-xs uppercase tracking-widest px-8 py-4 rounded-full hover:bg-stone-100 transition-all">
+            Ver Modelos en Venta en /cama-de-pilates →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+}
+
 function buildShopCategoryIndex(slug, category, products) {
   const cards = products.map(p => `
     <a href="/product/${htmlEscape(p.slug)}" class="block group border rounded-lg p-6 hover:border-gray-900 transition-colors">
@@ -524,12 +1003,16 @@ async function main() {
       <header class="max-w-4xl">
         <p class="text-sm uppercase tracking-widest text-gray-600">Reformers para México</p>
         <h1 class="mt-4 text-4xl md:text-6xl font-bold text-gray-900">Cama de Pilates Reformer en México</h1>
-        <p class="mt-6 text-lg text-gray-700 leading-8">Compara modelos para casa y estudio, consulta precios y encuentra guías para elegir una cama de Pilates con envío desde CDMX.</p>
+        <p class="mt-6 text-lg text-gray-700 leading-8">Compara 22 modelos de camas de Pilates para casa y estudio, consulta precios actualizados 2026 desde $23,234 MXN y encuentra guías para elegir tu cama con envío asegurado a todo México y hasta 12 MSI.</p>
       </header>
       <section class="mt-12">
         <h2 class="sr-only">Ecosistema de Cama de Pilates: Modelos Reformer, Estudios y Certificación</h2>
         <nav aria-label="Enlaces principales" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          <a href="/shop/category/reformers" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Comprar Reformers</h3><p class="mt-1 text-sm text-gray-600">Explora modelos y precios disponibles.</p></a>
+          <a href="/cama-de-pilates" class="rounded-xl border-2 border-stone-900 bg-stone-900 text-white p-6 hover:bg-stone-800 transition-colors sm:col-span-2 lg:col-span-3">
+            <h3 class="text-xl font-bold text-white mb-1">Camas de Pilates Reformer en México (Catálogo Completo 2026)</h3>
+            <p class="text-sm text-stone-300">Explora todos los 22 modelos de madera noble y aluminio con especificaciones técnicas, precios, financiamiento y cotización directa.</p>
+          </a>
+          <a href="/shop/category/reformers" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Tienda de Reformers</h3><p class="mt-1 text-sm text-gray-600">Explora modelos y precios disponibles.</p></a>
           <a href="/reformer-para-estudio" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Reformer para estudio</h3><p class="mt-1 text-sm text-gray-600">Equipo profesional para uso intensivo.</p></a>
           <a href="/reformer-para-casa" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Reformer para casa</h3><p class="mt-1 text-sm text-gray-600">Guía para espacios residenciales.</p></a>
           <a href="/cama-de-pilates/precio" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Precio de cama de Pilates</h3><p class="mt-1 text-sm text-gray-600">Rangos y factores de comparación.</p></a>
@@ -537,16 +1020,43 @@ async function main() {
           <a href="/certificacion-pilates" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Certificación de Pilates</h3><p class="mt-1 text-sm text-gray-600">Formación para instructores.</p></a>
         </nav>
       </section>
+
+      <section class="mt-16">
+        <h2 class="text-2xl font-bold text-stone-900 mb-6">Modelos Destacados de Camas de Pilates Reformer</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          ${prods.filter(p => p.category === 'Reformers').slice(0, 4).map(p => `
+            <article class="bg-white border border-stone-200 rounded-xl p-4 flex flex-col justify-between">
+              <div>
+                <img src="${htmlEscape(p.image)}" alt="${htmlEscape(p.name)}" class="w-full aspect-[4/3] object-cover rounded-lg mb-3" loading="lazy" />
+                <h3 class="font-bold text-stone-900 text-base mb-1">
+                  <a href="/product/${htmlEscape(p.slug)}" class="hover:underline">${htmlEscape(p.name)}</a>
+                </h3>
+                <p class="text-xs text-stone-600 mb-3 line-clamp-2">${htmlEscape(p.description)}</p>
+              </div>
+              <div class="pt-2 border-t border-stone-100 flex items-center justify-between">
+                <span class="font-bold text-stone-900 text-sm">${htmlEscape(formatMXN(p.price))} MXN</span>
+                <a href="/product/${htmlEscape(p.slug)}" class="text-xs font-semibold text-amber-800 hover:underline">Ver ficha →</a>
+              </div>
+            </article>
+          `).join('')}
+        </div>
+        <div class="mt-6 text-center">
+          <a href="/cama-de-pilates" class="inline-block bg-stone-900 text-white font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-full hover:bg-stone-800">
+            Ver las 22 Camas de Pilates en Venta →
+          </a>
+        </div>
+      </section>
     </main>`;
     const schema = {
       '@context': 'https://schema.org',
       '@type': 'ItemList',
       name: 'Cama de Pilates Reformer — enlaces principales',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, url: `${origin}/shop/category/reformers`, name: 'Comprar Reformers' },
-        { '@type': 'ListItem', position: 2, url: `${origin}/reformer-para-estudio`, name: 'Reformer para estudio' },
-        { '@type': 'ListItem', position: 3, url: `${origin}/reformer-para-casa`, name: 'Reformer para casa' },
-        { '@type': 'ListItem', position: 4, url: `${origin}/cama-de-pilates/precio`, name: 'Precio de cama de Pilates' },
+        { '@type': 'ListItem', position: 1, url: `${origin}/cama-de-pilates`, name: 'Camas de Pilates Reformer en México' },
+        { '@type': 'ListItem', position: 2, url: `${origin}/shop/category/reformers`, name: 'Comprar Reformers' },
+        { '@type': 'ListItem', position: 3, url: `${origin}/reformer-para-estudio`, name: 'Reformer para estudio' },
+        { '@type': 'ListItem', position: 4, url: `${origin}/reformer-para-casa`, name: 'Reformer para casa' },
+        { '@type': 'ListItem', position: 5, url: `${origin}/cama-de-pilates/precio`, name: 'Precio de cama de Pilates' },
       ],
     };
     const html = baseHtml(template, head, body).replace(
@@ -838,7 +1348,201 @@ async function main() {
     writeFileForRoute(route, html);
   }
 
-  
+  // Cama de Pilates Primary Transactional Pillar Page
+  {
+    const route = '/cama-de-pilates';
+    const meta = routeMeta[route];
+    const reformers = prods.filter(product => product.category === 'Reformers');
+    if (!meta || !reformers.length) {
+      throw new Error('Cama de Pilates prerender requires route metadata and Reformer products');
+    }
+    const itemList = {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'Camas de Pilates Reformer en México',
+      description: 'Catálogo oficial de camas de Pilates (Reformer) en venta en México.',
+      numberOfItems: reformers.length,
+      itemListElement: reformers.map((product, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: `${origin}/product/${product.slug}`,
+        name: product.name,
+      })),
+    };
+    const collectionPage = {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Camas de Pilates Reformer en México: Modelos y Precios 2026',
+      description: meta.description,
+      url: `${origin}${route}`,
+      inLanguage: 'es-MX',
+      mainEntity: itemList,
+    };
+    const breadcrumb = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: origin },
+        { '@type': 'ListItem', position: 2, name: 'Cama de Pilates', item: `${origin}${route}` },
+      ],
+    };
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Cuánto cuesta una cama de Pilates Reformer en México?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'En México, los precios de camas de Pilates profesionales inician desde $23,234 MXN para modelos clásicos de roble, entre $28,000 y $38,000 MXN para modelos de maple norteamericano y aluminio de alta gama, y entre $51,000 y $85,050 MXN para equipos que incorporan media torre o estructura de Cadillac. Todos nuestros precios incluyen IVA y garantía directa.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cuál es la diferencia entre un Reformer de madera y uno de aluminio?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Ambos ofrecen exactamente la misma precisión biomecánica. Los Reformers de madera maciza (como el Maple y Roble) aportan una estética orgánica, cálida y clásica sumamente cotizada en estudios boutique y residencias. Los Reformers de aluminio ofrecen una estética contemporánea e industrial, menor peso total para facilitar reubicaciones y rieles anodizados de altísima resistencia al desgaste.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Qué espacio necesito para tener un Reformer en casa o departamento?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'El equipo mide en promedio 240 cm de largo por 70 cm de ancho. Se aconseja disponer de una superficie de al menos 3.0 m x 1.8 m para entrar y salir con comodidad y extender los brazos lateralmente sin obstáculos.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Ofrecen opciones de pago a Meses Sin Intereses (MSI)?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. Aceptamos pagos con tarjeta de crédito con planes de hasta 12 Meses Sin Intereses con bancos participantes a través de nuestras pasarelas de pago certificadas. También contamos con descuentos preferenciales en pagos de contado por transferencia bancaria SPEI.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Hacen envíos a Monterrey, Guadalajara, Querétaro y todo México?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí, realizamos envíos asegurados a las 32 entidades federativas del país. La mercancía viaja con seguro contra daños de transporte puerta a puerta. El tiempo estimado de producción y entrega es de 3 a 8 semanas según el acabado y modelo seleccionado.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Qué garantía tienen los Reformers y cómo se gestionan las refacciones?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Ofrecemos una garantía directa de 3 años en chasis, rieles y mecanismos estructurales. Contamos con almacén de refacciones en México con resortes de repuesto, poleas, correas de cuero y microfibra con envío exprés de 24 a 48 horas.'
+          }
+        }
+      ]
+    };
+    const head = {
+      title: meta.title,
+      description: meta.description,
+      canonical: `${origin}${route}`,
+      ogImage: `${origin}${reformers[0].image}`,
+      ogType: 'website',
+    };
+    let html = baseHtml(template, head, buildCamaDePilatesPage(reformers, origin));
+    html = html.replace(
+      '</head>',
+      [breadcrumb, collectionPage, itemList, faqSchema]
+        .map(schema => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`)
+        .join('\n') + '\n</head>'
+    );
+    writeFileForRoute(route, html);
+  }
+
+  // Cama de Pilates Precio Guide Page
+  {
+    const route = '/cama-de-pilates/precio';
+    const meta = routeMeta[route];
+    const reformers = prods.filter(product => product.category === 'Reformers');
+    const breadcrumb = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: origin },
+        { '@type': 'ListItem', position: 2, name: 'Cama de Pilates', item: `${origin}/cama-de-pilates` },
+        { '@type': 'ListItem', position: 3, name: 'Precio', item: `${origin}${route}` },
+      ],
+    };
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Cuánto cuesta una cama de Pilates en México en 2026?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'En México, una cama de Pilates Reformer cuesta entre $23,234 MXN para modelos residenciales de entrada y entre $32,900 y $85,050 MXN para modelos profesionales de estudio con acabados de nogal, roble, cuero genuino y media torre.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Qué incluye normalmente el precio de un Reformer?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Nuestros equipos incluyen chasis estructural de madera noble o aluminio, 5 resortes alemanes calibrados, carro deslizante con rodamientos silenciosos, correas dobles, caja (box) y tabla de salto (jumpboard) según la configuración elegida.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Tienen financiamiento o pagos a meses?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí, ofrecemos hasta 12 Meses Sin Intereses con tarjetas de crédito participantes y planes comerciales personalizados para equipamiento de estudios con más de 8 camas (descuento del 20%).'
+          }
+        }
+      ]
+    };
+    const head = {
+      title: meta ? meta.title : '¿Cuánto Cuesta una Cama de Pilates en México? Precios Desde $23,234 MXN [2026]',
+      description: meta ? meta.description : 'Guía completa de precios de camas de Pilates (Reformer) en México 2026: modelos para casa y estudio desde $23,234 MXN. Incluye garantía y 12 MSI.',
+      canonical: `${origin}${route}`,
+      ogImage: `${origin}${reformers[0].image}`,
+      ogType: 'website',
+    };
+    let html = baseHtml(template, head, buildCamaDePilatesPrecioPage(reformers, origin));
+    html = html.replace(
+      '</head>',
+      [breadcrumb, faqSchema]
+        .map(schema => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`)
+        .join('\n') + '\n</head>'
+    );
+    writeFileForRoute(route, html);
+  }
+
+  // Cama de Pilates En Venta -> 301 Consolidation Redirect Snapshot
+  {
+    const route = '/cama-de-pilates/en-venta';
+    const targetUrl = `${origin}/cama-de-pilates`;
+    const reformers = prods.filter(product => product.category === 'Reformers');
+    const head = {
+      title: 'Venta de Camas de Pilates Reformer en México | CAMA',
+      description: 'Redirigiendo a nuestro catálogo oficial de camas de Pilates Reformer en México...',
+      canonical: targetUrl,
+      ogImage: `${origin}${reformers[0]?.image || '/og/cama-de-pilates-venta-mexico.png'}`,
+      ogType: 'website',
+    };
+    const redirectMeta = `<meta http-equiv="refresh" content="0;url=/cama-de-pilates">`;
+    const body = `
+    <section class="container mx-auto px-4 py-20 text-center max-w-xl">
+      <h1 class="text-2xl font-bold text-stone-900 mb-4">Redirigiendo a Camas de Pilates en México...</h1>
+      <p class="text-stone-600 mb-6 text-sm">Nuestro catálogo de venta se ha consolidado en una sola página completa con especificaciones, precios y modelos 2026.</p>
+      <a href="/cama-de-pilates" class="inline-block bg-stone-900 text-white font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-full hover:bg-stone-800">
+        Haz clic aquí si no eres redirigido automáticamente →
+      </a>
+    </section>`;
+    let html = baseHtml(template, head, body);
+    html = html.replace('</head>', `${redirectMeta}\n</head>`);
+    writeFileForRoute(route, html);
+  }
 
   // Shop categories
   if (prods.length) {
@@ -1201,8 +1905,18 @@ async function main() {
   // sees the generic site title and description instead of the page's own. Titles and
   // descriptions come from the same src/content/route-meta.json the components read,
   // so the prerendered head and the hydrated head cannot disagree.
+  const customPrerenderedRoutes = new Set([
+    '/reformer-para-estudio',
+    '/reformer-para-casa',
+    '/certificacion-pilates',
+    '/certificacion-pilates/webinar',
+    '/webinar',
+    '/cama-de-pilates',
+    '/cama-de-pilates/precio',
+    '/cama-de-pilates/en-venta',
+  ]);
   for (const [route, meta] of Object.entries(routeMeta)) {
-    if (route === '/reformer-para-estudio' || route === '/reformer-para-casa' || route === '/certificacion-pilates' || route === '/certificacion-pilates/webinar') continue;
+    if (customPrerenderedRoutes.has(route)) continue;
     const head = {
       title: meta.title,
       description: meta.description,
