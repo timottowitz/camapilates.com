@@ -27,7 +27,8 @@ import {
   Phone,
   Mail,
   User,
-  AlertCircle
+  AlertCircle,
+  Search
 } from 'lucide-react';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
 import { EditorialFeatureCards } from '@/components/webapp/EditorialFeatureCards';
@@ -48,6 +49,8 @@ import {
   formatMXN
 } from '@/content/certification/stottCdmx';
 import PreRegistrationModal from '@/components/certification/PreRegistrationModal';
+import CityListicleNav from '@/components/certification/CityListicleNav';
+import CertificationCityGrid from '@/components/certification/CertificationCityGrid';
 
 type CapabilityTab = 'curriculo' | 'comunidad' | 'oferta' | 'faq';
 
@@ -79,6 +82,7 @@ export const CertificacionPilates: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [citySearchQuery, setCitySearchQuery] = useState('');
 
   // Countdown timer to September 26, 2026 11:00 AM CST
   const [timeLeft, setTimeLeft] = useState<{ days: number; hours: number; minutes: number; seconds: number }>({
@@ -505,6 +509,14 @@ export const CertificacionPilates: React.FC = () => {
                 >
                   <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
                   <span>Dudas por WhatsApp</span>
+                </a>
+
+                <a
+                  href="#directorio"
+                  className="px-5 py-3 rounded-full border border-neutral-300 bg-white text-neutral-800 text-xs font-mono uppercase tracking-wider hover:border-neutral-900 transition-colors flex items-center gap-1.5"
+                >
+                  <MapPin className="w-3.5 h-3.5 text-[#3E2723]" />
+                  <span>Directorio Nacional (10 Ciudades) ↓</span>
                 </a>
               </div>
             </div>
@@ -1369,6 +1381,46 @@ export const CertificacionPilates: React.FC = () => {
           </div>
         )}
       </main>
+
+      {/* DIRECTORIO NACIONAL DE CERTIFICACIONES DE PILATES EN MÉXICO */}
+      <section id="directorio" className="py-20 px-6 max-w-7xl mx-auto border-t border-neutral-200 scroll-mt-20">
+        <div className="max-w-4xl mb-12">
+          <span className="font-mono text-xs uppercase tracking-widest text-[#D9865B] font-bold block mb-2">
+            // DIRECTORIO NACIONAL DE CERTIFICACIONES
+          </span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif italic text-neutral-900 mb-4">
+            Directorio de Certificaciones de Pilates en México
+          </h2>
+          <p className="text-neutral-600 text-base md:text-lg font-light leading-relaxed mb-8">
+            Encuentra escuelas formadoras, academias con validez oficial (NPCP, SEP-CONOCER, linajes clásicos de Romana Kryzanowska, The New York Pilates Studio y STOTT Merrithew) y Master Trainers en las 10 ciudades principales del país.
+          </p>
+
+          {/* Search Bar */}
+          <div className="relative max-w-xl mb-8">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-neutral-400">
+              <Search className="w-5 h-5" />
+            </div>
+            <input
+              type="text"
+              value={citySearchQuery}
+              onChange={(e) => setCitySearchQuery(e.target.value)}
+              placeholder="Buscar por ciudad, academia o certificación (ej. Puebla, Reformer, Clásico, NPCP)..."
+              className="w-full pl-12 pr-4 py-3.5 bg-white border border-neutral-300 rounded-full text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 focus:ring-1 focus:ring-neutral-900 shadow-sm transition-all"
+            />
+          </div>
+
+          {/* City Listicle Nav Buttons */}
+          <div>
+            <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-500 block mb-2 font-medium">
+              Sedes directas para explorar:
+            </span>
+            <CityListicleNav showAllOption={false} />
+          </div>
+        </div>
+
+        {/* 10-City Landmark Grid */}
+        <CertificationCityGrid filterQuery={citySearchQuery} />
+      </section>
 
       {/* LOWER SECTION: EXTERNAL ALTERNATIVE IN CDMX (STOTT PILATES® MERRITHEW) */}
       <section className="py-16 px-6 bg-neutral-100/70 border-t border-neutral-200">

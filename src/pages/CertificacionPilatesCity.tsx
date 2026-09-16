@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
-import { Calendar, MapPin, ArrowLeft, Award, Clock } from 'lucide-react';
+import { Calendar, MapPin, ArrowLeft, Award, Clock, Sparkles, Building2 } from 'lucide-react';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import PreRegistrationModal from '@/components/certification/PreRegistrationModal';
 import StottPremiumProgram from '@/components/certification/StottPremiumProgram';
 import CertificationWebinarBanner from '@/components/certification/CertificationWebinarBanner';
+import CityListicleNav from '@/components/certification/CityListicleNav';
+import CertificationPartnerCard from '@/components/certification/CertificationPartnerCard';
 import {
   CERTIFICATION_COHORTS,
   WEBINAR_INFO,
@@ -17,81 +19,70 @@ import {
   STOTT_VENUE,
   formatMXN,
 } from '@/content/certification/stottCdmx';
+import {
+  CERTIFICATION_CITIES,
+  CERTIFICATION_PARTNERS,
+  getCityInfo,
+  getPartnersByCitySlug,
+  normalizeCitySlug,
+} from '@/content/certification/certificationsData';
 import { WhopCheckoutModal } from '@/components/whop/WhopCheckoutModal';
 import { WHOP_CONFIG } from '@/lib/whop/whopConfig';
 
-type CityKey = 'cdmx' | 'guadalajara' | 'monterrey' | 'puebla' | 'queretaro';
-
-const CITY_DATA: Record<CityKey, { name: string; shortName: string; directorySlug?: string }> = {
-  cdmx: {
-    name: 'Ciudad de México (CDMX)',
-    shortName: 'Ciudad de México',
-    directorySlug: 'ciudad-de-mexico',
-  },
-  guadalajara: {
-    name: 'Guadalajara (Jalisco)',
-    shortName: 'Guadalajara',
-    directorySlug: 'guadalajara',
-  },
-  monterrey: {
-    name: 'Monterrey (NL)',
-    shortName: 'Monterrey',
-    directorySlug: 'monterrey',
-  },
-  puebla: {
-    name: 'Puebla',
-    shortName: 'Puebla',
-  },
-  queretaro: {
-    name: 'Querétaro',
-    shortName: 'Querétaro',
-  }
-};
-
 const PRIMARY_WHATSAPP = 'https://wa.me/525548468190?text=';
+const FEATURED = STOTT_COURSES.find((c) => c.featured) || STOTT_COURSES[0];
 
-const FEATURED = STOTT_COURSES.find(c => c.featured) || STOTT_COURSES[0];
-
-const CertificacionPilatesCity: React.FC = () => {
+export const CertificacionPilatesCity: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [whopCheckoutOpen, setWhopCheckoutOpen] = useState(false);
   const [whopPlan, setWhopPlan] = useState<string>(WHOP_CONFIG.plans.apartado.id);
-  const { city } = useParams();
+  const { city } = useParams<{ city: string }>();
+  const navigate = useNavigate();
   const origin = getOrigin();
-  const key = (city || 'cdmx').toLowerCase() as CityKey;
-  const data = CITY_DATA[key] || CITY_DATA.cdmx;
-  const isCdmx = key === 'cdmx' || !CITY_DATA[key];
-  const cohort = (key === 'queretaro' || key === 'monterrey') ? CERTIFICATION_COHORTS[key] : null;
 
-  const cityName = data.name;
-  const shortCityName = data.shortName;
-  const title = key === 'monterrey'
-    ? 'Certificación Pilates Monterrey [Fechas 2026]'
-    : key === 'queretaro'
-      ? 'Certificación Pilates Querétaro [Nov 2026]'
-      : key === 'puebla'
+  const normalizedKey = normalizeCitySlug(city || 'cdmx');
+
+  // Handle redirects for non-canonical slugs like ciudad-de-mexico -> cdmx, zapopan -> guadalajara
+  useEffect(() => {
+    if (city && city !== normalizedKey) {
+      navigate(`/certificacion-pilates/${normalizedKey}`, { replace: true });
+    }
+  }, [city, normalizedKey, navigate]);
+
+  const cityInfo = getCityInfo(normalizedKey) || CERTIFICATION_CITIES[0];
+  const partners = getPartnersByCitySlug(normalizedKey);
+  const isCdmx = normalizedKey === 'cdmx';
+  const cohort = (normalizedKey === 'queretaro' || normalizedKey === 'monterrey')
+    ? CERTIFICATION_COHORTS[normalizedKey as 'queretaro' | 'monterrey']
+    : null;
+
+  const cityName = cityInfo.name;
+  const shortCityName = cityInfo.shortName;
+
+  const title = normalizedKey === 'monterrey'
+    ? 'Certificación Pilates Monterrey [Fechas 2026 y Academias]'
+    : normalizedKey === 'queretaro'
+      ? 'Certificación Pilates Querétaro [Nov 2026 y Sedes]'
+      : normalizedKey === 'puebla'
         ? 'Certificación Pilates Puebla 2026: Costos, Fechas y Aval Oficial'
-        : key === 'guadalajara'
-          ? 'Certificación Pilates Guadalajara 2026 [Costos y Fechas]'
+        : normalizedKey === 'guadalajara'
+          ? 'Certificación Pilates Guadalajara 2026 [Costos, Escuelas y Fechas]'
           : isCdmx
-            ? 'Certificación Pilates CDMX [STOTT 2026]'
-            : `Certificación Pilates ${shortCityName} [2026]`;
+            ? 'Certificación Pilates CDMX [STOTT & Linaje Clásico 2026]'
+            : `Certificación Pilates ${shortCityName} [2026: Escuelas y Avales]`;
+
   const desc = isCdmx
-    ? `Certifícate en STOTT PILATES® en ${cityName}: Intensive Reformer (125h), Mat-Plus™ y niveles avanzados en ${STOTT_VENUE.name}, sede oficial Merrithew® en Santa Fe. Fechas, costos y registro.`
+    ? `Certifícate en STOTT PILATES® en ${cityName}: Intensive Reformer (125h) en ${STOTT_VENUE.name} Santa Fe, y escuelas clásicas de 2da generación en Polanco y Roma Norte. Sedes, costos y registro.`
     : cohort
-      ? `Certifícate como instructora de Pilates Reformer en ${shortCityName} (${cohort.periodLabel}): Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). Sesión informativa (Info Day) con Gabi y Laura Munive sobre los próximos cursos. Cupos limitados a 12 participantes.`
-      : key === 'puebla'
-        ? `Certificación de Pilates Reformer en Puebla 2026: aval oficial, costos, temarios prácticos y cupos reducidos. Solicita informes y asegura tu lugar.`
-        : key === 'guadalajara'
-          ? `Certificación de Pilates Reformer en Guadalajara 2026: aval oficial, temarios de formación para instructores, costos y próximas convocatorias.`
-          : `Compara opciones de certificación de Pilates Reformer en ${shortCityName}. Revisa requisitos, duración, costos y criterios antes de solicitar fechas.`;
+      ? `Certifícate como instructora de Pilates Reformer en ${shortCityName} (${cohort.periodLabel}): Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). Cupos limitados con Reformer individual y directorio de academias.`
+      : `Directorio de academias y escuelas de certificación de Pilates en ${shortCityName}. Compara opciones en Reformer y Mat, horas avaladas (NPCP/SEP), requisitos, costos y contacto directo.`;
 
   const wa = `${PRIMARY_WHATSAPP}${encodeURIComponent(
     isCdmx
       ? 'Hola, quiero inscribirme a la certificación STOTT PILATES® en CDMX'
       : cohort
         ? `Hola, quiero información sobre la certificación de Pilates Reformer en ${shortCityName} (${cohort.periodLabel}) (Curso Básico 28h $25,000 / Completa 48h $38,000).`
-        : `Hola Edelweiss, quiero información sobre certificación de Pilates en ${shortCityName}`
+        : `Hola, quiero informes sobre escuelas y certificación de Pilates en ${shortCityName}`
   )}`;
 
   const breadcrumb = {
@@ -99,7 +90,7 @@ const CertificacionPilatesCity: React.FC = () => {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Certificación de Pilates', item: `${origin}/certificacion-pilates` },
-      { '@type': 'ListItem', position: 2, name: cityName, item: `${origin}/certificacion-pilates/${key}` }
+      { '@type': 'ListItem', position: 2, name: cityName, item: `${origin}/certificacion-pilates/${normalizedKey}` }
     ]
   };
 
@@ -111,179 +102,142 @@ const CertificacionPilatesCity: React.FC = () => {
       '@type': 'City',
       name: cityName
     },
-    provider: { '@type': 'Organization', name: 'Edelweiss / camadepilates.com', url: origin },
+    provider: { '@type': 'Organization', name: 'CAMA Pilates', url: origin },
     serviceType: isCdmx
-      ? 'Inscripción a certificación de Pilates'
-      : 'Orientación sobre certificaciones de Pilates (Reformer y Mat)'
+      ? 'Inscripción a certificación STOTT PILATES y directorio de escuelas'
+      : 'Directorio y convocatoria de certificaciones de Pilates (Reformer y Mat)'
   };
 
-  const faqItems = isCdmx
-    ? []
-    : cohort
-      ? [
-          {
-            question: `¿Cuándo son las fechas exactas de la certificación en ${shortCityName}?`,
-            answer: `La cohorte de ${shortCityName} se lleva a cabo en 4 fines de semana intensivos (${cohort.fullDatesLabel}) en horario de ${cohort.scheduleHours}.`,
-          },
-          {
-            question: `¿Cuáles son los costos y modalidades en ${shortCityName}?`,
-            answer: `Ofrecemos el Curso Básico de 28 horas (2 fines de semana) por $25,000 MXN y la Certificación Completa de 48 horas (4 fines de semana) por $38,000 MXN. Puedes pre-reservar tu lugar con solo $400 MXN.`,
-          },
-          {
-            question: `¿Tengo un Reformer individual asignado durante las clases?`,
-            answer: `Sí. En CAMA limitamos cada cohorte a un máximo estricto de 12 alumnas(os) para que cada participante cuente con un Reformer profesional exclusivo sin tener que compartir turnos de máquina.`,
-          },
-          {
-            question: `¿Cuál es el valor del certificado emitido?`,
-            answer: `El certificado avala las horas acreditadas (28h en Curso Básico o 48h en Certificación Completa) con desglose biomecánico, repertorio y docencia práctica, con validez curricular ante estudios de Pilates en todo México.`,
-          },
-        ]
-      : [
-          {
-            question: `¿Qué debo confirmar antes de elegir una certificación de Pilates en ${shortCityName}?`,
-            answer: 'Confirma el organismo que respalda el programa, las horas de formación y práctica, el proceso de evaluación, los materiales incluidos y el costo total.',
-          },
-          {
-            question: '¿Una certificación de Pilates es lo mismo que tomar clases?',
-            answer: 'No. Una certificación prepara instructores; las clases son para practicar Pilates como alumno. El directorio local reúne estudios para tomar clases.',
-          },
-          {
-            question: '¿Cómo consulto próximas fechas y costos?',
-            answer: 'Solicita información y confirma directamente la sede, el calendario vigente, los requisitos y las políticas de pago antes de inscribirte.',
-          },
-        ];
+  // Generate EducationalOrganization schemas for all partner academies in this city
+  const partnerSchemas = partners.map((p) => ({
+    '@context': 'https://schema.org',
+    '@type': 'EducationalOrganization',
+    name: p.partnerName,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: p.studioLocations,
+      addressLocality: p.city,
+      addressRegion: p.state,
+      addressCountry: 'MX'
+    },
+    telephone: p.phone,
+    email: p.email,
+    url: p.website || `${origin}/certificacion-pilates/${normalizedKey}`,
+    description: `${p.roleTitle}: ${p.aboutCredentials}. Certificaciones: ${p.certificationsOffered}`,
+  }));
 
-  const faqSchema = faqItems.length
-    ? {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: faqItems.map(item => ({
-          '@type': 'Question',
-          name: item.question,
-          acceptedAnswer: { '@type': 'Answer', text: item.answer },
-        })),
-      }
-    : null;
-
-  const courseSchemas = isCdmx
-    ? STOTT_COURSES.map(course => ({
-        '@context': 'https://schema.org',
-        '@type': 'Course',
-        name: course.name,
-        description: course.tagline,
-        provider: {
-          '@type': 'Organization',
-          name: STOTT_PROVIDER.name,
-          url: 'https://www.pilateseducare.com',
+  const faqItems = cohort
+    ? [
+        {
+          question: `¿Cuándo son las fechas exactas de la cohorte en ${shortCityName}?`,
+          answer: `La cohorte de ${shortCityName} se lleva a cabo en 4 fines de semana intensivos (${cohort.fullDatesLabel}) en horario de ${cohort.scheduleHours}.`,
         },
-        ...(course.price
-          ? {
-              offers: {
-                '@type': 'Offer',
-                price: course.price,
-                priceCurrency: 'MXN',
-                availability: course.dates.some(d => d.status === 'open' || d.status === 'lastSpots')
-                  ? 'https://schema.org/InStock'
-                  : 'https://schema.org/SoldOut',
-              },
-            }
-          : {}),
-        hasCourseInstance: course.dates.map(d => ({
-          '@type': 'CourseInstance',
-          courseMode: course.modality === 'Presencial' ? 'Onsite' : 'Online',
-          name: `${course.shortName} — ${d.label}`,
-          location: {
-            '@type': 'Place',
-            name: STOTT_VENUE.name,
-            address: STOTT_VENUE.address,
-          },
-        })),
-      }))
-    : cohort
-      ? [
-          {
-            '@context': 'https://schema.org',
-            '@type': 'Course',
-            name: `Certificación Profesional de Instructor de Pilates Reformer — ${shortCityName}`,
-            description: `Programa intensivo: Curso Básico (28h · $25,000 MXN) y Certificación Completa (48h · $38,000 MXN) en ${cohort.cityName}. ${cohort.fullDatesLabel}.`,
-            provider: {
-              '@type': 'Organization',
-              name: 'CAMA Pilates',
-              url: origin,
-            },
-            offers: {
-              '@type': 'Offer',
-              price: cohort.discountedPrice,
-              priceCurrency: 'MXN',
-              availability: 'https://schema.org/InStock',
-              url: `${origin}/certificacion-pilates/${key}`,
-            },
-            hasCourseInstance: cohort.weekends.map(w => ({
-              '@type': 'CourseInstance',
-              courseMode: 'Onsite',
-              name: `${w.title} (${w.dates})`,
-              startDate: w.startDate,
-              endDate: w.endDate,
-              location: {
-                '@type': 'Place',
-                name: cohort.location.name,
-                address: `${cohort.location.neighborhood}, ${cohort.location.city}, ${cohort.location.state}`,
-              },
-            })),
-          },
-        ]
-      : [];
+        {
+          question: `¿Cuáles son los costos y modalidades en ${shortCityName}?`,
+          answer: `Ofrecemos el Curso Básico de 28 horas (2 fines de semana) por $25,000 MXN y la Certificación Completa de 48 horas (4 fines de semana) por $38,000 MXN. Puedes pre-reservar tu lugar con solo $400 MXN.`,
+        },
+        {
+          question: `¿Tengo un Reformer individual asignado durante las clases?`,
+          answer: `Sí. En CAMA limitamos cada cohorte a un máximo estricto de 12 alumnas(os) para que cada participante cuente con un Reformer profesional exclusivo sin tener que compartir turnos de máquina.`,
+        },
+        {
+          question: `¿Qué otras academias de Pilates certifican en ${shortCityName}?`,
+          answer: `En ${shortCityName} contamos con ${partners.length} academias aliadas indexadas en nuestro directorio, incluyendo ${partners.map(p => p.partnerName).join(', ')}.`,
+        },
+      ]
+    : [
+        {
+          question: `¿Qué escuelas y academias de Pilates certifican en ${shortCityName}?`,
+          answer: `En ${shortCityName} están activas las academias: ${partners.map(p => `${p.partnerName} (${p.leadPerson})`).join(', ')}. Cada una ofrece programas desde 30h hasta más de 550h en Reformer y Mat.`,
+        },
+        {
+          question: `¿Qué validez tienen los certificados en ${shortCityName}?`,
+          answer: 'Las academias cuentan con avales reconocidos como NPCP (National Pilates Certification Program de EE.UU.), SEP-CONOCER en México, linajes clásicos directos (Romana Kryzanowska, The New York Pilates Studio) y STOTT PILATES®. Revisa cada ficha para detalles específicos.',
+        },
+        {
+          question: '¿Una certificación de Pilates es lo mismo que tomar clases en un estudio?',
+          answer: 'No. Una certificación capacita técnica, anatómica y pedagógicamente para impartir clases y programar entrenamientos; mientras que los estudios locales ofrecen clases guiadas para practicantes.',
+        },
+        {
+          question: `¿Cómo contacto a las escuelas de Pilates en ${shortCityName}?`,
+          answer: 'En cada ficha de academia encontrarás botones directos a su WhatsApp verificado, sitio web oficial, Instagram, teléfono y correo electrónico.',
+        },
+      ];
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  };
 
   return (
     <LuxuryLayout>
       <Helmet>
         <title>{title} | {DEFAULTS.siteName}</title>
         <meta name="description" content={desc} />
-        <link rel="canonical" href={`${origin}/certificacion-pilates/${key}`} />
+        <link rel="canonical" href={`${origin}/certificacion-pilates/${normalizedKey}`} />
         <meta property="og:site_name" content={DEFAULTS.siteName} />
         <meta property="og:locale" content={DEFAULTS.locale} />
         <meta property="og:title" content={`${title} | ${DEFAULTS.siteName}`} />
         <meta property="og:description" content={desc} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`${origin}/certificacion-pilates/${key}`} />
-        <meta property="og:image" content={`${origin}${DEFAULTS.ogImage}`} />
+        <meta property="og:url" content={`${origin}/certificacion-pilates/${normalizedKey}`} />
+        <meta property="og:image" content={`${origin}${cityInfo.landmarkImage}`} />
         <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
         <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
-        {faqSchema && (
-          <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
-        )}
-        {courseSchemas.map((schema, idx) => (
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        {partnerSchemas.map((schema, idx) => (
           <script key={idx} type="application/ld+json">{JSON.stringify(schema)}</script>
         ))}
       </Helmet>
 
-      <section className="relative pt-32 pb-20 px-8 md:px-24 max-w-[1800px] mx-auto">
-        <Link to="/certificacion-pilates" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#5D5550] hover:text-[#2A2624] mb-8 transition-colors">
-          <ArrowLeft className="w-3 h-3" /> Ver todas las sedes
-        </Link>
+      {/* City Switcher Listicle Bar (Sticky Top) */}
+      <section className="pt-28 pb-4 px-6 md:px-16 max-w-[1800px] mx-auto border-b border-[#2A2624]/10 bg-[#EAE8E4]">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-3">
+          <Link
+            to="/certificacion-pilates"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#5D5550] hover:text-[#2A2624] transition-colors"
+          >
+            <ArrowLeft className="w-3 h-3" /> Ver Directorio Nacional Completo
+          </Link>
+          <span className="text-[11px] font-mono uppercase tracking-wider text-[#3E2723]">
+            Sedes Disponibles: 10 Ciudades Clave
+          </span>
+        </div>
+        <CityListicleNav currentCitySlug={normalizedKey} />
+      </section>
 
-        <div className="grid md:grid-cols-2 gap-16 items-start">
-          <div>
-            <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-6">
-              {cohort
-                ? `Convocatoria Abierta · Cohorte ${cohort.periodLabel} · 50% OFF`
-                : isCdmx
-                  ? 'Programa Premium · STOTT PILATES®'
-                  : 'Formación para instructores'}
-            </span>
-            <h1 className="text-4xl md:text-6xl font-serif italic text-[#2A2624] leading-[0.9] mb-8">
-              {cohort
-                ? `Certificación Pilates Reformer en ${shortCityName}`
-                : isCdmx
-                  ? cityName
-                  : title}
+      {/* Hero Section with City Landmark Imagery */}
+      <section className="relative pt-12 pb-16 px-6 md:px-16 max-w-[1800px] mx-auto">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-7">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="px-3 py-1 bg-[#3E2723] text-[#EAE8E4] text-[11px] font-sans tracking-[0.2em] uppercase rounded-full">
+                {cohort ? `Convocatoria Abierta · ${cohort.periodLabel}` : isCdmx ? 'Sede STOTT & Linaje Clásico' : 'Directorio de Certificación'}
+              </span>
+              <span className="text-xs font-mono text-[#5D5550]">
+                {partners.length} {partners.length === 1 ? 'Academia Registrada' : 'Academias Registradas'}
+              </span>
+            </div>
+
+            <h1 className="text-4xl md:text-6xl font-serif italic text-[#2A2624] leading-[0.95] mb-6">
+              Certificación de Pilates en {shortCityName}
             </h1>
-            <p className="text-lg text-[#5D5550] font-light max-w-xl leading-relaxed mb-8">
+
+            <p className="text-sm md:text-base text-[#3E2723] font-medium tracking-wide uppercase mb-4">
+              {cityInfo.tagline}
+            </p>
+
+            <p className="text-base md:text-lg text-[#5D5550] font-light leading-relaxed mb-8 max-w-2xl">
               {cohort
-                ? `Formación presencial intensiva en ${shortCityName}: Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN) en fines de semana (${cohort.fullDatesLabel}). Un Reformer individual asignado por alumna(o) con las Master Trainers Gabi y Laura Munive.`
+                ? `Formación presencial intensiva en ${shortCityName}: Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). Cada alumna(o) cuenta con un Reformer individual asignado con las Master Trainers Gabi y Laura Munive. Explora también las academias aliadas locales en ${shortCityName}.`
                 : isCdmx
-                  ? `Certificación ${STOTT_PROVIDER.method} — el "Gold Standard" de la industria — impartida por ${STOTT_PROVIDER.name} en ${STOTT_VENUE.name}, hosting oficial de Merrithew® en Santa Fe. Validez internacional en más de 100 países.`
-                  : `Compara opciones de formación en Reformer y Mat en ${shortCityName}. Antes de inscribirte, confirma el respaldo del programa, las horas de práctica, la evaluación y el costo total.`}
+                  ? `Sede oficial STOTT PILATES® en Santa Fe y escuelas clásicas de élite en Polanco y Roma Norte. Consulta fechas, programas completos de Reformer y Mat, y contacto directo.`
+                  : `Compara las mejores opciones de certificación de instructor de Pilates Reformer y Mat en ${shortCityName}. Revisa horas lectivas, avales oficiales (NPCP, SEP-CONOCER, linajes internacionales), costos y ubicación de sede.`}
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -291,352 +245,273 @@ const CertificacionPilatesCity: React.FC = () => {
                 <>
                   <button
                     onClick={() => {
-                      setWhopPlan(key === 'monterrey' ? WHOP_CONFIG.plans.apartadoMonterrey.id : WHOP_CONFIG.plans.apartadoQueretaro.id);
+                      setWhopPlan(
+                        normalizedKey === 'monterrey'
+                          ? WHOP_CONFIG.plans.apartadoMonterrey.id
+                          : WHOP_CONFIG.plans.apartadoQueretaro.id
+                      );
                       setWhopCheckoutOpen(true);
                     }}
-                    className="px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors shadow-md font-semibold"
+                    className="px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-all shadow-md font-semibold"
                   >
-                    {WHOP_CONFIG.paymentsEnabled ? 'Pre-reservar Cupo ($400 MXN)' : 'Próximamente · Apartar Cupo ($400 MXN)'}
+                    {WHOP_CONFIG.paymentsEnabled ? 'Pre-reservar Cupo ($400 MXN)' : 'Apartar Cupo ($400 MXN)'}
                   </button>
                   <button
                     onClick={() => setModalOpen(true)}
-                    className="px-6 py-4 border border-[#2A2624]/30 text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#EAE8E4] transition-colors"
+                    className="px-6 py-4 border border-[#2A2624]/30 text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white transition-colors"
                   >
                     Pre-registro gratis
                   </button>
-                  <Link
-                    to="/certificacion-pilates/webinar"
-                    className="px-6 py-4 bg-[#3E2723]/10 border border-[#3E2723]/30 text-[#3E2723] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723]/20 transition-colors flex items-center gap-2"
+                  <a
+                    href="#academias"
+                    className="px-6 py-4 bg-white/70 border border-[#2A2624]/20 text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white transition-colors"
                   >
-                    <span>Info Day 26 Sep</span>
-                  </Link>
+                    Ver {partners.length} Academias ↓
+                  </a>
                 </>
               ) : (
                 <>
-                  <a href={wa} className="inline-flex items-center px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors">
-                    {isCdmx ? 'Inscribirme' : 'Solicitar información'}
+                  <a
+                    href="#academias"
+                    className="inline-flex items-center px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors shadow-md"
+                  >
+                    Ver Escuelas en {shortCityName} ({partners.length})
                   </a>
-                  <button
-                    type="button"
-                    onClick={() => setModalOpen(true)}
-                    className="px-8 py-4 border border-[#2A2624]/20 text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#EAE8E4] transition-colors"
+                  <a
+                    href={wa}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-8 py-4 border border-[#2A2624]/30 text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white transition-colors"
                   >
-                    Pre-registro
-                  </button>
-                  <Link
-                    to="/certificacion-pilates/webinar"
-                    className="px-6 py-4 bg-[#3E2723]/10 border border-[#3E2723]/30 text-[#3E2723] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723]/20 transition-colors flex items-center gap-2"
-                  >
-                    <span>Info Day 26 Sep</span>
-                  </Link>
+                    Asesoría de Certificación
+                  </a>
                 </>
               )}
             </div>
-
-            <div className="mt-12 flex flex-col gap-4">
-              <div className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
-                <MapPin className="h-4 w-4 text-[#3E2723]" />{' '}
-                {cohort
-                  ? `${cohort.location.name}, ${cohort.location.neighborhood}`
-                  : isCdmx
-                    ? `${STOTT_VENUE.name}, ${STOTT_VENUE.area}`
-                    : cityName}
-              </div>
-              <div className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
-                <Calendar className="h-4 w-4 text-[#3E2723]" />{' '}
-                {cohort
-                  ? `${cohort.fullDatesLabel} (${cohort.scheduleHours})`
-                  : isCdmx
-                    ? FEATURED.dates[0]?.label
-                    : 'Consulta fechas vigentes'}
-              </div>
-              <div className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
-                <Award className="h-4 w-4 text-[#3E2723]" />{' '}
-                {cohort
-                  ? `28h Básico ($25,000) / 48h Completo ($38,000) · Cupo limitado a ${cohort.capacityPerCity} alumnas(os)`
-                  : isCdmx
-                    ? 'Respaldo Merrithew® · CECs incluidos'
-                    : 'Horas avaladas con práctica supervisada'}
-              </div>
-            </div>
           </div>
 
-          <div className="bg-white/50 border border-[#2A2624]/10 p-8 md:p-12 rounded-sm backdrop-blur-sm">
-            <h2 className="text-2xl font-serif italic text-[#2A2624] mb-8">
-              {cohort
-                ? `El Programa en ${shortCityName} Incluye`
-                : isCdmx
-                  ? 'El Programa Incluye'
-                  : 'Qué comparar en cada programa'}
-            </h2>
-            {cohort ? (
-              <ul className="space-y-4">
-                {cohort.benefits.map((benefit, bIdx) => (
-                  <li key={bIdx} className="flex items-start gap-3 text-sm text-[#5D5550] font-light">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723] mt-2 flex-shrink-0"></span>
-                    <span>{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-            ) : isCdmx ? (
-              <ul className="space-y-4">
-                <li className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span>
-                  Intensive Reformer 125h — {FEATURED.price ? formatMXN(FEATURED.price) : ''}
-                </li>
-                <li className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span>
-                  Intensive Mat-Plus™ + Advanced Mat (online en vivo)
-                </li>
-                <li className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span>
-                  Advanced Reformer — intensivo de 3 días
-                </li>
-                <li className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span>
-                  Grupos reducidos de 12 personas
-                </li>
-                <li className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span>
-                  Equipo Merrithew® de última generación
-                </li>
-                <li className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span>
-                  Ruta al Examen de Certificación Internacional
-                </li>
-              </ul>
-            ) : (
-              <ul className="space-y-4">
-                <li className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span> Alcance de la formación: Reformer, Mat o ruta integral
-                </li>
-                <li className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span> Horas de observación, práctica y enseñanza
-                </li>
-                <li className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span> Método de evaluación y requisitos de aprobación
-                </li>
-                <li className="flex items-center gap-3 text-sm text-[#5D5550] font-light">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span> Organismo que respalda el certificado
-                </li>
-              </ul>
-            )}
+          {/* Right Column: Beautiful Rendered City Landmark Card */}
+          <div className="lg:col-span-5">
+            <div className="relative rounded-3xl overflow-hidden border border-[#2A2624]/15 shadow-2xl bg-white">
+              <div className="aspect-[16/10] w-full overflow-hidden bg-[#2A2624]/10 relative">
+                <img
+                  src={cityInfo.landmarkImage}
+                  alt={`Sede de certificación de Pilates en ${cityInfo.name} - ${cityInfo.landmarkTitle}`}
+                  loading="eager"
+                  decoding="async"
+                  className="w-full h-full object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#2A2624]/90 via-[#2A2624]/20 to-transparent" />
+                <div className="absolute bottom-4 left-6 right-6 text-white">
+                  <span className="text-[11px] font-mono tracking-widest uppercase text-[#D9865B] block mb-1">
+                    Icono de la Ciudad
+                  </span>
+                  <h3 className="text-xl font-serif italic text-white mb-1">
+                    {cityInfo.landmarkTitle}
+                  </h3>
+                  <p className="text-xs text-[#EAE8E4]/80 font-light line-clamp-2">
+                    {cityInfo.description}
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-6 bg-[#F5F4F0] flex items-center justify-between">
+                <div>
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#5D5550] block">
+                    Estado / Región
+                  </span>
+                  <span className="text-sm font-semibold text-[#2A2624]">{cityInfo.state}</span>
+                </div>
+                {cityInfo.directorySlug && (
+                  <Link
+                    to={`/estudios-de-pilates/${cityInfo.directorySlug}`}
+                    className="text-xs uppercase tracking-wider text-[#3E2723] hover:underline font-semibold"
+                  >
+                    Ver Estudios Locales →
+                  </Link>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Cohort-specific weekend breakdown & webinar callout */}
+      {/* Flagship Cohort Section (For Monterrey & Querétaro) */}
       {cohort && (
-        <section className="py-16 px-8 md:px-24 max-w-[1800px] mx-auto">
-          <CertificationWebinarBanner city={key as 'queretaro' | 'monterrey'} className="mb-16" />
+        <section className="py-12 px-6 md:px-16 max-w-[1800px] mx-auto">
+          <CertificationWebinarBanner city={normalizedKey as 'queretaro' | 'monterrey'} className="mb-12" />
 
-          <div className="mb-12 text-center max-w-3xl mx-auto">
-            <span className="text-xs uppercase tracking-[0.3em] text-[#3E2723] font-semibold block mb-3">
-              Cronograma Académico · {cohort.periodLabel}
+          <div className="mb-10 text-center max-w-3xl mx-auto">
+            <span className="text-xs uppercase tracking-[0.3em] text-[#3E2723] font-semibold block mb-2">
+              Convocatoria Exclusiva CAMA · {cohort.periodLabel}
             </span>
             <h2 className="text-3xl md:text-5xl font-serif italic text-[#2A2624]">
               4 Fines de Semana Intensivos en {shortCityName}
             </h2>
-            <p className="text-base text-[#5D5550] font-light mt-4">
-              {cohort.scheduleHours} en {cohort.location.name}. Cada alumna(o) cuenta con su propio Reformer profesional de estudio sin rotación ni esperas.
+            <p className="text-base text-[#5D5550] font-light mt-3">
+              {cohort.scheduleHours} en {cohort.location.name}. Un Reformer profesional individual asignado por alumna(o) sin rotación ni esperas.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {cohort.weekends.map((w, idx) => (
-              <div key={idx} className="bg-white/70 border border-[#2A2624]/10 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="px-3 py-1 rounded-full bg-[#2A2624] text-white text-[11px] font-semibold uppercase tracking-wider">
-                    Fin de Semana {w.weekendNumber}
-                  </span>
-                  <span className="text-xs font-medium text-[#D9865B] flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5" /> {w.dates}
-                  </span>
+              <div key={idx} className="bg-white border border-[#2A2624]/10 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#2A2624] text-white text-[10px] font-semibold uppercase tracking-wider">
+                      FDS {w.weekendNumber}
+                    </span>
+                    <span className="text-xs font-mono text-[#D9865B]">{w.dates}</span>
+                  </div>
+                  <h3 className="text-lg font-serif italic text-[#2A2624] mb-2">{w.title}</h3>
+                  <p className="text-xs text-[#5D5550] font-light leading-relaxed mb-4">{w.description}</p>
                 </div>
-                <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">{w.title}</h3>
-                <p className="text-sm text-[#5D5550] font-light leading-relaxed mb-4">{w.description}</p>
-                <div className="text-xs text-gray-500 flex items-center gap-1">
+                <div className="pt-3 border-t border-[#2A2624]/10 text-[11px] font-mono text-[#5D5550] flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5 text-[#3E2723]" />
-                  <span>{w.hours} horas presenciales de instrucción y práctica guiada</span>
+                  <span>{w.hours}h presenciales</span>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Pricing & Waitlist Action Box */}
-          <div className="bg-[#2A2624] text-[#EAE8E4] rounded-3xl p-8 sm:p-12 shadow-xl border border-[#3E2723] text-center max-w-3xl mx-auto">
+          <div className="bg-[#2A2624] text-[#EAE8E4] rounded-3xl p-8 sm:p-12 shadow-xl border border-[#3E2723] text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs uppercase tracking-[0.25em] text-[#D9865B] font-semibold block mb-2">
-              Inversión Oficial · 12 Cupos por Sede
+              Inversión Oficial · Cupo Limitado a 12 Alumnas(os)
             </span>
-            <h3 className="text-2xl sm:text-3xl font-serif italic text-white mb-4">
+            <h3 className="text-2xl sm:text-3xl font-serif italic text-white mb-3">
               Básico: $25,000 MXN (28h) · Completo: $38,000 MXN (48h)
             </h3>
-            <p className="text-sm text-[#EAE8E4]/80 max-w-xl mx-auto mb-8 font-light">
-              Máquina individual asignada por alumna y acceso completo al campus virtual. Reserva hoy tu cupo congelando tu lugar con solo <strong>$400 MXN</strong>.
+            <p className="text-sm text-[#EAE8E4]/80 max-w-xl mx-auto mb-6 font-light">
+              Reformer propio durante cada sesión y acceso vitalicio al campus digital. Congela tu cupo con solo <strong>$400 MXN</strong>.
             </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-4">
               <button
                 onClick={() => {
-                  setWhopPlan(key === 'monterrey' ? WHOP_CONFIG.plans.apartadoMonterrey.id : WHOP_CONFIG.plans.apartadoQueretaro.id);
+                  setWhopPlan(
+                    normalizedKey === 'monterrey'
+                      ? WHOP_CONFIG.plans.apartadoMonterrey.id
+                      : WHOP_CONFIG.plans.apartadoQueretaro.id
+                  );
                   setWhopCheckoutOpen(true);
                 }}
-                className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#EAE8E4] text-[#2A2624] text-xs uppercase tracking-[0.2em] font-semibold hover:bg-white transition-colors shadow-lg"
+                className="px-8 py-4 rounded-full bg-[#EAE8E4] text-[#2A2624] text-xs uppercase tracking-[0.2em] font-semibold hover:bg-white transition-colors shadow-lg"
               >
-                {WHOP_CONFIG.paymentsEnabled ? 'Pre-reservar mi lugar ($400 MXN)' : 'Próximamente · Apartar Cupo ($400 MXN)'}
+                {WHOP_CONFIG.paymentsEnabled ? 'Pre-reservar mi lugar ($400 MXN)' : 'Apartar Cupo ($400 MXN)'}
               </button>
               <button
                 onClick={() => setModalOpen(true)}
-                className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/30 text-white text-xs uppercase tracking-[0.2em] hover:bg-white/10 transition-colors"
+                className="px-8 py-4 rounded-full border border-white/30 text-white text-xs uppercase tracking-[0.2em] hover:bg-white/10 transition-colors"
               >
                 Pre-registro sin costo
               </button>
-              <Link
-                to="/certificacion-pilates/webinar"
-                className="w-full sm:w-auto px-8 py-4 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-100 text-xs uppercase tracking-[0.2em] hover:bg-emerald-500/30 transition-colors"
-              >
-                Info Day (26 Sep)
-              </Link>
             </div>
           </div>
         </section>
       )}
 
-      {!isCdmx && !cohort && (
-        <section className="py-12 px-8 md:px-24 max-w-[1800px] mx-auto">
-          <CertificationWebinarBanner className="mb-4" />
+      {/* Flagship STOTT Program Section (For CDMX) */}
+      {isCdmx && (
+        <section className="py-8 px-6 md:px-16 max-w-[1800px] mx-auto mb-12">
+          <StottPremiumProgram
+            onPreRegister={() => setModalOpen(true)}
+            whatsappBase={PRIMARY_WHATSAPP}
+          />
         </section>
       )}
 
-      {isCdmx && (
-        <StottPremiumProgram
-          onPreRegister={() => setModalOpen(true)}
-          whatsappBase={PRIMARY_WHATSAPP}
-        />
-      )}
+      {/* Researched Partner Academies Directory */}
+      <section id="academias" className="py-16 px-6 md:px-16 max-w-[1800px] mx-auto border-t border-[#2A2624]/10">
+        <div className="max-w-3xl mb-12">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#3E2723]/10 text-[#3E2723] text-xs font-semibold uppercase tracking-wider mb-3">
+            <Building2 className="w-3.5 h-3.5" />
+            Directorio Oficial en {shortCityName}
+          </span>
+          <h2 className="text-3xl md:text-5xl font-serif italic text-[#2A2624] mb-4">
+            Escuelas y Academias de Certificación en {shortCityName}
+          </h2>
+          <p className="text-base text-[#5D5550] font-light leading-relaxed">
+            Hemos investigado y verificado a los formadores, master trainers y centros con aval oficial en {shortCityName}. Consulta su linaje, programas (Reformer, Mat, Implementos), dirección y contacta directamente a la dirección académica:
+          </p>
+        </div>
 
-      <section className="py-24 px-8 md:px-24 bg-white/40 border-t border-[#2A2624]/10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          {partners.map((partner) => (
+            <CertificationPartnerCard key={partner.id} partner={partner} />
+          ))}
+        </div>
+      </section>
+
+      {/* Requirements & Investment Guide */}
+      <section className="py-20 px-6 md:px-16 bg-white/50 border-t border-[#2A2624]/10">
         <div className="max-w-[1800px] mx-auto grid md:grid-cols-2 gap-16">
           <div>
-            <h2 className="text-3xl font-serif italic text-[#2A2624] mb-6">Requisitos</h2>
-            {isCdmx ? (
-              <ul className="space-y-4 text-[#5D5550] font-light">
-                <li className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3E2723] flex-shrink-0"></span>
-                  <span>Profesionales del fitness/salud o practicantes con 30+ horas de experiencia.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3E2723] flex-shrink-0"></span>
-                  <span>Horas de observación, práctica personal y enseñanza supervisada incluidas en cada ruta.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3E2723] flex-shrink-0"></span>
-                  <span>Nivel 2 (Advanced) requiere haber completado el intensivo de Nivel 1 correspondiente.</span>
-                </li>
-              </ul>
-            ) : (
-              <ul className="space-y-4 text-[#5D5550] font-light">
-                <li className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3E2723] flex-shrink-0"></span>
-                  <span>Pregunta por la experiencia previa requerida en Pilates o movimiento.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3E2723] flex-shrink-0"></span>
-                  <span>Confirma si las horas de observación, práctica y enseñanza están incluidas.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3E2723] flex-shrink-0"></span>
-                  <span>Solicita por escrito los criterios de evaluación y certificación.</span>
-                </li>
-              </ul>
-            )}
+            <h3 className="text-3xl font-serif italic text-[#2A2624] mb-6">Requisitos de Inscripción</h3>
+            <ul className="space-y-4 text-[#5D5550] font-light text-sm md:text-base leading-relaxed">
+              <li className="flex items-start gap-3">
+                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3E2723] shrink-0"></span>
+                <span><strong>Experiencia previa recomendada:</strong> Al menos 20 a 30 horas de práctica previa en Pilates Reformer o Mat, o perfil en ciencias del deporte / danza / fisioterapia.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3E2723] shrink-0"></span>
+                <span><strong>Horas de práctica supervisada:</strong> Para obtener diplomas con validez oficial, la mayoría de programas requieren cumplir horas de observación, práctica personal y docencia guiada.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3E2723] shrink-0"></span>
+                <span><strong>Evaluación final:</strong> Examen teórico anatómico y demostración práctica de enseñanza y cueing ante evaluadores certificados.</span>
+              </li>
+            </ul>
           </div>
+
           <div>
-            <h2 className="text-3xl font-serif italic text-[#2A2624] mb-6">Duración e inversión</h2>
-            {isCdmx ? (
-              <ul className="space-y-4 text-[#5D5550] font-light">
-                <li className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/50 flex-shrink-0"></span>
-                  <span>Intensive Reformer: 125 horas — $44,000 MXN (apartado $8,000 MXN).</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/50 flex-shrink-0"></span>
-                  <span>Intensive Mat-Plus™ + Advanced Mat: 95 horas — $36,800 MXN con manuales oficiales incluidos.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/50 flex-shrink-0"></span>
-                  <span>Advanced Reformer: 27 horas — $20,000 MXN (apartado $5,000 MXN).</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/50 flex-shrink-0"></span>
-                  <span>Pago con tarjeta disponible y descuentos por rutas completas de formación.</span>
-                </li>
-              </ul>
-            ) : (
-              <ul className="space-y-4 text-[#5D5550] font-light">
-                <li className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/50 flex-shrink-0"></span>
-                  <span>Compara horas lectivas, práctica personal y enseñanza supervisada por separado.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/50 flex-shrink-0"></span>
-                  <span>Confirma si manuales, evaluaciones, reposiciones e impuestos están incluidos en el precio.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/50 flex-shrink-0"></span>
-                  <span>Consulta directamente las fechas, costos y políticas de pago vigentes.</span>
-                </li>
-              </ul>
-            )}
+            <h3 className="text-3xl font-serif italic text-[#2A2624] mb-6">Duración e Inversión en México</h3>
+            <ul className="space-y-4 text-[#5D5550] font-light text-sm md:text-base leading-relaxed">
+              <li className="flex items-start gap-3">
+                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/50 shrink-0"></span>
+                <span><strong>Cursos Básicos Reformer (28h - 55h):</strong> $20,000 a $28,000 MXN. Ideal para instructores que inician en aparatología.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/50 shrink-0"></span>
+                <span><strong>Certificaciones Comprensivas / Sistema Completo (125h - 600h):</strong> $38,000 a $75,000+ MXN. Incluyen Reformer, Cadillac, Silla Wunda y Barriles con preparación para el examen internacional NPCP.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#5D5550]/50 shrink-0"></span>
+                <span><strong>Financiamiento:</strong> La mayoría de escuelas ofrecen pago en mensualidades o esquemas de apartado anticipado.</span>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
 
-      {!isCdmx && (
-        <section className="py-24 px-8 md:px-24 border-t border-[#2A2624]/10">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-serif italic text-[#2A2624] mb-10">Preguntas frecuentes</h2>
-            <div className="space-y-8">
-              {faqItems.map(item => (
-                <article key={item.question}>
-                  <h3 className="text-lg font-medium text-[#2A2624]">{item.question}</h3>
-                  <p className="mt-3 text-[#5D5550] font-light leading-relaxed">{item.answer}</p>
-                </article>
-              ))}
-            </div>
-            <div className="mt-12 flex flex-wrap gap-4">
-              {data.directorySlug && (
-                <Link
-                  to={`/estudios-de-pilates/${data.directorySlug}`}
-                  className="inline-flex items-center px-6 py-3 border border-[#2A2624]/20 rounded-full text-xs uppercase tracking-[0.15em] text-[#2A2624] hover:bg-white transition-colors"
-                >
-                  Ver clases y estudios en {shortCityName}
-                </Link>
-              )}
-              <Link
-                to="/reformer-para-estudio"
-                className="inline-flex items-center px-6 py-3 border border-[#2A2624]/20 rounded-full text-xs uppercase tracking-[0.15em] text-[#2A2624] hover:bg-white transition-colors"
-              >
-                Reformers para abrir un estudio
-              </Link>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Internal Linking / Equipment Section for Instructors & Studio Buyers */}
-      <section className="py-16 px-8 md:px-24 bg-[#F5F4F0] border-t border-[#2A2624]/10">
+      {/* Frequently Asked Questions */}
+      <section className="py-20 px-6 md:px-16 border-t border-[#2A2624]/10 bg-white">
         <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-serif italic text-[#2A2624] mb-10 text-center">
+            Preguntas Frecuentes sobre Certificación en {shortCityName}
+          </h2>
+          <div className="space-y-8">
+            {faqItems.map((item, idx) => (
+              <article key={idx} className="border-b border-[#2A2624]/10 pb-6">
+                <h3 className="text-lg font-medium text-[#2A2624] mb-2">{item.question}</h3>
+                <p className="text-[#5D5550] font-light leading-relaxed text-sm md:text-base">{item.answer}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Internal Linking / Equipment Section for Future Studio Owners */}
+      <section className="py-16 px-6 md:px-16 bg-[#F5F4F0] border-t border-[#2A2624]/10">
+        <div className="max-w-4xl mx-auto text-center md:text-left">
           <span className="text-xs font-bold font-sans tracking-[0.25em] uppercase text-[#3E2723] mb-3 block opacity-70">
-            Equipamiento para Instructoras y Estudios
+            Equipamiento para Nuevos Estudios & Entrenadores en {shortCityName}
           </span>
           <h2 className="text-2xl md:text-3xl font-serif italic text-[#2A2624] mb-4">
-            ¿Planeas equipar tu espacio o abrir un estudio de Pilates en {shortCityName}?
+            ¿Planeas abrir un estudio boutique o equipar tu espacio en {shortCityName}?
           </h2>
           <p className="text-sm md:text-base text-[#5D5550] font-light leading-relaxed mb-8">
-            Diseñamos y fabricamos camas de Pilates Reformer profesionales con ingeniería alemana, nogal, roble, aluminio anodizado y cuero genuino. Envíos directos a {shortCityName} y a toda la República Mexicana con 1 año de garantía y refacciones inmediatas.
+            Diseñamos y fabricamos camas de Pilates Reformer profesionales con ingeniería alemana, nogal americano, roble blanco, aluminio anodizado y cuero genuino libre de plásticos. Envíos directos a {shortCityName} y a todo México con 1 año de garantía y refacciones inmediatas.
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap justify-center md:justify-start gap-3">
             <Link
               to="/cama-de-pilates"
               className="inline-flex items-center px-6 py-3 rounded-full bg-[#2A2624] text-[#EAE8E4] text-xs font-bold uppercase tracking-[0.15em] hover:bg-[#3E2723] hover:scale-105 transition-all"
@@ -647,13 +522,13 @@ const CertificacionPilatesCity: React.FC = () => {
               to="/cama-de-pilates/precio"
               className="inline-flex items-center px-6 py-3 rounded-full border border-[#2A2624]/20 bg-white text-[#2A2624] text-xs font-bold uppercase tracking-[0.15em] hover:bg-[#EAE8E4] transition-all"
             >
-              Precios de Camas de Pilates (Desde $29,700 MXN)
+              Precios de Camas de Pilates
             </Link>
             <Link
-              to="/cama-de-pilates/en-venta"
+              to="/reformer-para-estudio"
               className="inline-flex items-center px-6 py-3 rounded-full border border-[#2A2624]/20 bg-white text-[#2A2624] text-xs font-bold uppercase tracking-[0.15em] hover:bg-[#EAE8E4] transition-all"
             >
-              Venta de Camas con Entrega Express
+              Packs Comerciales para Estudio
             </Link>
           </div>
         </div>
@@ -663,14 +538,14 @@ const CertificacionPilatesCity: React.FC = () => {
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         defaultCity={cityName}
-        source={`/certificacion-pilates/${key}`}
+        source={`/certificacion-pilates/${normalizedKey}`}
       />
 
       <WhopCheckoutModal
         isOpen={whopCheckoutOpen}
         onClose={() => setWhopCheckoutOpen(false)}
         planId={whopPlan}
-        cohort={cohort ? (key === 'queretaro' ? 'queretaro-nov-2026' : 'monterrey-dec-jan-2026-2027') : undefined}
+        cohort={cohort ? (normalizedKey === 'queretaro' ? 'queretaro-nov-2026' : 'monterrey-dec-jan-2026-2027') : undefined}
       />
     </LuxuryLayout>
   );

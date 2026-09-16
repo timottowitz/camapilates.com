@@ -499,10 +499,15 @@ async function main() {
   
   const certCities = [
     { key: 'cdmx', name: 'Ciudad de México (CDMX)', shortName: 'Ciudad de México', directorySlug: 'ciudad-de-mexico' },
-    { key: 'guadalajara', name: 'Guadalajara (Jalisco)', shortName: 'Guadalajara', directorySlug: 'guadalajara' },
     { key: 'monterrey', name: 'Monterrey (NL)', shortName: 'Monterrey', directorySlug: 'monterrey' },
-    { key: 'puebla', name: 'Puebla', shortName: 'Puebla' },
     { key: 'queretaro', name: 'Querétaro', shortName: 'Querétaro' },
+    { key: 'guadalajara', name: 'Guadalajara (Jalisco)', shortName: 'Guadalajara', directorySlug: 'guadalajara' },
+    { key: 'puebla', name: 'Puebla', shortName: 'Puebla' },
+    { key: 'puerto-vallarta', name: 'Puerto Vallarta (Jalisco)', shortName: 'Puerto Vallarta' },
+    { key: 'tijuana', name: 'Tijuana (Baja California)', shortName: 'Tijuana' },
+    { key: 'riviera-maya', name: 'Riviera Maya (Quintana Roo)', shortName: 'Riviera Maya' },
+    { key: 'leon', name: 'León (Guanajuato)', shortName: 'León' },
+    { key: 'merida', name: 'Mérida (Yucatán)', shortName: 'Mérida' },
   ];
 
   // Homepage snapshot for crawlers and native Cloudflare builds.
@@ -995,24 +1000,26 @@ async function main() {
     const cityTitle = isMonterrey
       ? 'Certificación Pilates Monterrey [Fechas 2026]'
       : isQueretaro
-        ? 'Certificación Pilates Querétaro [Nov 2026]'
+        ? 'Certificación Pilates Querétaro [Nov 2026 y Sedes]'
         : isPuebla
-          ? 'Certificación Pilates Puebla [Costos y Fechas]'
+          ? 'Certificación Pilates Puebla 2026: Costos, Fechas y Aval Oficial'
           : isCdmx
-            ? 'Certificación Pilates CDMX [STOTT 2026]'
-            : `Certificación Pilates ${c.shortName} [2026]`;
+            ? 'Certificación Pilates CDMX [STOTT & Linaje Clásico 2026]'
+            : `Certificación Pilates ${c.shortName} [2026: Escuelas y Avales]`;
     const customTitle = `${cityTitle} | CAMA Pilates`;
     const customDesc = isQueretaro
-      ? 'Certifícate como instructora de Pilates Reformer en Querétaro (Noviembre 2026): Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). 12 cupos exclusivos con Reformer individual.'
+      ? 'Certifícate como instructora de Pilates Reformer en Querétaro (Noviembre 2026): Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). 12 cupos exclusivos con Reformer individual y directorio de academias.'
       : isMonterrey
-        ? 'Certifícate como instructora de Pilates Reformer en Monterrey (Dic 2026 – Ene 2027): Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). 12 cupos exclusivos con Reformer individual.'
-        : `Compara opciones de certificación de Pilates Reformer en ${c.shortName}. Revisa requisitos, duración, costos y criterios antes de solicitar fechas.`;
+        ? 'Certifícate como instructora de Pilates Reformer en Monterrey (Dic 2026 – Ene 2027): Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). 12 cupos exclusivos con Reformer individual y directorio de academias.'
+        : isCdmx
+          ? 'Certifícate en STOTT PILATES® en CDMX Santa Fe y escuelas clásicas de 2da generación en Polanco y Roma Norte. Sedes, costos y registro.'
+          : `Directorio de academias y escuelas de certificación de Pilates en ${c.shortName}. Compara opciones en Reformer y Mat, horas avaladas (NPCP/SEP), requisitos, costos y contacto directo.`;
 
     const head = {
       title: customTitle,
       description: customDesc,
       canonical: `${origin}/certificacion-pilates/${c.key}`,
-      ogImage: `${origin}/og/cama-de-pilates-venta-mexico.png`,
+      ogImage: `${origin}/images/cities/${c.key}.webp`,
       ogType: 'website'
     };
     const certFormUrl = process.env.CERT_FORM_URL || process.env.VITE_AIRTABLE_CERT_FORM_URL || `https://wa.me/525548468190?text=${encodeURIComponent('Hola, quiero hacer mi pre-registro para la certificación de Pilates en ' + c.shortName)}`;
