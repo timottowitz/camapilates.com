@@ -216,6 +216,11 @@ const IndexAuthority: React.FC = () => {
             </motion.div>
           </div>
 
+          {/* Hidden SEO Landmark - Preserves pristine minimalist UI while giving Google full section authority */}
+          <h2 className="sr-only">
+            Ecosistema de Cama de Pilates: Modelos Reformer, Estudios, Instructores y Certificación en México
+          </h2>
+
           {/* Bento Grid */}
           <motion.div
             variants={containerVariants}
@@ -275,9 +280,9 @@ const IndexAuthority: React.FC = () => {
                           {c.eyebrow}
                         </span>
                       </div>
-                      <h3 className="font-serif text-3xl md:text-4xl text-white leading-none tracking-tight mb-2">
+                      <h2 className="font-serif text-3xl md:text-4xl text-white leading-none tracking-tight mb-2 mt-0">
                         {c.title}
-                      </h3>
+                      </h2>
                       <p className="text-white/70 text-sm font-medium leading-relaxed max-w-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75 transform translate-y-2 group-hover:translate-y-0">
                         {c.description}
                       </p>

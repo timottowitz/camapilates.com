@@ -68,9 +68,9 @@ export const CertificationWebinarBanner: React.FC<CertificationWebinarBannerProp
             <Award className="w-3.5 h-3.5" /> Formación Presencial Oficial · Cupos Limitados
           </div>
 
-          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif italic text-white leading-tight mb-2 tracking-tight drop-shadow-sm">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif italic text-white leading-tight mb-2 mt-0 tracking-tight drop-shadow-sm">
             {title}
-          </h3>
+          </h2>
 
           <p className="text-xs sm:text-sm text-[#EAE8E4]/90 font-light leading-relaxed mb-5 drop-shadow-sm">
             Certificación presencial intensiva con <strong>Gabi</strong> y <strong>Laura Munive</strong>: Curso Básico (28h · $25,000 MXN) y Curso Completo (48h · $38,000 MXN). Práctica en Reformer, cupos reducidos (12 por sede) y sesión informativa online previa (Info Day · Sábado 26 de Septiembre).

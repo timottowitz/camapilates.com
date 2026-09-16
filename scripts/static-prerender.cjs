@@ -526,14 +526,17 @@ async function main() {
         <h1 class="mt-4 text-4xl md:text-6xl font-bold text-gray-900">Cama de Pilates Reformer en México</h1>
         <p class="mt-6 text-lg text-gray-700 leading-8">Compara modelos para casa y estudio, consulta precios y encuentra guías para elegir una cama de Pilates con envío desde CDMX.</p>
       </header>
-      <nav aria-label="Enlaces principales" class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        <a href="/shop/category/reformers" class="rounded-lg border p-6"><strong>Comprar Reformers</strong><br><span>Explora modelos y precios disponibles.</span></a>
-        <a href="/reformer-para-estudio" class="rounded-lg border p-6"><strong>Reformer para estudio</strong><br><span>Equipo profesional para uso intensivo.</span></a>
-        <a href="/reformer-para-casa" class="rounded-lg border p-6"><strong>Reformer para casa</strong><br><span>Guía para espacios residenciales.</span></a>
-        <a href="/cama-de-pilates/precio" class="rounded-lg border p-6"><strong>Precio de cama de Pilates</strong><br><span>Rangos y factores de comparación.</span></a>
-        <a href="/estudios-de-pilates" class="rounded-lg border p-6"><strong>Estudios y clases</strong><br><span>Directorio de estudios de Pilates.</span></a>
-        <a href="/certificacion-pilates" class="rounded-lg border p-6"><strong>Certificación de Pilates</strong><br><span>Formación para instructores.</span></a>
-      </nav>
+      <section class="mt-12">
+        <h2 class="sr-only">Ecosistema de Cama de Pilates: Modelos Reformer, Estudios y Certificación</h2>
+        <nav aria-label="Enlaces principales" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <a href="/shop/category/reformers" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Comprar Reformers</h3><p class="mt-1 text-sm text-gray-600">Explora modelos y precios disponibles.</p></a>
+          <a href="/reformer-para-estudio" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Reformer para estudio</h3><p class="mt-1 text-sm text-gray-600">Equipo profesional para uso intensivo.</p></a>
+          <a href="/reformer-para-casa" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Reformer para casa</h3><p class="mt-1 text-sm text-gray-600">Guía para espacios residenciales.</p></a>
+          <a href="/cama-de-pilates/precio" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Precio de cama de Pilates</h3><p class="mt-1 text-sm text-gray-600">Rangos y factores de comparación.</p></a>
+          <a href="/estudios-de-pilates" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Estudios y clases</h3><p class="mt-1 text-sm text-gray-600">Directorio de estudios de Pilates.</p></a>
+          <a href="/certificacion-pilates" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Certificación de Pilates</h3><p class="mt-1 text-sm text-gray-600">Formación para instructores.</p></a>
+        </nav>
+      </section>
     </main>`;
     const schema = {
       '@context': 'https://schema.org',
