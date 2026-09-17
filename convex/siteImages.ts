@@ -16,6 +16,72 @@ export const generateUploadUrl = mutation({
 });
 
 /**
+ * Generate upload URL directly (for deployment / management scripts)
+ */
+export const directGenerateUploadUrl = mutation({
+  args: {},
+  handler: async (ctx) => {
+    return await ctx.storage.generateUploadUrl();
+  },
+});
+
+/**
+ * Direct upload metadata (for deployment / management scripts)
+ */
+export const directUpload = mutation({
+  args: {
+    name: v.string(),
+    category: v.string(),
+    storageId: v.id('_storage'),
+    mimeType: v.string(),
+    size: v.number(),
+    width: v.optional(v.number()),
+    height: v.optional(v.number()),
+    alt: v.optional(v.string()),
+    description: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const existing = await ctx.db
+      .query('site_images')
+      .withIndex('by_name', (q) => q.eq('name', args.name))
+      .first();
+
+    const now = Date.now();
+
+    if (existing) {
+      await ctx.db.patch(existing._id, {
+        storageId: args.storageId,
+        mimeType: args.mimeType,
+        size: args.size,
+        width: args.width,
+        height: args.height,
+        alt: args.alt,
+        description: args.description,
+        isActive: true,
+        updatedAt: now,
+      });
+      return existing._id;
+    }
+
+    return await ctx.db.insert('site_images', {
+      name: args.name,
+      category: args.category,
+      storageId: args.storageId,
+      mimeType: args.mimeType,
+      size: args.size,
+      width: args.width,
+      height: args.height,
+      alt: args.alt,
+      description: args.description,
+      isActive: true,
+      cacheControl: 'public, max-age=31536000, immutable',
+      createdAt: now,
+      updatedAt: now,
+    });
+  },
+});
+
+/**
  * Upload a new site image
  * After uploading file to URL from generateUploadUrl, call this with the storageId
  */

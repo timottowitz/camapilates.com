@@ -263,15 +263,17 @@ const Shop: React.FC = () => {
             <CategoryIcons21 items={cats.map(c => {
               const imgMap: Record<string, string | undefined> = {
                 'reformers': assets.catReformers,
+                'cadillacs-y-torres': assets.catCadillacs,
+                'sillas-y-barriles': assets.catChairs,
                 'accesorios': assets.catAccessories,
                 'ropa': assets.catRopa,
-                'terapia-de-luz': assets.catLuz
+                'terapia-de-luz': assets.catLuz,
               };
               return {
                 label: c.name,
                 href: `/shop/category/${c.slug}`,
                 count: c.count,
-                img: imgMap[c.slug],
+                img: imgMap[c.slug] || assets.catReformers,
               };
             })} />
           </div>
