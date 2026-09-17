@@ -855,7 +855,66 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
         </div>
       </div>
 
-      <!-- Content Breakdown -->
+      <!-- Market Comparison Table -->
+      <div class="bg-white border border-stone-200 rounded-2xl p-6 md:p-8 shadow-sm mb-12">
+        <h2 class="text-2xl md:text-3xl font-serif italic font-bold text-stone-900 mb-4">
+          Comparativa de Precios en México: CAMA vs. Otras Marcas
+        </h2>
+        <p class="text-stone-600 text-sm mb-6">
+          Rangos de precios reales, materiales y condiciones de garantía de las marcas disponibles en el mercado mexicano:
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs md:text-sm">
+            <thead>
+              <tr class="border-b-2 border-stone-200 bg-stone-50 text-stone-800 font-bold">
+                <th class="p-3 md:p-4">Marca</th>
+                <th class="p-3 md:p-4">Rango de Precios (MXN)</th>
+                <th class="p-3 md:p-4">Tipo de Resistencia</th>
+                <th class="p-3 md:p-4">Material de Estructura</th>
+                <th class="p-3 md:p-4">Garantía y Servicio</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-100 text-stone-700">
+              <tr class="bg-emerald-50/50 font-medium">
+                <td class="p-3 md:p-4 font-bold text-emerald-900">CAMA Pilates®</td>
+                <td class="p-3 md:p-4 font-extrabold text-stone-900">$23,234 – $85,050</td>
+                <td class="p-3 md:p-4">5 resortes alemanes de alambre de piano calibrados</td>
+                <td class="p-3 md:p-4">Roble / Maple macizo o Aluminio aeroespacial</td>
+                <td class="p-3 md:p-4 text-emerald-800">3 años garantía directa, 12 MSI, refacciones 24-48h</td>
+              </tr>
+              <tr>
+                <td class="p-3 md:p-4 font-bold text-stone-900">Vanlig</td>
+                <td class="p-3 md:p-4">$4,489 – $50,999</td>
+                <td class="p-3 md:p-4">Ligas elásticas (gama baja) / resortes genéricos</td>
+                <td class="p-3 md:p-4">MDF prensado / chapado roble / tubular plegable</td>
+                <td class="p-3 md:p-4">3 a 6 meses de garantía; stock recurrente agotado</td>
+              </tr>
+              <tr>
+                <td class="p-3 md:p-4 font-bold text-stone-900">Ironside / Tayga</td>
+                <td class="p-3 md:p-4">$19,690 – $25,990</td>
+                <td class="p-3 md:p-4">Cuerdas elásticas / resortes básicos de gimnasio</td>
+                <td class="p-3 md:p-4">Acero tubular plegable (130-150 kg límite)</td>
+                <td class="p-3 md:p-4">1 año; enfocado a crossfit, no pilates clínico</td>
+              </tr>
+              <tr>
+                <td class="p-3 md:p-4 font-bold text-stone-900">UCAN</td>
+                <td class="p-3 md:p-4">$40,000 – $50,600</td>
+                <td class="p-3 md:p-4">Resortes estándar para estudio</td>
+                <td class="p-3 md:p-4">Aluminio lacado en blanco (sin opciones en madera)</td>
+                <td class="p-3 md:p-4">1 año; catálogo limitado a 4 modelos metálicos</td>
+              </tr>
+              <tr>
+                <td class="p-3 md:p-4 font-bold text-stone-900">Balanced Body (Importado)</td>
+                <td class="p-3 md:p-4">$90,000 – $180,000+</td>
+                <td class="p-3 md:p-4">Resortes Signature calibrados</td>
+                <td class="p-3 md:p-4">Maple norteamericano / Aluminio</td>
+                <td class="p-3 md:p-4">Garantía en EE.UU.; 8–16 semanas de espera y aranceles</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <div class="prose prose-stone max-w-none mb-16">
         <h2 class="text-3xl font-serif italic font-bold text-stone-900 mb-6">
           ¿Qué Factores Determinan el Costo de una Cama de Pilates en México?
@@ -909,6 +968,88 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
           <a href="/cama-de-pilates" class="inline-block bg-white text-stone-950 font-bold text-xs uppercase tracking-widest px-8 py-4 rounded-full hover:bg-stone-100 transition-all">
             Ver Modelos en Venta en /cama-de-pilates →
           </a>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="bg-white border border-stone-200 rounded-2xl p-6 md:p-10 shadow-sm mb-12 not-prose">
+        <span class="text-xs font-bold uppercase tracking-widest text-amber-800">Preguntas Frecuentes</span>
+        <h2 class="text-2xl md:text-3xl font-serif italic font-bold text-stone-900 mt-1 mb-6">
+          Preguntas Frecuentes sobre Precios y Presupuesto
+        </h2>
+        <div class="space-y-4">
+          <details class="border border-stone-200 rounded-xl p-5 group bg-stone-50/50">
+            <summary class="font-bold text-base text-stone-900 cursor-pointer list-none flex justify-between items-center">
+              ¿Cuánto cuesta una cama de Pilates en México en 2026?
+              <span class="text-stone-400 group-open:rotate-45 transition-transform text-xl font-light">+</span>
+            </summary>
+            <div class="mt-3 text-stone-600 text-sm leading-relaxed border-t border-stone-200/60 pt-3">
+              En México, el precio de una cama de Pilates Reformer profesional oscila entre $23,234 MXN para modelos clásicos de roble o aluminio de entrada, y entre $32,900 y $85,050 MXN para modelos profesionales de estudio con acabados de nogal, roble macizo, aluminio anodizado estructural y aditamentos de media torre o Cadillac.
+            </div>
+          </details>
+          <details class="border border-stone-200 rounded-xl p-5 group bg-stone-50/50">
+            <summary class="font-bold text-base text-stone-900 cursor-pointer list-none flex justify-between items-center">
+              ¿Cuál es el precio de una cama de Pilates para casa?
+              <span class="text-stone-400 group-open:rotate-45 transition-transform text-xl font-light">+</span>
+            </summary>
+            <div class="mt-3 text-stone-600 text-sm leading-relaxed border-t border-stone-200/60 pt-3">
+              Nuestras opciones residenciales inician desde $23,234 MXN (o desde $1,936 MXN/mes a 12 MSI). Cuentan con chasis rígido que elimina vibraciones, carro silencioso con rodamientos sellados y sistema de 5 resortes alemanes de alambre de piano.
+            </div>
+          </details>
+          <details class="border border-stone-200 rounded-xl p-5 group bg-stone-50/50">
+            <summary class="font-bold text-base text-stone-900 cursor-pointer list-none flex justify-between items-center">
+              ¿Cuál es el precio de una cama de Pilates de estudio profesional?
+              <span class="text-stone-400 group-open:rotate-45 transition-transform text-xl font-light">+</span>
+            </summary>
+            <div class="mt-3 text-stone-600 text-sm leading-relaxed border-t border-stone-200/60 pt-3">
+              Los Reformers profesionales para estudio boutique rondan entre $36,716 y $69,617 MXN para camas fijas de madera maciza o aluminio aeroespacial, y hasta $85,050 MXN para modelos con media torre o estructura de Cadillac. Todos con garantía directa de 3 años y tolerancias para uso comercial continuo de 8 a 10 horas diarias.
+            </div>
+          </details>
+          <details class="border border-stone-200 rounded-xl p-5 group bg-stone-50/50">
+            <summary class="font-bold text-base text-stone-900 cursor-pointer list-none flex justify-between items-center">
+              ¿Qué factores influyen en el precio de una cama de Pilates?
+              <span class="text-stone-400 group-open:rotate-45 transition-transform text-xl font-light">+</span>
+            </summary>
+            <div class="mt-3 text-stone-600 text-sm leading-relaxed border-t border-stone-200/60 pt-3">
+              Los cuatro factores determinantes son: 1) Materiales del chasis (madera maciza de 30 mm o aluminio estructural vs MDF/perfiles delgados), 2) Calibración y origen de los resortes (alambre de piano alemán vs resortes genéricos o ligas), 3) Rodamientos y rieles (deslizamiento ultra silencioso de alta precisión), y 4) Disponibilidad de refacciones locales y garantía con soporte directo en México.
+            </div>
+          </details>
+          <details class="border border-stone-200 rounded-xl p-5 group bg-stone-50/50">
+            <summary class="font-bold text-base text-stone-900 cursor-pointer list-none flex justify-between items-center">
+              ¿Vale la pena comprar una cama de Pilates económica o plegable de importación?
+              <span class="text-stone-400 group-open:rotate-45 transition-transform text-xl font-light">+</span>
+            </summary>
+            <div class="mt-3 text-stone-600 text-sm leading-relaxed border-t border-stone-200/60 pt-3">
+              Las camas plegables de menos de $15,000 MXN suelen sacrificar rigidez estructural, flexionándose en el punto de pliegue y descalibrando la alineación de columna del practicante. Además, la mayoría utiliza cuerdas elásticas en lugar de resortes calibrados y carecen totalmente de refacciones en México cuando se rompe una rueda o polea.
+            </div>
+          </details>
+          <details class="border border-stone-200 rounded-xl p-5 group bg-stone-50/50">
+            <summary class="font-bold text-base text-stone-900 cursor-pointer list-none flex justify-between items-center">
+              ¿Qué incluye normalmente el precio de un Reformer CAMA Pilates?
+              <span class="text-stone-400 group-open:rotate-45 transition-transform text-xl font-light">+</span>
+            </summary>
+            <div class="mt-3 text-stone-600 text-sm leading-relaxed border-t border-stone-200/60 pt-3">
+              Incluye el chasis completo ensamblado, carro tapizado en microfibra de alta resistencia, barra de pies ajustable multidireccional, sistema de 5 resortes alemanes calibrados por color, cabecera ajustable de 3 posiciones, hombreras ergonómicas, juego de poleas silenciosas, correas dobles de manos/pies y caja (box) según el modelo seleccionado.
+            </div>
+          </details>
+          <details class="border border-stone-200 rounded-xl p-5 group bg-stone-50/50">
+            <summary class="font-bold text-base text-stone-900 cursor-pointer list-none flex justify-between items-center">
+              ¿Ofrecen opciones de pago a Meses Sin Intereses (MSI)?
+              <span class="text-stone-400 group-open:rotate-45 transition-transform text-xl font-light">+</span>
+            </summary>
+            <div class="mt-3 text-stone-600 text-sm leading-relaxed border-t border-stone-200/60 pt-3">
+              Sí, contamos con financiamiento de hasta 12 Meses Sin Intereses con tarjetas de crédito de bancos participantes en México a través de pasarelas de pago seguras, además de descuentos preferenciales por pago de contado vía transferencia SPEI.
+            </div>
+          </details>
+          <details class="border border-stone-200 rounded-xl p-5 group bg-stone-50/50">
+            <summary class="font-bold text-base text-stone-900 cursor-pointer list-none flex justify-between items-center">
+              ¿Cuánto cuesta el envío y cómo se protege el equipo durante el transporte?
+              <span class="text-stone-400 group-open:rotate-45 transition-transform text-xl font-light">+</span>
+            </summary>
+            <div class="mt-3 text-stone-600 text-sm leading-relaxed border-t border-stone-200/60 pt-3">
+              Realizamos envíos asegurados a toda la República Mexicana (CDMX, Monterrey, Guadalajara, Querétaro, Puebla, Mérida, etc.). Cada cama viaja embalada en un huacal de madera tratada para exportación con seguro de transporte puerta a puerta.
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -1644,23 +1785,63 @@ async function main() {
           name: '¿Cuánto cuesta una cama de Pilates en México en 2026?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'En México, una cama de Pilates Reformer cuesta entre $23,234 MXN para modelos residenciales de entrada y entre $32,900 y $85,050 MXN para modelos profesionales de estudio con acabados de nogal, roble, cuero genuino y media torre.'
+            text: 'En México, el precio de una cama de Pilates Reformer profesional oscila entre $23,234 MXN para modelos clásicos de roble o aluminio de entrada, y entre $32,900 y $85,050 MXN para modelos profesionales de estudio con acabados de nogal, roble macizo, aluminio anodizado estructural y aditamentos de media torre o Cadillac.'
           }
         },
         {
           '@type': 'Question',
-          name: '¿Qué incluye normalmente el precio de un Reformer?',
+          name: '¿Cuál es el precio de una cama de Pilates para casa?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Nuestros equipos incluyen chasis estructural de madera noble o aluminio, 5 resortes alemanes calibrados, carro deslizante con rodamientos silenciosos, correas dobles, caja (box) y tabla de salto (jumpboard) según la configuración elegida.'
+            text: 'Nuestras opciones residenciales inician desde $23,234 MXN (o desde $1,936 MXN/mes a 12 MSI). Cuentan con chasis rígido que elimina vibraciones, carro silencioso con rodamientos sellados y sistema de 5 resortes alemanes de alambre de piano.'
           }
         },
         {
           '@type': 'Question',
-          name: '¿Tienen financiamiento o pagos a meses?',
+          name: '¿Cuál es el precio de una cama de Pilates de estudio profesional?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Sí, ofrecemos hasta 12 Meses Sin Intereses con tarjetas de crédito participantes y planes comerciales personalizados para equipamiento de estudios con más de 8 camas (descuento del 20%).'
+            text: 'Los Reformers profesionales para estudio boutique rondan entre $36,716 y $69,617 MXN para camas fijas de madera maciza o aluminio aeroespacial, y hasta $85,050 MXN para modelos con media torre o estructura de Cadillac. Todos con garantía directa de 3 años y tolerancias para uso comercial continuo de 8 a 10 horas diarias.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Qué factores influyen en el precio de una cama de Pilates?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Los cuatro factores determinantes son: 1) Materiales del chasis (madera maciza de 30 mm o aluminio estructural vs MDF/perfiles delgados), 2) Calibración y origen de los resortes (alambre de piano alemán vs resortes genéricos o ligas), 3) Rodamientos y rieles (deslizamiento ultra silencioso de alta precisión), y 4) Disponibilidad de refacciones locales y garantía con soporte directo en México.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Vale la pena comprar una cama de Pilates económica o plegable de importación?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Las camas plegables de menos de $15,000 MXN suelen sacrificar rigidez estructural, flexionándose en el punto de pliegue y descalibrando la alineación de columna del practicante. Además, la mayoría utiliza cuerdas elásticas en lugar de resortes calibrados y carecen totalmente de refacciones en México cuando se rompe una rueda o polea.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Qué incluye normalmente el precio de un Reformer CAMA Pilates?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Incluye el chasis completo ensamblado, carro tapizado en microfibra de alta resistencia, barra de pies ajustable multidireccional, sistema de 5 resortes alemanes calibrados por color, cabecera ajustable de 3 posiciones, hombreras ergonómicas, juego de poleas silenciosas, correas dobles de manos/pies y caja (box) según el modelo seleccionado.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Ofrecen opciones de pago a Meses Sin Intereses (MSI)?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí, contamos con financiamiento de hasta 12 Meses Sin Intereses con tarjetas de crédito de bancos participantes en México a través de pasarelas de pago seguras, además de descuentos preferenciales por pago de contado vía transferencia SPEI.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cuánto cuesta el envío y cómo se protege el equipo durante el transporte?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Realizamos envíos asegurados a toda la República Mexicana (CDMX, Monterrey, Guadalajara, Querétaro, Puebla, Mérida, etc.). Cada cama viaja embalada en un huacal de madera tratada para exportación con seguro de transporte puerta a puerta.'
           }
         }
       ]

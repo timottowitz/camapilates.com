@@ -13,17 +13,52 @@ const CamaDePilatesPrecio: React.FC = () => {
   const url = `${origin}/cama-de-pilates/precio`;
   const { title, description: desc } = requireRouteMeta('/cama-de-pilates/precio');
 
+  const faqs = [
+    {
+      q: '¿Cuánto cuesta una cama de Pilates en México en 2026?',
+      a: 'En México, el precio de una cama de Pilates Reformer profesional oscila entre $23,234 MXN para modelos clásicos de roble o aluminio de entrada, y entre $32,900 y $85,050 MXN para modelos profesionales de estudio con acabados de nogal, roble macizo, aluminio anodizado estructural y aditamentos de media torre o Cadillac.'
+    },
+    {
+      q: '¿Cuál es el precio de una cama de Pilates para casa?',
+      a: 'Nuestras opciones residenciales inician desde $23,234 MXN (o desde $1,936 MXN/mes a 12 MSI). Cuentan con chasis rígido que elimina vibraciones, carro silencioso con rodamientos sellados y sistema de 5 resortes alemanes de alambre de piano.'
+    },
+    {
+      q: '¿Cuál es el precio de una cama de Pilates de estudio profesional?',
+      a: 'Los Reformers profesionales para estudio boutique rondan entre $36,716 y $69,617 MXN para camas fijas de madera maciza o aluminio aeroespacial, y hasta $85,050 MXN para modelos con media torre o estructura de Cadillac. Todos con garantía directa de 3 años y tolerancias para uso comercial continuo.'
+    },
+    {
+      q: '¿Qué factores influyen en el precio de una cama de Pilates?',
+      a: 'Los cuatro factores determinantes son: 1) Materiales del chasis (madera maciza de 30 mm o aluminio estructural vs MDF/perfiles delgados), 2) Calibración y origen de los resortes (alambre de piano alemán vs resortes genéricos o ligas), 3) Rodamientos y rieles (deslizamiento ultra silencioso de alta precisión), y 4) Disponibilidad de refacciones locales y garantía con soporte directo en México.'
+    },
+    {
+      q: '¿Vale la pena comprar una cama de Pilates económica o plegable de importación?',
+      a: 'Las camas plegables de menos de $15,000 MXN suelen sacrificar rigidez estructural, flexionándose en el punto de pliegue y descalibrando la alineación de columna del practicante. Además, la mayoría utiliza cuerdas elásticas en lugar de resortes calibrados y carecen totalmente de refacciones en México cuando se desgastan las poleas.'
+    },
+    {
+      q: '¿Qué incluye normalmente el precio de un Reformer CAMA Pilates?',
+      a: 'Incluye el chasis completo ensamblado, carro tapizado en microfibra de alta resistencia, barra de pies ajustable multidireccional, sistema de 5 resortes alemanes calibrados por color, cabecera ajustable de 3 posiciones, hombreras ergonómicas, juego de poleas silenciosas, correas dobles de manos/pies y caja (box) según el modelo seleccionado.'
+    },
+    {
+      q: '¿Ofrecen opciones de pago a Meses Sin Intereses (MSI)?',
+      a: 'Sí, contamos con financiamiento de hasta 12 Meses Sin Intereses con tarjetas de crédito de bancos participantes en México a través de pasarelas de pago seguras, además de descuentos preferenciales por pago de contado vía transferencia SPEI.'
+    },
+    {
+      q: '¿Cuánto cuesta el envío y cómo se protege el equipo durante el transporte?',
+      a: 'Realizamos envíos asegurados a toda la República Mexicana (CDMX, Monterrey, Guadalajara, Querétaro, Puebla, Mérida, etc.). Cada cama viaja embalada en un huacal de madera tratada para exportación con seguro de transporte puerta a puerta.'
+    }
+  ];
+
   const faq = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      { '@type': 'Question', name: '¿Cuánto cuesta una cama de Pilates en México en 2026?', acceptedAnswer: { '@type': 'Answer', text: 'En México, una cama de Pilates Reformer cuesta entre $29,700 MXN para modelos de casa y entre $42,400 y $70,000 MXN para modelos profesionales de estudio con acabados de nogal, cuero genuino y acero estructural.' } },
-      { '@type': 'Question', name: '¿Cuál es el precio de una cama de Pilates para casa?', acceptedAnswer: { '@type': 'Answer', text: 'Nuestras opciones para casa inician desde $29,700 MXN según acabados y accesorios incluidos, con estructura silenciosa y entrega rápida en México.' } },
-      { '@type': 'Question', name: '¿Cuál es el precio de una cama de Pilates de estudio?', acceptedAnswer: { '@type': 'Answer', text: 'El Reformer profesional de estudio cuesta alrededor de $42,400 MXN con cuero genuino, maderas nobles, tolerancias alemanas y garantía de 1 año con refacciones exprés.' } },
-      { '@type': 'Question', name: '¿Qué factores influyen en el precio de una cama de Pilates?', acceptedAnswer: { '@type': 'Answer', text: 'Materiales (cuero real vs vinil sintético, madera noble maciza vs aglomerado, rieles de aluminio anodizado), precisión y silencio del carro, sistema de resortes, garantía y disponibilidad de refacciones locales en México.' } },
-      { '@type': 'Question', name: '¿Vale la pena comprar una cama de Pilates barata?', acceptedAnswer: { '@type': 'Answer', text: 'Solo si cumple seguridad mínima: estabilidad estructural, resortes calibrados y carro sin vibración. En equipos de importación genéricos muy baratos suele fallar el silencio, el desgaste prematuro de poleas y la ausencia total de refacciones o soporte técnico en México.' } },
-      { '@type': 'Question', name: '¿Qué incluye normalmente el precio?', acceptedAnswer: { '@type': 'Answer', text: 'Además del Reformer completo, revisa si incluye box, jumpboard, correas dobles, juego de resortes de distintas tensiones y garantía por escrito.' } },
-    ],
+    mainEntity: faqs.map(item => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    })),
   };
 
   return (
@@ -68,7 +103,7 @@ const CamaDePilatesPrecio: React.FC = () => {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="text-lg md:text-xl text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed"
           >
-            Precios y modelos 2026 para casa y estudio: desde $29,700 MXN. Qué incluye el precio, diferencias de materiales, garantía y servicio técnico.
+            Precios y modelos 2026 para casa y estudio: desde $23,234 MXN (hasta 12 MSI). Qué incluye el precio, diferencias de materiales, garantía directa y servicio técnico en México.
           </motion.p>
 
           <motion.div
@@ -111,9 +146,9 @@ const CamaDePilatesPrecio: React.FC = () => {
               </div>
 
               {[
-                { type: 'Casa', range: '$25,000–$40,000', use: 'Hogar / uso moderado', includes: 'Reformer + set básico', risk: 'Carro ruidoso / poca estabilidad' },
-                { type: 'Estudio', range: '$45,000–$70,000', use: 'Uso intensivo diario', includes: 'Estructura robusta + accesorios', risk: 'Refacciones lentas / garantía confusa' },
-                { type: 'Usada', range: '$15,000–$35,000', use: 'Si puedes inspeccionarla', includes: 'Depende del vendedor', risk: 'Desgaste en ruedas/resortes' },
+                { type: 'Casa (Home)', range: '$23,234–$36,716 MXN', use: 'Hogar / uso personal diario', includes: 'Reformer macizo + 5 resortes alemanes', risk: 'En modelos baratos importados: flexión de marco y ruido' },
+                { type: 'Estudio Profesional', range: '$36,716–$85,050 MXN', use: 'Uso comercial intensivo (8+ hrs/día)', includes: 'Chasis robusto + aditamentos / torre', risk: 'En marcas extranjeras: refacciones lentas y aranceles' },
+                { type: 'Segunda Mano / Usada', range: '$15,000–$30,000 MXN', use: 'Solo con inspección técnica', includes: 'Variable según vendedor', risk: 'Fatiga oculta en resortes y desgaste de poleas' },
               ].map((row, i) => (
                 <div key={i} className="grid grid-cols-5 border-b border-[#2A2624]/5 last:border-0 hover:bg-white transition-colors group">
                   <div className="p-6 md:p-8 text-sm font-semibold text-[#2A2624]">{row.type}</div>
@@ -152,15 +187,16 @@ const CamaDePilatesPrecio: React.FC = () => {
               </div>
               <div className="text-right">
                 <p className="text-sm text-[#5D5550] font-light">Desde</p>
-                <p className="text-3xl font-serif italic text-[#2A2624]">$29,700</p>
-                <p className="text-xs text-[#5D5550]">MXN</p>
+                <p className="text-3xl font-serif italic text-[#2A2624]">$23,234</p>
+                <p className="text-xs text-[#5D5550]">MXN · 12 MSI de $1,936</p>
               </div>
             </div>
             <ul className="space-y-4 mb-10 border-t border-[#2A2624]/10 pt-8">
               {[
-                'Estructura de madera con cuero genuino',
-                'Recorrido suave y silencioso',
-                'Entrega 3 semanas en México',
+                'Madera maciza de Roble o Maple / Aluminio aeroespacial',
+                '5 resortes alemanes de alambre de piano calibrados',
+                'Deslizamiento ultra silencioso con rodamientos sellados',
+                'Garantía directa de 3 años y entrega asegurada en México',
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-[#5D5550] font-light">
                   <Check className="w-5 h-5 text-[#3E2723] mt-0.5 flex-shrink-0" strokeWidth={1.5} />
@@ -172,7 +208,7 @@ const CamaDePilatesPrecio: React.FC = () => {
               to="/reformer-para-casa"
               className="block w-full py-5 text-center border border-[#2A2624] text-[#2A2624] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-all"
             >
-              Ver detalles
+              Ver detalles para casa
             </Link>
           </motion.div>
 
@@ -192,16 +228,17 @@ const CamaDePilatesPrecio: React.FC = () => {
                 <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-bold">Uso comercial intensivo</p>
               </div>
               <div className="text-right">
-                <p className="text-sm text-white/50 font-light">Alrededor de</p>
-                <p className="text-3xl font-serif italic text-[#EAE8E4]">$42,400</p>
-                <p className="text-xs text-white/50">MXN</p>
+                <p className="text-sm text-white/50 font-light">Desde</p>
+                <p className="text-3xl font-serif italic text-[#EAE8E4]">$36,716</p>
+                <p className="text-xs text-white/50">MXN · Torres hasta $85,050</p>
               </div>
             </div>
             <ul className="space-y-4 mb-10 border-t border-white/10 pt-8">
               {[
-                'Cuero genuino, nogal y acero estructural',
-                'Tolerancias precisas: silencio total',
-                'Garantía 1 año + repuestos exprés',
+                'Madera maciza o Aluminio con opción a Media Torre o Cadillac',
+                'Tolerancias alemanas: cero vibración bajo uso continuo',
+                'Tapicería de microfibra de alta densidad y fácil desinfección',
+                'Garantía directa de 3 años con stock de refacciones en México',
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-white/70 font-light">
                   <Check className="w-5 h-5 text-[#EAE8E4] mt-0.5 flex-shrink-0" strokeWidth={1.5} />
@@ -213,30 +250,30 @@ const CamaDePilatesPrecio: React.FC = () => {
               to="/reformer-para-estudio"
               className="block w-full py-5 text-center bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-all"
             >
-              Ver detalles
+              Ver detalles para estudio
             </Link>
           </motion.div>
         </motion.div>
 
         {/* What Influences Price */}
         <div className="max-w-5xl mx-auto mb-24">
-          <h2 className="text-4xl font-serif italic text-[#2A2624] mb-12 text-center">Qué sube (o baja) el precio</h2>
+          <h2 className="text-4xl font-serif italic text-[#2A2624] mb-12 text-center">Qué determina el precio de un Reformer</h2>
           <div className="grid md:grid-cols-3 gap-4">
             {[
               {
                 icon: Star,
-                title: 'Materiales Premium',
-                desc: 'Cuero genuino (no vinipiel), madera sólida de nogal y acero estructural garantizan durabilidad.',
+                title: 'Materiales del Chasis',
+                desc: 'Roble macizo, Maple canadiense o aleación de aluminio aeroespacial aseguran rigidez indeformable y años de vida útil.',
               },
               {
                 icon: Zap,
-                title: 'Precisión y Silencio',
-                desc: 'Tolerancias de ingeniería más estrictas logran un recorrido sin fricción ni ruido.',
+                title: 'Resortes y Silencio',
+                desc: 'Alambre de piano alemán calibrado por color y rodamientos sellados de precisión japonesa garantizan fluidez total sin ruidos.',
               },
               {
                 icon: Shield,
-                title: 'Servicio y Garantía',
-                desc: 'Garantía real de 1 año, soporte en español y repuestos disponibles desde CDMX.',
+                title: 'Garantía y Refacciones Locales',
+                desc: 'Garantía directa de 3 años con almacén de piezas en México, evitando meses de espera y aranceles de importación.',
               },
             ].map((item, i) => (
               <div key={i} className="p-6 md:p-8 bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-2xl hover:bg-white hover:shadow-md transition-all duration-500">
@@ -250,15 +287,15 @@ const CamaDePilatesPrecio: React.FC = () => {
 
         {/* Quick Checklist */}
         <div className="max-w-4xl mx-auto mb-24 p-8 md:p-12 bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-[2rem]">
-          <h3 className="text-2xl font-serif italic text-[#2A2624] mb-8 text-center">Checklist rápido (60 segundos)</h3>
+          <h3 className="text-2xl font-serif italic text-[#2A2624] mb-8 text-center">Checklist para evaluar precio antes de comprar</h3>
           <div className="grid md:grid-cols-2 gap-4">
             {[
-              '¿Se siente estable sin vibraciones?',
-              '¿El carro se desliza sin ruido?',
-              '¿Incluye muelles/resortes confiables?',
-              '¿Hay garantía por escrito y repuestos?',
-              '¿Incluye box/jumpboard/correas?',
-              '¿Entrega real en México (tiempo estimado)?',
+              '¿El chasis es de madera sólida o aluminio reforzado (sin tambaleo)?',
+              '¿El carro se desliza con suavidad absoluta y sin fricción?',
+              '¿Utiliza resortes de alambre de piano calibrados o cuerdas elásticas?',
+              '¿El proveedor cuenta con bodega de refacciones y garantía en México?',
+              '¿El precio incluye accesorios básicos (caja/box, correas, poleas)?',
+              '¿El flete incluye seguro puerta a puerta y embalaje rígido?',
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-3 p-4 bg-white/60 rounded-xl">
                 <div className="w-5 h-5 rounded-full border border-[#2A2624]/20 flex items-center justify-center text-xs text-[#3E2723]">
@@ -266,6 +303,24 @@ const CamaDePilatesPrecio: React.FC = () => {
                 </div>
                 <span className="text-sm text-[#5D5550] font-light">{item}</span>
               </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Interactive FAQ Section */}
+        <div className="max-w-4xl mx-auto mb-24">
+          <h2 className="text-4xl font-serif italic text-[#2A2624] mb-12 text-center">Preguntas Frecuentes sobre Precios</h2>
+          <div className="space-y-4">
+            {faqs.map((faqItem, i) => (
+              <details key={i} className="group bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-2xl overflow-hidden">
+                <summary className="p-6 md:p-8 font-serif italic text-xl text-[#2A2624] cursor-pointer hover:text-[#3E2723] transition-colors list-none flex justify-between items-center">
+                  {faqItem.q}
+                  <span className="text-[#3E2723] group-open:rotate-45 transition-transform text-2xl font-light ml-4 flex-shrink-0">+</span>
+                </summary>
+                <div className="px-6 md:px-8 pb-6 md:pb-8 text-[#5D5550] font-light leading-relaxed border-t border-[#2A2624]/5 pt-4">
+                  <p>{faqItem.a}</p>
+                </div>
+              </details>
             ))}
           </div>
         </div>
