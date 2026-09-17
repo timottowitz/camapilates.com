@@ -12,7 +12,7 @@ publishDate: '2025-09-27'
 author: CAMA Pilates
 slug: guia-completa-reformer
 featured: false
-heroImage: "/images/products/reformer-maple-barra-patentada-a001.webp"
+heroImage: "/images/blog/guia-completa-reformer/hero.webp"
 ---
 
 # Guía completa del Reformer: Uso y beneficios
