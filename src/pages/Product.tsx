@@ -325,9 +325,9 @@ const ProductPage: React.FC = () => {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Tienda', item: `${origin}/shop` },
-      ...(safeProd.category ? [{ '@type': 'ListItem', position: 2, name: safeProd.category, item: `${origin}/shop/category/${toCategorySlug(safeProd.category || '')}` }] : []),
-      { '@type': 'ListItem', position: safeProd.category ? 3 : 2, name: safeProd.name, item: url },
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: origin },
+      { '@type': 'ListItem', position: 2, name: 'Camas de Pilates', item: `${origin}/cama-de-pilates` },
+      { '@type': 'ListItem', position: 3, name: safeProd.name, item: url },
     ]
   };
 
@@ -356,7 +356,16 @@ const ProductPage: React.FC = () => {
           <div className="h-full w-full bg-gradient-to-l from-[#e0dcd9] to-transparent rounded-full" />
         </div>
 
-        <BackLink className="mb-6 hidden md:inline-flex" fallbackTo="/shop" label="Volver" />
+        {/* Breadcrumb Navigation */}
+        <nav aria-label="Migas de pan" className="mb-4 text-xs text-[#5D5550] flex items-center gap-2">
+          <Link to="/" className="hover:text-[#2A2624] transition-colors">Inicio</Link>
+          <span>/</span>
+          <Link to="/cama-de-pilates" className="hover:text-[#2A2624] font-medium text-[#2A2624] transition-colors">Camas de Pilates</Link>
+          <span>/</span>
+          <span className="text-[#8C827A] truncate max-w-[200px] md:max-w-none">{safeProd.name}</span>
+        </nav>
+
+        <BackLink className="mb-6 hidden md:inline-flex" fallbackTo="/cama-de-pilates" label="Volver al catálogo" />
 
         <div className="grid md:grid-cols-2 gap-16 items-start">
           {/* Left Column: Gallery */}
@@ -534,6 +543,22 @@ const ProductPage: React.FC = () => {
                 </Link>
               </motion.div>
             )}
+
+            {/* Contextual Links */}
+            <motion.div variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} className="p-6 bg-[#FAF9F5] rounded-sm border border-[#2A2624]/10 space-y-2">
+              <p className="text-[11px] uppercase tracking-[0.15em] font-semibold text-[#8C827A]">Guías y Comparativas</p>
+              <div className="flex flex-col gap-2 text-xs">
+                <Link to="/cama-de-pilates" className="text-[#2A2624] hover:text-[#9E4733] font-medium transition-colors">
+                  ← Ver catálogo completo de Camas de Pilates en México
+                </Link>
+                <Link to="/cama-de-pilates/precio" className="text-[#5D5550] hover:text-[#2A2624] transition-colors">
+                  Tabla de precios 2026 y facilidades a 12 MSI
+                </Link>
+                <Link to="/blog/cama-de-pilates-guia-de-compra" className="text-[#5D5550] hover:text-[#2A2624] transition-colors">
+                  Guía definitiva de compra de Reformer (resortes y medidas)
+                </Link>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
 

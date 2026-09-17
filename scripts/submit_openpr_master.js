@@ -63,7 +63,7 @@ async function runMasterSubmission() {
 
     // Email
     const emailEl = findByLabel("Your email");
-    if (emailEl) { emailEl.value = "press@camadepilates.com"; emailEl.dispatchEvent(new Event("input", { bubbles: true })); }
+    if (emailEl) { emailEl.value = "tim@camadepilates.com"; emailEl.dispatchEvent(new Event("input", { bubbles: true })); }
 
     // Phone
     const phoneEl = findByLabel("Your telephone");
@@ -125,9 +125,8 @@ Edelweiss is an international Pilates equipment and education platform founded o
     if (contactEl) {
       contactEl.value = `Edelweiss / CAMA Pilates
 Media Relations & Corporate Communications
-Contact: Tim Ottowitz, Co-Founder
-Email: press@camadepilates.com
-General Press: info@camadepilates.com
+Contact: Tim Ottowitz, Co-Founder & CEO
+Email: tim@camadepilates.com
 Phone / WhatsApp: +52 322 278 7690
 Website: https://camadepilates.com
 Puerto Vallarta, Jalisco / Mexico City, Mexico`;

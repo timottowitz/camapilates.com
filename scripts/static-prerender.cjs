@@ -185,15 +185,16 @@ function assertNoRawRelatedShortcodes(html, route) {
 }
 
 function commercialParentLinks(post) {
-  const signals = `${post.title} ${post.description} ${post.category} ${post.tags.join(' ')}`.toLowerCase();
+  const signals = `${post.title} ${post.description} ${post.category} ${(post.tags || []).join(' ')}`.toLowerCase();
   const buyingArticle =
-    ['guías de compra', 'comparativas'].includes(post.category.toLowerCase()) ||
+    ['guías de compra', 'comparativas'].includes((post.category || '').toLowerCase()) ||
     /(comprar|compra|precio|barata|venta|financiaci[oó]n|mejor|elegir)/.test(signals);
   if (!buyingArticle) return '';
 
   const links = [];
   if (/(reformer|cama de pilates|equipo|comparativa|guía de compra)/.test(signals)) {
-    links.push({ href: '/cama-de-pilates', label: 'Guía de cama de Pilates' });
+    links.push({ href: '/cama-de-pilates', label: 'Camas de Pilates en México' });
+    links.push({ href: '/cama-de-pilates/precio', label: 'Precios de Camas de Pilates 2026' });
     links.push({ href: '/shop/category/reformers', label: 'Colección de Reformers' });
   }
   if (/(casa|hogar|doméstic)/.test(signals)) {
@@ -204,9 +205,80 @@ function commercialParentLinks(post) {
     links.push({ href: '/packs/estudio', label: 'Packs para estudio' });
   }
   if (!links.length) return '';
-  return `<nav aria-label="Recursos de compra" class="mb-8"><ul>${links
-    .map(link => `<li><a href="${link.href}">${htmlEscape(link.label)}</a></li>`)
+  return `<nav aria-label="Recursos de compra" class="mb-8 p-4 bg-stone-50 rounded-lg border border-stone-200"><p class="text-xs uppercase font-bold tracking-wider text-stone-600 mb-2">Recursos y guías de compra:</p><ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-amber-900">${links
+    .map(link => `<li><a href="${link.href}" class="hover:underline">→ ${htmlEscape(link.label)}</a></li>`)
     .join('')}</ul></nav>`;
+}
+
+function extractFaqSchemaFromMarkdown(content) {
+  if (!content) return null;
+  const faqMatch = content.match(/## FAQ\n([\s\S]*?)(?=\n## |$)/i);
+  if (!faqMatch) return null;
+  const faqSection = faqMatch[1];
+  const items = [];
+  const qMatches = [...faqSection.matchAll(/###\s+([^\n]+)\n([\s\S]*?)(?=\n###|$)/g)];
+  for (const m of qMatches) {
+    const q = m[1].trim().replace(/^¿?/, '¿').replace(/\??$/, '?');
+    const a = m[2].trim().replace(/\n+/g, ' ').replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1').replace(/[*_#`]/g, '');
+    if (q && a) {
+      items.push({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: a
+        }
+      });
+    }
+  }
+  if (!items.length) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items
+  };
+}
+
+function buildArticleSchema(p, origin) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: p.title,
+    description: p.description,
+    image: [`${origin}/og/${p.slug}.png`],
+    datePublished: p.date,
+    dateModified: p.date,
+    author: {
+      '@type': 'Organization',
+      name: 'CAMA Pilates',
+      url: origin
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'CAMA Pilates',
+      url: origin,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${origin}/logo.png`
+      }
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${origin}/blog/${p.slug}`
+    }
+  };
+}
+
+function buildBlogBreadcrumbSchema(p, origin) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: origin },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${origin}/blog` },
+      { '@type': 'ListItem', position: 3, name: p.title, item: `${origin}/blog/${p.slug}` }
+    ]
+  };
 }
 
 function renderPost({ slug, title, description, category, date, tags, content }, marked, posts) {
@@ -1198,8 +1270,17 @@ function renderProduct(p, origin) {
       ]
     }
   };
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: origin },
+      { '@type': 'ListItem', position: 2, name: 'Camas de Pilates', item: `${origin}/cama-de-pilates` },
+      { '@type': 'ListItem', position: 3, name: p.name, item: `${origin}/product/${p.slug}` }
+    ]
+  };
   const head = {
-    title: `${p.name} | camadepilates.com`,
+    title: `${p.name} | Camas de Pilates en México`,
     description: p.description,
     canonical: `${origin}/product/${p.slug}`,
     ogImage: `${origin}${p.image}`,
@@ -1207,23 +1288,47 @@ function renderProduct(p, origin) {
   };
   const body = `
   <section class="bg-white">
-    <div class="container mx-auto px-4 py-16 grid md:grid-cols-2 gap-10 items-start">
-      <div>
-        <img src="${p.image}" alt="${p.name}" class="w-full h-auto rounded-lg border" />
-      </div>
-      <div>
-        <h1 class="text-3xl font-bold text-gray-900">${p.name}</h1>
-        <p class="mt-4 text-gray-700">${p.description}</p>
-        <div class="mt-6 text-xl text-gray-900 font-semibold">$ ${p.price} ${p.currency}</div>
-        <div class="mt-8">
-          <div class="sr-element sr-products" data-embed="single_product_widget">
-            <script type="application/json" data-config="embed">${JSON.stringify({ publishable_key: p.publishableKey, options: { product_to_display: p.productId, open_product_in: 'popup', variation_style: 'on_hover' }, includes: { show_product_name: '0', show_product_price: '0', show_product_image: '0', show_product_summary: '0', open_modal_on_image_click: '0', show_view_product_button: '1', show_add_to_cart_button: '1', show_button_icons: '1' } })}</script>
+    <div class="container mx-auto px-4 py-12">
+      <nav aria-label="Migas de pan" class="text-sm text-stone-500 mb-8 flex items-center gap-2">
+        <a href="/" class="hover:underline">Inicio</a>
+        <span>/</span>
+        <a href="/cama-de-pilates" class="hover:underline font-semibold text-stone-800">Camas de Pilates</a>
+        <span>/</span>
+        <span class="text-stone-900">${htmlEscape(p.name)}</span>
+      </nav>
+      <div class="grid md:grid-cols-2 gap-10 items-start">
+        <div>
+          <img src="${p.image}" alt="${htmlEscape(p.name)}" class="w-full h-auto rounded-lg border shadow-sm" />
+        </div>
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">${htmlEscape(p.name)}</h1>
+          <p class="mt-4 text-gray-700 leading-relaxed">${htmlEscape(p.description)}</p>
+          <div class="mt-6 text-2xl text-gray-900 font-bold">$ ${formatMXN(p.price)} ${p.currency}</div>
+          <div class="mt-2 text-sm text-stone-600">Disponible desde <strong>${calculateMSI(p.price, 12)}/mes</strong> a 12 Meses Sin Intereses</div>
+          <ul class="mt-6 space-y-2 text-sm text-stone-700 bg-stone-50 p-4 rounded-lg border border-stone-200">
+            <li>✓ <strong>Garantía:</strong> 3 años directa de fábrica en México</li>
+            <li>✓ <strong>Resortes:</strong> 5 resortes alemanes de alambre de piano de alta precisión</li>
+            <li>✓ <strong>Rodamientos:</strong> Deslizamiento ultra silencioso de alta durabilidad</li>
+            <li>✓ <strong>Envíos:</strong> Embalaje en huacal de madera asegurado a toda la República Mexicana</li>
+          </ul>
+          <div class="mt-8">
+            <div class="sr-element sr-products" data-embed="single_product_widget">
+              <script type="application/json" data-config="embed">${JSON.stringify({ publishable_key: p.publishableKey, options: { product_to_display: p.productId, open_product_in: 'popup', variation_style: 'on_hover' }, includes: { show_product_name: '0', show_product_price: '0', show_product_image: '0', show_product_summary: '0', open_modal_on_image_click: '0', show_view_product_button: '1', show_add_to_cart_button: '1', show_button_icons: '1' } })}</script>
+            </div>
+          </div>
+          <div class="mt-10 pt-6 border-t border-stone-200 space-y-2 text-sm">
+            <p class="font-semibold text-stone-900">Enlaces y guías recomendadas:</p>
+            <div class="flex flex-col gap-1.5">
+              <a href="/cama-de-pilates" class="text-amber-800 font-medium hover:underline">← Ver catálogo completo de Camas de Pilates en México</a>
+              <a href="/cama-de-pilates/precio" class="text-stone-600 hover:text-stone-900 hover:underline">Tabla comparativa de precios y financiamiento 12 MSI</a>
+              <a href="/blog/cama-de-pilates-guia-de-compra" class="text-stone-600 hover:text-stone-900 hover:underline">Guía definitiva de compra de Reformer (medidas, resortes y ROI)</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>`;
-  return { head, body, schema: productSchema };
+  return { head, body, schema: productSchema, breadcrumbSchema };
 }
 
 function writeFileForRoute(routePath, html) {
@@ -1368,8 +1473,22 @@ async function main() {
       ogType: 'article'
     };
     const body = renderPost(p, marked, posts);
-    const html = baseHtml(template, head, body);
+    let html = baseHtml(template, head, body);
     assertNoRawRelatedShortcodes(html, `/blog/${p.slug}`);
+
+    const articleSchema = buildArticleSchema(p, origin);
+    const breadcrumbSchema = buildBlogBreadcrumbSchema(p, origin);
+    const faqSchema = extractFaqSchemaFromMarkdown(p.content);
+
+    const schemaTags = [
+      `<script type="application/ld+json">${JSON.stringify(articleSchema)}</script>`,
+      `<script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>`
+    ];
+    if (faqSchema) {
+      schemaTags.push(`<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>`);
+    }
+
+    html = html.replace('</head>', `${schemaTags.join('\n')}\n</head>`);
     writeFileForRoute(`/blog/${p.slug}`, html);
   }
 
@@ -1418,9 +1537,9 @@ async function main() {
 
   // Product pages
   for (const pr of prods) {
-    const { head, body, schema } = renderProduct(pr, origin);
+    const { head, body, schema, breadcrumbSchema } = renderProduct(pr, origin);
     let html = baseHtml(template, head, body);
-    html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(schema)}</script>\n</head>`);
+    html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(schema)}</script>\n<script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>\n</head>`);
     writeFileForRoute(`/product/${pr.slug}`, html);
   }
   // Shop hub (new)
