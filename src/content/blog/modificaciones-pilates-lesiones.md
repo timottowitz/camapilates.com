@@ -14,7 +14,7 @@ publishDate: '2025-09-28'
 author: CAMA Pilates
 slug: modificaciones-pilates-lesiones
 featured: false
-heroImage: "/images/products/reformer-maple-barra-patentada-a001-box.jpg"
+heroImage: "/images/blog/modificaciones-pilates-lesiones/hero.webp"
 ---
 
 # Modificaciones de Pilates para lesiones comunes – modificaciones-pilates-lesiones

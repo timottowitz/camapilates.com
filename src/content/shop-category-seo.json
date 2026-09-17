@@ -197,50 +197,54 @@
   },
   "ropa": {
     "category": "Ropa",
-    "navLabel": "Ropa de Pilates",
-    "title": "Ropa para Pilates Reformer en México | Edelweiss Pilates",
-    "description": "Explora ropa para Pilates Reformer en México: prendas cómodas, ajustadas o relajadas para moverte con libertad en cada sesión.",
-    "h1": "Ropa para Pilates Reformer",
-    "intro": "Descubre ropa para Pilates Reformer diseñada para acompañar el movimiento sin estorbar los ajustes del equipo. La colección incluye prendas de corte fitted y relaxed para elegir el nivel de sujeción y libertad que prefieras.",
+    "navLabel": "Ropa y Outfits",
+    "title": "Ropa para Pilates Reformer en México: Outfits y Tops [2026] | CAMA",
+    "description": "Ropa y outfits para Pilates Reformer en México: tops de algodón orgánico, calcetines grip antideslizantes y prendas técnicas cómodas para mujer y hombre.",
+    "h1": "Ropa y Outfits para Pilates Reformer",
+    "intro": "Descubre la colección de ropa y outfits para Pilates Reformer en México: prendas diseñadas para acompañar el movimiento con total libertad, sin cremalleras ni partes que rocen el equipo. Confeccionadas en algodón orgánico peinado de tacto suave.",
     "sections": [
       {
-        "heading": "Qué ropa usar para Pilates Reformer",
-        "body": "Busca prendas que permitan observar la alineación, se mantengan en su sitio y no tengan elementos que puedan engancharse en el equipo. El tejido debe acompañar el movimiento y resultar cómodo durante flexiones, extensiones y cambios de posición."
+        "heading": "Qué ropa y outfit usar para Pilates Reformer",
+        "body": "El outfit ideal para Reformer debe permitir observar la alineación corporal, mantenerse firme en su sitio durante inversiones o extensiones, y carecer de cremalleras, broches o cierres metálicos que puedan rasgar el tapizado o atorarse en los resortes y correas."
       },
       {
-        "heading": "Corte fitted o relaxed",
-        "body": "Un corte fitted ofrece mayor sujeción y facilita revisar la postura. Un corte relaxed prioriza una sensación más suelta. Elige según tu comodidad, la intensidad de la sesión y la forma en que prefieres moverte."
+        "heading": "Tops de algodón orgánico: corte Fitted y Relaxed",
+        "body": "El corte Fitted abraza la figura ofreciendo soporte ligero y visualización perfecta de la columna para correcciones posturales. El corte Relaxed brinda una caída fluida y transpirable para quienes prefieren mayor holgura sin perder control del movimiento."
+      },
+      {
+        "heading": "Calcetines antideslizantes de alta tracción",
+        "body": "Complementa tu outfit de Pilates con calcetines antideslizantes con suela de micro-gotas de silicón. Imprescindibles para mantener el agarre firme en la barra de pies y el carro móvil en estudios de CDMX, Guadalajara y Monterrey."
       }
     ],
     "guides": [
       {
         "href": "/blog/calcetines-para-pilates-reformer",
-        "label": "Calcetines para Pilates Reformer",
-        "description": "Aprende cuándo conviene usar calcetines con agarre."
+        "label": "Guía de calcetines para Reformer",
+        "description": "Cómo elegir el mejor agarre antideslizante para tus clases."
       },
       {
-        "href": "/blog/guia-completa-reformer",
-        "label": "Guía completa de Pilates Reformer",
-        "description": "Prepárate para tus sesiones y conoce el equipo."
+        "href": "/cama-de-pilates",
+        "label": "Camas de Pilates Reformer",
+        "description": "Conoce los equipos profesionales para casa y estudio."
       },
       {
-        "href": "/estudios-de-pilates",
-        "label": "Estudios de Pilates en México",
-        "description": "Encuentra un estudio y revisa opciones cerca de ti."
+        "href": "/cama-de-pilates/precio",
+        "label": "Precios de camas de Pilates",
+        "description": "Guía 2026 de precios y financiamiento en México."
       }
     ],
     "faq": [
       {
-        "question": "¿Qué ropa es mejor para Pilates Reformer?",
-        "answer": "La mejor ropa permite moverte con libertad, se mantiene en su sitio y evita cierres o detalles que puedan rozar el equipo. Muchas personas prefieren prendas ajustadas para revisar mejor la alineación."
+        "question": "¿Qué ropa es mejor para practicar Pilates Reformer?",
+        "answer": "Se recomienda usar ropa deportiva ajustada pero elástica (leggings y tops de algodón orgánico o tejidos técnicos transpirables) sin cierres ni botones metálicos, acompañada de calcetines antideslizantes para garantizar la higiene y el agarre."
       },
       {
-        "question": "¿Puedo usar ropa holgada en Reformer?",
-        "answer": "Sí, siempre que no limite el movimiento ni pueda engancharse en resortes, correas o partes móviles. Un corte relaxed controlado puede ser cómodo sin resultar excesivamente suelto."
+        "question": "¿Por qué se exigen calcetines antideslizantes en estudios de Pilates en México?",
+        "answer": "Los estudios los solicitan por higiene del tapizado del carro y por seguridad: los puntos de silicón en la planta evitan resbalones al apoyar los pies en la barra o en la plataforma de salto (jumpboard)."
       },
       {
-        "question": "¿Necesito calcetines especiales para Pilates?",
-        "answer": "No siempre son obligatorios, pero los calcetines con agarre pueden aportar tracción e higiene, especialmente en estudios donde se solicitan para las clases."
+        "question": "¿Cómo elegir entre corte fitted y relaxed?",
+        "answer": "El corte fitted es ideal para verificar tu alineación muscular en el espejo y para rutinas atléticas. El corte relaxed es ideal para sesiones de movilidad suave o para personas que prefieren mayor ventilación y soltura."
       }
     ]
   }

@@ -14,7 +14,7 @@ author: CAMA Pilates
 slug: cama-de-pilates-guia-de-compra
 featured: false
 updatedDate: '2026-09-17'
-heroImage: "/images/products/reformer-maple-barra-patentada-a001-box-interior.jpg"
+heroImage: "/images/blog/cama-de-pilates-guia-de-compra/hero.webp"
 ---
 
 # Guía de Compra de Cama de Pilates (Reformer) 2026 — México

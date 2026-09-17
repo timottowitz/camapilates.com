@@ -11,7 +11,7 @@ publishDate: '2025-11-19'
 author: CAMA Pilates
 slug: pilates-reformer-para-espalda
 featured: false
-heroImage: "/images/blog/cama-pilates/hero.jpg"
+heroImage: "/images/blog/pilates-reformer-para-espalda/hero.webp"
 ---
 tenido revisado y pulido. Se han eliminado las repeticiones excesivas (especialmente sobre precios y tráfico), se han unificado las secciones de FAQ para evitar duplicidad y se ha asegurado que el tono sea profesional, empático y técnicamente preciso para el mercado mexicano.
 

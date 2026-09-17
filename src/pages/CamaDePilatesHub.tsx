@@ -32,6 +32,8 @@ const CamaDePilatesHub: React.FC = () => {
       { '@type': 'ListItem', position: 4, url: `${origin}/reformer-para-estudio`, name: 'Reformer de Estudio' },
       { '@type': 'ListItem', position: 5, url: `${origin}/reformer-para-casa`, name: 'Reformer para Casa' },
       { '@type': 'ListItem', position: 6, url: `${origin}/packs/estudio`, name: 'Pack para Estudios (8+)' },
+      { '@type': 'ListItem', position: 7, url: `${origin}/shop/category/cadillacs-y-torres`, name: 'Camas de Pilates Cadillac y Torres' },
+      { '@type': 'ListItem', position: 8, url: `${origin}/shop/category/ropa`, name: 'Ropa y Calcetines para Pilates Reformer' },
     ],
   };
 
@@ -39,6 +41,10 @@ const CamaDePilatesHub: React.FC = () => {
     {
       q: '¿Cuánto cuesta una cama de Pilates Reformer en México?',
       a: 'En México, los precios de camas de Pilates profesionales inician desde $23,234 MXN para modelos clásicos de roble, entre $28,000 y $38,000 MXN para modelos de maple norteamericano y aluminio de alta gama, y entre $51,000 y $85,050 MXN para equipos que incorporan media torre o estructura de Cadillac. Todos nuestros precios incluyen IVA y garantía directa.'
+    },
+    {
+      q: '¿Qué es una cama de Pilates Cadillac y en qué se diferencia del Reformer tradicional?',
+      a: 'La cama de Pilates Cadillac (o mesa trapecio) incorpora una estructura tubular superior de acero inoxidable con trapecio, barras de empuje y resortes aéreos. Permite trabajo de suspensión tridimensional y rehabilitación profunda que complementa al Reformer. En CAMA Pilates contamos con modelos de cama Cadillac completos en roble, maple y aluminio desde $26,287 MXN con entrega asegurada en México.'
     },
     {
       q: '¿Cuál es la diferencia entre un Reformer de madera y uno de aluminio?',

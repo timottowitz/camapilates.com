@@ -121,15 +121,38 @@ const CamaDePilatesPrecio: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Quick Price Context */}
+        {/* Quick Answer for Featured Snippet */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="max-w-4xl mx-auto mb-16 p-6 md:p-8 bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-2xl text-center"
+          className="max-w-4xl mx-auto mb-16 p-8 bg-white/80 backdrop-blur-md border-l-4 border-[#3E2723] border border-[#2A2624]/10 rounded-2xl shadow-sm text-left"
         >
-          <p className="text-[#5D5550] font-light leading-relaxed">
-            La diferencia de precio entre reformers no es solo estética: suele estar en <strong className="text-[#2A2624]">estabilidad</strong>, <strong className="text-[#2A2624]">silencio</strong>, <strong className="text-[#2A2624]">materiales reales</strong> y <strong className="text-[#2A2624]">soporte post-venta</strong>.
+          <h2 className="text-xl md:text-2xl font-serif italic text-[#2A2624] mb-3">
+            ¿Cuánto cuesta una cama de Pilates Reformer en México? (Respuesta Rápida)
+          </h2>
+          <p className="text-[#5D5550] text-base leading-relaxed mb-5">
+            En México en 2026, el precio de una cama de Pilates Reformer profesional oscila entre <strong>$23,234 MXN y $85,050 MXN</strong> según el chasis, la madera y los aditamentos incluidos:
+          </p>
+          <div className="grid sm:grid-cols-3 gap-4 text-sm">
+            <div className="p-4 bg-[#F5F4F0] rounded-xl border border-[#2A2624]/5">
+              <span className="block font-semibold text-[#2A2624] mb-1">Reformer para Casa</span>
+              <span className="text-lg font-serif italic text-[#3E2723] block mb-1">$23,234 – $36,716 MXN</span>
+              <span className="text-xs text-[#5D5550] leading-snug block">Roble macizo o aluminio, 5 resortes alemanes calibrados, chasis silencioso.</span>
+            </div>
+            <div className="p-4 bg-[#F5F4F0] rounded-xl border border-[#2A2624]/5">
+              <span className="block font-semibold text-[#2A2624] mb-1">Reformer de Estudio</span>
+              <span className="text-lg font-serif italic text-[#3E2723] block mb-1">$36,716 – $69,617 MXN</span>
+              <span className="text-xs text-[#5D5550] leading-snug block">Uso continuo comercial (8+ hrs/día), riel de ultra precisión y mayor resistencia.</span>
+            </div>
+            <div className="p-4 bg-[#F5F4F0] rounded-xl border border-[#2A2624]/5">
+              <span className="block font-semibold text-[#2A2624] mb-1">Con Torre o Cadillac</span>
+              <span className="text-lg font-serif italic text-[#3E2723] block mb-1">$33,240 – $85,050 MXN</span>
+              <span className="text-xs text-[#5D5550] leading-snug block">Estación completa combinada con trapecio, resortes aéreos y torre vertical.</span>
+            </div>
+          </div>
+          <p className="text-xs text-[#5D5550]/80 mt-4 italic">
+            *Todos los precios de CAMA Pilates incluyen IVA, garantía directa de 3 años en México, refacciones inmediatas y opción de pago a 12 Meses Sin Intereses (desde $1,936 MXN/mes).
           </p>
         </motion.div>
 
@@ -146,13 +169,19 @@ const CamaDePilatesPrecio: React.FC = () => {
               </div>
 
               {[
-                { type: 'Casa (Home)', range: '$23,234–$36,716 MXN', use: 'Hogar / uso personal diario', includes: 'Reformer macizo + 5 resortes alemanes', risk: 'En modelos baratos importados: flexión de marco y ruido' },
-                { type: 'Estudio Profesional', range: '$36,716–$85,050 MXN', use: 'Uso comercial intensivo (8+ hrs/día)', includes: 'Chasis robusto + aditamentos / torre', risk: 'En marcas extranjeras: refacciones lentas y aranceles' },
-                { type: 'Segunda Mano / Usada', range: '$15,000–$30,000 MXN', use: 'Solo con inspección técnica', includes: 'Variable según vendedor', risk: 'Fatiga oculta en resortes y desgaste de poleas' },
+                { type: 'Reformer Clásico (Roble)', link: '/product/reformer-roble-a015', range: '$23,234 MXN', use: 'Hogar / uso personal diario', includes: 'Madera maciza + 5 resortes alemanes + box', risk: 'Comparativa: modelos importados usan ligas o aglomerado' },
+                { type: 'Reformer de Aluminio', link: '/product/reformer-aluminio-a070', range: '$23,488 MXN', use: 'Hogar o departamento', includes: 'Chasis ligero anodizado + silencioso', risk: 'Comparativa: modelos plegables pierden rigidez axial' },
+                { type: 'Reformer Studio (Maple)', link: '/shop/category/reformers', range: '$36,716–$42,400 MXN', use: 'Uso comercial continuo (8+ hrs)', includes: 'Maple norteamericano + riel de precisión', risk: 'Marcas extranjeras tardan 4–6 meses en repuestos' },
+                { type: 'Cadillac de Aluminio', link: '/product/cadillac-aluminio-a048', range: '$33,240 MXN', use: 'Estudio / rehabilitación física', includes: 'Estructura trapecio completa + resortes aéreos', risk: 'Requiere techo de al menos 2.40 m de altura' },
+                { type: 'Reformer con Torre Completa', link: '/shop/category/cadillacs-y-torres', range: '$51,000–$85,050 MXN', use: 'Estudio boutique alta gama', includes: 'Reformer 2 en 1 + torre de acero inox', risk: 'Inversión mayor; recuperable con clases privadas' },
               ].map((row, i) => (
                 <div key={i} className="grid grid-cols-5 border-b border-[#2A2624]/5 last:border-0 hover:bg-white transition-colors group">
-                  <div className="p-6 md:p-8 text-sm font-semibold text-[#2A2624]">{row.type}</div>
-                  <div className="p-6 md:p-8 text-sm text-[#2A2624] group-hover:text-[#EB4C42] transition-colors">{row.range}</div>
+                  <div className="p-6 md:p-8 text-sm font-semibold text-[#2A2624]">
+                    <Link to={row.link} className="hover:text-[#EB4C42] underline decoration-[#2A2624]/20 hover:decoration-[#EB4C42] transition-colors">
+                      {row.type}
+                    </Link>
+                  </div>
+                  <div className="p-6 md:p-8 text-sm font-medium text-[#2A2624] group-hover:text-[#EB4C42] transition-colors">{row.range}</div>
                   <div className="p-6 md:p-8 text-sm text-[#5D5550] font-light">{row.use}</div>
                   <div className="p-6 md:p-8 text-sm text-[#5D5550] font-light">{row.includes}</div>
                   <div className="p-6 md:p-8 text-sm text-[#5D5550] font-light">{row.risk}</div>

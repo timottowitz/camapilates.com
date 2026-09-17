@@ -12,7 +12,7 @@ publishDate: '2025-09-28'
 author: CAMA Pilates
 slug: pilates-rehabilitacion-cancer-mama
 featured: false
-heroImage: "/images/blog/cama-para-pilates/hero.jpg"
+heroImage: "/images/blog/pilates-rehabilitacion-cancer-mama/hero.webp"
 ---
 
 # Pilates Rehabilitacion Cancer Mama
