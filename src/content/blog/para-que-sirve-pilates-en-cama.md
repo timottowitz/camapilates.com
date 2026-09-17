@@ -11,7 +11,7 @@ publishDate: '2025-11-19'
 author: CAMA Pilates
 slug: para-que-sirve-pilates-en-cama
 featured: false
-heroImage: "/images/products/reformer-maple-barra-patentada-a001-extender.jpg"
+heroImage: '/images/blog/para-que-sirve-pilates-en-cama/hero.webp'
 ---
 sión pulida y editada del contenido. Se han unificado los datos (especialmente precios y fechas de citas), mejorado la fluidez, eliminado redundancias en la sección de preguntas frecuentes y asegurado el tono de voz experto y local para el mercado mexicano.
 

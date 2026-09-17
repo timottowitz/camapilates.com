@@ -12,7 +12,7 @@ publishDate: '2025-09-28'
 author: CAMA Pilates
 slug: pilates-para-tenistas
 featured: false
-heroImage: "/images/products/barril-escalera-roble-a025.webp"
+heroImage: "/images/blog/pilates-para-tenistas/hero.webp"
 ---
 
 # Pilates Para Tenistas – pilates-para-tenistas

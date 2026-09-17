@@ -11,7 +11,7 @@ publishDate: '2025-11-19'
 author: CAMA Pilates
 slug: mejor-cama-de-pilates-profesional
 featured: false
-heroImage: "/images/blog/cama-pilates/hero.jpg"
+heroImage: '/images/blog/mejor-cama-de-pilates-profesional/hero.webp'
 ---
 Aquí tienes el contenido revisado y pulido. Se han realizado ajustes para mejorar la fluidez, eliminar redundancias en las ubicaciones geográficas, estandarizar las citas bibliográficas y clarificar la estructura para que no haya dos secciones idénticas de "FAQ".
 

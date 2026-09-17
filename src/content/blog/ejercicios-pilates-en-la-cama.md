@@ -11,7 +11,7 @@ publishDate: '2025-11-19'
 author: CAMA Pilates
 slug: ejercicios-pilates-en-la-cama
 featured: false
-heroImage: "/images/products/reformer-maple-barra-patentada-a001-studio.jpg"
+heroImage: '/images/blog/ejercicios-pilates-en-la-cama/hero.webp'
 ---
 Aquí tienes el contenido revisado y pulido. Se han eliminado las repeticiones excesivas de frases (especialmente sobre los "estudios universitarios"), se ha unificado el rango de precios según el archivo de investigación, se ha limpiado la estructura de las FAQs y se ha asegurado un tono consistente y fluido en español mexicano.
 

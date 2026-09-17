@@ -13,7 +13,7 @@ publishDate: '2025-09-28'
 author: CAMA Pilates
 slug: pilates-para-deportistas-de-alto-rendimiento
 featured: false
-heroImage: "/images/products/cadillac-maple-a019m.webp"
+heroImage: "/images/blog/pilates-para-deportistas-de-alto-rendimiento/hero.webp"
 ---
 
 # Pilates para deportistas de alto rendimiento

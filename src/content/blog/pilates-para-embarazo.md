@@ -11,7 +11,7 @@ publishDate: '2025-11-22'
 author: CAMA Pilates
 slug: pilates-para-embarazo
 featured: false
-heroImage: "/images/products/cadillac-roble-a019.webp"
+heroImage: "/images/blog/pilates-para-embarazo/hero.webp"
 ---
 # Pilates para embarazo: Guía completa y segura
 

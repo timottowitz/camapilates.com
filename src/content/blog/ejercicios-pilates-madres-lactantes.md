@@ -14,7 +14,7 @@ publishDate: '2025-01-28'
 author: CAMA Pilates
 slug: ejercicios-pilates-madres-lactantes
 featured: true
-heroImage: "/images/products/reformer-maple-barra-patentada-a001-box.jpg"
+heroImage: '/images/blog/ejercicios-pilates-madres-lactantes/hero.webp'
 ---
 
 # Ejercicios de Pilates Seguros para Madres Lactantes en México

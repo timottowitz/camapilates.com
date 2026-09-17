@@ -11,7 +11,7 @@ publishDate: '2025-11-19'
 author: CAMA Pilates
 slug: beneficios-pilates-en-cama
 featured: false
-heroImage: "/images/blog/cama-para-pilates/hero.jpg"
+heroImage: '/images/blog/beneficios-pilates-en-cama/hero.webp'
 ---
 tenido revisado y pulido. Se han eliminado redundancias (especialmente en la sección de preguntas frecuentes), se ha unificado el tono para el mercado mexicano y se ha verificado la precisión de los datos y referencias según la investigación proporcionada.
 

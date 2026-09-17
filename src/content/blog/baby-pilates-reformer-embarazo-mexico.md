@@ -7,7 +7,7 @@ publishDate: "2026-09-15"
 author: "Valery Munive"
 slug: "baby-pilates-reformer-embarazo-mexico"
 featured: true
-heroImage: "/images/blog/baby-pilates-reformer/hero-studio-berlin.webp"
+heroImage: '/images/blog/baby-pilates-reformer-embarazo-mexico/hero.webp'
 ---
 
 # Baby Pilates en Reformer: La ola de Alemania y Suecia que Valery Munive trae a México

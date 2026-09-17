@@ -12,7 +12,7 @@ publishDate: '2025-09-28'
 author: CAMA Pilates
 slug: pilates-para-golf
 featured: false
-heroImage: "/images/products/silla-wunda-maple-a022m.webp"
+heroImage: "/images/blog/pilates-para-golf/hero.webp"
 ---
 
 # Pilates Para Golf

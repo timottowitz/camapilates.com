@@ -14,7 +14,7 @@ publishDate: '2025-09-24'
 author: CAMA Pilates
 slug: cama-de-pilates-barata
 featured: true
-heroImage: "/images/products/reformer-maple-barra-patentada-a001-box.jpg"
+heroImage: '/images/blog/cama-de-pilates-barata/hero.webp'
 ---
 
 # Cama de Pilates barata: Guía de Compra en México [Precios 2026]

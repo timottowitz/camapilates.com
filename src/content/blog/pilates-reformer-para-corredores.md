@@ -11,7 +11,7 @@ publishDate: "2026-09-10"
 author: "CAMA Pilates"
 slug: "pilates-reformer-para-corredores"
 featured: false
-heroImage: "/images/blog/pilates-para-deportistas-de-alto-rendimiento/hero.jpg"
+heroImage: "/images/blog/pilates-reformer-para-corredores/hero.webp"
 ---
 
 # Beneficios del Pilates Reformer para Corredores: Rendimiento y Prevención de Lesiones en México
