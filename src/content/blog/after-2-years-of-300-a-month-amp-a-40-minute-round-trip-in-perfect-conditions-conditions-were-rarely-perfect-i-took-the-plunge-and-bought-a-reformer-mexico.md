@@ -15,6 +15,7 @@ author: CAMA Pilates
 slug: >-
   after-2-years-of-300-a-month-amp-a-40-minute-round-trip-in-perfect-conditions-conditions-were-rarely-perfect-i-took-the-plunge-and-bought-a-reformer-mexico
 featured: false
+heroImage: "/images/blog/after-2-years-of-300-a-month-amp-a-40-minute-round-trip-in-perfect-conditions-conditions-were-rarely-perfect-i-took-the-plunge-and-bought-a-reformer-mexico/hero.webp"
 ---
 # El Punto de Inflexión: ¿Cuándo Dejar de Pagar $300 USD Mensuales y Comprar tu Propio Reformer en México?
 

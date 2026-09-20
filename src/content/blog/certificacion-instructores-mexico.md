@@ -12,7 +12,7 @@ publishDate: '2025-09-28'
 author: CAMA Pilates
 slug: certificacion-instructores-mexico
 featured: false
-heroImage: "/images/products/barril-escalera-roble-a025.webp"
+heroImage: "/images/blog/certificacion-instructores-mexico/hero.webp"
 ---
 
 # Certificacion Instructores Mexico – pilates instructor

@@ -14,7 +14,7 @@ publishDate: '2025-09-24'
 author: CAMA Pilates
 slug: mejor-cama-de-pilates-para-casa
 featured: true
-heroImage: "/images/blog/mejor-cama-de-pilates-para-casa/hero.jpg"
+heroImage: "/images/blog/mejor-cama-de-pilates-para-casa/hero.webp"
 ---
 
 # Mejor Cama de Pilates para Casa: Guía Definitiva 2026 México

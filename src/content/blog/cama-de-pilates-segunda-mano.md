@@ -11,7 +11,7 @@ publishDate: '2025-11-19'
 author: CAMA Pilates
 slug: cama-de-pilates-segunda-mano
 featured: false
-heroImage: "/images/products/reformer-aluminio-negro-a033.webp"
+heroImage: "/images/blog/cama-de-pilates-segunda-mano/hero.webp"
 ---
 # Cama de Pilates de segunda mano: Qué revisar
 

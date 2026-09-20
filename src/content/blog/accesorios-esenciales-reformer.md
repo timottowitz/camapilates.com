@@ -12,7 +12,7 @@ publishDate: '2025-09-28'
 author: CAMA Pilates
 slug: accesorios-esenciales-reformer
 featured: false
-heroImage: "/images/blog/mejor-cama-de-pilates-para-casa/hero.jpg"
+heroImage: "/images/blog/accesorios-esenciales-reformer/hero.webp"
 ---
 
 # Accesorios Esenciales Reformer

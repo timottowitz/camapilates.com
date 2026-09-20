@@ -16,7 +16,7 @@ publishDate: '2025-09-24'
 author: CAMA Pilates
 slug: cama-de-pilates-reformer
 featured: true
-heroImage: "/images/products/reformer-aluminio-nogal-a039.webp"
+heroImage: "/images/blog/cama-de-pilates-reformer/hero.webp"
 ---
 
 # Cama de Pilates Reformer: Guía Completa 2026 para Elegir la Mejor

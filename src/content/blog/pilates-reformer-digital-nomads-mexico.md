@@ -11,7 +11,7 @@ publishDate: '2025-11-21'
 author: CAMA Pilates
 slug: pilates-reformer-digital-nomads-mexico
 featured: false
-heroImage: "/images/blog/mejor-cama-de-pilates-para-casa/hero.jpg"
+heroImage: "/images/blog/pilates-reformer-digital-nomads-mexico/hero.webp"
 ---
 # Pilates Reformer for Digital Nomads in Mexico
 

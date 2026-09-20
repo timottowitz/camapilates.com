@@ -17,11 +17,7 @@ publishDate: '2025-01-28'
 author: CAMA Pilates
 slug: comunidad-pilates-mexicana
 featured: true
-hero: estudio-pilates-mexico-comunidad.jpg
-heroAlt: Grupo de instructores de Pilates mexicanos en sesión de entrenamiento
-heroImage: "/images/blog/pilates-has-changed-my-life-mexico/hero.jpg"
----
-s en sesión de entrenamiento"
+heroImage: "/images/blog/comunidad-pilates-mexicana/hero.webp"
 ---
 
 > **Nota**: Este artículo es una guía completa sobre la comunidad de Pilates en México. Para asesoramiento médico específico, consulta a un profesional de la salud.

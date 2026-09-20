@@ -17,13 +17,7 @@ publishDate: '2025-01-28'
 author: CAMA Pilates
 slug: historia-instructor-certificado
 featured: true
-hero: instructor-pilates-transformacion-mexico.jpg
-heroAlt: >-
-  Instructor de Pilates mexicano guiando a un alumno en Reformer durante clase
-  de certificación
-heroImage: "/images/products/reformer-aluminio-nogal-a039.webp"
----
-o guiando a un alumno en Reformer durante clase de certificación"
+heroImage: "/images/blog/historia-instructor-certificado/hero.webp"
 ---
 
 > **Nota**: Las historias presentadas son reales y han sido compartidas con autorización. Los nombres han sido modificados en algunos casos para proteger la privacidad.

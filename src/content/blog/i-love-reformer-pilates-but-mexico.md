@@ -11,7 +11,7 @@ publishDate: '2025-11-21'
 author: CAMA Pilates
 slug: i-love-reformer-pilates-but-mexico
 featured: false
-heroImage: "/images/products/reformer-aluminio-negro-a033.webp"
+heroImage: "/images/blog/i-love-reformer-pilates-but-mexico/hero.webp"
 ---
 # I love Reformer Pilates BUT (México)
 

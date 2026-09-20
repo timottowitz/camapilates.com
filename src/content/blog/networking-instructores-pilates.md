@@ -12,7 +12,7 @@ publishDate: '2025-09-28'
 author: CAMA Pilates
 slug: networking-instructores-pilates
 featured: false
-heroImage: "/images/products/reformer-maple-barra-patentada-a001-box-interior.jpg"
+heroImage: "/images/blog/networking-instructores-pilates/hero.webp"
 ---
 
 # Networking Instructores Pilates – pilates instructor

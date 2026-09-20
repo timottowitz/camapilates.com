@@ -12,7 +12,7 @@ publishDate: '2025-09-28'
 author: CAMA Pilates
 slug: diseno-estudios-pilates
 featured: false
-heroImage: "/images/blog/cama-para-pilates/hero.jpg"
+heroImage: "/images/blog/diseno-estudios-pilates/hero.webp"
 ---
 
 # Diseno Estudios Pilates

@@ -11,7 +11,7 @@ publishDate: '2025-11-21'
 author: CAMA Pilates
 slug: chatgpt-for-pilates-routines-mexico
 featured: false
-heroImage: "/images/blog/why-are-the-women-in-pilates-classes-so-pretty-mexico/hero.jpg"
+heroImage: "/images/blog/chatgpt-for-pilates-routines-mexico/hero.webp"
 ---
 # ChatGPT para Rutinas de Pilates (México)
 

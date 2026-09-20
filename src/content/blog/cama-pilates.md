@@ -17,7 +17,7 @@ publishDate: '2025-09-26'
 author: CAMA Pilates
 slug: cama-pilates
 featured: true
-heroImage: "/images/blog/cama-pilates/hero.jpg"
+heroImage: "/images/blog/cama-pilates/hero.webp"
 ---
 
 # Cama Pilates México 2024: La Guía Definitiva para Transformar tu Salud

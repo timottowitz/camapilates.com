@@ -11,7 +11,7 @@ publishDate: '2025-11-21'
 author: CAMA Pilates
 slug: pilates-is-not-for-everyone-mexico
 featured: false
-heroImage: "/images/products/reformer-aluminio-negro-a033.webp"
+heroImage: "/images/blog/pilates-is-not-for-everyone-mexico/hero.webp"
 ---
 > Nota: Contenido informativo; no es asesoramiento médico.
 

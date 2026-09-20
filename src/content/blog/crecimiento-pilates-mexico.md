@@ -14,11 +14,7 @@ publishDate: '2025-01-28'
 author: CAMA Pilates
 slug: crecimiento-pilates-mexico
 featured: true
-hero: crecimiento-pilates-mexico-estadisticas.jpg
-heroAlt: Gráfica de crecimiento del mercado de Pilates en México con estudios modernos
-heroImage: "/images/blog/mejor-cama-de-pilates-para-casa/hero.jpg"
----
-l mercado de Pilates en México con estudios modernos"
+heroImage: "/images/blog/crecimiento-pilates-mexico/hero.webp"
 ---
 
 > **Nota**: Este análisis está basado en datos de mercado y estadísticas oficiales. Para decisiones de inversión específicas, consulta con asesores profesionales.

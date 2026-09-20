@@ -14,7 +14,7 @@ author: CAMA Pilates
 slug: pilates-reformer-cdmx
 featured: false
 canonical: 'https://camadepilates.com/blog/pilates-reformer-cdmx'
-heroImage: "/images/blog/why-are-the-women-in-pilates-classes-so-pretty-mexico/hero.jpg"
+heroImage: "/images/blog/pilates-reformer-cdmx/hero.webp"
 ---
 
 # ¿Cuánto Cuesta una Clase de Pilates en CDMX? Precios y Estudios Reformer

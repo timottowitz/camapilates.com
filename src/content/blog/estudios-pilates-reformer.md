@@ -11,11 +11,8 @@ publishDate: '2025-11-19'
 author: CAMA Pilates
 slug: estudios-pilates-reformer
 featured: false
-heroImage: "/images/products/reformer-maple-barra-patentada-a001-box-interior.jpg"
+heroImage: "/images/blog/estudios-pilates-reformer/hero.webp"
 ---
-tenido revisado y pulido. Se han corregido las redundancias en las citas bibliográficas, se ha mejorado la estructura (especialmente la sección duplicada de FAQ) y se ha asegurado un tono consistente y profesional en español mexicano.
-
-***
 
 # Estudios de Pilates Reformer: Guía de selección
 

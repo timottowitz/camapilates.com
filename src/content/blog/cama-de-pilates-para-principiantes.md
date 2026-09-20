@@ -15,7 +15,7 @@ publishDate: '2025-09-24'
 author: CAMA Pilates
 slug: cama-de-pilates-para-principiantes
 featured: true
-heroImage: "/images/products/reformer-maple-barra-patentada-a001-extender.jpg"
+heroImage: "/images/blog/cama-de-pilates-para-principiantes/hero.webp"
 ---
 
 # Cama de Pilates para principiantes: Guía completa 2025

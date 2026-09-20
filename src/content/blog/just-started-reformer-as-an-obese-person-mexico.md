@@ -11,7 +11,7 @@ publishDate: '2025-11-21'
 author: CAMA Pilates
 slug: just-started-reformer-as-an-obese-person-mexico
 featured: false
-heroImage: "/images/products/cadillac-roble-a019.webp"
+heroImage: "/images/blog/just-started-reformer-as-an-obese-person-mexico/hero.webp"
 ---
 # Empezando Pilates Reformer con sobrepeso u obesidad (Guía CAMA Pilates)
 

@@ -8,7 +8,7 @@ updatedDate: "2025-09-26"
 author: "CAMA Pilates"
 slug: "reformer-casa-vs-profesional"
 featured: false
-heroImage: "/images/products/reformer-maple-barra-patentada-a001.webp"
+heroImage: "/images/blog/reformer-casa-vs-profesional/hero.webp"
 ---
 
 # Reformer para casa vs profesional: Guía definitiva (México 2025)

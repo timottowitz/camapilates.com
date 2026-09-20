@@ -15,7 +15,7 @@ publishDate: '2025-09-24'
 author: CAMA Pilates
 slug: cama-de-pilates-plegable
 featured: true
-heroImage: "/images/products/reformer-maple-barra-patentada-a001.webp"
+heroImage: "/images/blog/cama-de-pilates-plegable/hero.webp"
 ---
 
 # Cama de Pilates Plegable: Guía Completa 2024 para Espacios Reducidos en México

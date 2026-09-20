@@ -11,7 +11,7 @@ publishDate: '2025-11-21'
 author: CAMA Pilates
 slug: why-are-the-women-in-pilates-classes-so-pretty-mexico
 featured: false
-heroImage: "/images/blog/why-are-the-women-in-pilates-classes-so-pretty-mexico/hero.jpg"
+heroImage: "/images/blog/why-are-the-women-in-pilates-classes-so-pretty-mexico/hero.webp"
 ---
 # ¿Por qué las mujeres que hacen Pilates irradian tanta vitalidad? (Análisis en México)
 

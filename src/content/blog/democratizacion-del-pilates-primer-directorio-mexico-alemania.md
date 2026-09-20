@@ -12,7 +12,7 @@ publishDate: "2026-09-16"
 author: "CAMA Pilates"
 slug: "democratizacion-del-pilates-primer-directorio-mexico-alemania"
 featured: true
-heroImage: "/images/press/edelweiss-founders-pr.webp"
+heroImage: "/images/blog/democratizacion-del-pilates-primer-directorio-mexico-alemania/hero.webp"
 ---
 
 # Un Día Histórico para Edelweiss: La Democratización del Pilates, el Primer Directorio en México y Nuestra Expansión a Alemania

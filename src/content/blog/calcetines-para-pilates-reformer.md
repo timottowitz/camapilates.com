@@ -13,7 +13,7 @@ author: CAMA Pilates
 slug: calcetines-para-pilates-reformer
 featured: false
 canonical: 'https://camadepilates.com/blog/calcetines-para-pilates-reformer'
-heroImage: "/images/products/reformer-maple-barra-patentada-a001-studio.jpg"
+heroImage: "/images/blog/calcetines-para-pilates-reformer/hero.webp"
 ---
 
 # Calcetines para Pilates Reformer en México: Guía 2026

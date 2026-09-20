@@ -11,7 +11,7 @@ publishDate: '2025-11-19'
 author: CAMA Pilates
 slug: reformer-compacto
 featured: false
-heroImage: "/images/products/reformer-aluminio-nogal-a039.webp"
+heroImage: "/images/blog/reformer-compacto/hero.webp"
 ---
 Aquí tienes el contenido del blog revisado y pulido. Se han unificado las secciones de FAQ duplicadas para evitar redundancias, se ha ajustado el tono para el mercado mexicano y se ha verificado la fluidez de las transiciones y la precisión de las referencias.
 

@@ -8,7 +8,7 @@ updatedDate: "2025-09-26"
 author: "CAMA Pilates"
 slug: "mantenimiento-cama-de-pilates"
 featured: false
-heroImage: "/images/products/barril-escalera-roble-a025.webp"
+heroImage: "/images/blog/mantenimiento-cama-de-pilates/hero.webp"
 ---
 
 # Mantenimiento y cuidado de tu Reformer de Pilates (MX 2025)

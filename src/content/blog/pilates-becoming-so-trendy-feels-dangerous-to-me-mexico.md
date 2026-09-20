@@ -11,7 +11,7 @@ publishDate: '2025-11-21'
 author: CAMA Pilates
 slug: pilates-becoming-so-trendy-feels-dangerous-to-me-mexico
 featured: false
-heroImage: "/images/products/reformer-maple-barra-patentada-a001.webp"
+heroImage: "/images/blog/pilates-becoming-so-trendy-feels-dangerous-to-me-mexico/hero.webp"
 ---
 # Pilates: ¿Por qué su auge en México me genera preocupación?
 

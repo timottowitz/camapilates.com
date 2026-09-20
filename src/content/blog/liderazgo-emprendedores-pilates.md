@@ -12,7 +12,7 @@ publishDate: '2025-09-28'
 author: CAMA Pilates
 slug: liderazgo-emprendedores-pilates
 featured: false
-heroImage: "/images/products/silla-wunda-maple-a022m.webp"
+heroImage: "/images/blog/liderazgo-emprendedores-pilates/hero.webp"
 ---
 
 # Liderazgo Emprendedores Pilates

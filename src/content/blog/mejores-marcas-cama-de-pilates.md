@@ -11,7 +11,7 @@ publishDate: '2025-11-19'
 author: CAMA Pilates
 slug: mejores-marcas-cama-de-pilates
 featured: false
-heroImage: "/images/products/reformer-maple-barra-patentada-a001-studio.jpg"
+heroImage: "/images/blog/mejores-marcas-cama-de-pilates/hero.webp"
 ---
 # Mejores marcas de cama de Pilates: Criterios y selección
 

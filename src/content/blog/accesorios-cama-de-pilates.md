@@ -16,7 +16,7 @@ author: CAMA Pilates
 slug: accesorios-cama-de-pilates
 featured: true
 canonical: 'https://camadepilates.com/blog/accesorios-cama-de-pilates'
-heroImage: "/images/blog/pilates-has-changed-my-life-mexico/hero.jpg"
+heroImage: "/images/blog/accesorios-cama-de-pilates/hero.webp"
 ---
 
 # Accesorios para cama de Pilates: Esenciales

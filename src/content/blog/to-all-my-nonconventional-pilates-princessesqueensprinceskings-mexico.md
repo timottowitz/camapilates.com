@@ -12,7 +12,7 @@ publishDate: '2025-11-21'
 author: CAMA Pilates
 slug: to-all-my-nonconventional-pilates-princessesqueensprinceskings-mexico
 featured: false
-heroImage: "/images/products/silla-wunda-maple-a022m.webp"
+heroImage: "/images/blog/to-all-my-nonconventional-pilates-princessesqueensprinceskings-mexico/hero.webp"
 ---
 # Para nuestras Pilates Queens y Kings No Convencionales (México)
 

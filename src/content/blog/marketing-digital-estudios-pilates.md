@@ -12,7 +12,7 @@ publishDate: '2025-09-28'
 author: CAMA Pilates
 slug: marketing-digital-estudios-pilates
 featured: false
-heroImage: "/images/blog/pilates-has-changed-my-life-mexico/hero.jpg"
+heroImage: "/images/blog/marketing-digital-estudios-pilates/hero.webp"
 ---
 
 # Marketing Digital Estudios Pilates

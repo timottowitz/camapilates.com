@@ -12,7 +12,7 @@ publishDate: '2025-09-28'
 author: CAMA Pilates
 slug: mantenimiento-reformer-pilates
 featured: false
-heroImage: "/images/blog/why-are-the-women-in-pilates-classes-so-pretty-mexico/hero.jpg"
+heroImage: "/images/blog/mantenimiento-reformer-pilates/hero.webp"
 ---
 
 # Mantenimiento Reformer Pilates

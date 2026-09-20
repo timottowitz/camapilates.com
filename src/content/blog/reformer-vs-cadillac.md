@@ -11,7 +11,7 @@ publishDate: '2025-11-19'
 author: CAMA Pilates
 slug: reformer-vs-cadillac
 featured: false
-heroImage: "/images/products/reformer-aluminio-negro-a033.webp"
+heroImage: "/images/blog/reformer-vs-cadillac/hero.webp"
 ---
 
 # Cama de Pilates Cadillac vs Reformer: ¿Cuál Elegir Primero en México?

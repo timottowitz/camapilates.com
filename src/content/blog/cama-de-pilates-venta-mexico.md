@@ -12,7 +12,7 @@ publishDate: '2025-11-19'
 author: CAMA Pilates
 slug: cama-de-pilates-venta-mexico
 featured: false
-heroImage: "/images/products/cadillac-maple-a019m.webp"
+heroImage: "/images/blog/cama-de-pilates-venta-mexico/hero.webp"
 ---
 # Cama de Pilates: Venta en México (Casa y Estudio) — Guía 2026
 

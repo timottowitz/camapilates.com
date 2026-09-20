@@ -13,7 +13,7 @@ publishDate: '2025-09-24'
 author: CAMA Pilates
 slug: dimensiones-cama-de-pilates
 featured: false
-heroImage: "/images/blog/cama-pilates/hero.jpg"
+heroImage: "/images/blog/dimensiones-cama-de-pilates/hero.webp"
 ---
 
 # Dimensiones de una Cama de Pilates: Guía Completa de Espacio y Medidas 2024

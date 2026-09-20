@@ -13,7 +13,7 @@ publishDate: '2025-11-21'
 author: CAMA Pilates
 slug: is-pilates-good-for-me-should-i-start-pilates-can-i-do-pilates-mexico
 featured: false
-heroImage: "/images/products/cadillac-maple-a019m.webp"
+heroImage: "/images/blog/is-pilates-good-for-me-should-i-start-pilates-can-i-do-pilates-mexico/hero.webp"
 ---
 # "¿Pilates es para mí?", "¿Debo empezar Pilates?", "¡Puedo hacer Pilates!" (México)
 

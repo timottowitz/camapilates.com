@@ -19,10 +19,15 @@
     "hashed": "/images/badges/mylo.502ba47e.svg",
     "hash": "502ba47e"
   },
+  "/images/blog/accesorios-cama-de-pilates/hero.webp": {
+    "original": "/images/blog/accesorios-cama-de-pilates/hero.webp",
+    "hashed": "/images/blog/accesorios-cama-de-pilates/hero.24ede235.webp",
+    "hash": "24ede235"
+  },
   "/images/blog/accesorios-cama-de-pilates-esenciales/hero.webp": {
     "original": "/images/blog/accesorios-cama-de-pilates-esenciales/hero.webp",
-    "hashed": "/images/blog/accesorios-cama-de-pilates-esenciales/hero.6c4396a6.webp",
-    "hash": "6c4396a6"
+    "hashed": "/images/blog/accesorios-cama-de-pilates-esenciales/hero.c9ca17c6.webp",
+    "hash": "c9ca17c6"
   },
   "/images/blog/accesorios-cama-de-pilates-esenciales/section-1.webp": {
     "original": "/images/blog/accesorios-cama-de-pilates-esenciales/section-1.webp",
@@ -33,6 +38,16 @@
     "original": "/images/blog/accesorios-cama-de-pilates-esenciales/section-2.webp",
     "hashed": "/images/blog/accesorios-cama-de-pilates-esenciales/section-2.91fc39b3.webp",
     "hash": "91fc39b3"
+  },
+  "/images/blog/accesorios-esenciales-reformer/hero.webp": {
+    "original": "/images/blog/accesorios-esenciales-reformer/hero.webp",
+    "hashed": "/images/blog/accesorios-esenciales-reformer/hero.b321e8a1.webp",
+    "hash": "b321e8a1"
+  },
+  "/images/blog/after-2-years-of-300-a-month-amp-a-40-minute-round-trip-in-perfect-conditions-conditions-were-rarely-perfect-i-took-the-plunge-and-bought-a-reformer-mexico/hero.webp": {
+    "original": "/images/blog/after-2-years-of-300-a-month-amp-a-40-minute-round-trip-in-perfect-conditions-conditions-were-rarely-perfect-i-took-the-plunge-and-bought-a-reformer-mexico/hero.webp",
+    "hashed": "/images/blog/after-2-years-of-300-a-month-amp-a-40-minute-round-trip-in-perfect-conditions-conditions-were-rarely-perfect-i-took-the-plunge-and-bought-a-reformer-mexico/hero.c1669a36.webp",
+    "hash": "c1669a36"
   },
   "/images/blog/baby-pilates-reformer/hero-studio-berlin.webp": {
     "original": "/images/blog/baby-pilates-reformer/hero-studio-berlin.webp",
@@ -59,15 +74,20 @@
     "hashed": "/images/blog/beneficios-pilates-en-cama/hero.6b073341.webp",
     "hash": "6b073341"
   },
+  "/images/blog/calcetines-para-pilates-reformer/hero.webp": {
+    "original": "/images/blog/calcetines-para-pilates-reformer/hero.webp",
+    "hashed": "/images/blog/calcetines-para-pilates-reformer/hero.f7f43ec0.webp",
+    "hash": "f7f43ec0"
+  },
   "/images/blog/cama-de-pilates-barata/hero.webp": {
     "original": "/images/blog/cama-de-pilates-barata/hero.webp",
-    "hashed": "/images/blog/cama-de-pilates-barata/hero.1487d296.webp",
-    "hash": "1487d296"
+    "hashed": "/images/blog/cama-de-pilates-barata/hero.7c06c812.webp",
+    "hash": "7c06c812"
   },
   "/images/blog/cama-de-pilates-guia-de-compra/hero.webp": {
     "original": "/images/blog/cama-de-pilates-guia-de-compra/hero.webp",
-    "hashed": "/images/blog/cama-de-pilates-guia-de-compra/hero.e0440d76.webp",
-    "hash": "e0440d76"
+    "hashed": "/images/blog/cama-de-pilates-guia-de-compra/hero.bffde180.webp",
+    "hash": "bffde180"
   },
   "/images/blog/cama-de-pilates-guia-de-compra/section-1.webp": {
     "original": "/images/blog/cama-de-pilates-guia-de-compra/section-1.webp",
@@ -81,18 +101,83 @@
   },
   "/images/blog/cama-de-pilates-para-principiantes/hero.webp": {
     "original": "/images/blog/cama-de-pilates-para-principiantes/hero.webp",
-    "hashed": "/images/blog/cama-de-pilates-para-principiantes/hero.ebfea256.webp",
-    "hash": "ebfea256"
+    "hashed": "/images/blog/cama-de-pilates-para-principiantes/hero.4373948b.webp",
+    "hash": "4373948b"
+  },
+  "/images/blog/cama-de-pilates-plegable/hero.webp": {
+    "original": "/images/blog/cama-de-pilates-plegable/hero.webp",
+    "hashed": "/images/blog/cama-de-pilates-plegable/hero.59aa21f5.webp",
+    "hash": "59aa21f5"
+  },
+  "/images/blog/cama-de-pilates-reformer/hero.webp": {
+    "original": "/images/blog/cama-de-pilates-reformer/hero.webp",
+    "hashed": "/images/blog/cama-de-pilates-reformer/hero.bf90f659.webp",
+    "hash": "bf90f659"
+  },
+  "/images/blog/cama-de-pilates-segunda-mano/hero.webp": {
+    "original": "/images/blog/cama-de-pilates-segunda-mano/hero.webp",
+    "hashed": "/images/blog/cama-de-pilates-segunda-mano/hero.fb91d336.webp",
+    "hash": "fb91d336"
+  },
+  "/images/blog/cama-de-pilates-venta-mexico/hero.webp": {
+    "original": "/images/blog/cama-de-pilates-venta-mexico/hero.webp",
+    "hashed": "/images/blog/cama-de-pilates-venta-mexico/hero.28bce5cf.webp",
+    "hash": "28bce5cf"
   },
   "/images/blog/cama-para-pilates/hero.jpg": {
     "original": "/images/blog/cama-para-pilates/hero.jpg",
     "hashed": "/images/blog/cama-para-pilates/hero.ba1617d7.jpg",
     "hash": "ba1617d7"
   },
+  "/images/blog/cama-para-pilates/hero.webp": {
+    "original": "/images/blog/cama-para-pilates/hero.webp",
+    "hashed": "/images/blog/cama-para-pilates/hero.48a970d6.webp",
+    "hash": "48a970d6"
+  },
   "/images/blog/cama-pilates/hero.jpg": {
     "original": "/images/blog/cama-pilates/hero.jpg",
     "hashed": "/images/blog/cama-pilates/hero.72676e7f.jpg",
     "hash": "72676e7f"
+  },
+  "/images/blog/cama-pilates/hero.webp": {
+    "original": "/images/blog/cama-pilates/hero.webp",
+    "hashed": "/images/blog/cama-pilates/hero.b4d45f88.webp",
+    "hash": "b4d45f88"
+  },
+  "/images/blog/certificacion-instructores-mexico/hero.webp": {
+    "original": "/images/blog/certificacion-instructores-mexico/hero.webp",
+    "hashed": "/images/blog/certificacion-instructores-mexico/hero.a04f9e93.webp",
+    "hash": "a04f9e93"
+  },
+  "/images/blog/chatgpt-for-pilates-routines-mexico/hero.webp": {
+    "original": "/images/blog/chatgpt-for-pilates-routines-mexico/hero.webp",
+    "hashed": "/images/blog/chatgpt-for-pilates-routines-mexico/hero.ab3954c5.webp",
+    "hash": "ab3954c5"
+  },
+  "/images/blog/comunidad-pilates-mexicana/hero.webp": {
+    "original": "/images/blog/comunidad-pilates-mexicana/hero.webp",
+    "hashed": "/images/blog/comunidad-pilates-mexicana/hero.9de7daee.webp",
+    "hash": "9de7daee"
+  },
+  "/images/blog/crecimiento-pilates-mexico/hero.webp": {
+    "original": "/images/blog/crecimiento-pilates-mexico/hero.webp",
+    "hashed": "/images/blog/crecimiento-pilates-mexico/hero.46e7f6f9.webp",
+    "hash": "46e7f6f9"
+  },
+  "/images/blog/democratizacion-del-pilates-primer-directorio-mexico-alemania/hero.webp": {
+    "original": "/images/blog/democratizacion-del-pilates-primer-directorio-mexico-alemania/hero.webp",
+    "hashed": "/images/blog/democratizacion-del-pilates-primer-directorio-mexico-alemania/hero.dfc75194.webp",
+    "hash": "dfc75194"
+  },
+  "/images/blog/dimensiones-cama-de-pilates/hero.webp": {
+    "original": "/images/blog/dimensiones-cama-de-pilates/hero.webp",
+    "hashed": "/images/blog/dimensiones-cama-de-pilates/hero.3937b453.webp",
+    "hash": "3937b453"
+  },
+  "/images/blog/diseno-estudios-pilates/hero.webp": {
+    "original": "/images/blog/diseno-estudios-pilates/hero.webp",
+    "hashed": "/images/blog/diseno-estudios-pilates/hero.6c8567fb.webp",
+    "hash": "6c8567fb"
   },
   "/images/blog/ejercicios-pilates-en-la-cama/hero.webp": {
     "original": "/images/blog/ejercicios-pilates-en-la-cama/hero.webp",
@@ -104,15 +189,50 @@
     "hashed": "/images/blog/ejercicios-pilates-madres-lactantes/hero.e194d497.webp",
     "hash": "e194d497"
   },
+  "/images/blog/estudios-pilates-reformer/hero.webp": {
+    "original": "/images/blog/estudios-pilates-reformer/hero.webp",
+    "hashed": "/images/blog/estudios-pilates-reformer/hero.1eb9b9f4.webp",
+    "hash": "1eb9b9f4"
+  },
+  "/images/blog/financiacion-cama-de-pilates/hero.webp": {
+    "original": "/images/blog/financiacion-cama-de-pilates/hero.webp",
+    "hashed": "/images/blog/financiacion-cama-de-pilates/hero.a6e2e7a2.webp",
+    "hash": "a6e2e7a2"
+  },
   "/images/blog/guia-completa-reformer/hero.webp": {
     "original": "/images/blog/guia-completa-reformer/hero.webp",
     "hashed": "/images/blog/guia-completa-reformer/hero.b727e022.webp",
     "hash": "b727e022"
   },
+  "/images/blog/historia-instructor-certificado/hero.webp": {
+    "original": "/images/blog/historia-instructor-certificado/hero.webp",
+    "hashed": "/images/blog/historia-instructor-certificado/hero.f4ad4f9d.webp",
+    "hash": "f4ad4f9d"
+  },
+  "/images/blog/i-love-reformer-pilates-but-mexico/hero.webp": {
+    "original": "/images/blog/i-love-reformer-pilates-but-mexico/hero.webp",
+    "hashed": "/images/blog/i-love-reformer-pilates-but-mexico/hero.1f1e90dc.webp",
+    "hash": "1f1e90dc"
+  },
+  "/images/blog/is-pilates-good-for-me-should-i-start-pilates-can-i-do-pilates-mexico/hero.webp": {
+    "original": "/images/blog/is-pilates-good-for-me-should-i-start-pilates-can-i-do-pilates-mexico/hero.webp",
+    "hashed": "/images/blog/is-pilates-good-for-me-should-i-start-pilates-can-i-do-pilates-mexico/hero.195bb790.webp",
+    "hash": "195bb790"
+  },
+  "/images/blog/just-started-reformer-as-an-obese-person-mexico/hero.webp": {
+    "original": "/images/blog/just-started-reformer-as-an-obese-person-mexico/hero.webp",
+    "hashed": "/images/blog/just-started-reformer-as-an-obese-person-mexico/hero.90362788.webp",
+    "hash": "90362788"
+  },
+  "/images/blog/liderazgo-emprendedores-pilates/hero.webp": {
+    "original": "/images/blog/liderazgo-emprendedores-pilates/hero.webp",
+    "hashed": "/images/blog/liderazgo-emprendedores-pilates/hero.409d6045.webp",
+    "hash": "409d6045"
+  },
   "/images/blog/mantenimiento-cama-de-pilates/hero.webp": {
     "original": "/images/blog/mantenimiento-cama-de-pilates/hero.webp",
-    "hashed": "/images/blog/mantenimiento-cama-de-pilates/hero.e5e6325d.webp",
-    "hash": "e5e6325d"
+    "hashed": "/images/blog/mantenimiento-cama-de-pilates/hero.0deae3a5.webp",
+    "hash": "0deae3a5"
   },
   "/images/blog/mantenimiento-cama-de-pilates/section-1.webp": {
     "original": "/images/blog/mantenimiento-cama-de-pilates/section-1.webp",
@@ -124,6 +244,16 @@
     "hashed": "/images/blog/mantenimiento-cama-de-pilates/section-2.8822c2e7.webp",
     "hash": "8822c2e7"
   },
+  "/images/blog/mantenimiento-reformer-pilates/hero.webp": {
+    "original": "/images/blog/mantenimiento-reformer-pilates/hero.webp",
+    "hashed": "/images/blog/mantenimiento-reformer-pilates/hero.3c8f5686.webp",
+    "hash": "3c8f5686"
+  },
+  "/images/blog/marketing-digital-estudios-pilates/hero.webp": {
+    "original": "/images/blog/marketing-digital-estudios-pilates/hero.webp",
+    "hashed": "/images/blog/marketing-digital-estudios-pilates/hero.8b88687a.webp",
+    "hash": "8b88687a"
+  },
   "/images/blog/mejor-cama-de-pilates-para-casa/hero.jpg": {
     "original": "/images/blog/mejor-cama-de-pilates-para-casa/hero.jpg",
     "hashed": "/images/blog/mejor-cama-de-pilates-para-casa/hero.d69c4419.jpg",
@@ -131,28 +261,58 @@
   },
   "/images/blog/mejor-cama-de-pilates-para-casa/hero.webp": {
     "original": "/images/blog/mejor-cama-de-pilates-para-casa/hero.webp",
-    "hashed": "/images/blog/mejor-cama-de-pilates-para-casa/hero.474b7b4e.webp",
-    "hash": "474b7b4e"
+    "hashed": "/images/blog/mejor-cama-de-pilates-para-casa/hero.82b203ff.webp",
+    "hash": "82b203ff"
   },
   "/images/blog/mejor-cama-de-pilates-profesional/hero.webp": {
     "original": "/images/blog/mejor-cama-de-pilates-profesional/hero.webp",
-    "hashed": "/images/blog/mejor-cama-de-pilates-profesional/hero.653b6ba9.webp",
-    "hash": "653b6ba9"
+    "hashed": "/images/blog/mejor-cama-de-pilates-profesional/hero.1af5b236.webp",
+    "hash": "1af5b236"
+  },
+  "/images/blog/mejor-reformer-espacios-pequenos/hero.webp": {
+    "original": "/images/blog/mejor-reformer-espacios-pequenos/hero.webp",
+    "hashed": "/images/blog/mejor-reformer-espacios-pequenos/hero.f8c86784.webp",
+    "hash": "f8c86784"
+  },
+  "/images/blog/mejores-marcas-cama-de-pilates/hero.webp": {
+    "original": "/images/blog/mejores-marcas-cama-de-pilates/hero.webp",
+    "hashed": "/images/blog/mejores-marcas-cama-de-pilates/hero.6e9a21f3.webp",
+    "hash": "6e9a21f3"
   },
   "/images/blog/modificaciones-pilates-lesiones/hero.webp": {
     "original": "/images/blog/modificaciones-pilates-lesiones/hero.webp",
     "hashed": "/images/blog/modificaciones-pilates-lesiones/hero.0fede16c.webp",
     "hash": "0fede16c"
   },
+  "/images/blog/networking-instructores-pilates/hero.webp": {
+    "original": "/images/blog/networking-instructores-pilates/hero.webp",
+    "hashed": "/images/blog/networking-instructores-pilates/hero.d78afea5.webp",
+    "hash": "d78afea5"
+  },
   "/images/blog/para-que-sirve-pilates-en-cama/hero.webp": {
     "original": "/images/blog/para-que-sirve-pilates-en-cama/hero.webp",
     "hashed": "/images/blog/para-que-sirve-pilates-en-cama/hero.11f60ec0.webp",
     "hash": "11f60ec0"
   },
+  "/images/blog/pilates-becoming-so-trendy-feels-dangerous-to-me-mexico/hero.webp": {
+    "original": "/images/blog/pilates-becoming-so-trendy-feels-dangerous-to-me-mexico/hero.webp",
+    "hashed": "/images/blog/pilates-becoming-so-trendy-feels-dangerous-to-me-mexico/hero.f1e7e978.webp",
+    "hash": "f1e7e978"
+  },
   "/images/blog/pilates-has-changed-my-life-mexico/hero.jpg": {
     "original": "/images/blog/pilates-has-changed-my-life-mexico/hero.jpg",
     "hashed": "/images/blog/pilates-has-changed-my-life-mexico/hero.8f5ea9df.jpg",
     "hash": "8f5ea9df"
+  },
+  "/images/blog/pilates-has-changed-my-life-mexico/hero.webp": {
+    "original": "/images/blog/pilates-has-changed-my-life-mexico/hero.webp",
+    "hashed": "/images/blog/pilates-has-changed-my-life-mexico/hero.e8a40660.webp",
+    "hash": "e8a40660"
+  },
+  "/images/blog/pilates-is-not-for-everyone-mexico/hero.webp": {
+    "original": "/images/blog/pilates-is-not-for-everyone-mexico/hero.webp",
+    "hashed": "/images/blog/pilates-is-not-for-everyone-mexico/hero.c251e1b0.webp",
+    "hash": "c251e1b0"
   },
   "/images/blog/pilates-para-deportistas-de-alto-rendimiento/hero.webp": {
     "original": "/images/blog/pilates-para-deportistas-de-alto-rendimiento/hero.webp",
@@ -173,6 +333,21 @@
     "original": "/images/blog/pilates-para-tenistas/hero.webp",
     "hashed": "/images/blog/pilates-para-tenistas/hero.706c3054.webp",
     "hash": "706c3054"
+  },
+  "/images/blog/pilates-reformer-cdmx/hero.webp": {
+    "original": "/images/blog/pilates-reformer-cdmx/hero.webp",
+    "hashed": "/images/blog/pilates-reformer-cdmx/hero.53d5d660.webp",
+    "hash": "53d5d660"
+  },
+  "/images/blog/pilates-reformer-cerca-de-mi/hero.webp": {
+    "original": "/images/blog/pilates-reformer-cerca-de-mi/hero.webp",
+    "hashed": "/images/blog/pilates-reformer-cerca-de-mi/hero.ecf8ff80.webp",
+    "hash": "ecf8ff80"
+  },
+  "/images/blog/pilates-reformer-digital-nomads-mexico/hero.webp": {
+    "original": "/images/blog/pilates-reformer-digital-nomads-mexico/hero.webp",
+    "hashed": "/images/blog/pilates-reformer-digital-nomads-mexico/hero.8c0cc700.webp",
+    "hash": "8c0cc700"
   },
   "/images/blog/pilates-reformer-para-corredores/hero.webp": {
     "original": "/images/blog/pilates-reformer-para-corredores/hero.webp",
@@ -211,8 +386,8 @@
   },
   "/images/blog/reformer-casa-vs-profesional/hero.webp": {
     "original": "/images/blog/reformer-casa-vs-profesional/hero.webp",
-    "hashed": "/images/blog/reformer-casa-vs-profesional/hero.91fc39b3.webp",
-    "hash": "91fc39b3"
+    "hashed": "/images/blog/reformer-casa-vs-profesional/hero.880e81f0.webp",
+    "hash": "880e81f0"
   },
   "/images/blog/reformer-casa-vs-profesional/section-1.webp": {
     "original": "/images/blog/reformer-casa-vs-profesional/section-1.webp",
@@ -224,10 +399,40 @@
     "hashed": "/images/blog/reformer-casa-vs-profesional/section-2.a2555aa2.webp",
     "hash": "a2555aa2"
   },
+  "/images/blog/reformer-compacto/hero.webp": {
+    "original": "/images/blog/reformer-compacto/hero.webp",
+    "hashed": "/images/blog/reformer-compacto/hero.bf3d5736.webp",
+    "hash": "bf3d5736"
+  },
+  "/images/blog/reformer-vs-cadillac/hero.webp": {
+    "original": "/images/blog/reformer-vs-cadillac/hero.webp",
+    "hashed": "/images/blog/reformer-vs-cadillac/hero.327769be.webp",
+    "hash": "327769be"
+  },
+  "/images/blog/reformer-vs-mat-pilates/hero.webp": {
+    "original": "/images/blog/reformer-vs-mat-pilates/hero.webp",
+    "hashed": "/images/blog/reformer-vs-mat-pilates/hero.4c723e03.webp",
+    "hash": "4c723e03"
+  },
+  "/images/blog/reformer-vs-tower/hero.webp": {
+    "original": "/images/blog/reformer-vs-tower/hero.webp",
+    "hashed": "/images/blog/reformer-vs-tower/hero.98f9cacd.webp",
+    "hash": "98f9cacd"
+  },
+  "/images/blog/to-all-my-nonconventional-pilates-princessesqueensprinceskings-mexico/hero.webp": {
+    "original": "/images/blog/to-all-my-nonconventional-pilates-princessesqueensprinceskings-mexico/hero.webp",
+    "hashed": "/images/blog/to-all-my-nonconventional-pilates-princessesqueensprinceskings-mexico/hero.a6b1e091.webp",
+    "hash": "a6b1e091"
+  },
   "/images/blog/why-are-the-women-in-pilates-classes-so-pretty-mexico/hero.jpg": {
     "original": "/images/blog/why-are-the-women-in-pilates-classes-so-pretty-mexico/hero.jpg",
     "hashed": "/images/blog/why-are-the-women-in-pilates-classes-so-pretty-mexico/hero.88494b67.jpg",
     "hash": "88494b67"
+  },
+  "/images/blog/why-are-the-women-in-pilates-classes-so-pretty-mexico/hero.webp": {
+    "original": "/images/blog/why-are-the-women-in-pilates-classes-so-pretty-mexico/hero.webp",
+    "hashed": "/images/blog/why-are-the-women-in-pilates-classes-so-pretty-mexico/hero.0390d303.webp",
+    "hash": "0390d303"
   },
   "/images/cat-icon-accessories.webp": {
     "original": "/images/cat-icon-accessories.webp",

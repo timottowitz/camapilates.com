@@ -17,7 +17,7 @@ publishDate: '2025-09-24'
 author: CAMA Pilates
 slug: cama-para-pilates
 featured: true
-heroImage: "/images/blog/cama-para-pilates/hero.jpg"
+heroImage: "/images/blog/cama-para-pilates/hero.webp"
 ---
 
 # Cama para Pilates: La Guía Definitiva 2024-2025 para México

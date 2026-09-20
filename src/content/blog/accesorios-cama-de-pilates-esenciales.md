@@ -16,7 +16,7 @@ slug: accesorios-cama-de-pilates-esenciales
 featured: true
 canonical: 'https://camadepilates.com/blog/accesorios-cama-de-pilates'
 updatedDate: '2025-09-26'
-heroImage: "/images/blog/why-are-the-women-in-pilates-classes-so-pretty-mexico/hero.jpg"
+heroImage: "/images/blog/accesorios-cama-de-pilates-esenciales/hero.webp"
 ---
  
 # Accesorios para Cama de Pilates: Esenciales
