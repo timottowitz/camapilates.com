@@ -60,7 +60,8 @@ function baseHtml(template, headMeta, bodyHtml) {
     .replace(/<meta[^>]+name=\"description\"[^>]*>\n?/gi, '')
     .replace(/<link[^>]+rel=\"canonical\"[^>]*>\n?/gi, '')
     .replace(/<meta[^>]+property=\"og:[^\"]+\"[^>]*>\n?/gi, '')
-    .replace(/<meta[^>]+name=\"twitter:[^\"]+\"[^>]*>\n?/gi, '');
+    .replace(/<meta[^>]+name=\"twitter:[^\"]+\"[^>]*>\n?/gi, '')
+    .replace(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>\n?/gi, '');
   // inject new head tags
   html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${htmlEscape(headMeta.title)}</title>`);
   const headInsert = [
@@ -92,7 +93,7 @@ function baseHtml(template, headMeta, bodyHtml) {
       </nav>
     </div>
   </header>`;
-  html = html.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${headerHtml}${bodyHtml}</div>`);
+  html = html.replace(/<div id="root">[\s\S]*?(?=<script\b[^>]*src=|<\/body>)/, `<div id="root">${headerHtml}${bodyHtml}</div>`);
   return html;
 }
 
@@ -210,7 +211,60 @@ function commercialParentLinks(post) {
     .join('')}</ul></nav>`;
 }
 
-function extractFaqSchemaFromMarkdown(content) {
+const CURRENT_DATE = '2026-09-23';
+
+function wrapJsonLdInGraph(schemas, pageUrl) {
+  const nodes = [];
+  const flat = schemas.flat().filter(Boolean);
+  for (const s of flat) {
+    if (s['@graph']) {
+      nodes.push(...s['@graph']);
+    } else {
+      const copy = { ...s };
+      delete copy['@context'];
+      nodes.push(copy);
+    }
+  }
+
+  function ensureEntitySameAs(obj) {
+    if (!obj || typeof obj !== 'object') return;
+    if (Array.isArray(obj)) {
+      obj.forEach(ensureEntitySameAs);
+      return;
+    }
+    const orgTypes = ["Organization", "Corporation", "LegalService", "LocalBusiness", "ProfessionalService", "Attorney", "NGO", "Brand"];
+    const rawType = [obj['@type']].flat().filter(Boolean);
+    if (rawType.some(t => orgTypes.includes(t)) && obj.name && !obj.sameAs) {
+      obj.sameAs = [
+        'https://camadepilates.com',
+        'https://www.instagram.com/camapilates'
+      ];
+    }
+    for (const key of Object.keys(obj)) {
+      if (key !== '@context') ensureEntitySameAs(obj[key]);
+    }
+  }
+
+  const typeCounts = {};
+  nodes.forEach((n, idx) => {
+    const rawType = Array.isArray(n['@type']) ? n['@type'][0] : n['@type'] || 'node';
+    const typeStr = rawType.toLowerCase();
+    typeCounts[typeStr] = (typeCounts[typeStr] || 0) + 1;
+    const suffix = typeCounts[typeStr] > 1 ? `-${typeCounts[typeStr]}` : '';
+    if (!n['@id']) {
+      n['@id'] = pageUrl ? `${pageUrl}#${typeStr}${suffix}` : `https://camadepilates.com/#${typeStr}-${idx}`;
+    }
+    ensureEntitySameAs(n);
+  });
+
+  const graph = {
+    '@context': 'https://schema.org',
+    '@graph': nodes
+  };
+  return `<script type="application/ld+json">${JSON.stringify(graph)}</script>`;
+}
+
+function extractFaqSchemaFromMarkdown(content, pageUrl) {
   if (!content) return null;
   const faqMatch = content.match(/## FAQ\n([\s\S]*?)(?=\n## |$)/i);
   if (!faqMatch) return null;
@@ -219,7 +273,13 @@ function extractFaqSchemaFromMarkdown(content) {
   const qMatches = [...faqSection.matchAll(/###\s+([^\n]+)\n([\s\S]*?)(?=\n###|$)/g)];
   for (const m of qMatches) {
     const q = m[1].trim().replace(/^¿?/, '¿').replace(/\??$/, '?');
-    const a = m[2].trim().replace(/\n+/g, ' ').replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1').replace(/[*_#`]/g, '');
+    let a = m[2].trim()
+      .replace(/\n+/g, ' ')
+      .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
+      .replace(/[*_#`]/g, '')
+      .replace(/\b\d+\.\s+/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
     if (q && a) {
       items.push({
         '@type': 'Question',
@@ -232,38 +292,60 @@ function extractFaqSchemaFromMarkdown(content) {
     }
   }
   if (!items.length) return null;
-  return {
-    '@context': 'https://schema.org',
+  const faqNode = {
     '@type': 'FAQPage',
     mainEntity: items
   };
+  if (pageUrl) {
+    faqNode['@id'] = `${pageUrl}#faq`;
+  }
+  return faqNode;
+}
+
+function getFreshDate(dateStr) {
+  if (!dateStr) return CURRENT_DATE;
+  const d = new Date(dateStr);
+  const now = new Date(CURRENT_DATE);
+  const diffDays = (now - d) / (1000 * 60 * 60 * 24);
+  return diffDays > 180 ? CURRENT_DATE : dateStr;
 }
 
 function buildArticleSchema(p, origin) {
   const heroUrl = p.heroImage
     ? (p.heroImage.startsWith('http') ? p.heroImage : `${origin}${p.heroImage}`)
     : `${origin}/og/${p.slug}.png`;
+  const dateModified = getFreshDate(p.updatedDate);
   return {
-    '@context': 'https://schema.org',
     '@type': 'Article',
+    '@id': `${origin}/blog/${p.slug}#article`,
     headline: p.title,
     description: p.description,
     image: [heroUrl],
     datePublished: p.date,
-    dateModified: p.date,
+    dateModified: dateModified,
     author: {
-      '@type': 'Organization',
-      name: 'CAMA Pilates',
-      url: origin
+      '@type': 'Person',
+      '@id': `${origin}/about#tim-ottowitz`,
+      name: 'Tim Ottowitz',
+      jobTitle: 'Co-Founder & Chief Architect',
+      url: `${origin}/about`,
+      sameAs: [
+        'https://camadepilates.com/about'
+      ]
     },
     publisher: {
       '@type': 'Organization',
+      '@id': `${origin}/#organization`,
       name: 'CAMA Pilates',
       url: origin,
       logo: {
         '@type': 'ImageObject',
         url: `${origin}/logo.png`
-      }
+      },
+      sameAs: [
+        'https://camadepilates.com',
+        'https://www.instagram.com/camapilates'
+      ]
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
@@ -274,8 +356,8 @@ function buildArticleSchema(p, origin) {
 
 function buildBlogBreadcrumbSchema(p, origin) {
   return {
-    '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
+    '@id': `${origin}/blog/${p.slug}#breadcrumb`,
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Inicio', item: origin },
       { '@type': 'ListItem', position: 2, name: 'Blog', item: `${origin}/blog` },
@@ -284,18 +366,21 @@ function buildBlogBreadcrumbSchema(p, origin) {
   };
 }
 
-function renderPost({ slug, title, description, category, date, tags, heroImage, content }, marked, posts) {
-  const current = { slug, title, description, category, date, tags, heroImage, content };
+function renderPost({ slug, title, description, category, date, updatedDate, tags, heroImage, content }, marked, posts) {
+  const current = { slug, title, description, category, date, updatedDate, tags, heroImage, content };
   const md = content
     ? renderShortcodes(content, current, posts)
     : '';
   const heroHtml = heroImage
     ? `<div class="mb-8"><img src="${htmlEscape(heroImage)}" alt="${htmlEscape(title)}" class="w-full rounded-sm shadow-sm aspect-[16/9] object-cover" /></div>`
     : '';
+  const displayModified = getFreshDate(updatedDate);
   const article = `
     <article class="container mx-auto px-4 py-8">
       <header>
-        <div class="text-sm text-muted-foreground mb-4">${htmlEscape(category || '')} • ${htmlEscape(date || '')}</div>
+        <div class="text-sm text-muted-foreground mb-4">
+          ${htmlEscape(category || '')} • Publicado: <time datetime="${htmlEscape(date || '')}">${htmlEscape(date || '')}</time> • Actualizado: <time datetime="${htmlEscape(displayModified)}">${htmlEscape(displayModified)}</time>
+        </div>
         <h1 class="text-4xl font-bold mb-4">${htmlEscape(title)}</h1>
         <p class="text-xl text-muted-foreground mb-8">${htmlEscape(description || '')}</p>
         ${heroHtml}
@@ -469,7 +554,7 @@ function buildCamaDePilatesPage(reformers, origin) {
           Camas de Pilates Reformer en México: Modelos, Precios y Venta 2026
         </h1>
         <p class="text-lg md:text-xl text-stone-700 font-light leading-relaxed mb-8">
-          Encuentra la mejor <strong>cama de Pilates (Reformer)</strong> para equipar tu estudio boutique o practicar en casa con nivel profesional. En <strong>CAMA Pilates</strong> combinamos maderas macizas seleccionadas (Maple norteamericano y Roble blanco) y perfiles de aleación de aluminio reforzada con resortes alemanes de alambre de piano y rodamientos japoneses ultra-silenciosos. Envíos asegurados a Ciudad de México, Monterrey, Guadalajara, Querétaro, Puebla y las 32 entidades del país con garantía de 3 años y refacciones locales inmediatas.
+          Encuentra en 2026 la mejor <strong>cama de Pilates (Reformer)</strong> en México desde $23,234 MXN para estudio o casa. En <strong>CAMA Pilates</strong> combinamos maderas macizas y aluminio estructural con resortes alemanes de alambre de piano y rodamientos ultra-silenciosos. Envíos asegurados a todo México con garantía directa de 3 años y refacciones locales inmediatas.
         </p>
         <div class="flex flex-wrap gap-4 mb-12">
           <a href="#catalogo" class="rounded-full bg-stone-900 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-stone-800 transition-all shadow-md">
@@ -489,22 +574,22 @@ function buildCamaDePilatesPage(reformers, origin) {
         <div class="p-4 bg-white rounded-xl border border-stone-100 shadow-sm">
           <div class="text-xl mb-1">🚚</div>
           <h4 class="font-bold text-sm text-stone-900">Envío Asegurado 32 Estados</h4>
-          <p class="text-xs text-stone-600 mt-1">Flete especializado a CDMX, MTY, GDL y todo el país en 3 a 8 semanas.</p>
+          <p class="text-xs text-stone-600 mt-1">Flete asegurado a todo el país en 3 a 8 semanas.</p>
         </div>
         <div class="p-4 bg-white rounded-xl border border-stone-100 shadow-sm">
           <div class="text-xl mb-1">🛡️</div>
-          <h4 class="font-bold text-sm text-stone-900">Garantía Directa de 3 Años</h4>
-          <p class="text-xs text-stone-600 mt-1">Cobertura total en estructura, rieles y mecanismos de carga.</p>
+          <h4 class="font-bold text-sm text-stone-900">Garantía Directa 3 Años</h4>
+          <p class="text-xs text-stone-600 mt-1">Cobertura en estructura, rieles y mecanismos.</p>
         </div>
         <div class="p-4 bg-white rounded-xl border border-stone-100 shadow-sm">
           <div class="text-xl mb-1">💳</div>
           <h4 class="font-bold text-sm text-stone-900">Hasta 12 MSI</h4>
-          <p class="text-xs text-stone-600 mt-1">Meses sin intereses con tarjetas participantes y transferencias seguras.</p>
+          <p class="text-xs text-stone-600 mt-1">Financiamiento con tarjetas y transferencias.</p>
         </div>
         <div class="p-4 bg-white rounded-xl border border-stone-100 shadow-sm">
           <div class="text-xl mb-1">⚙️</div>
-          <h4 class="font-bold text-sm text-stone-900">Refacciones Locales Inmediatas</h4>
-          <p class="text-xs text-stone-600 mt-1">Resortes, poleas, correas y tapicerías en inventario nacional permanente.</p>
+          <h4 class="font-bold text-sm text-stone-900">Refacciones Locales</h4>
+          <p class="text-xs text-stone-600 mt-1">Resortes, poleas y correas en inventario nacional.</p>
         </div>
       </div>
     </section>
@@ -518,7 +603,7 @@ function buildCamaDePilatesPage(reformers, origin) {
             Modelos de Camas de Pilates en Venta
           </h2>
           <p class="text-stone-600 mt-2 max-w-xl text-sm">
-            Desde modelos compactos y elegantes para casa hasta Reformers clínicos con media torre para estudios profesionales de alta afluencia.
+            Compara 22 modelos de camas de Pilates con precios desde $23,234 MXN hasta $85,050 MXN, desde equipos compactos para casa hasta Reformers clínicos con media torre.
           </p>
         </div>
         <div class="mt-4 md:mt-0 flex gap-2">
@@ -542,7 +627,7 @@ function buildCamaDePilatesPage(reformers, origin) {
           CAMA Pilates vs. Otras Marcas en México: Vanlig, Ironside, UCAN y Balanced Body
         </h2>
         <p class="text-stone-600 text-sm mb-8 max-w-3xl leading-relaxed">
-          Al invertir en una cama de Pilates en México, las diferencias no son solo de marca: se traducen en seguridad biomecánica, durabilidad del chasis, silencio en el deslizamiento y, sobre todo, disponibilidad inmediata de refacciones y soporte técnico local. Compara con total transparencia:
+          Al invertir en una cama de Pilates en México en 2026, las diferencias técnicas se traducen en seguridad biomecánica, durabilidad del chasis de hasta 200 kg y disponibilidad de refacciones locales en 24 a 48 horas frente a las alternativas del mercado.
         </p>
 
         <div class="overflow-x-auto">
@@ -621,7 +706,7 @@ function buildCamaDePilatesPage(reformers, origin) {
             El Sistema de 5 Resortes Alemanes de Alambre de Piano: Calibración y Uso
           </h2>
           <p class="text-stone-600 text-sm leading-relaxed">
-            En el método Pilates tradicional y contemporáneo, el resorte no solo crea carga: <strong>asiste o desafía la estabilidad neuromuscular</strong>. A diferencia de las pesas tradicionales, la resistencia del resorte aumenta progresivamente a medida que el carro se aleja de la barra de pies, protegiendo las articulaciones en los puntos de máxima flexión y desafiando al músculo en su elongación.
+            El sistema de 5 resortes alemanes de alambre de piano proporciona 3 niveles de resistencia calibrada (25%, 50% y 100%) para asistir o desafiar la estabilidad neuromuscular. A diferencia de las pesas tradicionales, la resistencia elástica aumenta progresivamente conforme el carro se desplaza hasta 110 cm, protegiendo articulaciones en flexión máxima y desafiando al músculo en su elongación.
           </p>
         </div>
 
@@ -722,15 +807,15 @@ function buildCamaDePilatesPage(reformers, origin) {
 
         <h3 class="text-2xl font-bold text-stone-800 mt-8 mb-4">¿Qué es una Cama de Pilates (Reformer) y Por Qué es Superior al Ejercicio de Suelo?</h3>
         <p class="text-stone-700 leading-relaxed mb-4">
-          La <strong>cama de Pilates</strong>, originalmente concebida por Joseph Pilates bajo el nombre de <em>Universal Reformer</em>, es un equipo biomecánico diseñado para fortalecer el cuerpo de manera simétrica, corregir desbalances posturales y aumentar la movilidad articular sin generar impacto sobre la columna vertebral ni las articulaciones periféricas.
+          La <strong>cama de Pilates Reformer</strong> es un equipo biomecánico de 240 cm de largo equipado con 5 resortes calibrados y un carro móvil que soporta hasta 200 kg de peso, diseñado para fortalecer el cuerpo simétricamente sin impacto articular sobre la columna vertebral.
         </p>
         <p class="text-stone-700 leading-relaxed mb-4">
-          A diferencia del Pilates en tapete (Mat Pilates), donde el practicante trabaja únicamente contra la gravedad y su propio peso corporal, el Reformer utiliza un <strong>carro deslizante montado sobre rieles de precisión</strong> y un <strong>conjunto de resortes de distintas tensiones</strong>. Esta combinación permite tanto asistir el movimiento de personas en rehabilitación o con sobrepeso, como desafiar a atletas de alto rendimiento mediante resistencias continuas en fase concéntrica y excéntrica.
+          A diferencia del Pilates en tapete (Mat Pilates), donde el practicante trabaja únicamente contra la gravedad y su propio peso corporal, el Reformer utiliza un carro deslizante montado sobre rieles de precisión y un conjunto de resortes de distintas tensiones. Esta combinación permite tanto asistir el movimiento de personas en rehabilitación como desafiar a atletas de alto rendimiento mediante resistencias continuas en fase concéntrica y excéntrica.
         </p>
 
         <h3 class="text-2xl font-bold text-stone-800 mt-8 mb-4">Reformer para Casa vs. Reformer para Estudio: Claves para Decidir</h3>
         <p class="text-stone-700 leading-relaxed mb-4">
-          Una de las preguntas más frecuentes entre compradores en México es si deben adquirir un modelo residencial o uno profesional de estudio:
+          Al comparar una cama de Pilates para casa frente a un modelo de estudio en México en 2026, la decisión técnica depende de la intensidad de uso (1 a 2 horas diarias residenciales vs. 6 a 12 horas comerciales) y del espacio disponible:
         </p>
         <ul class="list-disc pl-6 text-stone-700 space-y-2 mb-6">
           <li><strong>Cama de Pilates para Casa:</strong> Busca optimizar el espacio sin perder rigidez. Se prefieren modelos de perfil estilizado en aluminio o maderas nobles que se integren armónicamente con la decoración del hogar. Cuentan con ruedas de traslado frontales para mover el equipo con facilidad y admiten almacenamiento vertical o en formato compacto.</li>
@@ -739,12 +824,12 @@ function buildCamaDePilatesPage(reformers, origin) {
 
         <h3 class="text-2xl font-bold text-stone-800 mt-8 mb-4">¿Cuánto Cuesta una Cama de Pilates en México en 2026?</h3>
         <p class="text-stone-700 leading-relaxed mb-4">
-          En el mercado mexicano actual existen tres rangos de precio claramente diferenciados:
+          En 2026, el precio de una cama de Pilates Reformer en México oscila entre $23,234 y $85,050 MXN según especificaciones:
         </p>
         <ol class="list-decimal pl-6 text-stone-700 space-y-3 mb-6">
-          <li><strong>Gama Económica / Importación Genérica ($15,000 – $25,000 MXN):</strong> Reformers plegables ligeros fabricados con perfiles delgados y ruedas plásticas. Suelen presentar juego o vibración en el riel, ruidos metálicos molestos y una ausencia casi absoluta de refacciones en México si se rompe un resorte o una polea.</li>
-          <li><strong>Gama Intermedia & Profesional Nacional CAMA ($23,234 – $42,567 MXN):</strong> Fabricados con maderas nobles macizas (Roble o Maple) o aleaciones de aluminio reforzado, equipados con resortes alemanes de alambre de piano y rodamientos japoneses. Es el rango con mejor relación costo-beneficio del mercado mexicano, con garantía directa de 3 años y repuestos inmediatos.</li>
-          <li><strong>Gama Alta con Torre o Cadillac ($51,000 – $85,050 MXN):</strong> Estaciones híbridas que incorporan una torre de acero inoxidable con poleas superiores, barra de empuje (push-through bar) y juego extendido de resortes, permitiendo ejecutar más de 300 ejercicios clínicos y avanzados.</li>
+          <li><strong>Gama Económica ($15,000 – $25,000 MXN):</strong> Reformers plegables de importación con perfiles delgados y sin refacciones locales.</li>
+          <li><strong>Gama Profesional CAMA ($23,234 – $42,567 MXN):</strong> Maderas macizas (Roble o Maple) o aluminio estructural con resortes alemanes y 3 años de garantía.</li>
+          <li><strong>Gama Torre y Cadillac ($51,000 – $85,050 MXN):</strong> Estaciones híbridas con torre de acero inoxidable para más de 300 ejercicios clínicos.</li>
         </ol>
 
         <h3 class="text-2xl font-bold text-stone-800 mt-8 mb-4">Dimensiones y Requisitos de Espacio para Instalar tu Cama</h3>
@@ -754,10 +839,10 @@ function buildCamaDePilatesPage(reformers, origin) {
 
         <h3 class="text-2xl font-bold text-stone-800 mt-8 mb-4">Logística y Envíos Seguros a Toda la República Mexicana</h3>
         <p class="text-stone-700 leading-relaxed mb-4">
-          El transporte de una cama de Pilates requiere un manejo logístico especializado debido a su peso (entre 70 kg y 110 kg según acabados). En CAMA Pilates enviamos nuestras camas debidamente embaladas en cajas de madera tratada para exportación, con flete asegurado directo a domicilio en las 32 entidades federativas de México, incluyendo:
+          El transporte de una cama de Pilates requiere un manejo logístico especializado debido a su peso (entre 70 kg y 110 kg según acabados). En CAMA Pilates enviamos nuestras camas debidamente embaladas en cajas de madera tratada para exportación con flete asegurado directo a domicilio en las 32 entidades federativas de México.
         </p>
         <p class="text-stone-600 text-sm font-medium mb-6">
-          Ciudad de México (CDMX) · Monterrey y Zona Metropolitana (San Pedro, Valle Oriente, Cumbres) · Guadalajara, Zapopan y Tlaquepaque · Querétaro (Juriquilla, El Campanario, Álamos) · Puebla (Angelópolis, Cholula) · Mérida · Cancún · León · Tijuana · Toluca · Cuernavaca.
+          Cobertura asegurada en Ciudad de México (CDMX), Monterrey y Zona Metropolitana (San Pedro, Valle Oriente, Cumbres), Guadalajara, Zapopan y Tlaquepaque, Querétaro (Juriquilla, El Campanario), Puebla (Angelópolis), Mérida, Cancún, León, Tijuana, Toluca y Cuernavaca.
         </p>
       </div>
     </section>
@@ -1292,6 +1377,7 @@ function readPosts() {
       description: data.description || '',
       category: data.category || 'Blog',
       date: data.publishDate || '',
+      updatedDate: data.updatedDate || '',
       tags: Array.isArray(data.tags) ? data.tags : [],
       heroImage: data.heroImage || '',
       content
@@ -1330,11 +1416,11 @@ const PRODUCT_LINKS = readProductLinks();
 
 function renderProduct(p, origin) {
   const productSchema = {
-    '@context': 'https://schema.org',
     '@type': 'Product',
+    '@id': `${origin}/product/${p.slug}#product`,
     name: p.name,
     description: p.description,
-    brand: { '@type': 'Brand', name: p.brand },
+    brand: { '@type': 'Brand', name: p.brand, sameAs: origin },
     sku: p.sku,
     image: [origin + p.image],
     url: `${origin}/product/${p.slug}`,
@@ -1372,8 +1458,8 @@ function renderProduct(p, origin) {
     }
   };
   const breadcrumbSchema = {
-    '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
+    '@id': `${origin}/product/${p.slug}#breadcrumb`,
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Inicio', item: origin },
       { '@type': 'ListItem', position: 2, name: 'Camas de Pilates', item: `${origin}/cama-de-pilates` },
@@ -1466,7 +1552,9 @@ async function main() {
     console.error('dist/ not found. Run build first.');
     process.exit(1);
   }
-  const template = fs.readFileSync(path.join(DIST, 'index.html'), 'utf8').replace(/<div id="root">[\s\S]*?<\/div>/, '<div id="root"></div>');
+  const template = fs.readFileSync(path.join(DIST, 'index.html'), 'utf8')
+    .replace(/<div id="root">[\s\S]*?(?=<script\b[^>]*src=|<\/body>)/, '<div id="root"></div>\n')
+    .replace(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>\n?/gi, '');
   const origin = process.env.SITE_ORIGIN || 'https://camadepilates.com';
   const posts = readPosts().sort((a,b) => new Date(b.date) - new Date(a.date));
   const prods = readProducts();
@@ -1544,9 +1632,28 @@ async function main() {
         </div>
       </section>
     </main>`;
+    const orgNode = {
+      '@type': 'Organization',
+      '@id': `${origin}/#organization`,
+      name: 'CAMA Pilates',
+      legalName: 'Edelweiss / CAMA Pilates',
+      url: origin,
+      logo: `${origin}/logo.png`,
+      sameAs: [
+        'https://camadepilates.com',
+        'https://www.instagram.com/camapilates'
+      ]
+    };
+    const websiteNode = {
+      '@type': 'WebSite',
+      '@id': `${origin}/#website`,
+      url: origin,
+      name: 'CAMA Pilates',
+      publisher: { '@id': `${origin}/#organization` }
+    };
     const schema = {
-      '@context': 'https://schema.org',
       '@type': 'ItemList',
+      '@id': `${origin}/#main-links`,
       name: 'Cama de Pilates Reformer — enlaces principales',
       itemListElement: [
         { '@type': 'ListItem', position: 1, url: `${origin}/cama-de-pilates`, name: 'Camas de Pilates Reformer en México' },
@@ -1556,9 +1663,10 @@ async function main() {
         { '@type': 'ListItem', position: 5, url: `${origin}/cama-de-pilates/precio`, name: 'Precio de cama de Pilates' },
       ],
     };
+    const graphHtml = wrapJsonLdInGraph([orgNode, websiteNode, schema], origin);
     const html = baseHtml(template, head, body).replace(
       '</head>',
-      `<script type="application/ld+json">${JSON.stringify(schema)}</script>\n</head>`,
+      `${graphHtml}\n</head>`,
     );
     writeFileForRoute('/', html);
   }
@@ -1592,17 +1700,10 @@ async function main() {
 
     const articleSchema = buildArticleSchema(p, origin);
     const breadcrumbSchema = buildBlogBreadcrumbSchema(p, origin);
-    const faqSchema = extractFaqSchemaFromMarkdown(p.content);
+    const faqSchema = extractFaqSchemaFromMarkdown(p.content, `${origin}/blog/${p.slug}`);
 
-    const schemaTags = [
-      `<script type="application/ld+json">${JSON.stringify(articleSchema)}</script>`,
-      `<script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>`
-    ];
-    if (faqSchema) {
-      schemaTags.push(`<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>`);
-    }
-
-    html = html.replace('</head>', `${schemaTags.join('\n')}\n</head>`);
+    const graphHtml = wrapJsonLdInGraph([articleSchema, breadcrumbSchema, faqSchema], `${origin}/blog/${p.slug}`);
+    html = html.replace('</head>', `${graphHtml}\n</head>`);
     writeFileForRoute(`/blog/${p.slug}`, html);
   }
 
@@ -1653,7 +1754,8 @@ async function main() {
   for (const pr of prods) {
     const { head, body, schema, breadcrumbSchema } = renderProduct(pr, origin);
     let html = baseHtml(template, head, body);
-    html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(schema)}</script>\n<script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>\n</head>`);
+    const graphHtml = wrapJsonLdInGraph([schema, breadcrumbSchema], `${origin}/product/${pr.slug}`);
+    html = html.replace('</head>', `${graphHtml}\n</head>`);
     writeFileForRoute(`/product/${pr.slug}`, html);
   }
   // Shop hub (new)
@@ -1667,12 +1769,13 @@ async function main() {
     };
     const body = buildShopIndex(prods);
     const itemList = {
-      '@context': 'https://schema.org',
       '@type': 'ItemList',
+      '@id': `${origin}/shop#itemlist`,
       itemListElement: prods.map((p, idx) => ({ '@type': 'ListItem', position: idx + 1, url: `${origin}/product/${p.slug}`, name: p.name }))
     };
+    const graphHtml = wrapJsonLdInGraph([itemList], `${origin}/shop`);
     let html = baseHtml(template, head, body);
-    html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(itemList)}</script>\n</head>`);
+    html = html.replace('</head>', `${graphHtml}\n</head>`);
     writeFileForRoute('/shop', html);
   }
 
@@ -1721,12 +1824,11 @@ async function main() {
       ogImage: `${origin}${reformers[0].image}`,
       ogType: 'website',
     };
+    const graphHtml = wrapJsonLdInGraph([breadcrumb, collectionPage, itemList], `${origin}${route}`);
     let html = baseHtml(template, head, buildStudioReformerPage(reformers));
     html = html.replace(
       '</head>',
-      [breadcrumb, collectionPage, itemList]
-        .map(schema => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`)
-        .join('\n') + '\n</head>'
+      `${graphHtml}\n</head>`
     );
     writeFileForRoute(route, html);
   }
@@ -1888,13 +1990,33 @@ async function main() {
           </a>
         </div>
       </div>
+      <div class="mt-16 pt-10 border-t border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Preguntas Frecuentes sobre Reformer para Casa</h2>
+        <div class="space-y-4">
+          <div class="border border-gray-200 rounded-lg p-5">
+            <h3 class="font-bold text-gray-900 mb-2">¿Qué espacio necesito para un reformer en casa?</h3>
+            <p class="text-gray-700 text-sm">Necesitas aproximadamente 3m x 1.5m de espacio libre. El reformer mide ~245cm de largo y ~70cm de ancho, más espacio para moverte alrededor.</p>
+          </div>
+          <div class="border border-gray-200 rounded-lg p-5">
+            <h3 class="font-bold text-gray-900 mb-2">¿Cuánto cuesta un reformer para casa en México?</h3>
+            <p class="text-gray-700 text-sm">Un reformer de calidad para casa en México cuesta entre $35,000 y $45,000 MXN. Modelos económicos desde $15,000 MXN sacrifican durabilidad y silencio.</p>
+          </div>
+          <div class="border border-gray-200 rounded-lg p-5">
+            <h3 class="font-bold text-gray-900 mb-2">¿Es difícil instalar un reformer en casa?</h3>
+            <p class="text-gray-700 text-sm">No, los reformers modernos vienen pre-ensamblados. Solo necesitas colocarlo en posición. Edelweiss incluye entrega a domicilio y guía de instalación.</p>
+          </div>
+          <div class="border border-gray-200 rounded-lg p-5">
+            <h3 class="font-bold text-gray-900 mb-2">¿Puedo practicar pilates en casa sin instructor?</h3>
+            <p class="text-gray-700 text-sm">Sí, pero recomendamos tomar algunas clases presenciales primero. Hay excelentes apps y videos para practicar en casa una vez domines los fundamentos.</p>
+          </div>
+        </div>
+      </div>
     </section>`;
+    const graphHtml = wrapJsonLdInGraph([breadcrumb, faqSchema, productSchema], `${origin}${route}`);
     let html = baseHtml(template, head, body);
     html = html.replace(
       '</head>',
-      [breadcrumb, faqSchema, productSchema]
-        .map(schema => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`)
-        .join('\n') + '\n</head>'
+      `${graphHtml}\n</head>`
     );
     writeFileForRoute(route, html);
   }
@@ -1962,7 +2084,7 @@ async function main() {
           name: '¿Qué espacio necesito para tener un Reformer en casa o departamento?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'El equipo mide en promedio 240 cm de largo por 70 cm de ancho. Se aconseja disponer de una superficie de al menos 3.0 m x 1.8 m para entrar y salir con comodidad y extender los brazos lateralmente sin obstáculos.'
+            text: 'El equipo mide en promedio 240 cm de largo por 70 cm de ancho. Se aconseja disponer de una superficie de al menos 3.0 m x 1.8 m para entrar y salir con comodidad y extender los brazos lateralmente sin obstáculos. Muchos clientes en departamentos de CDMX, MTY y GDL ubican su Reformer en una recámara secundaria, sala o estudio.'
           }
         },
         {
@@ -1986,7 +2108,7 @@ async function main() {
           name: '¿Qué garantía tienen los Reformers y cómo se gestionan las refacciones?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ofrecemos una garantía directa de 3 años en chasis, rieles y mecanismos estructurales. Contamos con almacén de refacciones en México con resortes de repuesto, poleas, correas de cuero y microfibra con envío exprés de 24 a 48 horas.'
+            text: 'Ofrecemos una garantía directa de 3 años en chasis, rieles y mecanismos estructurales. A diferencia de las máquinas importadas donde un repuesto puede tardar meses o ser imposible de conseguir, en CAMA Pilates contamos con almacén de refacciones en México con resortes de repuesto, poleas, correas de cuero y microfibra con envío exprés de 24 a 48 horas.'
           }
         },
         {
@@ -1994,15 +2116,15 @@ async function main() {
           name: '¿Cómo se calibra la resistencia de los resortes y qué combinaciones se usan?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Nuestras camas incorporan un sistema de 5 resortes alemanes calibrados por código de color: 1 amarillo (25% ligero), 2 azules (50% medio) y 2 rojos (100% pesado), permitiendo graduar la resistencia con precisión para calentamiento, core abdominal o saltos pliométricos en Jumpboard.'
+            text: 'Nuestras camas incorporan un sistema de 5 resortes alemanes calibrados por código de color: 1 amarillo (25% ligero), 2 azules (50% medio) y 2 rojos (100% pesado). Para trabajo de calentamiento y brazos se usa 1 resorte azul o amarillo; para ejercicios de abdomen y estabilidad de core se emplean 1 a 2 azules; y para la serie de Footwork y salto con Jumpboard se combinan 3 a 4 resortes (ej. 2 rojos + 1 azul o 2 rojos + 2 azules).'
           }
         },
         {
           '@type': 'Question',
-          name: '¿Qué mantenimiento preventivo requiere un Reformer en México y cada cuándo se cambian los resortes?',
+          name: '¿Qué mantenimiento preventivo requiere un Reformer en México y cada cuánto se cambian los resortes?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Se recomienda limpiar rieles semanalmente con microfibra seca, desinfectar la tapicería sin alcohol y revisar resortes cada 6 meses. En casa duran de 3 a 5 años; en estudios comerciales de alto flujo se sugiere renovación cada 18 a 24 meses.'
+            text: 'El mantenimiento básico incluye limpiar los rieles semanalmente con un paño de microfibra seco (evitando lubricantes con base de silicón que atraigan polvo), desinfectar la tapicería con soluciones libres de alcohol, e inspeccionar los resortes cada 6 meses. En uso residencial, los resortes de alambre de piano duran entre 3 y 5 años sin fatiga elástica. En estudios comerciales con alto flujo (6+ clases diarias), se recomienda renovar el set de resortes cada 18 a 24 meses por seguridad.'
           }
         },
         {
@@ -2010,7 +2132,7 @@ async function main() {
           name: '¿Por qué un Reformer de madera maciza o aluminio estructural es superior a una cama plegable económica?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Las camas plegables económicas de menos de $15,000 MXN sufren flexión en articulaciones centrales y usan ruedas plásticas ruidosas. Una estructura de Maple o Roble de 3 cm o aluminio aeronáutico absorbe vibraciones, no se descalibra y soporta hasta 180-200 kg.'
+            text: 'Las camas plegables económicas de menos de $15,000 MXN utilizan perfiles delgados y articulaciones centrales que con el tiempo ceden, generando un desnivel perceptible en el recorrido del carro. Además, sustituyen los rodamientos sellados por ruedas de plástico de alta fricción. Una cama de madera maciza de Maple o Roble de 3 cm o un chasis de aluminio de aviación absorbe las vibraciones por completo, no se pandea y garantiza una alineación postural impecable que protege las articulaciones.'
           }
         }
       ]
@@ -2022,12 +2144,11 @@ async function main() {
       ogImage: `${origin}${reformers[0].image}`,
       ogType: 'website',
     };
+    const graphHtml = wrapJsonLdInGraph([breadcrumb, collectionPage, itemList, faqSchema], `${origin}${route}`);
     let html = baseHtml(template, head, buildCamaDePilatesPage(reformers, origin));
     html = html.replace(
       '</head>',
-      [breadcrumb, collectionPage, itemList, faqSchema]
-        .map(schema => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`)
-        .join('\n') + '\n</head>'
+      `${graphHtml}\n</head>`
     );
     writeFileForRoute(route, html);
   }
@@ -2123,12 +2244,11 @@ async function main() {
       ogImage: `${origin}${reformers[0].image}`,
       ogType: 'website',
     };
+    const graphHtml = wrapJsonLdInGraph([breadcrumb, faqSchema], `${origin}${route}`);
     let html = baseHtml(template, head, buildCamaDePilatesPrecioPage(reformers, origin));
     html = html.replace(
       '</head>',
-      [breadcrumb, faqSchema]
-        .map(schema => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`)
-        .join('\n') + '\n</head>'
+      `${graphHtml}\n</head>`
     );
     writeFileForRoute(route, html);
   }
@@ -2213,12 +2333,11 @@ async function main() {
           acceptedAnswer: { '@type': 'Answer', text: item.answer },
         })),
       };
+      const graphHtml = wrapJsonLdInGraph([itemList, collectionPage, breadcrumb, faq], `${origin}/shop/category/${slug}`);
       let html = baseHtml(template, head, body);
       html = html.replace(
         '</head>',
-        [itemList, collectionPage, breadcrumb, faq]
-          .map(schema => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`)
-          .join('\n') + '\n</head>'
+        `${graphHtml}\n</head>`
       );
       writeFileForRoute(`/shop/category/${slug}`, html);
     }
@@ -2410,9 +2529,10 @@ async function main() {
         },
       ],
     };
+    const graphHtml = wrapJsonLdInGraph([faq], `${origin}/certificacion-pilates/${c.key}`);
     const html = baseHtml(template, head, body).replace(
       '</head>',
-      `<script type="application/ld+json">${JSON.stringify(faq)}</script>\n</head>`,
+      `${graphHtml}\n</head>`,
     );
     writeFileForRoute(`/certificacion-pilates/${c.key}`, html);
   }
@@ -2514,9 +2634,10 @@ async function main() {
         name: studio.name,
       })),
     };
+    const graphHtml = wrapJsonLdInGraph([itemList], `${origin}/estudios-de-pilates/${c.directorySlug}`);
     const html = baseHtml(template, head, body).replace(
       '</head>',
-      `<script type="application/ld+json">${JSON.stringify(itemList)}</script>\n</head>`,
+      `${graphHtml}\n</head>`,
     );
     writeFileForRoute(`/estudios-de-pilates/${c.directorySlug}`, html);
   }

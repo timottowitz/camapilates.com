@@ -122,12 +122,7 @@ Los resortes son el corazón del reformer. No se trata solo de "peso", sino de r
 Depende de tu ubicación y uso. El aluminio es más ligero, ideal si necesitas mover el equipo frecuentemente, y resiste mejor la humedad (excelente para ciudades costeras o zonas húmedas). La madera (generalmente arce o encino) absorbe mejor la vibración y ofrece una estética cálida preferida en estudios boutique de Guadalajara o San Pedro. Funcionalmente, el ejercicio es el mismo, pero la madera requiere control de temperatura para no deformarse. Los modelos profesionales de madera en México suelen estar en el rango alto de precios ($60k-$80k MXN), mientras que el aluminio ofrece opciones robustas desde $35k MXN.
 
 ### ¿Cuál es el rango de precios realista para un reformer de buena calidad en México este 2025?
-El mercado mexicano se divide en tres niveles:
-1.  **Uso casero básico (plegables):** $18,000 a $28,000 MXN.
-2.  **Home Studio (mayor durabilidad):** $30,000 a $50,000 MXN.
-3.  **Profesional de estudio (marcas importadas o fabricantes nacionales premium):** $60,000 a $85,000 MXN.
-
-Ojo con las ofertas menores a $15k en *marketplaces*; suelen carecer de certificaciones de seguridad y refacciones. Considera también el envío, que puede sumar $2,000-$4,000 MXN dependiendo si estás en el centro del país o en el norte.
+El mercado mexicano se divide en tres niveles: uso casero básico (plegables) de $18,000 a $28,000 MXN; Home Studio de mayor durabilidad de $30,000 a $50,000 MXN; y equipos profesionales de estudio de $60,000 a $85,000 MXN. Ojo con las ofertas menores a $15k en *marketplaces*; suelen carecer de certificaciones de seguridad y refacciones. Considera también el envío, que puede sumar $2,000-$4,000 MXN dependiendo si estás en el centro del país o en el norte.
 
 ### ¿Qué mantenimiento requiere una cama de Pilates para que dure años en condiciones óptimas?
 La limpieza es vital, especialmente en ciudades con mucho polvo como CDMX. Limpia los rieles del carro y las ruedas después de cada uso con un paño húmedo (solo agua) para evitar que la fricción dañe el deslizamiento. K. Wells sugiere revisar el apretado de tornillos y el estado de las cuerdas mensualmente. En México, conseguir refacciones de marcas importadas puede tardar semanas, por lo que cuidar los componentes de cuero y vinil del sudor es esencial para evitar grietas.

@@ -1,11 +1,7 @@
 ---
-title: >-
-  After 2 years of $300 a month &amp; a 40 minute round trip in perfect
-  conditions (conditions were rarely perfect) I took the plunge and bought a
-  reformer. (México)
+title: 'El Punto de Inflexión: ¿Cuándo Dejar de Pagar $300 USD Mensuales y Comprar tu Propio Reformer en México?'
 description: >-
-  Guía práctica sobre after 2 years of $300 a month &amp; a 40 minute round trip
-  in perfect conditions (conditions were rarely perfect) i took the plunge and
+  Análisis financiero y práctico: cuándo conviene dejar de pagar membresías de $300 USD al mes en estudios y comprar tu propia cama de Pilates Reformer en México.
 category: Estudio
 tags:
   - pilates

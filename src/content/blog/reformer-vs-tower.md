@@ -1,8 +1,7 @@
 ---
-title: 'Reformer vs Tower (Torre): ¿Qué conviene primero?'
+title: 'Reformer vs Torre de Pilates: ¿Qué Conviene Comprar Primero?'
 description: >-
-  Guía práctica sobre reformer vs tower (torre): ¿qué conviene primero? con
-  enfoque en México: consejos y pasos accionables.
+  Comparativa completa entre Reformer y Torre de Pilates (Half Cadillac): diferencias mecánicas, espacio requerido y qué equipo comprar primero en México.
 category: Comparativas
 tags:
   - pilates
@@ -14,7 +13,7 @@ featured: false
 heroImage: "/images/blog/reformer-vs-tower/hero.webp"
 ---
 
-# Reformer vs. Tower (Torre): ¿Qué conviene primero?
+# Reformer vs Torre de Pilates: ¿Qué Conviene Comprar Primero?
 
 > **Nota:** Este contenido es meramente informativo y no constituye asesoramiento médico.
 
