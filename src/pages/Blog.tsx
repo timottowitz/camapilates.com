@@ -8,7 +8,7 @@ import TagCloud21 from '@/components/editorial21/TagCloud21';
 import FeaturedRow21 from '@/components/editorial21/FeaturedRow21';
 import { loadAllBlogPosts } from '@/utils/blogUtils';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
-import { getAllCategories, getContentPost } from '@/lib/content';
+import { getAllCategories, getContentPost, getAllPostsMeta } from '@/lib/content';
 import { slugify } from '@/utils/slug';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { useQuery } from 'convex/react';
@@ -28,8 +28,20 @@ interface BlogPostMeta {
 
 const Blog: React.FC = () => {
   const postsData = useQuery(api.blogs.list, { status: 'published' });
-  const [posts, setPosts] = useState<BlogPostMeta[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState<BlogPostMeta[]>(() => {
+    return getAllPostsMeta().map(p => ({
+      slug: p.slug,
+      title: p.title,
+      excerpt: p.excerpt,
+      date: p.date,
+      readTime: p.readTime,
+      category: p.category,
+      author: p.author,
+      featured: p.featured,
+      heroImage: p.heroImage,
+    }));
+  });
+  const [loading, setLoading] = useState(false);
   const [cat, setCat] = useState<string>('Todos');
   const [visible, setVisible] = useState<number>(9);
 
@@ -39,10 +51,26 @@ const Blog: React.FC = () => {
         const staticP = getContentPost(p.slug);
         return {
           ...p,
+          date: staticP?.date || (p as any).publishDate || (p as any).date,
+          readTime: staticP?.readTime || (p as any).readTime || '5 min de lectura',
           heroImage: staticP?.heroImage || (p as any).heroImage,
         };
       });
-      setPosts(merged as BlogPostMeta[]);
+      const convexSlugs = new Set(postsData.map(p => p.slug));
+      const staticOnly = getAllPostsMeta()
+        .filter(sp => !convexSlugs.has(sp.slug))
+        .map(sp => ({
+          slug: sp.slug,
+          title: sp.title,
+          excerpt: sp.excerpt,
+          date: sp.date,
+          readTime: sp.readTime,
+          category: sp.category,
+          author: sp.author,
+          featured: sp.featured,
+          heroImage: sp.heroImage,
+        }));
+      setPosts([...merged, ...staticOnly] as BlogPostMeta[]);
       setLoading(false);
     }
   }, [postsData]);

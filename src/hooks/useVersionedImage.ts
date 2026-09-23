@@ -1,17 +1,10 @@
 import { useMemo } from 'react';
+import imageManifestData from '../image-manifest.json';
 
 // Import the image manifest synchronously
-let imageManifest: Record<string, { original: string; hashed: string; hash: string }> = {};
+const imageManifest: Record<string, { original: string; hashed: string; hash: string }> =
+  (imageManifestData as any) || {};
 
-// Synchronous import of manifest
-try {
-  // Use require for synchronous import in both dev and build
-  // @ts-ignore - TypeScript doesn't like require in ES modules
-  imageManifest = require('../image-manifest.json');
-} catch (error) {
-  // Fallback if manifest doesn't exist
-  console.warn('Image manifest not found, using original URLs');
-}
 
 /**
  * Hook to get versioned image URLs for cache busting

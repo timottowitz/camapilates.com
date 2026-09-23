@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { toAbsoluteUrl, getOrigin } from '@/lib/seo';
+import { getVersionedImageUrl } from '@/hooks/useVersionedImage';
 import { useQuery } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
 import { hasConvex } from '@/lib/convexProvider';
@@ -26,8 +27,16 @@ const BlogCard21: React.FC<{ post: BlogMeta; large?: boolean }> = ({ post, large
     hasConvex ? { placeholderId } : undefined
   ) as any;
   
-  // Priority: 1) heroImage from frontmatter, 2) Convex placeholder image, 3) OG fallback
-  const img = toAbsoluteUrl(post.heroImage) || placeholderData?.imageUrl || `${origin}/og/${post.slug}.png`;
+  // Priority: 1) heroImage with cache-busting version, 2) Convex placeholder image, 3) OG fallback
+  const versionedHero = post.heroImage ? getVersionedImageUrl(post.heroImage) : undefined;
+  const img = toAbsoluteUrl(versionedHero) || placeholderData?.imageUrl || `${origin}/og/${post.slug}.png`;
+
+  const parsedDate = post.date ? new Date(post.date) : null;
+  const isValidDate = parsedDate && !isNaN(parsedDate.getTime());
+  const formattedDate = isValidDate
+    ? parsedDate.toLocaleDateString('es-MX', { year: 'numeric', month: 'short', day: 'numeric' })
+    : '';
+  const readTime = post.readTime || '5 min de lectura';
   
   return (
     <Reveal>
@@ -42,7 +51,7 @@ const BlogCard21: React.FC<{ post: BlogMeta; large?: boolean }> = ({ post, large
       </div>
       <div className="p-4">
         <p className="text-sm text-muted-foreground line-clamp-2">{post.excerpt}</p>
-        <div className="mt-2 text-xs text-muted-foreground">{new Date(post.date).toLocaleDateString('es-MX', { year: 'numeric', month: 'short', day: 'numeric' })} • {post.readTime}</div>
+        <div className="mt-2 text-xs text-muted-foreground">{formattedDate ? `${formattedDate} • ` : ''}{readTime}</div>
       </div>
     </Link>
     </Reveal>

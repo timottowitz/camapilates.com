@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { ArrowLeft } from 'lucide-react';
 import BlogList from '@/components/blog/BlogList';
 import { slugify } from '@/utils/slug';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
-import { getContentPost } from '@/lib/content';
+import { getContentPost, getPostsByCategory } from '@/lib/content';
 import { useQuery } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 
@@ -23,9 +24,11 @@ interface BlogPostMeta {
 const BlogCategory: React.FC = () => {
   const navigate = useNavigate();
   const { category } = useParams<{ category: string }>();
-  const [posts, setPosts] = useState<BlogPostMeta[]>([]);
-  const [loading, setLoading] = useState(true);
   const normalized = slugify(category || '');
+  const [posts, setPosts] = useState<BlogPostMeta[]>(() => {
+    return (category ? getPostsByCategory(category) : []) as BlogPostMeta[];
+  });
+  const [loading, setLoading] = useState(false);
 
   const blogs = useQuery(api.blogs.list, { status: 'published' });
 
@@ -33,10 +36,15 @@ const BlogCategory: React.FC = () => {
     if (blogs) {
       const filtered = blogs
         .filter(p => slugify(p.category) === normalized)
-        .map(p => ({
-          ...p,
-          heroImage: getContentPost(p.slug)?.heroImage || (p as any).heroImage,
-        }));
+        .map(p => {
+          const staticP = getContentPost(p.slug);
+          return {
+            ...p,
+            date: staticP?.date || (p as any).publishDate || (p as any).date,
+            readTime: staticP?.readTime || (p as any).readTime || '5 min de lectura',
+            heroImage: staticP?.heroImage || (p as any).heroImage,
+          };
+        });
       setPosts(filtered as any);
       setLoading(false);
     }

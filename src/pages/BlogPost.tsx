@@ -18,6 +18,7 @@ import ShareButtons from '@/components/blog/ShareButtons';
 import { Card, CardContent } from '@/components/ui/card';
 import { DEFAULTS, getOrigin, toAbsoluteUrl, generateBlogPostSchema } from '@/lib/seo';
 import { getAllPostsMeta, getPostBySlug as getContentPost } from '@/lib/content';
+import { getVersionedImageUrl } from '@/hooks/useVersionedImage';
 import HubList from '@/components/blog/HubList';
 import SeeAlso from '@/components/blog/SeeAlso';
 import RelatedProducts from '@/components/blog/RelatedProducts';
@@ -121,7 +122,8 @@ const BlogPost = () => {
   };
   const { prevPost, nextPost } = computePrevNext();
 
-  const ogImage = heroOverride || toAbsoluteUrl((postMeta as any)?.heroImage) || (postMeta ? `${origin}/og/${postMeta.slug}.png` : '');
+  const versionedHero = (postMeta as any)?.heroImage ? getVersionedImageUrl((postMeta as any).heroImage) : undefined;
+  const ogImage = heroOverride || toAbsoluteUrl(versionedHero) || (postMeta ? `${origin}/og/${postMeta.slug}.png` : '');
   const robots = (postMeta as any)?.noindex ? 'noindex,follow' : 'index,follow';
   const tags = (postMeta as any)?.tags || [];
   const keywords = tags.join(', ');
@@ -244,7 +246,7 @@ const BlogPost = () => {
               <div className="mb-12">
                 {postMeta.heroImage ? (
                   <img
-                    src={toAbsoluteUrl(postMeta.heroImage as any) || heroOverride || ''}
+                    src={toAbsoluteUrl(getVersionedImageUrl(postMeta.heroImage as any)) || heroOverride || ''}
                     alt={postMeta.title}
                     className="w-full rounded-sm shadow-sm aspect-[16/9] object-cover"
                     loading="eager"
