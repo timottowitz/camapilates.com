@@ -24,7 +24,7 @@ heroImage: "/images/blog/comunidad-pilates-mexicana/hero.webp"
 
 ## La Revolución del Pilates en México: Una Comunidad en Crecimiento
 
-El método Pilates ha experimentado un crecimiento exponencial en México durante los últimos cinco años, transformándose de una práctica de nicho a un movimiento de bienestar integral que conecta a miles de instructores y practicantes en todo el país. Desde los estudios boutique de Polanco hasta las certificaciones internacionales en León, la comunidad mexicana de Pilates está escribiendo su propia historia de éxito.
+El método Pilates ha experimentado un [crecimiento exponencial en México](/blog/crecimiento-pilates-mexico) durante los últimos cinco años, transformándose de una práctica de nicho a un movimiento de bienestar integral que conecta a miles de instructores y practicantes en todo el país. Desde los [estudios boutique](/blog/estudios-pilates-reformer) de Polanco hasta las certificaciones internacionales en León, la comunidad mexicana de Pilates está escribiendo su propia historia de éxito.
 
 Con más de **500 estudios especializados** en las principales ciudades y una red de **3,000+ instructores certificados**, México se posiciona como líder en educación y práctica de Pilates en Latinoamérica. Esta guía te conectará con los recursos, personas y oportunidades que están moldeando el futuro del Pilates en nuestro país.
 
@@ -60,7 +60,7 @@ La perla tapatía cuenta con **Culture Body Pilates Studio** como referente, con
 Monterrey destaca por albergar programas de formación de primer nivel y por su enfoque en Pilates para rehabilitación y acondicionamiento boutique, con alta demanda en zonas como San Pedro Garza García y Valle Oriente.
 
 > 📢 **Próximas Cohortes Presenciales: Monterrey & Querétaro (Curso Básico 28h / Certificación Completa 48h)**  
-> Si buscas formarte profesionalmente en Pilates Reformer sin tener que pausar tus actividades semanales:  
+> Si buscas formarte profesionalmente en Pilates [Reformer](/blog/pilates-reformer-cdmx) sin tener que pausar tus actividades semanales:  
 > • **Monterrey:** 5 de Diciembre 2026 al 17 de Enero 2027 (San Pedro). [Ver convocatoria Monterrey →](/certificacion-pilates/monterrey)  
 > • **Querétaro:** 7 al 29 de Noviembre 2026. [Ver convocatoria Querétaro →](/certificacion-pilates/queretaro)  
 > • **Info Day en Vivo (Sáb 26 Sep · 11:00 AM CST):** Sesión informativa 100% gratuita con **Gabi y Laura Munive** vía Google Meet para explicar los próximos cursos: Curso Básico (28h · $25,000 MXN) y Certificación Completa (48h · $38,000 MXN).  
@@ -177,9 +177,12 @@ CDMX lidera con 40% de demanda, seguida por Guadalajara (15%), Monterrey (12%), 
 ### ¿Cómo puedo especializarme sin dejar de trabajar?
 Opta por certificaciones online o híbridas, workshops de fin de semana, y programas modulares. AT STUDIO y NACER ofrecen flexibilidad para profesionales activos.
 
+
+> 💡 **Lectura recomendada:** [Pilates has changed my life! (México)](/blog/pilates-has-changed-my-life-mexico)
+
 ## Únete al Movimiento
 
-La comunidad de Pilates en México no es solo una red profesional; es una familia que comparte la pasión por transformar vidas a través del movimiento consciente. Ya sea que estés iniciando tu camino como instructor o buscando expandir tu estudio, recuerda que el éxito en Pilates se construye sobre tres pilares: técnica impecable, equipo de calidad y conexiones significativas.
+La comunidad de Pilates en México no es solo una red profesional; es una familia que comparte la pasión por transformar vidas a través del movimiento consciente. Ya sea que estés iniciando tu camino como [instructor](/blog/historia-instructor-certificado) o buscando expandir tu estudio, recuerda que el éxito en Pilates se construye sobre tres pilares: técnica impecable, equipo de calidad y conexiones significativas.
 
 **¿Listo para ser parte de la revolución del Pilates en México?** Comienza hoy mismo: únete a un grupo local, asiste a tu primer workshop, o invierte en ese Reformer que transformará tu práctica. La comunidad te espera con los brazos abiertos.
 

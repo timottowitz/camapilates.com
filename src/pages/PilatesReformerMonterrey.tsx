@@ -132,7 +132,7 @@ export const PilatesReformerMonterrey: React.FC = () => {
               </h1>
 
               <p className="text-lg sm:text-xl text-[#5D5550] font-light leading-relaxed max-w-2xl">
-                Equipa tu espacio con nuestros <strong className="text-[#2A2624] font-semibold">Studio Reformer Packs</strong>. Despachamos directamente a Monterrey y ZMM en un lapso garantizado de <strong className="text-[#3E2723] font-bold underline decoration-amber-400 decoration-2 underline-offset-4">7 Días Hábiles</strong>.
+                Arma tu <Link to="/packs/estudio" className="font-semibold text-[#2A2624] underline hover:text-[#3E2723]">estudio de Pilates Reformer</Link> en Monterrey y ZMM (San Pedro Garza García, <Link to="/packs/monterrey" className="font-semibold text-[#2A2624] underline hover:text-[#3E2723]">Valle Oriente, Cumbres, Carretera Nacional</Link>). Despachamos nuestros Studio Reformer Packs directamente a Monterrey en un lapso garantizado de <strong className="text-[#3E2723] font-bold underline decoration-amber-400 decoration-2 underline-offset-4">7 Días Hábiles</strong>.
               </p>
 
               {/* Delivery Guarantee Pill */}
@@ -484,6 +484,26 @@ export const PilatesReformerMonterrey: React.FC = () => {
         </div>
       </section>
 
+      {/* Cross Links Section */}
+      <section className="py-16 px-6 sm:px-12 md:px-24 bg-[#EAE8E4] border-t border-[#2A2624]/10">
+        <div className="max-w-[1200px] mx-auto">
+          <h2 className="text-2xl font-serif italic text-[#2A2624] mb-6 text-center">Opciones para Estudios en Todo México</h2>
+          <div className="grid sm:grid-cols-3 gap-6">
+            <Link to="/packs/estudio" className="p-6 rounded-xl bg-white border border-[#2A2624]/10 hover:border-[#2A2624] transition-all group">
+              <h3 className="font-semibold text-[#2A2624] group-hover:text-[#EB4C42] mb-2">Pack para Estudios Nacional</h3>
+              <p className="text-xs text-[#5D5550] leading-relaxed">20% de descuento a partir de 8 camas de Pilates Reformer con entrega coordinada.</p>
+            </Link>
+            <Link to="/reformer-para-estudio" className="p-6 rounded-xl bg-white border border-[#2A2624]/10 hover:border-[#2A2624] transition-all group">
+              <h3 className="font-semibold text-[#2A2624] group-hover:text-[#EB4C42] mb-2">Reformer para Estudio</h3>
+              <p className="text-xs text-[#5D5550] leading-relaxed">Modelos comerciales de madera de maple, roble y aluminio estructural.</p>
+            </Link>
+            <Link to="/cama-de-pilates" className="p-6 rounded-xl bg-white border border-[#2A2624]/10 hover:border-[#2A2624] transition-all group">
+              <h3 className="font-semibold text-[#2A2624] group-hover:text-[#EB4C42] mb-2">Catálogo de Camas de Pilates</h3>
+              <p className="text-xs text-[#5D5550] leading-relaxed">Guía completa de modelos, especificaciones técnicas y precios con 12 MSI.</p>
+            </Link>
+          </div>
+        </div>
+      </section>
     </LuxuryLayout>
   );
 };

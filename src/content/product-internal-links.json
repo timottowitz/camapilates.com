@@ -1,0 +1,1462 @@
+{
+  "reformer-maple-media-torre-a016m": [
+    {
+      "target": "/product/reformer-maple-torre-completa-a020m",
+      "anchor": "",
+      "sentence": "Reformer de maple norteamericano con media torre de acero inoxidable 304 (tubo de 32 mm).",
+      "role": "comparison_or_alternative",
+      "tier": "strong"
+    },
+    {
+      "target": "/product/reformer-maple-a015",
+      "anchor": "Reformer de maple norteamericano",
+      "sentence": "Reformer de maple norteamericano con media torre de acero inoxidable 304 (tubo de 32 mm).",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-media-torre-a016",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-blanco-media-torre-a012",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-maple-barra-patentada-a001",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-blanco-media-torre-a012": [
+    {
+      "target": "/product/reformer-blanco-torre-completa-a081",
+      "anchor": "",
+      "sentence": "Reformer de roble lacado en blanco con media torre de acero inoxidable 304 y barra de pies curva.",
+      "role": "comparison_or_alternative",
+      "tier": "strong"
+    },
+    {
+      "target": "/product/reformer-roble-media-torre-a016",
+      "anchor": "media torre de acero",
+      "sentence": "Reformer de roble lacado en blanco con media torre de acero inoxidable 304 y barra de pies curva.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-blanco-a011",
+      "anchor": "roble lacado en blanco",
+      "sentence": "Reformer de roble lacado en blanco con media torre de acero inoxidable 304 y barra de pies curva.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-media-torre-acero-a038",
+      "anchor": "resortes alemanes de alambre",
+      "sentence": "✓ Resortes: 5 resortes alemanes de alambre de piano de alta precisión",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-barra-deslizante-torre-a018",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-maple-media-torre-a016m",
+      "anchor": "media torre de acero",
+      "sentence": "Reformer de roble lacado en blanco con media torre de acero inoxidable 304 y barra de pies curva.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-roble-barra-deslizante-a017": [
+    {
+      "target": "/product/reformer-roble-barra-deslizante-torre-a018",
+      "anchor": "",
+      "sentence": "Reformer de roble con barra deslizante y rieles internos de acero engrosado más rieles externos de aluminio personalizados.",
+      "role": "comparison_or_alternative",
+      "tier": "strong"
+    },
+    {
+      "target": "/product/reformer-roble-media-torre-a016",
+      "anchor": "",
+      "sentence": "Reformer de roble con barra deslizante y rieles internos de acero engrosado más rieles externos de aluminio personalizados.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-torre-completa-a020",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-a015",
+      "anchor": "",
+      "sentence": "Reformer de roble con barra deslizante y rieles internos de acero engrosado más rieles externos de aluminio personalizados.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-blanco-media-torre-a012",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-blanco-a011",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-barra-patentada-a107",
+      "anchor": "",
+      "sentence": "Reformer de roble con barra deslizante y rieles internos de acero engrosado más rieles externos de aluminio personalizados.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-aluminio-barra-deslizante-a036": [
+    {
+      "target": "/product/reformer-torre-completa-aluminio-a045",
+      "anchor": "aluminio con barra deslizante",
+      "sentence": "Reformer de aleación de aluminio con barra deslizante de primera generación.",
+      "role": "comparison_or_alternative",
+      "tier": "strong"
+    },
+    {
+      "target": "/product/reformer-barra-deslizante-media-torre-a036t",
+      "anchor": "aluminio con barra deslizante",
+      "sentence": "Reformer de aleación de aluminio con barra deslizante de primera generación.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-riel-deslizante-a068",
+      "anchor": "aluminio con barra deslizante",
+      "sentence": "Reformer de aleación de aluminio con barra deslizante de primera generación.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-negro-a033",
+      "anchor": "aluminio con barra deslizante",
+      "sentence": "Reformer de aleación de aluminio con barra deslizante de primera generación.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-riel-fijo-a037",
+      "anchor": "",
+      "sentence": "Reformer de aleación de aluminio con barra deslizante de primera generación.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-negro-media-torre-a033t",
+      "anchor": "",
+      "sentence": "Reformer de aleación de aluminio con barra deslizante de primera generación.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-maple-a015": [
+    {
+      "target": "/product/reformer-maple-torre-completa-a020m",
+      "anchor": "",
+      "sentence": "Reformer de maple norteamericano con resortes alemanes de alambre de piano, rieles internos de aluminio sin costura de 2.0 mm y ruedas japonesas súper silenciosas.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-maple-media-torre-a016m",
+      "anchor": "",
+      "sentence": "Reformer de maple norteamericano con resortes alemanes de alambre de piano, rieles internos de aluminio sin costura de 2.0 mm y ruedas japonesas súper silenciosas.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-maple-barra-patentada-a001",
+      "anchor": "",
+      "sentence": "Reformer de maple norteamericano con resortes alemanes de alambre de piano, rieles internos de aluminio sin costura de 2.0 mm y ruedas japonesas súper silenciosas.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-a015",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-a070",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-barra-deslizante-media-torre-a036t": [
+    {
+      "target": "/product/reformer-torre-completa-aluminio-a045",
+      "anchor": "aluminio con barra deslizante",
+      "sentence": "Reformer de aluminio con barra deslizante y media torre de aleación de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-media-torre-a071",
+      "anchor": "media torre de aleación",
+      "sentence": "Reformer de aluminio con barra deslizante y media torre de aleación de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-barra-deslizante-a036",
+      "anchor": "aluminio con barra deslizante",
+      "sentence": "Reformer de aluminio con barra deslizante y media torre de aleación de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-negro-media-torre-a033t",
+      "anchor": "media torre de aleación",
+      "sentence": "Reformer de aluminio con barra deslizante y media torre de aleación de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-riel-deslizante-a068",
+      "anchor": "aluminio con barra deslizante",
+      "sentence": "Reformer de aluminio con barra deslizante y media torre de aleación de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-barra-deslizante-torre-a018",
+      "anchor": "",
+      "sentence": "Reformer de aluminio con barra deslizante y media torre de aleación de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-maple-torre-completa-a020m": [
+    {
+      "target": "/product/reformer-maple-media-torre-a016m",
+      "anchor": "",
+      "sentence": "Combinación reformer + torre completa (trapecio) en maple norteamericano con estructura de acero inoxidable 304.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-maple-a015",
+      "anchor": "",
+      "sentence": "Combinación reformer + torre completa (trapecio) en maple norteamericano con estructura de acero inoxidable 304.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-torre-completa-a020",
+      "anchor": "reformer torre completa trapecio",
+      "sentence": "Combinación reformer + torre completa (trapecio) en maple norteamericano con estructura de acero inoxidable 304.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/cadillac-maple-a019m",
+      "anchor": "trapecio en maple norteamericano",
+      "sentence": "Combinación reformer + torre completa (trapecio) en maple norteamericano con estructura de acero inoxidable 304.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-maple-barra-patentada-a001",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-negro-torre-completa-a034",
+      "anchor": "",
+      "sentence": "Resortes alemanes y rieles de aluminio sin costura.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-roble-blanco-a011": [
+    {
+      "target": "/product/reformer-blanco-media-torre-a012",
+      "anchor": "",
+      "sentence": "Reformer de roble tailandés lacado en blanco con barra de pies curva.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-blanco-torre-completa-a081",
+      "anchor": "",
+      "sentence": "Reformer de roble tailandés lacado en blanco con barra de pies curva.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-a015",
+      "anchor": "Reformer de roble tailandés",
+      "sentence": "Reformer de roble tailandés lacado en blanco con barra de pies curva.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/reformer-para-estudio",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-aluminio-negro-a033": [
+    {
+      "target": "/product/reformer-negro-media-torre-a033t",
+      "anchor": "negro con barra deslizante",
+      "sentence": "Reformer de aleación de aluminio engrosada en negro con barra deslizante de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-negro-torre-completa-a034",
+      "anchor": "negro con barra deslizante",
+      "sentence": "Reformer de aleación de aluminio engrosada en negro con barra deslizante de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-riel-deslizante-a068",
+      "anchor": "barra deslizante de aluminio",
+      "sentence": "Reformer de aleación de aluminio engrosada en negro con barra deslizante de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-a070",
+      "anchor": "aleación de aluminio engrosada",
+      "sentence": "Reformer de aleación de aluminio engrosada en negro con barra deslizante de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-media-torre-a102",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-riel-fijo-a037",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "pantalon-organico-relaxed": [
+    {
+      "target": "/product/top-organico-relaxed",
+      "anchor": "",
+      "sentence": "Pantalón amplio y fluido de algodón orgánico.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/top-organico-fitted",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-maple-barra-patentada-a001": [
+    {
+      "target": "/product/reformer-maple-torre-completa-a020m",
+      "anchor": "",
+      "sentence": "Reformer de maple norteamericano (2350/2460 mm) con barra de pies patentada de aluminio, rieles internos de aluminio sin costura de 2.5 mm y tapicería de silicona.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-barra-patentada-a107",
+      "anchor": "",
+      "sentence": "Reformer de maple norteamericano (2350/2460 mm) con barra de pies patentada de aluminio, rieles internos de aluminio sin costura de 2.5 mm y tapicería de silicona.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-maple-a015",
+      "anchor": "",
+      "sentence": "Reformer de maple norteamericano (2350/2460 mm) con barra de pies patentada de aluminio, rieles internos de aluminio sin costura de 2.5 mm y tapicería de silicona.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-maple-media-torre-a016m",
+      "anchor": "",
+      "sentence": "Reformer de maple norteamericano (2350/2460 mm) con barra de pies patentada de aluminio, rieles internos de aluminio sin costura de 2.5 mm y tapicería de silicona.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/reformer-para-estudio",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-roble-media-torre-a016": [
+    {
+      "target": "/product/reformer-roble-torre-completa-a020",
+      "anchor": "Reformer de roble con",
+      "sentence": "Reformer de roble con media torre de acero inoxidable 304 (tubo de 32 mm).",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-maple-media-torre-a016m",
+      "anchor": "",
+      "sentence": "Reformer de roble con media torre de acero inoxidable 304 (tubo de 32 mm).",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-blanco-media-torre-a012",
+      "anchor": "roble con media torre",
+      "sentence": "Reformer de roble con media torre de acero inoxidable 304 (tubo de 32 mm).",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-blanco-torre-completa-a081",
+      "anchor": "",
+      "sentence": "Reformer de roble con media torre de acero inoxidable 304 (tubo de 32 mm).",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-barra-deslizante-torre-a018",
+      "anchor": "roble con media torre",
+      "sentence": "Reformer de roble con media torre de acero inoxidable 304 (tubo de 32 mm).",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-a015",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-negro-media-torre-a033t",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "cadillac-roble-a019": [
+    {
+      "target": "/product/cadillac-maple-a019m",
+      "anchor": "",
+      "sentence": "Cama de Pilates Cadillac en madera maciza de roble tailandés de 230 × 216 cm con torre trapecio de acero inoxidable 304.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/cadillac-aluminio-a048",
+      "anchor": "Cama de Pilates Cadillac",
+      "sentence": "Cama de Pilates Cadillac en madera maciza de roble tailandés de 230 × 216 cm con torre trapecio de acero inoxidable 304.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-media-torre-a016",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-a015",
+      "anchor": "de roble tailandés",
+      "sentence": "Cama de Pilates Cadillac en madera maciza de roble tailandés de 230 × 216 cm con torre trapecio de acero inoxidable 304.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-blanco-torre-completa-a081",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "silla-wunda-roble-a022": [
+    {
+      "target": "/product/silla-wunda-roble-premium-a101",
+      "anchor": "",
+      "sentence": "Silla Wunda combo de roble tailandés con 4 resortes coreanos, asas de acero inoxidable y microfibra europea de 1.3 mm.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/silla-wunda-maple-a022m",
+      "anchor": "",
+      "sentence": "Silla Wunda combo de roble tailandés con 4 resortes coreanos, asas de acero inoxidable y microfibra europea de 1.3 mm.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-blanco-torre-completa-a081": [
+    {
+      "target": "/product/reformer-blanco-media-torre-a012",
+      "anchor": "",
+      "sentence": "Reformer de roble lacado en blanco con torre completa (trapecio) de acero inoxidable 304.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-torre-completa-a020",
+      "anchor": "con torre completa trapecio",
+      "sentence": "Reformer de roble lacado en blanco con torre completa (trapecio) de acero inoxidable 304.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-blanco-a011",
+      "anchor": "roble lacado en blanco",
+      "sentence": "Reformer de roble lacado en blanco con torre completa (trapecio) de acero inoxidable 304.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-negro-torre-completa-a034",
+      "anchor": "resortes alemanes de alambre",
+      "sentence": "✓ Resortes: 5 resortes alemanes de alambre de piano de alta precisión",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-media-torre-a016",
+      "anchor": "",
+      "sentence": "Reformer de roble lacado en blanco con torre completa (trapecio) de acero inoxidable 304.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "calcetines-pack-3": [
+    {
+      "target": "/blog/calcetines-para-pilates-reformer",
+      "anchor": "calcetines grip orgánicos",
+      "sentence": "Set de 3 pares de calcetines grip orgánicos.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-aluminio-nogal-a039": [
+    {
+      "target": "/product/reformer-aluminio-a070",
+      "anchor": "",
+      "sentence": "Reformer con estructura de aluminio en elegante acabado color nogal.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-torre-barra-fija-a043",
+      "anchor": "",
+      "sentence": "Reformer con estructura de aluminio en elegante acabado color nogal.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-media-torre-a071",
+      "anchor": "",
+      "sentence": "Reformer con estructura de aluminio en elegante acabado color nogal.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-negro-a033",
+      "anchor": "",
+      "sentence": "Reformer con estructura de aluminio en elegante acabado color nogal.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-media-torre-acero-a038",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-compacto-a039a",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-riel-deslizante-a068",
+      "anchor": "",
+      "sentence": "Resortes alemanes de alambre de piano y rodamiento súper silencioso importado de Japón.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-aluminio-riel-deslizante-a068": [
+    {
+      "target": "/product/reformer-aluminio-negro-a033",
+      "anchor": "",
+      "sentence": "Reformer de aleación de aluminio reforzada con barra deslizante y riel completo.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-negro-media-torre-a033t",
+      "anchor": "",
+      "sentence": "Reformer de aleación de aluminio reforzada con barra deslizante y riel completo.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-a070",
+      "anchor": "ruedas japonesas súper silenciosas",
+      "sentence": "Resortes alemanes de alambre de piano, ruedas japonesas súper silenciosas y tapicería de microfibra de 1.3 mm.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-riel-fijo-a037",
+      "anchor": "",
+      "sentence": "Reformer de aleación de aluminio reforzada con barra deslizante y riel completo.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-roble-torre-completa-a020": [
+    {
+      "target": "/product/reformer-blanco-torre-completa-a081",
+      "anchor": "reformer torre completa trapecio",
+      "sentence": "Combinación reformer + torre completa (trapecio) en roble tailandés, 230 × 216 cm.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-maple-torre-completa-a020m",
+      "anchor": "reformer torre completa trapecio",
+      "sentence": "Combinación reformer + torre completa (trapecio) en roble tailandés, 230 × 216 cm.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-barra-deslizante-torre-a018",
+      "anchor": "",
+      "sentence": "Combinación reformer + torre completa (trapecio) en roble tailandés, 230 × 216 cm.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-media-torre-a016",
+      "anchor": "",
+      "sentence": "Combinación reformer + torre completa (trapecio) en roble tailandés, 230 × 216 cm.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-a015",
+      "anchor": "en roble tailandés",
+      "sentence": "Combinación reformer + torre completa (trapecio) en roble tailandés, 230 × 216 cm.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-blanco-media-torre-a012",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-negro-torre-completa-a034",
+      "anchor": "resortes alemanes de alambre",
+      "sentence": "✓ Resortes: 5 resortes alemanes de alambre de piano de alta precisión",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "silla-wunda-maple-a022m": [
+    {
+      "target": "/product/silla-wunda-roble-a022",
+      "anchor": "",
+      "sentence": "Silla Wunda combo de maple norteamericano con 4 resortes coreanos, herrajes niquelados anticorrosión y asas de acero inoxidable.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/silla-wunda-roble-premium-a101",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-maple-a015",
+      "anchor": "",
+      "sentence": "✓ Resortes: 5 resortes alemanes de alambre de piano de alta precisión",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "torre-pared-reformer-maple-a027": [
+    {
+      "target": "/product/reformer-maple-torre-completa-a020m",
+      "anchor": "",
+      "sentence": "Torre de pared compacta (185 × 61 cm) de maple importado con resortes coreanos.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-maple-a015",
+      "anchor": "",
+      "sentence": "✓ Resortes: 5 resortes alemanes de alambre de piano de alta precisión",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-maple-media-torre-a016m",
+      "anchor": "",
+      "sentence": "Torre de pared compacta (185 × 61 cm) de maple importado con resortes coreanos.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-aluminio-media-torre-acero-a038": [
+    {
+      "target": "/product/reformer-aluminio-media-torre-a071",
+      "anchor": "media torre de",
+      "sentence": "Reformer blanco de aluminio con rieles embebidos y media torre de acero inoxidable.",
+      "role": "product_or_service",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-media-torre-a102",
+      "anchor": "",
+      "sentence": "Reformer blanco de aluminio con rieles embebidos y media torre de acero inoxidable.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-a070",
+      "anchor": "",
+      "sentence": "Reformer blanco de aluminio con rieles embebidos y media torre de acero inoxidable.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-seis-en-uno-a042": [
+    {
+      "target": "/product/reformer-torre-completa-aluminio-a045",
+      "anchor": "aluminio con torre completa",
+      "sentence": "Estación multifuncional 6 en 1: reformer de aluminio con torre completa de aluminio y acero inoxidable, escalera sueca y accesorios.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-negro-torre-completa-a034",
+      "anchor": "aluminio con torre completa",
+      "sentence": "Estación multifuncional 6 en 1: reformer de aluminio con torre completa de aluminio y acero inoxidable, escalera sueca y accesorios.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-media-torre-acero-a038",
+      "anchor": "reformer de aluminio con",
+      "sentence": "Estación multifuncional 6 en 1: reformer de aluminio con torre completa de aluminio y acero inoxidable, escalera sueca y accesorios.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "cadillac-aluminio-a048": [
+    {
+      "target": "/product/cadillac-roble-a019",
+      "anchor": "Cama de Pilates Cadillac",
+      "sentence": "Cama de Pilates Cadillac profesional con estructura reforzada de aleación de aluminio y torre completa.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/cadillac-maple-a019m",
+      "anchor": "Cama de Pilates Cadillac",
+      "sentence": "Cama de Pilates Cadillac profesional con estructura reforzada de aleación de aluminio y torre completa.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-aluminio-a070": [
+    {
+      "target": "/product/reformer-aluminio-negro-a033",
+      "anchor": "",
+      "sentence": "Reformer de aleación de aluminio engrosada con resortes alemanes de alambre de piano, ruedas japonesas súper silenciosas y esponja de alta elasticidad.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-media-torre-a102",
+      "anchor": "",
+      "sentence": "Reformer de aleación de aluminio engrosada con resortes alemanes de alambre de piano, ruedas japonesas súper silenciosas y esponja de alta elasticidad.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-torre-barra-fija-a043",
+      "anchor": "",
+      "sentence": "Reformer de aleación de aluminio engrosada con resortes alemanes de alambre de piano, ruedas japonesas súper silenciosas y esponja de alta elasticidad.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-media-torre-acero-a038",
+      "anchor": "",
+      "sentence": "Reformer de aleación de aluminio engrosada con resortes alemanes de alambre de piano, ruedas japonesas súper silenciosas y esponja de alta elasticidad.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-riel-fijo-a037",
+      "anchor": "",
+      "sentence": "Reformer de aleación de aluminio engrosada con resortes alemanes de alambre de piano, ruedas japonesas súper silenciosas y esponja de alta elasticidad.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-riel-deslizante-a068",
+      "anchor": "",
+      "sentence": "Reformer de aleación de aluminio engrosada con resortes alemanes de alambre de piano, ruedas japonesas súper silenciosas y esponja de alta elasticidad.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-aluminio-riel-fijo-a037": [
+    {
+      "target": "/product/reformer-aluminio-riel-deslizante-a068",
+      "anchor": "",
+      "sentence": "Reformer de aleación de aluminio de segunda generación con riel fijo.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-a070",
+      "anchor": "",
+      "sentence": "Reformer de aleación de aluminio de segunda generación con riel fijo.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-media-torre-a102",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-media-torre-acero-a038",
+      "anchor": "",
+      "sentence": "Reformer de aleación de aluminio de segunda generación con riel fijo.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-negro-a033",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/reformer-para-estudio",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-barra-deslizante-a036",
+      "anchor": "",
+      "sentence": "Reformer de aleación de aluminio de segunda generación con riel fijo.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-aluminio-media-torre-a071": [
+    {
+      "target": "/product/reformer-aluminio-media-torre-a102",
+      "anchor": "aluminio con media torre",
+      "sentence": "Reformer de aluminio con media torre de aleación integrada.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-negro-media-torre-a033t",
+      "anchor": "aluminio con media torre",
+      "sentence": "Reformer de aluminio con media torre de aleación integrada.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-media-torre-acero-a038",
+      "anchor": "aluminio con media torre",
+      "sentence": "Reformer de aluminio con media torre de aleación integrada.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-barra-deslizante-media-torre-a036t",
+      "anchor": "aluminio con media torre",
+      "sentence": "Reformer de aluminio con media torre de aleación integrada.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-torre-barra-fija-a043",
+      "anchor": "Reformer de aluminio con",
+      "sentence": "Reformer de aluminio con media torre de aleación integrada.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "top-organico-relaxed": [
+    {
+      "target": "/product/top-organico-fitted",
+      "anchor": "",
+      "sentence": "Top holgado y transpirable de algodón orgánico.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/pantalon-organico-relaxed",
+      "anchor": "",
+      "sentence": "Corte oversized cómodo para práctica relajada.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-aluminio-media-torre-a102": [
+    {
+      "target": "/product/reformer-aluminio-media-torre-acero-a038",
+      "anchor": "aluminio con media torre",
+      "sentence": "Reformer profesional de aluminio con media torre integrada.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-media-torre-a071",
+      "anchor": "con media torre integrada",
+      "sentence": "Reformer profesional de aluminio con media torre integrada.",
+      "role": "product_or_service",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-torre-barra-fija-a043",
+      "anchor": "",
+      "sentence": "Reformer profesional de aluminio con media torre integrada.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-a070",
+      "anchor": "",
+      "sentence": "Resortes alemanes, ruedas japonesas súper silenciosas y esponja de alta elasticidad.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-barra-deslizante-media-torre-a036t",
+      "anchor": "aluminio con media torre",
+      "sentence": "Reformer profesional de aluminio con media torre integrada.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-roble-a015": [
+    {
+      "target": "/product/reformer-roble-torre-completa-a020",
+      "anchor": "",
+      "sentence": "Reformer clásico de roble tailandés de 240 × 71 × 68 cm.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-media-torre-a016",
+      "anchor": "",
+      "sentence": "Reformer clásico de roble tailandés de 240 × 71 × 68 cm.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-blanco-a011",
+      "anchor": "de roble tailandés",
+      "sentence": "Reformer clásico de roble tailandés de 240 × 71 × 68 cm.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-blanco-media-torre-a012",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-barra-deslizante-a017",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-barra-deslizante-torre-a018",
+      "anchor": "",
+      "sentence": "Reformer clásico de roble tailandés de 240 × 71 × 68 cm.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-maple-a015",
+      "anchor": "",
+      "sentence": "✓ Resortes: 5 resortes alemanes de alambre de piano de alta precisión",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-roble-barra-deslizante-torre-a018": [
+    {
+      "target": "/product/reformer-roble-torre-completa-a020",
+      "anchor": "",
+      "sentence": "Reformer de roble con barra deslizante y media torre de acero inoxidable 304.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-barra-deslizante-a017",
+      "anchor": "roble con barra deslizante",
+      "sentence": "Reformer de roble con barra deslizante y media torre de acero inoxidable 304.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-media-torre-a016",
+      "anchor": "media torre de acero",
+      "sentence": "Reformer de roble con barra deslizante y media torre de acero inoxidable 304.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-blanco-media-torre-a012",
+      "anchor": "media torre de acero",
+      "sentence": "Reformer de roble con barra deslizante y media torre de acero inoxidable 304.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-barra-deslizante-media-torre-a036t",
+      "anchor": "con barra deslizante",
+      "sentence": "Reformer de roble con barra deslizante y media torre de acero inoxidable 304.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "cadillac-maple-a019m": [
+    {
+      "target": "/product/cadillac-roble-a019",
+      "anchor": "",
+      "sentence": "Cama de Pilates Cadillac en maple norteamericano de alta resistencia con torre trapecio de acero inoxidable 304.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/cadillac-aluminio-a048",
+      "anchor": "Cama de Pilates Cadillac",
+      "sentence": "Cama de Pilates Cadillac en maple norteamericano de alta resistencia con torre trapecio de acero inoxidable 304.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-maple-media-torre-a016m",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-maple-a015",
+      "anchor": "",
+      "sentence": "✓ Resortes: 5 resortes alemanes de alambre de piano de alta precisión",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-negro-media-torre-a033t": [
+    {
+      "target": "/product/reformer-torre-completa-aluminio-a045",
+      "anchor": "",
+      "sentence": "Reformer negro de aluminio con media torre de aleación de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-barra-deslizante-media-torre-a036t",
+      "anchor": "aluminio con media torre",
+      "sentence": "Reformer negro de aluminio con media torre de aleación de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-media-torre-a071",
+      "anchor": "aluminio con media torre",
+      "sentence": "Reformer negro de aluminio con media torre de aleación de aluminio.",
+      "role": "product_or_service",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-negro-torre-completa-a034",
+      "anchor": "Reformer negro de aluminio",
+      "sentence": "Reformer negro de aluminio con media torre de aleación de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-negro-a033",
+      "anchor": "Reformer negro de aluminio",
+      "sentence": "Reformer negro de aluminio con media torre de aleación de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-torre-barra-fija-a043",
+      "anchor": "",
+      "sentence": "Resortes alemanes, barra deslizante y tapicería de microfibra de 1.3 mm.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-torre-barra-fija-a043": [
+    {
+      "target": "/product/reformer-torre-completa-aluminio-a045",
+      "anchor": "de aluminio con torre",
+      "sentence": "Reformer de aluminio con torre de aleación y barra fija.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-media-torre-a071",
+      "anchor": "",
+      "sentence": "Reformer de aluminio con torre de aleación y barra fija.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-compacto-a039a",
+      "anchor": "",
+      "sentence": "Reformer de aluminio con torre de aleación y barra fija.",
+      "role": "product_or_service",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-a070",
+      "anchor": "",
+      "sentence": "Resortes alemanes de alambre de piano, esponja de alta elasticidad y microfibra de 1.3 mm.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-media-torre-a102",
+      "anchor": "",
+      "sentence": "Reformer de aluminio con torre de aleación y barra fija.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "top-organico-fitted": [
+    {
+      "target": "/product/top-organico-relaxed",
+      "anchor": "",
+      "sentence": "Top ajustado de algodón orgánico con soporte integrado.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/pantalon-organico-relaxed",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-torre-completa-aluminio-a045": [
+    {
+      "target": "/product/reformer-negro-torre-completa-a034",
+      "anchor": "",
+      "sentence": "Reformer de aluminio con barra deslizante y torre completa (trapecio) de aleación de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-torre-barra-fija-a043",
+      "anchor": "",
+      "sentence": "Reformer de aluminio con barra deslizante y torre completa (trapecio) de aleación de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-barra-deslizante-media-torre-a036t",
+      "anchor": "aluminio con barra deslizante",
+      "sentence": "Reformer de aluminio con barra deslizante y torre completa (trapecio) de aleación de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-media-torre-a071",
+      "anchor": "Reformer de aluminio con",
+      "sentence": "Reformer de aluminio con barra deslizante y torre completa (trapecio) de aleación de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-blanco-torre-completa-a081",
+      "anchor": "torre completa trapecio",
+      "sentence": "Reformer de aluminio con barra deslizante y torre completa (trapecio) de aleación de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-negro-media-torre-a033t",
+      "anchor": "",
+      "sentence": "Reformer de aluminio con barra deslizante y torre completa (trapecio) de aleación de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "silla-wunda-roble-premium-a101": [
+    {
+      "target": "/product/silla-wunda-roble-a022",
+      "anchor": "Silla Wunda de",
+      "sentence": "Silla Wunda de diseño exclusivo en roble tailandés (T-3.0 cm) con 4 resortes alemanes, asas de acero inoxidable y microfibra europea de 1.3 mm.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/silla-wunda-maple-a022m",
+      "anchor": "",
+      "sentence": "Silla Wunda de diseño exclusivo en roble tailandés (T-3.0 cm) con 4 resortes alemanes, asas de acero inoxidable y microfibra europea de 1.3 mm.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "cama-escalera-deslizante-maple-a021": [
+    {
+      "target": "/product/reformer-maple-torre-completa-a020m",
+      "anchor": "",
+      "sentence": "Torre escalera con cama deslizante de dos vías en maple norteamericano.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-seis-en-uno-a042",
+      "anchor": "",
+      "sentence": "Torre escalera con cama deslizante de dos vías en maple norteamericano.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-maple-a015",
+      "anchor": "",
+      "sentence": "Torre escalera con cama deslizante de dos vías en maple norteamericano.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-maple-media-torre-a016m",
+      "anchor": "",
+      "sentence": "Torre escalera con cama deslizante de dos vías en maple norteamericano.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-negro-torre-completa-a034": [
+    {
+      "target": "/product/reformer-negro-media-torre-a033t",
+      "anchor": "Reformer negro de aluminio",
+      "sentence": "Reformer negro de aluminio con torre de acero inoxidable tipo trapecio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-torre-completa-aluminio-a045",
+      "anchor": "de aluminio con torre",
+      "sentence": "Reformer negro de aluminio con torre de acero inoxidable tipo trapecio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-negro-a033",
+      "anchor": "barra deslizante de aluminio",
+      "sentence": "Resortes alemanes de alambre de piano y barra deslizante de aluminio.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-roble-barra-patentada-a107": [
+    {
+      "target": "/product/reformer-roble-torre-completa-a020",
+      "anchor": "Reformer de roble tailandés",
+      "sentence": "Reformer de roble tailandés (T-3.5 cm) con barra de pies patentada, rieles internos de aluminio sin costura de 2.5 mm y tapicería de silicona.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-maple-barra-patentada-a001",
+      "anchor": "",
+      "sentence": "Reformer de roble tailandés (T-3.5 cm) con barra de pies patentada, rieles internos de aluminio sin costura de 2.5 mm y tapicería de silicona.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-a015",
+      "anchor": "Reformer de roble tailandés",
+      "sentence": "Reformer de roble tailandés (T-3.5 cm) con barra de pies patentada, rieles internos de aluminio sin costura de 2.5 mm y tapicería de silicona.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/reformer-para-estudio",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-barra-deslizante-a017",
+      "anchor": "",
+      "sentence": "Reformer de roble tailandés (T-3.5 cm) con barra de pies patentada, rieles internos de aluminio sin costura de 2.5 mm y tapicería de silicona.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-roble-blanco-a011",
+      "anchor": "Reformer de roble tailandés",
+      "sentence": "Reformer de roble tailandés (T-3.5 cm) con barra de pies patentada, rieles internos de aluminio sin costura de 2.5 mm y tapicería de silicona.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "barril-escalera-roble-a025": [
+    {
+      "target": "/product/corrector-columna-roble-a024",
+      "anchor": "",
+      "sentence": "Microfibra europea de 1.3 mm con doble capa de esponja.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/silla-wunda-roble-premium-a101",
+      "anchor": "",
+      "sentence": "✓ Resortes: 5 resortes alemanes de alambre de piano de alta precisión",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "reformer-aluminio-compacto-a039a": [
+    {
+      "target": "/product/reformer-torre-barra-fija-a043",
+      "anchor": "aluminio con barra fija",
+      "sentence": "Reformer compacto de aluminio con barra fija y rieles embebidos.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-media-torre-a071",
+      "anchor": "",
+      "sentence": "Reformer compacto de aluminio con barra fija y rieles embebidos.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-media-torre-acero-a038",
+      "anchor": "",
+      "sentence": "Reformer compacto de aluminio con barra fija y rieles embebidos.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/reformer-aluminio-riel-deslizante-a068",
+      "anchor": "",
+      "sentence": "",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "corrector-columna-roble-a024": [
+    {
+      "target": "/product/barril-escalera-roble-a025",
+      "anchor": "",
+      "sentence": "Corrector de columna (spine corrector) de roble tailandés con microfibra de 1.3 mm y esponja de alta elasticidad de doble capa que recupera su forma rápidamente.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/silla-wunda-roble-a022",
+      "anchor": "",
+      "sentence": "✓ Garantía: 3 años directa de fábrica en México",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ],
+  "silla-pilates-metal-a109": [
+    {
+      "target": "/product/silla-wunda-roble-a022",
+      "anchor": "",
+      "sentence": "Silla de Pilates con estructura de hierro engrosado, 4 resortes coreanos, asas de acero inoxidable y microfibra europea de 1.3 mm.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/silla-wunda-roble-premium-a101",
+      "anchor": "",
+      "sentence": "✓ Resortes: 5 resortes alemanes de alambre de piano de alta precisión",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    },
+    {
+      "target": "/product/silla-wunda-maple-a022m",
+      "anchor": "",
+      "sentence": "Silla de Pilates con estructura de hierro engrosado, 4 resortes coreanos, asas de acero inoxidable y microfibra europea de 1.3 mm.",
+      "role": "comparison_or_alternative",
+      "tier": "possible"
+    }
+  ]
+}

@@ -26,8 +26,8 @@ const BlogCard21: React.FC<{ post: BlogMeta; large?: boolean }> = ({ post, large
     hasConvex ? { placeholderId } : undefined
   ) as any;
   
-  // Priority: 1) Convex placeholder image, 2) heroImage from frontmatter, 3) OG fallback
-  const img = placeholderData?.imageUrl || toAbsoluteUrl(post.heroImage) || `${origin}/og/${post.slug}.png`;
+  // Priority: 1) heroImage from frontmatter, 2) Convex placeholder image, 3) OG fallback
+  const img = toAbsoluteUrl(post.heroImage) || placeholderData?.imageUrl || `${origin}/og/${post.slug}.png`;
   
   return (
     <Reveal>

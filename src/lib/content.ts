@@ -110,6 +110,8 @@ export function getPostBySlug(slug: string): PostFull | undefined {
   return INDEX.find(p => p.slug === slug);
 }
 
+export const getContentPost = getPostBySlug;
+
 export function getPostsByCategory(category: string): PostIndexItem[] {
   const sc = slugify(category);
   return getAllPostsMeta().filter(p => slugify(p.category) === sc);

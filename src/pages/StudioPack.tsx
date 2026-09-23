@@ -85,7 +85,7 @@ const StudioPack: React.FC = () => {
             <span className="not-italic font-light font-sans tracking-tight">with Excellence.</span>
           </h1>
           <p className="text-lg text-[#5D5550] font-light max-w-2xl leading-relaxed">
-            20% de descuento a partir de 8 Reformers. Coordinamos instalación, ofrecemos garantía de 1 año y repuestos exprés. Envío desde CDMX.
+            <Link to="/packs/monterrey" className="underline hover:text-[#2A2624]">Pack para estudios</Link>: a partir de 8 <Link to="/blog/cama-de-pilates-guia-de-compra" className="underline hover:text-[#2A2624]">camas de Pilates Reformer</Link> obtén 20% de descuento. Coordinamos instalación, ofrecemos garantía de 1 año y repuestos exprés. Envío desde CDMX con rutas a toda la República.
           </p>
         </motion.div>
 
@@ -237,6 +237,26 @@ const StudioPack: React.FC = () => {
                 <span className="font-serif italic text-xl text-[#2A2624]">{studio}</span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-8 md:px-24 bg-white/50 border-t border-[#2A2624]/10">
+        <div className="max-w-[1800px] mx-auto">
+          <h2 className="text-2xl md:text-3xl font-serif italic text-[#2A2624] mb-8">Sedes y Recursos para Estudios</h2>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <Link to="/packs/monterrey" className="p-6 rounded-xl border border-[#2A2624]/10 bg-white hover:border-[#2A2624] transition-all group">
+              <h3 className="font-semibold text-[#2A2624] group-hover:text-[#EB4C42] mb-2">Pack para estudios en Monterrey</h3>
+              <p className="text-xs text-[#5D5550] leading-relaxed">Ruta prioritaria a San Pedro, Valle Oriente y Carretera Nacional en 7 días hábiles.</p>
+            </Link>
+            <Link to="/blog/cama-de-pilates-guia-de-compra" className="p-6 rounded-xl border border-[#2A2624]/10 bg-white hover:border-[#2A2624] transition-all group">
+              <h3 className="font-semibold text-[#2A2624] group-hover:text-[#EB4C42] mb-2">Guía de Compra de Camas de Pilates</h3>
+              <p className="text-xs text-[#5D5550] leading-relaxed">Criterios técnicos, biomecánica y especificaciones para equipar estudios.</p>
+            </Link>
+            <Link to="/reformer-para-estudio" className="p-6 rounded-xl border border-[#2A2624]/10 bg-white hover:border-[#2A2624] transition-all group">
+              <h3 className="font-semibold text-[#2A2624] group-hover:text-[#EB4C42] mb-2">Catálogo Reformer para Estudio</h3>
+              <p className="text-xs text-[#5D5550] leading-relaxed">Modelos comerciales de nogal, roble, maple y aluminio con media torre o torre completa.</p>
+            </Link>
           </div>
         </div>
       </section>

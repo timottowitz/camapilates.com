@@ -25,7 +25,7 @@ La seguridad reside en la adaptación estricta. Debemos aplicar los principios d
 
 ## Beneficios comprobados: Más allá del dolor de espalda
 
-El Pilates es famoso por aliviar el dolor de espalda, y con justa razón. De hecho, estudios de la Universidad Autónoma de Nuevo León (UANL) han demostrado que la práctica constante reduce significativamente la intensidad del dolor lumbar y pélvico durante la gestación. Pero los beneficios funcionales que obtienes van mucho más allá de esa molestia común.
+El Pilates es famoso por aliviar el [dolor de espalda](/blog/pilates-reformer-para-espalda), y con justa razón. De hecho, estudios de la Universidad Autónoma de Nuevo León (UANL) han demostrado que la práctica constante reduce significativamente la intensidad del dolor lumbar y pélvico durante la gestación. Pero los beneficios funcionales que obtienes van mucho más allá de esa molestia común.
 
 El primer gran beneficio es la activación profunda del *powerhouse*. Conforme tu centro de gravedad se desplaza (especialmente en el tercer trimestre), necesitas un anclaje fuerte. Nos enfocamos en el transverso abdominal, ese músculo que funciona como un corsé natural. Este trabajo es esencial para soportar el peso gestacional extra —que puede ser equivalente a cargar un garrafón de agua de 10 L—, protegiendo tu columna de la sobrecarga. Según Pilates (1945), el control motor central es la clave para la estabilidad corporal, y esto es doblemente cierto cuando estás esperando un bebé.
 
@@ -105,6 +105,9 @@ Considerando que el ciclo de entrenamiento seguro se extiende por 4 a 6 meses, e
 ## Recomendaciones CAMA Pilates para tu viaje prenatal
 
 Para garantizar un viaje prenatal seguro, la calidad del equipo CAMA, con su estabilidad del carro y la suavidad de los rieles, es tu principal garantía. Esto es crucial, considerando que solo el 35% de las mujeres cumple con la actividad física mínima, y Pilates facilita ese cumplimiento de manera controlada. Busca estudios premium en zonas como Roma Norte (CDMX) o San Pedro Garza García (MTY). Asegúrate de que tu instructor use el Box para elevar tu tronco y evitar la posición supina, una modificación esencial según Herman (2019, p. 42). El sistema de resistencia de resortes debe ser adaptable para que puedas aplicar los principios de control y respiración, pilares de la gestación según Joseph Pilates. Estos ajustes son fundamentales para la biomecánica del suelo pélvico (Lea y Wells, 2021). Recuerda, la comunicación constante con tu obstetra y tu instructor es obligatoria. Consulta siempre con un profesional antes de iniciar cualquier rutina.
+
+
+> 💡 **Lectura recomendada:** [Pilates is not for everyone (México)](/blog/pilates-is-not-for-everyone-mexico)
 
 ## Preguntas Frecuentes (FAQ)
 

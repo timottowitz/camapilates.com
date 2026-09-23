@@ -24,7 +24,7 @@ En ciudades como la Ciudad de México, Monterrey y Guadalajara, el auge del runn
 
 El Pilates Reformer ha dejado de verse como una disciplina reservada a la danza o la rehabilitación hospitalaria para convertirse en el **arma secreta de cross-training** de los corredores más experimentados. A diferencia de las pesas convencionales o los estiramientos pasivos, el Reformer trabaja con resistencia de resortes progresivos sobre una plataforma móvil inestable. Esta combinación enseña al cuerpo a amortiguar impactos, estabilizar la pelvis y activar cadenas miofasciales completas sin machacar cartílagos articulares que ya sufren suficiente estrés en el asfalto.
 
-A lo largo de esta guía analizaremos los desbalances mecánicos que todo corredor acumula, los 5 ejercicios imprescindibles en la cama de Pilates para blindar tus articulaciones y cómo coordinar tus sesiones de fuerza en Reformer con tu plan semanal de kilometraje.
+A lo largo de esta guía analizaremos los desbalances mecánicos que todo corredor acumula, los 5 ejercicios imprescindibles en [la cama de Pilates](/blog/ejercicios-pilates-en-la-cama) para blindar tus articulaciones y cómo coordinar tus sesiones de fuerza en Reformer con tu plan semanal de kilometraje.
 
 ---
 

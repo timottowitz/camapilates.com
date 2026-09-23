@@ -44,6 +44,12 @@ CAMA Pilates ofrece calidad premium con ingeniería alemana y manufactura mexica
 
 <hub-list category="Hacer Crecer tu Negocio de Pilates" limit="5" title="Más contenidos relacionados" />
 
+
+> 💡 **Lectura recomendada:** [Principios Alineacion Pilates](/blog/principios-alineacion-pilates)
+
+
+> 💡 **Lectura recomendada:** [Networking Instructores Pilates – pilates instructor](/blog/networking-instructores-pilates)
+
 ## FAQ
 ### ¿Cuál es el primer paso recomendado?
 Empieza con una evaluación básica y progresiones seguras; prioriza la técnica.

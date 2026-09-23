@@ -74,7 +74,7 @@ Licenciado en Actuaría, 30 años calculando riesgos para aseguradoras. Un día 
 **La Estrategia del Actuario:**
 - Certificación nocturna mientras mantenía su trabajo
 - Ahorro del 60% de su salario durante 18 meses
-- Plan de negocio con proyecciones a 5 años
+- [Plan de negocio](/blog/crecimiento-pilates-mexico) con proyecciones a 5 años
 - Transición gradual: primero weekends, luego medio tiempo
 
 **Los Números que Importan:**
@@ -206,7 +206,7 @@ TOTAL REAL: $60,000 - $130,000 MXN + costo de oportunidad
 
 **Lo que SÍ funciona:**
 1. Especializarse (prenatal, rehabilitación, deportivo)
-2. Crear comunidad (WhatsApp groups, eventos)
+2. Crear [comunidad](/blog/comunidad-pilates-mexicana) (WhatsApp groups, eventos)
 3. Marketing personal (Instagram es tu CV)
 4. Educación continua (workshops mensuales)
 5. Networking agresivo
@@ -294,6 +294,9 @@ En CAMA Pilates hemos sido testigos de cientos de transformaciones. Sabemos que 
 - **Red de referidos**: Comisiones por recomendar
 
 <hub-list category="Comunidad Pilates México" limit="5" title="Recursos para tu viaje" />
+
+
+> 💡 **Lectura recomendada:** [Pilates has changed my life! (México)](/blog/pilates-has-changed-my-life-mexico)
 
 ## FAQ: Las Preguntas que Todos Tienen Miedo de Hacer
 

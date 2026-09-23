@@ -17,6 +17,7 @@ import BackLink from '@/components/ui/back-link';
 import { motion } from 'framer-motion';
 import { isReformerBed, calculateBundlePrice, type BundleQuantity } from '@/lib/shop/bundles';
 import { BundleSelector } from '@/components/shop/BundleSelector';
+import productInternalLinks from '@/content/product-internal-links.json';
 
 const ProductPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -587,18 +588,50 @@ const ProductPage: React.FC = () => {
           <div>
             <h2 className="text-4xl font-serif italic text-[#2A2624] mb-10">Related</h2>
             <div className="space-y-10">
-              {allProducts().filter(p => p.slug !== prod.slug && p.category === prod.category).slice(0, 2).map((p) => (
-                <Link key={p.slug} to={`/product/${p.slug}`} className="block group">
-                  <div className="aspect-[4/3] overflow-hidden rounded-sm bg-[#EAE8E4] mb-4 relative">
-                    <img src={p.image} alt={p.name} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
-                  </div>
-                  <div className="flex justify-between items-baseline">
-                    <div className="font-serif italic text-xl text-[#2A2624] group-hover:text-[#3E2723] transition-colors">{p.name}</div>
-                    <div className="text-[10px] uppercase tracking-widest text-[#5D5550]">$ {p.price} {p.currency}</div>
-                  </div>
-                </Link>
-              ))}
+              {(() => {
+                const rawLinks = (productInternalLinks as Record<string, Array<{ target: string; role: string; anchor?: string }>>)[safeProd.slug] || [];
+                const customProducts: Product[] = [];
+                const landingLinks: Array<{ target: string; title: string }> = [];
+
+                for (const item of rawLinks) {
+                  if (item.target.startsWith('/product/')) {
+                    const pSlug = item.target.replace('/product/', '');
+                    const found = getBySlug(pSlug);
+                    if (found && !customProducts.some(p => p.slug === found.slug)) {
+                      customProducts.push(found);
+                    }
+                  } else if (item.target === '/reformer-para-estudio') {
+                    landingLinks.push({ target: item.target, title: 'Equipamiento Comercial para Estudios' });
+                  }
+                }
+
+                const displayProducts = customProducts.length > 0
+                  ? customProducts.slice(0, 3)
+                  : allProducts().filter(p => p.slug !== safeProd.slug && p.category === safeProd.category).slice(0, 3);
+
+                return (
+                  <>
+                    {displayProducts.map((p) => (
+                      <Link key={p.slug} to={`/product/${p.slug}`} className="block group">
+                        <div className="aspect-[4/3] overflow-hidden rounded-sm bg-[#EAE8E4] mb-4 relative">
+                          <img src={p.image} alt={p.name} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
+                        </div>
+                        <div className="flex justify-between items-baseline">
+                          <div className="font-serif italic text-xl text-[#2A2624] group-hover:text-[#3E2723] transition-colors">{p.name}</div>
+                          <div className="text-[10px] uppercase tracking-widest text-[#5D5550]">$ {p.price} {p.currency}</div>
+                        </div>
+                      </Link>
+                    ))}
+                    {landingLinks.map((ll) => (
+                      <Link key={ll.target} to={ll.target} className="block p-4 border border-[#2A2624]/10 rounded-sm bg-[#FAF9F6] hover:bg-[#EAE8E4] transition-colors">
+                        <span className="text-[10px] uppercase tracking-widest text-[#3E2723] block mb-1">Guía Relacionada</span>
+                        <span className="font-serif italic text-sm text-[#2A2624] hover:text-[#3E2723]">{ll.title} →</span>
+                      </Link>
+                    ))}
+                  </>
+                );
+              })()}
             </div>
           </div>
         </div>

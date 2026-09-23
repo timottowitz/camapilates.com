@@ -79,11 +79,14 @@ heroImage: "/images/blog/mantenimiento-cama-de-pilates/hero.webp"
 - Soporte en español y repuestos exprés para reducir paros.
 
 ## Recomendaciones CAMA Pilates
-- **Accesorios y repuestos**: [ver colección](/shop/category/accesorios)
+- **[Accesorios](/blog/accesorios-cama-de-pilates) y repuestos**: [ver colección](/shop/category/accesorios)
 - **Reformer para casa** — compacto, estable y silencioso: [ver guía](/reformer-para-casa)
 - **Reformer para estudio** — opciones para uso profesional: [ver modelos](/reformer-para-estudio)
 
 <hub-list category="Equipo y Mantenimiento" limit="8" title="Más sobre mantenimiento y equipo" />
+
+
+> 💡 **Lectura recomendada:** [Accesorios para Cama de Pilates: Esenciales](/blog/accesorios-cama-de-pilates-esenciales)
 
 ## FAQ
 ### ¿Qué lubricante usar?

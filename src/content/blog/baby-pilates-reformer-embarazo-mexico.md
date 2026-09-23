@@ -18,7 +18,7 @@ En México, el consejo habitual para las mujeres embarazadas sigue siendo el mis
 
 Pero en países como **Alemania y Suecia**, la historia es completamente diferente. 
 
-Allí, las futuras madres no suspenden su actividad: asisten a estudios especializados en una tendencia en auge llamada **Baby Pilates & Pilates Prenatal en Reformer**. En lugar de reposo pasivo, utilizan la cama de Pilates para descomprimir la columna, activar el suelo pélvico y preparar el cuerpo para el parto con resortes que sostienen el peso del vientre.
+Allí, las futuras madres no suspenden su actividad: asisten a estudios especializados en una tendencia en auge llamada **Baby Pilates & Pilates Prenatal en Reformer**. En lugar de reposo pasivo, utilizan la cama de Pilates para descomprimir la columna, activar el suelo pélvico y preparar el cuerpo [para el parto con](/blog/para-que-sirve-pilates-en-cama) resortes que sostienen el peso del vientre.
 
 La instructora mexicana **Valery Munive** vivió esta experiencia de primera mano mientras estaba embarazada en Alemania. Quedó tan sorprendida con los resultados que decidió traer la metodología a México y crear un curso único: **grabado en sus últimas semanas de embarazo**, demostrando frente a la cámara que mantenerse activa y fuerte en el Reformer es completamente posible y beneficioso.
 
@@ -33,7 +33,7 @@ Como instructora certificada de Pilates con años de experiencia en México, Val
 
 *"En Berlín veía a mujeres en su séptimo y octavo mes sobre el Reformer con una fluidez y tranquilidad asombrosas"*, cuenta Valery. *"Decidí probarlo en mi propio embarazo. La sensación fue inmediata: al acostarme y sentir la asistencia de los resortes, toda la presión en mi espalda baja desapareció. Me sentía ligera, estable y llena de energía"*.
 
-Al volver a México, el contraste fue evidente. Mientras en Europa los médicos y matronas recomiendan el Reformer para evitar la diástasis y la ciática, en México muchas mujeres terminan los nueve meses con dolor lumbar constante y miedo a moverse.
+Al volver a México, el contraste fue evidente. Mientras en Europa los médicos y matronas recomiendan el [Reformer](/blog/pilates-reformer-para-espalda) para evitar la diástasis y la ciática, en México muchas mujeres terminan los nueve meses con dolor lumbar constante y miedo a moverse.
 
 Valery supo que debía cambiar esa narrativa.
 
@@ -51,7 +51,7 @@ Para demostrar que el método es seguro y accesible, Valery no se limitó a dar 
 ![Valery Munive en el Reformer durante su embarazo en México](/images/blog/baby-pilates-reformer/valery-munive-reformer-semana-38.webp)
 *Conexión y respiración: Postura erguida y respiración diafragmática para preparar el canal de parto.*
 
-*"Quería que cualquier mujer embarazada pudiera ver que si yo podía moverme con calma y seguridad en mi última semana de gestación, ella también puede hacerlo en cualquier etapa de su embarazo con las adaptaciones correctas"*, explica.
+*"Quería que cualquier [mujer embarazada](/blog/pilates-para-embarazo) pudiera ver que si yo podía moverme con calma y seguridad en mi última semana de gestación, ella también puede hacerlo en cualquier etapa de su embarazo con las adaptaciones correctas"*, explica.
 
 ### ¿Por qué el Reformer supera al piso para embarazadas?
 - **Soporte desgravitado:** Los resortes cargan parte de tu peso, quitando tensión de la pelvis y las rodillas.

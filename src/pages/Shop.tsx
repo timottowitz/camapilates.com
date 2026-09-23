@@ -543,6 +543,39 @@ const Shop: React.FC = () => {
                   </div>
                 </div>
               </section>
+
+              {/* Guías y Enlaces Especializados */}
+              <section className="mt-16 pt-12 border-t border-[#2A2624]/10">
+                <h2 className="text-2xl font-serif italic text-[#2A2624] mb-3">Guías de Compra y Recursos Especializados</h2>
+                <p className="text-sm text-[#5D5550] font-light mb-8 max-w-2xl">
+                  Encuentra recomendaciones técnicas para equipar tu casa o estudio con la mayor precisión biomecánica:
+                </p>
+                <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+                  <Link to="/cama-de-pilates" className="p-4 bg-white border border-[#2A2624]/10 rounded-xl hover:border-[#3E2723] hover:shadow-sm transition-all group block">
+                    <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Catálogo Oficial</span>
+                    <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">Camas de Pilates en México →</span>
+                    <span className="text-xs text-[#5D5550] block mt-1">Estructuras de madera y de aluminio anodizado.</span>
+                  </Link>
+
+                  <Link to="/cama-de-pilates/precio" className="p-4 bg-white border border-[#2A2624]/10 rounded-xl hover:border-[#3E2723] hover:shadow-sm transition-all group block">
+                    <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Transparencia</span>
+                    <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">Precios y Financiamiento 12 MSI →</span>
+                    <span className="text-xs text-[#5D5550] block mt-1">Tabla comparativa de modelos residenciales y comerciales.</span>
+                  </Link>
+
+                  <Link to="/reformer-para-estudio" className="p-4 bg-white border border-[#2A2624]/10 rounded-xl hover:border-[#3E2723] hover:shadow-sm transition-all group block">
+                    <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Equipamiento Pro</span>
+                    <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">Reformers para Estudio →</span>
+                    <span className="text-xs text-[#5D5550] block mt-1">Ideal para estudios boutique y apertura de centros.</span>
+                  </Link>
+
+                  <Link to="/blog/calcetines-para-pilates-reformer" className="p-4 bg-white border border-[#2A2624]/10 rounded-xl hover:border-[#3E2723] hover:shadow-sm transition-all group block">
+                    <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Agarre y Seguridad</span>
+                    <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">Calcetines para Reformer →</span>
+                    <span className="text-xs text-[#5D5550] block mt-1">Caucho natural antideslizante para máximo control.</span>
+                  </Link>
+                </div>
+              </section>
             </div>
           </div>
         </div>

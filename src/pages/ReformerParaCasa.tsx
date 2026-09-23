@@ -313,28 +313,63 @@ const ReformerParaCasa: React.FC = () => {
       {/* Related Content */}
       <section className="py-20 px-8 md:px-24">
         <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-2xl font-serif italic text-[#2A2624] mb-8">Guías Relacionadas</h2>
+          <h2 className="text-2xl font-serif italic text-[#2A2624] mb-8">Guías y Modelos Relacionados</h2>
           
           <div className="grid md:grid-cols-3 gap-6">
             <Link to="/blog/mejor-cama-de-pilates-para-casa" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
               <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
                 Mejor Cama de Pilates para Casa
               </h3>
-              <p className="text-sm text-[#5D5550] font-light">Comparativa detallada de opciones.</p>
+              <p className="text-sm text-[#5D5550] font-light">Comparativa detallada de opciones residenciales.</p>
             </Link>
             
+            <Link to="/blog/reformer-casa-vs-profesional" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
+              <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
+                Reformer Casa vs Profesional
+              </h3>
+              <p className="text-sm text-[#5D5550] font-light">Diferencias clave entre uso doméstico y estudio.</p>
+            </Link>
+
             <Link to="/blog/dimensiones-cama-de-pilates" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
               <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
                 Dimensiones y Espacio
               </h3>
-              <p className="text-sm text-[#5D5550] font-light">Guía completa de medidas.</p>
+              <p className="text-sm text-[#5D5550] font-light">Guía completa de medidas y espacio libre.</p>
             </Link>
             
+            <Link to="/blog/cama-de-pilates-reformer" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
+              <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
+                Cama de Pilates Reformer
+              </h3>
+              <p className="text-sm text-[#5D5550] font-light">Principios, resortes y funcionamiento del método.</p>
+            </Link>
+
+            <Link to="/blog/cama-de-pilates-segunda-mano" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
+              <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
+                Cama de Segunda Mano
+              </h3>
+              <p className="text-sm text-[#5D5550] font-light">Riesgos estructurales vs equipo nuevo con garantía.</p>
+            </Link>
+
             <Link to="/cama-de-pilates/precio" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
               <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
-                Guía de Precios
+                Guía de Precios en México
               </h3>
-              <p className="text-sm text-[#5D5550] font-light">Rangos y qué esperar por tu dinero.</p>
+              <p className="text-sm text-[#5D5550] font-light">Rangos y opciones de pago a 12 MSI.</p>
+            </Link>
+
+            <Link to="/product/reformer-aluminio-nogal-a039" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
+              <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
+                Reformer en Madera de Nogal
+              </h3>
+              <p className="text-sm text-[#5D5550] font-light">Elegancia residencial con ingeniería silenciosa.</p>
+            </Link>
+
+            <Link to="/product/reformer-aluminio-compacto-a039a" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
+              <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
+                Reformer Compacto de Aluminio
+              </h3>
+              <p className="text-sm text-[#5D5550] font-light">Diseño optimizado para departamentos.</p>
             </Link>
           </div>
         </div>

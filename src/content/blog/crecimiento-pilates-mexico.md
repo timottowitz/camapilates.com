@@ -222,7 +222,7 @@ El mercado de apps fitness en México:
 - **2022**: Segundo estudio en Interlomas (reinversión)
 - **2023**: Franquicia propia, 3 ubicaciones adicionales
 - **2024**: Facturación anual $18M MXN
-- **Clave del éxito**: Enfoque en servicio premium y comunidad
+- **Clave del éxito**: Enfoque en servicio premium y [comunidad](/blog/comunidad-pilates-mexicana)
 
 ### Historia 2: El Modelo Híbrido Millonario
 

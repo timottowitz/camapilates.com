@@ -20,7 +20,7 @@ heroImage: "/images/blog/calcetines-para-pilates-reformer/hero.webp"
 
 > Nota: Contenido informativo; no es asesoramiento médico.
 
-Los calcetines antideslizantes se volvieron obligatorios en la mayoría de estudios mexicanos tras la pandemia: protegen la higiene del tapete, mejoran la tracción en el carro del Reformer y evitan microlesiones en tobillos. Esta guía reúne criterios de compra, mantenimiento y recomendaciones específicas para quienes practican en casa o en estudio.
+Los calcetines antideslizantes se volvieron obligatorios en la mayoría de estudios mexicanos tras la pandemia: protegen la higiene del tapete, mejoran la tracción en el carro del Reformer y evitan microlesiones en tobillos. Esta guía reúne criterios de compra, mantenimiento y [recomendaciones específicas para](/blog/guia-completa-reformer) quienes practican en casa o en estudio.
 
 ## Beneficios de usarlos siempre
 
@@ -76,7 +76,7 @@ Busca:
 
 ## Recomendaciones CAMA Pilates: Calcetines y Accesorios en México
 
-En CAMA Pilates desarrollamos accesorios textiles pensados para resistir la fricción constante del carro del Reformer, con puntos de silicón vulcanizado que no se desprenden en el lavado:
+En [CAMA Pilates desarrollamos accesorios](/blog/accesorios-cama-de-pilates-esenciales) textiles pensados para resistir la fricción constante del carro del Reformer, con puntos de silicón vulcanizado que no se desprenden en el lavado:
 
 - **[Calcetines Antideslizantes de Algodón Orgánico ($382 MXN)](/product/calcetines-antideslizantes)**: Modelo individual con soporte elástico en empeine, suela completa con micro-gotas de silicón de alta tracción y costuras planas que no marcan los dedos.
 - **[Pack 3 Calcetines Antideslizantes Orgánicos ($975 MXN)](/product/calcetines-pack-3)**: La opción más recomendada para practicantes de 2 a 4 sesiones semanales. Incluye 3 pares en algodón peinado transpirable con descuento directo por paquete.

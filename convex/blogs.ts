@@ -204,3 +204,49 @@ export const regenerateImage = action({
         };
     },
 });
+
+export const syncHeroImagesBatch = mutation({
+    args: {
+        updates: v.array(
+            v.object({
+                slug: v.string(),
+                heroImage: v.string(),
+            })
+        ),
+    },
+    handler: async (ctx, args) => {
+        let updated = 0;
+        for (const item of args.updates) {
+            const blog = await ctx.db
+                .query('blogs')
+                .withIndex('by_slug', (q) => q.eq('slug', item.slug))
+                .unique();
+            if (blog) {
+                await ctx.db.patch(blog._id, {
+                    heroImage: item.heroImage,
+                    updatedAt: Date.now(),
+                });
+                updated++;
+            }
+        }
+        return { success: true, updated };
+    },
+});
+
+export const clearHeroPlaceholders = mutation({
+    args: {},
+    handler: async (ctx) => {
+        const placeholders = await ctx.db
+            .query('image_placeholders')
+            .collect();
+        let deleted = 0;
+        for (const p of placeholders) {
+            if (p.location === 'hero' && p.pageType === 'blog') {
+                await ctx.db.delete(p._id);
+                deleted++;
+            }
+        }
+        return { success: true, deleted };
+    },
+});
+

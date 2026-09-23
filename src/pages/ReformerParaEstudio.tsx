@@ -92,16 +92,22 @@ const ReformerParaEstudio: React.FC = () => {
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
-                to="/shop/category/reformers"
+                to="/shop"
                 className="inline-flex items-center gap-2 rounded-full bg-[#2A2624] px-8 py-4 text-xs uppercase tracking-[0.2em] text-[#EAE8E4] transition-colors hover:bg-[#3E2723]"
               >
-                Ver colección completa <ArrowRight className="h-4 w-4" />
+                Ver Tienda Oficial <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to="/cama-de-pilates"
+                className="inline-flex items-center rounded-full border border-[#2A2624]/20 px-8 py-4 text-xs uppercase tracking-[0.2em] text-[#2A2624] transition-colors hover:bg-white"
+              >
+                Catálogo de Camas
               </Link>
               <Link
                 to="/packs/estudio"
                 className="inline-flex items-center rounded-full border border-[#2A2624]/20 px-8 py-4 text-xs uppercase tracking-[0.2em] text-[#2A2624] transition-colors hover:bg-white"
               >
-                Cotizar 8 o más
+                Packs de Estudio (8+ uds)
               </Link>
             </div>
           </div>
@@ -147,6 +153,16 @@ const ReformerParaEstudio: React.FC = () => {
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
             {[
+              {
+                to: "/cama-de-pilates",
+                title: "Catálogo Completo de Camas",
+                description: "Modelos, especificaciones técnicas y acabados en México.",
+              },
+              {
+                to: "/cama-de-pilates/precio",
+                title: "Precios y Financiamiento 12 MSI",
+                description: "Tabla comparativa de costos y retorno de inversión.",
+              },
               {
                 to: "/blog/reformer-casa-vs-profesional",
                 title: "Reformer para casa vs profesional",

@@ -47,21 +47,24 @@ const Services = () => {
             Beyond the <br />
             <span className="not-italic font-light font-sans tracking-tight text-[#5D5550]">Equipment<span className="text-[#EB4C42]">.</span></span>
           </h1>
+          <p className="max-w-3xl text-lg font-light leading-relaxed text-[#5D5550] mb-8">
+            Servicios profesionales <Link to="/packs/estudio" className="font-medium text-[#2A2624] underline hover:text-[#EB4C42]">para estudios de Pilates</Link>: diseño arquitectónico de espacios, mantenimiento preventivo y selección de <Link to="/blog/accesorios-cama-de-pilates" className="font-medium text-[#2A2624] underline hover:text-[#EB4C42]">accesorios para cama de Pilates</Link>.
+          </p>
         </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
           {[
             {
               title: "Studio Design",
-              desc: "We help you plan your space for optimal flow and aesthetic harmony. From layout to lighting.",
-              link: "/soporte",
-              linkText: "Start a Project"
+              desc: "We help you plan your space for optimal flow and aesthetic harmony. Paquetes y equipamiento para estudios de Pilates.",
+              link: "/packs/estudio",
+              linkText: "Packs de Estudio"
             },
             {
               title: "Maintenance",
-              desc: "Keep your reformers gliding silently. Annual service packages and express parts delivery.",
-              link: "/soporte",
-              linkText: "Schedule Service"
+              desc: "Keep your reformers gliding silently. Annual service packages, express parts delivery, and essential accessories.",
+              link: "/blog/accesorios-cama-de-pilates",
+              linkText: "Accesorios y Guías"
             },
             {
               title: "Education",

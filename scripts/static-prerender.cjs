@@ -92,7 +92,7 @@ function baseHtml(template, headMeta, bodyHtml) {
       </nav>
     </div>
   </header>`;
-  html = html.replace('<div id="root"></div>', `<div id="root">${headerHtml}${bodyHtml}</div>`);
+  html = html.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${headerHtml}${bodyHtml}</div>`);
   return html;
 }
 
@@ -240,12 +240,15 @@ function extractFaqSchemaFromMarkdown(content) {
 }
 
 function buildArticleSchema(p, origin) {
+  const heroUrl = p.heroImage
+    ? (p.heroImage.startsWith('http') ? p.heroImage : `${origin}${p.heroImage}`)
+    : `${origin}/og/${p.slug}.png`;
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: p.title,
     description: p.description,
-    image: [`${origin}/og/${p.slug}.png`],
+    image: [heroUrl],
     datePublished: p.date,
     dateModified: p.date,
     author: {
@@ -281,10 +284,13 @@ function buildBlogBreadcrumbSchema(p, origin) {
   };
 }
 
-function renderPost({ slug, title, description, category, date, tags, content }, marked, posts) {
-  const current = { slug, title, description, category, date, tags, content };
+function renderPost({ slug, title, description, category, date, tags, heroImage, content }, marked, posts) {
+  const current = { slug, title, description, category, date, tags, heroImage, content };
   const md = content
     ? renderShortcodes(content, current, posts)
+    : '';
+  const heroHtml = heroImage
+    ? `<div class="mb-8"><img src="${htmlEscape(heroImage)}" alt="${htmlEscape(title)}" class="w-full rounded-sm shadow-sm aspect-[16/9] object-cover" /></div>`
     : '';
   const article = `
     <article class="container mx-auto px-4 py-8">
@@ -292,6 +298,7 @@ function renderPost({ slug, title, description, category, date, tags, content },
         <div class="text-sm text-muted-foreground mb-4">${htmlEscape(category || '')} • ${htmlEscape(date || '')}</div>
         <h1 class="text-4xl font-bold mb-4">${htmlEscape(title)}</h1>
         <p class="text-xl text-muted-foreground mb-8">${htmlEscape(description || '')}</p>
+        ${heroHtml}
       </header>
       ${commercialParentLinks(current)}
       <div class="prose max-w-none">${marked.parse(md)}</div>
@@ -320,7 +327,32 @@ function buildShopIndex(products) {
       <div class="mt-3 font-semibold text-gray-900">$ ${p.price} ${p.currency}</div>
     </a>
   `).join('\n');
-  return `<div class="container mx-auto px-4 py-12"><h1 class="text-3xl font-bold text-gray-900 mb-8">Tienda</h1><div class="grid md:grid-cols-3 gap-6">${cards}</div></div>`;
+  return `
+  <div class="container mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold text-gray-900 mb-8">Tienda Oficial</h1>
+    <div class="grid md:grid-cols-3 gap-6">${cards}</div>
+    <div class="mt-16 pt-8 border-t border-gray-200">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Guías y Recursos Especializados</h2>
+      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <a href="/cama-de-pilates" class="p-4 border rounded-lg hover:border-gray-900 block">
+          <h3 class="font-semibold text-gray-900 text-sm mb-1">Catálogo de Camas</h3>
+          <p class="text-xs text-gray-600">Modelos de madera y aleación de aluminio en México.</p>
+        </a>
+        <a href="/cama-de-pilates/precio" class="p-4 border rounded-lg hover:border-gray-900 block">
+          <h3 class="font-semibold text-gray-900 text-sm mb-1">Guía de Precios</h3>
+          <p class="text-xs text-gray-600">Precios transparentes y 12 Meses Sin Intereses.</p>
+        </a>
+        <a href="/reformer-para-estudio" class="p-4 border rounded-lg hover:border-gray-900 block">
+          <h3 class="font-semibold text-gray-900 text-sm mb-1">Reformers para Estudio</h3>
+          <p class="text-xs text-gray-600">Ideal para estudios boutique y centros profesionales.</p>
+        </a>
+        <a href="/blog/calcetines-para-pilates-reformer" class="p-4 border rounded-lg hover:border-gray-900 block">
+          <h3 class="font-semibold text-gray-900 text-sm mb-1">Calcetines para Reformer</h3>
+          <p class="text-xs text-gray-600">Suela con caucho natural antideslizante para máximo agarre.</p>
+        </a>
+      </div>
+    </div>
+  </div>`;
 }
 
 function buildStudioReformerPage(reformers) {
@@ -347,7 +379,8 @@ function buildStudioReformerPage(reformers) {
           Compara los Reformers disponibles para equipar un estudio de Pilates. Revisa cada ficha para confirmar materiales, configuración, precio y tiempo de fabricación.
         </p>
         <div class="mt-8 flex flex-wrap gap-4">
-          <a href="/shop/category/reformers" class="rounded border px-5 py-3 font-semibold">Ver colección completa</a>
+          <a href="/shop" class="rounded border px-5 py-3 font-semibold">Ver Tienda Oficial</a>
+          <a href="/cama-de-pilates" class="rounded border px-5 py-3 font-semibold">Catálogo de Camas</a>
           <a href="/packs/estudio" class="rounded border px-5 py-3 font-semibold">Cotizar pack de estudio</a>
         </div>
       </header>
@@ -359,6 +392,8 @@ function buildStudioReformerPage(reformers) {
       <aside class="mt-14">
         <h2 class="text-2xl font-bold text-gray-900">Planifica el equipamiento de tu estudio</h2>
         <ul class="mt-5 space-y-3">
+          <li><a href="/cama-de-pilates">Catálogo completo de Camas de Pilates en México</a></li>
+          <li><a href="/cama-de-pilates/precio">Precios oficiales y financiamiento a 12 MSI</a></li>
           <li><a href="/blog/reformer-casa-vs-profesional">Compara Reformer para casa vs profesional</a></li>
           <li><a href="/blog/cama-de-pilates-guia-de-compra">Consulta la guía de compra de cama de Pilates</a></li>
           <li><a href="/blog/mantenimiento-cama-de-pilates">Revisa la guía de mantenimiento del Reformer</a></li>
@@ -845,9 +880,25 @@ function buildCamaDePilatesPage(reformers, origin) {
             <strong class="block text-stone-900 mb-1">Reformer para Casa</strong>
             <span class="text-xs text-stone-600">Modelos residenciales compactos y silenciosos.</span>
           </a>
-          <a href="/certificacion-pilates" class="p-4 bg-white rounded-xl border border-stone-200 hover:border-stone-400 transition-colors">
-            <strong class="block text-stone-900 mb-1">Certificación Oficial</strong>
-            <span class="text-xs text-stone-600">Formación profesional para instructores en México.</span>
+          <a href="/shop" class="p-4 bg-white rounded-xl border border-stone-200 hover:border-stone-400 transition-colors">
+            <strong class="block text-stone-900 mb-1">Tienda Oficial</strong>
+            <span class="text-xs text-stone-600">Catálogo completo de Reformers, Torres y accesorios.</span>
+          </a>
+          <a href="/blog/cama-de-pilates-guia-de-compra" class="p-4 bg-white rounded-xl border border-stone-200 hover:border-stone-400 transition-colors">
+            <strong class="block text-stone-900 mb-1">Guía Definitiva de Compra</strong>
+            <span class="text-xs text-stone-600">Criterios técnicos, resortes y medidas.</span>
+          </a>
+          <a href="/blog/mejor-cama-de-pilates-para-casa" class="p-4 bg-white rounded-xl border border-stone-200 hover:border-stone-400 transition-colors">
+            <strong class="block text-stone-900 mb-1">Mejor Cama para Casa</strong>
+            <span class="text-xs text-stone-600">Opciones recomendadas para el hogar.</span>
+          </a>
+          <a href="/blog/reformer-compacto" class="p-4 bg-white rounded-xl border border-stone-200 hover:border-stone-400 transition-colors">
+            <strong class="block text-stone-900 mb-1">Reformer Compacto</strong>
+            <span class="text-xs text-stone-600">Solución para departamentos y espacios reducidos.</span>
+          </a>
+          <a href="/blog/mejores-marcas-cama-de-pilates" class="p-4 bg-white rounded-xl border border-stone-200 hover:border-stone-400 transition-colors">
+            <strong class="block text-stone-900 mb-1">Mejores Marcas</strong>
+            <span class="text-xs text-stone-600">Comparativa de marcas de Pilates en México.</span>
           </a>
         </div>
       </div>
@@ -1124,6 +1175,45 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
           </details>
         </div>
       </div>
+
+      <!-- Guías de Compra y Comparativas Relacionadas -->
+      <div class="bg-white border border-stone-200 rounded-2xl p-6 md:p-10 shadow-sm mb-12 not-prose">
+        <h3 class="text-2xl font-serif italic font-bold text-stone-900 mb-6">Guías de Compra y Comparativas Relacionadas</h3>
+        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <a href="/reformer-para-estudio" class="p-4 rounded-xl border border-stone-200 hover:border-stone-900 transition-colors block">
+            <span class="text-xs text-amber-800 font-bold uppercase tracking-wider block mb-1">Equipamiento Estudio</span>
+            <span class="font-semibold text-stone-900 text-sm">Reformers para Estudio</span>
+          </a>
+          <a href="/blog/cama-de-pilates-guia-de-compra" class="p-4 rounded-xl border border-stone-200 hover:border-stone-900 transition-colors block">
+            <span class="text-xs text-amber-800 font-bold uppercase tracking-wider block mb-1">Guía Definitiva</span>
+            <span class="font-semibold text-stone-900 text-sm">Guía de Compra de Reformer</span>
+          </a>
+          <a href="/blog/cama-de-pilates-reformer" class="p-4 rounded-xl border border-stone-200 hover:border-stone-900 transition-colors block">
+            <span class="text-xs text-amber-800 font-bold uppercase tracking-wider block mb-1">Aparatología</span>
+            <span class="font-semibold text-stone-900 text-sm">Qué es y Cómo Funciona</span>
+          </a>
+          <a href="/blog/mejor-cama-de-pilates-para-casa" class="p-4 rounded-xl border border-stone-200 hover:border-stone-900 transition-colors block">
+            <span class="text-xs text-amber-800 font-bold uppercase tracking-wider block mb-1">Uso Residencial</span>
+            <span class="font-semibold text-stone-900 text-sm">Mejor Cama para Casa 2026</span>
+          </a>
+          <a href="/blog/cama-de-pilates-barata" class="p-4 rounded-xl border border-stone-200 hover:border-stone-900 transition-colors block">
+            <span class="text-xs text-amber-800 font-bold uppercase tracking-wider block mb-1">Presupuesto</span>
+            <span class="font-semibold text-stone-900 text-sm">Cama de Pilates Barata</span>
+          </a>
+          <a href="/product/cadillac-aluminio-a048" class="p-4 rounded-xl border border-stone-200 hover:border-stone-900 transition-colors block">
+            <span class="text-xs text-amber-800 font-bold uppercase tracking-wider block mb-1">Torre y Cadillac</span>
+            <span class="font-semibold text-stone-900 text-sm">Cadillac de Aluminio</span>
+          </a>
+          <a href="/blog/mejores-marcas-cama-de-pilates" class="p-4 rounded-xl border border-stone-200 hover:border-stone-900 transition-colors block">
+            <span class="text-xs text-amber-800 font-bold uppercase tracking-wider block mb-1">Marcas México</span>
+            <span class="font-semibold text-stone-900 text-sm">Mejores Marcas de Camas</span>
+          </a>
+          <a href="/blog/cama-de-pilates-segunda-mano" class="p-4 rounded-xl border border-stone-200 hover:border-stone-900 transition-colors block">
+            <span class="text-xs text-amber-800 font-bold uppercase tracking-wider block mb-1">Evaluación</span>
+            <span class="font-semibold text-stone-900 text-sm">Cama de Segunda Mano</span>
+          </a>
+        </div>
+      </div>
     </section>
   </main>`;
 }
@@ -1203,6 +1293,7 @@ function readPosts() {
       category: data.category || 'Blog',
       date: data.publishDate || '',
       tags: Array.isArray(data.tags) ? data.tags : [],
+      heroImage: data.heroImage || '',
       content
     };
   }).filter(post => !REDIRECT_POST_SLUGS.has(post.slug));
@@ -1226,6 +1317,16 @@ function readStudios() {
   }
 }
 
+
+function readProductLinks() {
+  try {
+    const raw = fs.readFileSync(path.join(ROOT, 'src', 'content', 'product-internal-links.json'), 'utf8');
+    return JSON.parse(raw);
+  } catch (_e) {
+    return {};
+  }
+}
+const PRODUCT_LINKS = readProductLinks();
 
 function renderProduct(p, origin) {
   const productSchema = {
@@ -1286,6 +1387,15 @@ function renderProduct(p, origin) {
     ogImage: `${origin}${p.image}`,
     ogType: 'product'
   };
+
+  const recs = PRODUCT_LINKS[p.slug] || [];
+  const recsHtml = recs.length > 0
+    ? `<div class="mt-4 space-y-1.5">${recs.map(r => {
+        const label = r.sentence || (r.anchor ? r.anchor : `Ver modelo ${r.target.replace('/product/', '').replace(/-/g, ' ')}`);
+        return `<a href="${r.target}" class="text-stone-700 hover:text-stone-950 hover:underline block">→ ${htmlEscape(label)}</a>`;
+      }).join('\n              ')}</div>`
+    : '';
+
   const body = `
   <section class="bg-white">
     <div class="container mx-auto px-4 py-12">
@@ -1317,8 +1427,9 @@ function renderProduct(p, origin) {
             </div>
           </div>
           <div class="mt-10 pt-6 border-t border-stone-200 space-y-2 text-sm">
-            <p class="font-semibold text-stone-900">Enlaces y guías recomendadas:</p>
-            <div class="flex flex-col gap-1.5">
+            <p class="font-semibold text-stone-900">Modelos y comparativas recomendadas:</p>
+            ${recsHtml}
+            <div class="flex flex-col gap-1.5 mt-3 pt-3 border-t border-stone-100">
               <a href="/cama-de-pilates" class="text-amber-800 font-medium hover:underline">← Ver catálogo completo de Camas de Pilates en México</a>
               <a href="/cama-de-pilates/precio" class="text-stone-600 hover:text-stone-900 hover:underline">Tabla comparativa de precios y financiamiento 12 MSI</a>
               <a href="/blog/cama-de-pilates-guia-de-compra" class="text-stone-600 hover:text-stone-900 hover:underline">Guía definitiva de compra de Reformer (medidas, resortes y ROI)</a>
@@ -1355,7 +1466,7 @@ async function main() {
     console.error('dist/ not found. Run build first.');
     process.exit(1);
   }
-  const template = fs.readFileSync(path.join(DIST, 'index.html'), 'utf8');
+  const template = fs.readFileSync(path.join(DIST, 'index.html'), 'utf8').replace(/<div id="root">[\s\S]*?<\/div>/, '<div id="root"></div>');
   const origin = process.env.SITE_ORIGIN || 'https://camadepilates.com';
   const posts = readPosts().sort((a,b) => new Date(b.date) - new Date(a.date));
   const prods = readProducts();
@@ -1465,11 +1576,14 @@ async function main() {
 
   // Posts
   for (const p of posts) {
+    const ogImg = p.heroImage
+      ? (p.heroImage.startsWith('http') ? p.heroImage : `${origin}${p.heroImage}`)
+      : `${origin}/og/${p.slug}.png`;
     const head = {
       title: `${p.title} | camadepilates.com`,
       description: p.description,
       canonical: `${origin}/blog/${p.slug}`,
-      ogImage: `${origin}/og/${p.slug}.png`,
+      ogImage: ogImg,
       ogType: 'article'
     };
     const body = renderPost(p, marked, posts);
@@ -1567,7 +1681,7 @@ async function main() {
   {
     const route = '/reformer-para-estudio';
     const meta = routeMeta[route];
-    const reformers = prods.filter(product => product.category === 'Reformers');
+    const reformers = prods.filter(product => product.category === 'Reformers' || product.slug.startsWith('reformer-'));
     if (!meta || !reformers.length) {
       throw new Error('Studio Reformer prerender requires route metadata and Reformer products');
     }
@@ -1735,6 +1849,43 @@ async function main() {
           <h2 class="text-2xl font-bold text-gray-900">Edelweiss Home Reformer</h2>
           <p class="mt-4 text-gray-700">Reformer de pilates para casa con diseño compacto, sistema silencioso Whisper Glide y acabados premium en madera de nogal.</p>
           <div class="mt-6 text-2xl font-bold text-gray-900">$35,000 MXN</div>
+        </div>
+      </div>
+      <div class="mt-16 pt-10 border-t border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Guías y Modelos Relacionados</h2>
+        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <a href="/blog/mejor-cama-de-pilates-para-casa" class="p-4 rounded-lg border hover:border-gray-900 block">
+            <h3 class="font-semibold text-gray-900 text-sm mb-1">Mejor Cama para Casa</h3>
+            <p class="text-xs text-gray-600">Comparativa de opciones residenciales.</p>
+          </a>
+          <a href="/blog/reformer-casa-vs-profesional" class="p-4 rounded-lg border hover:border-gray-900 block">
+            <h3 class="font-semibold text-gray-900 text-sm mb-1">Casa vs Profesional</h3>
+            <p class="text-xs text-gray-600">Diferencias clave entre doméstico y estudio.</p>
+          </a>
+          <a href="/blog/dimensiones-cama-de-pilates" class="p-4 rounded-lg border hover:border-gray-900 block">
+            <h3 class="font-semibold text-gray-900 text-sm mb-1">Dimensiones y Espacio</h3>
+            <p class="text-xs text-gray-600">Medidas exactas y requerimientos.</p>
+          </a>
+          <a href="/blog/cama-de-pilates-reformer" class="p-4 rounded-lg border hover:border-gray-900 block">
+            <h3 class="font-semibold text-gray-900 text-sm mb-1">Cama de Pilates Reformer</h3>
+            <p class="text-xs text-gray-600">Cómo funciona el método.</p>
+          </a>
+          <a href="/blog/cama-de-pilates-segunda-mano" class="p-4 rounded-lg border hover:border-gray-900 block">
+            <h3 class="font-semibold text-gray-900 text-sm mb-1">Cama de Segunda Mano</h3>
+            <p class="text-xs text-gray-600">Riesgos vs equipo nuevo con garantía.</p>
+          </a>
+          <a href="/cama-de-pilates/precio" class="p-4 rounded-lg border hover:border-gray-900 block">
+            <h3 class="font-semibold text-gray-900 text-sm mb-1">Guía de Precios</h3>
+            <p class="text-xs text-gray-600">Rangos de costo y 12 MSI.</p>
+          </a>
+          <a href="/product/reformer-aluminio-nogal-a039" class="p-4 rounded-lg border hover:border-gray-900 block">
+            <h3 class="font-semibold text-gray-900 text-sm mb-1">Reformer de Nogal</h3>
+            <p class="text-xs text-gray-600">Elegancia residencial silenciosa.</p>
+          </a>
+          <a href="/product/reformer-aluminio-compacto-a039a" class="p-4 rounded-lg border hover:border-gray-900 block">
+            <h3 class="font-semibold text-gray-900 text-sm mb-1">Reformer Compacto</h3>
+            <p class="text-xs text-gray-600">Optimizado para departamentos.</p>
+          </a>
         </div>
       </div>
     </section>`;
@@ -2231,6 +2382,12 @@ async function main() {
         ${directoryLink}
         <a href="/reformer-para-estudio">Reformers para abrir un estudio</a>
       </div>
+      <div class="mt-8 pt-6 border-t border-border">
+        <h3 class="font-semibold text-foreground mb-3">Compara opciones de formación en otras sedes de México:</h3>
+        <div class="flex flex-wrap gap-2">
+          ${certCities.filter(other => other.key !== c.key).map(other => `<a href="/certificacion-pilates/${other.key}" class="px-3 py-1.5 rounded-full border border-stone-300 text-xs text-stone-700 hover:border-stone-900">${htmlEscape(other.shortName)}</a>`).join('\n          ')}
+        </div>
+      </div>
       <h2 class="mt-12 text-2xl font-bold text-foreground">Preguntas frecuentes</h2>
       <h3 class="mt-5 font-semibold">¿Una certificación de Pilates es lo mismo que tomar clases?</h3>
       <p class="mt-2 text-muted-foreground">No. Una certificación prepara instructores; las clases son para practicar Pilates como alumno.</p>
@@ -2388,11 +2545,68 @@ async function main() {
       ogImage: `${origin}/og/cama-de-pilates-venta-mexico.png`,
       ogType: 'website',
     };
-    const body = `
+    let body = `
     <section class="container mx-auto px-4 py-12">
       <h1 class="text-3xl font-bold text-gray-900 mb-4">${htmlEscape(meta.title)}</h1>
       <p class="text-lg text-gray-600 max-w-2xl">${htmlEscape(meta.description)}</p>
     </section>`;
+
+    if (route === '/services') {
+      body = `
+      <section class="container mx-auto px-4 py-12">
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">${htmlEscape(meta.title)}</h1>
+        <p class="text-lg text-gray-600 max-w-2xl mb-6">Servicios profesionales <a href="/packs/estudio" class="text-amber-800 underline">para estudios de Pilates</a>: Diseño, Mantenimiento y Capacitación.</p>
+        <div class="flex flex-wrap gap-4 mt-6">
+          <a href="/packs/estudio" class="px-5 py-2.5 rounded-lg border border-gray-300 font-semibold hover:bg-gray-50">Pack para estudios</a>
+          <a href="/blog/accesorios-cama-de-pilates" class="px-5 py-2.5 rounded-lg border border-gray-300 font-semibold hover:bg-gray-50">Accesorios Cama de Pilates</a>
+        </div>
+      </section>`;
+    } else if (route === '/packs/estudio') {
+      body = `
+      <section class="container mx-auto px-4 py-12">
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">${htmlEscape(meta.title)}</h1>
+        <p class="text-lg text-gray-600 max-w-2xl mb-6"><a href="/packs/monterrey" class="text-amber-800 underline">Pack para estudios</a>: a partir de 8 <a href="/blog/cama-de-pilates-guia-de-compra" class="text-amber-800 underline">camas de Pilates Reformer</a> obtén 20% de descuento. Instalación coordinada, garantía 1 año y repuestos exprés.</p>
+        <div class="flex flex-wrap gap-4 mt-6">
+          <a href="/packs/monterrey" class="px-5 py-2.5 rounded-lg border border-gray-300 font-semibold hover:bg-gray-50">Pack Monterrey (7 Días)</a>
+          <a href="/blog/cama-de-pilates-guia-de-compra" class="px-5 py-2.5 rounded-lg border border-gray-300 font-semibold hover:bg-gray-50">Guía de Compra</a>
+          <a href="/reformer-para-estudio" class="px-5 py-2.5 rounded-lg border border-gray-300 font-semibold hover:bg-gray-50">Reformers para Estudio</a>
+        </div>
+      </section>`;
+    } else if (route === '/pilates-reformer-monterrey' || route === '/packs/monterrey') {
+      body = `
+      <section class="container mx-auto px-4 py-12">
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">${htmlEscape(meta.title)}</h1>
+        <p class="text-lg text-gray-600 max-w-2xl mb-6">Arma tu <a href="/packs/estudio" class="text-amber-800 underline">estudio de Pilates Reformer</a> en Monterrey y ZMM (<a href="/packs/monterrey" class="text-amber-800 underline">San Pedro Garza García, Valle Oriente, Cumbres, Carretera Nacional</a>). Envíos express de Paquetes Studio Reformer a Monterrey en 7 días hábiles.</p>
+        <div class="flex flex-wrap gap-4 mt-6">
+          <a href="/packs/estudio" class="px-5 py-2.5 rounded-lg border border-gray-300 font-semibold hover:bg-gray-50">Pack para Estudios Nacional</a>
+          <a href="/packs/monterrey" class="px-5 py-2.5 rounded-lg border border-gray-300 font-semibold hover:bg-gray-50">Paquetes Monterrey</a>
+        </div>
+      </section>`;
+    } else if (route === '/about') {
+      body = `
+      <section class="container mx-auto px-4 py-12">
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">${htmlEscape(meta.title)}</h1>
+        <p class="text-lg text-gray-600 max-w-2xl mb-6">Conoce Edelweiss Pilates: <a href="/reformer-para-casa" class="text-amber-800 underline">Reformers silenciosos</a> y precisos en cuero genuino, <a href="/product/reformer-aluminio-nogal-a039" class="text-amber-800 underline">nogal</a> y acero. Ingeniería alemana con manufactura en CDMX.</p>
+        <div class="flex flex-wrap gap-4 mt-6">
+          <a href="/services" class="px-5 py-2.5 rounded-lg border border-gray-300 font-semibold hover:bg-gray-50">Servicios</a>
+          <a href="/reformer-para-casa" class="px-5 py-2.5 rounded-lg border border-gray-300 font-semibold hover:bg-gray-50">Reformer para Casa</a>
+        </div>
+      </section>`;
+    } else if (route === '/pilates-reformer-cdmx') {
+      body = `
+      <section class="container mx-auto px-4 py-12">
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">${htmlEscape(meta.title)}</h1>
+        <p class="text-lg text-gray-600 max-w-2xl mb-6">Guía completa de <a href="/blog/pilates-reformer-cdmx" class="text-amber-800 underline">Pilates Reformer en CDMX</a>: mejores estudios por zona y <a href="/blog/cama-de-pilates-venta-mexico" class="text-amber-800 underline">venta de camas</a> con entrega local y <a href="/packs/estudio" class="text-amber-800 underline">venta de camas con descuento para estudios</a>.</p>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+          <a href="/blog/pilates-reformer-cdmx" class="p-4 rounded border hover:border-gray-900">Guía Pilates CDMX</a>
+          <a href="/blog/cama-de-pilates-venta-mexico" class="p-4 rounded border hover:border-gray-900">Venta de Camas en México</a>
+          <a href="/product/reformer-torre-completa-aluminio-a045" class="p-4 rounded border hover:border-gray-900">Reformer Torre Aluminio</a>
+          <a href="/product/reformer-maple-torre-completa-a020m" class="p-4 rounded border hover:border-gray-900">Reformer Maple Torre</a>
+          <a href="/product/reformer-blanco-torre-completa-a081" class="p-4 rounded border hover:border-gray-900">Reformer Blanco Torre</a>
+          <a href="/certificacion-pilates/cdmx" class="p-4 rounded border hover:border-gray-900">Certificación Pilates CDMX</a>
+        </div>
+      </section>`;
+    }
     writeFileForRoute(route, baseHtml(template, head, body));
   }
 

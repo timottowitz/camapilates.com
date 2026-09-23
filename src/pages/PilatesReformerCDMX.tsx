@@ -223,7 +223,7 @@ const PilatesReformerCDMX: React.FC = () => {
                 Reformers con Entrega en Ciudad de México
               </h2>
               <p className="text-lg text-[#5D5550] font-light leading-relaxed mb-8">
-                Entregamos tu reformer Edelweiss en cualquier punto de CDMX en 3 semanas. Agenda cita para probar en nuestro showroom.
+                Entregamos tu reformer Edelweiss en cualquier punto de CDMX en 3 semanas con seguro puerta a puerta. Consulta nuestra guía sobre <Link to="/blog/cama-de-pilates-venta-mexico" className="underline hover:text-[#3E2723]">venta de camas de Pilates en México</Link> o cotiza <Link to="/packs/estudio" className="underline hover:text-[#3E2723]">packs para estudios</Link>.
               </p>
               
               <div className="space-y-4 mb-8">
@@ -299,7 +299,7 @@ const PilatesReformerCDMX: React.FC = () => {
             <div className="pb-6">
               <h3 className="text-lg font-medium mb-3">¿Hay certificaciones de instructor de pilates en CDMX?</h3>
               <p className="text-white/70 font-light">
-                Sí, hay múltiples escuelas certificadas en CDMX. Consulta nuestra guía de certificaciones para instructores en México.
+                Sí, hay múltiples escuelas avaladas en CDMX. Consulta nuestra <Link to="/certificacion-pilates/cdmx" className="underline hover:text-white">guía de certificación de Pilates en CDMX</Link> para conocer costos, fechas y sedes.
               </p>
             </div>
           </div>
@@ -309,28 +309,49 @@ const PilatesReformerCDMX: React.FC = () => {
       {/* Related Content */}
       <section className="py-20 px-8 md:px-24">
         <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-2xl font-serif italic text-[#2A2624] mb-8">Más sobre Pilates en México</h2>
+          <h2 className="text-2xl font-serif italic text-[#2A2624] mb-8">Modelos y Guías Recomendadas para CDMX</h2>
           
           <div className="grid md:grid-cols-3 gap-6">
             <Link to="/blog/pilates-reformer-cdmx" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
               <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
                 Guía Completa Pilates CDMX
               </h3>
-              <p className="text-sm text-[#5D5550] font-light">Todo lo que necesitas saber.</p>
+              <p className="text-sm text-[#5D5550] font-light">Todo lo que necesitas saber sobre estudios y zonas.</p>
             </Link>
             
-            <Link to="/estudios-de-pilates" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
+            <Link to="/product/reformer-torre-completa-aluminio-a045" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
               <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
-                Directorio Nacional
+                Reformer Torre Completa Aluminio
               </h3>
-              <p className="text-sm text-[#5D5550] font-light">Estudios en todo México.</p>
+              <p className="text-sm text-[#5D5550] font-light">Estructura aeroespacial para uso intensivo.</p>
             </Link>
             
-            <Link to="/reformer-para-casa" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
+            <Link to="/product/reformer-maple-torre-completa-a020m" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
               <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
-                Reformer para Casa
+                Reformer Maple Torre Completa
               </h3>
-              <p className="text-sm text-[#5D5550] font-light">Practica en tu hogar.</p>
+              <p className="text-sm text-[#5D5550] font-light">Madera de maple norteamericano con torre 304.</p>
+            </Link>
+
+            <Link to="/product/reformer-blanco-torre-completa-a081" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
+              <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
+                Reformer Blanco Torre Completa
+              </h3>
+              <p className="text-sm text-[#5D5550] font-light">Roble lacado blanco de máxima distinción.</p>
+            </Link>
+
+            <Link to="/certificacion-pilates/cdmx" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
+              <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
+                Certificación Pilates CDMX
+              </h3>
+              <p className="text-sm text-[#5D5550] font-light">Sedes Santa Fe, Polanco y Roma Norte.</p>
+            </Link>
+
+            <Link to="/packs/estudio" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
+              <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
+                Packs para Estudios en CDMX
+              </h3>
+              <p className="text-sm text-[#5D5550] font-light">Descuentos comerciales por lote e instalación.</p>
             </Link>
           </div>
         </div>

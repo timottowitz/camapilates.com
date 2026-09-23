@@ -110,11 +110,14 @@ Como parte de este anuncio histórico, Edelweiss ha emitido su comunicado oficia
 * **Distribución en News Wire**: El comunicado para medios titulado *"Edelweiss Announces the Democratization of Pilates: Launches Mexico’s First Open Certification Directory and Sets Roadmap for Germany Expansion"* se encuentra distribuido y archivado en plataformas internacionales de prensa como **OpenPR** (con sede en Hamburgo, Alemania) y **PRLog**.
 * **Dossier de Prensa para Periodistas y Editores**: Puede consultar el texto íntegro para medios, citas oficiales de nuestro equipo directivo y especificaciones técnicas en nuestro [Kit de Prensa Oficial](/blog/democratizacion-del-pilates-primer-directorio-mexico-alemania#faq).
 
-Este despliegue mediático garantiza que tanto futuros instructores en México como la comunidad internacional de Pilates en Alemania e Iberoamérica cuenten con una fuente fidedigna y abierta para impulsar su carrera profesional.
+Este despliegue mediático garantiza que tanto futuros instructores en México como la [comunidad internacional de Pilates](/blog/comunidad-pilates-mexicana) en Alemania e Iberoamérica cuenten con una fuente fidedigna y abierta para impulsar su carrera profesional.
 
 <hub-list category="Estudio" limit="5" title="Más guías y artículos para emprendedores de Pilates" />
 
 ---
+
+
+> 💡 **Lectura recomendada:** [Cama De Pilates](/cama-de-pilates)
 
 ## FAQ: Preguntas Frecuentes sobre el Directorio y la Expansión
 
@@ -131,4 +134,4 @@ Las academias y master trainers que cumplan con los estándares de horas prácti
 La fase de investigación, homologación de academias con el Deutscher Pilates Verband y levantamiento de sedes en Alemania (Berlín, Múnich, Hamburgo, Colonia y Fráncfort) se encuentra activa durante el último trimestre de 2026, con apertura al público programada para inicios de 2027.
 
 ### ¿Ofrecen facilidades de equipamiento para quienes terminen su certificación?
-Sí. A través de nuestro programa para egresados de academias aliadas, ofrecemos condiciones preferenciales en la compra de camas [Reformer para Estudio](/reformer-para-estudio), asesoría en distribución de espacio y financiamiento directo para facilitar la apertura de nuevos centros de Pilates.
+Sí. A través de nuestro programa para egresados de academias aliadas, ofrecemos condiciones preferenciales en la [compra](/blog/cama-de-pilates-guia-de-compra) de camas [Reformer para Estudio](/reformer-para-estudio), asesoría en distribución de espacio y financiamiento directo para facilitar la apertura de nuevos centros de Pilates.

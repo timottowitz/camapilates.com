@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
 import { generateAboutPageSchema } from '@/lib/seo';
@@ -75,8 +76,11 @@ const About = () => {
               </p>
               <p className="text-lg font-light text-[#5D5550] leading-relaxed mb-12 max-w-2xl">
                 Every Edelweiss Reformer is hand-assembled in Mexico City using sustainable American Walnut,
-                aerospace-grade aluminum, and premium full-grain leather. We don't just build equipment;
-                we craft instruments for movement.
+                aerospace-grade aluminum, and premium full-grain leather. Discover our{' '}
+                <Link to="/reformer-para-casa" className="underline hover:text-[#2A2624]">Pilates Reformers silenciosos para casa</Link>{' '}
+                and our flagship{' '}
+                <Link to="/product/reformer-aluminio-nogal-a039" className="underline hover:text-[#2A2624]">Reformer en madera de nogal</Link>.
+                We don't just build equipment; we craft instruments for movement.
               </p>
 
               <div className="grid grid-cols-2 gap-12 border-t border-[#2A2624]/10 pt-12">
@@ -156,6 +160,22 @@ const About = () => {
             <span className="text-xl md:text-2xl font-serif italic">Balance Hub</span>
           </div>
         </FadeIn>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 px-8 md:px-24 bg-[#FAF9F6] border-t border-[#2A2624]/10 text-center">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-3xl font-serif italic text-[#2A2624] mb-4">Servicios para Estudios y Casas</h2>
+          <p className="text-sm text-[#5D5550] font-light mb-8">
+            Conoce nuestros servicios de mantenimiento, equipamiento comercial y asesoría en diseño de espacios.
+          </p>
+          <Link
+            to="/services"
+            className="inline-flex items-center px-8 py-4 rounded-full bg-[#2A2624] text-[#EAE8E4] text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-all"
+          >
+            Ver Servicios →
+          </Link>
+        </div>
       </section>
 
     </LuxuryLayout>

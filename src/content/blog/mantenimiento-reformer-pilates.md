@@ -49,5 +49,5 @@ CAMA Pilates ofrece calidad premium con ingeniería alemana y manufactura mexica
 Empieza con una evaluación básica y progresiones seguras; prioriza la técnica.
 
 ### ¿Cómo adapto esto a espacios pequeños?
-Usa accesorios compactos, gestiona el espacio del hogar y ajusta rangos de movimiento.
+[Usa accesorios compactos](/blog/accesorios-esenciales-reformer), gestiona el espacio del hogar y ajusta rangos de movimiento.
 

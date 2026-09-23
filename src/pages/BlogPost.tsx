@@ -59,25 +59,30 @@ const BlogPost = () => {
   const safeSlug = slug || '';
 
   useEffect(() => {
+    const staticPost = safeSlug ? getContentPost(safeSlug) : null;
     if (blogPost) {
-      const { content, publishDate, updatedAt, ...meta } = blogPost;
+      const { content: convexContent, publishDate, updatedAt, ...meta } = blogPost;
+
+      // Prefer local static markdown content & heroImage as source of truth
+      const finalContent = staticPost?.content || convexContent;
+      const finalHero = staticPost?.heroImage || meta.heroImage;
 
       // Calculate read time
-      const words = (content || '').trim().split(/\s+/).filter(Boolean).length;
+      const words = (finalContent || '').trim().split(/\s+/).filter(Boolean).length;
       const mins = Math.max(1, Math.ceil(words / 200));
       const readTime = `${mins} min read`;
 
-      setContent(content);
+      setContent(finalContent);
       setPostMeta({
         ...meta,
-        date: publishDate,
+        heroImage: finalHero,
+        date: staticPost?.date || publishDate,
         readTime,
         updatedDate: new Date(updatedAt).toISOString(),
       });
       setLoading(false);
     } else {
       // Fallback to static markdown content store if Convex returns null or is loading
-      const staticPost = safeSlug ? getContentPost(safeSlug) : null;
       if (staticPost) {
         const { content: staticContent, ...staticMeta } = staticPost;
         setContent(staticContent);
@@ -237,16 +242,27 @@ const BlogPost = () => {
               </p>
 
               <div className="mb-12">
-                <ContextualImage
-                  placeholderId={`blog-${postMeta.slug}-hero-1`}
-                  pageType="blog"
-                  pageSlug={postMeta.slug}
-                  location="hero"
-                  aspectRatio="16:9"
-                  alt={postMeta.title}
-                  fallbackSrc={toAbsoluteUrl(postMeta.heroImage as any) || heroOverride || ''}
-                  className="w-full rounded-sm shadow-sm"
-                />
+                {postMeta.heroImage ? (
+                  <img
+                    src={toAbsoluteUrl(postMeta.heroImage as any) || heroOverride || ''}
+                    alt={postMeta.title}
+                    className="w-full rounded-sm shadow-sm aspect-[16/9] object-cover"
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
+                  />
+                ) : (
+                  <ContextualImage
+                    placeholderId={`blog-${postMeta.slug}-hero-1`}
+                    pageType="blog"
+                    pageSlug={postMeta.slug}
+                    location="hero"
+                    aspectRatio="16:9"
+                    alt={postMeta.title}
+                    fallbackSrc={heroOverride || ''}
+                    className="w-full rounded-sm shadow-sm"
+                  />
+                )}
               </div>
 
               <div className="flex items-center justify-center gap-4 py-6 border-y border-[#2A2624]/10">

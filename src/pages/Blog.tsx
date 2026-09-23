@@ -8,7 +8,7 @@ import TagCloud21 from '@/components/editorial21/TagCloud21';
 import FeaturedRow21 from '@/components/editorial21/FeaturedRow21';
 import { loadAllBlogPosts } from '@/utils/blogUtils';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
-import { getAllCategories } from '@/lib/content';
+import { getAllCategories, getContentPost } from '@/lib/content';
 import { slugify } from '@/utils/slug';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { useQuery } from 'convex/react';
@@ -23,6 +23,7 @@ interface BlogPostMeta {
   category: string;
   author: string;
   featured?: boolean;
+  heroImage?: string;
 }
 
 const Blog: React.FC = () => {
@@ -34,7 +35,14 @@ const Blog: React.FC = () => {
 
   useEffect(() => {
     if (postsData) {
-      setPosts(postsData as BlogPostMeta[]);
+      const merged = postsData.map((p) => {
+        const staticP = getContentPost(p.slug);
+        return {
+          ...p,
+          heroImage: staticP?.heroImage || (p as any).heroImage,
+        };
+      });
+      setPosts(merged as BlogPostMeta[]);
       setLoading(false);
     }
   }, [postsData]);

@@ -44,6 +44,9 @@ CAMA Pilates ofrece calidad premium con ingeniería alemana y manufactura mexica
 
 <hub-list category="Equipo y Reformer" limit="5" title="Más contenidos relacionados" />
 
+
+> 💡 **Lectura recomendada:** [Mantenimiento Reformer Pilates](/blog/mantenimiento-reformer-pilates)
+
 ## FAQ
 ### ¿Cuál es el primer paso recomendado?
 Empieza con una evaluación básica y progresiones seguras; prioriza la técnica.

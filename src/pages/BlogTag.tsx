@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import BlogList from '@/components/blog/BlogList';
 import { slugify } from '@/utils/slug';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
-import { ArrowLeft } from 'lucide-react';
+import { getContentPost } from '@/lib/content';
 import { useQuery } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 
@@ -18,6 +18,7 @@ interface BlogPostMeta {
   author: string;
   featured?: boolean;
   tags?: string[];
+  heroImage?: string;
 }
 
 const BlogTag: React.FC = () => {
@@ -31,7 +32,11 @@ const BlogTag: React.FC = () => {
 
   useEffect(() => {
     if (blogs) {
-      const filtered = tag ? blogs.filter(p => p.tags.some(t => slugify(t) === normalized)) : blogs;
+      const filtered = (tag ? blogs.filter(p => p.tags.some(t => slugify(t) === normalized)) : blogs)
+        .map(p => ({
+          ...p,
+          heroImage: getContentPost(p.slug)?.heroImage || (p as any).heroImage,
+        }));
       setPosts(filtered as any);
       setLoading(false);
     }

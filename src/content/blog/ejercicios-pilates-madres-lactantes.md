@@ -166,7 +166,7 @@ Durante la lactancia, tu cuerpo experimenta cambios que van más allá de lo vis
 
 ### 🐈 3. Cat-Cow en Cuadrupedia
 
-**🎯 Objetivo:** Movilizar toda la columna y aliviar tensión en la espalda  
+**🎯 Objetivo:** Movilizar toda la columna y aliviar tensión [en la espalda](/blog/pilates-reformer-para-espalda)  
 **📅 Duración:** 4-6 minutos  
 **🟢 Nivel:** Principiante  
 
@@ -393,7 +393,7 @@ En México, la tradición de "la cuarentena" de 40 días es profundamente respet
 
 ### Ventajas del Reformer para Madres Lactantes
 
-El Reformer de CAMA Pilates ofrece beneficios únicos para madres en período de lactancia:
+El [Reformer de CAMA Pilates](/blog/cama-de-pilates-para-principiantes) ofrece beneficios únicos para madres en período de lactancia:
 
 **Soporte y Estabilidad:**
 - El aparato proporciona estabilidad adicional cuando el core está debilitado
@@ -435,6 +435,9 @@ El Reformer de CAMA Pilates ofrece beneficios únicos para madres en período de
 - Calidad alemana con manufactura mexicana, supporting economía local
 
 <hub-list category="Tips para Instructores de Pilates" limit="5" title="Más consejos para instructores" />
+
+
+> 💡 **Lectura recomendada:** [Pilates para embarazo: Guía completa y segura](/blog/pilates-para-embarazo)
 
 ## FAQ
 

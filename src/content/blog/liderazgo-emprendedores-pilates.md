@@ -44,6 +44,12 @@ CAMA Pilates ofrece calidad premium con ingeniería alemana y manufactura mexica
 
 <hub-list category="Comunidad Pilates México" limit="5" title="Más contenidos relacionados" />
 
+
+> 💡 **Lectura recomendada:** [Networking Instructores Pilates – pilates instructor](/blog/networking-instructores-pilates)
+
+
+> 💡 **Lectura recomendada:** [Diseno Estudios Pilates](/blog/diseno-estudios-pilates)
+
 ## FAQ
 ### ¿Cuál es el primer paso recomendado?
 Empieza con una evaluación básica y progresiones seguras; prioriza la técnica.

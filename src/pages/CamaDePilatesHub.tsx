@@ -536,7 +536,10 @@ const CamaDePilatesHub: React.FC = () => {
           <h2 className="text-4xl font-serif italic text-[#2A2624] mb-12 text-center">Guías recomendadas</h2>
           <div className="grid md:grid-cols-2 gap-4">
             {[
+              { href: '/shop', title: 'Tienda Oficial de Camas de Pilates', desc: 'Explora toda la colección de Reformers, Torres y accesorios.' },
+              { href: '/blog/cama-de-pilates-guia-de-compra', title: 'Guía de compra de cama de Pilates', desc: 'Factores clave, resortes, chasis y dimensiones antes de comprar.' },
               { href: '/blog/mejor-cama-de-pilates-para-casa', title: 'Mejor cama de Pilates para casa', desc: 'Cómo elegir por espacio, presupuesto y accesorios.' },
+              { href: '/blog/reformer-compacto', title: 'Reformer compacto para departamentos', desc: 'Solución extraordinaria para espacios pequeños sin sacrificar calidad.' },
               { href: '/cama-de-pilates/precio', title: 'Precio de la cama de Pilates', desc: 'Rangos de referencia en México y qué incluye cada nivel.' },
               { href: '/blog/mejores-marcas-cama-de-pilates', title: 'Mejores marcas de cama de Pilates', desc: 'Criterios para comparar calidad, garantía y soporte.' },
               { href: '/blog/reformer-casa-vs-profesional', title: 'Reformer para casa vs profesional', desc: 'Diferencias clave para decidir sin pagar de más.' },

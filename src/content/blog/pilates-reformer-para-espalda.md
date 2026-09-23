@@ -27,7 +27,7 @@ Si pasas horas atrapado en el tráfico de la CDMX o sentado en una oficina en Mo
 
 Esta necesidad es real: el interés por equipar gimnasios en casa en México supera el 60%, impulsando un crecimiento proyectado del mercado de Pilates del 20–30% hacia 2025. Ya sea que inviertas en un equipo de entrada ($20,000 MXN) o uno profesional (hasta $80,000 MXN), la seguridad debe ser tu prioridad.
 
-Basándonos en el principio de "control consciente" que Joseph Pilates enfatiza en *Return to Life* (1945, p. 34) y priorizando la alineación pélvica neutral sugerida por Herman (2003), esta guía te enseñará a ajustar tu cabecera (*headrest*) y a moverte con precisión. Recuerda: aunque estos ejercicios son terapéuticos, siempre consulta con un profesional de la salud antes de iniciar si padeces dolor crónico.
+Basándonos en el principio de "control consciente" que Joseph Pilates enfatiza en *Return to Life* (1945, p. 34) y priorizando la alineación pélvica neutral sugerida por Herman (2003), esta guía te enseñará a ajustar tu cabecera (*headrest*) y a moverte con precisión. Recuerda: aunque estos [ejercicios](/blog/ejercicios-pilates-en-la-cama) son terapéuticos, siempre consulta con un profesional de la salud antes de iniciar si padeces dolor crónico.
 
 ## Beneficios y precauciones: Por qué el Reformer ayuda a tu espalda
 
@@ -79,7 +79,7 @@ Avanzar en tu práctica no significa cargar más peso de inmediato, sino dominar
 
 Sin embargo, habrá días en que tu espalda "se queje" o sientas rigidez. En esos momentos, la **Caja (Box)** es tu mejor aliada. Sentarte sobre ella facilita la alineación de la columna, especialmente si tienes isquiotibiales cortos, evitando que tu espalda baja se redondee.
 
-La magia ocurre con la constancia. Lo ideal es subirte al carro 2 o 3 veces por semana. Aquí entra el factor económico: en zonas como la Roma en CDMX, San Pedro en Monterrey o Providencia en GDL, una clase presencial promedia entre **$300 y $500 MXN**. Si haces cuentas, ir tres veces por semana representa una renta mensual considerable. Considerando que un Reformer de calidad en México oscila entre $20,000 y $80,000 MXN, la inversión en equipo propio se amortiza rápidamente, permitiéndote adaptar la práctica a tus días buenos y malos sin salir de casa.
+La magia ocurre con la constancia. Lo ideal es subirte al carro 2 o 3 veces por semana. Aquí entra el factor económico: en zonas como la Roma en CDMX, San Pedro en Monterrey o Providencia en GDL, una clase presencial promedia entre **$300 y $500 MXN**. Si haces cuentas, ir tres veces por semana representa una renta mensual considerable. Considerando que un Reformer [de calidad en México](/blog/mejor-cama-de-pilates-profesional) oscila entre $20,000 y $80,000 MXN, la inversión en equipo propio se amortiza rápidamente, permitiéndote adaptar la práctica a tus días buenos y malos sin salir de casa.
 
 ## Recomendaciones CAMA Pilates: Calidad y soporte local
 
@@ -88,6 +88,12 @@ Para proteger tu espalda, la calidad del equipo no es un lujo, es una necesidad 
 Una gran ventaja de elegir un fabricante nacional es la asesoría en español y el soporte post-venta. Si vives en CDMX, Guadalajara o Monterrey, asegúrate de que la marca ofrezca refacciones inmediatas; nada es peor que tener tu equipo parado por una pieza importada. Recuerda los principios de control de *Return to Life*: tu máquina debe facilitarte el movimiento fluido, no entorpecerlo. Antes de invertir, consulta con un profesional para verificar qué modelo se ajusta a tus necesidades físicas.
 
 <hub-list category="Ejercicios y salud" limit="6" title="Más contenidos relacionados" />
+
+
+> 💡 **Lectura recomendada:** [Beneficios del Pilates en Cama (Reformer)](/blog/beneficios-pilates-en-cama)
+
+
+> 💡 **Lectura recomendada:** [¿Para qué sirve el Pilates en cama (Reformer)?](/blog/para-que-sirve-pilates-en-cama)
 
 ## Preguntas Frecuentes (FAQ)
 
@@ -101,7 +107,7 @@ Para principiantes con molestias, el **'Footwork'** es esencial para fortalecer 
 Esta distinción es vital. Generalmente, buscamos la **Columna Neutra** (respetando la curvatura natural) para ejercicios de cadena cerrada como el 'Footwork', ya que absorbe mejor los impactos. Sin embargo, el **Imprint** (pegar la espalda baja al carro) se utiliza a menudo cuando las piernas están en el aire y los abdominales aún no son lo suficientemente fuertes para estabilizar la pelvis, evitando que la espalda se arquee peligrosamente.
 
 ### ¿Es mejor Mat (suelo) o Reformer para el dolor de espalda?
-Para aliviar molestias, el **Reformer** ofrece ventajas claras sobre el Mat. El sistema de resortes te brinda asistencia y resistencia, lo que reduce la carga sobre tu columna y facilita movimientos que en el suelo serían dolorosos o imposibles de ejecutar con buena técnica al inicio.
+Para aliviar molestias, el **Reformer** ofrece ventajas claras [sobre el Mat](/blog/reformer-vs-mat-pilates). El sistema de resortes te brinda asistencia y resistencia, lo que reduce la carga sobre tu columna y facilita movimientos que en el suelo serían dolorosos o imposibles de ejecutar con buena técnica al inicio.
 
 ### ¿Cuánto cuesta una clase personalizada vs. tener un equipo en casa?
 Si buscas un enfoque terapéutico (rehabilitación), lo ideal es una sesión privada (1 a 1). En ciudades principales de México, una clase privada oscila entre **$700 y $1,200 MXN** por sesión. Las clases grupales promedian **$300 a $500 MXN**. Un equipo propio de calidad ($20k - $80k MXN) se amortiza en menos de un año si practicas 3 veces por semana, aunque siempre recomendamos tomar algunas clases privadas iniciales para aprender la técnica correcta.

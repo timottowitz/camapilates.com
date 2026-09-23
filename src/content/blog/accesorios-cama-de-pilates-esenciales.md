@@ -29,7 +29,7 @@ Los accesorios adecuados pueden transformar tu experiencia con el Reformer de Pi
 
 ### Box y Correas para Pies
 
-El box del Reformer es fundamental para numerosos ejercicios, proporcionando soporte y permitiendo la alineación adecuada durante los movimientos. Las correas de calidad aseguran un posicionamiento seguro y permiten ejercicios más dinámicos.
+El box del [Reformer](/blog/guia-completa-reformer) es fundamental para numerosos ejercicios, proporcionando soporte y permitiendo la alineación adecuada durante los movimientos. Las correas de calidad aseguran un posicionamiento seguro y permiten ejercicios más dinámicos.
 
 **Beneficios del Box:**
 - Soporte para ejercicios de extensión de columna
@@ -51,7 +51,7 @@ Las poleas suaves y duraderas son cruciales para el sistema de resistencia del R
 - Rodamientos de alta calidad
 - Operación silenciosa
 - Resistencia a la corrosión
-- Mantenimiento mínimo requerido
+- [Mantenimiento](/blog/mantenimiento-cama-de-pilates) mínimo requerido
 
 Señal de reemplazo: ruidos intermitentes o sensación “arenosa” al tirar de las correas.
 
@@ -130,6 +130,9 @@ Explora la [colección de accesorios y repuestos](/shop/category/accesorios).
 <see-also limit="3" />
 
 <hub-list category="Equipo y Mantenimiento" limit="8" title="Más sobre equipo y mantenimiento" />
+
+
+> 💡 **Lectura recomendada:** [Cama para Pilates: Guía Completa 2024-2025 para México](/blog/cama-para-pilates)
 
 ## Preguntas Frecuentes
 

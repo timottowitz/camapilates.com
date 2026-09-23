@@ -21,7 +21,7 @@ heroImage: "/images/blog/accesorios-cama-de-pilates/hero.webp"
 
 # Accesorios para cama de Pilates: Esenciales
 
-Los accesorios adecuados pueden transformar tu experiencia con el Reformer. Esta guía resume qué piezas necesitas, cómo mantenerlas y dónde comprarlas en México para que tus sesiones sean seguras y consistentes.
+Los accesorios adecuados pueden transformar tu experiencia con el [Reformer](/blog/guia-completa-reformer). Esta guía resume qué piezas necesitas, cómo mantenerlas y dónde comprarlas en México para que tus sesiones sean seguras y consistentes.
 
 ## Accesorios imprescindibles
 
@@ -63,7 +63,7 @@ Utiliza cubiertas lavables, toallas de microfibra y limpiadores neutros para pro
 ## Mantenimiento y seguridad
 
 1. **Checklist semanal**: revisa correas, poleas y muelles antes de la primera sesión.
-2. **Limpieza diaria**: desinfecta superficies y acolchados después de cada uso.
+2. **[Limpieza diaria](/blog/mantenimiento-cama-de-pilates)**: desinfecta superficies y acolchados después de cada uso.
 3. **Registro fotográfico**: documenta desgaste para planear reemplazos y cumplir con pólizas de seguro.
 4. **Capacitación**: equipo nuevo = mini inducción para instructores o familia.
 

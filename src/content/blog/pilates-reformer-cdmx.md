@@ -21,7 +21,7 @@ heroImage: "/images/blog/pilates-reformer-cdmx/hero.webp"
 
 > Nota: Contenido informativo; no sustituye recomendaciones médicas ni la evaluación de un profesional certificado.
 
-Ciudad de México concentra la oferta más grande de Pilates Reformer en Latinoamérica: más de 230 estudios entre Roma-Condesa, Polanco, Santa Fe y el corredor del sur. La demanda explotó 58 % en búsquedas durante 2024 (Google Trends), lo que hace más difícil separar los espacios boutique serios de las opciones improvisadas. Esta guía te ayuda a ubicar las zonas clave, comparar precios reales y armar un checklist para tu visita de prueba.
+Ciudad de México concentra la oferta más grande de Pilates [Reformer](/blog/pilates-reformer-cerca-de-mi) en Latinoamérica: más de 230 estudios entre Roma-Condesa, Polanco, Santa Fe y el corredor del sur. La demanda explotó 58 % en búsquedas durante 2024 (Google Trends), lo que hace más difícil separar los espacios boutique serios de las opciones improvisadas. Esta guía te ayuda a ubicar las zonas clave, comparar precios reales y armar un checklist para tu visita de prueba.
 
 ## Resumen exprés
 
@@ -101,7 +101,7 @@ Si buscas armar tu propio espacio en CDMX o equipar un estudio, CAMA Pilates fab
 En la Ciudad de México, una clase suelta de Pilates Reformer cuesta entre $350 y $650 MXN según la zona (Roma, Condesa, Polanco, Santa Fe o Del Valle). Los paquetes de 8 a 12 clases bajan el costo unitario a entre $280 y $420 MXN por sesión, mientras que las clases privadas individuales cuestan entre $900 y $1,400 MXN.
 
 ### ¿Cuánto cuesta una mensualidad de Pilates Reformer en CDMX?
-Una membresía mensual con clases ilimitadas en estudios boutique de CDMX se ubica entre $3,800 y $5,200 MXN mensuales. Si asistes 3 o más veces por semana, el costo por sesión desciende a menos de $300 MXN.
+Una membresía mensual con clases ilimitadas en [estudios boutique](/blog/estudios-pilates-reformer) de CDMX se ubica entre $3,800 y $5,200 MXN mensuales. Si asistes 3 o más veces por semana, el costo por sesión desciende a menos de $300 MXN.
 
 ### ¿Conviene más pagar estudio o comprar una cama de Pilates para casa en CDMX?
 Si asistes a clases 3 veces por semana en CDMX a un costo promedio de $4,500 MXN mensuales, tu gasto anual es de $54,000 MXN. Un Reformer residencial premium de CAMA Pilates inicia desde $29,700 MXN, amortizándose por completo en menos de 7 meses y permitiendo entrenar con horarios libres y máxima privacidad.

@@ -499,6 +499,30 @@ export const CertificacionPilatesCity: React.FC = () => {
         </div>
       </section>
 
+      {/* Comparativa con otras Sedes */}
+      <section className="py-16 px-6 md:px-16 border-t border-[#2A2624]/10 bg-[#FAFAF8]">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-serif italic text-[#2A2624] mb-3 text-center md:text-left">
+            Compara Sedes de Certificación en México
+          </h2>
+          <p className="text-sm md:text-base text-[#5D5550] font-light leading-relaxed mb-8 text-center md:text-left">
+            Si deseas contrastar fechas, costos, horarios de fin de semana o programas de aval internacional en otras entidades, consulta nuestras guías por sede:
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+            {CERTIFICATION_CITIES.filter((c) => c.key !== normalizedKey).map((c) => (
+              <Link
+                key={c.key}
+                to={`/certificacion-pilates/${c.key}`}
+                className="p-3 bg-white border border-[#2A2624]/10 rounded-xl text-center hover:border-[#3E2723] hover:shadow-sm transition-all group"
+              >
+                <div className="text-xs font-semibold text-[#2A2624] group-hover:text-[#3E2723]">{c.shortName}</div>
+                <div className="text-[10px] text-[#5D5550]/80 mt-0.5">Compara opciones →</div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Internal Linking / Equipment Section for Future Studio Owners */}
       <section className="py-16 px-6 md:px-16 bg-[#F5F4F0] border-t border-[#2A2624]/10">
         <div className="max-w-4xl mx-auto text-center md:text-left">

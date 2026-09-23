@@ -354,6 +354,50 @@ const CamaDePilatesPrecio: React.FC = () => {
           </div>
         </div>
 
+        {/* Related Guides & Comparisons */}
+        <div className="max-w-4xl mx-auto mb-24 p-8 md:p-12 bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-[2rem]">
+          <h2 className="text-3xl font-serif italic text-[#2A2624] mb-4 text-center">
+            Guías de Compra y Comparativas Relacionadas
+          </h2>
+          <p className="text-sm text-[#5D5550] font-light text-center mb-8 max-w-xl mx-auto">
+            Profundiza en especificaciones técnicas, diferencias estructurales y consejos de inversión para elegir el equipo perfecto:
+          </p>
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <Link to="/reformer-para-estudio" className="p-4 rounded-xl bg-white border border-[#2A2624]/10 hover:border-[#3E2723] hover:shadow-sm transition-all group block">
+              <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Equipamiento Estudio</span>
+              <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">Reformers para Estudio →</span>
+            </Link>
+            <Link to="/blog/cama-de-pilates-guia-de-compra" className="p-4 rounded-xl bg-white border border-[#2A2624]/10 hover:border-[#3E2723] hover:shadow-sm transition-all group block">
+              <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Guía Definitiva</span>
+              <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">Guía de Compra Reformer →</span>
+            </Link>
+            <Link to="/blog/cama-de-pilates-reformer" className="p-4 rounded-xl bg-white border border-[#2A2624]/10 hover:border-[#3E2723] hover:shadow-sm transition-all group block">
+              <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Aparatología</span>
+              <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">Qué es y Cómo Funciona →</span>
+            </Link>
+            <Link to="/blog/mejor-cama-de-pilates-para-casa" className="p-4 rounded-xl bg-white border border-[#2A2624]/10 hover:border-[#3E2723] hover:shadow-sm transition-all group block">
+              <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Uso Residencial</span>
+              <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">Mejor Cama para Casa 2026 →</span>
+            </Link>
+            <Link to="/blog/cama-de-pilates-barata" className="p-4 rounded-xl bg-white border border-[#2A2624]/10 hover:border-[#3E2723] hover:shadow-sm transition-all group block">
+              <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Presupuesto</span>
+              <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">Cama de Pilates Barata →</span>
+            </Link>
+            <Link to="/product/cadillac-aluminio-a048" className="p-4 rounded-xl bg-white border border-[#2A2624]/10 hover:border-[#3E2723] hover:shadow-sm transition-all group block">
+              <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Torre y Cadillac</span>
+              <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">Cadillac de Aluminio →</span>
+            </Link>
+            <Link to="/blog/mejores-marcas-cama-de-pilates" className="p-4 rounded-xl bg-white border border-[#2A2624]/10 hover:border-[#3E2723] hover:shadow-sm transition-all group block">
+              <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Marcas México</span>
+              <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">Mejores Marcas de Camas →</span>
+            </Link>
+            <Link to="/blog/cama-de-pilates-segunda-mano" className="p-4 rounded-xl bg-white border border-[#2A2624]/10 hover:border-[#3E2723] hover:shadow-sm transition-all group block">
+              <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Evaluación</span>
+              <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">Cama de Segunda Mano →</span>
+            </Link>
+          </div>
+        </div>
+
         {/* Studio Volume CTA */}
         <div className="bg-[#2A2624] text-[#EAE8E4] rounded-[2rem] p-10 md:p-20 text-center relative overflow-hidden">
           <div className="absolute top-1/2 left-1/2 -z-0 h-[400px] w-[800px] -translate-x-1/2 -translate-y-1/2 opacity-20 blur-3xl rounded-full bg-blue-900/40 pointer-events-none" />
