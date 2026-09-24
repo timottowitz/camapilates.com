@@ -235,7 +235,7 @@ export const IrresistibleOfferStack: React.FC<IrresistibleOfferStackProps> = ({
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span>Constancia de 28 horas avalada por CAMA.</span>
+                  <span>Constancia de 28 horas avalada por Edelweiss Pilates.</span>
                 </li>
               </ul>
             </div>

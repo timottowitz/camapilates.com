@@ -34,7 +34,7 @@ Reunir datos mexicanos y referencias confiables para desarrollar un artículo co
 
 ## Notas adicionales
 - Añadir citas textuales de libros si existen
-- Mencionar disponibilidad y soporte local de CAMA Pilates
+- Mencionar disponibilidad y soporte local de Edelweiss Pilates
 - Incluir disclaimers de seguridad cuando aplique
 
 
@@ -67,5 +67,5 @@ Reunir datos mexicanos y referencias confiables para desarrollar un artículo co
 ### Próximos pasos
 - Verificar cifras con fuentes oficiales mexicanas
 - Recopilar precios MXN actualizados (hogar vs estudio)
-- Identificar diferenciadores CAMA (fabricación, soporte, calidad)
+- Identificar diferenciadores Edelweiss (fabricación, soporte, calidad)
 - Planear tabla/resumen con decisiones prácticas para el lector

@@ -197,7 +197,7 @@ export const CertificacionPilates: React.FC = () => {
     }. Quiero información sobre el Curso Básico (28h · $25,000 MXN) y la Certificación Completa (48h · $38,000 MXN).`
   )}`;
 
-  const title = 'Certificación Pilates Reformer México [Aval Oficial] | CAMA';
+  const title = 'Certificación Pilates Reformer México [Aval Oficial] | Edelweiss';
   const desc =
     'Certificación profesional en Pilates Reformer: Curso Básico (28h · $25,000 MXN) y Certificación Completa (48h · $38,000 MXN). Querétaro (Nov 2026) y Monterrey (Dic-Ene 2027). 1:1 Reformer individual con Gabi y Laura Munive.';
 
@@ -206,10 +206,10 @@ export const CertificacionPilates: React.FC = () => {
       '@context': 'https://schema.org',
       '@type': 'Course',
       name: 'Certificación Profesional de Instructor de Pilates Reformer — Querétaro',
-      description: 'Formación en Pilates Reformer en Querétaro: Curso Básico (28h) y Certificación Completa (48h). 4 fines de semana en Noviembre 2026. Respaldo curricular CAMA Pilates.',
+      description: 'Formación en Pilates Reformer en Querétaro: Curso Básico (28h) y Certificación Completa (48h). 4 fines de semana en Noviembre 2026. Respaldo curricular Edelweiss Pilates.',
       provider: {
         '@type': 'Organization',
-        name: 'CAMA Pilates',
+        name: 'Edelweiss Pilates',
         url: origin,
       },
       offers: [
@@ -250,7 +250,7 @@ export const CertificacionPilates: React.FC = () => {
       description: 'Formación en Pilates Reformer en Monterrey: Curso Básico (28h) y Certificación Completa (48h) en San Pedro Garza García. Diciembre 2026 – Enero 2027.',
       provider: {
         '@type': 'Organization',
-        name: 'CAMA Pilates',
+        name: 'Edelweiss Pilates',
         url: origin,
       },
       offers: [
@@ -314,7 +314,7 @@ export const CertificacionPilates: React.FC = () => {
     },
     organizer: {
       '@type': 'Organization',
-      name: 'CAMA Pilates',
+      name: 'Edelweiss Pilates',
       url: origin,
     },
   };
@@ -368,7 +368,7 @@ export const CertificacionPilates: React.FC = () => {
         name: '¿Qué pasa si tengo dudas después de que termine el curso presencial?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Cuentas con acceso vitalicio a la comunidad de CAMA Pilates en Whop y a los foros clínicos con las docentes Gabi y Laura Munive para resolver dudas de tus alumnos, planificar clases y consultar la bolsa de trabajo.',
+          text: 'Cuentas con acceso vitalicio a la comunidad de Edelweiss Pilates en Whop y a los foros clínicos con las docentes Gabi y Laura Munive para resolver dudas de tus alumnos, planificar clases y consultar la bolsa de trabajo.',
         },
       },
     ],
@@ -741,7 +741,7 @@ export const CertificacionPilates: React.FC = () => {
           </h2>
           <p className="text-neutral-600 text-sm md:text-base leading-relaxed">
             Cada sede cuenta con un máximo estricto de 12 lugares para garantizar un Reformer profesional
-            CAMA individual por alumna durante toda la formación práctica, sin turnos rotativos ni tiempos muertos.
+            Edelweiss individual por alumna durante toda la formación práctica, sin turnos rotativos ni tiempos muertos.
           </p>
         </div>
 
@@ -1109,7 +1109,7 @@ export const CertificacionPilates: React.FC = () => {
                 <h3 className="text-lg font-bold text-neutral-900">Compromiso Deontológico de la Red</h3>
               </div>
               <p className="text-neutral-600 text-sm leading-relaxed mb-4">
-                Todas las instructoras formadas en CAMA Pilates operan bajo el principio de no daño,
+                Todas las instructoras formadas en Edelweiss Pilates operan bajo el principio de no daño,
                 evaluación postural rigurosa y derivación oportuna a profesionales médicos cuando un cuadro
                 clínico excede el alcance del método Pilates.
               </p>
@@ -1360,7 +1360,7 @@ export const CertificacionPilates: React.FC = () => {
                   ¿Qué pasa si tengo dudas después de que termine el curso presencial?
                 </h3>
                 <p className="text-sm text-neutral-600 leading-relaxed">
-                  Cuentas con acceso vitalicio a la comunidad de CAMA Pilates en Whop y a los foros clínicos con las
+                  Cuentas con acceso vitalicio a la comunidad de Edelweiss Pilates en Whop y a los foros clínicos con las
                   docentes Gabi y Laura Munive para resolver dudas de tus alumnos, planificar clases y consultar la
                   bolsa de trabajo.
                 </p>
@@ -1512,7 +1512,7 @@ export const CertificacionPilates: React.FC = () => {
               </h2>
               <p className="text-neutral-600 leading-relaxed mb-8">
                 Al graduarte de cualquiera de nuestras modalidades formativas (28h Básico o 48h Completo), accedes a un 15% de descuento directo en la
-                compra de camas de Pilates Reformer profesionales CAMA con madera noble, cuero genuino y resortes
+                compra de camas de Pilates Reformer profesionales Edelweiss con madera noble, cuero genuino y resortes
                 alemanes, además de financiamiento a 12 meses sin intereses.
               </p>
               <div className="flex flex-wrap gap-4">
@@ -1557,7 +1557,7 @@ export const CertificacionPilates: React.FC = () => {
       <footer className="border-t border-neutral-200 bg-[#F8F8F6] py-14 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-neutral-500 font-mono">
           <div>
-            © {new Date().getFullYear()} CAMA Pilates · Formación Biomecánica Profesional
+            © {new Date().getFullYear()} Edelweiss Pilates · Formación Biomecánica Profesional
           </div>
           <div className="flex flex-wrap gap-6">
             <Link to="/certificacion-pilates" className="hover:text-black">Certificación</Link>

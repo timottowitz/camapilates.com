@@ -1,9 +1,9 @@
 # Precio de la cama de Pilates en México (2025) — Research
 
-Objetivo: construir una guía de precio y compra con profundidad práctica para México, que explique con rigor qué determina el costo de una cama de Pilates (Reformer), rangos reales para casa vs profesional, costo total de propiedad (TCO), accesorios prioritarios y señales de calidad, con interlinking a PDPs y hubs. El tono: claro, útil, sin claims médicos. CTA a productos CAMA y certificación.
+Objetivo: construir una guía de precio y compra con profundidad práctica para México, que explique con rigor qué determina el costo de una cama de Pilates (Reformer), rangos reales para casa vs profesional, costo total de propiedad (TCO), accesorios prioritarios y señales de calidad, con interlinking a PDPs y hubs. El tono: claro, útil, sin claims médicos. CTA a productos Edelweiss y certificación.
 
 Fuentes internas/base de conocimiento
-- Catálogo CAMA (materiales: cuero, nogal, acero; silencio; garantía 3 años; repuestos exprés; entrega 5–7 días MX).
+- Catálogo Edelweiss (materiales: cuero, nogal, acero; silencio; garantía 3 años; repuestos exprés; entrega 5–7 días MX).
 - Blog existente: “Precio de la Cama de Pilates…”, “Casa vs Profesional”, “Accesorios esenciales”, “Guía de compra 2025”.
 - books_md (conocimiento de dominio):
   - Ellie Herman, “Pilates Reformer (Spanish Edition)” — estándares de seguridad, variedad de muelles, progresiones y control del recorrido.
@@ -34,7 +34,7 @@ Estructura propuesta (H2/H3)
    - Para estudios: ROI: aforo × clases × precio × ocupación – inversión.
 7) Financiación y pago: puntos a comparar (tasa, CAT, plazos, penalizaciones), no solo mensualidad. Transparencia de contratos.
 8) Nuevo vs segunda mano: riesgos y cuándo sí conviene (auditoría de rieles, muelles, seguridad; costo de puesta a punto; garantía).
-9) Recomendaciones CAMA (CTAs + enlaces a PDPs; estudios pack 8+). Links a guías relacionadas.
+9) Recomendaciones Edelweiss (CTAs + enlaces a PDPs; estudios pack 8+). Links a guías relacionadas.
 10) FAQ.
 
 Contenido (borrador largo ~1,400–1,800 palabras)
@@ -99,7 +99,7 @@ Segunda mano puede servir si:
 - Consideras costo de puesta a punto (tapicería, correas, limpieza profunda).
 - Aceptas menor garantía. Si el objetivo es dar clases pagadas, “ahorrar” 10k y perder 2–3 semanas por fallos no compensa.
 
-## Recomendaciones CAMA Pilates
+## Recomendaciones Edelweiss Pilates
 - Reformer Profesional — silencio total y servicio para estudio: /product/reformer-profesional
 - Reformer Casa — compacto, estable, materiales nobles: /product/reformer-casa
 - ¿Equipas un estudio (8+)? Pack con 20% off y coordinación de instalación: /packs/estudio

@@ -8,12 +8,12 @@ tags:
   - pilates
   - reformer
 publishDate: '2025-11-21'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: just-started-reformer-as-an-obese-person-mexico
 featured: false
 heroImage: "/images/blog/just-started-reformer-as-an-obese-person-mexico/hero.webp"
 ---
-# Empezando Pilates Reformer con sobrepeso u obesidad (Guía CAMA Pilates)
+# Empezando Pilates Reformer con sobrepeso u obesidad (Guía Edelweiss Pilates)
 
 > Nota: Este contenido es estrictamente informativo y no constituye asesoramiento médico. Consulta siempre a un profesional de la salud antes de iniciar cualquier programa de ejercicio.
 
@@ -98,7 +98,7 @@ La estrategia más inteligente para ti es aprovechar los paquetes introductorios
 
 *Nota de seguridad:* Aunque el *reformer* es de bajo impacto, si tienes condiciones preexistentes o dolor crónico, consulta siempre con un fisioterapeuta o médico antes de iniciar tu programa de ejercicio.
 
-## Recomendaciones CAMA Pilates: Seguridad y Soporte
+## Recomendaciones Edelweiss Pilates: Seguridad y Soporte
 
 La **estabilidad del equipo** debe ser tu máxima prioridad. Necesitas un Reformer robusto y de alta calidad, como los utilizados en estudios de prestigio en CDMX o GDL. El **diseño ergonómico** de estos Reformers está pensado para maximizar el soporte y la seguridad, ayudando a reducir la **carga articular hasta en un 40%**, lo cual es fundamental para tu práctica. Los estudios enfatizan que la solidez visible del equipo y el uso de resortes específicos aumentan la **confianza del cliente**, minimizando la preocupación sobre el soporte. Piensa en esto como una **inversión a largo plazo**; la durabilidad garantiza un entorno seguro y constante. Si tu instructor te pide usar accesorios como el Box, es una modificación clave para tu seguridad. *Nota de seguridad: Si el equipo cruje o se siente inestable, repórtalo inmediatamente; la integridad estructural es vital.*
 

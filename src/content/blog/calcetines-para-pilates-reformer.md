@@ -9,7 +9,7 @@ tags:
   - accesorios
 publishDate: '2025-09-24'
 updatedDate: '2026-09-17'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: calcetines-para-pilates-reformer
 featured: false
 canonical: 'https://camadepilates.com/blog/calcetines-para-pilates-reformer'
@@ -74,9 +74,9 @@ Busca:
 3. **Revisión mensual**: si el grip está liso o se despega, reemplaza el par.
 4. **Uso exclusivo**: evita usarlos para otras actividades (yoga, caminar en casa) para prolongar la vida útil.
 
-## Recomendaciones CAMA Pilates: Calcetines y Accesorios en México
+## Recomendaciones Edelweiss Pilates: Calcetines y Accesorios en México
 
-En [CAMA Pilates desarrollamos accesorios](/blog/accesorios-cama-de-pilates-esenciales) textiles pensados para resistir la fricción constante del carro del Reformer, con puntos de silicón vulcanizado que no se desprenden en el lavado:
+En [Edelweiss Pilates desarrollamos accesorios](/blog/accesorios-cama-de-pilates-esenciales) textiles pensados para resistir la fricción constante del carro del Reformer, con puntos de silicón vulcanizado que no se desprenden en el lavado:
 
 - **[Calcetines Antideslizantes de Algodón Orgánico ($382 MXN)](/product/calcetines-antideslizantes)**: Modelo individual con soporte elástico en empeine, suela completa con micro-gotas de silicón de alta tracción y costuras planas que no marcan los dedos.
 - **[Pack 3 Calcetines Antideslizantes Orgánicos ($975 MXN)](/product/calcetines-pack-3)**: La opción más recomendada para practicantes de 2 a 4 sesiones semanales. Incluye 3 pares en algodón peinado transpirable con descuento directo por paquete.

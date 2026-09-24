@@ -10,7 +10,7 @@ tags:
   - espacio
   - cuanto mide
 publishDate: '2025-09-24'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: dimensiones-cama-de-pilates
 featured: false
 heroImage: "/images/blog/dimensiones-cama-de-pilates/hero.webp"
@@ -59,27 +59,27 @@ Las dimensiones de un [reformer de Pilates](/blog/cama-de-pilates-guia-de-compra
 | Elina Pilates | Classic Reformer | 235 | 65 | 28-35* | 55 | 250 |
 | Elina Pilates | Plegable Casa | 230 | 62 | 32 | 42 | 200 |
 | Peak Pilates | Casa Reformer | 225 | 60 | 38 | 40 | 200 |
-| CAMA Pilates | Modelo Estándar | 232 | 65 | 40 | 50 | 250 |
-| CAMA Pilates | Modelo Compacto | 210 | 58 | 35 | 38 | 200 |
+| Edelweiss Pilates | Modelo Estándar | 232 | 65 | 40 | 50 | 250 |
+| Edelweiss Pilates | Modelo Compacto | 210 | 58 | 35 | 38 | 200 |
 
 *Altura ajustable según configuración de patas
 
-### Especificaciones CAMA Pilates
+### Especificaciones Edelweiss Pilates
 
-**CAMA Pilates Modelo Profesional:**
+**Edelweiss Pilates Modelo Profesional:**
 - Dimensiones: 235 × 66 × 42 cm
 - Peso: 52 kg
 - Capacidad máxima: 250 kg
 - Material: Madera de abedul con acabado premium
 - Incluye: Jump board, box, correas y resortes ajustables
 
-**CAMA Pilates Modelo Casa:**
+**Edelweiss Pilates Modelo Casa:**
 - Dimensiones: 220 × 60 × 38 cm
 - Peso: 42 kg
 - Capacidad máxima: 200 kg
 - [Diseño compacto](/blog/reformer-compacto) para espacios reducidos
 
-**CAMA Pilates Plegable:**
+**Edelweiss Pilates Plegable:**
 - Desplegado: 225 × 58 × 40 cm
 - Plegado: 130 × 58 × 52 cm
 - Peso: 45 kg
@@ -309,7 +309,7 @@ Sí, 2.4 metros es la altura mínima aceptable para ejercicios básicos de refor
 
 ### 3. ¿Cuánto espacio ahorro con un reformer plegable?
 
-Un reformer plegable puede ahorrar hasta 75% del espacio. Por ejemplo, el modelo CAMA Pilates plegable ocupa solo 1.3 × 0.6 metros cuando está guardado, versus 2.2 × 0.6 metros cuando está en uso.
+Un reformer plegable puede ahorrar hasta 75% del espacio. Por ejemplo, el modelo Edelweiss Pilates plegable ocupa solo 1.3 × 0.6 metros cuando está guardado, versus 2.2 × 0.6 metros cuando está en uso.
 
 ### 4. ¿Qué diferencia hay entre las dimensiones de reformers para casa vs. estudio?
 
@@ -321,7 +321,7 @@ Sí, considera espacio para almacenar: jump board (60×40 cm), box (66×25 cm), 
 
 ### 6. ¿Cómo afecta la altura del reformer a mi entrenamiento?
 
-La altura del reformer debe coincidir con la altura de tus rodillas cuando estás de pie. Reformers muy bajos dificultan entrar/salir, mientras que muy altos comprometen la estabilidad. La mayoría de modelos CAMA Pilates tienen altura ajustable entre 35-45 cm.
+La altura del reformer debe coincidir con la altura de tus rodillas cuando estás de pie. Reformers muy bajos dificultan entrar/salir, mientras que muy altos comprometen la estabilidad. La mayoría de modelos Edelweiss Pilates tienen altura ajustable entre 35-45 cm.
 
 ### 7. ¿Puedo instalar un reformer en mi terraza o jardín?
 
@@ -339,11 +339,11 @@ Sí, pero necesitas protección contra elementos. Requiere superficie nivelada, 
 
 **Edificios residenciales:** Verifica restricciones de peso en pisos superiores
 **Seguros:** Algunos seguros de hogar requieren declarar equipo de ejercicio
-**Garantías:** CAMA Pilates ofrece garantía extendida en territorio mexicano
+**Garantías:** Edelweiss Pilates ofrece garantía extendida en territorio mexicano
 
 ### Servicios de Instalación
 
-CAMA Pilates proporciona:
+Edelweiss Pilates proporciona:
 - Servicio de medición previa gratuito
 - Instalación profesional en CDMX y Guadalajara
 - Asesoría de planificación de espacio
@@ -356,6 +356,6 @@ CAMA Pilates proporciona:
 
 La elección correcta de un reformer de Pilates va más allá de sus beneficios para la salud; requiere una planificación cuidadosa del espacio. Las dimensiones exactas, el espacio de circulación necesario, y las consideraciones específicas para hogares mexicanos son factores cruciales para una experiencia de Pilates exitosa.
 
-Recuerda que invertir en las medidas correctas desde el inicio te ahorrará problemas futuros y maximizará tu inversión. Los reformers CAMA Pilates ofrecen opciones flexibles para cada tipo de espacio, desde apartamentos compactos hasta estudios profesionales.
+Recuerda que invertir en las medidas correctas desde el inicio te ahorrará problemas futuros y maximizará tu inversión. Los reformers Edelweiss Pilates ofrecen opciones flexibles para cada tipo de espacio, desde apartamentos compactos hasta estudios profesionales.
 
 Para asesoría personalizada sobre el reformer ideal para tu espacio, contáctanos. Nuestro equipo de expertos puede ayudarte a calcular las dimensiones exactas y planificar la instalación perfecta para tu práctica de Pilates.

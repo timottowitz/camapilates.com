@@ -16,7 +16,7 @@ const NotFound = () => {
   return (
     <LuxuryLayout>
       <Helmet>
-        <title>Página no encontrada | CAMA Pilates</title>
+        <title>Página no encontrada | Edelweiss Pilates</title>
         <meta name="description" content="La página que buscas no existe o ha sido movida." />
         <meta name="robots" content="noindex, follow" />
       </Helmet>

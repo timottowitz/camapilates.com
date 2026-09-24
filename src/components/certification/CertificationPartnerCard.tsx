@@ -115,7 +115,7 @@ export const CertificationPartnerCard: React.FC<CertificationPartnerCardProps> =
         {/* B2B Equipment Fit Note */}
         {partner.partnershipFitAngle && (
           <div className="mb-6 p-3 rounded-lg bg-[#EAE8E4]/50 border-l-2 border-[#3E2723] text-xs text-[#5D5550] font-light italic">
-            <span className="font-semibold text-[#2A2624] not-italic">Sinergia CAMA: </span>
+            <span className="font-semibold text-[#2A2624] not-italic">Sinergia Edelweiss: </span>
             {partner.partnershipFitAngle}
           </div>
         )}

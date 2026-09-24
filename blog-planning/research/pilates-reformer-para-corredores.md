@@ -4,8 +4,8 @@
 - **Título Sugerido:** Beneficios del Pilates Reformer para Corredores: Rendimiento, Prevención de Lesiones y Fuerza Funcional en México
 - **Audiencia Objetivo:** Corredores recreativos, de medio fondo, maratonistas (Maratón CDMX, Maratón Powerade Monterrey, 21K Guadalajara) y triatletas en México. También instructores de Pilates que desean especializarse en entrenamiento cruzado (cross-training) para atletas de resistencia.
 - **Intención de Búsqueda:** Informativa y transaccional secundaria (¿Cómo ayuda el Reformer a correr mejor y más rápido sin lesionarse? ¿Dónde practicar o comprar un Reformer en México?).
-- **Vínculos Comerciales CAMA:**
-  - Reformer para Casa (CAMA Home Studio) para corredores que necesitan movilidad y descarga post-rodajes diarios.
+- **Vínculos Comerciales Edelweiss:**
+  - Reformer para Casa (Edelweiss Home Studio) para corredores que necesitan movilidad y descarga post-rodajes diarios.
   - Certificación de Instructores de Pilates Reformer (Querétaro y Monterrey) para entrenadores que trabajan con atletas.
   - Info Day gratuito del 26 de Septiembre con Gabi & Laura Munive para explicar los próximos cursos presenciales de certificación.
 
@@ -74,9 +74,9 @@ El running es un movimiento repetitivo en un único plano (sagital). Cada kilóm
 
 ---
 
-## 6. Conexión con CAMA Pilates & Embudo de Certificación
-- **Equipos CAMA:** Los Reformers CAMA con estructura de nogal y acero absorben vibraciones mecánicas y ofrecen rieles de deslizamiento silencioso y resortes de aleación de carbono calibrados en Alemania.
-- **Formación de Instructores:** Los entrenadores personales y fisioterapeutas en Querétaro y Monterrey pueden formarse en la Certificación de 100 Horas de CAMA Pilates para atender a la creciente comunidad de atletas y maratonistas.
+## 6. Conexión con Edelweiss Pilates & Embudo de Certificación
+- **Equipos Edelweiss:** Los Reformers Edelweiss con estructura de nogal y acero absorben vibraciones mecánicas y ofrecen rieles de deslizamiento silencioso y resortes de aleación de carbono calibrados en Alemania.
+- **Formación de Instructores:** Los entrenadores personales y fisioterapeutas en Querétaro y Monterrey pueden formarse en la Certificación de 100 Horas de Edelweiss Pilates para atender a la creciente comunidad de atletas y maratonistas.
 - **Llamado al Info Day (26 de Septiembre):** Registro directo para conocer los próximos cursos de certificación con Gabi & Laura Munive y asegurar lugar en lista de espera.
 
 ---
@@ -87,6 +87,6 @@ El running es un movimiento repetitivo en un único plano (sagital). Cada kilóm
 3. Biomecánica del Running vs. Mecánica del Reformer: El trabajo de resortes y desaceleración excéntrica.
 4. Rutina de 5 Ejercicios Clave en Reformer para Maratón y Medio Fondo.
 5. Frecuencia Semanal Sugerida: Cómo coordinar kilometraje y sesiones de cama de Pilates.
-6. Opciones para Casa vs. Estudio: El Reformer CAMA de ingeniería alemana.
+6. Opciones para Casa vs. Estudio: El Reformer Edelweiss de ingeniería alemana.
 7. Oportunidad para Instructores: Certificación en Querétaro y Monterrey (50% OFF lista de espera).
 8. FAQ (5 preguntas estructuradas para Schema JSON-LD).

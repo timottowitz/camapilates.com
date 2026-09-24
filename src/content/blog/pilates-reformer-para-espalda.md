@@ -8,7 +8,7 @@ tags:
   - pilates
   - reformer
 publishDate: '2025-11-19'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: pilates-reformer-para-espalda
 featured: false
 heroImage: "/images/blog/pilates-reformer-para-espalda/hero.webp"
@@ -81,7 +81,7 @@ Sin embargo, habrá días en que tu espalda "se queje" o sientas rigidez. En eso
 
 La magia ocurre con la constancia. Lo ideal es subirte al carro 2 o 3 veces por semana. Aquí entra el factor económico: en zonas como la Roma en CDMX, San Pedro en Monterrey o Providencia en GDL, una clase presencial promedia entre **$300 y $500 MXN**. Si haces cuentas, ir tres veces por semana representa una renta mensual considerable. Considerando que un Reformer [de calidad en México](/blog/mejor-cama-de-pilates-profesional) oscila entre $20,000 y $80,000 MXN, la inversión en equipo propio se amortiza rápidamente, permitiéndote adaptar la práctica a tus días buenos y malos sin salir de casa.
 
-## Recomendaciones CAMA Pilates: Calidad y soporte local
+## Recomendaciones Edelweiss Pilates: Calidad y soporte local
 
 Para proteger tu espalda, la calidad del equipo no es un lujo, es una necesidad técnica. Si los resortes no tienen la resistencia calibrada o el carro no se desliza suavemente, te arriesgas a sufrir "tirones" lumbares por la fricción o el impacto. Busca modelos para hogar que incluyan *headrest* ajustable y opción de *Box* para adaptar la ergonomía a tu estatura.
 

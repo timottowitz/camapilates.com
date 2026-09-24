@@ -24,7 +24,7 @@ Estructura propuesta (H2/H3)
 5) Espacio y medidas (huella, altura, acceso)
 6) Presupuesto y calidad (rangos MX 2025; TCO 3 años; financiación)
 7) Checklist de compra (prueba en 10 puntos)
-8) Recomendaciones CAMA + CTAs (casa/pro/pack estudio)
+8) Recomendaciones Edelweiss + CTAs (casa/pro/pack estudio)
 9) FAQ
 
 Notas de los libros

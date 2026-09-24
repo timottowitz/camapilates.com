@@ -102,7 +102,7 @@ export const CertificacionPilatesCity: React.FC = () => {
       '@type': 'City',
       name: cityName
     },
-    provider: { '@type': 'Organization', name: 'CAMA Pilates', url: origin },
+    provider: { '@type': 'Organization', name: 'Edelweiss Pilates', url: origin },
     serviceType: isCdmx
       ? 'Inscripción a certificación STOTT PILATES y directorio de escuelas'
       : 'Directorio y convocatoria de certificaciones de Pilates (Reformer y Mat)'
@@ -138,7 +138,7 @@ export const CertificacionPilatesCity: React.FC = () => {
         },
         {
           question: `¿Tengo un Reformer individual asignado durante las clases?`,
-          answer: `Sí. En CAMA limitamos cada cohorte a un máximo estricto de 12 alumnas(os) para que cada participante cuente con un Reformer profesional exclusivo sin tener que compartir turnos de máquina.`,
+          answer: `Sí. En Edelweiss limitamos cada cohorte a un máximo estricto de 12 alumnas(os) para que cada participante cuente con un Reformer profesional exclusivo sin tener que compartir turnos de máquina.`,
         },
         {
           question: `¿Qué otras academias de Pilates certifican en ${shortCityName}?`,
@@ -343,7 +343,7 @@ export const CertificacionPilatesCity: React.FC = () => {
 
           <div className="mb-10 text-center max-w-3xl mx-auto">
             <span className="text-xs uppercase tracking-[0.3em] text-[#3E2723] font-semibold block mb-2">
-              Convocatoria Exclusiva CAMA · {cohort.periodLabel}
+              Convocatoria Exclusiva Edelweiss · {cohort.periodLabel}
             </span>
             <h2 className="text-3xl md:text-5xl font-serif italic text-[#2A2624]">
               4 Fines de Semana Intensivos en {shortCityName}

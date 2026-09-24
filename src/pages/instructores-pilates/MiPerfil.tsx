@@ -87,7 +87,7 @@ const MiPerfil: React.FC = () => {
     <LuxuryLayout>
       <Helmet>
         <title>Iniciar Sesión - Instructores | {DEFAULTS.siteName}</title>
-        <meta name="description" content="Inicia sesión para gestionar tu perfil de instructor en el directorio de CAMA Pilates." />
+        <meta name="description" content="Inicia sesión para gestionar tu perfil de instructor en el directorio de Edelweiss Pilates." />
         <meta name="robots" content="noindex" />
         <link rel="canonical" href={`${origin}/mi-perfil`} />
       </Helmet>

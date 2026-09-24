@@ -10,7 +10,7 @@ tags:
   - polanco
 publishDate: '2025-09-24'
 updatedDate: '2026-03-15'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: pilates-reformer-cdmx
 featured: false
 canonical: 'https://camadepilates.com/blog/pilates-reformer-cdmx'
@@ -33,9 +33,9 @@ Ciudad de México concentra la oferta más grande de Pilates [Reformer](/blog/pi
 
 ## Por qué CDMX lidera el boom del Reformer
 
-1. **Demografía activa**: 42 % de las personas que practican Reformer en México viven en CDMX o área metropolitana (datos CAMA 2025).
+1. **Demografía activa**: 42 % de las personas que practican Reformer en México viven en CDMX o área metropolitana (datos Edelweiss 2025).
 2. **Oferta de estudios**: cadenas como Contrology Lab o Studio 14 conviven con instructores independientes que adaptan lofts o rooftops.
-3. **Acceso a equipamiento**: la ciudad tiene importadores oficiales y fabricantes (CAMA Pilates, Universo Pilates) que garantizan refacciones y upgrades sin esperar semanas.
+3. **Acceso a equipamiento**: la ciudad tiene importadores oficiales y fabricantes (Edelweiss Pilates, Universo Pilates) que garantizan refacciones y upgrades sin esperar semanas.
 
 ## Zonas y estudios representativos
 
@@ -76,7 +76,7 @@ Muchos estudios ofrecen **free week** o paquetes de lanzamiento en nuevas sucurs
 ## Preguntas clave para el studio tour
 
 1. ¿Los instructores rotan o puedes quedarte con la misma guía?
-2. ¿El equipo es marca reconocida (CAMA, Balanced Body, Merrithew) y tiene refacciones en México?
+2. ¿El equipo es marca reconocida (Edelweiss, Balanced Body, Merrithew) y tiene refacciones en México?
 3. ¿Cómo gestionan la higiene entre clases? (tiempo de sanitización, uso de calcetines, fundas desechables).
 4. ¿Ofrecen evaluaciones de progreso (test de movilidad, fotografías de postura, reportes)?
 5. ¿Qué pasa si viajas o te enfermas? (freezes o reposiciones).
@@ -89,9 +89,9 @@ Muchos estudios ofrecen **free week** o paquetes de lanzamiento en nuevas sucurs
 - Clases grupales de más de 12 personas sin asistentes.
 - Contratos que amarran 6‑12 meses sin cláusula de cancelación.
 
-## Recomendaciones CAMA Pilates
+## Recomendaciones Edelweiss Pilates
 
-Si buscas armar tu propio espacio en CDMX o equipar un estudio, CAMA Pilates fabrica Reformers con ingeniería alemana y manufactura mexicana, soporte técnico local y capacitación a instructores. Ofrecemos asesoría para evaluar rentabilidad (ROI), guías de mantenimiento y programas de certificación continua.
+Si buscas armar tu propio espacio en CDMX o equipar un estudio, Edelweiss Pilates fabrica Reformers con ingeniería alemana y manufactura mexicana, soporte técnico local y capacitación a instructores. Ofrecemos asesoría para evaluar rentabilidad (ROI), guías de mantenimiento y programas de certificación continua.
 
 <hub-list category="Estudio" limit="6" title="Explora más guías para estudios" />
 
@@ -104,7 +104,7 @@ En la Ciudad de México, una clase suelta de Pilates Reformer cuesta entre $350 
 Una membresía mensual con clases ilimitadas en [estudios boutique](/blog/estudios-pilates-reformer) de CDMX se ubica entre $3,800 y $5,200 MXN mensuales. Si asistes 3 o más veces por semana, el costo por sesión desciende a menos de $300 MXN.
 
 ### ¿Conviene más pagar estudio o comprar una cama de Pilates para casa en CDMX?
-Si asistes a clases 3 veces por semana en CDMX a un costo promedio de $4,500 MXN mensuales, tu gasto anual es de $54,000 MXN. Un Reformer residencial premium de CAMA Pilates inicia desde $29,700 MXN, amortizándose por completo en menos de 7 meses y permitiendo entrenar con horarios libres y máxima privacidad.
+Si asistes a clases 3 veces por semana en CDMX a un costo promedio de $4,500 MXN mensuales, tu gasto anual es de $54,000 MXN. Un Reformer residencial premium de Edelweiss Pilates inicia desde $29,700 MXN, amortizándose por completo en menos de 7 meses y permitiendo entrenar con horarios libres y máxima privacidad.
 
 ### ¿Cuántas clases necesito para notar resultados?
 Con 2‑3 sesiones semanales, la mayoría siente mejor postura y estabilidad en 4‑6 semanas. A los 3 meses puedes avanzar a rutinas intermedias (tower, jumpboard).

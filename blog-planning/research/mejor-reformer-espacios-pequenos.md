@@ -17,7 +17,7 @@ Reunir datos mexicanos y referencias confiables para desarrollar un artículo co
 1) Resumen del panorama y objetivo
 2) Criterios técnicos y checklist
 3) Comparativa de opciones en MXN
-4) Recomendaciones CAMA Pilates
+4) Recomendaciones Edelweiss Pilates
 5) FAQ
 
 ## Plan de shortcodes
@@ -36,7 +36,7 @@ Reunir datos mexicanos y referencias confiables para desarrollar un artículo co
 
 ## Notas adicionales
 - Añadir citas textuales de libros si existen
-- Mencionar disponibilidad y soporte local de CAMA Pilates
+- Mencionar disponibilidad y soporte local de Edelweiss Pilates
 - Incluir disclaimers de seguridad cuando aplique
 
 
@@ -69,5 +69,5 @@ Reunir datos mexicanos y referencias confiables para desarrollar un artículo co
 ### Próximos pasos
 - Verificar cifras con fuentes oficiales mexicanas
 - Recopilar precios MXN actualizados (hogar vs estudio)
-- Identificar diferenciadores CAMA (fabricación, soporte, calidad)
+- Identificar diferenciadores Edelweiss (fabricación, soporte, calidad)
 - Planear tabla/resumen con decisiones prácticas para el lector

@@ -33,7 +33,7 @@ Estructura sugerida (H2/H3)
 6) Tapizados y acabados (cuero/micelio/nogal): limpieza recomendada, protección tapizada, evitar solventes agresivos.
 7) Lista de herramientas y consumibles recomendados.
 8) Errores comunes a evitar.
-9) Cuándo contactar servicio técnico (CAMA: repuestos exprés, soporte en español).
+9) Cuándo contactar servicio técnico (Edelweiss: repuestos exprés, soporte en español).
 10) CTAs (accesorios y PDPs), shortcodes, FAQ.
 
 Notas de libros (books_md)

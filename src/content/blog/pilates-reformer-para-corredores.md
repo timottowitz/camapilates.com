@@ -8,7 +8,7 @@ tags:
   - "prevención de lesiones"
   - "cama de pilates"
 publishDate: "2026-09-10"
-author: "CAMA Pilates"
+author: "Edelweiss Pilates"
 slug: "pilates-reformer-para-corredores"
 featured: false
 heroImage: "/images/blog/pilates-reformer-para-corredores/hero.webp"
@@ -122,13 +122,13 @@ Uno de los errores más frecuentes es saturar la semana intentando hacer sesione
 
 Para quien entrena atletismo de forma constante, la conveniencia horaria es determinante. Muchos corredores terminan sus entrenamientos a las 6:30 AM o a las 9:00 PM, horarios donde la mayoría de los estudios boutique están cerrados o con clases grupales llenas.
 
-Tener un **Reformer profesional para casa** (como los modelos de madera de nogal y rieles de precisión de CAMA Pilates con ingeniería alemana y fabricación en CDMX) permite realizar 20 minutos de descarga miofascial y fortalecimiento de core inmediatamente después de terminar el rodaje, sin perder tiempo en traslados ni pagar mensualidades continuas que rondan los \$2,500 a \$3,500 MXN mensuales en zonas como Polanco, Valle Oriente o Providencia.
+Tener un **Reformer profesional para casa** (como los modelos de madera de nogal y rieles de precisión de Edelweiss Pilates con ingeniería alemana y fabricación en CDMX) permite realizar 20 minutos de descarga miofascial y fortalecimiento de core inmediatamente después de terminar el rodaje, sin perder tiempo en traslados ni pagar mensualidades continuas que rondan los \$2,500 a \$3,500 MXN mensuales en zonas como Polanco, Valle Oriente o Providencia.
 
 ---
 
 ## Oportunidad para Entrenadores y Fisioterapeutas: Certificación 2026–2027
 
-Si eres preparador físico, fisioterapeuta o instructora en México y deseas especializarte en biomecánica funcional aplicada tanto a deportistas de resistencia como al público general, CAMA Pilates ha abierto la convocatoria para sus cohortes presenciales (Curso Básico 28h / Certificación Completa 48h):
+Si eres preparador físico, fisioterapeuta o instructora en México y deseas especializarte en biomecánica funcional aplicada tanto a deportistas de resistencia como al público general, Edelweiss Pilates ha abierto la convocatoria para sus cohortes presenciales (Curso Básico 28h / Certificación Completa 48h):
 
 * **Cohorte Querétaro:** Noviembre de 2026.
 * **Cohorte Monterrey:** Diciembre 2026 a Enero 2027.

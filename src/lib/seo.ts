@@ -19,7 +19,7 @@ import { getVersionedImageUrl } from '@/hooks/useVersionedImage';
 import { allProducts } from '@/lib/shop/catalog';
 
 export const DEFAULTS = {
-  siteName: (import.meta as any).env?.VITE_SITE_NAME || 'CAMA Pilates',
+  siteName: (import.meta as any).env?.VITE_SITE_NAME || 'Edelweiss Pilates',
   twitterSite: (import.meta as any).env?.VITE_TWITTER_SITE || '',
   ogImage: getVersionedImageUrl('/og/cama-de-pilates-venta-mexico.webp'),
   locale: 'es_MX'
@@ -28,7 +28,7 @@ export const DEFAULTS = {
 // Organization schema constants
 export const ORGANIZATION = {
   name: 'Edelweiss Pilates',
-  legalName: 'CAMA Pilates',
+  legalName: 'Edelweiss Pilates',
   url: 'https://camadepilates.com',
   logo: {
     url: 'https://camadepilates.com/brand/edelweiss.svg',
@@ -183,7 +183,7 @@ export function generateBreadcrumbSchema(items: Array<{ name: string; url?: stri
 
 // Author info for blog posts
 export const AUTHOR = {
-  name: 'CAMA Pilates',
+  name: 'Edelweiss Pilates',
   url: 'https://camadepilates.com',
   description: 'Recursos y guías sobre camas de Pilates (Reformer) para casa y estudio: compra, ejercicios y mantenimiento.',
 };
@@ -647,7 +647,7 @@ export function generateAboutPageSchema() {
           '@type': 'Organization',
           '@id': `${origin}/#organization`,
           name: 'Edelweiss Pilates',
-          alternateName: 'CAMA Pilates',
+          alternateName: 'Edelweiss',
           url: origin,
           foundingDate: '2015',
           foundingLocation: {

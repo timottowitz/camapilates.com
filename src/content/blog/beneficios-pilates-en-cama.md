@@ -8,7 +8,7 @@ tags:
   - pilates
   - reformer
 publishDate: '2025-11-19'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: beneficios-pilates-en-cama
 featured: false
 heroImage: '/images/blog/beneficios-pilates-en-cama/hero.webp'
@@ -90,11 +90,11 @@ Una progresión segura implica pasar de ejercicios de cadena cerrada (pies apoya
 
 Instituciones como el IMSS y la Secretaría de Salud destacan los beneficios de la actividad física de bajo impacto para evitar el desgaste articular prematuro, haciendo del Pilates una opción ideal para la salud preventiva en México. Sabrás que estás listo para el siguiente nivel cuando mantengas la alineación perfecta sin "temblar" y sin compensar con el cuello o la espalda baja.
 
-## La ventaja de CAMA Pilates: Calidad Mexicana
+## La ventaja de Edelweiss Pilates: Calidad Mexicana
 
 Elegir un Reformer fabricado en México no es solo un tema de orgullo local, es una decisión estratégica para tu entrenamiento. Joseph Pilates enfatizaba la importancia del "control" absoluto en cada movimiento; lograr esa precisión es imposible si tu equipo se tambalea o si careces del soporte adecuado para mantenerlo a punto.
 
-Al optar por **CAMA Pilates**, te olvidas de la pesadilla de esperar semanas por refacciones importadas; la disponibilidad local en CDMX, Guadalajara y Monterrey garantiza que tu práctica no se detenga. Además, al contar con manuales y asesoría técnica 100% en español, operas el equipo con mayor seguridad, protegiendo tanto tu cuerpo como tu inversión.
+Al optar por **Edelweiss Pilates**, te olvidas de la pesadilla de esperar semanas por refacciones importadas; la disponibilidad local en CDMX, Guadalajara y Monterrey garantiza que tu práctica no se detenga. Además, al contar con manuales y asesoría técnica 100% en español, operas el equipo con mayor seguridad, protegiendo tanto tu cuerpo como tu inversión.
 
 <hub-list category="Ejercicios y salud" limit="6" title="Más contenidos relacionados" />
 

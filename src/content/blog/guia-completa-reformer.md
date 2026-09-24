@@ -9,7 +9,7 @@ tags:
   - uso del reformer
   - beneficios reformer
 publishDate: '2025-09-27'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: guia-completa-reformer
 featured: false
 heroImage: "/images/blog/guia-completa-reformer/hero.webp"
@@ -70,7 +70,7 @@ Progresar implica variar resistencia, rango, tempo y soportes. Mantén movimient
 - Presupuesto en MXN: considera IVA, envío e instalación; piensa en costo total de propiedad.
 - Soporte local: garantía de 1 año y refacciones exprés simplifican la experiencia.
 
-## Recomendaciones CAMA Pilates
+## Recomendaciones Edelweiss Pilates
 Nuestros Reformers priorizan estabilidad, recorrido suave y materiales premium con soporte posventa en México.
 
 - /reformer-para-casa

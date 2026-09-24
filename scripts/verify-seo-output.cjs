@@ -27,7 +27,7 @@ function rejectText(content, unexpected, file) {
 const home = read('index.html');
 requireText(
   home,
-  '<title>Cama de Pilates (Reformer) en México — Guías, Precios y Venta | CAMA Pilates</title>',
+  '<title>Cama de Pilates (Reformer) en México — Guías, Precios y Venta | Edelweiss Pilates</title>',
   'index.html',
 );
 requireText(home, '<link rel="canonical" href="https://camadepilates.com/">', 'index.html');
@@ -37,7 +37,7 @@ requireText(home, 'href="/shop/category/reformers"', 'index.html');
 const certification = read('certificacion-pilates/monterrey.html');
 requireText(
   certification,
-  '<title>Certificación Pilates Monterrey [Fechas 2026] | CAMA Pilates</title>',
+  '<title>Certificación Pilates Monterrey [Fechas 2026] | Edelweiss Pilates</title>',
   'certificacion-pilates/monterrey.html',
 );
 requireText(
@@ -53,7 +53,7 @@ rejectText(certification, 'Keywords:', 'certificacion-pilates/monterrey.html');
 const monterreyDirectory = read('estudios-de-pilates/monterrey.html');
 requireText(
   monterreyDirectory,
-  '<title>Clases y Estudios de Pilates en Monterrey | CAMA Pilates</title>',
+  '<title>Clases y Estudios de Pilates en Monterrey | Edelweiss Pilates</title>',
   'estudios-de-pilates/monterrey.html',
 );
 requireText(

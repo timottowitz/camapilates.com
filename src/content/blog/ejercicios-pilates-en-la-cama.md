@@ -8,7 +8,7 @@ tags:
   - pilates
   - reformer
 publishDate: '2025-11-19'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: ejercicios-pilates-en-la-cama
 featured: false
 heroImage: '/images/blog/ejercicios-pilates-en-la-cama/hero.webp'
@@ -89,11 +89,11 @@ Mantener una práctica constante en estudios boutique de la CDMX, Guadalajara o 
 
 Si te decides por equipar tu hogar, un factor crucial es el idioma. El mercado indica una preferencia superior al 80% por instructivos en español; asegúrate de que tu equipo incluya guías en nuestro idioma para garantizar el montaje correcto y el uso seguro.
 
-## Recomendaciones CAMA Pilates
+## Recomendaciones Edelweiss Pilates
 
-Para maximizar el control motor y la estabilidad, la calidad de tu equipo es no negociable. Aquí es donde **CAMA Pilates** se distingue: gracias a su fabricación local, obtienes soporte técnico real y estándares premium que muchas opciones importadas no ofrecen.
+Para maximizar el control motor y la estabilidad, la calidad de tu equipo es no negociable. Aquí es donde **Edelweiss Pilates** se distingue: gracias a su fabricación local, obtienes soporte técnico real y estándares premium que muchas opciones importadas no ofrecen.
 
-Sabemos que el espacio puede ser un reto, especialmente si vives en un departamento. Por eso, los **Reformers plegables** de CAMA son una excelente solución; mantienen la estabilidad crítica del carro y la precisión de los resortes, pero se adaptan perfectamente a tu hogar.
+Sabemos que el espacio puede ser un reto, especialmente si vives en un departamento. Por eso, los **Reformers plegables** de Edelweiss son una excelente solución; mantienen la estabilidad crítica del carro y la precisión de los resortes, pero se adaptan perfectamente a tu hogar.
 
 Para llevar tu práctica al siguiente nivel, te sugerimos añadir **straps acolchados** y un **box**, accesorios esenciales para ampliar tu repertorio de ejercicios cómodamente.
 

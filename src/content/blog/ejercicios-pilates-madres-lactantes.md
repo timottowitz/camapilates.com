@@ -11,7 +11,7 @@ tags:
   - recuperación posparto
   - pilates mamás
 publishDate: '2025-01-28'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: ejercicios-pilates-madres-lactantes
 featured: true
 heroImage: '/images/blog/ejercicios-pilates-madres-lactantes/hero.webp'
@@ -389,11 +389,11 @@ En México, la tradición de "la cuarentena" de 40 días es profundamente respet
 - Formación continua en lactancia y ejercicio: Disponible en CDMX, GDL, MTY
 - Colaboración con ginecólogos: Programas médicamente supervisados
 
-## CAMA Pilates: Tu Aliado en la Recuperación Posparto
+## Edelweiss Pilates: Tu Aliado en la Recuperación Posparto
 
 ### Ventajas del Reformer para Madres Lactantes
 
-El [Reformer de CAMA Pilates](/blog/cama-de-pilates-para-principiantes) ofrece beneficios únicos para madres en período de lactancia:
+El [Reformer de Edelweiss Pilates](/blog/cama-de-pilates-para-principiantes) ofrece beneficios únicos para madres en período de lactancia:
 
 **Soporte y Estabilidad:**
 - El aparato proporciona estabilidad adicional cuando el core está debilitado
@@ -426,7 +426,7 @@ El [Reformer de CAMA Pilates](/blog/cama-de-pilates-para-principiantes) ofrece b
 
 **Análisis Costo-Beneficio:**
 - Clases regulares en estudio: $24,000-30,000 pesos anuales
-- Reformer CAMA para hogar: $45,000-65,000 pesos una vez
+- Reformer Edelweiss para hogar: $45,000-65,000 pesos una vez
 - Retorno de inversión: 2-1 año con uso regular familiar
 
 **Valor Agregado:**
@@ -511,7 +511,7 @@ El [Reformer de CAMA Pilates](/blog/cama-de-pilates-para-principiantes) ofrece b
 
 ### 🏆 ¿Quieres Acelerar tus Resultados?
 
-**Un Reformer CAMA te ayuda a:**
+**Un Reformer Edelweiss te ayuda a:**
 ✨ Ejercitarte segura cuando el core está débil  
 ✨ Progresar más rápido con resistencia controlada  
 ✨ Entrenar en casa 24/7 (perfecto para horarios de mamá)  

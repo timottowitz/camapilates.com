@@ -166,7 +166,7 @@ export const CertificacionWebinar: React.FC = () => {
     image: `${origin}/og/cama-de-pilates-venta-mexico.png`,
     organizer: {
       '@type': 'Organization',
-      name: 'CAMA Pilates',
+      name: 'Edelweiss Pilates',
       url: origin,
     },
     performer: WEBINAR_INFO.hosts.map((h) => ({
@@ -187,10 +187,10 @@ export const CertificacionWebinar: React.FC = () => {
   return (
     <LuxuryLayout>
       <Helmet>
-        <title>{WEBINAR_INFO.title} | CAMA Pilates</title>
+        <title>{WEBINAR_INFO.title} | Edelweiss Pilates</title>
         <meta name="description" content={WEBINAR_INFO.subtitle} />
         <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={`${WEBINAR_INFO.title} | CAMA Pilates`} />
+        <meta property="og:title" content={`${WEBINAR_INFO.title} | Edelweiss Pilates`} />
         <meta property="og:description" content={WEBINAR_INFO.subtitle} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:type" content="event" />

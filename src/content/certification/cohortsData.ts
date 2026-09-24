@@ -121,7 +121,7 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
     depositPrice: 400,
     capacityPerCity: 12,
     location: {
-      name: "CAMA Studio Querétaro",
+      name: "Edelweiss Studio Querétaro",
       neighborhood: "Juriquilla / Álamos",
       city: "Santiago de Querétaro",
       state: "Querétaro",
@@ -265,7 +265,7 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
     depositPrice: 400,
     capacityPerCity: 12,
     location: {
-      name: "CAMA Studio Monterrey",
+      name: "Edelweiss Studio Monterrey",
       neighborhood: "San Pedro Garza García / Valle Oriente",
       city: "San Pedro Garza García",
       state: "Nuevo León",
@@ -376,7 +376,7 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
         competencies: [
           "Simulación de enseñanza real con retroalimentación docente en directo",
           "Evaluación práctica individual por Gabi y Laura Munive",
-          "Graduación oficial, constancia curricular y red de estudios CAMA",
+          "Graduación oficial, constancia curricular y red de estudios Edelweiss",
         ],
       },
     ],
@@ -384,7 +384,7 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
       "Modalidad flexible: Curso Básico (28 horas por $25,000 MXN) o Certificación Completa (48 horas por $38,000 MXN)",
       "Formato amigable de fines de semana (2 en diciembre para Curso Básico, 2 en enero para completar Certificación)",
       "Máximo 12 personas por cohorte con Reformer exclusivo en San Pedro Garza García / Valle Oriente",
-      "Manual clínico y metodológico oficial CAMA Pilates",
+      "Manual clínico y metodológico oficial Edelweiss Pilates",
       "Acceso de por vida a la comunidad y campus virtual en Whop",
       "Pre-reserva oficial con $400 MXN para congelar 1 de los 12 cupos presenciales",
     ],
@@ -415,7 +415,7 @@ export function generateIcsContent(): string {
   return [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//CAMA Pilates//Info Day Cursos Reformer//ES",
+    "PRODID:-//Edelweiss Pilates//Info Day Cursos Reformer//ES",
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     "BEGIN:VEVENT",

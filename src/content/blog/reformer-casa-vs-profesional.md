@@ -5,7 +5,7 @@ category: "Comparativas"
 tags: ["reformer casa vs profesional", "cama de pilates casa", "reformer profesional", "comparativa"]
 publishDate: "2025-09-24"
 updatedDate: "2025-09-26"
-author: "CAMA Pilates"
+author: "Edelweiss Pilates"
 slug: "reformer-casa-vs-profesional"
 featured: false
 heroImage: "/images/blog/reformer-casa-vs-profesional/hero.webp"
@@ -87,7 +87,7 @@ Consulta los [Reformers para estudio](/reformer-para-estudio).
 - Tapicería con densidad adecuada y doble costura.
 - Revisión de resortes y anclajes (seguridad ante todo).
 
-## Recomendaciones CAMA Pilates
+## Recomendaciones Edelweiss Pilates
 - **Reformer para casa** — criterios para elegir según tu espacio: [ver guía](/reformer-para-casa)
 - **Reformer para estudio** — modelos actuales para uso profesional: [ver opciones](/reformer-para-estudio)
 - **Pack de Estudio (8+)** — 20% off e instalación coordinada: [/packs/estudio](/packs/estudio)

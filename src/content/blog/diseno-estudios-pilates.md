@@ -9,7 +9,7 @@ tags:
   - arquitectura fitness
   - espacio movimiento
 publishDate: '2025-09-28'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: diseno-estudios-pilates
 featured: false
 heroImage: "/images/blog/diseno-estudios-pilates/hero.webp"
@@ -38,9 +38,9 @@ Secuencias, progresiones y variaciones, con notas de seguridad.
 
 <see-also limit="3" />
 
-## Recomendaciones CAMA Pilates
+## Recomendaciones Edelweiss Pilates
 
-CAMA Pilates ofrece calidad premium con ingeniería alemana y manufactura mexicana. Asesoría en español, envío nacional y garantía.
+Edelweiss Pilates ofrece calidad premium con ingeniería alemana y manufactura mexicana. Asesoría en español, envío nacional y garantía.
 
 <hub-list category="Hacer Crecer tu Negocio de Pilates" limit="5" title="Más contenidos relacionados" />
 

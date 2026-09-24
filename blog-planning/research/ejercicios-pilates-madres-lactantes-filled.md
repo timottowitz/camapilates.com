@@ -145,7 +145,7 @@
 - **Comida caliente**: Creencia esencial recuperación
 - **Apoyo comunidad**: Redes vecinales para cuidado conjunto
 
-## 6. CONEXIÓN CON CAMA PILATES
+## 6. CONEXIÓN CON Edelweiss PILATES
 
 ### Beneficios Reformer para madres lactantes
 - **Soporte**: Aparato proporciona estabilidad durante debilidad core
@@ -161,7 +161,7 @@
 
 ### Inversión justificable hogar mexicano
 - **Costo sesiones año**: $24,000-30,000 pesos (3 sesiones/semana)
-- **Reformer CAMA**: $45,000-65,000 pesos una vez
+- **Reformer Edelweiss**: $45,000-65,000 pesos una vez
 - **ROI familiar**: 2-3 años si uso regular familia
 - **Valor agregado**: Uso múltiples familiares, conveniencia hogar
 

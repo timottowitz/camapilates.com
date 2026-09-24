@@ -35,7 +35,7 @@ const CamaDePilatesPrecio: React.FC = () => {
       a: 'Las camas plegables de menos de $15,000 MXN suelen sacrificar rigidez estructural, flexionándose en el punto de pliegue y descalibrando la alineación de columna del practicante. Además, la mayoría utiliza cuerdas elásticas en lugar de resortes calibrados y carecen totalmente de refacciones en México cuando se desgastan las poleas.'
     },
     {
-      q: '¿Qué incluye normalmente el precio de un Reformer CAMA Pilates?',
+      q: '¿Qué incluye normalmente el precio de un Reformer Edelweiss Pilates?',
       a: 'Incluye el chasis completo ensamblado, carro tapizado en microfibra de alta resistencia, barra de pies ajustable multidireccional, sistema de 5 resortes alemanes calibrados por color, cabecera ajustable de 3 posiciones, hombreras ergonómicas, juego de poleas silenciosas, correas dobles de manos/pies y caja (box) según el modelo seleccionado.'
     },
     {
@@ -152,7 +152,7 @@ const CamaDePilatesPrecio: React.FC = () => {
             </div>
           </div>
           <p className="text-xs text-[#5D5550]/80 mt-4 italic">
-            *Todos los precios de CAMA Pilates incluyen IVA, garantía directa de 3 años en México, refacciones inmediatas y opción de pago a 12 Meses Sin Intereses (desde $1,936 MXN/mes).
+            *Todos los precios de Edelweiss Pilates incluyen IVA, garantía directa de 3 años en México, refacciones inmediatas y opción de pago a 12 Meses Sin Intereses (desde $1,936 MXN/mes).
           </p>
         </motion.div>
 

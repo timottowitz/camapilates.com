@@ -161,7 +161,7 @@ const SetupCuenta: React.FC = () => {
     <LuxuryLayout>
       <Helmet>
         <title>Configura Tu Cuenta | {DEFAULTS.siteName}</title>
-        <meta name="description" content="Configura tu cuenta de instructor para gestionar tu perfil en el directorio de CAMA Pilates." />
+        <meta name="description" content="Configura tu cuenta de instructor para gestionar tu perfil en el directorio de Edelweiss Pilates." />
         <meta name="robots" content="noindex" />
         <link rel="canonical" href={`${origin}/setup-cuenta`} />
       </Helmet>

@@ -93,12 +93,12 @@ Para cada accesorio incluir:
 - Cuándo considerar un Reformer
 - Accesorios que preparan para Reformer
 - Beneficios adicionales del Reformer
-- **Conexión natural a productos CAMA Pilates**
+- **Conexión natural a productos Edelweiss Pilates**
 
 ### 8.1 USO DE SHORTCODES EN EL BLOG
 - `<see-also limit="3" />` después de la sección de accesorios esenciales
 - `<hub-list category="Guías de compra" limit="5" title="Más guías de compra" />` al final
-- Integrar naturalmente los CTAs hacia productos CAMA Pilates
+- Integrar naturalmente los CTAs hacia productos Edelweiss Pilates
 - FAQ section obligatoria con preguntas frecuentes estructuradas
 
 ### 9. KEYWORDS Y SEO
@@ -114,7 +114,7 @@ Para cada accesorio incluir:
 
 ---
 
-## CONEXIÓN ESTRATÉGICA CON CAMA PILATES
+## CONEXIÓN ESTRATÉGICA CON Edelweiss PILATES
 
 ### Transición Natural
 - "Una vez dominando estos accesorios, el siguiente paso natural es el Reformer"
@@ -140,7 +140,7 @@ Para cada accesorio incluir:
 7. **Dónde comprar en México: guía completa**
 8. **Errores que evitar al comenzar**
 9. **El siguiente paso: ¿cuándo considerar un Reformer?**
-   - **Transición natural a productos CAMA Pilates**
+   - **Transición natural a productos Edelweiss Pilates**
 10. **FAQ sobre accesorios de Pilates** (obligatorio para structured data)
     - `<hub-list category="Guías de compra" limit="5" title="Más guías de compra" />` (al final)
 
@@ -154,4 +154,4 @@ Para cada accesorio incluir:
 
 ---
 
-*Target: 2000 palabras, optimizado para conversión hacia productos CAMA Pilates*
+*Target: 2000 palabras, optimizado para conversión hacia productos Edelweiss Pilates*

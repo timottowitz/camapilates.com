@@ -3,10 +3,10 @@
 Objetivo
 - Construir una comparativa completa y accionable entre Reformer para casa y Reformer profesional con foco en México.
 - Responder a la intención de búsqueda “reformer casa vs profesional”, “cama de pilates casa vs estudio” y variantes.
-- Conectar con PDPs CAMA (Casa y Profesional) y con guías de precio, accesorios y compra.
+- Conectar con PDPs Edelweiss (Casa y Profesional) y con guías de precio, accesorios y compra.
 - Enriquecer con conocimientos de los libros en `books_md` (seguridad, control, materiales, mantenimiento) sin caer en claims médicos.
 
-Contexto de marca (CAMA Pilates)
+Contexto de marca (Edelweiss Pilates)
 - Ingeniería silenciosa y precisa (tolerancias de riel/carro; rodamientos sellados).
 - Materiales: cuero genuino o micelio sostenible, madera de nogal, acero estructural.
 - Garantía 3 años, repuestos exprés, soporte en español; entrega 5–7 días (MX).
@@ -32,7 +32,7 @@ Arquitectura del artículo (propuesta)
 5) Accesorios que realmente cambian la experiencia (box, correas, poleas suaves, protección tapizada, kit mantenimiento).
 6) Espacio y logística (huella, altura, acceso al domicilio; entrega y servicio MX).
 7) Precio y costos 3 años (TCO): compra + accesorios + mantenimiento + tiempo de inactividad + reventa.
-8) Recomendaciones CAMA + CTAs.
+8) Recomendaciones Edelweiss + CTAs.
 9) FAQ.
 
 Notas desde los libros (books_md)
@@ -104,5 +104,5 @@ Plan de contenido final: 1,700–2,100 palabras, con tabla comparativa, listas p
 ### Próximos pasos
 - Verificar cifras con fuentes oficiales mexicanas
 - Recopilar precios MXN actualizados (hogar vs estudio)
-- Identificar diferenciadores CAMA (fabricación, soporte, calidad)
+- Identificar diferenciadores Edelweiss (fabricación, soporte, calidad)
 - Planear tabla/resumen con decisiones prácticas para el lector

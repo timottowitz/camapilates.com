@@ -89,7 +89,7 @@ const LuxuryLayout = ({ children, className = "", noPadding = false, headerTheme
                     </div>
 
                     <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-white/40 uppercase tracking-widest gap-4">
-                        <p>&copy; {new Date().getFullYear()} Edelweiss Pilates · CAMA Pilates México</p>
+                        <p>&copy; {new Date().getFullYear()} Edelweiss Pilates · México</p>
                         <div className="flex gap-6">
                             <Link to="/mapa-del-sitio" className="hover:text-white transition-colors">Mapa del Sitio</Link>
                             <Link to="/legal/terminos" className="hover:text-white transition-colors">Términos</Link>

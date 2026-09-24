@@ -14,7 +14,7 @@ tags:
   - certificación pilates méxico
   - estudios pilates cdmx
 publishDate: '2025-01-28'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: comunidad-pilates-mexicana
 featured: true
 heroImage: "/images/blog/comunidad-pilates-mexicana/hero.webp"
@@ -129,7 +129,7 @@ Los estudios mexicanos están adoptando el modelo de "instructor invitado", perm
 ## Recursos Esenciales para la Comunidad
 
 ### Proveedores de Equipo Confiables
-- **CAMA Pilates**: Reformers con ingeniería alemana y manufactura mexicana
+- **Edelweiss Pilates**: Reformers con ingeniería alemana y manufactura mexicana
 - **Importadores autorizados**: Balanced Body, Stott Pilates
 - **Mercado secundario**: Grupos de Facebook para equipo seminuevo (ahorro 30-50%)
 
@@ -146,15 +146,15 @@ María González comenzó como fisioterapeuta en el IMSS. Tras certificarse en P
 ### El Poder del Networking
 Carlos Mendoza, instructor en Querétaro, triplicó su clientela tras participar en el Festival de Pilates 2024. Su secreto: intercambiar tarjetas con 50+ profesionales y mantener contacto vía WhatsApp Business.
 
-## Recomendaciones CAMA Pilates
+## Recomendaciones Edelweiss Pilates
 
-En CAMA Pilates entendemos que el éxito de un instructor o estudio depende tanto del equipo como de la comunidad que lo respalda. Por eso ofrecemos:
+En Edelweiss Pilates entendemos que el éxito de un instructor o estudio depende tanto del equipo como de la comunidad que lo respalda. Por eso ofrecemos:
 
 - **Asesoría gratuita** para nuevos estudios
 - **Planes de financiamiento** desde 12 meses sin intereses
 - **Capacitación técnica** incluida con cada Reformer
 - **Garantía extendida** de 1 año
-- **Red de instructores CAMA**: Acceso exclusivo a nuestra comunidad de 500+ profesionales
+- **Red de instructores Edelweiss**: Acceso exclusivo a nuestra comunidad de 500+ profesionales
 
 Nuestros Reformers están diseñados específicamente para el mercado mexicano, considerando espacios, clima y necesidades locales. Con envío gratis a toda la República y servicio técnico en las principales ciudades.
 
@@ -188,4 +188,4 @@ La comunidad de Pilates en México no es solo una red profesional; es una famili
 
 ---
 
-*Para más información sobre equipos profesionales y cómo CAMA Pilates puede apoyar tu crecimiento profesional, contáctanos en info@camapilates.com o visita nuestro showroom en CDMX.*
+*Para más información sobre equipos profesionales y cómo Edelweiss Pilates puede apoyar tu crecimiento profesional, contáctanos en info@camapilates.com o visita nuestro showroom en CDMX.*

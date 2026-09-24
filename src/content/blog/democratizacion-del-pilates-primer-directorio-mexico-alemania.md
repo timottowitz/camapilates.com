@@ -9,7 +9,7 @@ tags:
   - "Pilates Alemania"
   - "formación profesional"
 publishDate: "2026-09-16"
-author: "CAMA Pilates"
+author: "Edelweiss Pilates"
 slug: "democratizacion-del-pilates-primer-directorio-mexico-alemania"
 featured: true
 heroImage: "/images/blog/democratizacion-del-pilates-primer-directorio-mexico-alemania/hero.webp"
@@ -17,16 +17,16 @@ heroImage: "/images/blog/democratizacion-del-pilates-primer-directorio-mexico-al
 
 # Un Día Histórico para Edelweiss: La Democratización del Pilates, el Primer Directorio en México y Nuestra Expansión a Alemania
 
-> **Nota editorial**: Este artículo marca un hito oficial en el ecosistema de CAMA Pilates y nuestra firma de ingeniería *Edelweiss*. El contenido es de carácter informativo y formativo sobre el desarrollo profesional en aparatología de Pilates en México e internacionalmente.
+> **Nota editorial**: Este artículo marca un hito oficial en el ecosistema de Edelweiss Pilates y nuestra firma de ingeniería *Edelweiss*. El contenido es de carácter informativo y formativo sobre el desarrollo profesional en aparatología de Pilates en México e internacionalmente.
 
 ---
 
 ## Resumen: Una Nueva Era de Transparencia y Accesibilidad en el Pilates
 
 ![Tim Ottowitz y Valery Munive presentando el Directorio Nacional de Certificaciones de Pilates](/images/press/edelweiss-founders-pr.webp)
-*Tim Ottowitz y Valery Munive, fundadores de Edelweiss y CAMA Pilates, presentando la plataforma abierta de certificación y expansión internacional.*
+*Tim Ottowitz y Valery Munive, fundadores de Edelweiss y Edelweiss Pilates, presentando la plataforma abierta de certificación y expansión internacional.*
 
-Hoy marca un día decisivo en la historia de **Edelweiss** y **CAMA Pilates**. Desde nuestra fundación, nos trazamos una misión categórica: **la democratización del Pilates**. Durante décadas, el acceso a una formación profesional de calidad en aparatología (Reformer, Cadillac, Silla Wunda y Barriles) y la adquisición de camas de grado comercial estuvieron reservados para unos pocos, blindados por intermediarios opacos, costos exorbitantes de importación y una fragmentación que desorientaba a quien soñaba con dedicarse a la enseñanza.
+Hoy marca un día decisivo en la historia de **Edelweiss** y **Edelweiss Pilates**. Desde nuestra fundación, nos trazamos una misión categórica: **la democratización del Pilates**. Durante décadas, el acceso a una formación profesional de calidad en aparatología (Reformer, Cadillac, Silla Wunda y Barriles) y la adquisición de camas de grado comercial estuvieron reservados para unos pocos, blindados por intermediarios opacos, costos exorbitantes de importación y una fragmentación que desorientaba a quien soñaba con dedicarse a la enseñanza.
 
 Ese hermetismo termina hoy. Nos enorgullece presentar oficialmente el **Primer Directorio Abierto de Certificación de Pilates en México**, una infraestructura digital integral que reúne y valida a **22 academias asociadas y master trainers en los 10 principales polos urbanos del país**: [Ciudad de México](/certificacion-pilates/cdmx), [Monterrey](/certificacion-pilates/monterrey), [Guadalajara y Zapopan](/certificacion-pilates/guadalajara), [Puebla](/certificacion-pilates/puebla), [Querétaro](/certificacion-pilates/queretaro), [Puerto Vallarta](/certificacion-pilates/puerto-vallarta), [Tijuana](/certificacion-pilates/tijuana), [Riviera Maya](/certificacion-pilates/riviera-maya), [León](/certificacion-pilates/leon) y [Mérida](/certificacion-pilates/merida).
 
@@ -95,7 +95,7 @@ Nuestra expansión hacia Alemania replicará la misma fórmula transparente: un 
 
 Uno de los problemas más graves que enfrentan los instructores recién graduados es el salto al emprendimiento. Obtener una certificación internacional exige una inversión de entre $25,000 y más de $70,000 MXN en horas lectivas y exámenes. Al finalizar, montar un estudio propio con 4 a 8 Reformers solía parecer una meta inalcanzable.
 
-Para resolver este desafío de raíz, CAMA Pilates y Edelweiss estructuraron un programa integral de **Sinergia B2B para Egresados y Nuevos Estudios**:
+Para resolver este desafío de raíz, Edelweiss Pilates y Edelweiss estructuraron un programa integral de **Sinergia B2B para Egresados y Nuevos Estudios**:
 * **Paquetes Comerciales Llave en Mano**: Precios preferenciales y descuentos por volumen a partir de 3 unidades en nuestros modelos [Reformer para Estudio](/reformer-para-estudio).
 * **Personalización Institucional**: Grabado láser de logotipos de la academia o estudio en la madera maciza y selección de tonos de piel artesanal (Cognac, Tabaco, Ébano, Miel) para armonizar con la estética arquitectónica del espacio.
 * **Planes de Financiamiento y Arrendamiento**: Opciones de adquisición en mensualidades y financiamiento directo para mitigar el desembolso inicial de capital de trabajo.
@@ -122,13 +122,13 @@ Este despliegue mediático garantiza que tanto futuros instructores en México c
 ## FAQ: Preguntas Frecuentes sobre el Directorio y la Expansión
 
 ### ¿Tiene algún costo para los aspirantes consultar el directorio de certificaciones?
-No. El directorio de certificaciones de [CAMA Pilates](/certificacion-pilates) es 100% gratuito y de acceso público. No cobramos suscripciones, comisiones por contacto ni requerimos registro para que puedas ver las academias, sus avales y contactar directamente a los formadores.
+No. El directorio de certificaciones de [Edelweiss Pilates](/certificacion-pilates) es 100% gratuito y de acceso público. No cobramos suscripciones, comisiones por contacto ni requerimos registro para que puedas ver las academias, sus avales y contactar directamente a los formadores.
 
 ### ¿Qué avales tienen las academias listadas en el directorio?
 Revisamos rigurosamente que cada centro ofrezca programas respaldados por organismos de reconocimiento internacional o nacional, tales como STOTT PILATES® (Merrithew), la National Pilates Certification Program (PMA/NPCP), avales de la Secretaría de Educación Pública (SEP) o escuelas de linaje clásico tradicional reconocidas mundialmente.
 
 ### ¿Cómo pueden las academias de Pilates sumarse al directorio en México o Alemania?
-Las academias y master trainers que cumplan con los estándares de horas prácticas, cuerpo docente acreditado y evaluación formal pueden solicitar su incorporación sin costo escribiendo a través de nuestros canales oficiales o enviando un mensaje directo al equipo editorial de CAMA Pilates.
+Las academias y master trainers que cumplan con los estándares de horas prácticas, cuerpo docente acreditado y evaluación formal pueden solicitar su incorporación sin costo escribiendo a través de nuestros canales oficiales o enviando un mensaje directo al equipo editorial de Edelweiss Pilates.
 
 ### ¿Cuándo estará disponible el directorio para Alemania?
 La fase de investigación, homologación de academias con el Deutscher Pilates Verband y levantamiento de sedes en Alemania (Berlín, Múnich, Hamburgo, Colonia y Fráncfort) se encuentra activa durante el último trimestre de 2026, con apertura al público programada para inicios de 2027.

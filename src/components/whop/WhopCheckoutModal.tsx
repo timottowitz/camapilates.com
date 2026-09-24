@@ -166,7 +166,7 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
             <div className="flex items-center gap-2.5">
               <img
                 src={WHOP_CONFIG.assets.avatarUrl}
-                alt="CAMA Pilates"
+                alt="Edelweiss Pilates"
                 className="w-7 h-7 rounded-lg object-cover border border-neutral-200"
               />
               {paymentsDeactivated ? (
@@ -459,7 +459,7 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
               <div className="pt-4 border-t border-neutral-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-500">
                 <span className="flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                  CAMA Pilates (Edelweiss) · Respaldo y atención directa
+                  Edelweiss Pilates · Respaldo y atención directa
                 </span>
                 <a
                   href="https://wa.me/528120274299?text=Hola%2C%20tengo%20dudas%20sobre%20la%20certificaci%C3%B3n%20y%20la%20lista%20de%20espera"

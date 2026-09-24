@@ -225,7 +225,7 @@ const sitemapData: SitemapSection[] = [
     icon: ShoppingBag,
     links: [
       {
-        title: 'Tienda Oficial CAMA Pilates',
+        title: 'Tienda Oficial Edelweiss Pilates',
         path: '/shop',
         description: 'Catálogo general de productos disponibles con envío a todo México.',
       },
@@ -328,10 +328,10 @@ const SitemapHtml: React.FC = () => {
               Arquitectura de Información & Directorio de Contenidos
             </span>
             <h1 className="text-4xl md:text-5xl font-serif text-[#2A2624] tracking-tight mb-4">
-              Mapa del Sitio CAMA Pilates
+              Mapa del Sitio Edelweiss Pilates
             </h1>
             <p className="text-lg text-[#5D5550] max-w-3xl font-light leading-relaxed">
-              Índice completo de páginas, modelos de Reformer, sedes de certificación, directorios locales y guías de compra de CAMA Pilates en México. Encuentra rápidamente la información que necesitas o explora nuestras categorías principales.
+              Índice completo de páginas, modelos de Reformer, sedes de certificación, directorios locales y guías de compra de Edelweiss Pilates en México. Encuentra rápidamente la información que necesitas o explora nuestras categorías principales.
             </p>
           </header>
 

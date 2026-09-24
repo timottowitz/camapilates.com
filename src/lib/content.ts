@@ -66,7 +66,7 @@ let INDEX: PostFull[] = Object.entries(files).map(([path, raw]) => {
   const description = fm.description || '';
   const category = fm.category || 'General';
   const tags = Array.isArray(fm.tags) ? fm.tags : [];
-  const author = fm.author || 'CAMA Pilates';
+  const author = fm.author || 'Edelweiss Pilates';
   const date = fm.publishDate || new Date().toISOString().slice(0, 10);
   const featured = Boolean(fm.featured);
   const excerpt = description;

@@ -8,7 +8,7 @@ tags:
   - pilates
   - reformer
 publishDate: '2025-11-19'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: reformer-compacto
 featured: false
 heroImage: "/images/blog/reformer-compacto/hero.webp"
@@ -73,13 +73,13 @@ Pero ¡ojo! No te guíes solo por el precio más bajo en internet. Existe un cos
 
 Finalmente, la calidad de construcción es vital. Según Herman (2019, p. 14), la precisión en la tensión de los resortes y la estabilidad del carro son críticas; un equipo que se tambalea o tiene fricción irregular puede alterar tu biomecánica. Un Reformer genérico de $15,000 pesos puede parecer una ganga, pero si carece de la ergonomía de un equipo de grado comercial, podrías comprometer tu seguridad.
 
-## La solución CAMA Pilates: Compacto sin perder lo Premium
+## La solución Edelweiss Pilates: Compacto sin perder lo Premium
 
-Sabemos que vivir en un departamento compacto implica sacrificios de espacio, pero eso no debería afectar la calidad de tu práctica. Nuestra filosofía en CAMA Pilates es llevar la experiencia robusta del estudio directamente a tu hogar, sin que el aparato se apodere de toda tu sala.
+Sabemos que vivir en un departamento compacto implica sacrificios de espacio, pero eso no debería afectar la calidad de tu práctica. Nuestra filosofía en Edelweiss Pilates es llevar la experiencia robusta del estudio directamente a tu hogar, sin que el aparato se apodere de toda tu sala.
 
 A diferencia de opciones importadas que sacrifican firmeza por ligereza, nosotros nos enfocamos obsesivamente en la **calidad de fabricación premium**. Hemos diseñado un **sistema de resortes** calibrado y rieles de alta ingeniería para garantizar la **estabilidad del carro**. Esto es vital para tu desempeño, pues "según Herman (2019, p. 24), la retroalimentación táctil precisa del equipo es fundamental para corregir desequilibrios musculares y asegurar una alineación correcta".
 
-Pensamos en la **ergonomía para la estatura promedio** del usuario mexicano, optimizando el diseño para que disfrutes de un recorrido completo de movimiento, pero con **dimensiones de almacenamiento** eficientes. La gran ventaja de elegirnos es la **disponibilidad y soporte local**: olvídate de esperar meses por refacciones atoradas en aduana o lidiar con garantías en otro idioma. Con CAMA Pilates, tienes acceso a piezas de repuesto y asistencia técnica inmediata en español.
+Pensamos en la **ergonomía para la estatura promedio** del usuario mexicano, optimizando el diseño para que disfrutes de un recorrido completo de movimiento, pero con **dimensiones de almacenamiento** eficientes. La gran ventaja de elegirnos es la **disponibilidad y soporte local**: olvídate de esperar meses por refacciones atoradas en aduana o lidiar con garantías en otro idioma. Con Edelweiss Pilates, tienes acceso a piezas de repuesto y asistencia técnica inmediata en español.
 
 *Nota: Aunque el trabajo en reformer favorece el control motor y la reducción de dolor lumbar, siempre consulta con un profesional de la salud antes de iniciar si tienes lesiones previas.*
 

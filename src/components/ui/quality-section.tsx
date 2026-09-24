@@ -60,7 +60,7 @@ const defaultAchievements = [
 
 export const QualitySection = ({
   title = "Desarrollado con materiales de la más alta calidad",
-  description = "Cada cama de Pilates CAMA está fabricada con materiales premium seleccionados cuidadosamente: cuero genuino, maderas nobles y componentes de acero inoxidable para garantizar durabilidad, comodidad y rendimiento excepcional.",
+  description = "Cada cama de Pilates Edelweiss está fabricada con materiales premium seleccionados cuidadosamente: cuero genuino, maderas nobles y componentes de acero inoxidable para garantizar durabilidad, comodidad y rendimiento excepcional.",
   mainImage = {
     src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Reformer de Pilates con acabados premium",
@@ -71,7 +71,7 @@ export const QualitySection = ({
   },
   breakout = {
     src: "https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
-    alt: "Certificación CAMA Pilates",
+    alt: "Certificación Edelweiss Pilates",
     title: "Certificado por los mejores estándares internacionales",
     description: "Todos nuestros equipos cumplen con las normativas ISO 9001 y están certificados para uso profesional en estudios y clínicas de fisioterapia.",
     buttonText: "Ver certificaciones",

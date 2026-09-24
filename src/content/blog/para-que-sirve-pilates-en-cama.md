@@ -8,7 +8,7 @@ tags:
   - pilates
   - reformer
 publishDate: '2025-11-19'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: para-que-sirve-pilates-en-cama
 featured: false
 heroImage: '/images/blog/para-que-sirve-pilates-en-cama/hero.webp'
@@ -83,7 +83,7 @@ Para evitar la monotonía, accesorios como la **Caja (Box)** o la **Tabla de sal
 
 Si decides llevar tu práctica a casa, un Reformer [residencial en México](/blog/mejor-cama-de-pilates-profesional) tiene un rango de precio de **$20,000 a $80,000 MXN**. Aunque suena fuerte, es una inversión que se paga sola si consideras lo que cuestan las anualidades en clubes deportivos.
 
-## La ventaja de CAMA Pilates: Calidad y soporte local
+## La ventaja de Edelweiss Pilates: Calidad y soporte local
 
 Al invertir en tu práctica, la procedencia del equipo es tan crucial como el ejercicio mismo. Elegir un Reformer de fabricación mexicana te ofrece una ventaja logística inigualable: **disponibilidad inmediata de refacciones y mantenimiento**. Esto es vital si resides en zonas activas como CDMX, Guadalajara o Monterrey, donde esperar semanas por una pieza importada (y cotizada en dólares) puede frenar tu rutina.
 

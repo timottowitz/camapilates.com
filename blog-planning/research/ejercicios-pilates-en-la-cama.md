@@ -18,7 +18,7 @@ Reunir datos específicos de México para una guía de ejercicios básicos en ca
 2) Calentamiento y respiración lateral costal
 3) Rutina base (footwork, bridge, arms in straps, hundred)
 4) Progressiones y ajustes para lesiones comunes
-5) Recomendaciones CAMA Pilates + CTA
+5) Recomendaciones Edelweiss Pilates + CTA
 6) FAQ
 
 ## Plan de shortcodes
@@ -38,7 +38,7 @@ Reunir datos específicos de México para una guía de ejercicios básicos en ca
 ## Notas adicionales
 - Destacar qué ejercicios pueden hacerse con resistencias bajas para principiantes
 - Incluir checklist de seguridad: tope de resortes, alineación cervical, límites de rango
-- Referenciar productos/accesorios CAMA (calcetines, straps, reformers plegables)
+- Referenciar productos/accesorios Edelweiss (calcetines, straps, reformers plegables)
 
 
 
@@ -74,5 +74,5 @@ Reunir datos específicos de México para una guía de ejercicios básicos en ca
 ### Próximos pasos
 - Verificar cifras con fuentes oficiales mexicanas
 - Recopilar precios MXN actualizados (hogar vs estudio)
-- Identificar diferenciadores CAMA (fabricación, soporte, calidad)
+- Identificar diferenciadores Edelweiss (fabricación, soporte, calidad)
 - Planear tabla/resumen con decisiones prácticas para el lector

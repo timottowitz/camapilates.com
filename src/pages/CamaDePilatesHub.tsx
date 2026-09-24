@@ -44,7 +44,7 @@ const CamaDePilatesHub: React.FC = () => {
     },
     {
       q: '¿Qué es una cama de Pilates Cadillac y en qué se diferencia del Reformer tradicional?',
-      a: 'La cama de Pilates Cadillac (o mesa trapecio) incorpora una estructura tubular superior de acero inoxidable con trapecio, barras de empuje y resortes aéreos. Permite trabajo de suspensión tridimensional y rehabilitación profunda que complementa al Reformer. En CAMA Pilates contamos con modelos de cama Cadillac completos en roble, maple y aluminio desde $26,287 MXN con entrega asegurada en México.'
+      a: 'La cama de Pilates Cadillac (o mesa trapecio) incorpora una estructura tubular superior de acero inoxidable con trapecio, barras de empuje y resortes aéreos. Permite trabajo de suspensión tridimensional y rehabilitación profunda que complementa al Reformer. En Edelweiss Pilates contamos con modelos de cama Cadillac completos en roble, maple y aluminio desde $26,287 MXN con entrega asegurada en México.'
     },
     {
       q: '¿Cuál es la diferencia entre un Reformer de madera y uno de aluminio?',
@@ -294,7 +294,7 @@ const CamaDePilatesHub: React.FC = () => {
           <div className="text-center mb-12">
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#EB4C42] block mb-2">Análisis de Mercado México 2026</span>
             <h2 className="text-4xl md:text-5xl font-serif italic text-[#2A2624]">
-              CAMA Pilates vs. Otras Marcas en México
+              Edelweiss Pilates vs. Otras Marcas en México
             </h2>
             <p className="text-[#5D5550] max-w-2xl mx-auto mt-4 font-light text-sm md:text-base">
               Compara con total transparencia: materiales del chasis, calibración de resortes, silencio en rodamientos y disponibilidad inmediata de refacciones y garantía en el país.
@@ -306,7 +306,7 @@ const CamaDePilatesHub: React.FC = () => {
               <thead>
                 <tr className="border-b border-[#2A2624]/10 pb-4 text-[#2A2624]">
                   <th className="p-3 md:p-4 font-serif italic text-base">Criterio</th>
-                  <th className="p-3 md:p-4 font-serif italic text-base text-[#2A2624] bg-[#2A2624]/5 rounded-t-xl">CAMA Pilates®</th>
+                  <th className="p-3 md:p-4 font-serif italic text-base text-[#2A2624] bg-[#2A2624]/5 rounded-t-xl">Edelweiss Pilates®</th>
                   <th className="p-3 md:p-4 font-serif italic text-base text-[#5D5550]">Vanlig / Centurfit</th>
                   <th className="p-3 md:p-4 font-serif italic text-base text-[#5D5550]">Ironside / Tayga</th>
                   <th className="p-3 md:p-4 font-serif italic text-base text-[#5D5550]">Balanced Body / Merrithew</th>

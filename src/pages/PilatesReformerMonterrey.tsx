@@ -43,7 +43,7 @@ export const PilatesReformerMonterrey: React.FC = () => {
   const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: 'CAMA Pilates - Envíos Express Monterrey',
+    name: 'Edelweiss Pilates - Envíos Express Monterrey',
     description: 'Venta de paquetes de camas de Pilates Reformer para estudios en Monterrey y Zona Metropolitana. Envío express asegurado en 7 días hábiles.',
     areaServed: [
       { '@type': 'City', name: 'Monterrey' },

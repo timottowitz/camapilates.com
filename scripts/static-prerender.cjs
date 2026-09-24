@@ -82,8 +82,8 @@ function baseHtml(template, headMeta, bodyHtml) {
   <header class="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
     <div class="container flex h-16 items-center justify-between">
       <a href="/" class="flex items-center gap-3">
-        <img src="/brand/edelweiss.svg" alt="CAMA Pilates" class="h-7 w-auto" />
-        <span class="text-sm md:text-base font-semibold tracking-tight text-gray-900">CAMA Pilates</span>
+        <img src="/brand/edelweiss.svg" alt="Edelweiss Pilates" class="h-7 w-auto" />
+        <span class="text-sm md:text-base font-semibold tracking-tight text-gray-900">Edelweiss Pilates</span>
       </a>
       <nav class="flex items-center gap-6 text-sm text-gray-700">
         <a href="/shop" class="hover:text-black">Tienda</a>
@@ -336,7 +336,7 @@ function buildArticleSchema(p, origin) {
     publisher: {
       '@type': 'Organization',
       '@id': `${origin}/#organization`,
-      name: 'CAMA Pilates',
+      name: 'Edelweiss Pilates',
       url: origin,
       logo: {
         '@type': 'ImageObject',
@@ -554,7 +554,7 @@ function buildCamaDePilatesPage(reformers, origin) {
           Camas de Pilates Reformer en México: Modelos, Precios y Venta 2026
         </h1>
         <p class="text-lg md:text-xl text-stone-700 font-light leading-relaxed mb-8">
-          Encuentra en 2026 la mejor <strong>cama de Pilates (Reformer)</strong> en México desde $23,234 MXN para estudio o casa. En <strong>CAMA Pilates</strong> combinamos maderas macizas y aluminio estructural con resortes alemanes de alambre de piano y rodamientos ultra-silenciosos. Envíos asegurados a todo México con garantía directa de 3 años y refacciones locales inmediatas.
+          Encuentra en 2026 la mejor <strong>cama de Pilates (Reformer)</strong> en México desde $23,234 MXN para estudio o casa. En <strong>Edelweiss Pilates</strong> combinamos maderas macizas y aluminio estructural con resortes alemanes de alambre de piano y rodamientos ultra-silenciosos. Envíos asegurados a todo México con garantía directa de 3 años y refacciones locales inmediatas.
         </p>
         <div class="flex flex-wrap gap-4 mb-12">
           <a href="#catalogo" class="rounded-full bg-stone-900 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-stone-800 transition-all shadow-md">
@@ -619,12 +619,12 @@ function buildCamaDePilatesPage(reformers, origin) {
     </section>
 
     <!-- Technical Comparison Table -->
-    <!-- Brand Comparison Section: CAMA vs Competitors in Mexico -->
+    <!-- Brand Comparison Section: Edelweiss vs Competitors in Mexico -->
     <section class="container mx-auto px-4 pb-20 max-w-6xl">
       <div class="bg-white border border-stone-200 rounded-2xl p-6 md:p-10 shadow-sm">
         <span class="text-xs font-bold uppercase tracking-widest text-amber-800">Análisis Comparativo de Mercado</span>
         <h2 class="text-2xl md:text-3xl font-serif italic font-bold text-stone-900 mt-1 mb-4">
-          CAMA Pilates vs. Otras Marcas en México: Vanlig, Ironside, UCAN y Balanced Body
+          Edelweiss Pilates vs. Otras Marcas en México: Vanlig, Ironside, UCAN y Balanced Body
         </h2>
         <p class="text-stone-600 text-sm mb-8 max-w-3xl leading-relaxed">
           Al invertir en una cama de Pilates en México en 2026, las diferencias técnicas se traducen en seguridad biomecánica, durabilidad del chasis de hasta 200 kg y disponibilidad de refacciones locales en 24 a 48 horas frente a las alternativas del mercado.
@@ -635,7 +635,7 @@ function buildCamaDePilatesPage(reformers, origin) {
             <thead>
               <tr class="border-b-2 border-stone-200 bg-stone-50 text-stone-800 font-bold">
                 <th class="p-3 md:p-4">Criterio</th>
-                <th class="p-3 md:p-4 text-emerald-900 bg-emerald-50/60 font-extrabold">CAMA Pilates®</th>
+                <th class="p-3 md:p-4 text-emerald-900 bg-emerald-50/60 font-extrabold">Edelweiss Pilates®</th>
                 <th class="p-3 md:p-4">Vanlig / Centurfit</th>
                 <th class="p-3 md:p-4">Ironside / Tayga</th>
                 <th class="p-3 md:p-4">Balanced Body / Merrithew</th>
@@ -773,7 +773,7 @@ function buildCamaDePilatesPage(reformers, origin) {
               <span class="text-amber-700 font-bold">2.</span> Comprar equipos importados sin almacén de refacciones en México
             </h3>
             <p class="leading-relaxed text-stone-600">
-              Los resortes, poleas y correas son consumibles sometidos a tracción continua. En un estudio comercial, un resorte roto significa una máquina fuera de servicio. Si compras marcas importadas de Asia o Norteamérica sin representación oficial en México, sustituir un resorte o una rueda puede demorar hasta 12 semanas y costar cientos de dólares en trámites aduanales. En CAMA Pilates mantenemos inventario permanente en CDMX con envíos en 24 a 48 horas a cualquier estado.
+              Los resortes, poleas y correas son consumibles sometidos a tracción continua. En un estudio comercial, un resorte roto significa una máquina fuera de servicio. Si compras marcas importadas de Asia o Norteamérica sin representación oficial en México, sustituir un resorte o una rueda puede demorar hasta 12 semanas y costar cientos de dólares en trámites aduanales. En Edelweiss Pilates mantenemos inventario permanente en CDMX con envíos en 24 a 48 horas a cualquier estado.
             </p>
           </div>
 
@@ -828,7 +828,7 @@ function buildCamaDePilatesPage(reformers, origin) {
         </p>
         <ol class="list-decimal pl-6 text-stone-700 space-y-3 mb-6">
           <li><strong>Gama Económica ($15,000 – $25,000 MXN):</strong> Reformers plegables de importación con perfiles delgados y sin refacciones locales.</li>
-          <li><strong>Gama Profesional CAMA ($23,234 – $42,567 MXN):</strong> Maderas macizas (Roble o Maple) o aluminio estructural con resortes alemanes y 3 años de garantía.</li>
+          <li><strong>Gama Profesional Edelweiss ($23,234 – $42,567 MXN):</strong> Maderas macizas (Roble o Maple) o aluminio estructural con resortes alemanes y 3 años de garantía.</li>
           <li><strong>Gama Torre y Cadillac ($51,000 – $85,050 MXN):</strong> Estaciones híbridas con torre de acero inoxidable para más de 300 ejercicios clínicos.</li>
         </ol>
 
@@ -839,7 +839,7 @@ function buildCamaDePilatesPage(reformers, origin) {
 
         <h3 class="text-2xl font-bold text-stone-800 mt-8 mb-4">Logística y Envíos Seguros a Toda la República Mexicana</h3>
         <p class="text-stone-700 leading-relaxed mb-4">
-          El transporte de una cama de Pilates requiere un manejo logístico especializado debido a su peso (entre 70 kg y 110 kg según acabados). En CAMA Pilates enviamos nuestras camas debidamente embaladas en cajas de madera tratada para exportación con flete asegurado directo a domicilio en las 32 entidades federativas de México.
+          El transporte de una cama de Pilates requiere un manejo logístico especializado debido a su peso (entre 70 kg y 110 kg según acabados). En Edelweiss Pilates enviamos nuestras camas debidamente embaladas en cajas de madera tratada para exportación con flete asegurado directo a domicilio en las 32 entidades federativas de México.
         </p>
         <p class="text-stone-600 text-sm font-medium mb-6">
           Cobertura asegurada en Ciudad de México (CDMX), Monterrey y Zona Metropolitana (San Pedro, Valle Oriente, Cumbres), Guadalajara, Zapopan y Tlaquepaque, Querétaro (Juriquilla, El Campanario), Puebla (Angelópolis), Mérida, Cancún, León, Tijuana, Toluca y Cuernavaca.
@@ -911,7 +911,7 @@ function buildCamaDePilatesPage(reformers, origin) {
               <span class="text-stone-400 group-open:rotate-45 transition-transform text-2xl font-light">+</span>
             </summary>
             <div class="mt-4 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
-              Ofrecemos una garantía directa de 3 años en chasis, rieles y mecanismos estructurales. A diferencia de las máquinas importadas donde un repuesto puede tardar meses o ser imposible de conseguir, en CAMA Pilates contamos con almacén de refacciones en México con resortes de repuesto, poleas, correas de cuero y microfibra con envío exprés de 24 a 48 horas.
+              Ofrecemos una garantía directa de 3 años en chasis, rieles y mecanismos estructurales. A diferencia de las máquinas importadas donde un repuesto puede tardar meses o ser imposible de conseguir, en Edelweiss Pilates contamos con almacén de refacciones en México con resortes de repuesto, poleas, correas de cuero y microfibra con envío exprés de 24 a 48 horas.
             </div>
           </details>
 
@@ -951,7 +951,7 @@ function buildCamaDePilatesPage(reformers, origin) {
     <!-- Bottom Hub Links -->
     <section class="bg-stone-100 border-t border-stone-200 py-12">
       <div class="container mx-auto px-4 max-w-6xl">
-        <h3 class="text-sm font-bold uppercase tracking-widest text-stone-600 mb-6">Explora Más Recursos de CAMA Pilates</h3>
+        <h3 class="text-sm font-bold uppercase tracking-widest text-stone-600 mb-6">Explora Más Recursos de Edelweiss Pilates</h3>
         <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4 text-sm">
           <a href="/cama-de-pilates/precio" class="p-4 bg-white rounded-xl border border-stone-200 hover:border-stone-400 transition-colors">
             <strong class="block text-stone-900 mb-1">Guía de Precios</strong>
@@ -1040,7 +1040,7 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
     <section class="container mx-auto px-4 pb-16 max-w-5xl">
       <div class="bg-white border border-stone-200 rounded-2xl p-6 md:p-8 shadow-sm mb-12">
         <h2 class="text-2xl md:text-3xl font-serif italic font-bold text-stone-900 mb-4">
-          Tabla de Precios Oficiales CAMA Pilates 2026
+          Tabla de Precios Oficiales Edelweiss Pilates 2026
         </h2>
         <p class="text-stone-600 text-sm mb-6">
           Precios actualizados con entrega en todo México, IVA incluido y garantía de fábrica de 3 años.
@@ -1066,7 +1066,7 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
       <!-- Market Comparison Table -->
       <div class="bg-white border border-stone-200 rounded-2xl p-6 md:p-8 shadow-sm mb-12">
         <h2 class="text-2xl md:text-3xl font-serif italic font-bold text-stone-900 mb-4">
-          Comparativa de Precios en México: CAMA vs. Otras Marcas
+          Comparativa de Precios en México: Edelweiss vs. Otras Marcas
         </h2>
         <p class="text-stone-600 text-sm mb-6">
           Rangos de precios reales, materiales y condiciones de garantía de las marcas disponibles en el mercado mexicano:
@@ -1084,7 +1084,7 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
             </thead>
             <tbody class="divide-y divide-stone-100 text-stone-700">
               <tr class="bg-emerald-50/50 font-medium">
-                <td class="p-3 md:p-4 font-bold text-emerald-900">CAMA Pilates®</td>
+                <td class="p-3 md:p-4 font-bold text-emerald-900">Edelweiss Pilates®</td>
                 <td class="p-3 md:p-4 font-extrabold text-stone-900">$23,234 – $85,050</td>
                 <td class="p-3 md:p-4">5 resortes alemanes de alambre de piano calibrados</td>
                 <td class="p-3 md:p-4">Roble / Maple macizo o Aluminio aeroespacial</td>
@@ -1152,7 +1152,7 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
           <div class="p-6 bg-white border border-stone-200 rounded-xl">
             <h3 class="font-bold text-base text-stone-900 mb-2">4. Soporte Local y Refacciones en México</h3>
             <p class="text-xs text-stone-600 leading-relaxed">
-              Comprar marcas extranjeras implica meses de espera y costosos aranceles de importación ante cualquier refacción. En CAMA Pilates contamos con stock permanente en México de resortes, poleas, correas dobles y tapicería para entrega en 24–48 horas.
+              Comprar marcas extranjeras implica meses de espera y costosos aranceles de importación ante cualquier refacción. En Edelweiss Pilates contamos con stock permanente en México de resortes, poleas, correas dobles y tapicería para entrega en 24–48 horas.
             </p>
           </div>
         </div>
@@ -1233,7 +1233,7 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
           </details>
           <details class="border border-stone-200 rounded-xl p-5 group bg-stone-50/50">
             <summary class="font-bold text-base text-stone-900 cursor-pointer list-none flex justify-between items-center">
-              ¿Qué incluye normalmente el precio de un Reformer CAMA Pilates?
+              ¿Qué incluye normalmente el precio de un Reformer Edelweiss Pilates?
               <span class="text-stone-400 group-open:rotate-45 transition-transform text-xl font-light">+</span>
             </summary>
             <div class="mt-3 text-stone-600 text-sm leading-relaxed border-t border-stone-200/60 pt-3">
@@ -1577,7 +1577,7 @@ async function main() {
   // Homepage snapshot for crawlers and native Cloudflare builds.
   {
     const head = {
-      title: 'Cama de Pilates (Reformer) en México — Guías, Precios y Venta | CAMA Pilates',
+      title: 'Cama de Pilates (Reformer) en México — Guías, Precios y Venta | Edelweiss Pilates',
       description: 'Compra tu cama de Pilates Reformer en México: modelos para casa y estudio, guía de precios, dimensiones y envío desde CDMX.',
       canonical: `${origin}/`,
       ogImage: `${origin}/og/cama-de-pilates-venta-mexico.png`,
@@ -1635,8 +1635,8 @@ async function main() {
     const orgNode = {
       '@type': 'Organization',
       '@id': `${origin}/#organization`,
-      name: 'CAMA Pilates',
-      legalName: 'Edelweiss / CAMA Pilates',
+      name: 'Edelweiss Pilates',
+      legalName: 'Edelweiss Pilates',
       url: origin,
       logo: `${origin}/logo.png`,
       sameAs: [
@@ -1648,7 +1648,7 @@ async function main() {
       '@type': 'WebSite',
       '@id': `${origin}/#website`,
       url: origin,
-      name: 'CAMA Pilates',
+      name: 'Edelweiss Pilates',
       publisher: { '@id': `${origin}/#organization` }
     };
     const schema = {
@@ -1902,7 +1902,7 @@ async function main() {
         price: '35000',
         availability: 'https://schema.org/InStock',
         itemCondition: 'https://schema.org/NewCondition',
-        seller: { '@type': 'Organization', name: 'CAMA Pilates' },
+        seller: { '@type': 'Organization', name: 'Edelweiss Pilates' },
         hasMerchantReturnPolicy: {
           '@type': 'MerchantReturnPolicy',
           applicableCountry: 'MX',
@@ -2108,7 +2108,7 @@ async function main() {
           name: '¿Qué garantía tienen los Reformers y cómo se gestionan las refacciones?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ofrecemos una garantía directa de 3 años en chasis, rieles y mecanismos estructurales. A diferencia de las máquinas importadas donde un repuesto puede tardar meses o ser imposible de conseguir, en CAMA Pilates contamos con almacén de refacciones en México con resortes de repuesto, poleas, correas de cuero y microfibra con envío exprés de 24 a 48 horas.'
+            text: 'Ofrecemos una garantía directa de 3 años en chasis, rieles y mecanismos estructurales. A diferencia de las máquinas importadas donde un repuesto puede tardar meses o ser imposible de conseguir, en Edelweiss Pilates contamos con almacén de refacciones en México con resortes de repuesto, poleas, correas de cuero y microfibra con envío exprés de 24 a 48 horas.'
           }
         },
         {
@@ -2213,7 +2213,7 @@ async function main() {
         },
         {
           '@type': 'Question',
-          name: '¿Qué incluye normalmente el precio de un Reformer CAMA Pilates?',
+          name: '¿Qué incluye normalmente el precio de un Reformer Edelweiss Pilates?',
           acceptedAnswer: {
             '@type': 'Answer',
             text: 'Incluye el chasis completo ensamblado, carro tapizado en microfibra de alta resistencia, barra de pies ajustable multidireccional, sistema de 5 resortes alemanes calibrados por color, cabecera ajustable de 3 posiciones, hombreras ergonómicas, juego de poleas silenciosas, correas dobles de manos/pies y caja (box) según el modelo seleccionado.'
@@ -2259,7 +2259,7 @@ async function main() {
     const targetUrl = `${origin}/cama-de-pilates`;
     const reformers = prods.filter(product => product.category === 'Reformers');
     const head = {
-      title: 'Venta de Camas de Pilates Reformer en México | CAMA',
+      title: 'Venta de Camas de Pilates Reformer en México | Edelweiss',
       description: 'Redirigiendo a nuestro catálogo oficial de camas de Pilates Reformer en México...',
       canonical: targetUrl,
       ogImage: `${origin}${reformers[0]?.image || '/og/cama-de-pilates-venta-mexico.png'}`,
@@ -2346,7 +2346,7 @@ async function main() {
   // Certification landing (static snapshot for SEO)
   {
     const head = {
-      title: 'Certificación Pilates Reformer México [Aval Oficial] | CAMA',
+      title: 'Certificación Pilates Reformer México [Aval Oficial] | Edelweiss',
       description: 'Certifícate como instructora de Pilates Reformer: Curso Básico (28h · $25k) o Certificación Completa (48h · $38k). Máquina individual por alumna y comunidad Whop. Sedes en Querétaro y Monterrey.',
       canonical: `${origin}/certificacion-pilates`,
       ogImage: `${origin}/og/cama-de-pilates-venta-mexico.png`,
@@ -2447,7 +2447,7 @@ async function main() {
           : isCdmx
             ? 'Certificación Pilates CDMX [STOTT & Linaje Clásico 2026]'
             : `Certificación Pilates ${c.shortName} [2026: Escuelas y Avales]`;
-    const customTitle = `${cityTitle} | CAMA Pilates`;
+    const customTitle = `${cityTitle} | Edelweiss Pilates`;
     const customDesc = isQueretaro
       ? 'Certifícate como instructora de Pilates Reformer en Querétaro (Noviembre 2026): Curso Básico (28h · $25,000 MXN) o Certificación Completa (48h · $38,000 MXN). 12 cupos exclusivos con Reformer individual y directorio de academias.'
       : isMonterrey
@@ -2540,7 +2540,7 @@ async function main() {
   // Pre-Webinar registration route (static snapshot)
   {
     const webinarHead = {
-      title: 'Info Day en Vivo: Próximos Cursos de Certificación Pilates Reformer | CAMA Pilates',
+      title: 'Info Day en Vivo: Próximos Cursos de Certificación Pilates Reformer | Edelweiss Pilates',
       description: 'Sesión informativa en vivo este Sábado 26 de Septiembre a las 11:00 AM CST con Gabi y Laura Munive. Explicación de los próximos cursos: Curso Básico (28h · $25k) y Certificación Completa (48h · $38k) para Querétaro y Monterrey.',
       canonical: `${origin}/certificacion-pilates/webinar`,
       ogImage: `${origin}/og/cama-de-pilates-venta-mexico.png`,
@@ -2585,8 +2585,8 @@ async function main() {
         reviewCount: studio.metrics?.googleReviewCount,
       }));
     const pageTitle = isMonterrey
-      ? 'Clases y Estudios de Pilates en Monterrey | CAMA Pilates'
-      : `Estudios y Clases de Pilates en ${c.shortName} | CAMA Pilates`;
+      ? 'Clases y Estudios de Pilates en Monterrey | Edelweiss Pilates'
+      : `Estudios y Clases de Pilates en ${c.shortName} | Edelweiss Pilates`;
     const pageDescription = `Encuentra clases y estudios de Pilates en ${c.shortName}. Compara ubicaciones, modalidades, reseñas y opciones de Reformer.`;
     const head = {
       title: pageTitle,

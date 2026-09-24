@@ -17,7 +17,7 @@ Reunir información mexicana y de calidad para desarrollar un artículo completo
 1) Resumen e intención de búsqueda
 2) Beneficios y precauciones (MX)
 3) Desarrollo (ejercicios/criterios)
-4) Recomendaciones CAMA Pilates
+4) Recomendaciones Edelweiss Pilates
 5) FAQ
 
 ## Plan de shortcodes
@@ -60,7 +60,7 @@ Reunir información mexicana y de calidad para desarrollar un artículo completo
 ### Próximos pasos
 - Verificar cifras con fuentes oficiales mexicanas
 - Recopilar precios MXN actualizados (hogar vs estudio)
-- Identificar diferenciadores CAMA (fabricación, soporte, calidad)
+- Identificar diferenciadores Edelweiss (fabricación, soporte, calidad)
 - Planear tabla/resumen con decisiones prácticas para el lector
 
 
@@ -92,5 +92,5 @@ Reunir información mexicana y de calidad para desarrollar un artículo completo
 ### Próximos pasos
 - Verificar cifras con fuentes oficiales mexicanas
 - Recopilar precios MXN actualizados (hogar vs estudio)
-- Identificar diferenciadores CAMA (fabricación, soporte, calidad)
+- Identificar diferenciadores Edelweiss (fabricación, soporte, calidad)
 - Planear tabla/resumen con decisiones prácticas para el lector

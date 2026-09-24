@@ -226,7 +226,7 @@ export const WhopForumReader: React.FC<WhopForumReaderProps> = ({
         <div className="flex items-center gap-3">
           <img
             src={WHOP_CONFIG.assets.avatarUrl}
-            alt="CAMA Pilates"
+            alt="Edelweiss Pilates"
             className="w-9 h-9 rounded-2xl object-cover border border-neutral-200 shadow-sm"
           />
           <div>

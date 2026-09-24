@@ -5,7 +5,7 @@ category: "Equipo y mantenimiento"
 tags: ["mantenimiento reformer", "limpieza reformer", "resortes", "cuerdas", "seguridad"]
 publishDate: "2025-09-24"
 updatedDate: "2025-09-26"
-author: "CAMA Pilates"
+author: "Edelweiss Pilates"
 slug: "mantenimiento-cama-de-pilates"
 featured: false
 heroImage: "/images/blog/mantenimiento-cama-de-pilates/hero.webp"
@@ -74,11 +74,11 @@ heroImage: "/images/blog/mantenimiento-cama-de-pilates/hero.webp"
 - Lubricante autorizado (solo si aplica).
 - Protectores tapizados.
 
-## Cuándo contactar servicio CAMA
+## Cuándo contactar servicio Edelweiss
 - Ruidos persistentes tras limpieza, juego lateral, anclajes dañados o dudas sobre sustituciones.
 - Soporte en español y repuestos exprés para reducir paros.
 
-## Recomendaciones CAMA Pilates
+## Recomendaciones Edelweiss Pilates
 - **[Accesorios](/blog/accesorios-cama-de-pilates) y repuestos**: [ver colección](/shop/category/accesorios)
 - **Reformer para casa** — compacto, estable y silencioso: [ver guía](/reformer-para-casa)
 - **Reformer para estudio** — opciones para uso profesional: [ver modelos](/reformer-para-estudio)

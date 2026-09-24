@@ -36,7 +36,7 @@ const AdminBlogList = () => {
                 excerpt: '',
                 category: 'General',
                 tags: [],
-                author: 'CAMA Pilates',
+                author: 'Edelweiss Pilates',
                 publishDate: new Date().toISOString(),
                 featured: false,
                 status: 'draft',

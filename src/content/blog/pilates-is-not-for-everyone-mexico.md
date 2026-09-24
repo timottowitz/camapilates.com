@@ -8,7 +8,7 @@ tags:
   - pilates
   - reformer
 publishDate: '2025-11-21'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: pilates-is-not-for-everyone-mexico
 featured: false
 heroImage: "/images/blog/pilates-is-not-for-everyone-mexico/hero.webp"
@@ -51,7 +51,7 @@ La confianza que depositas en tu instructor es directamente proporcional a la ca
 La raíz del problema radica en la estandarización. Si vives en ciudades medianas o pequeñas fuera del Valle de México o el área metropolitana de Monterrey, la búsqueda de un instructor altamente calificado se complica. Los datos lo confirman: **Solo el 35% de los instructores fuera de CDMX y Monterrey tienen certificaciones internacionales reconocidas** (ST02). Esto significa que la mayoría de los instructores en ciudades como Querétaro, Tijuana o Mérida dependen de certificaciones locales menos rigurosas, lo que genera una brecha técnica significativa y, a menudo, pone en riesgo la seguridad del usuario.
 
 > 🚨 **Convocatoria 2026: Formación Profesional Pilates Reformer en Querétaro y Monterrey**  
-> Para cerrar la brecha de instructoras calificadas en el Bajío y el Norte, CAMA abre registro para las cohortes presenciales (Curso Básico 28h / Certificación Completa 48h):  
+> Para cerrar la brecha de instructoras calificadas en el Bajío y el Norte, Edelweiss abre registro para las cohortes presenciales (Curso Básico 28h / Certificación Completa 48h):  
 > • **Querétaro:** Noviembre 2026. [Ver sede Querétaro →](/certificacion-pilates/queretaro)  
 > • **Monterrey:** Dic 2026 y Ene 2027 (San Pedro). [Ver sede Monterrey →](/certificacion-pilates/monterrey)  
 > • **Info Day en Vivo (Sáb 26 Sep · 11:00 AM CST):** Sesión informativa 100% gratuita vía Google Meet con **Gabi y Laura Munive** para explicar los próximos cursos presenciales.  
@@ -79,9 +79,9 @@ Para redefinir el valor, tú debes empezar a ver el Pilates como una inversión 
 
 <hub-list category="Estudio" limit="5" title="Más contenidos relacionados" />
 
-## Recomendaciones CAMA Pilates: Cerrando la Brecha de Calidad y Acceso
+## Recomendaciones Edelweiss Pilates: Cerrando la Brecha de Calidad y Acceso
 
-La calidad de tu práctica de Pilates depende directamente del equipo que utilizas. CAMA Pilates se posiciona como proveedor de Reformers premium, garantizando un estándar que es fundamental para tu seguridad y la experiencia del cliente. Si resides [en zonas con](/blog/i-love-reformer-pilates-but-mexico) acceso limitado o si el costo recurrente por clase en ciudades como Monterrey (MTY) —donde una sesión puede superar los $450 MXN— es una barrera, la inversión en un Reformer para el hogar es una solución práctica. CAMA facilita esta inversión (MD04) en equipos de alta calidad para estudios o uso personal, cerrando la brecha geográfica y de costo. Además, para elevar el estándar en México, es vital que apoyemos la formación de instructores certificados. Si eres profesional, invertir en tu capacitación continua y en equipo premium es indispensable.
+La calidad de tu práctica de Pilates depende directamente del equipo que utilizas. Edelweiss Pilates se posiciona como proveedor de Reformers premium, garantizando un estándar que es fundamental para tu seguridad y la experiencia del cliente. Si resides [en zonas con](/blog/i-love-reformer-pilates-but-mexico) acceso limitado o si el costo recurrente por clase en ciudades como Monterrey (MTY) —donde una sesión puede superar los $450 MXN— es una barrera, la inversión en un Reformer para el hogar es una solución práctica. Edelweiss facilita esta inversión (MD04) en equipos de alta calidad para estudios o uso personal, cerrando la brecha geográfica y de costo. Además, para elevar el estándar en México, es vital que apoyemos la formación de instructores certificados. Si eres profesional, invertir en tu capacitación continua y en equipo premium es indispensable.
 
 *Nota de Seguridad:* Si planeas usar un Reformer en casa, asegúrate de haber recibido instrucción adecuada y de contar con la guía de un instructor certificado, especialmente al inicio.
 

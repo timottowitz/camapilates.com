@@ -1,7 +1,7 @@
 # RESEARCH: Guía completa del Reformer: Uso y beneficios
 
 **Status**: 🔬 Research needed
-**Priority**: High (priority for CAMA Pilates business)
+**Priority**: High (priority for Edelweiss Pilates business)
 **Target Blog Date**: TBD
 **Estimated Research Time**: 4-5 hours
 
@@ -70,12 +70,12 @@
 - Presupuesto y financiamiento
 - Garantías y servicio
 
-### 10. CONEXIÓN CON CAMA PILATES
-- Características únicas del Reformer de CAMA Pilates
+### 10. CONEXIÓN CON Edelweiss PILATES
+- Características únicas del Reformer de Edelweiss Pilates
 - Materiales premium (cuero, nogal, acero)
 - Ingeniería alemana vs competencia
 - Garantía y servicio en México
-- Testimonios de usuarios de CAMA Pilates
+- Testimonios de usuarios de Edelweiss Pilates
 
 ### 11. KEYWORDS Y SEO
 - Primarias: reformer pilates, guía reformer, beneficios reformer
@@ -121,12 +121,12 @@
 6. **Para quién es ideal**: Encuentra tu fit perfecto
 7. **Consideraciones de compra**: Guía para elegir tu Reformer
 8. **El mercado en México**: Opciones locales y consideraciones
-9. **Por qué CAMA Pilates**: La opción premium mexicana
+9. **Por qué Edelweiss Pilates**: La opción premium mexicana
 10. **Conclusión y próximos pasos**
 
 ---
 
-*Objetivo: 2000-2500 palabras de blog final optimizado para SEO con foco en venta de Reformers CAMA Pilates*
+*Objetivo: 2000-2500 palabras de blog final optimizado para SEO con foco en venta de Reformers Edelweiss Pilates*
 
 ## Keywords
 - Primary: reformer pilates
@@ -141,13 +141,13 @@
 6) Para quién es ideal (principiantes, atletas, adultos mayores, rehabilitación)
 7) Consideraciones de compra (espacio, presupuesto, accesorios)
 8) Mercado en México (CDMX/GDL/MTY) y soporte
-9) Por qué CAMA Pilates (materiales, garantía, repuestos en MX)
+9) Por qué Edelweiss Pilates (materiales, garantía, repuestos en MX)
 10) FAQ
 
 ## Plan de shortcodes
 - <see-also limit="3" /> después de la sección “Beneficios” y al final del artículo.
 - <hub-list category="Guías de compra" limit="5" title="Más guías de compra" /> antes de la sección FAQ.
-- Botón de compra contextual en “Por qué CAMA Pilates”: <shoprocket-button product="prod_reformer_casa_placeholder" pk="sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c" />
+- Botón de compra contextual en “Por qué Edelweiss Pilates”: <shoprocket-button product="prod_reformer_casa_placeholder" pk="sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c" />
 
 ## CTAs / Enlaces internos
 - /product/reformer-casa
@@ -190,5 +190,5 @@ Limpieza de tapicería y rieles semanalmente; revisión de resortes, correas y h
 ### ¿Para quién es ideal?
 Para principiantes (asistencia y feedback), atletas (control de carga finamente graduado), adultos mayores (bajo impacto) y procesos de rehabilitación con guía profesional.
 
-### ¿Por qué elegir un Reformer CAMA Pilates?
+### ¿Por qué elegir un Reformer Edelweiss Pilates?
 Materiales premium (nogal, acero estructural, cuero), ingeniería cuidada, silencioso y estable; garantía de 3 años y repuestos exprés en México, con soporte técnico en español.

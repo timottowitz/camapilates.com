@@ -9,7 +9,7 @@ tags:
   - rehabilitación cáncer
   - ejercicios terapéuticos
 publishDate: '2025-09-28'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: pilates-rehabilitacion-cancer-mama
 featured: false
 heroImage: "/images/blog/pilates-rehabilitacion-cancer-mama/hero.webp"
@@ -37,9 +37,9 @@ Secuencias, progresiones y variaciones, con notas de seguridad.
 
 <see-also limit="3" />
 
-## Recomendaciones CAMA Pilates
+## Recomendaciones Edelweiss Pilates
 
-CAMA Pilates ofrece calidad premium con ingeniería alemana y manufactura mexicana. Asesoría en español, envío nacional y garantía.
+Edelweiss Pilates ofrece calidad premium con ingeniería alemana y manufactura mexicana. Asesoría en español, envío nacional y garantía.
 
 <hub-list category="Tips para Instructores de Pilates" limit="5" title="Más contenidos relacionados" />
 

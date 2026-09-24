@@ -66,7 +66,7 @@ const ReformerParaCasa: React.FC = () => {
       price: '35000',
       availability: 'https://schema.org/InStock',
       itemCondition: 'https://schema.org/NewCondition',
-      seller: { '@type': 'Organization', name: 'CAMA Pilates' },
+      seller: { '@type': 'Organization', name: 'Edelweiss Pilates' },
       hasMerchantReturnPolicy: {
         '@type': 'MerchantReturnPolicy',
         applicableCountry: 'MX',

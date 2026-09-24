@@ -14,7 +14,7 @@ tags:
   - fitness
   - pilates casa
 publishDate: '2025-09-26'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: cama-pilates
 featured: true
 heroImage: "/images/blog/cama-pilates/hero.webp"

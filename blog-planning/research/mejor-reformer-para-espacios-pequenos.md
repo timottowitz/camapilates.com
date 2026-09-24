@@ -11,14 +11,14 @@
 4) Almacenamiento y facilidad de uso en casa
 5) Accesorios recomendados (y cuáles evitar)
 6) Recomendación por perfiles (principiantes, avanzados, familias)
-7) Opciones CAMA Pilates y comparación
+7) Opciones Edelweiss Pilates y comparación
 8) Presupuesto en MXN y costo total de propiedad
 9) FAQ
 
 ## Plan de shortcodes
 - <see-also limit="3" /> tras la sección “Criterios clave” y al final.
 - <hub-list category="Guías de compra" limit="5" title="Más guías para casa" /> antes de FAQ.
-- <shoprocket-button product="prod_reformer_casa_placeholder" pk="sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c" /> dentro de “Opciones CAMA Pilates”.
+- <shoprocket-button product="prod_reformer_casa_placeholder" pk="sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c" /> dentro de “Opciones Edelweiss Pilates”.
 
 ## CTAs / Enlaces internos
 - /product/reformer-casa
@@ -54,8 +54,8 @@ Si compartes espacio con sala/estudio, busca un equipo que desplace con ruedas y
 ## Accesorios recomendados (y cuáles evitar)
 Recomendados: long box para versatilidad sin ocupar demasiado, correas acolchadas y toalla de tapicería para higiene. Evalúa con cautela accesorios voluminosos (torres, ped‑o‑pul) cuando el metraje es limitado: si caben, planea su ubicación para no bloquear circulación.
 
-## Opciones CAMA Pilates y comparación
-El Reformer Casa de CAMA Pilates prioriza huella compacta, estabilidad y tapicería premium de fácil limpieza. Integra acabados (nogal, blanco, negro, mycelium) que combinan con mobiliario. Frente a opciones profesionales, sacrifica capacidad de uso intensivo pero gana en silencio y simplicidad. Si das más de 3–4 sesiones diarias, considera el modelo Profesional por robustez y servicio.
+## Opciones Edelweiss Pilates y comparación
+El Reformer Casa de Edelweiss Pilates prioriza huella compacta, estabilidad y tapicería premium de fácil limpieza. Integra acabados (nogal, blanco, negro, mycelium) que combinan con mobiliario. Frente a opciones profesionales, sacrifica capacidad de uso intensivo pero gana en silencio y simplicidad. Si das más de 3–4 sesiones diarias, considera el modelo Profesional por robustez y servicio.
 
 ## Presupuesto en MXN y costo total de propiedad
 En México, un Reformer de casa parte de MXN $35k–$90k y un profesional de MXN $90k–$200k+. Suma envío, posibles escaleras/elevador, instalación y mantenimiento básico (limpieza semanal, revisión trimestral). Con garantía de 3 años y refacciones locales, el costo de propiedad es predecible y evita esperas internacionales.

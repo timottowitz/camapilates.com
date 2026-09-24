@@ -42,7 +42,7 @@ interface BlogPostMeta {
 }
 
 const AUTHOR_INFO = {
-  name: "CAMA Pilates",
+  name: "Edelweiss Pilates",
   bio: "Recursos y guías sobre camas de Pilates (Reformer) para casa y estudio: compra, ejercicios y mantenimiento.",
   url: getOrigin(),
 };

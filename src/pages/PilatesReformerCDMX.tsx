@@ -14,7 +14,7 @@ const PilatesReformerCDMX: React.FC = () => {
   const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: 'CAMA Pilates - Showroom CDMX',
+    name: 'Edelweiss Pilates - Showroom CDMX',
     description: 'Showroom de reformers Edelweiss en Ciudad de México. Prueba antes de comprar.',
     address: {
       '@type': 'PostalAddress',

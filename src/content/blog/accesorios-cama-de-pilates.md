@@ -2,7 +2,7 @@
 title: 'Accesorios para cama de Pilates: Esenciales'
 description: >-
   Guía completa de accesorios para tu cama de Pilates en México: box, correas,
-  poleas, muelles y mantenimiento con recomendaciones CAMA.
+  poleas, muelles y mantenimiento con recomendaciones Edelweiss.
 category: Equipo y mantenimiento
 tags:
   - accesorios reformer
@@ -12,7 +12,7 @@ tags:
   - reformer mexico
 publishDate: '2025-09-24'
 updatedDate: '2025-09-26'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: accesorios-cama-de-pilates
 featured: true
 canonical: 'https://camadepilates.com/blog/accesorios-cama-de-pilates'
@@ -69,9 +69,9 @@ Utiliza cubiertas lavables, toallas de microfibra y limpiadores neutros para pro
 
 <see-also limit="3" />
 
-## Recomendaciones CAMA Pilates
+## Recomendaciones Edelweiss Pilates
 
-CAMA Pilates fabrica accesorios y repuestos con envío nacional en 2–3 semanas: box tapizados, correas calibradas y kits de muelles compatibles con equipos premium. Incluye línea de soporte técnico en español y vídeos de instalación.
+Edelweiss Pilates fabrica accesorios y repuestos con envío nacional en 2–3 semanas: box tapizados, correas calibradas y kits de muelles compatibles con equipos premium. Incluye línea de soporte técnico en español y vídeos de instalación.
 
 <hub-list category="Equipo y mantenimiento" limit="6" title="Más sobre equipo y mantenimiento" />
 
@@ -87,4 +87,4 @@ Si al jalar las correas escuchas ruido, sientes “arenilla” o notas tirones i
 No lo estires “a mano”. Registra el número de serie, retíralo del uso y solicita un reemplazo. Trabajar con muelles inconsistentes altera la carga y puede causar lesiones.
 
 ### ¿Dónde comprar accesorios confiables en México?
-Busca proveedores con stock local, refacciones específicas y garantías claras. CAMA Pilates y distribuidores autorizados de Balanced Body o Stott ofrecen soporte y capacitación.
+Busca proveedores con stock local, refacciones específicas y garantías claras. Edelweiss Pilates y distribuidores autorizados de Balanced Body o Stott ofrecen soporte y capacitación.

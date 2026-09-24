@@ -1,5 +1,5 @@
 /**
- * Whop Integration Configuration for CAMA Pilates
+ * Whop Integration Configuration for Edelweiss Pilates
  * Deep integration with Whop payments, course LMS, community chat, and forums.
  */
 
@@ -181,7 +181,7 @@ export const WHOP_CONFIG = {
         description: 'Sesión exclusiva con Gabi & Laura Munive sobre cómo llenar tus primeros 20 clientes privados y estructurar precios rentables.',
       },
       {
-        title: 'Bono #4: Cupón de Fábrica CAMA Pilates Reformer',
+        title: 'Bono #4: Cupón de Fábrica Edelweiss Pilates Reformer',
         value: 5000,
         description: 'Descuento directo de $5,000 MXN en la compra de tu primera cama Reformer profesional de madera o aluminio para tu casa o estudio.',
       },

@@ -11,7 +11,7 @@ tags:
   - poleas
   - reformer mexico
 publishDate: '2025-09-24'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: accesorios-cama-de-pilates-esenciales
 featured: true
 canonical: 'https://camadepilates.com/blog/accesorios-cama-de-pilates'
@@ -124,7 +124,7 @@ Para encontrar los mejores accesorios para tu cama de Pilates:
 - Compara políticas de repuesto y tiempos de entrega
 - Evita genéricos “fitness” no certificados para Reformer
 
-### Catálogo CAMA
+### Catálogo Edelweiss
 Explora la [colección de accesorios y repuestos](/shop/category/accesorios).
 
 <see-also limit="3" />

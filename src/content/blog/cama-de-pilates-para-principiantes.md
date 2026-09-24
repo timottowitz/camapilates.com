@@ -12,7 +12,7 @@ tags:
   - ejercicios básicos reformer
   - pilates reformer México
 publishDate: '2025-09-24'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: cama-de-pilates-para-principiantes
 featured: true
 heroImage: "/images/blog/cama-de-pilates-para-principiantes/hero.webp"
@@ -298,20 +298,20 @@ Los especialistas recomiendan practicar Mat Pilates durante al menos 3 meses ant
 ### Modelos recomendados por rango de precio:
 
 **Gama accesible ($15,000 - $25,000 MXN):**
-- CAMA Starter Pro
+- Edelweiss Starter Pro
 - Reformer Classic Home
 
 **Gama media ($25,000 - $40,000 MXN):**
-- CAMA Professional Series
+- Edelweiss Professional Series
 - Reformer Studio Quality
 
 **Gama premium ($40,000+ MXN):**
-- CAMA Elite Reformer
+- Edelweiss Elite Reformer
 - Studio Professional Plus
 
-## Opciones CAMA para principiantes
+## Opciones Edelweiss para principiantes
 
-### 1. CAMA Starter Pro
+### 1. Edelweiss Starter Pro
 **Características:**
 - Diseñado específicamente para principiantes
 - Sistema de resortes codificado por colores
@@ -322,7 +322,7 @@ Los especialistas recomiendan practicar Mat Pilates durante al menos 3 meses ant
 **Precio:** $18,999 MXN
 **Ideal para:** Primera compra, uso doméstico regular
 
-### 2. CAMA Home Studio
+### 2. Edelweiss Home Studio
 **Características:**
 - Calidad de estudio en casa
 - Accesorios completos incluidos
@@ -333,7 +333,7 @@ Los especialistas recomiendan practicar Mat Pilates durante al menos 3 meses ant
 **Precio:** $24,999 MXN
 **Ideal para:** Principiantes serios, espacios limitados
 
-### 3. CAMA Professional Beginner
+### 3. Edelweiss Professional Beginner
 **Características:**
 - Construcción robusta para uso intensivo
 - Ajustes precisos y suaves
@@ -344,7 +344,7 @@ Los especialistas recomiendan practicar Mat Pilates durante al menos 3 meses ant
 **Precio:** $32,999 MXN
 **Ideal para:** Principiantes que planean uso a largo plazo
 
-### 4. CAMA Complete Package
+### 4. Edelweiss Complete Package
 **Características:**
 - Reformer + accesorios completos
 - Clases virtuales incluidas por 3 meses
@@ -355,7 +355,7 @@ Los especialistas recomiendan practicar Mat Pilates durante al menos 3 meses ant
 **Precio:** $38,999 MXN
 **Ideal para:** Experiencia completa de principiante a intermedio
 
-### 5. CAMA Smart Reformer
+### 5. Edelweiss Smart Reformer
 **Características:**
 - Conectividad inteligente
 - App con seguimiento de progreso
@@ -465,9 +465,9 @@ El **Pilates Reformer** no es solo una tendencia de fitness; es una inversión e
 2. **Agenda una sesión de introducción** o clase privada
 3. **Invierte en ropa apropiada** para la práctica
 4. **Mantén expectativas realistas** pero mantente comprometido
-5. **Considera una cama CAMA** para práctica en casa
+5. **Considera una cama Edelweiss** para práctica en casa
 
-El viaje hacia una versión más fuerte, flexible y equilibrada de ti mismo comienza con esa primera clase. En CAMA Pilates, estamos aquí para acompañarte en cada paso de este emocionante viaje de transformación.
+El viaje hacia una versión más fuerte, flexible y equilibrada de ti mismo comienza con esa primera clase. En Edelweiss Pilates, estamos aquí para acompañarte en cada paso de este emocionante viaje de transformación.
 
 ¿Listo para reformar tu cuerpo y mente? Tu aventura de Pilates Reformer te espera.
 

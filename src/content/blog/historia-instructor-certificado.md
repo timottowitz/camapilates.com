@@ -14,7 +14,7 @@ tags:
   - transformación profesional
   - testimonio pilates
 publishDate: '2025-01-28'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: historia-instructor-certificado
 featured: true
 heroImage: "/images/blog/historia-instructor-certificado/hero.webp"
@@ -273,14 +273,14 @@ Generalista = Invisible. Especialista = Invaluable.
 ### 10. Prepárate para Reinventarte
 No serás la misma persona al final. Eso es el punto.
 
-## Recomendaciones CAMA Pilates: Tu Aliado en la Transformación
+## Recomendaciones Edelweiss Pilates: Tu Aliado en la Transformación
 
-En CAMA Pilates hemos sido testigos de cientos de transformaciones. Sabemos que el camino del instructor requiere más que pasión: requiere las herramientas correctas.
+En Edelweiss Pilates hemos sido testigos de cientos de transformaciones. Sabemos que el camino del instructor requiere más que pasión: requiere las herramientas correctas.
 
 ### Para Instructores en Formación:
 - **Programa "Futuro Instructor"**: Descuentos del 30% en equipo personal
 - **Renta con opción a compra**: Ideal para prácticas en casa
-- **Mentorías gratuitas**: Con instructores CAMA experimentados
+- **Mentorías gratuitas**: Con instructores Edelweiss experimentados
 
 ### Para Nuevos Instructores Certificados:
 - **Paquete "Mi Primer Estudio"**: Reformer + accesorios desde $45,000 MXN
@@ -290,7 +290,7 @@ En CAMA Pilates hemos sido testigos de cientos de transformaciones. Sabemos que 
 
 ### Para Instructores Establecidos:
 - **Programa de actualización**: Trade-in de equipo antiguo
-- **Certificación CAMA**: Capacitación en nuestros equipos
+- **Certificación Edelweiss**: Capacitación en nuestros equipos
 - **Red de referidos**: Comisiones por recomendar
 
 <hub-list category="Comunidad Pilates México" limit="5" title="Recursos para tu viaje" />
@@ -342,7 +342,7 @@ Mercedes lo resume perfectamente: "**Me tomó 40 años encontrar mi camino, pero
 
 ---
 
-*Si estás listo para escribir tu historia de transformación, CAMA Pilates está aquí para equiparte en cada paso del camino. Desde tu primera práctica hasta tu primer estudio, somos más que proveedores: somos tu familia Pilates.*
+*Si estás listo para escribir tu historia de transformación, Edelweiss Pilates está aquí para equiparte en cada paso del camino. Desde tu primera práctica hasta tu primer estudio, somos más que proveedores: somos tu familia Pilates.*
 
 *Contáctanos: info@camapilates.com | WhatsApp: 55-1234-5678*
 

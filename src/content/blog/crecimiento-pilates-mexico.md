@@ -11,7 +11,7 @@ tags:
   - industria wellness
   - franquicias pilates
 publishDate: '2025-01-28'
-author: CAMA Pilates
+author: "Edelweiss Pilates"
 slug: crecimiento-pilates-mexico
 featured: true
 heroImage: "/images/blog/crecimiento-pilates-mexico/hero.webp"
@@ -198,7 +198,7 @@ El mercado de apps fitness en México:
 **Problema**: Reformers importados cuestan 60% más por aranceles
 
 **Soluciones**:
-- **CAMA Pilates**: Manufactura mexicana, calidad alemana
+- **Edelweiss Pilates**: Manufactura mexicana, calidad alemana
 - Programas de financiamiento 12-24 meses
 - Leasing operativo para estudios nuevos
 - Mercado secundario certificado
@@ -233,9 +233,9 @@ El mercado de apps fitness en México:
 - **Facturación mensual**: $650K MXN
 - **Margen neto**: 38%
 
-## Recomendaciones CAMA Pilates para Emprendedores
+## Recomendaciones Edelweiss Pilates para Emprendedores
 
-En CAMA Pilates, hemos acompañado el crecimiento de más de **200 estudios exitosos** en México. Nuestra experiencia nos dice que el éxito requiere:
+En Edelweiss Pilates, hemos acompañado el crecimiento de más de **200 estudios exitosos** en México. Nuestra experiencia nos dice que el éxito requiere:
 
 ### 1. Equipo de Calidad Nacional
 - **Ahorro del 40%** vs importación
@@ -292,4 +292,4 @@ Ya sea que busques abrir tu primer estudio, expandir tu práctica actual, o inve
 
 ---
 
-*CAMA Pilates es tu aliado estratégico en este crecimiento. Contáctanos para una asesoría gratuita sobre cómo aprovechar el boom del Pilates en México: info@camapilates.com | WhatsApp: 55-1234-5678*
+*Edelweiss Pilates es tu aliado estratégico en este crecimiento. Contáctanos para una asesoría gratuita sobre cómo aprovechar el boom del Pilates en México: info@camapilates.com | WhatsApp: 55-1234-5678*
