@@ -25,6 +25,18 @@
 **Target:** Dueños de estudios fitness boutique que buscan migrar de Mindbody o comparar precios en México
 **Keywords:** alternativas a mindbody pilates méxico, el mejor software para pilates en méxico, software para estudio de pilates precio, software para pilates económico, software para boutique fitness
 
+### ✅ Software para Boutique Fitness y Centros de Bienestar: Yoga, Barre y Pilates Reformer
+**Research File:** [software-para-boutique-fitness-yoga-pilates.md](./research/software-para-boutique-fitness-yoga-pilates.md)
+**Blog File:** [software-para-boutique-fitness-yoga-pilates.md](../src/content/blog/software-para-boutique-fitness-yoga-pilates.md)
+**Target:** Dueños de estudios híbridos y multidisciplinarios de bienestar y fitness
+**Keywords:** software para boutique fitness, sistema para estudio de yoga y pilates, software para centros de bienestar y fitness, plataforma para administrar estudio fitness, sistema de gestión para pilates
+
+### ✅ Software para Estudio de Pilates: Precios en México, Opciones Económicas y el Costo de lo Gratis
+**Research File:** [software-para-estudio-de-pilates-precio-mexico.md](./research/software-para-estudio-de-pilates-precio-mexico.md)
+**Blog File:** [software-para-estudio-de-pilates-precio-mexico.md](../src/content/blog/software-para-estudio-de-pilates-precio-mexico.md)
+**Target:** Emprendedores y dueños de estudio analizando presupuestos, costos mensuales y pasarelas en México
+**Keywords:** software para estudio de pilates precio, el mejor software para pilates en méxico, software para pilates económico, software para pilates gratis, programa para administrar estudio de pilates, sistema para estudio de pilates
+
 ### ✅ Un Día Histórico para Edelweiss: La Democratización del Pilates, el Primer Directorio en México y Nuestra Expansión a Alemania
 **Blog File:** [democratizacion-del-pilates-primer-directorio-mexico-alemania.md](../src/content/blog/democratizacion-del-pilates-primer-directorio-mexico-alemania.md)
 **Target:** Instructores, dueños de estudio y aspirantes a certificación en México y Alemania
