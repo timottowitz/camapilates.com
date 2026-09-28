@@ -95,6 +95,7 @@ const IndexAuthority: React.FC = () => {
       { '@type': 'ListItem', position: 2, url: `${origin}/reformer-para-casa`, name: 'Reformer para Casa' },
       { '@type': 'ListItem', position: 3, url: `${origin}/cama-de-pilates/precio`, name: 'Precio de Cama de Pilates' },
       { '@type': 'ListItem', position: 4, url: `${origin}/shop`, name: 'Catálogo de Camas' },
+      { '@type': 'ListItem', position: 5, url: `${origin}/blog/mejor-software-para-estudios-de-pilates`, name: 'Software para Estudios de Pilates' },
     ],
   };
 
@@ -195,6 +196,12 @@ const IndexAuthority: React.FC = () => {
                   >
                     Tienda
                   </Link>
+                  <Link
+                    to="/blog/mejor-software-para-estudios-de-pilates"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#2A2624] text-xs font-bold uppercase tracking-[0.18em] hover:bg-[#FFFFFF] transition-colors border border-[#2A2624]/10"
+                  >
+                    Software para Estudios
+                  </Link>
                 </div>
               </div>
 
@@ -211,6 +218,12 @@ const IndexAuthority: React.FC = () => {
                   className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#EAE8E4] text-[#2A2624] text-sm font-bold tracking-wide hover:bg-white transition-all hover:scale-105 active:scale-95 border border-[#2A2624]/5"
                 >
                   Encontrar Estudio
+                </Link>
+                <Link
+                  to="/blog/mejor-software-para-estudios-de-pilates"
+                  className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#EAE8E4] text-[#2A2624] text-sm font-bold tracking-wide hover:bg-white transition-all hover:scale-105 active:scale-95 border border-[#2A2624]/5"
+                >
+                  Software para Estudios
                 </Link>
               </div>
             </motion.div>
@@ -315,6 +328,7 @@ const IndexAuthority: React.FC = () => {
               { label: 'Garantía 5 Años', to: '/soporte' },
               { label: 'Preguntas Frecuentes', to: '/soporte' },
               { label: 'Contacto Directo', to: '/soporte' },
+              { label: 'Software para Estudios', to: '/blog/mejor-software-para-estudios-de-pilates' },
               { label: 'Campus Virtual & Whop', to: '/app' },
             ].map((link) => (
               <Link key={link.label} to={link.to} className="text-xs font-bold uppercase tracking-widest text-[#5D5550] hover:text-[#EB4C42] transition-colors">
