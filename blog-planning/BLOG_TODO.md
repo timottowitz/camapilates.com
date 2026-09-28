@@ -7,6 +7,24 @@
 **Target:** Dueños de estudios boutique, directores de centros reformer e instructores
 **Keywords:** mejor software para estudio de pilates, software gestion pilates reformer, sistema de reservas pilates
 
+### ✅ App para Agendar Clases de Pilates: Sistemas para Apartar Lugares en Reformer
+**Research File:** [app-para-agendar-clases-de-pilates.md](./research/app-para-agendar-clases-de-pilates.md)
+**Blog File:** [app-para-agendar-clases-de-pilates.md](../src/content/blog/app-para-agendar-clases-de-pilates.md)
+**Target:** Dueños de estudio que buscan optimizar reservas, control de cupos y check-in
+**Keywords:** app para agendar clases de pilates, sistema para apartar clases de pilates, software para agendar citas pilates, control de asistencia y reservaciones pilates
+
+### ✅ Sistema para Control de Membresías y Cobro en Estudios de Pilates (POS y Paquetes)
+**Research File:** [sistema-control-membresias-cobro-estudio-pilates.md](./research/sistema-control-membresias-cobro-estudio-pilates.md)
+**Blog File:** [sistema-control-membresias-cobro-estudio-pilates.md](../src/content/blog/sistema-control-membresias-cobro-estudio-pilates.md)
+**Target:** Administradores y propietarios que gestionan cobros recurrentes, punto de venta y paquetes
+**Keywords:** sistema para control de membresías pilates, software para cobrar membresías pilates, punto de venta para estudio de pilates, control de clientes para estudio de pilates, paquetes de clases
+
+### ✅ Alternativas a Mindbody para Pilates en México (2026): Fitco, Reservo y StudioGrowth
+**Research File:** [alternativas-a-mindbody-pilates-mexico.md](./research/alternativas-a-mindbody-pilates-mexico.md)
+**Blog File:** [alternativas-a-mindbody-pilates-mexico.md](../src/content/blog/alternativas-a-mindbody-pilates-mexico.md)
+**Target:** Dueños de estudios fitness boutique que buscan migrar de Mindbody o comparar precios en México
+**Keywords:** alternativas a mindbody pilates méxico, el mejor software para pilates en méxico, software para estudio de pilates precio, software para pilates económico, software para boutique fitness
+
 ### ✅ Un Día Histórico para Edelweiss: La Democratización del Pilates, el Primer Directorio en México y Nuestra Expansión a Alemania
 **Blog File:** [democratizacion-del-pilates-primer-directorio-mexico-alemania.md](../src/content/blog/democratizacion-del-pilates-primer-directorio-mexico-alemania.md)
 **Target:** Instructores, dueños de estudio y aspirantes a certificación en México y Alemania
