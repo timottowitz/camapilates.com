@@ -1,6 +1,12 @@
 
 ## CATEGORÍA: Estudio
 
+### ✅ Mejor Software para Estudios de Pilates: Comparativa y Guía de Selección
+**Research File:** [mejor-software-para-estudios-de-pilates.md](./research/mejor-software-para-estudios-de-pilates.md)
+**Blog File:** [mejor-software-para-estudios-de-pilates.md](../src/content/blog/mejor-software-para-estudios-de-pilates.md)
+**Target:** Dueños de estudios boutique, directores de centros reformer e instructores
+**Keywords:** mejor software para estudio de pilates, software gestion pilates reformer, sistema de reservas pilates
+
 ### ✅ Un Día Histórico para Edelweiss: La Democratización del Pilates, el Primer Directorio en México y Nuestra Expansión a Alemania
 **Blog File:** [democratizacion-del-pilates-primer-directorio-mexico-alemania.md](../src/content/blog/democratizacion-del-pilates-primer-directorio-mexico-alemania.md)
 **Target:** Instructores, dueños de estudio y aspirantes a certificación en México y Alemania
