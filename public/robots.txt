@@ -10,7 +10,9 @@ Disallow: /claim-teacher
 
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 1
+
+User-agent: msnbot
+Allow: /
 
 # Sitemap
 Sitemap: https://camadepilates.com/sitemap.xml

@@ -58,6 +58,7 @@ function baseHtml(template, headMeta, bodyHtml) {
   html = html
     .replace(/<title>[\s\S]*?<\/title>/, '<title></title>')
     .replace(/<meta[^>]+name=\"description\"[^>]*>\n?/gi, '')
+    .replace(/<meta[^>]+name=\"keywords\"[^>]*>\n?/gi, '')
     .replace(/<link[^>]+rel=\"canonical\"[^>]*>\n?/gi, '')
     .replace(/<meta[^>]+property=\"og:[^\"]+\"[^>]*>\n?/gi, '')
     .replace(/<meta[^>]+name=\"twitter:[^\"]+\"[^>]*>\n?/gi, '')
@@ -66,13 +67,18 @@ function baseHtml(template, headMeta, bodyHtml) {
   html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${htmlEscape(headMeta.title)}</title>`);
   const headInsert = [
     `<meta name="description" content="${htmlEscape(headMeta.description || '')}">`,
+    headMeta.keywords ? `<meta name="keywords" content="${htmlEscape(headMeta.keywords)}">` : '',
     `<link rel="canonical" href="${htmlEscape(headMeta.canonical)}">`,
     `<meta property="og:title" content="${htmlEscape(headMeta.title)}">`,
     `<meta property="og:description" content="${htmlEscape(headMeta.description || '')}">`,
     `<meta property="og:type" content="${htmlEscape(headMeta.ogType || 'website')}">`,
     `<meta property="og:url" content="${htmlEscape(headMeta.canonical)}">`,
     `<meta property="og:image" content="${htmlEscape(headMeta.ogImage || '')}">`,
-  ].join('\n');
+    `<meta name="twitter:card" content="summary_large_image">`,
+    `<meta name="twitter:title" content="${htmlEscape(headMeta.title)}">`,
+    `<meta name="twitter:description" content="${htmlEscape(headMeta.description || '')}">`,
+    headMeta.ogImage ? `<meta name="twitter:image" content="${htmlEscape(headMeta.ogImage)}">` : '',
+  ].filter(Boolean).join('\n');
   html = html.replace(/<\/head>/, headInsert + '\n</head>');
   // Replace root content
   const collectionLinks = Object.entries(SHOP_CATEGORY_SEO)
@@ -1601,6 +1607,7 @@ async function main() {
           <a href="/reformer-para-estudio" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Reformer para estudio</h3><p class="mt-1 text-sm text-gray-600">Equipo profesional para uso intensivo.</p></a>
           <a href="/reformer-para-casa" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Reformer para casa</h3><p class="mt-1 text-sm text-gray-600">Guía para espacios residenciales.</p></a>
           <a href="/cama-de-pilates/precio" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Precio de cama de Pilates</h3><p class="mt-1 text-sm text-gray-600">Rangos y factores de comparación.</p></a>
+          <a href="/blog/mejor-software-para-estudios-de-pilates" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Software para Estudios</h3><p class="mt-1 text-sm text-gray-600">Sistemas de reservas, membresías y gestión en México.</p></a>
           <a href="/estudios-de-pilates" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Estudios y clases</h3><p class="mt-1 text-sm text-gray-600">Directorio de estudios de Pilates.</p></a>
           <a href="/certificacion-pilates" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Certificación de Pilates</h3><p class="mt-1 text-sm text-gray-600">Formación para instructores.</p></a>
         </nav>
@@ -1690,6 +1697,7 @@ async function main() {
     const head = {
       title: `${p.title} | camadepilates.com`,
       description: p.description,
+      keywords: Array.isArray(p.tags) && p.tags.length > 0 ? p.tags.join(', ') : '',
       canonical: `${origin}/blog/${p.slug}`,
       ogImage: ogImg,
       ogType: 'article'

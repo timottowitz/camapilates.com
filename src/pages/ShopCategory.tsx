@@ -198,6 +198,31 @@ const ShopCategory: React.FC = () => {
                   ))}
                 </div>
               </div>
+
+              {/* Consultation & Quotation Banner */}
+              <div className="mt-12 p-8 md:p-12 rounded-3xl bg-[#2A2624] text-[#EAE8E4] flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+                <div className="space-y-2 text-center md:text-left">
+                  <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#D9865B]">
+                    Asesoría Personalizada · Envíos a todo México
+                  </span>
+                  <h3 className="text-2xl md:text-3xl font-serif italic text-white">
+                    ¿Necesitas cotización formal o tienes dudas sobre este equipamiento?
+                  </h3>
+                  <p className="text-sm text-[#EAE8E4]/80 font-light max-w-xl">
+                    Chatea directamente con nuestro equipo técnico en México para conocer tiempos de entrega, opciones de tapicería, madera o aluminio y promociones vigentes.
+                  </p>
+                </div>
+                <a
+                  href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, estuve viendo la categoría ${categorySeo?.h1 || category || 'Reformer'} en camadepilates.com y quisiera una cotización con envío.`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-rybbit-event="click_shop_whatsapp_quote"
+                  data-rybbit-prop-category={category || ''}
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white rounded-full text-xs font-bold uppercase tracking-widest hover:bg-[#20ba59] transition-all shadow-lg shrink-0"
+                >
+                  Cotizar por WhatsApp
+                </a>
+              </div>
             </section>
           )}
         </div>

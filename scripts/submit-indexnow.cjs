@@ -98,29 +98,41 @@ async function main() {
 
   console.log(`Found ${urls.length} URLs in sitemap for ${HOST}`);
 
-  const payload = {
-    host: HOST,
-    key: KEY,
-    keyLocation: KEY_LOCATION,
-    urlList: urls,
-  };
-
   const endpoints = [
-    'https://www.bing.com/indexnow',
     'https://api.indexnow.org/indexnow',
+    'https://www.bing.com/indexnow',
+    'https://yandex.com/indexnow',
   ];
 
+  // Batch URLs in chunks of 100 to stay well within limits
+  const CHUNK_SIZE = 100;
+  const chunks = [];
+  for (let i = 0; i < urls.length; i += CHUNK_SIZE) {
+    chunks.push(urls.slice(i, i + CHUNK_SIZE));
+  }
+
   for (const endpoint of endpoints) {
-    try {
-      const res = await postJson(endpoint, payload);
-      if (res.statusCode === 200 || res.statusCode === 202) {
-        console.log(`✓ [${endpoint}] Status: ${res.statusCode} ${res.statusMessage} (${urls.length} URLs submitted)`);
-      } else {
-        console.log(`! [${endpoint}] Status: ${res.statusCode} ${res.statusMessage}`);
-        if (res.body) console.log(`  Details: ${res.body}`);
+    console.log(`\nSubmitting to ${endpoint}...`);
+    for (let c = 0; c < chunks.length; c++) {
+      const chunkUrls = chunks[c];
+      const payload = {
+        host: HOST,
+        key: KEY,
+        keyLocation: KEY_LOCATION,
+        urlList: chunkUrls,
+      };
+
+      try {
+        const res = await postJson(endpoint, payload);
+        if (res.statusCode === 200 || res.statusCode === 202) {
+          console.log(`✓ [Chunk ${c + 1}/${chunks.length}] Status: ${res.statusCode} ${res.statusMessage} (${chunkUrls.length} URLs submitted)`);
+        } else {
+          console.log(`! [Chunk ${c + 1}/${chunks.length}] Status: ${res.statusCode} ${res.statusMessage}`);
+          if (res.body) console.log(`  Details: ${res.body}`);
+        }
+      } catch (e) {
+        console.warn(`! [Chunk ${c + 1}/${chunks.length}] Error:`, e.message);
       }
-    } catch (e) {
-      console.warn(`! [${endpoint}] Error:`, e.message);
     }
   }
 
