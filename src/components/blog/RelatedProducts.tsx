@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import products from '@/content/products.json';
+import { MessageCircle } from 'lucide-react';
 
 interface RelatedProductsProps {
   tags?: string[];
@@ -110,16 +111,30 @@ const RelatedProducts: React.FC<RelatedProductsProps> = ({
                 loading="lazy"
               />
             </div>
-            <div className="p-4">
-              <p className="text-[10px] uppercase tracking-widest text-[#5D5550] mb-1">
-                {product.category}
-              </p>
-              <h4 className="text-sm font-medium text-[#2A2624] group-hover:text-[#3E2723] transition-colors line-clamp-2 mb-2">
-                {product.name}
-              </h4>
-              <p className="text-sm text-[#3E2723] font-serif italic">
-                {formatPrice(product.price)} <span className="text-[10px] font-sans not-italic text-[#5D5550]">MXN</span>
-              </p>
+            <div className="p-4 flex flex-col justify-between flex-grow">
+              <div>
+                <p className="text-[10px] uppercase tracking-widest text-[#5D5550] mb-1">
+                  {product.category}
+                </p>
+                <h4 className="text-sm font-medium text-[#2A2624] group-hover:text-[#3E2723] transition-colors line-clamp-2 mb-2">
+                  {product.name}
+                </h4>
+                <p className="text-sm text-[#3E2723] font-serif italic mb-3">
+                  {formatPrice(product.price)} <span className="text-[10px] font-sans not-italic text-[#5D5550]">MXN</span>
+                </p>
+              </div>
+              <a
+                href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, vi el modelo ${product.name} en el blog de camadepilates.com y quisiera cotización formal con flete a mi ciudad:`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                data-rybbit-event="click_blog_related_whatsapp"
+                data-rybbit-prop-product={product.name}
+                className="w-full py-2 px-3 rounded-full bg-[#25D366]/10 hover:bg-[#25D366] text-[#128C7E] hover:text-white border border-[#25D366]/30 text-[11px] font-semibold flex items-center justify-center gap-1.5 transition-all text-center"
+              >
+                <MessageCircle className="h-3.5 w-3.5" />
+                <span>Cotizar por WhatsApp</span>
+              </a>
             </div>
           </Link>
         ))}

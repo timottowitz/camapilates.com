@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ShoppingCart, Info } from "lucide-react";
+import { ArrowRight, ShoppingCart, Info, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface CTASectionProps {
@@ -11,30 +11,35 @@ interface CTASectionProps {
 
 const CTASection = ({
   title = "¿Buscas una cama de Pilates?",
-  description = "Te ayudamos a elegir la cama de Pilates ideal para casa o estudio. Compara modelos, accesorios y precios con envíos en México.",
+  description = "Te ayudamos a elegir la cama de Pilates ideal para casa o estudio. Compara modelos, acabados en madera o aluminio y opciones a 12 MSI con envío asegurado en México.",
   variant = "default",
   className = ""
 }: CTASectionProps) => {
 
   if (variant === "compact") {
     return (
-      <div className={`bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-6 my-8 ${className}`}>
+      <div className={`bg-[#F5F4F0] border border-[#2A2624]/10 rounded-2xl p-6 my-8 ${className}`}>
         <div className="text-center mb-6">
-          <h3 className="text-xl font-semibold mb-3 text-foreground">{title}</h3>
-          <p className="text-muted-foreground text-sm max-w-xl mx-auto">{description}</p>
+          <h3 className="text-xl font-serif italic mb-2 text-[#2A2624]">{title}</h3>
+          <p className="text-[#5D5550] text-sm max-w-xl mx-auto font-light leading-relaxed">{description}</p>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Button asChild size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-            <Link to="/shop">
-              <ShoppingCart className="mr-2 h-4 w-4" />
-              Ver productos
-            </Link>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+          <Button asChild size="sm" className="bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold rounded-full px-6 py-2.5 shadow-sm">
+            <a
+              href="https://wa.me/525548468190?text=Hola,%20quisiera%20asesor%C3%ADa%20personalizada%20para%20elegir%20mi%20cama%20de%20Pilates%20con%20env%C3%ADo%20en%20M%C3%A9xico."
+              target="_blank"
+              rel="noopener noreferrer"
+              data-rybbit-event="click_blog_cta_whatsapp"
+            >
+              <MessageCircle className="mr-2 h-4 w-4" />
+              Asesoría por WhatsApp
+            </a>
           </Button>
-          <Button asChild variant="outline" size="sm">
+          <Button asChild variant="outline" size="sm" className="border-[#2A2624]/20 hover:bg-white text-[#2A2624] rounded-full px-6 py-2.5">
             <Link to="/shop/category/reformers">
               <ArrowRight className="mr-2 h-4 w-4" />
-              Ver Catálogo
+              Ver Catálogo de Camas
             </Link>
           </Button>
         </div>

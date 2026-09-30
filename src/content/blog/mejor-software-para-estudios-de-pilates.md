@@ -251,6 +251,10 @@ Una clase de Reformer de 50 minutos requiere al menos **10 minutos de transició
 
 Asegúrate de que tu software bloquee automáticamente esos 10 a 15 minutos entre sesiones consecutivas para que tu equipo de limpieza e instructores no trabajen bajo prisas que comprometan la seguridad de los alumnos.
 
+> 📦 **¿Planeas abrir o renovar tu estudio con 5 a 12+ Reformers?**  
+> En CAMA Pilates equipamos estudios en todo México con [Packs de Estudio con 20% de Descuento](/packs/estudio), 3 años de garantía y facturación fiscal (CFDI).  
+> 👉 [Hablar con un Asesor de Estudios por WhatsApp](https://wa.me/525548468190?text=Hola,%20le%C3%AD%20el%20art%C3%ADculo%20de%20software%20para%20estudios%20y%20quisiera%20cotizaci%C3%B3n%20para%20equipar%20mi%20estudio%20con%20Reformers.)
+
 <hub-list category="Estudio" limit="5" title="Más guías y artículos para emprendedores de Pilates" />
 
 ---

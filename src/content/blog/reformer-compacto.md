@@ -83,8 +83,11 @@ Pensamos en la **ergonomía para la estatura promedio** del usuario mexicano, op
 
 *Nota: Aunque el trabajo en reformer favorece el control motor y la reducción de dolor lumbar, siempre consulta con un profesional de la salud antes de iniciar si tienes lesiones previas.*
 
-<hub-list category="Guías de compra" limit="6" title="Más contenidos relacionados" />
+> 🏆 **Modelo Recomendado para Departamentos:**  
+> Conoce nuestro [Reformer Compacto de Aluminio](/product/reformer-aluminio-compacto-a039a): estructura de aluminio reforzado, 5 resortes alemanes calibrados, desplazamiento ultra silencioso y ruedas integradas para guardado vertical en menos de 0.5 m².  
+> 👉 [Cotizar por WhatsApp con Envío a México](https://wa.me/525548468190?text=Hola,%20le%C3%AD%20el%20art%C3%ADculo%20sobre%20reformer%20compacto%20y%20me%20interesa%20cotizar%20el%20Reformer%20Compacto%20de%20Aluminio%20con%20env%C3%ADo%20a%20mi%20c%C3%B3digo%20postal.)
 
+<hub-list category="Guías de compra" limit="6" title="Más contenidos relacionados" />
 
 > 💡 **Lectura recomendada:** [Financiación de cama de Pilates: Qué revisar](/blog/financiacion-cama-de-pilates)
 

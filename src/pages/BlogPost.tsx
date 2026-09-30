@@ -315,13 +315,13 @@ const BlogPost = () => {
           <div className="mt-24 pt-12 border-t border-[#2A2624]/10">
             <CTASection
               variant="compact"
-              title="Elevate your Practice"
-              description="Discover our collection of professional reformers, crafted with German engineering and Mexican soul."
+              title="Eleva tu Práctica de Pilates"
+              description="Descubre nuestra colección de Reformers profesionales, diseñados con ingeniería de precisión y manufactura mexicana. Envíos asegurados y 12 MSI."
             />
           </div>
 
           <div className="mt-16">
-            <h3 className="text-3xl font-serif italic text-[#2A2624] mb-8 text-center">Related Stories</h3>
+            <h3 className="text-3xl font-serif italic text-[#2A2624] mb-8 text-center">Artículos Relacionados</h3>
             <div className="grid md:grid-cols-2 gap-8">
               {relatedPosts.map((p) => (
                 <Link key={p.slug} to={`/blog/${p.slug}`} className="block group">
@@ -536,8 +536,8 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
               <div className="not-prose my-12">
                 <CTASection
                   variant="compact"
-                  title="Ready for your Reformer?"
-                  description="Professional guidance to choose your Pilates bed. 3-week delivery, 1-year warranty, and Spanish support."
+                  title="¿Listo para tu Cama de Pilates?"
+                  description="Asesoría personalizada para elegir tu Reformer residencial o comercial. Entrega en 3 semanas, 3 años de garantía y soporte en México."
                 />
               </div>
             )}
