@@ -8,6 +8,10 @@ Disallow: /mi-perfil
 Disallow: /claim-studio
 Disallow: /claim-teacher
 
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
 # Sitemap
 Sitemap: https://camadepilates.com/sitemap.xml
 
