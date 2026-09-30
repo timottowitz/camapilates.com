@@ -5,6 +5,7 @@ import { DEFAULTS } from '@/lib/seo';
 import { requireRouteMeta } from '@/lib/routeMeta';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
+import { MessageCircle } from 'lucide-react';
 
 const StudioPack: React.FC = () => {
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://camadepilates.com';
@@ -147,6 +148,23 @@ const StudioPack: React.FC = () => {
                   />
                 </div>
               </div>
+
+              {/* Dynamic Pack Quote CTA */}
+              <div className="mt-8 flex flex-col sm:flex-row gap-4 items-center justify-between bg-[#2A2624] text-white p-6 rounded-2xl shadow-md">
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-[#D9865B] font-bold">Pack Estudio Seleccionado ({qty} Camas)</p>
+                  <p className="text-sm text-white/80 font-light mt-0.5">Incluye 20% descuento, garantía comercial 3 años y flete coordinado.</p>
+                </div>
+                <a
+                  href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar el Pack de Estudio de ${qty} Reformers (Subtotal estimado: $${subtotal.toLocaleString('es-MX')} MXN). Quisiera asesoría de tiempos de entrega e instalación.`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-rybbit-event="click_studiopack_whatsapp_quote"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-[#25D366] text-white rounded-full text-xs font-bold uppercase tracking-[0.15em] hover:bg-[#20ba59] transition-all shadow-md shrink-0 hover:scale-105"
+                >
+                  <MessageCircle className="w-4 h-4" /> Cotizar este Pack por WhatsApp
+                </a>
+              </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-12">
@@ -220,8 +238,16 @@ const StudioPack: React.FC = () => {
             </form>
 
             <div className="mt-8 pt-8 border-t border-white/10 text-center">
-              <p className="text-xs text-white/40 mb-2">Prefer direct contact?</p>
-              <a href="https://wa.me/525548468190" className="text-sm hover:text-white transition-colors border-b border-white/20 pb-1">Chat on WhatsApp</a>
+              <p className="text-xs text-white/60 mb-3">¿Prefieres atención inmediata sin llenar formularios?</p>
+              <a
+                href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa asesoría y cotización directa para equipar mi estudio (${qty} Reformers).`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-rybbit-event="click_studiopack_footer_whatsapp"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#25D366] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#20ba59] transition-all shadow-md hover:scale-105"
+              >
+                <MessageCircle className="w-4 h-4" /> Chatear por WhatsApp
+              </a>
             </div>
           </div>
         </div>

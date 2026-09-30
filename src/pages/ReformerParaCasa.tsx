@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { getOrigin, generateBreadcrumbSchema } from '@/lib/seo';
 import { requireRouteMeta } from '@/lib/routeMeta';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
-import { Home, Check, ArrowRight, Ruler, Volume2, Shield, Truck } from 'lucide-react';
+import { Home, Check, ArrowRight, Ruler, Volume2, Shield, Truck, MessageCircle } from 'lucide-react';
 
 const ReformerParaCasa: React.FC = () => {
   const origin = getOrigin();
@@ -152,18 +152,27 @@ const ReformerParaCasa: React.FC = () => {
         </div>
 
         {/* Main CTA */}
-        <div className="flex flex-wrap justify-center gap-4 mb-20">
-          <Link
-            to="/product/reformer-aluminio-riel-deslizante-a068"
-            className="px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors"
+        <div className="flex flex-wrap justify-center items-center gap-4 mb-20">
+          <a
+            href={`https://wa.me/525548468190?text=${encodeURIComponent("Hola, me interesa comprar un Reformer para mi casa en México. Quisiera asesoría sobre medidas de espacio, modelos y envío.")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-rybbit-event="click_home_reformer_hero_whatsapp"
+            className="px-8 py-4 bg-[#25D366] text-white rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#20ba59] transition-all shadow-md flex items-center gap-2 hover:scale-105"
           >
-            Ver Reformer Aluminio
-          </Link>
+            <MessageCircle className="w-4 h-4" /> Asesoría por WhatsApp
+          </a>
           <Link
             to="/shop/category/reformers"
+            className="px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors"
+          >
+            Ver Catálogo de Camas
+          </Link>
+          <Link
+            to="/cama-de-pilates/precio"
             className="px-8 py-4 border border-[#2A2624] text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors"
           >
-            Ver Catálogo
+            Precios y 12 MSI
           </Link>
         </div>
       </section>
@@ -248,15 +257,26 @@ const ReformerParaCasa: React.FC = () => {
               <div className="flex items-baseline gap-4 mb-8">
                 <span className="text-3xl font-serif italic text-[#2A2624]">$29,700</span>
                 <span className="text-sm text-[#5D5550]">MXN</span>
-                <span className="text-xs text-[#3E2723] uppercase tracking-widest">o 12 MSI</span>
+                <span className="text-xs text-[#128C7E] font-semibold uppercase tracking-widest">o 12 MSI de $2,475</span>
               </div>
               
-              <Link
-                to="/shop/category/reformers"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors"
-              >
-                Ver modelos <ArrowRight className="w-4 h-4" />
-              </Link>
+              <div className="flex flex-wrap items-center gap-4">
+                <a
+                  href={`https://wa.me/525548468190?text=${encodeURIComponent("Hola, me interesa el Edelweiss Home Reformer ($29,700 MXN o 12 MSI). ¿Tienen disponibilidad y cotización de flete a mi código postal?")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-rybbit-event="click_home_reformer_recommendation_whatsapp"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-[#25D366] text-white rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#20ba59] transition-all shadow-md hover:scale-105"
+                >
+                  <MessageCircle className="w-4 h-4" /> Cotizar con Envío por WhatsApp
+                </a>
+                <Link
+                  to="/shop/category/reformers"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors"
+                >
+                  Ver modelos <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
             </div>
             
             <div className="aspect-square bg-[#EAE8E4] rounded-sm overflow-hidden">

@@ -5,7 +5,7 @@ import { DEFAULTS, getOrigin } from '@/lib/seo';
 import { requireRouteMeta } from '@/lib/routeMeta';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
-import { Truck, Shield, Package, ArrowRight } from 'lucide-react';
+import { Truck, Shield, Package, ArrowRight, MessageCircle } from 'lucide-react';
 import BackLink from '@/components/ui/back-link';
 
 const CamaDePilatesEnVenta: React.FC = () => {
@@ -150,9 +150,21 @@ const CamaDePilatesEnVenta: React.FC = () => {
                   <li>• Cuero genuino, nogal y acero estructural</li>
                   <li>• Garantía 1 año, repuestos exprés</li>
                 </ul>
-                <span className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-white/60 group-hover:text-white transition-colors">
-                  Ver detalles <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </span>
+                <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                  <span className="inline-flex items-center justify-center text-xs uppercase tracking-[0.2em] text-white/80 group-hover:text-white transition-colors py-3 px-6 rounded-full border border-white/20">
+                    Ver detalles <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                  <a
+                    href={`https://wa.me/525548468190?text=${encodeURIComponent("Hola, me interesa cotizar el Reformer Profesional ($42,400 MXN) para mi estudio de Pilates. ¿Qué opciones de tapicería y flete tienen?")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    data-rybbit-event="click_en_venta_pro_whatsapp"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#25D366] text-white rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#20ba59] transition-all shadow-md"
+                  >
+                    <MessageCircle className="w-4 h-4" /> Cotizar por WhatsApp
+                  </a>
+                </div>
               </div>
             </Link>
           </motion.div>
@@ -191,9 +203,21 @@ const CamaDePilatesEnVenta: React.FC = () => {
                   <li>• Cuero genuino y estructura de madera</li>
                   <li>• Entrega rápida en México</li>
                 </ul>
-                <span className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-[#3E2723]/60 group-hover:text-[#2A2624] transition-colors">
-                  Ver detalles <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </span>
+                <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                  <span className="inline-flex items-center justify-center text-xs uppercase tracking-[0.2em] text-[#3E2723]/80 group-hover:text-[#2A2624] transition-colors py-3 px-6 rounded-full border border-[#2A2624]/20">
+                    Ver detalles <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                  <a
+                    href={`https://wa.me/525548468190?text=${encodeURIComponent("Hola, me interesa cotizar el Reformer Casa ($29,700 MXN) para mi hogar. ¿Tienen entrega inmediata y opciones a 12 MSI?")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    data-rybbit-event="click_en_venta_casa_whatsapp"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#25D366] text-white rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#20ba59] transition-all shadow-md"
+                  >
+                    <MessageCircle className="w-4 h-4" /> Cotizar por WhatsApp
+                  </a>
+                </div>
               </div>
             </Link>
           </motion.div>
@@ -238,10 +262,13 @@ const CamaDePilatesEnVenta: React.FC = () => {
                 Ver packs para estudio
               </Link>
               <a
-                href="https://wa.me/525548468190"
-                className="inline-flex items-center justify-center px-10 py-5 border border-white/20 text-white rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-white/10 transition-all"
+                href={`https://wa.me/525548468190?text=${encodeURIComponent("Hola, me interesa la promoción del 20% de descuento en 8+ unidades de Reformers para mi estudio. Quisiera cotización formal y tiempos de entrega.")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-rybbit-event="click_en_venta_studio_pack_whatsapp"
+                className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-[#25D366] text-white rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#20ba59] transition-all shadow-lg hover:scale-105"
               >
-                Cotizar por WhatsApp
+                <MessageCircle className="w-4 h-4" /> Cotizar por WhatsApp
               </a>
             </div>
           </div>

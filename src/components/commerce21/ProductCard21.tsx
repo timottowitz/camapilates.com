@@ -4,7 +4,7 @@ import type { Product } from '@/lib/shop/types';
 import { formatPrice } from '@/lib/shop/catalog';
 import { selectItem } from '@/lib/shop/analytics';
 import { useConvexAssets } from '@/lib/convexAssets';
-import { Info } from 'lucide-react';
+import { Info, MessageCircle } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 type Props = {
@@ -72,17 +72,24 @@ const ProductCard21: React.FC<Props> = ({ product, onQuickView }) => {
               </Tooltip>
             </div>
           )}
-          {onQuickView && (
-            <div className="mt-3">
-              <button
-                type="button"
-                onClick={(e) => { e.preventDefault(); onQuickView(product); }}
-                className="inline-flex items-center px-3 py-1.5 rounded-md border border-border text-foreground hover:bg-foreground hover:text-background text-xs"
-              >
-                Vista rápida
-              </button>
+          {/* Dual CTAs */}
+          <div className="mt-3 space-y-2">
+            <div className="w-full py-2 px-3 rounded-md bg-[#2A2624] text-[#EAE8E4] text-xs font-semibold text-center group-hover:bg-[#3E2723] transition-colors">
+              Ver Cama y Acabados →
             </div>
-          )}
+            <a
+              href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar el modelo ${product.name} ($${Number(product.price).toLocaleString('es-MX')} MXN) con envío a mi código postal:`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              data-rybbit-event="click_card_whatsapp_quote"
+              data-rybbit-prop-product={product.name}
+              className="w-full py-2 px-3 rounded-md bg-[#25D366]/10 hover:bg-[#25D366] text-[#128C7E] hover:text-white border border-[#25D366]/30 text-xs font-semibold flex items-center justify-center gap-1.5 transition-all duration-200"
+            >
+              <MessageCircle className="h-3.5 w-3.5" />
+              <span>Cotizar por WhatsApp</span>
+            </a>
+          </div>
         </div>
       </div>
     </Link>

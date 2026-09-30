@@ -4,7 +4,7 @@ import type { Product } from '@/lib/shop/types';
 import { formatPrice } from '@/lib/shop/catalog';
 import { selectItem } from '@/lib/shop/analytics';
 import { useConvexAssets } from '@/lib/convexAssets';
-import { Info, Eye, TrendingUp, Flame, Clock, Star } from 'lucide-react';
+import { Info, Eye, TrendingUp, Flame, Clock, Star, MessageCircle, ArrowRight } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
 import { Badge } from '@/components/ui/badge';
 
@@ -61,7 +61,7 @@ const ProductCard21Enhanced: React.FC<Props> = ({
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-[#2A2624] font-bold text-xs uppercase tracking-widest hover:bg-[#F2F0ED] transform hover:scale-105 transition-all shadow-xl"
               >
                 <Eye className="h-3 w-3" />
-                Quick View
+                Vista Rápida
               </button>
             </div>
           )}
@@ -69,12 +69,12 @@ const ProductCard21Enhanced: React.FC<Props> = ({
 
         {/* Content Section */}
         <div className="px-3 pb-3 space-y-3">
-          {/* Product Name */}
+          {/* Product Name & Price */}
           <div className="flex justify-between items-start gap-2">
             <h3 className="font-serif italic text-xl text-[#2A2624] leading-tight group-hover:text-[#EB4C42] transition-colors">
               {product.name}
             </h3>
-            <div className="text-right">
+            <div className="text-right shrink-0">
               <span translate="no" className="notranslate block text-lg font-bold text-[#2A2624] font-sans">
                 ${Number(product.price).toLocaleString('es-MX')}
               </span>
@@ -86,10 +86,20 @@ const ProductCard21Enhanced: React.FC<Props> = ({
             {product.description}
           </p>
 
+          {/* Micro Trust Line */}
+          <div className="flex items-center justify-between text-[11px] pt-0.5 border-t border-[#2A2624]/5">
+            <span className="inline-flex items-center gap-1 text-[#128C7E] font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] animate-pulse" />
+              12 MSI disponibles
+            </span>
+            <span className="text-[10px] uppercase tracking-wider text-[#5D5550]/70 font-medium">
+              Garantía 3 años
+            </span>
+          </div>
 
           {/* Urgency Indicators */}
           {showUrgency && (
-            <div className="pt-2 space-y-1">
+            <div className="pt-1 space-y-1">
               {viewingNow > 3 && (
                 <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                   <div className="flex items-center gap-1">
@@ -110,7 +120,7 @@ const ProductCard21Enhanced: React.FC<Props> = ({
           {/* Mylo Badge */}
           {isMylo && (
             <TooltipProvider>
-              <div className="pt-2 flex items-center gap-1.5 text-xs">
+              <div className="pt-1 flex items-center gap-1.5 text-xs">
                 <Badge variant="outline" className="bg-[#F5EFE6] text-[#B08D5B] border-[#C9A875]/30">
                   <a
                     href="https://boltthreads.com/technology/mylo/"
@@ -134,11 +144,24 @@ const ProductCard21Enhanced: React.FC<Props> = ({
             </TooltipProvider>
           )}
 
-          {/* CTA Button - Appears on hover */}
-          <div className={`pt-2 transition-all duration-500 transform ${isHovered ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}`}>
-            <button className="w-full py-3 px-4 rounded-full bg-[#2A2624] text-[#EAE8E4] text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-[#EB4C42] transition-colors shadow-lg">
-              View Details
-            </button>
+          {/* CTA Buttons - Always visible and actionable */}
+          <div className="pt-2 space-y-2">
+            <div className="w-full py-2.5 px-4 rounded-full bg-[#2A2624] text-[#EAE8E4] text-[11px] uppercase tracking-[0.15em] font-bold group-hover:bg-[#3E2723] transition-colors shadow-sm flex items-center justify-center gap-1.5">
+              <span>Ver Cama y Acabados</span>
+              <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </div>
+            <a
+              href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar el modelo ${product.name} ($${Number(product.price).toLocaleString('es-MX')} MXN) con envío a mi código postal:`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              data-rybbit-event="click_card_whatsapp_quote"
+              data-rybbit-prop-product={product.name}
+              className="w-full py-2 px-3 rounded-full bg-[#25D366]/10 hover:bg-[#25D366] text-[#128C7E] hover:text-white border border-[#25D366]/30 text-[11px] font-semibold flex items-center justify-center gap-1.5 transition-all duration-200"
+            >
+              <MessageCircle className="h-3.5 w-3.5" />
+              <span>Cotizar por WhatsApp</span>
+            </a>
           </div>
         </div>
       </div>

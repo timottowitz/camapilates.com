@@ -5,7 +5,7 @@ import { DEFAULTS, getOrigin } from '@/lib/seo';
 import { requireRouteMeta } from '@/lib/routeMeta';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
-import { Check, Star, Shield, Zap, DollarSign, ArrowRight } from 'lucide-react';
+import { Check, Star, Shield, Zap, DollarSign, ArrowRight, MessageCircle } from 'lucide-react';
 import BackLink from '@/components/ui/back-link';
 
 const CamaDePilatesPrecio: React.FC = () => {
@@ -233,12 +233,23 @@ const CamaDePilatesPrecio: React.FC = () => {
                 </li>
               ))}
             </ul>
-            <Link
-              to="/reformer-para-casa"
-              className="block w-full py-5 text-center border border-[#2A2624] text-[#2A2624] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-all"
-            >
-              Ver detalles para casa
-            </Link>
+            <div className="space-y-3">
+              <a
+                href={`https://wa.me/525548468190?text=${encodeURIComponent("Hola, me interesa cotizar el Reformer Home Edition ($23,234 MXN o 12 MSI de $1,936). ¿Cuál sería el costo de flete a mi código postal?")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-rybbit-event="click_price_home_whatsapp"
+                className="flex items-center justify-center gap-2 w-full py-4 text-center bg-[#25D366] text-white rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#20ba59] transition-all shadow-md hover:scale-[1.02]"
+              >
+                <MessageCircle className="w-4 h-4" /> Cotizar Home Edition por WhatsApp
+              </a>
+              <Link
+                to="/reformer-para-casa"
+                className="block w-full py-3.5 text-center border border-[#2A2624]/20 text-[#2A2624] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-all"
+              >
+                Ver especificaciones para casa
+              </Link>
+            </div>
           </motion.div>
 
           {/* Studio Professional */}
@@ -275,12 +286,23 @@ const CamaDePilatesPrecio: React.FC = () => {
                 </li>
               ))}
             </ul>
-            <Link
-              to="/reformer-para-estudio"
-              className="block w-full py-5 text-center bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-all"
-            >
-              Ver detalles para estudio
-            </Link>
+            <div className="space-y-3">
+              <a
+                href={`https://wa.me/525548468190?text=${encodeURIComponent("Hola, me interesa cotizar camas Reformer Studio Professional ($36,716 MXN) para mi estudio de Pilates (solicito opciones de financiamiento y descuento por volumen).")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-rybbit-event="click_price_studio_whatsapp"
+                className="flex items-center justify-center gap-2 w-full py-4 text-center bg-[#25D366] text-white rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#20ba59] transition-all shadow-md hover:scale-[1.02]"
+              >
+                <MessageCircle className="w-4 h-4" /> Cotizar Studio por WhatsApp
+              </a>
+              <Link
+                to="/reformer-para-estudio"
+                className="block w-full py-3.5 text-center bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-all"
+              >
+                Ver especificaciones para estudio
+              </Link>
+            </div>
           </motion.div>
         </motion.div>
 
@@ -413,12 +435,23 @@ const CamaDePilatesPrecio: React.FC = () => {
             <p className="text-lg md:text-xl text-white/70 font-light mb-10 leading-relaxed">
               Coordinamos instalación profesional y entrega por lotes para tu apertura.
             </p>
-            <Link
-              to="/packs/estudio"
-              className="inline-flex items-center px-10 py-5 bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:scale-105 transition-all"
-            >
-              Ver packs de estudio
-            </Link>
+            <div className="flex flex-wrap justify-center items-center gap-4">
+              <a
+                href={`https://wa.me/525548468190?text=${encodeURIComponent("Hola, me interesa la promoción del 20% de descuento en 8+ Reformers para mi estudio. Quisiera cotización formal y tiempos de entrega.")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-rybbit-event="click_price_studio_pack_whatsapp"
+                className="inline-flex items-center gap-2 px-8 py-5 bg-[#25D366] text-white rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#20ba59] hover:scale-105 transition-all shadow-lg"
+              >
+                <MessageCircle className="w-4 h-4" /> Cotizar Descuento 8+ Unidades
+              </a>
+              <Link
+                to="/packs/estudio"
+                className="inline-flex items-center px-8 py-5 bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:scale-105 transition-all"
+              >
+                Ver packs de estudio
+              </Link>
+            </div>
           </div>
         </div>
       </section>
