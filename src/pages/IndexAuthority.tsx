@@ -205,26 +205,45 @@ const IndexAuthority: React.FC = () => {
                 </div>
               </div>
 
-              {/* Modern Pill Buttons */}
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  to="/blog"
-                  className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#EB4C42] text-white text-sm font-bold tracking-wide hover:bg-[#D43D33] transition-all hover:scale-105 active:scale-95 shadow-lg shadow-[#EB4C42]/20"
-                >
-                  Explorar Guías <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  to="/estudios-de-pilates"
-                  className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#EAE8E4] text-[#2A2624] text-sm font-bold tracking-wide hover:bg-white transition-all hover:scale-105 active:scale-95 border border-[#2A2624]/5"
-                >
-                  Encontrar Estudio
-                </Link>
-                <Link
-                  to="/blog/mejor-software-para-estudios-de-pilates"
-                  className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#EAE8E4] text-[#2A2624] text-sm font-bold tracking-wide hover:bg-white transition-all hover:scale-105 active:scale-95 border border-[#2A2624]/5"
-                >
-                  Software para Estudios
-                </Link>
+              {/* Modern Action Buttons */}
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    to="/shop/category/reformers"
+                    data-rybbit-event="click_home_hero_catalog"
+                    className="flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#EB4C42] text-white text-sm font-bold tracking-wide hover:bg-[#D43D33] transition-all hover:scale-105 active:scale-95 shadow-lg shadow-[#EB4C42]/20"
+                  >
+                    Ver Catálogo de Reformers <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <Link
+                    to="/certificacion-pilates"
+                    data-rybbit-event="click_home_hero_certification"
+                    className="flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#2A2624] text-[#EAE8E4] text-sm font-bold tracking-wide hover:bg-[#3E2723] transition-all hover:scale-105 active:scale-95 shadow-md"
+                  >
+                    Certificación 2026
+                  </Link>
+                  <Link
+                    to="/estudios-de-pilates"
+                    data-rybbit-event="click_home_hero_studios"
+                    className="flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-[#2A2624] text-sm font-bold tracking-wide hover:bg-[#F5F4F1] transition-all hover:scale-105 active:scale-95 border border-[#2A2624]/10 shadow-sm"
+                  >
+                    Directorio de Estudios
+                  </Link>
+                </div>
+
+                {/* Trust and Risk Reversals */}
+                <div className="flex flex-wrap items-center gap-3 text-xs text-[#5D5550] pt-1">
+                  <span className="flex items-center gap-1.5 font-medium text-[#2A2624]">
+                    <span className="w-2 h-2 rounded-full bg-emerald-600" />
+                    Fabricación 100% Mexicana
+                  </span>
+                  <span className="opacity-40">•</span>
+                  <span>Envíos asegurados a los 32 estados</span>
+                  <span className="opacity-40">•</span>
+                  <span>3 años de garantía</span>
+                  <span className="opacity-40">•</span>
+                  <span>Hasta 12 Meses Sin Intereses</span>
+                </div>
               </div>
             </motion.div>
           </div>

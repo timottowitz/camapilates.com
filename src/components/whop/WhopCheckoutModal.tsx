@@ -18,6 +18,7 @@ import {
   User,
   Phone,
   MessageSquare,
+  MessageCircle,
   Sparkle,
 } from 'lucide-react';
 import { WhopCheckoutEmbed } from '@whop/checkout/react';
@@ -170,9 +171,9 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
                 className="w-7 h-7 rounded-lg object-cover border border-neutral-200"
               />
               {paymentsDeactivated ? (
-                <span className="px-2.5 py-0.5 rounded-full bg-neutral-900 text-white font-mono text-[10px] font-semibold uppercase tracking-wider flex items-center gap-1">
-                  <Clock className="w-3 h-3 text-amber-400" />
-                  Próximamente · Servicio en Construcción
+                <span className="px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 font-mono text-[10px] font-semibold uppercase tracking-wider flex items-center gap-1.5 border border-emerald-800">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Atención Directa · WhatsApp Oficial
                 </span>
               ) : (
                 <span className="px-2.5 py-0.5 rounded-full bg-neutral-900 text-white font-mono text-[10px] font-semibold uppercase tracking-wider">
@@ -182,8 +183,8 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
             </div>
             <div className="text-right">
               {paymentsDeactivated ? (
-                <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 font-bold uppercase tracking-wider">
-                  Cobros Desactivados
+                <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-900 font-bold uppercase tracking-wider">
+                  Pre-reserva: $400 MXN
                 </span>
               ) : (
                 <span className="text-2xl font-bold tracking-tight text-neutral-900">
@@ -195,13 +196,13 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
 
           <DialogTitle className="text-xl font-bold tracking-tight text-neutral-900 mt-2">
             {paymentsDeactivated
-              ? 'Estamos construyendo este servicio en este momento'
+              ? 'Aparta tu Cupo con una Asesora Oficial'
               : activePlan.name}
           </DialogTitle>
 
           <DialogDescription className="text-xs text-neutral-600 mt-1 leading-relaxed">
             {paymentsDeactivated
-              ? 'Estamos afinando la plataforma oficial de pagos y la logística de asignación de Reformers individuales para Querétaro y Monterrey. En este momento ningún cobro será procesado.'
+              ? 'Para asegurar tu Reformer individual y congelar el precio de preventa ($400 MXN), te atendemos directamente por WhatsApp con el temario completo en PDF y atención 1-a-1.'
               : activePlan.tagline}
           </DialogDescription>
 
@@ -307,50 +308,54 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
 
               {/* Two Official Channels */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* CHANNEL 1: ORIENTATION WEBINAR */}
-                <div className="p-5 rounded-2xl bg-[#F8F8F6] border-2 border-neutral-900 flex flex-col justify-between shadow-sm relative overflow-hidden">
+                {/* CHANNEL 1: WHATSAPP DIRECT RESERVATION */}
+                <div className="p-5 rounded-2xl bg-emerald-50/60 border-2 border-emerald-600 flex flex-col justify-between shadow-sm relative overflow-hidden">
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="px-2.5 py-0.5 rounded-full bg-neutral-900 text-white font-mono text-[10px] font-bold uppercase tracking-wider">
-                        Canal 1 · Sin Costo
+                      <span className="px-2.5 py-0.5 rounded-full bg-emerald-600 text-white font-mono text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
+                        <MessageCircle className="w-3 h-3" />
+                        Canal 1 · Recomendado
                       </span>
+                      <span className="text-[11px] font-mono text-emerald-800 font-semibold">Respuesta Inmediata</span>
                     </div>
 
                     <div>
                       <h4 className="text-base font-bold text-neutral-900 tracking-tight flex items-center gap-2">
-                        <Calendar className="w-4 h-4 text-neutral-800" />
-                        Webinar de Orientación
+                        <MessageSquare className="w-4 h-4 text-emerald-600" />
+                        Apartar Lugar por WhatsApp
                       </h4>
-                      <p className="text-[11px] font-mono font-semibold text-neutral-700 mt-1">
-                        Sábado 26 Sept · 11:00 AM CST (En Vivo)
+                      <p className="text-[11px] font-mono font-semibold text-emerald-800 mt-1">
+                        Pre-reserva de $400 MXN · 12 Cupos Máximos
                       </p>
                     </div>
 
                     <p className="text-xs text-neutral-600 leading-relaxed">
-                      Conoce a detalle los programas de 28h y 48h, resuelve preguntas en vivo con Gabi y Laura Munive, y conoce el estudio antes de apartar.
+                      Chatea con una asesora para confirmar fechas, recibir el temario oficial en PDF y asegurar tu Reformer individual exclusivo en {cohort.includes('monterrey') ? 'Monterrey' : 'Querétaro'}.
                     </p>
 
-                    <div className="pt-2 text-[11px] text-neutral-500 space-y-1">
+                    <div className="pt-2 text-[11px] text-neutral-600 space-y-1">
                       <div className="flex items-center gap-1.5">
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span>Revisión de temarios oficiales</span>
+                        <span>Reformer asignado sin turnos compartidos</span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span>Sesión de preguntas y respuestas 1-a-1</span>
+                        <span>Garantía de reembolso 100% si no te convence el FDS 1</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="pt-5 mt-4 border-t border-neutral-200">
-                    <button
-                      type="button"
-                      onClick={handleWebinarChannel}
-                      className="w-full py-3 rounded-full bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center gap-2"
+                  <div className="pt-5 mt-4 border-t border-emerald-200">
+                    <a
+                      href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, quiero apartar mi lugar para la Certificación en ${cohort.includes('monterrey') ? 'Monterrey' : 'Querétaro'} (${activePlan.name}) con los $400 MXN de pre-reserva.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-rybbit-event="click_whop_modal_whatsapp_apartar"
+                      className="w-full py-3 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95"
                     >
-                      <span>Reservar Mi Lugar Gratis en el Webinar</span>
+                      <span>Apartar por WhatsApp ($400 MXN)</span>
                       <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
+                    </a>
                   </div>
                 </div>
 

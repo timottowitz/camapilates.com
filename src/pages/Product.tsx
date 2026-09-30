@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, ShieldCheck, CheckCircle2, Package, Phone, FileText } from 'lucide-react';
 import { ReviewsPreview } from '@/components/ui/reviews-preview';
 import { Finishes, FINISHES } from '@/components/product/Finishes';
 import { Helmet } from 'react-helmet-async';
@@ -486,24 +486,53 @@ const ProductPage: React.FC = () => {
                 </div>
               )}
 
-              <div className="flex flex-col gap-4 pt-2">
+              <div className="flex flex-col gap-3 pt-2">
                 <a
                   href={buyWhatsAppUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-rybbit-event="click_product_whatsapp_buy"
+                  data-rybbit-prop-sku={displaySku}
+                  data-rybbit-prop-price={priceToShow}
                   onClick={() => beginCheckout({ product: prod })}
-                  className="w-full flex items-center justify-center gap-2 bg-[#2A2624] text-[#EAE8E4] rounded-full py-5 uppercase tracking-[0.2em] text-xs font-bold hover:bg-[#3E2723] hover:scale-[1.02] transition-all duration-300 shadow-xl shadow-[#2A2624]/10"
+                  className="w-full flex items-center justify-center gap-2.5 bg-[#25D366] text-white rounded-full py-5 uppercase tracking-[0.2em] text-xs font-bold hover:bg-[#20ba59] hover:scale-[1.02] active:scale-95 transition-all duration-300 shadow-xl shadow-[#25D366]/20"
                 >
-                  <MessageCircle className="h-4 w-4" /> Comprar por WhatsApp
+                  <MessageCircle className="h-5 w-5" /> Comprar por WhatsApp
                 </a>
 
                 <div className="grid grid-cols-2 gap-3">
-                  <a href={buyWhatsAppUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 px-4 py-3 border border-[#2A2624]/20 rounded-full text-[10px] uppercase tracking-[0.2em] text-[#2A2624] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors">
-                    WhatsApp
+                  <a
+                    href={`${buyWhatsAppUrl}%20Quisiera%20solicitar%20una%20cotizaci%C3%B3n%20formal%20en%20PDF%20con%20desglose%20de%20IVA%20y%20flete.`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-rybbit-event="click_product_whatsapp_quote_pdf"
+                    className="flex items-center justify-center gap-1.5 px-4 py-3 border border-[#2A2624]/20 rounded-full text-[10px] uppercase tracking-[0.15em] text-[#2A2624] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors font-medium text-center"
+                  >
+                    <FileText className="w-3.5 h-3.5" /> Cotización PDF
                   </a>
-                  <a href="tel:+525548468190" className="flex items-center justify-center gap-2 px-4 py-3 border border-[#2A2624]/20 rounded-full text-[10px] uppercase tracking-[0.2em] text-[#2A2624] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors">
-                    Llamar
+                  <a
+                    href="tel:+525548468190"
+                    data-rybbit-event="click_product_call"
+                    className="flex items-center justify-center gap-1.5 px-4 py-3 border border-[#2A2624]/20 rounded-full text-[10px] uppercase tracking-[0.15em] text-[#2A2624] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors font-medium text-center"
+                  >
+                    <Phone className="w-3.5 h-3.5" /> Llamar (+52 55)
                   </a>
+                </div>
+
+                {/* Risk Reversals & FUD Busters */}
+                <div className="mt-2 p-3.5 rounded-2xl bg-white/70 border border-[#2A2624]/10 space-y-1.5 text-xs text-[#5D5550]">
+                  <div className="flex items-center gap-2 text-[#2A2624] font-medium">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                    <span>Factura fiscal mexicana con IVA desglosado</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[#2A2624] font-medium">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                    <span>Garantía directa de 3 años en chasis y mecanismos</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[#2A2624] font-medium">
+                    <Package className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                    <span>Envío asegurado en huacal a los 32 estados de México</span>
+                  </div>
                 </div>
               </div>
             </motion.div>

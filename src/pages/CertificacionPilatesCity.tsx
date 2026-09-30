@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
-import { Calendar, MapPin, ArrowLeft, Award, Clock, Sparkles, Building2 } from 'lucide-react';
+import { Calendar, MapPin, ArrowLeft, Award, Clock, Sparkles, Building2, MessageCircle, CheckCircle2 } from 'lucide-react';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import PreRegistrationModal from '@/components/certification/PreRegistrationModal';
 import StottPremiumProgram from '@/components/certification/StottPremiumProgram';
@@ -243,28 +243,23 @@ export const CertificacionPilatesCity: React.FC = () => {
             <div className="flex flex-wrap gap-4">
               {cohort ? (
                 <>
-                  <button
-                    onClick={() => {
-                      setWhopPlan(
-                        normalizedKey === 'monterrey'
-                          ? WHOP_CONFIG.plans.apartadoMonterrey.id
-                          : WHOP_CONFIG.plans.apartadoQueretaro.id
-                      );
-                      setWhopCheckoutOpen(true);
-                    }}
-                    data-rybbit-event="click_hero_apartar_cupo"
+                  <a
+                    href={wa}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-rybbit-event="click_hero_whatsapp_apartar"
                     data-rybbit-prop-city={shortCityName}
-                    className="px-8 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-all shadow-md font-semibold"
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-[#25D366] text-white rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#20ba59] transition-all shadow-lg font-bold hover:scale-[1.02] active:scale-95"
                   >
-                    {WHOP_CONFIG.paymentsEnabled ? 'Pre-reservar Cupo ($400 MXN)' : 'Apartar Cupo ($400 MXN)'}
-                  </button>
+                    <MessageCircle className="w-4 h-4" /> Apartar Cupo vía WhatsApp ($400 MXN)
+                  </a>
                   <button
                     onClick={() => setModalOpen(true)}
                     data-rybbit-event="click_hero_preregistro_gratis"
                     data-rybbit-prop-city={shortCityName}
-                    className="px-6 py-4 border border-[#2A2624]/30 text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white transition-colors"
+                    className="px-6 py-4 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-colors font-semibold"
                   >
-                    Pre-registro gratis
+                    Pre-registro sin costo
                   </button>
                   <a
                     href="#academias"
@@ -298,6 +293,20 @@ export const CertificacionPilatesCity: React.FC = () => {
                 </>
               )}
             </div>
+
+            {cohort && (
+              <div className="flex flex-wrap items-center gap-3 mt-4 text-[11px] text-[#5D5550]">
+                <span className="flex items-center gap-1.5 font-medium text-[#2A2624]">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> 1 Reformer individual por alumna(o)
+                </span>
+                <span className="opacity-40">•</span>
+                <span>Máximo 12 lugares</span>
+                <span className="opacity-40">•</span>
+                <span>Garantía de satisfacción</span>
+                <span className="opacity-40">•</span>
+                <span className="text-emerald-700 font-medium">Respuesta rápida en WhatsApp</span>
+              </div>
+            )}
           </div>
 
           {/* Right Column: Beautiful Rendered City Landmark Card */}
@@ -395,22 +404,21 @@ export const CertificacionPilatesCity: React.FC = () => {
               Reformer propio durante cada sesión y acceso vitalicio al campus digital. Congela tu cupo con solo <strong>$400 MXN</strong>.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <button
-                onClick={() => {
-                  setWhopPlan(
-                    normalizedKey === 'monterrey'
-                      ? WHOP_CONFIG.plans.apartadoMonterrey.id
-                      : WHOP_CONFIG.plans.apartadoQueretaro.id
-                  );
-                  setWhopCheckoutOpen(true);
-                }}
-                className="px-8 py-4 rounded-full bg-[#EAE8E4] text-[#2A2624] text-xs uppercase tracking-[0.2em] font-semibold hover:bg-white transition-colors shadow-lg"
+              <a
+                href={wa}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-rybbit-event="click_investment_whatsapp_apartar"
+                data-rybbit-prop-city={shortCityName}
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#25D366] text-white text-xs uppercase tracking-[0.2em] font-bold hover:bg-[#20ba59] transition-all shadow-lg hover:scale-[1.02] active:scale-95"
               >
-                {WHOP_CONFIG.paymentsEnabled ? 'Pre-reservar mi lugar ($400 MXN)' : 'Apartar Cupo ($400 MXN)'}
-              </button>
+                <MessageCircle className="w-4 h-4" /> Apartar vía WhatsApp ($400 MXN)
+              </a>
               <button
                 onClick={() => setModalOpen(true)}
-                className="px-8 py-4 rounded-full border border-white/30 text-white text-xs uppercase tracking-[0.2em] hover:bg-white/10 transition-colors"
+                data-rybbit-event="click_investment_preregistro"
+                data-rybbit-prop-city={shortCityName}
+                className="px-8 py-4 rounded-full border border-white/30 text-white text-xs uppercase tracking-[0.2em] hover:bg-white/10 transition-colors font-medium"
               >
                 Pre-registro sin costo
               </button>

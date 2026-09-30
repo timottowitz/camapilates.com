@@ -210,14 +210,7 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
   };
 
   const handleClose = () => {
-    // Confirm if user has entered data
-    if (formData.fullName || formData.email || formData.phone) {
-      if (confirm('¿Estás seguro de que quieres salir? Se perderá tu información.')) {
-        onClose();
-      }
-    } else {
-      onClose();
-    }
+    onClose();
   };
 
   const isCohortCity = formData.city.toLowerCase().includes('quer') || formData.city.toLowerCase().includes('mont');
@@ -286,7 +279,7 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
                     Pre-reservar Lugar con $400 MXN (1 de 12)
                   </a>
                   <a
-                    href={`https://wa.me/525549425550?text=${encodeURIComponent(`Hola, acabo de registrarme a la lista de espera para la Certificación en ${cohortCityName} con 50% de descuento. ¿Me comparten los detalles?`)}`}
+                    href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, acabo de registrarme a la lista de espera para la Certificación en ${cohortCityName} con 50% de descuento. ¿Me comparten los detalles?`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 w-full py-2.5 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors"
@@ -385,11 +378,27 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
           {/* Step 1: Personal Information */}
           {step === 1 && (
             <div className="space-y-6">
-              <div className="text-center mb-8">
+              <div className="text-center mb-6">
                 <h2 className="text-3xl font-serif italic text-[#2A2624] mb-2">
                   Comencemos con lo básico
                 </h2>
-                <p className="text-sm text-[#5D5550]">Paso 1 de 3</p>
+                <p className="text-sm text-[#5D5550]">Paso 1 de 3 · Registro rápido</p>
+              </div>
+
+              <div className="flex items-center justify-between p-3 rounded-xl bg-emerald-50 border border-emerald-200">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
+                  <span className="text-xs text-emerald-950 font-medium">¿Prefieres atención inmediata?</span>
+                </div>
+                <a
+                  href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, quiero información y apartar mi lugar para la Certificación de Pilates en ${cohortCityName || defaultCity || 'México'}.`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-rybbit-event="click_preregister_modal_whatsapp_fast"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-[11px] font-bold uppercase tracking-wider transition-all shadow-xs"
+                >
+                  <MessageCircle className="w-3.5 h-3.5" /> Chatear por WhatsApp
+                </a>
               </div>
 
               {(isCohortCity || defaultCity.toLowerCase().includes('quer') || defaultCity.toLowerCase().includes('mont')) && (

@@ -10,6 +10,7 @@ import ProductCard21Enhanced from '@/components/commerce21/ProductCard21Enhanced
 import QuickView21 from '@/components/commerce21/QuickView21';
 import type { Product as PType } from '@/lib/shop/types';
 import BackLink from '@/components/ui/back-link';
+import { MessageCircle } from 'lucide-react';
 
 const ShopCategory: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -113,9 +114,33 @@ const ShopCategory: React.FC = () => {
               )}
               <div className="text-sm text-[#5D5550] font-light">{products.length} resultado{products.length === 1 ? '' : 's'}</div>
             </div>
+
+            {/* Quick-Quote & Trust Bar */}
+            <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-white border border-[#2A2624]/10 shadow-xs">
+              <div className="flex flex-wrap items-center gap-3 text-xs text-[#5D5550]">
+                <span className="font-semibold text-[#2A2624] flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  Entrega asegurada en todo México
+                </span>
+                <span className="hidden sm:inline opacity-40">•</span>
+                <span>3 años de garantía estructural</span>
+                <span className="hidden sm:inline opacity-40">•</span>
+                <span>Planes a Meses Sin Intereses</span>
+              </div>
+              <a
+                href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, estoy viendo la categoría ${categorySeo?.h1 || category || 'Reformer'} en camadepilates.com y quisiera cotización formal con envío a mi ciudad.`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-rybbit-event="click_shop_quick_quote_whatsapp"
+                data-rybbit-prop-category={category || ''}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#25D366] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#20ba59] transition-all shadow-sm hover:scale-[1.02] active:scale-95 shrink-0"
+              >
+                <MessageCircle className="w-4 h-4" /> Cotizar por WhatsApp
+              </a>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {products.map((product) => (
               <ProductCard21Enhanced
                 key={product.slug}
@@ -125,6 +150,32 @@ const ShopCategory: React.FC = () => {
               />
             ))}
           </div>
+
+          {/* Mid-Page Technical Consultation Callout */}
+          {products.length > 0 && (
+            <div className="my-8 p-6 md:p-8 rounded-3xl bg-[#2A2624] text-[#EAE8E4] flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+              <div className="space-y-1.5 text-center md:text-left">
+                <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#D9865B]">
+                  Asesoría Técnica Gratuita
+                </span>
+                <h3 className="text-xl md:text-2xl font-serif italic text-white">
+                  ¿Dudas entre madera de Roble, Maple o estructura de Aluminio?
+                </h3>
+                <p className="text-xs md:text-sm text-[#EAE8E4]/80 font-light max-w-xl">
+                  Comparte las medidas de tu espacio o proyecto de estudio y te enviamos comparativa técnica de modelos y fletes por WhatsApp.
+                </p>
+              </div>
+              <a
+                href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, estuve revisando los modelos de ${category || 'Reformer'} y quisiera asesoría técnica para elegir entre madera y aluminio.`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-rybbit-event="click_shop_midpage_whatsapp"
+                className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#25D366] text-white rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#20ba59] transition-all shadow-lg shrink-0 hover:scale-105 active:scale-95"
+              >
+                <MessageCircle className="w-4 h-4" /> Asesoría en 5 Minutos
+              </a>
+            </div>
+          )}
 
           {products.length === 0 && (
             <div className="py-24 text-center">

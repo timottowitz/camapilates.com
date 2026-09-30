@@ -5,7 +5,7 @@ import { DEFAULTS } from '@/lib/seo';
 import { requireRouteMeta } from '@/lib/routeMeta';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
-import { ArrowRight, BookOpen, ShoppingBag, DollarSign, Ruler, Package, CheckCircle2, ShieldCheck, Zap } from 'lucide-react';
+import { ArrowRight, BookOpen, ShoppingBag, DollarSign, Ruler, Package, CheckCircle2, ShieldCheck, Zap, MessageCircle } from 'lucide-react';
 
 const CamaDePilatesHub: React.FC = () => {
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://camadepilates.com';
@@ -148,6 +148,15 @@ const CamaDePilatesHub: React.FC = () => {
             <Link to="/shop/category/reformers" className="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-[#2A2624] text-[#EAE8E4] text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#3E2723] hover:scale-105 transition-all">
               Ver catálogo de camas <ArrowRight className="w-4 h-4" />
             </Link>
+            <a
+              href={`https://wa.me/525548468190?text=${encodeURIComponent('Hola, leí la guía de camas de Pilates en camadepilates.com y quisiera asesoría para elegir el modelo adecuado con flete a mi ciudad.')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-rybbit-event="click_hub_whatsapp_advisory"
+              className="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-[#25D366] text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#20ba59] hover:scale-105 transition-all shadow-md"
+            >
+              <MessageCircle className="w-4 h-4" /> Asesoría por WhatsApp
+            </a>
             <Link to="/cama-de-pilates/precio" className="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-[#2A2624]/20 text-[#2A2624] text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-all">
               Guía de precios
             </Link>
