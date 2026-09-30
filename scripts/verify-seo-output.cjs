@@ -24,13 +24,19 @@ function rejectText(content, unexpected, file) {
   }
 }
 
+function requireCanonical(content, href, file) {
+  if (!content.includes(`href="${href}"`) || !content.includes('rel="canonical"')) {
+    throw new Error(`dist/${file} is missing canonical: ${href}`);
+  }
+}
+
 const home = read('index.html');
 requireText(
   home,
   '<title>Cama de Pilates (Reformer) en México — Guías, Precios y Venta | Edelweiss Pilates</title>',
   'index.html',
 );
-requireText(home, '<link rel="canonical" href="https://camadepilates.com/">', 'index.html');
+requireCanonical(home, 'https://camadepilates.com/', 'index.html');
 requireText(home, '<h1', 'index.html');
 requireText(home, 'href="/shop/category/reformers"', 'index.html');
 
@@ -40,9 +46,9 @@ requireText(
   '<title>Certificación Pilates Monterrey [Fechas 2026] | Edelweiss Pilates</title>',
   'certificacion-pilates/monterrey.html',
 );
-requireText(
+requireCanonical(
   certification,
-  '<link rel="canonical" href="https://camadepilates.com/certificacion-pilates/monterrey">',
+  'https://camadepilates.com/certificacion-pilates/monterrey',
   'certificacion-pilates/monterrey.html',
 );
 requireText(certification, 'Certificación de Pilates Reformer en Monterrey', 'certificacion-pilates/monterrey.html');
@@ -56,9 +62,9 @@ requireText(
   '<title>Clases y Estudios de Pilates en Monterrey | Edelweiss Pilates</title>',
   'estudios-de-pilates/monterrey.html',
 );
-requireText(
+requireCanonical(
   monterreyDirectory,
-  '<link rel="canonical" href="https://camadepilates.com/estudios-de-pilates/monterrey">',
+  'https://camadepilates.com/estudios-de-pilates/monterrey',
   'estudios-de-pilates/monterrey.html',
 );
 requireText(monterreyDirectory, 'Clases y estudios de Pilates en Monterrey', 'estudios-de-pilates/monterrey.html');
@@ -80,9 +86,9 @@ rejectText(
 );
 
 const studioEquipment = read('reformer-para-estudio.html');
-requireText(
+requireCanonical(
   studioEquipment,
-  '<link rel="canonical" href="https://camadepilates.com/reformer-para-estudio">',
+  'https://camadepilates.com/reformer-para-estudio',
   'reformer-para-estudio.html',
 );
 requireText(studioEquipment, 'href="/shop/category/reformers"', 'reformer-para-estudio.html');

@@ -362,7 +362,9 @@ const BlogPost = () => {
 };
 
 const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: string }) => {
-  const sections = content.split(/\n## /);
+  // Strip leading '# Title' from markdown so header H1 remains the single primary H1
+  const cleanedContent = content.replace(/^\s*#\s+[^\n]+\n+/, '');
+  const sections = cleanedContent.split(/\n## /);
 
   const processContent = (text: string) => {
     const elements: React.ReactNode[] = [];
@@ -413,7 +415,7 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
             components={{
               h1: ({ children, ...props }) => {
                 const id = slugify(getText(children));
-                return <h1 id={id} {...props}>{children}</h1>;
+                return <h2 id={id} className="text-3xl font-serif italic text-[#2A2624]" {...props}>{children}</h2>;
               },
               h2: ({ children, ...props }) => {
                 const id = slugify(getText(children));

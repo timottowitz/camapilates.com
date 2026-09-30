@@ -66,18 +66,18 @@ function baseHtml(template, headMeta, bodyHtml) {
   // inject new head tags
   html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${htmlEscape(headMeta.title)}</title>`);
   const headInsert = [
-    `<meta name="description" content="${htmlEscape(headMeta.description || '')}">`,
-    headMeta.keywords ? `<meta name="keywords" content="${htmlEscape(headMeta.keywords)}">` : '',
-    `<link rel="canonical" href="${htmlEscape(headMeta.canonical)}">`,
-    `<meta property="og:title" content="${htmlEscape(headMeta.title)}">`,
-    `<meta property="og:description" content="${htmlEscape(headMeta.description || '')}">`,
-    `<meta property="og:type" content="${htmlEscape(headMeta.ogType || 'website')}">`,
-    `<meta property="og:url" content="${htmlEscape(headMeta.canonical)}">`,
-    `<meta property="og:image" content="${htmlEscape(headMeta.ogImage || '')}">`,
-    `<meta name="twitter:card" content="summary_large_image">`,
-    `<meta name="twitter:title" content="${htmlEscape(headMeta.title)}">`,
-    `<meta name="twitter:description" content="${htmlEscape(headMeta.description || '')}">`,
-    headMeta.ogImage ? `<meta name="twitter:image" content="${htmlEscape(headMeta.ogImage)}">` : '',
+    `<meta name="description" data-rh="true" content="${htmlEscape(headMeta.description || '')}">`,
+    headMeta.keywords ? `<meta name="keywords" data-rh="true" content="${htmlEscape(headMeta.keywords)}">` : '',
+    `<link rel="canonical" data-rh="true" href="${htmlEscape(headMeta.canonical)}">`,
+    `<meta property="og:title" data-rh="true" content="${htmlEscape(headMeta.title)}">`,
+    `<meta property="og:description" data-rh="true" content="${htmlEscape(headMeta.description || '')}">`,
+    `<meta property="og:type" data-rh="true" content="${htmlEscape(headMeta.ogType || 'website')}">`,
+    `<meta property="og:url" data-rh="true" content="${htmlEscape(headMeta.canonical)}">`,
+    `<meta property="og:image" data-rh="true" content="${htmlEscape(headMeta.ogImage || '')}">`,
+    `<meta name="twitter:card" data-rh="true" content="summary_large_image">`,
+    `<meta name="twitter:title" data-rh="true" content="${htmlEscape(headMeta.title)}">`,
+    `<meta name="twitter:description" data-rh="true" content="${htmlEscape(headMeta.description || '')}">`,
+    headMeta.ogImage ? `<meta name="twitter:image" data-rh="true" content="${htmlEscape(headMeta.ogImage)}">` : '',
   ].filter(Boolean).join('\n');
   html = html.replace(/<\/head>/, headInsert + '\n</head>');
   // Replace root content
@@ -374,8 +374,10 @@ function buildBlogBreadcrumbSchema(p, origin) {
 
 function renderPost({ slug, title, description, category, date, updatedDate, tags, heroImage, content }, marked, posts) {
   const current = { slug, title, description, category, date, updatedDate, tags, heroImage, content };
-  const md = content
-    ? renderShortcodes(content, current, posts)
+  // Strip leading '# Title' from markdown to prevent duplicate H1 tags (header already renders H1)
+  const cleanedContent = (content || '').replace(/^\s*#\s+[^\n]+\n+/, '');
+  const md = cleanedContent
+    ? renderShortcodes(cleanedContent, current, posts)
     : '';
   const heroHtml = heroImage
     ? `<div class="mb-8"><img src="${htmlEscape(heroImage)}" alt="${htmlEscape(title)}" class="w-full rounded-sm shadow-sm aspect-[16/9] object-cover" /></div>`
