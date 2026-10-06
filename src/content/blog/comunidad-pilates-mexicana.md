@@ -63,8 +63,7 @@ Monterrey destaca por albergar programas de formación de primer nivel y por su 
 > Si buscas formarte profesionalmente en Pilates [Reformer](/blog/pilates-reformer-cdmx) sin tener que pausar tus actividades semanales:  
 > • **Monterrey:** 5 de Diciembre 2026 al 17 de Enero 2027 (San Pedro). [Ver convocatoria Monterrey →](/certificacion-pilates/monterrey)  
 > • **Querétaro:** 7 al 29 de Noviembre 2026. [Ver convocatoria Querétaro →](/certificacion-pilates/queretaro)  
-> • **Info Day en Vivo (Sáb 26 Sep · 11:00 AM CST):** Sesión informativa 100% gratuita con **Gabi y Laura Munive** vía Google Meet para explicar los próximos cursos: Curso Básico (28h · $25,000 MXN) y Certificación Completa (48h · $38,000 MXN).  
-> 👉 [**Registrarme al Info Day Gratuito vía Google Meet →**](/certificacion-pilates/webinar)
+> • **Lista de espera:** El Info Day del 26 de septiembre ya terminó, ¡gracias a quienes nos acompañaron! Súmate a la lista de espera y te avisaremos primero sobre los próximos cursos. [Unirme a la lista de espera →](/certificacion-pilates/webinar#registro)
 
 <see-also limit="3" />
 

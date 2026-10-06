@@ -120,8 +120,7 @@ Para asegurar la calidad y tu seguridad, busca estudios que enfaticen la certifi
 > Edelweiss abre convocatoria para formarse en Reformer en formato intensivo de fines de semana:  
 > • **Querétaro:** Noviembre 2026 (4 fines de semana). [Convocatoria Querétaro →](/certificacion-pilates/queretaro)  
 > • **Monterrey:** Diciembre 2026 – Enero 2027 (4 fines de semana). [Convocatoria Monterrey →](/certificacion-pilates/monterrey)  
-> • **Info Day en Vivo (Sábado 26 de Septiembre · 11:00 AM CST):** Sesión informativa 100% gratuita vía Google Meet con las Master Trainers **Gabi y Laura Munive** para explicar los próximos cursos de certificación y resolver dudas.  
-> 👉 [**Registrarme al Info Day Gratuito en Google Meet →**](/certificacion-pilates/webinar)
+> • **Lista de espera:** El Info Day del 26 de septiembre ya terminó, ¡gracias a quienes nos acompañaron! Súmate a la lista de espera y te avisaremos primero sobre los próximos cursos. [Unirme a la lista de espera →](/certificacion-pilates/webinar#registro)
 
 ### Soy principiante, ¿debo empezar con Pilates de Mat o directamente en el Reformer?
 

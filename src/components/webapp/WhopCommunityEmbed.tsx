@@ -331,10 +331,10 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
         </div>
         <div className="flex items-center gap-3">
           <a
-            href="/certificacion-pilates/webinar"
+            href="/certificacion-pilates/webinar#registro"
             className="text-neutral-800 hover:text-neutral-950 font-medium underline"
           >
-            Detalles Info Day 26 Sep →
+            Lista de espera próximos cursos →
           </a>
           <a
             href={WHOP_CONFIG.customerPortalUrl}

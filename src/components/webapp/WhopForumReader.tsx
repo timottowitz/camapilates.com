@@ -284,7 +284,7 @@ export const WhopForumReader: React.FC<WhopForumReaderProps> = ({
           { id: 'all', label: 'Todos los Temas' },
           { id: 'biomecanica', label: 'Biomecánica & Resortes' },
           { id: 'patologias', label: 'Patologías & Modificaciones' },
-          { id: 'webinar', label: 'Info Day 26 Sep' },
+          { id: 'webinar', label: 'Info Day' },
           { id: 'cohortes', label: 'Querétaro / Monterrey' },
         ].map((cat) => (
           <button
