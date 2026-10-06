@@ -6,7 +6,6 @@ import { useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import {
   Sparkles,
-  Calendar,
   MapPin,
   Award,
   CheckCircle2,
@@ -39,8 +38,6 @@ import { WHOP_CONFIG } from '@/lib/whop/whopConfig';
 import {
   CERTIFICATION_COHORTS,
   WEBINAR_INFO,
-  getGoogleCalendarUrl,
-  generateIcsContent
 } from '@/content/certification/cohortsData';
 import {
   STOTT_COURSES,
@@ -73,7 +70,7 @@ export const CertificacionPilates: React.FC = () => {
   const [enrollmentData, setEnrollmentData] = useState<any>(null);
 
   // Webinar & Whitelist Fast-Registration State
-  const registerMutation = useMutation(api.certificationPreRegistrations.registerWebinarWaitlist);
+  const joinWaitlist = useMutation(api.certificationPreRegistrations.submitServiceWaitlist);
 
   const [selectedCohort, setSelectedCohort] = useState<'queretaro-nov-2026' | 'monterrey-dec-jan-2026-2027' | 'both'>('queretaro-nov-2026');
   const [fullName, setFullName] = useState('');
@@ -83,39 +80,6 @@ export const CertificacionPilates: React.FC = () => {
   const [isRegistered, setIsRegistered] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [citySearchQuery, setCitySearchQuery] = useState('');
-
-  // Countdown timer to September 26, 2026 11:00 AM CST
-  const [timeLeft, setTimeLeft] = useState<{ days: number; hours: number; minutes: number; seconds: number }>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
-
-  useEffect(() => {
-    const target = new Date('2026-09-26T11:00:00-06:00').getTime();
-
-    const updateTimer = () => {
-      const now = new Date().getTime();
-      const diff = target - now;
-
-      if (diff <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-      setTimeLeft({ days, hours, minutes, seconds });
-    };
-
-    updateTimer();
-    const interval = setInterval(updateTimer, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     try {
@@ -156,35 +120,21 @@ export const CertificacionPilates: React.FC = () => {
 
     setIsSubmitting(true);
     try {
-      if (registerMutation) {
-        await registerMutation({
-          fullName,
-          email,
-          phone: phoneDigits,
-          cohort: selectedCohort,
-          experienceLevel: 'some-experience',
-          source: 'certificacion-pilates-hero-whitelist',
-        });
-      }
+      await joinWaitlist({
+        fullName: fullName.trim(),
+        email: email.trim(),
+        phone: phoneDigits,
+        cohort: selectedCohort,
+        serviceOrPlan: 'Lista de espera próximos cursos (certificación)',
+        source: 'certificacion-pilates-hero-whitelist',
+      });
       setIsRegistered(true);
     } catch (err: unknown) {
-      console.warn('Convex submission fallback:', err);
-      setIsRegistered(true);
+      console.error('Waitlist submission failed:', err);
+      setErrorMsg('No pudimos guardar tu registro. Intenta de nuevo o escríbenos por WhatsApp.');
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleDownloadIcs = () => {
-    const ics = generateIcsContent();
-    const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', 'Info-Day-Certificacion-Pilates-26Sep.ics');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   };
 
   const shareWaUrl = `https://wa.me/${WEBINAR_INFO.whatsappSupportNumber}?text=${encodeURIComponent(
@@ -286,39 +236,6 @@ export const CertificacionPilates: React.FC = () => {
     },
   ];
 
-  const webinarSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'EducationEvent',
-    name: WEBINAR_INFO.title,
-    description: WEBINAR_INFO.subtitle,
-    startDate: WEBINAR_INFO.isoDateTime,
-    endDate: WEBINAR_INFO.isoEndDateTime,
-    eventStatus: 'https://schema.org/EventScheduled',
-    eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
-    location: {
-      '@type': 'VirtualLocation',
-      url: `${origin}/certificacion-pilates/webinar`,
-    },
-    performer: WEBINAR_INFO.hosts.map((h) => ({
-      '@type': 'Person',
-      name: h.name,
-      jobTitle: h.role,
-    })),
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'MXN',
-      availability: 'https://schema.org/InStock',
-      validFrom: '2026-01-01',
-      url: `${origin}/certificacion-pilates/webinar`,
-    },
-    organizer: {
-      '@type': 'Organization',
-      name: 'Edelweiss Pilates',
-      url: origin,
-    },
-  };
-
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -392,7 +309,6 @@ export const CertificacionPilates: React.FC = () => {
             {JSON.stringify(schema)}
           </script>
         ))}
-        <script type="application/ld+json">{JSON.stringify(webinarSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
@@ -405,7 +321,7 @@ export const CertificacionPilates: React.FC = () => {
         <div className="flex flex-wrap items-center gap-2.5 mb-6">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100/90 border border-amber-300 text-amber-950 font-mono text-[11px] font-semibold uppercase tracking-wider">
             <Sparkles className="w-3 h-3 text-amber-700" />
-            INFO DAY EN VIVO · SÁBADO 26 SEPTIEMBRE 11:00 AM CST
+            INFO DAY FINALIZADO · LISTA DE ESPERA ABIERTA
           </span>
           <span className="inline-flex items-center px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-neutral-700 font-mono text-[11px] uppercase tracking-wider">
             [ QUERÉTARO · MONTERREY ]
@@ -430,7 +346,7 @@ export const CertificacionPilates: React.FC = () => {
         <div id="webinar-section" className="bg-white rounded-[32px] p-6 sm:p-8 md:p-12 border-2 border-neutral-900 shadow-lg relative overflow-hidden mb-12 scroll-mt-24">
           {/* Top-right black ribbon matching cohort cards */}
           <div className="absolute top-0 right-0 bg-[#111111] text-white px-5 py-1.5 rounded-bl-2xl font-mono text-[11px] font-bold uppercase tracking-wider">
-            Sábado 26 Septiembre · 11:00 AM CST
+            Info Day finalizado
           </div>
 
           <div className="relative z-10 grid lg:grid-cols-12 gap-10 items-center">
@@ -438,54 +354,20 @@ export const CertificacionPilates: React.FC = () => {
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 text-amber-900 font-mono text-xs uppercase tracking-wider border border-amber-200 font-medium">
                 <Video className="w-3.5 h-3.5 text-amber-700" />
-                <span>Info Day Gratuito · Online en Vivo</span>
+                <span>Gracias por acompañarnos en el Info Day</span>
               </div>
 
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-neutral-900 tracking-tight leading-tight">
-                Elige entre Curso Básico (28h) o Certificación Completa (48h) con cupos limitados.
+                Súmate a la lista de espera de los próximos cursos presenciales.
               </h2>
 
               <p className="text-sm md:text-base text-neutral-600 leading-relaxed font-normal">
-                Únete a la sesión en directo con <strong className="text-neutral-900 font-semibold">Gabi</strong> y{' '}
-                <strong className="text-neutral-900 font-semibold">Laura Munive</strong> el{' '}
-                <strong className="text-neutral-900 font-semibold">sábado 26 de septiembre a las 11:00 AM CST en el Info Day</strong>. Conoce a detalle el mapa de 28h y 48h,
-                resuelve tus dudas y accede antes que nadie a los <strong className="text-neutral-900 font-semibold">12 cupos exclusivos por sede</strong>:{' '}
-                <strong className="text-neutral-900 font-semibold">Curso Básico (28h · $25,000 MXN)</strong> o{' '}
-                <strong className="text-neutral-900 font-semibold">Certificación Completa (48h · $38,000 MXN)</strong>.
+                Gracias a todas las personas que se conectaron al Info Day con{' '}
+                <strong className="text-neutral-900 font-semibold">Gabi</strong> y{' '}
+                <strong className="text-neutral-900 font-semibold">Laura Munive</strong> el 26 de septiembre.
+                Si aún quieres certificarte, anótate en la lista de espera y te avisaremos primero sobre los próximos cursos en Querétaro y Monterrey: <strong className="text-neutral-900 font-semibold">Curso Básico (28h)</strong> y{' '}
+                <strong className="text-neutral-900 font-semibold">Certificación Completa (48h)</strong>.
               </p>
-
-              {/* Countdown Clocks */}
-              <div className="pt-2">
-                <div className="text-[11px] font-mono text-neutral-500 uppercase tracking-widest mb-2 font-semibold">
-                  // TIEMPO RESTANTE PARA EL INFO DAY:
-                </div>
-                <div className="grid grid-cols-4 gap-2.5 max-w-md">
-                  <div className="bg-[#F8F8F6] border border-neutral-200/90 rounded-2xl p-3 text-center">
-                    <span className="block text-2xl md:text-3xl font-mono font-bold text-neutral-900">
-                      {timeLeft.days.toString().padStart(2, '0')}
-                    </span>
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 font-medium">Días</span>
-                  </div>
-                  <div className="bg-[#F8F8F6] border border-neutral-200/90 rounded-2xl p-3 text-center">
-                    <span className="block text-2xl md:text-3xl font-mono font-bold text-neutral-900">
-                      {timeLeft.hours.toString().padStart(2, '0')}
-                    </span>
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 font-medium">Horas</span>
-                  </div>
-                  <div className="bg-[#F8F8F6] border border-neutral-200/90 rounded-2xl p-3 text-center">
-                    <span className="block text-2xl md:text-3xl font-mono font-bold text-neutral-900">
-                      {timeLeft.minutes.toString().padStart(2, '0')}
-                    </span>
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 font-medium">Min</span>
-                  </div>
-                  <div className="bg-[#F8F8F6] border border-neutral-200/90 rounded-2xl p-3 text-center">
-                    <span className="block text-2xl md:text-3xl font-mono font-bold text-neutral-900">
-                      {timeLeft.seconds.toString().padStart(2, '0')}
-                    </span>
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 font-medium">Seg</span>
-                  </div>
-                </div>
-              </div>
 
               {/* Fast-action CTA and WhatsApp */}
               <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -624,11 +506,11 @@ export const CertificacionPilates: React.FC = () => {
                       disabled={isSubmitting}
                       className="w-full py-3.5 rounded-full bg-[#111111] hover:bg-neutral-800 text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50"
                     >
-                      <span>{isSubmitting ? 'Registrando...' : 'Apartar Mi Lugar Gratis en el Webinar →'}</span>
+                      <span>{isSubmitting ? 'Guardando...' : 'Unirme a la Lista de Espera →'}</span>
                     </button>
 
                     <div className="text-[11px] font-mono text-center text-neutral-500">
-                      ✓ Sesión informativa 100% gratuita · Cupos presenciales limitados
+                      ✓ Gratis y sin compromiso · Te avisamos primero
                     </div>
                   </form>
                 ) : (
@@ -638,9 +520,9 @@ export const CertificacionPilates: React.FC = () => {
                     </div>
 
                     <div>
-                      <h3 className="text-xl font-bold text-neutral-900 mb-1">¡Registro Confirmado!</h3>
+                      <h3 className="text-xl font-bold text-neutral-900 mb-1">¡Ya estás en la lista!</h3>
                       <p className="text-xs text-neutral-600 leading-relaxed max-w-sm mx-auto">
-                        Estás en la lista de espera prioritaria para{' '}
+                        Anotamos tu interés en{' '}
                         <strong className="text-neutral-900">
                           {selectedCohort === 'queretaro-nov-2026'
                             ? 'Querétaro'
@@ -648,28 +530,11 @@ export const CertificacionPilates: React.FC = () => {
                             ? 'Monterrey'
                             : 'Querétaro y Monterrey'}
                         </strong>
-                        . Te enviaremos el enlace para unirte a la transmisión en vivo del sábado 26 de septiembre a las 11:00 AM CST.
+                        . Te escribiremos por WhatsApp y correo cuando haya novedades de los próximos cursos.
                       </p>
                     </div>
 
                     <div className="space-y-2.5 pt-2">
-                      <a
-                        href={getGoogleCalendarUrl()}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full py-2.5 rounded-full bg-white hover:bg-neutral-50 border border-neutral-300 text-neutral-800 text-xs font-mono uppercase tracking-wider flex items-center justify-center gap-2 transition-colors shadow-xs"
-                      >
-                        <Calendar className="w-3.5 h-3.5 text-amber-600" />
-                        <span>+ Agregar a Google Calendar</span>
-                      </a>
-
-                      <button
-                        onClick={handleDownloadIcs}
-                        className="w-full py-2 rounded-full text-xs font-mono text-neutral-500 hover:text-neutral-800 transition-colors"
-                      >
-                        Descargar archivo .ICS para Apple / Outlook
-                      </button>
-
                       <a
                         href={shareWaUrl}
                         target="_blank"
@@ -677,7 +542,7 @@ export const CertificacionPilates: React.FC = () => {
                         className="w-full py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors shadow-sm"
                       >
                         <MessageSquare className="w-4 h-4" />
-                        <span>Confirmar con Gabi y Laura por WhatsApp</span>
+                        <span>Saludar a Gabi y Laura por WhatsApp</span>
                       </a>
 
                       <div className="pt-2">

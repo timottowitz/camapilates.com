@@ -12,8 +12,8 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select';
-import { CheckCircle2, ArrowLeft, ArrowRight, Loader2, Sparkles, Calendar, Video, MessageCircle } from 'lucide-react';
-import { getGoogleCalendarUrl, WEBINAR_INFO, CERTIFICATION_COHORTS } from '@/content/certification/cohortsData';
+import { CheckCircle2, ArrowLeft, ArrowRight, Loader2, Sparkles, MessageCircle } from 'lucide-react';
+import { CERTIFICATION_COHORTS } from '@/content/certification/cohortsData';
 
 interface PreRegistrationModalProps {
   isOpen: boolean;
@@ -194,9 +194,8 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
         preferredTimeline: formData.preferredTimeline as Timeline,
         source,
         selectedCohort,
-        registeredForWebinar: isQro || isMty,
-        webinarDate: (isQro || isMty) ? '2026-09-26' : undefined,
-        discountClaimed: isQro || isMty,
+        registeredForWebinar: false,
+        discountClaimed: false,
       });
 
       setShowSuccess(true);
@@ -249,27 +248,6 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
                   </p>
                 </div>
 
-                <div className="border border-[#2A2624]/15 rounded-xl p-3.5 text-xs text-[#5D5550] space-y-2 bg-[#F7F5F0]">
-                  <div className="flex items-center gap-1.5 font-medium text-[#2A2624]">
-                    <Video className="w-4 h-4 text-[#8C6D58]" />
-                    <span>Info Day: Sesión Informativa de Próximos Cursos</span>
-                  </div>
-                  <p className="text-[11px] leading-relaxed">
-                    <strong>{WEBINAR_INFO.date}</strong> con Gabi y Laura Munive. Explicación a fondo de los próximos cursos presenciales, fechas, requisitos y dudas en vivo.
-                  </p>
-                  <div className="pt-1">
-                    <a
-                      href={getGoogleCalendarUrl()}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-1.5 w-full py-2 bg-white hover:bg-stone-100 border border-stone-300 rounded-lg text-xs font-medium text-[#2A2624] transition-colors"
-                    >
-                      <Calendar className="w-3.5 h-3.5" />
-                      Agregar al Google Calendar
-                    </a>
-                  </div>
-                </div>
-
                 <div className="pt-2 flex flex-col gap-2">
                   <a
                     href="/app?tab=pagos"
@@ -279,7 +257,7 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
                     Pre-reservar Lugar con $400 MXN (1 de 12)
                   </a>
                   <a
-                    href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, acabo de registrarme a la lista de espera para la Certificación en ${cohortCityName} con 50% de descuento. ¿Me comparten los detalles?`)}`}
+                    href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, acabo de registrarme a la lista de espera para la Certificación en ${cohortCityName} para los próximos cursos. ¿Me comparten los detalles?`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 w-full py-2.5 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors"
@@ -295,10 +273,10 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
                       Campus Virtual & Whop →
                     </a>
                     <a
-                      href="/certificacion-pilates/webinar"
+                      href="/certificacion-pilates"
                       className="text-[#8C6D58] hover:underline font-medium"
                     >
-                      Info Day 26 Sep →
+                      Ver cursos y fechas →
                     </a>
                   </div>
                 </div>
@@ -309,34 +287,6 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
                   Te contactaremos en las próximas <strong>48 horas</strong> con información sobre las próximas certificaciones en{' '}
                   <strong>{formData.city}</strong>.
                 </p>
-
-                <div className="border border-[#2A2624]/15 rounded-xl p-4 text-xs text-[#5D5550] space-y-2.5 bg-[#F7F5F0]">
-                  <div className="flex items-center gap-1.5 font-semibold text-[#2A2624]">
-                    <Video className="w-4 h-4 text-[#8C6D58]" />
-                    <span>Info Day Online Gratuito · Sábado 26 de Septiembre</span>
-                  </div>
-                  <p className="text-[11px] text-[#5D5550] leading-relaxed">
-                    Acompáñanos a la sesión informativa en vivo con <strong>Gabi</strong> y <strong>Laura Munive</strong> para conocer a detalle los próximos cursos presenciales, sedes, costos, temarios y cómo asegurar tu lugar.
-                  </p>
-                  <div className="pt-1 flex flex-col gap-2">
-                    <a
-                      href="/certificacion-pilates/webinar"
-                      className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 bg-[#2A2624] hover:bg-[#3E2723] text-white rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors text-center"
-                    >
-                      <span>Ver detalles del Info Day</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </a>
-                    <a
-                      href={getGoogleCalendarUrl()}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-1.5 w-full py-2 bg-white hover:bg-stone-100 border border-stone-300 rounded-lg text-xs font-medium text-[#2A2624] transition-colors"
-                    >
-                      <Calendar className="w-3.5 h-3.5" />
-                      Agregar al Google Calendar
-                    </a>
-                  </div>
-                </div>
               </div>
             )}
 

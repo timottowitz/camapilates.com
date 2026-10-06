@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Sparkles, ArrowRight, Video, Users, Award } from 'lucide-react';
+import { Calendar, Sparkles, ArrowRight, ListPlus, Users, Award } from 'lucide-react';
 import { CERTIFICATION_COHORTS, WEBINAR_INFO } from '@/content/certification/cohortsData';
 import { useConvexAssets } from '@/lib/convexAssets';
 
@@ -73,7 +73,7 @@ export const CertificationWebinarBanner: React.FC<CertificationWebinarBannerProp
           </h2>
 
           <p className="text-xs sm:text-sm text-[#EAE8E4]/90 font-light leading-relaxed mb-5 drop-shadow-sm">
-            Certificación presencial intensiva con <strong>Gabi</strong> y <strong>Laura Munive</strong>: Curso Básico (28h · $25,000 MXN) y Curso Completo (48h · $38,000 MXN). Práctica en Reformer, cupos reducidos (12 por sede) y sesión informativa online previa (Info Day · Sábado 26 de Septiembre).
+            Certificación presencial intensiva con <strong>Gabi</strong> y <strong>Laura Munive</strong>: Curso Básico (28h · $25,000 MXN) y Curso Completo (48h · $38,000 MXN). Práctica en Reformer, cupos reducidos (12 por sede). El Info Day ya terminó: gracias a quienes nos acompañaron. Súmate a la lista de espera para enterarte primero de los próximos cursos.
           </p>
 
           <div className="flex flex-wrap items-center gap-2.5 text-xs text-[#EAE8E4]/95">
@@ -102,11 +102,11 @@ export const CertificationWebinarBanner: React.FC<CertificationWebinarBannerProp
           </Link>
 
           <Link
-            to="/certificacion-pilates/webinar"
+            to="/certificacion-pilates/webinar#registro"
             className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-black/40 backdrop-blur-md border border-white/25 text-white/95 text-xs uppercase tracking-wider font-medium hover:bg-white/15 hover:border-white/40 hover:scale-105 active:scale-95 transition-all duration-300 text-center shadow-lg"
           >
-            <Video className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Info Day Online Gratis (26 Sep)</span>
+            <ListPlus className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Unirme a la Lista de Espera</span>
           </Link>
 
           <a
