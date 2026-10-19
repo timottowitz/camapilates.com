@@ -314,9 +314,21 @@ const ProductPage: React.FC = () => {
     if (prod.hoverImage && prod.hoverImage !== mainImg) {
       list.push({
         src: prod.hoverImage,
-        alt: `${prod.name} — Alternativa`,
+        alt: `${prod.name} — Vista en estudio`,
         type: 'lifestyle' as const,
         label: 'En contexto'
+      });
+    }
+    if (prod.galleryImages && Array.isArray(prod.galleryImages)) {
+      prod.galleryImages.forEach((imgSrc, idx) => {
+        if (imgSrc && imgSrc !== mainImg && imgSrc !== prod.hoverImage) {
+          list.push({
+            src: imgSrc,
+            alt: `${prod.name} — Detalle y mecánica ${idx + 1}`,
+            type: (idx % 2 === 0 ? 'detail' : 'lifestyle') as 'detail' | 'lifestyle',
+            label: idx % 2 === 0 ? 'Detalle y acabados' : 'Perspectiva arquitectónica'
+          });
+        }
       });
     }
     return list;

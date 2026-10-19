@@ -6,8 +6,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A068-AL",
     "image": "/images/products/reformer-aluminio-riel-deslizante-a068.webp",
-    "hoverImage": "/images/products/reformer-aluminio-riel-deslizante-a068.webp",
-    "price": "69617.00",
+    "hoverImage": "/images/products/reformer-aluminio-riel-deslizante-a068-studio.webp",
+    "price": "52212.75",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -22,7 +22,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_aluminio_riel_deslizante_a068_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-aluminio-riel-deslizante-a068-studio.webp",
+      "/images/products/reformer-aluminio-riel-deslizante-a068-detail.webp"
+    ]
   },
   {
     "slug": "reformer-aluminio-media-torre-a102",
@@ -31,8 +35,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A102-AL-SS",
     "image": "/images/products/reformer-aluminio-media-torre-a102.webp",
-    "hoverImage": "/images/products/reformer-aluminio-media-torre-a102.webp",
-    "price": "85050.00",
+    "hoverImage": "/images/products/reformer-aluminio-media-torre-a102-studio.webp",
+    "price": "63787.50",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -47,7 +51,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_aluminio_media_torre_a102_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-aluminio-media-torre-a102-studio.webp",
+      "/images/products/reformer-aluminio-media-torre-a102-detail.webp"
+    ]
   },
   {
     "slug": "reformer-aluminio-nogal-a039",
@@ -56,8 +64,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A039-A-AL-WALNUT",
     "image": "/images/products/reformer-aluminio-nogal-a039.webp",
-    "hoverImage": "/images/products/reformer-aluminio-nogal-a039.webp",
-    "price": "36716.00",
+    "hoverImage": "/images/products/reformer-aluminio-nogal-a039-studio.webp",
+    "price": "27537.00",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -72,7 +80,11 @@
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_aluminio_nogal_a039_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-aluminio-nogal-a039-studio.webp",
+      "/images/products/reformer-aluminio-nogal-a039-detail.webp"
+    ]
   },
   {
     "slug": "reformer-maple-barra-patentada-a001",
@@ -81,8 +93,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A001-MAPLE",
     "image": "/images/products/reformer-maple-barra-patentada-a001.webp",
-    "hoverImage": "/images/products/reformer-maple-barra-patentada-a001-studio.jpg",
-    "price": "32901.00",
+    "hoverImage": "/images/products/reformer-maple-barra-patentada-a001-studio.webp",
+    "price": "24675.75",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -97,7 +109,11 @@
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_maple_barra_patentada_a001_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-maple-barra-patentada-a001-studio.webp",
+      "/images/products/reformer-maple-barra-patentada-a001-detail.webp"
+    ]
   },
   {
     "slug": "reformer-roble-barra-patentada-a107",
@@ -106,8 +122,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A107-OAK",
     "image": "/images/products/reformer-roble-barra-patentada-a107.webp",
-    "hoverImage": "/images/products/reformer-roble-barra-patentada-a107.webp",
-    "price": "28237.00",
+    "hoverImage": "/images/products/reformer-roble-barra-patentada-a107-studio.webp",
+    "price": "21177.75",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -122,7 +138,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_roble_barra_patentada_a107_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-roble-barra-patentada-a107-studio.webp",
+      "/images/products/reformer-roble-barra-patentada-a107-detail.webp"
+    ]
   },
   {
     "slug": "silla-wunda-roble-premium-a101",
@@ -131,8 +151,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A101-OAK",
     "image": "/images/products/silla-wunda-roble-premium-a101.webp",
-    "hoverImage": "/images/products/silla-wunda-roble-premium-a101.webp",
-    "price": "26711.00",
+    "hoverImage": "/images/products/silla-wunda-roble-premium-a101-studio.webp",
+    "price": "20033.25",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Sillas y Barriles",
@@ -147,7 +167,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_silla_wunda_roble_premium_a101_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/silla-wunda-roble-premium-a101-studio.webp",
+      "/images/products/silla-wunda-roble-premium-a101-detail.webp"
+    ]
   },
   {
     "slug": "reformer-roble-a015",
@@ -156,8 +180,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A015-OAK",
     "image": "/images/products/reformer-roble-a015.webp",
-    "hoverImage": "/images/products/reformer-roble-a015.webp",
-    "price": "23234.00",
+    "hoverImage": "/images/products/reformer-roble-a015-studio.webp",
+    "price": "17425.50",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -172,7 +196,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_roble_a015_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-roble-a015-studio.webp",
+      "/images/products/reformer-roble-a015-detail.webp"
+    ]
   },
   {
     "slug": "reformer-roble-media-torre-a016",
@@ -181,8 +209,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A016-OAK-SS",
     "image": "/images/products/reformer-roble-media-torre-a016.webp",
-    "hoverImage": "/images/products/reformer-roble-media-torre-a016.webp",
-    "price": "32901.00",
+    "hoverImage": "/images/products/reformer-roble-media-torre-a016-studio.webp",
+    "price": "24675.75",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -197,7 +225,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_roble_media_torre_a016_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-roble-media-torre-a016-studio.webp",
+      "/images/products/reformer-roble-media-torre-a016-detail.webp"
+    ]
   },
   {
     "slug": "reformer-roble-barra-deslizante-a017",
@@ -206,8 +238,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A017-OAK",
     "image": "/images/products/reformer-roble-barra-deslizante-a017.webp",
-    "hoverImage": "/images/products/reformer-roble-barra-deslizante-a017.webp",
-    "price": "28237.00",
+    "hoverImage": "/images/products/reformer-roble-barra-deslizante-a017-studio.webp",
+    "price": "21177.75",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -222,7 +254,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_roble_barra_deslizante_a017_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-roble-barra-deslizante-a017-studio.webp",
+      "/images/products/reformer-roble-barra-deslizante-a017-detail.webp"
+    ]
   },
   {
     "slug": "reformer-roble-barra-deslizante-torre-a018",
@@ -231,8 +267,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A018-OAK-SS",
     "image": "/images/products/reformer-roble-barra-deslizante-torre-a018.webp",
-    "hoverImage": "/images/products/reformer-roble-barra-deslizante-torre-a018.webp",
-    "price": "37480.00",
+    "hoverImage": "/images/products/reformer-roble-barra-deslizante-torre-a018-studio.webp",
+    "price": "28110.00",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -247,7 +283,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_roble_barra_deslizante_torre_a018_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-roble-barra-deslizante-torre-a018-studio.webp",
+      "/images/products/reformer-roble-barra-deslizante-torre-a018-detail.webp"
+    ]
   },
   {
     "slug": "cadillac-roble-a019",
@@ -256,8 +296,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A019-OAK-SS",
     "image": "/images/products/cadillac-roble-a019.webp",
-    "hoverImage": "/images/products/cadillac-roble-a019.webp",
-    "price": "26287.00",
+    "hoverImage": "/images/products/cadillac-roble-a019-studio.webp",
+    "price": "19715.25",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Cadillacs y Torres",
@@ -272,7 +312,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_cadillac_roble_a019_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/cadillac-roble-a019-studio.webp",
+      "/images/products/cadillac-roble-a019-detail.webp"
+    ]
   },
   {
     "slug": "reformer-roble-torre-completa-a020",
@@ -281,8 +325,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A020-OAK-SS",
     "image": "/images/products/reformer-roble-torre-completa-a020.webp",
-    "hoverImage": "/images/products/reformer-roble-torre-completa-a020.webp",
-    "price": "42567.00",
+    "hoverImage": "/images/products/reformer-roble-torre-completa-a020-studio.webp",
+    "price": "31925.25",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Cadillacs y Torres",
@@ -297,7 +341,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_roble_torre_completa_a020_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-roble-torre-completa-a020-studio.webp",
+      "/images/products/reformer-roble-torre-completa-a020-detail.webp"
+    ]
   },
   {
     "slug": "reformer-roble-blanco-a011",
@@ -306,8 +354,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A011-OAK-WHITE",
     "image": "/images/products/reformer-roble-blanco-a011.webp",
-    "hoverImage": "/images/products/reformer-roble-blanco-a011.webp",
-    "price": "30950.00",
+    "hoverImage": "/images/products/reformer-roble-blanco-a011-studio.webp",
+    "price": "23212.50",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -322,7 +370,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_roble_blanco_a011_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-roble-blanco-a011-studio.webp",
+      "/images/products/reformer-roble-blanco-a011-detail.webp"
+    ]
   },
   {
     "slug": "silla-wunda-roble-a022",
@@ -331,8 +383,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A022-A-OAK",
     "image": "/images/products/silla-wunda-roble-a022.webp",
-    "hoverImage": "/images/products/silla-wunda-roble-a022.webp",
-    "price": "10091.00",
+    "hoverImage": "/images/products/silla-wunda-roble-a022-studio.webp",
+    "price": "7568.25",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Sillas y Barriles",
@@ -347,7 +399,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_silla_wunda_roble_a022_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/silla-wunda-roble-a022-studio.webp",
+      "/images/products/silla-wunda-roble-a022-detail.webp"
+    ]
   },
   {
     "slug": "corrector-columna-roble-a024",
@@ -356,8 +412,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A024-A-OAK",
     "image": "/images/products/corrector-columna-roble-a024.webp",
-    "hoverImage": "/images/products/corrector-columna-roble-a024.webp",
-    "price": "3477.00",
+    "hoverImage": "/images/products/corrector-columna-roble-a024-studio.webp",
+    "price": "2607.75",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Sillas y Barriles",
@@ -372,7 +428,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_corrector_columna_roble_a024_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/corrector-columna-roble-a024-studio.webp",
+      "/images/products/corrector-columna-roble-a024-detail.webp"
+    ]
   },
   {
     "slug": "barril-escalera-roble-a025",
@@ -381,8 +441,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A025-A-OAK",
     "image": "/images/products/barril-escalera-roble-a025.webp",
-    "hoverImage": "/images/products/barril-escalera-roble-a025.webp",
-    "price": "10854.00",
+    "hoverImage": "/images/products/barril-escalera-roble-a025-studio.webp",
+    "price": "8140.50",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Sillas y Barriles",
@@ -397,7 +457,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_barril_escalera_roble_a025_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/barril-escalera-roble-a025-studio.webp",
+      "/images/products/barril-escalera-roble-a025-detail.webp"
+    ]
   },
   {
     "slug": "reformer-blanco-media-torre-a012",
@@ -406,8 +470,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A012-OAK-SS",
     "image": "/images/products/reformer-blanco-media-torre-a012.webp",
-    "hoverImage": "/images/products/reformer-blanco-media-torre-a012.webp",
-    "price": "42567.00",
+    "hoverImage": "/images/products/reformer-blanco-media-torre-a012-studio.webp",
+    "price": "31925.25",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -422,7 +486,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_blanco_media_torre_a012_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-blanco-media-torre-a012-studio.webp",
+      "/images/products/reformer-blanco-media-torre-a012-detail.webp"
+    ]
   },
   {
     "slug": "reformer-blanco-torre-completa-a081",
@@ -431,8 +499,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A081-OAK-SS",
     "image": "/images/products/reformer-blanco-torre-completa-a081.webp",
-    "hoverImage": "/images/products/reformer-blanco-torre-completa-a081.webp",
-    "price": "52234.00",
+    "hoverImage": "/images/products/reformer-blanco-torre-completa-a081-studio.webp",
+    "price": "39175.50",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Cadillacs y Torres",
@@ -447,7 +515,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_blanco_torre_completa_a081_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-blanco-torre-completa-a081-studio.webp",
+      "/images/products/reformer-blanco-torre-completa-a081-detail.webp"
+    ]
   },
   {
     "slug": "reformer-maple-a015",
@@ -456,8 +528,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A015-MAPLE",
     "image": "/images/products/reformer-maple-a015.webp",
-    "hoverImage": "/images/products/reformer-maple-a015.webp",
-    "price": "29000.00",
+    "hoverImage": "/images/products/reformer-maple-a015-studio.webp",
+    "price": "21750.00",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -472,7 +544,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_maple_a015_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-maple-a015-studio.webp",
+      "/images/products/reformer-maple-a015-detail.webp"
+    ]
   },
   {
     "slug": "reformer-maple-media-torre-a016m",
@@ -481,8 +557,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A016-MAPLE-SS",
     "image": "/images/products/reformer-maple-media-torre-a016m.webp",
-    "hoverImage": "/images/products/reformer-maple-media-torre-a016m.webp",
-    "price": "38667.00",
+    "hoverImage": "/images/products/reformer-maple-media-torre-a016m-studio.webp",
+    "price": "29000.25",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -497,7 +573,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_maple_media_torre_a016m_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-maple-media-torre-a016m-studio.webp",
+      "/images/products/reformer-maple-media-torre-a016m-detail.webp"
+    ]
   },
   {
     "slug": "cadillac-maple-a019m",
@@ -506,8 +586,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A019-MAPLE-SS",
     "image": "/images/products/cadillac-maple-a019m.webp",
-    "hoverImage": "/images/products/cadillac-maple-a019m.webp",
-    "price": "32901.00",
+    "hoverImage": "/images/products/cadillac-maple-a019m-studio.webp",
+    "price": "24675.75",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Cadillacs y Torres",
@@ -522,7 +602,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_cadillac_maple_a019m_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/cadillac-maple-a019m-studio.webp",
+      "/images/products/cadillac-maple-a019m-detail.webp"
+    ]
   },
   {
     "slug": "reformer-maple-torre-completa-a020m",
@@ -531,8 +615,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A020-MAPLE-SS",
     "image": "/images/products/reformer-maple-torre-completa-a020m.webp",
-    "hoverImage": "/images/products/reformer-maple-torre-completa-a020m.webp",
-    "price": "50284.00",
+    "hoverImage": "/images/products/reformer-maple-torre-completa-a020m-studio.webp",
+    "price": "37713.00",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Cadillacs y Torres",
@@ -547,7 +631,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_maple_torre_completa_a020m_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-maple-torre-completa-a020m-studio.webp",
+      "/images/products/reformer-maple-torre-completa-a020m-detail.webp"
+    ]
   },
   {
     "slug": "silla-wunda-maple-a022m",
@@ -556,8 +644,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A022-MAPLE",
     "image": "/images/products/silla-wunda-maple-a022m.webp",
-    "hoverImage": "/images/products/silla-wunda-maple-a022m.webp",
-    "price": "11956.00",
+    "hoverImage": "/images/products/silla-wunda-maple-a022m-studio.webp",
+    "price": "8967.00",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Sillas y Barriles",
@@ -572,7 +660,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_silla_wunda_maple_a022m_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/silla-wunda-maple-a022m-studio.webp",
+      "/images/products/silla-wunda-maple-a022m-detail.webp"
+    ]
   },
   {
     "slug": "cama-escalera-deslizante-maple-a021",
@@ -581,8 +673,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A021-MAPLE",
     "image": "/images/products/cama-escalera-deslizante-maple-a021.webp",
-    "hoverImage": "/images/products/cama-escalera-deslizante-maple-a021.webp",
-    "price": "38243.00",
+    "hoverImage": "/images/products/cama-escalera-deslizante-maple-a021-studio.webp",
+    "price": "28682.25",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Cadillacs y Torres",
@@ -597,7 +689,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_cama_escalera_deslizante_maple_a021_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/cama-escalera-deslizante-maple-a021-studio.webp",
+      "/images/products/cama-escalera-deslizante-maple-a021-detail.webp"
+    ]
   },
   {
     "slug": "torre-pared-reformer-maple-a027",
@@ -606,8 +702,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A027-MAPLE",
     "image": "/images/products/torre-pared-reformer-maple-a027.webp",
-    "hoverImage": "/images/products/torre-pared-reformer-maple-a027.webp",
-    "price": "11956.00",
+    "hoverImage": "/images/products/torre-pared-reformer-maple-a027-studio.webp",
+    "price": "8967.00",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Cadillacs y Torres",
@@ -622,7 +718,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_torre_pared_reformer_maple_a027_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/torre-pared-reformer-maple-a027-studio.webp",
+      "/images/products/torre-pared-reformer-maple-a027-detail.webp"
+    ]
   },
   {
     "slug": "reformer-aluminio-negro-a033",
@@ -631,8 +731,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A033-AL",
     "image": "/images/products/reformer-aluminio-negro-a033.webp",
-    "hoverImage": "/images/products/reformer-aluminio-negro-a033.webp",
-    "price": "30526.00",
+    "hoverImage": "/images/products/reformer-aluminio-negro-a033-studio.webp",
+    "price": "22894.50",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -647,7 +747,11 @@
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_aluminio_negro_a033_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-aluminio-negro-a033-studio.webp",
+      "/images/products/reformer-aluminio-negro-a033-detail.webp"
+    ]
   },
   {
     "slug": "reformer-negro-media-torre-a033t",
@@ -656,8 +760,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A033-AL-AL",
     "image": "/images/products/reformer-negro-media-torre-a033t.webp",
-    "hoverImage": "/images/products/reformer-negro-media-torre-a033t.webp",
-    "price": "51386.00",
+    "hoverImage": "/images/products/reformer-negro-media-torre-a033t-studio.webp",
+    "price": "38539.50",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -672,7 +776,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_negro_media_torre_a033t_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-negro-media-torre-a033t-studio.webp",
+      "/images/products/reformer-negro-media-torre-a033t-detail.webp"
+    ]
   },
   {
     "slug": "reformer-negro-torre-completa-a034",
@@ -681,8 +789,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A034-AL-SS",
     "image": "/images/products/reformer-negro-torre-completa-a034.webp",
-    "hoverImage": "/images/products/reformer-negro-torre-completa-a034.webp",
-    "price": "48333.00",
+    "hoverImage": "/images/products/reformer-negro-torre-completa-a034-studio.webp",
+    "price": "36249.75",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Cadillacs y Torres",
@@ -697,7 +805,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_negro_torre_completa_a034_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-negro-torre-completa-a034-studio.webp",
+      "/images/products/reformer-negro-torre-completa-a034-detail.webp"
+    ]
   },
   {
     "slug": "reformer-aluminio-media-torre-acero-a038",
@@ -706,8 +818,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A038-AL-A-SS",
     "image": "/images/products/reformer-aluminio-media-torre-acero-a038.webp",
-    "hoverImage": "/images/products/reformer-aluminio-media-torre-acero-a038.webp",
-    "price": "38243.00",
+    "hoverImage": "/images/products/reformer-aluminio-media-torre-acero-a038-studio.webp",
+    "price": "28682.25",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -722,7 +834,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_aluminio_media_torre_acero_a038_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-aluminio-media-torre-acero-a038-studio.webp",
+      "/images/products/reformer-aluminio-media-torre-acero-a038-detail.webp"
+    ]
   },
   {
     "slug": "reformer-aluminio-compacto-a039a",
@@ -731,8 +847,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A039-A-AL",
     "image": "/images/products/reformer-aluminio-compacto-a039a.webp",
-    "hoverImage": "/images/products/reformer-aluminio-compacto-a039a.webp",
-    "price": "25099.00",
+    "hoverImage": "/images/products/reformer-aluminio-compacto-a039a-studio.webp",
+    "price": "18824.25",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -747,7 +863,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_aluminio_compacto_a039a_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-aluminio-compacto-a039a-studio.webp",
+      "/images/products/reformer-aluminio-compacto-a039a-detail.webp"
+    ]
   },
   {
     "slug": "reformer-torre-barra-fija-a043",
@@ -756,8 +876,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A043-AL-SS",
     "image": "/images/products/reformer-torre-barra-fija-a043.webp",
-    "hoverImage": "/images/products/reformer-torre-barra-fija-a043.webp",
-    "price": "38667.00",
+    "hoverImage": "/images/products/reformer-torre-barra-fija-a043-studio.webp",
+    "price": "29000.25",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Cadillacs y Torres",
@@ -772,7 +892,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_torre_barra_fija_a043_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-torre-barra-fija-a043-studio.webp",
+      "/images/products/reformer-torre-barra-fija-a043-detail.webp"
+    ]
   },
   {
     "slug": "reformer-seis-en-uno-a042",
@@ -781,8 +905,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A042-AL-SS",
     "image": "/images/products/reformer-seis-en-uno-a042.webp",
-    "hoverImage": "/images/products/reformer-seis-en-uno-a042.webp",
-    "price": "85050.00",
+    "hoverImage": "/images/products/reformer-seis-en-uno-a042-studio.webp",
+    "price": "63787.50",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Cadillacs y Torres",
@@ -797,7 +921,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_seis_en_uno_a042_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-seis-en-uno-a042-studio.webp",
+      "/images/products/reformer-seis-en-uno-a042-detail.webp"
+    ]
   },
   {
     "slug": "cadillac-aluminio-a048",
@@ -806,8 +934,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A048-AL-SS",
     "image": "/images/products/cadillac-aluminio-a048.webp",
-    "hoverImage": "/images/products/cadillac-aluminio-a048.webp",
-    "price": "33240.00",
+    "hoverImage": "/images/products/cadillac-aluminio-a048-studio.webp",
+    "price": "24930.00",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Cadillacs y Torres",
@@ -822,7 +950,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_cadillac_aluminio_a048_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/cadillac-aluminio-a048-studio.webp",
+      "/images/products/cadillac-aluminio-a048-detail.webp"
+    ]
   },
   {
     "slug": "reformer-aluminio-a070",
@@ -831,8 +963,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A070-AL",
     "image": "/images/products/reformer-aluminio-a070.webp",
-    "hoverImage": "/images/products/reformer-aluminio-a070.webp",
-    "price": "23488.00",
+    "hoverImage": "/images/products/reformer-aluminio-a070-studio.webp",
+    "price": "17616.00",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -847,7 +979,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_aluminio_a070_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-aluminio-a070-studio.webp",
+      "/images/products/reformer-aluminio-a070-detail.webp"
+    ]
   },
   {
     "slug": "reformer-aluminio-media-torre-a071",
@@ -856,8 +992,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A071-AL-SS",
     "image": "/images/products/reformer-aluminio-media-torre-a071.webp",
-    "hoverImage": "/images/products/reformer-aluminio-media-torre-a071.webp",
-    "price": "40617.00",
+    "hoverImage": "/images/products/reformer-aluminio-media-torre-a071-studio.webp",
+    "price": "30462.75",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -872,7 +1008,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_aluminio_media_torre_a071_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-aluminio-media-torre-a071-studio.webp",
+      "/images/products/reformer-aluminio-media-torre-a071-detail.webp"
+    ]
   },
   {
     "slug": "silla-pilates-metal-a109",
@@ -881,8 +1021,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A109-SS",
     "image": "/images/products/silla-pilates-metal-a109.webp",
-    "hoverImage": "/images/products/silla-pilates-metal-a109.webp",
-    "price": "16620.00",
+    "hoverImage": "/images/products/silla-pilates-metal-a109-studio.webp",
+    "price": "12465.00",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Sillas y Barriles",
@@ -897,7 +1037,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_silla_pilates_metal_a109_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/silla-pilates-metal-a109-studio.webp",
+      "/images/products/silla-pilates-metal-a109-detail.webp"
+    ]
   },
   {
     "slug": "reformer-aluminio-barra-deslizante-a036",
@@ -906,8 +1050,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A036-A-AL",
     "image": "/images/products/reformer-aluminio-barra-deslizante-a036.webp",
-    "hoverImage": "/images/products/reformer-aluminio-barra-deslizante-a036.webp",
-    "price": "58000.00",
+    "hoverImage": "/images/products/reformer-aluminio-barra-deslizante-a036-studio.webp",
+    "price": "43500.00",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -922,7 +1066,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_aluminio_barra_deslizante_a036_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-aluminio-barra-deslizante-a036-studio.webp",
+      "/images/products/reformer-aluminio-barra-deslizante-a036-detail.webp"
+    ]
   },
   {
     "slug": "reformer-barra-deslizante-media-torre-a036t",
@@ -931,8 +1079,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A036-A-AL-AL",
     "image": "/images/products/reformer-barra-deslizante-media-torre-a036t.webp",
-    "hoverImage": "/images/products/reformer-barra-deslizante-media-torre-a036t.webp",
-    "price": "75383.00",
+    "hoverImage": "/images/products/reformer-barra-deslizante-media-torre-a036t-studio.webp",
+    "price": "56537.25",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -947,7 +1095,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_barra_deslizante_media_torre_a036t_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-barra-deslizante-media-torre-a036t-studio.webp",
+      "/images/products/reformer-barra-deslizante-media-torre-a036t-detail.webp"
+    ]
   },
   {
     "slug": "reformer-torre-completa-aluminio-a045",
@@ -956,8 +1108,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A045-AL-AL",
     "image": "/images/products/reformer-torre-completa-aluminio-a045.webp",
-    "hoverImage": "/images/products/reformer-torre-completa-aluminio-a045.webp",
-    "price": "81234.00",
+    "hoverImage": "/images/products/reformer-torre-completa-aluminio-a045-studio.webp",
+    "price": "60925.50",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Cadillacs y Torres",
@@ -972,7 +1124,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_torre_completa_aluminio_a045_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-torre-completa-aluminio-a045-studio.webp",
+      "/images/products/reformer-torre-completa-aluminio-a045-detail.webp"
+    ]
   },
   {
     "slug": "reformer-aluminio-riel-fijo-a037",
@@ -981,8 +1137,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "EW-A037-AL",
     "image": "/images/products/reformer-aluminio-riel-fijo-a037.webp",
-    "hoverImage": "/images/products/reformer-aluminio-riel-fijo-a037.webp",
-    "price": "40617.00",
+    "hoverImage": "/images/products/reformer-aluminio-riel-fijo-a037-studio.webp",
+    "price": "30462.75",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Reformers",
@@ -997,7 +1153,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_reformer_aluminio_riel_fijo_a037_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/reformer-aluminio-riel-fijo-a037-studio.webp",
+      "/images/products/reformer-aluminio-riel-fijo-a037-detail.webp"
+    ]
   },
   {
     "slug": "cintas-de-pilates",
@@ -1006,8 +1166,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "ACC-PETALS-SET-5",
     "image": "/images/pilates-straps-main.webp",
-    "hoverImage": "/images/accessories.webp",
-    "price": "1018.00",
+    "hoverImage": "/images/products/cintas-de-pilates-studio.webp",
+    "price": "763.50",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Accesorios",
@@ -1019,7 +1179,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_accessorio_cintas_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/cintas-de-pilates-studio.webp",
+      "/images/products/cintas-de-pilates-detail.webp"
+    ]
   },
   {
     "slug": "calcetines-antideslizantes",
@@ -1028,8 +1192,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "ACC-SOCKS-ORG-001",
     "image": "/images/socks-organic-main.webp",
-    "hoverImage": "/images/socks-grip.webp",
-    "price": "382.00",
+    "hoverImage": "/images/products/calcetines-antideslizantes-studio.webp",
+    "price": "286.50",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Accesorios",
@@ -1059,7 +1223,11 @@
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_calcetines_organicos_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/calcetines-antideslizantes-studio.webp",
+      "/images/products/calcetines-antideslizantes-detail.webp"
+    ]
   },
   {
     "slug": "calcetines-pack-3",
@@ -1068,8 +1236,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "ACC-SOCKS-PACK3-001",
     "image": "/images/socks-pack3.webp",
-    "hoverImage": "/images/socks-collection.webp",
-    "price": "975.00",
+    "hoverImage": "/images/products/calcetines-pack-3-studio.webp",
+    "price": "731.25",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Accesorios",
@@ -1082,7 +1250,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_calcetines_pack3_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/calcetines-pack-3-studio.webp",
+      "/images/products/calcetines-pack-3-detail.webp"
+    ]
   },
   {
     "slug": "leggings-organicos-fitted",
@@ -1091,8 +1263,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "ROPA-LEG-FIT-001",
     "image": "/images/leggings-fitted.webp",
-    "hoverImage": "/images/leggings-action.webp",
-    "price": "1526.00",
+    "hoverImage": "/images/products/leggings-organicos-fitted-studio.webp",
+    "price": "1144.50",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Ropa",
@@ -1122,7 +1294,11 @@
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_leggings_fitted_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/leggings-organicos-fitted-studio.webp",
+      "/images/products/leggings-organicos-fitted-detail.webp"
+    ]
   },
   {
     "slug": "top-organico-fitted",
@@ -1131,8 +1307,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "ROPA-TOP-FIT-001",
     "image": "/images/top-fitted.webp",
-    "hoverImage": "/images/top-action.webp",
-    "price": "1018.00",
+    "hoverImage": "/images/products/top-organico-fitted-studio.webp",
+    "price": "763.50",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Ropa",
@@ -1162,7 +1338,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_top_fitted_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/top-organico-fitted-studio.webp",
+      "/images/products/top-organico-fitted-detail.webp"
+    ]
   },
   {
     "slug": "conjunto-fitted-organico",
@@ -1171,8 +1351,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "ROPA-SET-FIT-001",
     "image": "/images/conjunto-fitted.webp",
-    "hoverImage": "/images/conjunto-action.webp",
-    "price": "2289.00",
+    "hoverImage": "/images/products/conjunto-fitted-organico-studio.webp",
+    "price": "1716.75",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Ropa",
@@ -1202,7 +1382,11 @@
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_conjunto_fitted_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/conjunto-fitted-organico-studio.webp",
+      "/images/products/conjunto-fitted-organico-detail.webp"
+    ]
   },
   {
     "slug": "pantalon-organico-relaxed",
@@ -1211,8 +1395,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "ROPA-PANT-REL-001",
     "image": "/images/pantalon-relaxed.webp",
-    "hoverImage": "/images/pantalon-movement.webp",
-    "price": "1357.00",
+    "hoverImage": "/images/products/pantalon-organico-relaxed-studio.webp",
+    "price": "1017.75",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Ropa",
@@ -1242,7 +1426,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_pantalon_relaxed_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/pantalon-organico-relaxed-studio.webp",
+      "/images/products/pantalon-organico-relaxed-detail.webp"
+    ]
   },
   {
     "slug": "top-organico-relaxed",
@@ -1251,8 +1439,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "ROPA-TOP-REL-001",
     "image": "/images/top-relaxed.webp",
-    "hoverImage": "/images/top-relaxed-action.webp",
-    "price": "933.00",
+    "hoverImage": "/images/products/top-organico-relaxed-studio.webp",
+    "price": "699.75",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Ropa",
@@ -1282,7 +1470,11 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_top_relaxed_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/top-organico-relaxed-studio.webp",
+      "/images/products/top-organico-relaxed-detail.webp"
+    ]
   },
   {
     "slug": "conjunto-relaxed-organico",
@@ -1291,8 +1483,8 @@
     "brand": "Edelweiss Pilates",
     "sku": "ROPA-SET-REL-001",
     "image": "/images/conjunto-relaxed.webp",
-    "hoverImage": "/images/conjunto-relaxed-action.webp",
-    "price": "2061.00",
+    "hoverImage": "/images/products/conjunto-relaxed-organico-studio.webp",
+    "price": "1545.75",
     "currency": "MXN",
     "availability": "https://schema.org/InStock",
     "category": "Ropa",
@@ -1317,6 +1509,10 @@
     "bestSeller": false,
     "isNew": true,
     "productId": "prod_conjunto_relaxed_placeholder",
-    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c"
+    "publishableKey": "sr_live_pk_776359bbbe0337c3c8c97bad121b3fbe4e1c",
+    "galleryImages": [
+      "/images/products/conjunto-relaxed-organico-studio.webp",
+      "/images/products/conjunto-relaxed-organico-detail.webp"
+    ]
   }
 ]

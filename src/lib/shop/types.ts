@@ -43,6 +43,7 @@ export type Product = {
   bestSeller?: boolean;
   isNew?: boolean;
   hoverImage?: string;
+  galleryImages?: string[];
   // Light therapy specific fields
   specifications?: LightSpecifications;
   studioPackage?: boolean;

@@ -739,100 +739,370 @@
     "hashed": "/images/press/edelweiss-press-release.35f1e84b.webp",
     "hash": "35f1e84b"
   },
+  "/images/products/barril-escalera-roble-a025-detail.webp": {
+    "original": "/images/products/barril-escalera-roble-a025-detail.webp",
+    "hashed": "/images/products/barril-escalera-roble-a025-detail.552ee0ab.webp",
+    "hash": "552ee0ab"
+  },
+  "/images/products/barril-escalera-roble-a025-studio.webp": {
+    "original": "/images/products/barril-escalera-roble-a025-studio.webp",
+    "hashed": "/images/products/barril-escalera-roble-a025-studio.5eb20265.webp",
+    "hash": "5eb20265"
+  },
   "/images/products/barril-escalera-roble-a025.webp": {
     "original": "/images/products/barril-escalera-roble-a025.webp",
     "hashed": "/images/products/barril-escalera-roble-a025.642bf984.webp",
     "hash": "642bf984"
+  },
+  "/images/products/cadillac-aluminio-a048-detail.webp": {
+    "original": "/images/products/cadillac-aluminio-a048-detail.webp",
+    "hashed": "/images/products/cadillac-aluminio-a048-detail.dbb82f6b.webp",
+    "hash": "dbb82f6b"
+  },
+  "/images/products/cadillac-aluminio-a048-studio.webp": {
+    "original": "/images/products/cadillac-aluminio-a048-studio.webp",
+    "hashed": "/images/products/cadillac-aluminio-a048-studio.30aa8b34.webp",
+    "hash": "30aa8b34"
   },
   "/images/products/cadillac-aluminio-a048.webp": {
     "original": "/images/products/cadillac-aluminio-a048.webp",
     "hashed": "/images/products/cadillac-aluminio-a048.3114e0a9.webp",
     "hash": "3114e0a9"
   },
+  "/images/products/cadillac-maple-a019m-detail.webp": {
+    "original": "/images/products/cadillac-maple-a019m-detail.webp",
+    "hashed": "/images/products/cadillac-maple-a019m-detail.60634278.webp",
+    "hash": "60634278"
+  },
+  "/images/products/cadillac-maple-a019m-studio.webp": {
+    "original": "/images/products/cadillac-maple-a019m-studio.webp",
+    "hashed": "/images/products/cadillac-maple-a019m-studio.a0816125.webp",
+    "hash": "a0816125"
+  },
   "/images/products/cadillac-maple-a019m.webp": {
     "original": "/images/products/cadillac-maple-a019m.webp",
     "hashed": "/images/products/cadillac-maple-a019m.8a719763.webp",
     "hash": "8a719763"
+  },
+  "/images/products/cadillac-roble-a019-detail.webp": {
+    "original": "/images/products/cadillac-roble-a019-detail.webp",
+    "hashed": "/images/products/cadillac-roble-a019-detail.2a863657.webp",
+    "hash": "2a863657"
+  },
+  "/images/products/cadillac-roble-a019-studio.webp": {
+    "original": "/images/products/cadillac-roble-a019-studio.webp",
+    "hashed": "/images/products/cadillac-roble-a019-studio.be5ba58b.webp",
+    "hash": "be5ba58b"
   },
   "/images/products/cadillac-roble-a019.webp": {
     "original": "/images/products/cadillac-roble-a019.webp",
     "hashed": "/images/products/cadillac-roble-a019.46c01060.webp",
     "hash": "46c01060"
   },
+  "/images/products/calcetines-antideslizantes-detail.webp": {
+    "original": "/images/products/calcetines-antideslizantes-detail.webp",
+    "hashed": "/images/products/calcetines-antideslizantes-detail.0f516da0.webp",
+    "hash": "0f516da0"
+  },
+  "/images/products/calcetines-antideslizantes-studio.webp": {
+    "original": "/images/products/calcetines-antideslizantes-studio.webp",
+    "hashed": "/images/products/calcetines-antideslizantes-studio.9be70e34.webp",
+    "hash": "9be70e34"
+  },
+  "/images/products/calcetines-pack-3-detail.webp": {
+    "original": "/images/products/calcetines-pack-3-detail.webp",
+    "hashed": "/images/products/calcetines-pack-3-detail.f8f57903.webp",
+    "hash": "f8f57903"
+  },
+  "/images/products/calcetines-pack-3-studio.webp": {
+    "original": "/images/products/calcetines-pack-3-studio.webp",
+    "hashed": "/images/products/calcetines-pack-3-studio.2bc36212.webp",
+    "hash": "2bc36212"
+  },
+  "/images/products/cama-escalera-deslizante-maple-a021-detail.webp": {
+    "original": "/images/products/cama-escalera-deslizante-maple-a021-detail.webp",
+    "hashed": "/images/products/cama-escalera-deslizante-maple-a021-detail.8ebaf2f9.webp",
+    "hash": "8ebaf2f9"
+  },
+  "/images/products/cama-escalera-deslizante-maple-a021-studio.webp": {
+    "original": "/images/products/cama-escalera-deslizante-maple-a021-studio.webp",
+    "hashed": "/images/products/cama-escalera-deslizante-maple-a021-studio.5113e07d.webp",
+    "hash": "5113e07d"
+  },
   "/images/products/cama-escalera-deslizante-maple-a021.webp": {
     "original": "/images/products/cama-escalera-deslizante-maple-a021.webp",
     "hashed": "/images/products/cama-escalera-deslizante-maple-a021.2f558486.webp",
     "hash": "2f558486"
+  },
+  "/images/products/cintas-de-pilates-detail.webp": {
+    "original": "/images/products/cintas-de-pilates-detail.webp",
+    "hashed": "/images/products/cintas-de-pilates-detail.ffd8ae5e.webp",
+    "hash": "ffd8ae5e"
+  },
+  "/images/products/cintas-de-pilates-studio.webp": {
+    "original": "/images/products/cintas-de-pilates-studio.webp",
+    "hashed": "/images/products/cintas-de-pilates-studio.57f0096c.webp",
+    "hash": "57f0096c"
+  },
+  "/images/products/conjunto-fitted-organico-detail.webp": {
+    "original": "/images/products/conjunto-fitted-organico-detail.webp",
+    "hashed": "/images/products/conjunto-fitted-organico-detail.bef328d7.webp",
+    "hash": "bef328d7"
+  },
+  "/images/products/conjunto-fitted-organico-studio.webp": {
+    "original": "/images/products/conjunto-fitted-organico-studio.webp",
+    "hashed": "/images/products/conjunto-fitted-organico-studio.fba161e4.webp",
+    "hash": "fba161e4"
+  },
+  "/images/products/conjunto-relaxed-organico-detail.webp": {
+    "original": "/images/products/conjunto-relaxed-organico-detail.webp",
+    "hashed": "/images/products/conjunto-relaxed-organico-detail.eb7855b3.webp",
+    "hash": "eb7855b3"
+  },
+  "/images/products/conjunto-relaxed-organico-studio.webp": {
+    "original": "/images/products/conjunto-relaxed-organico-studio.webp",
+    "hashed": "/images/products/conjunto-relaxed-organico-studio.2d5257e4.webp",
+    "hash": "2d5257e4"
+  },
+  "/images/products/corrector-columna-roble-a024-detail.webp": {
+    "original": "/images/products/corrector-columna-roble-a024-detail.webp",
+    "hashed": "/images/products/corrector-columna-roble-a024-detail.c4656aee.webp",
+    "hash": "c4656aee"
+  },
+  "/images/products/corrector-columna-roble-a024-studio.webp": {
+    "original": "/images/products/corrector-columna-roble-a024-studio.webp",
+    "hashed": "/images/products/corrector-columna-roble-a024-studio.2025d1cf.webp",
+    "hash": "2025d1cf"
   },
   "/images/products/corrector-columna-roble-a024.webp": {
     "original": "/images/products/corrector-columna-roble-a024.webp",
     "hashed": "/images/products/corrector-columna-roble-a024.4d3fd895.webp",
     "hash": "4d3fd895"
   },
+  "/images/products/leggings-organicos-fitted-detail.webp": {
+    "original": "/images/products/leggings-organicos-fitted-detail.webp",
+    "hashed": "/images/products/leggings-organicos-fitted-detail.b4b8f52c.webp",
+    "hash": "b4b8f52c"
+  },
+  "/images/products/leggings-organicos-fitted-studio.webp": {
+    "original": "/images/products/leggings-organicos-fitted-studio.webp",
+    "hashed": "/images/products/leggings-organicos-fitted-studio.2d2b2f16.webp",
+    "hash": "2d2b2f16"
+  },
+  "/images/products/pantalon-organico-relaxed-detail.webp": {
+    "original": "/images/products/pantalon-organico-relaxed-detail.webp",
+    "hashed": "/images/products/pantalon-organico-relaxed-detail.bab93112.webp",
+    "hash": "bab93112"
+  },
+  "/images/products/pantalon-organico-relaxed-studio.webp": {
+    "original": "/images/products/pantalon-organico-relaxed-studio.webp",
+    "hashed": "/images/products/pantalon-organico-relaxed-studio.c3e79af2.webp",
+    "hash": "c3e79af2"
+  },
+  "/images/products/reformer-aluminio-a070-detail.webp": {
+    "original": "/images/products/reformer-aluminio-a070-detail.webp",
+    "hashed": "/images/products/reformer-aluminio-a070-detail.911ed008.webp",
+    "hash": "911ed008"
+  },
+  "/images/products/reformer-aluminio-a070-studio.webp": {
+    "original": "/images/products/reformer-aluminio-a070-studio.webp",
+    "hashed": "/images/products/reformer-aluminio-a070-studio.9929b5a1.webp",
+    "hash": "9929b5a1"
+  },
   "/images/products/reformer-aluminio-a070.webp": {
     "original": "/images/products/reformer-aluminio-a070.webp",
     "hashed": "/images/products/reformer-aluminio-a070.2a69f8e3.webp",
     "hash": "2a69f8e3"
+  },
+  "/images/products/reformer-aluminio-barra-deslizante-a036-detail.webp": {
+    "original": "/images/products/reformer-aluminio-barra-deslizante-a036-detail.webp",
+    "hashed": "/images/products/reformer-aluminio-barra-deslizante-a036-detail.172e0871.webp",
+    "hash": "172e0871"
+  },
+  "/images/products/reformer-aluminio-barra-deslizante-a036-studio.webp": {
+    "original": "/images/products/reformer-aluminio-barra-deslizante-a036-studio.webp",
+    "hashed": "/images/products/reformer-aluminio-barra-deslizante-a036-studio.0a9bc650.webp",
+    "hash": "0a9bc650"
   },
   "/images/products/reformer-aluminio-barra-deslizante-a036.webp": {
     "original": "/images/products/reformer-aluminio-barra-deslizante-a036.webp",
     "hashed": "/images/products/reformer-aluminio-barra-deslizante-a036.7da84bd8.webp",
     "hash": "7da84bd8"
   },
+  "/images/products/reformer-aluminio-compacto-a039a-detail.webp": {
+    "original": "/images/products/reformer-aluminio-compacto-a039a-detail.webp",
+    "hashed": "/images/products/reformer-aluminio-compacto-a039a-detail.7992f43e.webp",
+    "hash": "7992f43e"
+  },
+  "/images/products/reformer-aluminio-compacto-a039a-studio.webp": {
+    "original": "/images/products/reformer-aluminio-compacto-a039a-studio.webp",
+    "hashed": "/images/products/reformer-aluminio-compacto-a039a-studio.f56408ec.webp",
+    "hash": "f56408ec"
+  },
   "/images/products/reformer-aluminio-compacto-a039a.webp": {
     "original": "/images/products/reformer-aluminio-compacto-a039a.webp",
     "hashed": "/images/products/reformer-aluminio-compacto-a039a.9acc133a.webp",
     "hash": "9acc133a"
+  },
+  "/images/products/reformer-aluminio-media-torre-a071-detail.webp": {
+    "original": "/images/products/reformer-aluminio-media-torre-a071-detail.webp",
+    "hashed": "/images/products/reformer-aluminio-media-torre-a071-detail.a9000502.webp",
+    "hash": "a9000502"
+  },
+  "/images/products/reformer-aluminio-media-torre-a071-studio.webp": {
+    "original": "/images/products/reformer-aluminio-media-torre-a071-studio.webp",
+    "hashed": "/images/products/reformer-aluminio-media-torre-a071-studio.5094b6ee.webp",
+    "hash": "5094b6ee"
   },
   "/images/products/reformer-aluminio-media-torre-a071.webp": {
     "original": "/images/products/reformer-aluminio-media-torre-a071.webp",
     "hashed": "/images/products/reformer-aluminio-media-torre-a071.26dd3dc3.webp",
     "hash": "26dd3dc3"
   },
+  "/images/products/reformer-aluminio-media-torre-a102-detail.webp": {
+    "original": "/images/products/reformer-aluminio-media-torre-a102-detail.webp",
+    "hashed": "/images/products/reformer-aluminio-media-torre-a102-detail.1b626b62.webp",
+    "hash": "1b626b62"
+  },
+  "/images/products/reformer-aluminio-media-torre-a102-studio.webp": {
+    "original": "/images/products/reformer-aluminio-media-torre-a102-studio.webp",
+    "hashed": "/images/products/reformer-aluminio-media-torre-a102-studio.9ee49cf6.webp",
+    "hash": "9ee49cf6"
+  },
   "/images/products/reformer-aluminio-media-torre-a102.webp": {
     "original": "/images/products/reformer-aluminio-media-torre-a102.webp",
     "hashed": "/images/products/reformer-aluminio-media-torre-a102.76da6f41.webp",
     "hash": "76da6f41"
+  },
+  "/images/products/reformer-aluminio-media-torre-acero-a038-detail.webp": {
+    "original": "/images/products/reformer-aluminio-media-torre-acero-a038-detail.webp",
+    "hashed": "/images/products/reformer-aluminio-media-torre-acero-a038-detail.3d767c9a.webp",
+    "hash": "3d767c9a"
+  },
+  "/images/products/reformer-aluminio-media-torre-acero-a038-studio.webp": {
+    "original": "/images/products/reformer-aluminio-media-torre-acero-a038-studio.webp",
+    "hashed": "/images/products/reformer-aluminio-media-torre-acero-a038-studio.5272337b.webp",
+    "hash": "5272337b"
   },
   "/images/products/reformer-aluminio-media-torre-acero-a038.webp": {
     "original": "/images/products/reformer-aluminio-media-torre-acero-a038.webp",
     "hashed": "/images/products/reformer-aluminio-media-torre-acero-a038.6bbd6444.webp",
     "hash": "6bbd6444"
   },
+  "/images/products/reformer-aluminio-negro-a033-detail.webp": {
+    "original": "/images/products/reformer-aluminio-negro-a033-detail.webp",
+    "hashed": "/images/products/reformer-aluminio-negro-a033-detail.a183623f.webp",
+    "hash": "a183623f"
+  },
+  "/images/products/reformer-aluminio-negro-a033-studio.webp": {
+    "original": "/images/products/reformer-aluminio-negro-a033-studio.webp",
+    "hashed": "/images/products/reformer-aluminio-negro-a033-studio.b570a612.webp",
+    "hash": "b570a612"
+  },
   "/images/products/reformer-aluminio-negro-a033.webp": {
     "original": "/images/products/reformer-aluminio-negro-a033.webp",
     "hashed": "/images/products/reformer-aluminio-negro-a033.5f4735f2.webp",
     "hash": "5f4735f2"
+  },
+  "/images/products/reformer-aluminio-nogal-a039-detail.webp": {
+    "original": "/images/products/reformer-aluminio-nogal-a039-detail.webp",
+    "hashed": "/images/products/reformer-aluminio-nogal-a039-detail.c1228ed3.webp",
+    "hash": "c1228ed3"
+  },
+  "/images/products/reformer-aluminio-nogal-a039-studio.webp": {
+    "original": "/images/products/reformer-aluminio-nogal-a039-studio.webp",
+    "hashed": "/images/products/reformer-aluminio-nogal-a039-studio.5d65e6fd.webp",
+    "hash": "5d65e6fd"
   },
   "/images/products/reformer-aluminio-nogal-a039.webp": {
     "original": "/images/products/reformer-aluminio-nogal-a039.webp",
     "hashed": "/images/products/reformer-aluminio-nogal-a039.f457bbe5.webp",
     "hash": "f457bbe5"
   },
+  "/images/products/reformer-aluminio-riel-deslizante-a068-detail.webp": {
+    "original": "/images/products/reformer-aluminio-riel-deslizante-a068-detail.webp",
+    "hashed": "/images/products/reformer-aluminio-riel-deslizante-a068-detail.a670c4e1.webp",
+    "hash": "a670c4e1"
+  },
+  "/images/products/reformer-aluminio-riel-deslizante-a068-studio.webp": {
+    "original": "/images/products/reformer-aluminio-riel-deslizante-a068-studio.webp",
+    "hashed": "/images/products/reformer-aluminio-riel-deslizante-a068-studio.0f21dc78.webp",
+    "hash": "0f21dc78"
+  },
   "/images/products/reformer-aluminio-riel-deslizante-a068.webp": {
     "original": "/images/products/reformer-aluminio-riel-deslizante-a068.webp",
     "hashed": "/images/products/reformer-aluminio-riel-deslizante-a068.3fd9f39f.webp",
     "hash": "3fd9f39f"
+  },
+  "/images/products/reformer-aluminio-riel-fijo-a037-detail.webp": {
+    "original": "/images/products/reformer-aluminio-riel-fijo-a037-detail.webp",
+    "hashed": "/images/products/reformer-aluminio-riel-fijo-a037-detail.e9c41dc1.webp",
+    "hash": "e9c41dc1"
+  },
+  "/images/products/reformer-aluminio-riel-fijo-a037-studio.webp": {
+    "original": "/images/products/reformer-aluminio-riel-fijo-a037-studio.webp",
+    "hashed": "/images/products/reformer-aluminio-riel-fijo-a037-studio.fd60ce0b.webp",
+    "hash": "fd60ce0b"
   },
   "/images/products/reformer-aluminio-riel-fijo-a037.webp": {
     "original": "/images/products/reformer-aluminio-riel-fijo-a037.webp",
     "hashed": "/images/products/reformer-aluminio-riel-fijo-a037.5f38d316.webp",
     "hash": "5f38d316"
   },
+  "/images/products/reformer-barra-deslizante-media-torre-a036t-detail.webp": {
+    "original": "/images/products/reformer-barra-deslizante-media-torre-a036t-detail.webp",
+    "hashed": "/images/products/reformer-barra-deslizante-media-torre-a036t-detail.6f8fb2f2.webp",
+    "hash": "6f8fb2f2"
+  },
+  "/images/products/reformer-barra-deslizante-media-torre-a036t-studio.webp": {
+    "original": "/images/products/reformer-barra-deslizante-media-torre-a036t-studio.webp",
+    "hashed": "/images/products/reformer-barra-deslizante-media-torre-a036t-studio.0252b7c9.webp",
+    "hash": "0252b7c9"
+  },
   "/images/products/reformer-barra-deslizante-media-torre-a036t.webp": {
     "original": "/images/products/reformer-barra-deslizante-media-torre-a036t.webp",
     "hashed": "/images/products/reformer-barra-deslizante-media-torre-a036t.a5817fc0.webp",
     "hash": "a5817fc0"
+  },
+  "/images/products/reformer-blanco-media-torre-a012-detail.webp": {
+    "original": "/images/products/reformer-blanco-media-torre-a012-detail.webp",
+    "hashed": "/images/products/reformer-blanco-media-torre-a012-detail.a51bc62c.webp",
+    "hash": "a51bc62c"
+  },
+  "/images/products/reformer-blanco-media-torre-a012-studio.webp": {
+    "original": "/images/products/reformer-blanco-media-torre-a012-studio.webp",
+    "hashed": "/images/products/reformer-blanco-media-torre-a012-studio.a88e983e.webp",
+    "hash": "a88e983e"
   },
   "/images/products/reformer-blanco-media-torre-a012.webp": {
     "original": "/images/products/reformer-blanco-media-torre-a012.webp",
     "hashed": "/images/products/reformer-blanco-media-torre-a012.8b0d8284.webp",
     "hash": "8b0d8284"
   },
+  "/images/products/reformer-blanco-torre-completa-a081-detail.webp": {
+    "original": "/images/products/reformer-blanco-torre-completa-a081-detail.webp",
+    "hashed": "/images/products/reformer-blanco-torre-completa-a081-detail.b6969edf.webp",
+    "hash": "b6969edf"
+  },
+  "/images/products/reformer-blanco-torre-completa-a081-studio.webp": {
+    "original": "/images/products/reformer-blanco-torre-completa-a081-studio.webp",
+    "hashed": "/images/products/reformer-blanco-torre-completa-a081-studio.ee4f2ae4.webp",
+    "hash": "ee4f2ae4"
+  },
   "/images/products/reformer-blanco-torre-completa-a081.webp": {
     "original": "/images/products/reformer-blanco-torre-completa-a081.webp",
     "hashed": "/images/products/reformer-blanco-torre-completa-a081.76ba863a.webp",
     "hash": "76ba863a"
+  },
+  "/images/products/reformer-maple-a015-detail.webp": {
+    "original": "/images/products/reformer-maple-a015-detail.webp",
+    "hashed": "/images/products/reformer-maple-a015-detail.3cbbd20a.webp",
+    "hash": "3cbbd20a"
+  },
+  "/images/products/reformer-maple-a015-studio.webp": {
+    "original": "/images/products/reformer-maple-a015-studio.webp",
+    "hashed": "/images/products/reformer-maple-a015-studio.395c97d8.webp",
+    "hash": "395c97d8"
   },
   "/images/products/reformer-maple-a015.webp": {
     "original": "/images/products/reformer-maple-a015.webp",
@@ -849,6 +1119,11 @@
     "hashed": "/images/products/reformer-maple-barra-patentada-a001-box.05643979.jpg",
     "hash": "05643979"
   },
+  "/images/products/reformer-maple-barra-patentada-a001-detail.webp": {
+    "original": "/images/products/reformer-maple-barra-patentada-a001-detail.webp",
+    "hashed": "/images/products/reformer-maple-barra-patentada-a001-detail.eb4afd9e.webp",
+    "hash": "eb4afd9e"
+  },
   "/images/products/reformer-maple-barra-patentada-a001-extender.jpg": {
     "original": "/images/products/reformer-maple-barra-patentada-a001-extender.jpg",
     "hashed": "/images/products/reformer-maple-barra-patentada-a001-extender.fa323fda.jpg",
@@ -859,100 +1134,315 @@
     "hashed": "/images/products/reformer-maple-barra-patentada-a001-studio.741b6529.jpg",
     "hash": "741b6529"
   },
+  "/images/products/reformer-maple-barra-patentada-a001-studio.webp": {
+    "original": "/images/products/reformer-maple-barra-patentada-a001-studio.webp",
+    "hashed": "/images/products/reformer-maple-barra-patentada-a001-studio.1c962e99.webp",
+    "hash": "1c962e99"
+  },
   "/images/products/reformer-maple-barra-patentada-a001.webp": {
     "original": "/images/products/reformer-maple-barra-patentada-a001.webp",
     "hashed": "/images/products/reformer-maple-barra-patentada-a001.1860498d.webp",
     "hash": "1860498d"
+  },
+  "/images/products/reformer-maple-media-torre-a016m-detail.webp": {
+    "original": "/images/products/reformer-maple-media-torre-a016m-detail.webp",
+    "hashed": "/images/products/reformer-maple-media-torre-a016m-detail.757014b8.webp",
+    "hash": "757014b8"
+  },
+  "/images/products/reformer-maple-media-torre-a016m-studio.webp": {
+    "original": "/images/products/reformer-maple-media-torre-a016m-studio.webp",
+    "hashed": "/images/products/reformer-maple-media-torre-a016m-studio.f779bfd1.webp",
+    "hash": "f779bfd1"
   },
   "/images/products/reformer-maple-media-torre-a016m.webp": {
     "original": "/images/products/reformer-maple-media-torre-a016m.webp",
     "hashed": "/images/products/reformer-maple-media-torre-a016m.75c578b0.webp",
     "hash": "75c578b0"
   },
+  "/images/products/reformer-maple-torre-completa-a020m-detail.webp": {
+    "original": "/images/products/reformer-maple-torre-completa-a020m-detail.webp",
+    "hashed": "/images/products/reformer-maple-torre-completa-a020m-detail.df61b6d7.webp",
+    "hash": "df61b6d7"
+  },
+  "/images/products/reformer-maple-torre-completa-a020m-studio.webp": {
+    "original": "/images/products/reformer-maple-torre-completa-a020m-studio.webp",
+    "hashed": "/images/products/reformer-maple-torre-completa-a020m-studio.9ecad7f2.webp",
+    "hash": "9ecad7f2"
+  },
   "/images/products/reformer-maple-torre-completa-a020m.webp": {
     "original": "/images/products/reformer-maple-torre-completa-a020m.webp",
     "hashed": "/images/products/reformer-maple-torre-completa-a020m.46cf1cb7.webp",
     "hash": "46cf1cb7"
+  },
+  "/images/products/reformer-negro-media-torre-a033t-detail.webp": {
+    "original": "/images/products/reformer-negro-media-torre-a033t-detail.webp",
+    "hashed": "/images/products/reformer-negro-media-torre-a033t-detail.d414abe3.webp",
+    "hash": "d414abe3"
+  },
+  "/images/products/reformer-negro-media-torre-a033t-studio.webp": {
+    "original": "/images/products/reformer-negro-media-torre-a033t-studio.webp",
+    "hashed": "/images/products/reformer-negro-media-torre-a033t-studio.6db63ae2.webp",
+    "hash": "6db63ae2"
   },
   "/images/products/reformer-negro-media-torre-a033t.webp": {
     "original": "/images/products/reformer-negro-media-torre-a033t.webp",
     "hashed": "/images/products/reformer-negro-media-torre-a033t.c7b75b6c.webp",
     "hash": "c7b75b6c"
   },
+  "/images/products/reformer-negro-torre-completa-a034-detail.webp": {
+    "original": "/images/products/reformer-negro-torre-completa-a034-detail.webp",
+    "hashed": "/images/products/reformer-negro-torre-completa-a034-detail.663807e8.webp",
+    "hash": "663807e8"
+  },
+  "/images/products/reformer-negro-torre-completa-a034-studio.webp": {
+    "original": "/images/products/reformer-negro-torre-completa-a034-studio.webp",
+    "hashed": "/images/products/reformer-negro-torre-completa-a034-studio.1d206f8b.webp",
+    "hash": "1d206f8b"
+  },
   "/images/products/reformer-negro-torre-completa-a034.webp": {
     "original": "/images/products/reformer-negro-torre-completa-a034.webp",
     "hashed": "/images/products/reformer-negro-torre-completa-a034.ce695cc4.webp",
     "hash": "ce695cc4"
+  },
+  "/images/products/reformer-roble-a015-detail.webp": {
+    "original": "/images/products/reformer-roble-a015-detail.webp",
+    "hashed": "/images/products/reformer-roble-a015-detail.bbf38f18.webp",
+    "hash": "bbf38f18"
+  },
+  "/images/products/reformer-roble-a015-studio.webp": {
+    "original": "/images/products/reformer-roble-a015-studio.webp",
+    "hashed": "/images/products/reformer-roble-a015-studio.773fee3a.webp",
+    "hash": "773fee3a"
   },
   "/images/products/reformer-roble-a015.webp": {
     "original": "/images/products/reformer-roble-a015.webp",
     "hashed": "/images/products/reformer-roble-a015.8df4a5a3.webp",
     "hash": "8df4a5a3"
   },
+  "/images/products/reformer-roble-barra-deslizante-a017-detail.webp": {
+    "original": "/images/products/reformer-roble-barra-deslizante-a017-detail.webp",
+    "hashed": "/images/products/reformer-roble-barra-deslizante-a017-detail.fcc43e35.webp",
+    "hash": "fcc43e35"
+  },
+  "/images/products/reformer-roble-barra-deslizante-a017-studio.webp": {
+    "original": "/images/products/reformer-roble-barra-deslizante-a017-studio.webp",
+    "hashed": "/images/products/reformer-roble-barra-deslizante-a017-studio.59e179d5.webp",
+    "hash": "59e179d5"
+  },
   "/images/products/reformer-roble-barra-deslizante-a017.webp": {
     "original": "/images/products/reformer-roble-barra-deslizante-a017.webp",
     "hashed": "/images/products/reformer-roble-barra-deslizante-a017.4fa4934b.webp",
     "hash": "4fa4934b"
+  },
+  "/images/products/reformer-roble-barra-deslizante-torre-a018-detail.webp": {
+    "original": "/images/products/reformer-roble-barra-deslizante-torre-a018-detail.webp",
+    "hashed": "/images/products/reformer-roble-barra-deslizante-torre-a018-detail.eb9049f9.webp",
+    "hash": "eb9049f9"
+  },
+  "/images/products/reformer-roble-barra-deslizante-torre-a018-studio.webp": {
+    "original": "/images/products/reformer-roble-barra-deslizante-torre-a018-studio.webp",
+    "hashed": "/images/products/reformer-roble-barra-deslizante-torre-a018-studio.47f73914.webp",
+    "hash": "47f73914"
   },
   "/images/products/reformer-roble-barra-deslizante-torre-a018.webp": {
     "original": "/images/products/reformer-roble-barra-deslizante-torre-a018.webp",
     "hashed": "/images/products/reformer-roble-barra-deslizante-torre-a018.7beebf01.webp",
     "hash": "7beebf01"
   },
+  "/images/products/reformer-roble-barra-patentada-a107-detail.webp": {
+    "original": "/images/products/reformer-roble-barra-patentada-a107-detail.webp",
+    "hashed": "/images/products/reformer-roble-barra-patentada-a107-detail.872efca3.webp",
+    "hash": "872efca3"
+  },
+  "/images/products/reformer-roble-barra-patentada-a107-studio.webp": {
+    "original": "/images/products/reformer-roble-barra-patentada-a107-studio.webp",
+    "hashed": "/images/products/reformer-roble-barra-patentada-a107-studio.41c58c6e.webp",
+    "hash": "41c58c6e"
+  },
   "/images/products/reformer-roble-barra-patentada-a107.webp": {
     "original": "/images/products/reformer-roble-barra-patentada-a107.webp",
     "hashed": "/images/products/reformer-roble-barra-patentada-a107.253ad9f3.webp",
     "hash": "253ad9f3"
+  },
+  "/images/products/reformer-roble-blanco-a011-detail.webp": {
+    "original": "/images/products/reformer-roble-blanco-a011-detail.webp",
+    "hashed": "/images/products/reformer-roble-blanco-a011-detail.94523f8f.webp",
+    "hash": "94523f8f"
+  },
+  "/images/products/reformer-roble-blanco-a011-studio.webp": {
+    "original": "/images/products/reformer-roble-blanco-a011-studio.webp",
+    "hashed": "/images/products/reformer-roble-blanco-a011-studio.32bd22a3.webp",
+    "hash": "32bd22a3"
   },
   "/images/products/reformer-roble-blanco-a011.webp": {
     "original": "/images/products/reformer-roble-blanco-a011.webp",
     "hashed": "/images/products/reformer-roble-blanco-a011.c65bf84f.webp",
     "hash": "c65bf84f"
   },
+  "/images/products/reformer-roble-media-torre-a016-detail.webp": {
+    "original": "/images/products/reformer-roble-media-torre-a016-detail.webp",
+    "hashed": "/images/products/reformer-roble-media-torre-a016-detail.1a65c90f.webp",
+    "hash": "1a65c90f"
+  },
+  "/images/products/reformer-roble-media-torre-a016-studio.webp": {
+    "original": "/images/products/reformer-roble-media-torre-a016-studio.webp",
+    "hashed": "/images/products/reformer-roble-media-torre-a016-studio.6ce2549a.webp",
+    "hash": "6ce2549a"
+  },
   "/images/products/reformer-roble-media-torre-a016.webp": {
     "original": "/images/products/reformer-roble-media-torre-a016.webp",
     "hashed": "/images/products/reformer-roble-media-torre-a016.db7a69ed.webp",
     "hash": "db7a69ed"
+  },
+  "/images/products/reformer-roble-torre-completa-a020-detail.webp": {
+    "original": "/images/products/reformer-roble-torre-completa-a020-detail.webp",
+    "hashed": "/images/products/reformer-roble-torre-completa-a020-detail.be04cd64.webp",
+    "hash": "be04cd64"
+  },
+  "/images/products/reformer-roble-torre-completa-a020-studio.webp": {
+    "original": "/images/products/reformer-roble-torre-completa-a020-studio.webp",
+    "hashed": "/images/products/reformer-roble-torre-completa-a020-studio.9c9c3bd7.webp",
+    "hash": "9c9c3bd7"
   },
   "/images/products/reformer-roble-torre-completa-a020.webp": {
     "original": "/images/products/reformer-roble-torre-completa-a020.webp",
     "hashed": "/images/products/reformer-roble-torre-completa-a020.fde66c3c.webp",
     "hash": "fde66c3c"
   },
+  "/images/products/reformer-seis-en-uno-a042-detail.webp": {
+    "original": "/images/products/reformer-seis-en-uno-a042-detail.webp",
+    "hashed": "/images/products/reformer-seis-en-uno-a042-detail.644edbcf.webp",
+    "hash": "644edbcf"
+  },
+  "/images/products/reformer-seis-en-uno-a042-studio.webp": {
+    "original": "/images/products/reformer-seis-en-uno-a042-studio.webp",
+    "hashed": "/images/products/reformer-seis-en-uno-a042-studio.13712ae6.webp",
+    "hash": "13712ae6"
+  },
   "/images/products/reformer-seis-en-uno-a042.webp": {
     "original": "/images/products/reformer-seis-en-uno-a042.webp",
     "hashed": "/images/products/reformer-seis-en-uno-a042.5549b122.webp",
     "hash": "5549b122"
+  },
+  "/images/products/reformer-torre-barra-fija-a043-detail.webp": {
+    "original": "/images/products/reformer-torre-barra-fija-a043-detail.webp",
+    "hashed": "/images/products/reformer-torre-barra-fija-a043-detail.5dde7523.webp",
+    "hash": "5dde7523"
+  },
+  "/images/products/reformer-torre-barra-fija-a043-studio.webp": {
+    "original": "/images/products/reformer-torre-barra-fija-a043-studio.webp",
+    "hashed": "/images/products/reformer-torre-barra-fija-a043-studio.92ab0d05.webp",
+    "hash": "92ab0d05"
   },
   "/images/products/reformer-torre-barra-fija-a043.webp": {
     "original": "/images/products/reformer-torre-barra-fija-a043.webp",
     "hashed": "/images/products/reformer-torre-barra-fija-a043.7902f762.webp",
     "hash": "7902f762"
   },
+  "/images/products/reformer-torre-completa-aluminio-a045-detail.webp": {
+    "original": "/images/products/reformer-torre-completa-aluminio-a045-detail.webp",
+    "hashed": "/images/products/reformer-torre-completa-aluminio-a045-detail.7c3b5872.webp",
+    "hash": "7c3b5872"
+  },
+  "/images/products/reformer-torre-completa-aluminio-a045-studio.webp": {
+    "original": "/images/products/reformer-torre-completa-aluminio-a045-studio.webp",
+    "hashed": "/images/products/reformer-torre-completa-aluminio-a045-studio.2d946948.webp",
+    "hash": "2d946948"
+  },
   "/images/products/reformer-torre-completa-aluminio-a045.webp": {
     "original": "/images/products/reformer-torre-completa-aluminio-a045.webp",
     "hashed": "/images/products/reformer-torre-completa-aluminio-a045.a0357a21.webp",
     "hash": "a0357a21"
+  },
+  "/images/products/silla-pilates-metal-a109-detail.webp": {
+    "original": "/images/products/silla-pilates-metal-a109-detail.webp",
+    "hashed": "/images/products/silla-pilates-metal-a109-detail.d0076673.webp",
+    "hash": "d0076673"
+  },
+  "/images/products/silla-pilates-metal-a109-studio.webp": {
+    "original": "/images/products/silla-pilates-metal-a109-studio.webp",
+    "hashed": "/images/products/silla-pilates-metal-a109-studio.ead5ea77.webp",
+    "hash": "ead5ea77"
   },
   "/images/products/silla-pilates-metal-a109.webp": {
     "original": "/images/products/silla-pilates-metal-a109.webp",
     "hashed": "/images/products/silla-pilates-metal-a109.31c60696.webp",
     "hash": "31c60696"
   },
+  "/images/products/silla-wunda-maple-a022m-detail.webp": {
+    "original": "/images/products/silla-wunda-maple-a022m-detail.webp",
+    "hashed": "/images/products/silla-wunda-maple-a022m-detail.c8ef3c5b.webp",
+    "hash": "c8ef3c5b"
+  },
+  "/images/products/silla-wunda-maple-a022m-studio.webp": {
+    "original": "/images/products/silla-wunda-maple-a022m-studio.webp",
+    "hashed": "/images/products/silla-wunda-maple-a022m-studio.121c9825.webp",
+    "hash": "121c9825"
+  },
   "/images/products/silla-wunda-maple-a022m.webp": {
     "original": "/images/products/silla-wunda-maple-a022m.webp",
     "hashed": "/images/products/silla-wunda-maple-a022m.e77fcb0f.webp",
     "hash": "e77fcb0f"
+  },
+  "/images/products/silla-wunda-roble-a022-detail.webp": {
+    "original": "/images/products/silla-wunda-roble-a022-detail.webp",
+    "hashed": "/images/products/silla-wunda-roble-a022-detail.a283d31f.webp",
+    "hash": "a283d31f"
+  },
+  "/images/products/silla-wunda-roble-a022-studio.webp": {
+    "original": "/images/products/silla-wunda-roble-a022-studio.webp",
+    "hashed": "/images/products/silla-wunda-roble-a022-studio.5ff153a7.webp",
+    "hash": "5ff153a7"
   },
   "/images/products/silla-wunda-roble-a022.webp": {
     "original": "/images/products/silla-wunda-roble-a022.webp",
     "hashed": "/images/products/silla-wunda-roble-a022.3a76dd45.webp",
     "hash": "3a76dd45"
   },
+  "/images/products/silla-wunda-roble-premium-a101-detail.webp": {
+    "original": "/images/products/silla-wunda-roble-premium-a101-detail.webp",
+    "hashed": "/images/products/silla-wunda-roble-premium-a101-detail.bc279cd9.webp",
+    "hash": "bc279cd9"
+  },
+  "/images/products/silla-wunda-roble-premium-a101-studio.webp": {
+    "original": "/images/products/silla-wunda-roble-premium-a101-studio.webp",
+    "hashed": "/images/products/silla-wunda-roble-premium-a101-studio.2fc8d30b.webp",
+    "hash": "2fc8d30b"
+  },
   "/images/products/silla-wunda-roble-premium-a101.webp": {
     "original": "/images/products/silla-wunda-roble-premium-a101.webp",
     "hashed": "/images/products/silla-wunda-roble-premium-a101.c3640cf0.webp",
     "hash": "c3640cf0"
+  },
+  "/images/products/top-organico-fitted-detail.webp": {
+    "original": "/images/products/top-organico-fitted-detail.webp",
+    "hashed": "/images/products/top-organico-fitted-detail.9f919b4d.webp",
+    "hash": "9f919b4d"
+  },
+  "/images/products/top-organico-fitted-studio.webp": {
+    "original": "/images/products/top-organico-fitted-studio.webp",
+    "hashed": "/images/products/top-organico-fitted-studio.3e3ca6eb.webp",
+    "hash": "3e3ca6eb"
+  },
+  "/images/products/top-organico-relaxed-detail.webp": {
+    "original": "/images/products/top-organico-relaxed-detail.webp",
+    "hashed": "/images/products/top-organico-relaxed-detail.6162a4da.webp",
+    "hash": "6162a4da"
+  },
+  "/images/products/top-organico-relaxed-studio.webp": {
+    "original": "/images/products/top-organico-relaxed-studio.webp",
+    "hashed": "/images/products/top-organico-relaxed-studio.3f7e5276.webp",
+    "hash": "3f7e5276"
+  },
+  "/images/products/torre-pared-reformer-maple-a027-detail.webp": {
+    "original": "/images/products/torre-pared-reformer-maple-a027-detail.webp",
+    "hashed": "/images/products/torre-pared-reformer-maple-a027-detail.74a49333.webp",
+    "hash": "74a49333"
+  },
+  "/images/products/torre-pared-reformer-maple-a027-studio.webp": {
+    "original": "/images/products/torre-pared-reformer-maple-a027-studio.webp",
+    "hashed": "/images/products/torre-pared-reformer-maple-a027-studio.95df9d93.webp",
+    "hash": "95df9d93"
   },
   "/images/products/torre-pared-reformer-maple-a027.webp": {
     "original": "/images/products/torre-pared-reformer-maple-a027.webp",
