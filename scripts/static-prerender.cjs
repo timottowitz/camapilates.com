@@ -182,7 +182,9 @@ function renderShortcodes(content, current, posts) {
       const safeLimit = Number.isFinite(limit) && limit >= 0 ? limit : 3;
       return renderArticleLinks(relatedPosts(current, posts, safeLimit), 'También te puede interesar');
     })
-    .replace(/<audio-story[^>]*\/>/g, '');
+    .replace(/<audio-story[^>]*\/>/g, '')
+    .replace(/<shortcode>[^<]*<\/shortcode>/gi, '')
+    .replace(/<(?:related-studies|map-embed|price-table|cama-product-spotlight)\b[^>]*\/>/gi, '');
 }
 
 function assertNoRawRelatedShortcodes(html, route) {

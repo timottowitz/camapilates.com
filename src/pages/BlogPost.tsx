@@ -209,15 +209,15 @@ const BlogPost = () => {
         )}
       </Helmet>
 
-      <div className="container mx-auto px-8 md:px-24 py-12">
-        <div className="max-w-4xl mx-auto">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 py-12">
+        <div className="max-w-6xl mx-auto">
           <Link to="/blog" className="inline-flex items-center text-[#3E2723] hover:text-[#2A2624] mb-8 group text-xs uppercase tracking-widest transition-colors">
             <ArrowLeft className="mr-2 h-3 w-3 group-hover:-translate-x-1 transition-transform" />
-            Back to Journal
+            Volver al Blog
           </Link>
 
           <article>
-            <header className="mb-12 text-center">
+            <header className="mb-12 text-center max-w-4xl mx-auto">
               <div className="flex flex-wrap justify-center items-center gap-4 text-xs uppercase tracking-widest text-[#5D5550] mb-6">
                 <span className="px-3 py-1 border border-[#2A2624]/10 rounded-full">{postMeta.category}</span>
                 <div className="flex items-center gap-1">
@@ -235,7 +235,7 @@ const BlogPost = () => {
                 </div>
               </div>
 
-              <h1 className="text-4xl md:text-6xl font-serif italic text-[#2A2624] mb-8 leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif italic text-[#2A2624] mb-8 leading-tight">
                 {postMeta.title}
               </h1>
 
@@ -280,19 +280,19 @@ const BlogPost = () => {
               </div>
             </header>
 
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-              <article className="lg:col-span-3">
-                <div className="prose prose-lg max-w-none prose-headings:font-serif prose-headings:italic prose-headings:text-[#2A2624] prose-p:text-[#5D5550] prose-p:font-light prose-strong:text-[#2A2624] prose-li:text-[#5D5550] prose-blockquote:text-[#3E2723] prose-blockquote:border-l-[#3E2723] prose-a:text-[#3E2723] prose-a:no-underline hover:prose-a:underline">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-12">
+              <article className="lg:col-span-8 xl:col-span-9 min-w-0">
+                <div className="prose prose-lg max-w-none prose-headings:font-serif prose-headings:italic prose-headings:text-[#2A2624] prose-p:text-[#5D5550] prose-p:font-light prose-strong:text-[#2A2624] prose-li:text-[#5D5550] prose-blockquote:text-[#3E2723] prose-blockquote:border-l-[#3E2723] prose-a:text-[#3E2723] prose-a:no-underline hover:prose-a:underline prose-hr:border-[#2A2624]/10">
                   <ArticleContentWithCTAs content={normalizedContent} slug={postMeta.slug} />
                 </div>
               </article>
 
-              <aside className="lg:col-span-1">
-                <div className="sticky top-24 space-y-8">
+              <aside className="lg:col-span-4 xl:col-span-3">
+                <div className="sticky top-24 space-y-6">
                   <TableOfContents content={normalizedContent} />
-                  <Card className="bg-[#EAE8E4] border border-[#2A2624]/10 shadow-none">
+                  <Card className="bg-[#EAE8E4] border border-[#2A2624]/10 shadow-none rounded-sm">
                     <CardContent className="p-6">
-                      <h3 className="font-serif italic text-lg text-[#2A2624] mb-4">Share</h3>
+                      <h3 className="font-serif italic text-lg text-[#2A2624] mb-4">Compartir</h3>
                       <ShareButtons
                         url={`${getOrigin()}/blog/${postMeta.slug}`}
                         title={postMeta.title}
@@ -340,7 +340,7 @@ const BlogPost = () => {
               {prevPost && (
                 <Link to={`/blog/${prevPost.slug}`} className="block group text-left">
                   <div className="p-6 border border-[#2A2624]/10 rounded-sm hover:bg-white transition-colors">
-                    <p className="text-xs uppercase tracking-widest text-[#5D5550] mb-2">Previous</p>
+                    <p className="text-xs uppercase tracking-widest text-[#5D5550] mb-2">Anterior</p>
                     <h4 className="font-serif italic text-lg text-[#2A2624] group-hover:text-[#3E2723]">{prevPost.title}</h4>
                   </div>
                 </Link>
@@ -348,7 +348,7 @@ const BlogPost = () => {
               {nextPost && (
                 <Link to={`/blog/${nextPost.slug}`} className="block group text-right">
                   <div className="p-6 border border-[#2A2624]/10 rounded-sm hover:bg-white transition-colors">
-                    <p className="text-xs uppercase tracking-widest text-[#5D5550] mb-2">Next</p>
+                    <p className="text-xs uppercase tracking-widest text-[#5D5550] mb-2">Siguiente</p>
                     <h4 className="font-serif italic text-lg text-[#2A2624] group-hover:text-[#3E2723]">{nextPost.title}</h4>
                   </div>
                 </Link>
@@ -362,9 +362,14 @@ const BlogPost = () => {
 };
 
 const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: string }) => {
-  // Strip leading '# Title' from markdown so header H1 remains the single primary H1
-  const cleanedContent = content.replace(/^\s*#\s+[^\n]+\n+/, '');
+  // Strip leading '# Title' from markdown and strip legacy unknown pseudo-tags
+  const cleanedContent = content
+    .replace(/^\s*#\s+[^\n]+\n+/, '')
+    .replace(/<shortcode>[^<]*<\/shortcode>/gi, '')
+    .replace(/<(?:related-studies|map-embed|price-table|cama-product-spotlight)\b[^>]*\/>/gi, '')
+    .replace(/<\/?small>/gi, '*');
   const sections = cleanedContent.split(/\n## /);
+  const hasExplicitSeeAlso = /<see-also\b/i.test(cleanedContent);
 
   const processContent = (text: string) => {
     const elements: React.ReactNode[] = [];
@@ -388,8 +393,16 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
       return res[0];
     };
 
-    const slugify = (raw: string) =>
-      raw.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+    const slugifyHeading = (raw: string) =>
+      raw
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-+|-+$/g, '');
 
     const getText = (children: any): string => {
       return React.Children.toArray(children)
@@ -414,17 +427,74 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
             rehypePlugins={[rehypeHighlight]}
             components={{
               h1: ({ children, ...props }) => {
-                const id = slugify(getText(children));
+                const id = slugifyHeading(getText(children));
                 return <h2 id={id} className="text-3xl font-serif italic text-[#2A2624]" {...props}>{children}</h2>;
               },
               h2: ({ children, ...props }) => {
-                const id = slugify(getText(children));
+                const id = slugifyHeading(getText(children));
                 return <h2 id={id} {...props}>{children}</h2>;
               },
               h3: ({ children, ...props }) => {
-                const id = slugify(getText(children));
+                const id = slugifyHeading(getText(children));
                 return <h3 id={id} {...props}>{children}</h3>;
               },
+              table: ({ children, ...props }) => (
+                <div className="not-prose my-8 overflow-x-auto rounded-sm border border-[#2A2624]/15 bg-white/70 shadow-sm">
+                  <table className="w-full text-left border-collapse text-sm" {...props}>
+                    {children}
+                  </table>
+                </div>
+              ),
+              thead: ({ children, ...props }) => (
+                <thead className="bg-[#EAE8E4] text-[#2A2624] border-b border-[#2A2624]/15 font-serif italic" {...props}>
+                  {children}
+                </thead>
+              ),
+              th: ({ children, ...props }) => (
+                <th className="px-4 py-3 font-semibold text-[#2A2624] whitespace-nowrap" {...props}>
+                  {children}
+                </th>
+              ),
+              td: ({ children, ...props }) => (
+                <td className="px-4 py-3 border-t border-[#2A2624]/10 text-[#5D5550] align-top leading-relaxed" {...props}>
+                  {children}
+                </td>
+              ),
+              tr: ({ children, ...props }) => (
+                <tr className="hover:bg-[#EAE8E4]/40 transition-colors" {...props}>
+                  {children}
+                </tr>
+              ),
+              pre: ({ children, ...props }) => (
+                <pre className="not-prose my-8 p-6 rounded-sm bg-[#EAE8E4]/80 border border-[#2A2624]/15 text-[#2A2624] font-mono text-xs md:text-sm overflow-x-auto leading-relaxed" {...props}>
+                  {children}
+                </pre>
+              ),
+              code: ({ className, children, ...props }: any) => {
+                const isInline = !className && !String(children).includes('\n');
+                if (isInline) {
+                  return (
+                    <code className="px-1.5 py-0.5 rounded bg-[#EAE8E4] text-[#3E2723] font-mono text-[0.9em]" {...props}>
+                      {children}
+                    </code>
+                  );
+                }
+                return (
+                  <code className="text-[#2A2624] font-mono bg-transparent p-0" {...props}>
+                    {children}
+                  </code>
+                );
+              },
+              img: ({ src, alt, ...props }) => (
+                <img
+                  src={src}
+                  alt={alt || ''}
+                  className="w-full rounded-sm shadow-sm my-6 object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  {...props}
+                />
+              ),
             }}
           >{chunk}</ReactMarkdown>
         );
@@ -530,7 +600,7 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
               </div>
             )}
 
-            {index === 0 && <SeeAlso slug={slug} limit={3} />}
+            {index === 0 && !hasExplicitSeeAlso && <SeeAlso slug={slug} limit={3} />}
 
             {shouldShowCTA && (
               <div className="not-prose my-12">
