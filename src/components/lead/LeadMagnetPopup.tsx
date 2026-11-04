@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X } from 'lucide-react';
 import { useMutation } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
+import { track } from '@/lib/analytics/track';
 
 type MagnetType = 'routine' | 'checklist' | 'pricing';
 
@@ -79,6 +80,7 @@ const LeadMagnetPopup: React.FC<LeadMagnetPopupProps> = ({
       });
       
       setSuccess(true);
+      track('lead_submitted', { form: source || 'lead-magnet', magnet });
       onSuccess?.();
       
       // Auto-close after 3 seconds

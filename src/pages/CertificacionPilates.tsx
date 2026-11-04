@@ -35,6 +35,7 @@ import { CourseModuleEditorialCard } from '@/components/webapp/CourseModuleEdito
 import { WhopForumReader } from '@/components/webapp/WhopForumReader';
 import { WhopCheckoutModal } from '@/components/whop/WhopCheckoutModal';
 import { WHOP_CONFIG } from '@/lib/whop/whopConfig';
+import { track } from '@/lib/analytics/track';
 import {
   CERTIFICATION_COHORTS,
   WEBINAR_INFO,
@@ -129,6 +130,7 @@ export const CertificacionPilates: React.FC = () => {
         source: 'certificacion-pilates-hero-whitelist',
       });
       setIsRegistered(true);
+      track('lead_submitted', { form: 'certificacion-pilates-hero-whitelist' });
     } catch (err: unknown) {
       console.error('Waitlist submission failed:', err);
       setErrorMsg('No pudimos guardar tu registro. Intenta de nuevo o escríbenos por WhatsApp.');

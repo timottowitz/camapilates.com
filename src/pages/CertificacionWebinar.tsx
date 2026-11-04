@@ -4,6 +4,7 @@ import { useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { getOrigin } from '@/lib/seo';
+import { track } from '@/lib/analytics/track';
 import {
   CheckCircle2,
   MapPin,
@@ -101,6 +102,7 @@ export const CertificacionWebinar: React.FC = () => {
         source: 'webinar-landing-waitlist',
       });
       setIsRegistered(true);
+      track('lead_submitted', { form: 'webinar-landing-waitlist' });
     } catch (err: unknown) {
       console.error('Waitlist submission failed:', err);
       setErrorMsg('No pudimos guardar tu registro. Intenta de nuevo o escríbenos por WhatsApp.');

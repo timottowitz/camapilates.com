@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { WhopCheckoutEmbed } from '@whop/checkout/react';
 import { WHOP_CONFIG } from '@/lib/whop/whopConfig';
+import { track } from '@/lib/analytics/track';
 
 interface WhopCheckoutModalProps {
   isOpen: boolean;
@@ -145,6 +146,7 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
         source: 'service-waitlist-modal',
       });
       setWaitlistSubmitted(true);
+      track('lead_submitted', { form: 'service-waitlist-modal', plan: activePlan.name });
     } catch (err: any) {
       console.error('Error submitting waitlist:', err);
       setWaitlistError(err?.message || 'Ocurrió un error al guardar tu registro. Inténtalo de nuevo.');

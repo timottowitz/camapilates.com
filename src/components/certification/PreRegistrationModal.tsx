@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
+import { track } from '@/lib/analytics/track';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -199,6 +200,7 @@ export const PreRegistrationModal: React.FC<PreRegistrationModalProps> = ({
       });
 
       setShowSuccess(true);
+      track('lead_submitted', { form: source || 'pre-registration', city: formData.city });
     } catch (error: unknown) {
       setErrors({
         submit: error instanceof Error ? error.message : 'Error al enviar el formulario',
