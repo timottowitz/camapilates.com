@@ -11,7 +11,10 @@ import CityListicleNav from '@/components/certification/CityListicleNav';
 import CertificationPartnerCard from '@/components/certification/CertificationPartnerCard';
 import {
   CERTIFICATION_COHORTS,
-  WEBINAR_INFO,
+  cohortStartLabel,
+  isCohortOpen,
+  openCohorts,
+  reserveSeatWhatsAppUrl,
 } from '@/content/certification/cohortsData';
 import {
   STOTT_COURSES,
@@ -55,6 +58,11 @@ export const CertificacionPilatesCity: React.FC = () => {
   const cohort = (normalizedKey === 'queretaro' || normalizedKey === 'monterrey')
     ? CERTIFICATION_COHORTS[normalizedKey as 'queretaro' | 'monterrey']
     : null;
+
+  // The course to sell on this page: the city's own while it takes reservations, otherwise the next one.
+  const cohortOpen = cohort ? isCohortOpen(cohort) : false;
+  const nextCohort = cohortOpen ? cohort : openCohorts()[0] ?? null;
+  const reserveUrl = reserveSeatWhatsAppUrl(nextCohort);
 
   const cityName = cityInfo.name;
   const shortCityName = cityInfo.shortName;
@@ -134,7 +142,7 @@ export const CertificacionPilatesCity: React.FC = () => {
         },
         {
           question: `¿Cuáles son los costos y modalidades en ${shortCityName}?`,
-          answer: `Ofrecemos el Curso Básico de 28 horas (2 fines de semana) por $25,000 MXN y la Certificación Completa de 48 horas (4 fines de semana) por $38,000 MXN. Puedes pre-reservar tu lugar con solo $400 MXN.`,
+          answer: `Ofrecemos el Curso Básico de 28 horas (2 fines de semana) por $25,000 MXN y la Certificación Completa de 48 horas (4 fines de semana) por $38,000 MXN. Puedes apartar tu lugar con solo $400 MXN escribiéndonos por WhatsApp.`,
         },
         {
           question: `¿Tengo un Reformer individual asignado durante las clases?`,
@@ -217,7 +225,15 @@ export const CertificacionPilatesCity: React.FC = () => {
           <div className="lg:col-span-7">
             <div className="flex items-center gap-2 mb-4">
               <span className="px-3 py-1 bg-[#3E2723] text-[#EAE8E4] text-[11px] font-sans tracking-[0.2em] uppercase rounded-full">
-                {cohort ? `Convocatoria Abierta · ${cohort.periodLabel}` : isCdmx ? 'Sede STOTT & Linaje Clásico' : 'Directorio de Certificación'}
+                {cohort
+                  ? cohortOpen
+                    ? `Inscripciones abiertas · Inicia el ${cohortStartLabel(cohort)}`
+                    : nextCohort
+                      ? `Curso en marcha · Próximo: ${nextCohort.cityName}, ${cohortStartLabel(nextCohort)}`
+                      : `Curso en marcha · ${cohort.periodLabel}`
+                  : isCdmx
+                    ? 'Sede STOTT & Linaje Clásico'
+                    : 'Directorio de Certificación'}
               </span>
               <span className="text-xs font-mono text-[#5D5550]">
                 {partners.length} {partners.length === 1 ? 'Academia Registrada' : 'Academias Registradas'}
@@ -244,14 +260,17 @@ export const CertificacionPilatesCity: React.FC = () => {
               {cohort ? (
                 <>
                   <a
-                    href={wa}
+                    href={reserveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     data-rybbit-event="click_hero_whatsapp_apartar"
                     data-rybbit-prop-city={shortCityName}
                     className="inline-flex items-center gap-2 px-8 py-4 bg-[#25D366] text-white rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#20ba59] transition-all shadow-lg font-bold hover:scale-[1.02] active:scale-95"
                   >
-                    <MessageCircle className="w-4 h-4" /> Apartar Cupo vía WhatsApp ($400 MXN)
+                    <MessageCircle className="w-4 h-4" />
+                    {cohortOpen || !nextCohort
+                      ? 'Apartar Cupo vía WhatsApp ($400 MXN)'
+                      : `Apartar en ${nextCohort.cityName} ($400 MXN)`}
                   </a>
                   <button
                     onClick={() => setModalOpen(true)}
@@ -293,6 +312,26 @@ export const CertificacionPilatesCity: React.FC = () => {
                 </>
               )}
             </div>
+
+            {!cohort && !isCdmx && nextCohort && (
+              <p className="mt-5 text-sm text-[#5D5550]">
+                ¿Prefieres formarte con Edelweiss? Próximo curso presencial en{' '}
+                <Link to={`/certificacion-pilates/${nextCohort.cityKey}`} className="font-semibold text-[#2A2624] underline underline-offset-4">
+                  {nextCohort.cityName}, inicia el {cohortStartLabel(nextCohort)}
+                </Link>
+                {' · '}
+                <a
+                  href={reserveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-rybbit-event="click_hero_edelweiss_course"
+                  data-rybbit-prop-city={shortCityName}
+                  className="font-semibold text-emerald-700 hover:text-emerald-800"
+                >
+                  Apartar lugar por WhatsApp →
+                </a>
+              </p>
+            )}
 
             {cohort && (
               <div className="flex flex-wrap items-center gap-3 mt-4 text-[11px] text-[#5D5550]">
@@ -405,7 +444,7 @@ export const CertificacionPilatesCity: React.FC = () => {
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <a
-                href={wa}
+                href={reserveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-rybbit-event="click_investment_whatsapp_apartar"
@@ -618,7 +657,7 @@ export const CertificacionPilatesCity: React.FC = () => {
         >
           WhatsApp Asesoría
         </a>
-        {cohort ? (
+        {cohort && WHOP_CONFIG.paymentsEnabled && cohortOpen ? (
           <button
             onClick={() => {
               setWhopPlan(
@@ -634,6 +673,17 @@ export const CertificacionPilatesCity: React.FC = () => {
           >
             Apartar Cupo
           </button>
+        ) : cohort && nextCohort ? (
+          <a
+            href={reserveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-rybbit-event="click_mobile_sticky_apartar_cupo"
+            data-rybbit-prop-city={shortCityName}
+            className="flex-1 py-3 px-3 bg-[#2A2624] text-[#EAE8E4] rounded-full text-center text-[11px] font-bold uppercase tracking-wider shadow-md hover:bg-[#3E2723] transition-all"
+          >
+            {cohortOpen ? 'Apartar Cupo' : `Apartar ${nextCohort.cityName}`}
+          </a>
         ) : (
           <button
             onClick={() => setModalOpen(true)}

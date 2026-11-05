@@ -17,7 +17,6 @@ import {
   MessageSquare,
   HelpCircle,
   GraduationCap,
-  Video,
   BookOpen,
   Gift,
   Flame,
@@ -39,6 +38,10 @@ import { track } from '@/lib/analytics/track';
 import {
   CERTIFICATION_COHORTS,
   WEBINAR_INFO,
+  cohortStartLabel,
+  isCohortOpen,
+  openCohorts,
+  reserveSeatWhatsAppUrl,
 } from '@/content/certification/cohortsData';
 import {
   STOTT_COURSES,
@@ -73,7 +76,12 @@ export const CertificacionPilates: React.FC = () => {
   // Webinar & Whitelist Fast-Registration State
   const joinWaitlist = useMutation(api.certificationPreRegistrations.submitServiceWaitlist);
 
-  const [selectedCohort, setSelectedCohort] = useState<'queretaro-nov-2026' | 'monterrey-dec-jan-2026-2027' | 'both'>('queretaro-nov-2026');
+  const queretaroOpen = isCohortOpen(CERTIFICATION_COHORTS.queretaro);
+  const monterreyOpen = isCohortOpen(CERTIFICATION_COHORTS.monterrey);
+  const coursesOpen = openCohorts();
+  const [selectedCohort, setSelectedCohort] = useState<'queretaro-nov-2026' | 'monterrey-dec-jan-2026-2027' | 'both'>(
+    queretaroOpen ? 'queretaro-nov-2026' : 'monterrey-dec-jan-2026-2027'
+  );
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -92,6 +100,18 @@ export const CertificacionPilates: React.FC = () => {
   }, []);
 
   const handleOpenCheckout = (planId: string) => {
+    if (!WHOP_CONFIG.paymentsEnabled) {
+      const cohort =
+        planId === WHOP_CONFIG.plans.apartadoQueretaro.id
+          ? CERTIFICATION_COHORTS.queretaro
+          : planId === WHOP_CONFIG.plans.apartadoMonterrey.id
+            ? CERTIFICATION_COHORTS.monterrey
+            : null;
+      const reservable = cohort && isCohortOpen(cohort) ? cohort : null;
+      track('whatsapp_click', { placement: 'certificacion-apartar', product: reservable?.cityName ?? 'general' });
+      window.open(reserveSeatWhatsAppUrl(reservable), '_blank', 'noopener');
+      return;
+    }
     setCheckoutPlanId(planId);
     setCheckoutModalOpen(true);
   };
@@ -126,7 +146,7 @@ export const CertificacionPilates: React.FC = () => {
         email: email.trim(),
         phone: phoneDigits,
         cohort: selectedCohort,
-        serviceOrPlan: 'Lista de espera próximos cursos (certificación)',
+        serviceOrPlan: 'Solicitud de lugar (certificación)',
         source: 'certificacion-pilates-hero-whitelist',
       });
       setIsRegistered(true);
@@ -140,13 +160,13 @@ export const CertificacionPilates: React.FC = () => {
   };
 
   const shareWaUrl = `https://wa.me/${WEBINAR_INFO.whatsappSupportNumber}?text=${encodeURIComponent(
-    `Hola Gabi y Laura, me registré a la lista de espera para la certificación en Pilates Reformer. Mi nombre es ${fullName || 'aspirante'} y me interesa la sede de ${
+    `Hola Gabi y Laura, acabo de dejar mis datos para apartar mi lugar en la certificación de Pilates Reformer. Mi nombre es ${fullName || 'aspirante'} y me interesa la sede de ${
       selectedCohort === 'queretaro-nov-2026'
         ? 'Querétaro (Noviembre 2026)'
         : selectedCohort === 'monterrey-dec-jan-2026-2027'
         ? 'Monterrey (Dic 2026 – Ene 2027)'
         : 'Querétaro y Monterrey'
-    }. Quiero información sobre el Curso Básico (28h · $25,000 MXN) y la Certificación Completa (48h · $38,000 MXN).`
+    }. ¿Me comparten los datos para el apartado de $400 MXN?`
   )}`;
 
   const title = 'Certificación Pilates Reformer México [Aval Oficial] | Edelweiss';
@@ -263,7 +283,7 @@ export const CertificacionPilates: React.FC = () => {
         name: '¿Cómo puedo apartar mi lugar para el curso de 28h o 48h?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Puedes asegurar tu lugar realizando una pre-reserva oficial de solo $400 MXN a través de nuestra pasarela de Whop (tarjeta o transferencia) para congelar tu cupo (máximo 12 lugares por sede).',
+          text: 'Puedes asegurar tu lugar con un apartado de solo $400 MXN: escríbenos por WhatsApp y te enviamos los datos de pago para congelar tu cupo (máximo 12 lugares por sede).',
         },
       },
       {
@@ -323,7 +343,9 @@ export const CertificacionPilates: React.FC = () => {
         <div className="flex flex-wrap items-center gap-2.5 mb-6">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100/90 border border-amber-300 text-amber-950 font-mono text-[11px] font-semibold uppercase tracking-wider">
             <Sparkles className="w-3 h-3 text-amber-700" />
-            INFO DAY FINALIZADO · LISTA DE ESPERA ABIERTA
+            {coursesOpen.length
+              ? `INSCRIPCIONES ABIERTAS · ${coursesOpen.map((c) => `${c.cityName} inicia ${cohortStartLabel(c)}`).join(' · ')}`
+              : 'LISTA DE ESPERA ABIERTA'}
           </span>
           <span className="inline-flex items-center px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-neutral-700 font-mono text-[11px] uppercase tracking-wider">
             [ QUERÉTARO · MONTERREY ]
@@ -348,42 +370,69 @@ export const CertificacionPilates: React.FC = () => {
         <div id="webinar-section" className="bg-white rounded-[32px] p-6 sm:p-8 md:p-12 border-2 border-neutral-900 shadow-lg relative overflow-hidden mb-12 scroll-mt-24">
           {/* Top-right black ribbon matching cohort cards */}
           <div className="absolute top-0 right-0 bg-[#111111] text-white px-5 py-1.5 rounded-bl-2xl font-mono text-[11px] font-bold uppercase tracking-wider">
-            Info Day finalizado
+            {coursesOpen.length ? 'Inscripciones abiertas' : 'Lista de espera'}
           </div>
 
           <div className="relative z-10 grid lg:grid-cols-12 gap-10 items-center">
             {/* Left Column: Webinar Pitch & Countdown */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 text-amber-900 font-mono text-xs uppercase tracking-wider border border-amber-200 font-medium">
-                <Video className="w-3.5 h-3.5 text-amber-700" />
-                <span>Gracias por acompañarnos en el Info Day</span>
+              <div className="mt-5 lg:mt-0 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-900 font-mono text-xs uppercase tracking-wider border border-emerald-200 font-medium">
+                <Clock className="w-3.5 h-3.5 text-emerald-700" />
+                <span>12 lugares por sede · Reformer individual</span>
               </div>
 
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-neutral-900 tracking-tight leading-tight">
-                Súmate a la lista de espera de los próximos cursos presenciales.
+                {coursesOpen.length
+                  ? 'Aparta tu lugar en el próximo curso presencial.'
+                  : 'Súmate a la lista de espera de los próximos cursos presenciales.'}
               </h2>
 
               <p className="text-sm md:text-base text-neutral-600 leading-relaxed font-normal">
-                Gracias a todas las personas que se conectaron al Info Day con{' '}
-                <strong className="text-neutral-900 font-semibold">Gabi</strong> y{' '}
-                <strong className="text-neutral-900 font-semibold">Laura Munive</strong> el 26 de septiembre.
-                Si aún quieres certificarte, anótate en la lista de espera y te avisaremos primero sobre los próximos cursos en Querétaro y Monterrey: <strong className="text-neutral-900 font-semibold">Curso Básico (28h)</strong> y{' '}
-                <strong className="text-neutral-900 font-semibold">Certificación Completa (48h)</strong>.
+                {coursesOpen.length ? (
+                  <>
+                    {coursesOpen.map((c, idx) => (
+                      <React.Fragment key={c.id}>
+                        {idx > 0 && ' y '}
+                        <strong className="text-neutral-900 font-semibold">
+                          {c.cityName} inicia el {cohortStartLabel(c)}
+                        </strong>
+                      </React.Fragment>
+                    ))}
+                    . Elige el <strong className="text-neutral-900 font-semibold">Curso Básico (28h · $25,000 MXN)</strong> o la{' '}
+                    <strong className="text-neutral-900 font-semibold">Certificación Completa (48h · $38,000 MXN)</strong>.
+                    Tu lugar queda apartado con $400 MXN: escríbenos por WhatsApp y te enviamos los datos de pago.
+                  </>
+                ) : (
+                  <>
+                    Déjanos tus datos y te avisaremos primero sobre las próximas fechas en Querétaro y Monterrey:{' '}
+                    <strong className="text-neutral-900 font-semibold">Curso Básico (28h)</strong> y{' '}
+                    <strong className="text-neutral-900 font-semibold">Certificación Completa (48h)</strong>.
+                  </>
+                )}
               </p>
 
               {/* Fast-action CTA and WhatsApp */}
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                <button
-                  onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
-                  className="px-6 py-3 rounded-full bg-[#111111] text-white hover:bg-neutral-800 text-xs font-bold uppercase tracking-wider transition-colors shadow-sm flex items-center gap-2"
-                >
-                  <span>
-                    {WHOP_CONFIG.paymentsEnabled
-                      ? 'Pre-reservar Cupo Inmediato ($400 MXN)'
-                      : 'Próximamente · Apartar Cupo ($400 MXN)'}
-                  </span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
+                {WHOP_CONFIG.paymentsEnabled ? (
+                  <button
+                    onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
+                    className="px-6 py-3 rounded-full bg-[#111111] text-white hover:bg-neutral-800 text-xs font-bold uppercase tracking-wider transition-colors shadow-sm flex items-center gap-2"
+                  >
+                    <span>Pre-reservar Cupo Inmediato ($400 MXN)</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                ) : (
+                  <a
+                    href={reserveSeatWhatsAppUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-rybbit-event="click_hub_hero_whatsapp_apartar"
+                    className="px-6 py-3 rounded-full bg-[#25D366] text-white hover:bg-[#20ba59] text-xs font-bold uppercase tracking-wider transition-colors shadow-sm flex items-center gap-2"
+                  >
+                    <MessageSquare className="w-3.5 h-3.5" />
+                    <span>{coursesOpen.length ? 'Apartar mi lugar por WhatsApp ($400 MXN)' : 'Preguntar fechas por WhatsApp'}</span>
+                  </a>
+                )}
 
                 <a
                   href={PRIMARY_WHATSAPP}
@@ -418,18 +467,20 @@ export const CertificacionPilates: React.FC = () => {
                         <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider">12 cupos máx</span>
                       </div>
                       <div className="grid grid-cols-2 gap-2 pt-1">
-                        <button
-                          type="button"
-                          onClick={() => setSelectedCohort('queretaro-nov-2026')}
-                          className={`px-3 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider text-left transition-all border ${
-                            selectedCohort === 'queretaro-nov-2026'
-                              ? 'bg-white border-neutral-900 text-neutral-950 font-bold shadow-xs ring-1 ring-neutral-900/10'
-                              : 'bg-white/60 border-neutral-200 text-neutral-600 hover:border-neutral-400 hover:bg-white'
-                          }`}
-                        >
-                          <div className="font-bold text-neutral-900">Querétaro</div>
-                          <div className="text-[10px] text-neutral-500">7–29 Nov 2026</div>
-                        </button>
+                        {queretaroOpen && (
+                          <button
+                            type="button"
+                            onClick={() => setSelectedCohort('queretaro-nov-2026')}
+                            className={`px-3 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider text-left transition-all border ${
+                              selectedCohort === 'queretaro-nov-2026'
+                                ? 'bg-white border-neutral-900 text-neutral-950 font-bold shadow-xs ring-1 ring-neutral-900/10'
+                                : 'bg-white/60 border-neutral-200 text-neutral-600 hover:border-neutral-400 hover:bg-white'
+                            }`}
+                          >
+                            <div className="font-bold text-neutral-900">Querétaro</div>
+                            <div className="text-[10px] text-neutral-500">7–29 Nov 2026</div>
+                          </button>
+                        )}
 
                         <button
                           type="button"
@@ -508,11 +559,13 @@ export const CertificacionPilates: React.FC = () => {
                       disabled={isSubmitting}
                       className="w-full py-3.5 rounded-full bg-[#111111] hover:bg-neutral-800 text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50"
                     >
-                      <span>{isSubmitting ? 'Guardando...' : 'Unirme a la Lista de Espera →'}</span>
+                      <span>{isSubmitting ? 'Guardando...' : coursesOpen.length ? 'Quiero mi lugar →' : 'Unirme a la Lista de Espera →'}</span>
                     </button>
 
                     <div className="text-[11px] font-mono text-center text-neutral-500">
-                      ✓ Gratis y sin compromiso · Te avisamos primero
+                      {coursesOpen.length
+                        ? '✓ Sin costo · Te escribimos por WhatsApp para confirmar tu lugar'
+                        : '✓ Gratis y sin compromiso · Te avisamos primero'}
                     </div>
                   </form>
                 ) : (
@@ -522,7 +575,7 @@ export const CertificacionPilates: React.FC = () => {
                     </div>
 
                     <div>
-                      <h3 className="text-xl font-bold text-neutral-900 mb-1">¡Ya estás en la lista!</h3>
+                      <h3 className="text-xl font-bold text-neutral-900 mb-1">¡Recibimos tus datos!</h3>
                       <p className="text-xs text-neutral-600 leading-relaxed max-w-sm mx-auto">
                         Anotamos tu interés en{' '}
                         <strong className="text-neutral-900">
@@ -532,7 +585,7 @@ export const CertificacionPilates: React.FC = () => {
                             ? 'Monterrey'
                             : 'Querétaro y Monterrey'}
                         </strong>
-                        . Te escribiremos por WhatsApp y correo cuando haya novedades de los próximos cursos.
+                        . Para apartar tu lugar ahora mismo, escríbenos por WhatsApp y te enviamos los datos del apartado de $400 MXN.
                       </p>
                     </div>
 
@@ -544,22 +597,20 @@ export const CertificacionPilates: React.FC = () => {
                         className="w-full py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors shadow-sm"
                       >
                         <MessageSquare className="w-4 h-4" />
-                        <span>Saludar a Gabi y Laura por WhatsApp</span>
+                        <span>Apartar mi lugar por WhatsApp</span>
                       </a>
 
-                      <div className="pt-2">
-                        <button
-                          onClick={() => handleOpenCheckout(selectedCohort === 'monterrey-dec-jan-2026-2027' ? WHOP_CONFIG.plans.apartadoMonterrey.id : WHOP_CONFIG.plans.apartadoQueretaro.id)}
-                          className="w-full py-3 rounded-full bg-[#111111] text-white text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-md flex items-center justify-center gap-2"
-                        >
-                          <span>
-                            {WHOP_CONFIG.paymentsEnabled
-                              ? 'Pre-reservar Cupo Ahora ($400 MXN)'
-                              : 'Próximamente · Apartar Cupo ($400 MXN)'}
-                          </span>
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
+                      {WHOP_CONFIG.paymentsEnabled && (
+                        <div className="pt-2">
+                          <button
+                            onClick={() => handleOpenCheckout(selectedCohort === 'monterrey-dec-jan-2026-2027' ? WHOP_CONFIG.plans.apartadoMonterrey.id : WHOP_CONFIG.plans.apartadoQueretaro.id)}
+                            className="w-full py-3 rounded-full bg-[#111111] text-white text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-md flex items-center justify-center gap-2"
+                          >
+                            <span>Pre-reservar Cupo Ahora ($400 MXN)</span>
+                            <ArrowRight className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
@@ -676,12 +727,14 @@ export const CertificacionPilates: React.FC = () => {
 
               <div className="grid sm:grid-cols-2 gap-3">
                 <button
-                  onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartadoQueretaro.id)}
+                  onClick={() => handleOpenCheckout(queretaroOpen ? WHOP_CONFIG.plans.apartadoQueretaro.id : WHOP_CONFIG.plans.apartadoMonterrey.id)}
                   className="py-3 rounded-full bg-[#111111] text-white text-xs font-semibold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-sm text-center"
                 >
-                  {WHOP_CONFIG.paymentsEnabled
-                    ? 'Pre-reservar Querétaro ($400 MXN)'
-                    : 'Próximamente · Apartar Querétaro ($400 MXN)'}
+                  {!queretaroOpen
+                    ? 'En curso · Apartar Monterrey'
+                    : WHOP_CONFIG.paymentsEnabled
+                      ? 'Pre-reservar Querétaro ($400 MXN)'
+                      : 'Apartar Querétaro por WhatsApp ($400 MXN)'}
                 </button>
                 <Link
                   to="/certificacion-pilates/queretaro"
@@ -759,9 +812,11 @@ export const CertificacionPilates: React.FC = () => {
                   onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartadoMonterrey.id)}
                   className="py-3 rounded-full bg-[#111111] text-white text-xs font-semibold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-sm text-center"
                 >
-                  {WHOP_CONFIG.paymentsEnabled
-                    ? 'Pre-reservar Monterrey ($400 MXN)'
-                    : 'Próximamente · Apartar Monterrey ($400 MXN)'}
+                  {!monterreyOpen
+                    ? 'En curso · Preguntar próximas fechas'
+                    : WHOP_CONFIG.paymentsEnabled
+                      ? 'Pre-reservar Monterrey ($400 MXN)'
+                      : 'Apartar Monterrey por WhatsApp ($400 MXN)'}
                 </button>
                 <Link
                   to="/certificacion-pilates/monterrey"
@@ -1076,7 +1131,7 @@ export const CertificacionPilates: React.FC = () => {
                     >
                       {WHOP_CONFIG.paymentsEnabled
                         ? `Inscribirme a Básico ($${WHOP_CONFIG.plans.cursoBasico.price.toLocaleString('es-MX')} MXN)`
-                        : `Próximamente · Básico ($${WHOP_CONFIG.plans.cursoBasico.price.toLocaleString('es-MX')} MXN)`}
+                        : `Inscribirme · Básico ($${WHOP_CONFIG.plans.cursoBasico.price.toLocaleString('es-MX')} MXN)`}
                     </button>
                     <button
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
@@ -1084,7 +1139,7 @@ export const CertificacionPilates: React.FC = () => {
                     >
                       {WHOP_CONFIG.paymentsEnabled
                         ? `Apartar Cupo ($${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN)`
-                        : `Próximamente · Apartar ($${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN)`}
+                        : `Apartar por WhatsApp ($${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN)`}
                     </button>
                   </div>
                 </div>
@@ -1124,7 +1179,7 @@ export const CertificacionPilates: React.FC = () => {
                     >
                       {WHOP_CONFIG.paymentsEnabled
                         ? `Inscribirme a Completa ($${WHOP_CONFIG.plans.colegiaturaCompleta.price.toLocaleString('es-MX')} MXN)`
-                        : `Próximamente · Completa ($${WHOP_CONFIG.plans.colegiaturaCompleta.price.toLocaleString('es-MX')} MXN)`}
+                        : `Inscribirme · Completa ($${WHOP_CONFIG.plans.colegiaturaCompleta.price.toLocaleString('es-MX')} MXN)`}
                     </button>
                     <button
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
@@ -1132,7 +1187,7 @@ export const CertificacionPilates: React.FC = () => {
                     >
                       {WHOP_CONFIG.paymentsEnabled
                         ? `Apartar Cupo ($${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN)`
-                        : `Próximamente · Apartar ($${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN)`}
+                        : `Apartar por WhatsApp ($${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN)`}
                     </button>
                   </div>
                 </div>
@@ -1447,7 +1502,7 @@ export const CertificacionPilates: React.FC = () => {
             onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
             className="px-5 py-2.5 rounded-full bg-[#111111] text-white text-xs font-semibold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-sm"
           >
-            {WHOP_CONFIG.paymentsEnabled ? 'Pre-reservar Cupo →' : 'Próximamente · Apartar Cupo →'}
+            {WHOP_CONFIG.paymentsEnabled ? 'Pre-reservar Cupo →' : 'Apartar Cupo por WhatsApp →'}
           </button>
         </div>
       </aside>

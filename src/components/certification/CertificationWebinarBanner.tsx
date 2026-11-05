@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Sparkles, ArrowRight, ListPlus, Users, Award } from 'lucide-react';
-import { CERTIFICATION_COHORTS, WEBINAR_INFO } from '@/content/certification/cohortsData';
+import { Calendar, Sparkles, ArrowRight, MessageCircle, Users, Award } from 'lucide-react';
+import {
+  CERTIFICATION_COHORTS,
+  cohortStartLabel,
+  isCohortOpen,
+  openCohorts,
+  reserveSeatWhatsAppUrl,
+} from '@/content/certification/cohortsData';
 import { useConvexAssets } from '@/lib/convexAssets';
 
 interface CertificationWebinarBannerProps {
@@ -14,21 +20,21 @@ export const CertificationWebinarBanner: React.FC<CertificationWebinarBannerProp
   className = '',
 }) => {
   const { pilatesGroupClass } = useConvexAssets();
-  const isQueretaro = city === 'queretaro';
-  const isMonterrey = city === 'monterrey';
-  const courseUrl = city ? `/certificacion-pilates/${city}` : '/certificacion-pilates';
+  // A city's banner only promotes its own course while it takes reservations; afterwards it
+  // promotes whichever courses are still open.
+  const cityCohort = city && isCohortOpen(CERTIFICATION_COHORTS[city]) ? CERTIFICATION_COHORTS[city] : null;
+  const courses = cityCohort ? [cityCohort] : openCohorts();
+  const courseUrl = cityCohort ? `/certificacion-pilates/${cityCohort.cityKey}` : '/certificacion-pilates';
 
-  const title = isQueretaro
-    ? 'Curso de Pilates Reformer en Querétaro · Noviembre 2026'
-    : isMonterrey
-      ? 'Curso de Pilates Reformer en Monterrey · Dic 2026 – Ene 2027'
-      : 'Curso de Pilates Reformer en Querétaro y Monterrey (2026–2027)';
+  const title = cityCohort
+    ? `Curso de Pilates Reformer en ${cityCohort.cityName} · ${cityCohort.periodLabel}`
+    : courses.length
+      ? `Curso de Pilates Reformer en ${courses.map((c) => c.cityName).join(' y ')}`
+      : 'Curso de Pilates Reformer en Querétaro y Monterrey';
 
-  const datesSubtitle = isQueretaro
-    ? CERTIFICATION_COHORTS.queretaro.fullDatesLabel
-    : isMonterrey
-      ? CERTIFICATION_COHORTS.monterrey.fullDatesLabel
-      : 'Querétaro (Noviembre 2026) y Monterrey (Diciembre 2026 – Enero 2027)';
+  const datesSubtitle = courses.length
+    ? courses.map((c) => `${c.cityName}: inicia el ${cohortStartLabel(c)}`).join(' · ')
+    : 'Próximas fechas por anunciar';
 
   return (
     <div
@@ -73,7 +79,10 @@ export const CertificationWebinarBanner: React.FC<CertificationWebinarBannerProp
           </h2>
 
           <p className="text-xs sm:text-sm text-[#EAE8E4]/90 font-light leading-relaxed mb-5 drop-shadow-sm">
-            Certificación presencial intensiva con <strong>Gabi</strong> y <strong>Laura Munive</strong>: Curso Básico (28h · $25,000 MXN) y Curso Completo (48h · $38,000 MXN). Práctica en Reformer, cupos reducidos (12 por sede). El Info Day ya terminó: gracias a quienes nos acompañaron. Súmate a la lista de espera para enterarte primero de los próximos cursos.
+            Certificación presencial intensiva con <strong>Gabi</strong> y <strong>Laura Munive</strong>: Curso Básico (28h · $25,000 MXN) y Curso Completo (48h · $38,000 MXN). Práctica en Reformer, cupos reducidos (12 por sede).{' '}
+            {courses.length
+              ? 'Inscripciones abiertas: aparta tu lugar con $400 MXN por WhatsApp.'
+              : 'Súmate a la lista de espera para enterarte primero de las próximas fechas.'}
           </p>
 
           <div className="flex flex-wrap items-center gap-2.5 text-xs text-[#EAE8E4]/95">
@@ -101,24 +110,25 @@ export const CertificationWebinarBanner: React.FC<CertificationWebinarBannerProp
             <ArrowRight className="w-4 h-4 text-[#2A2624] group-hover/btn:translate-x-1 transition-transform" />
           </Link>
 
-          <Link
-            to="/certificacion-pilates/webinar#registro"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-black/40 backdrop-blur-md border border-white/25 text-white/95 text-xs uppercase tracking-wider font-medium hover:bg-white/15 hover:border-white/40 hover:scale-105 active:scale-95 transition-all duration-300 text-center shadow-lg"
-          >
-            <ListPlus className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Unirme a la Lista de Espera</span>
-          </Link>
-
-          <a
-            href={`https://wa.me/${WEBINAR_INFO.whatsappSupportNumber}?text=${encodeURIComponent(
-              `Hola, me interesa información sobre el curso presencial de Pilates Reformer en ${city || 'Querétaro / Monterrey'} (Básico 28h · $25,000 / Completo 48h · $38,000).`
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-center text-[11px] text-[#EAE8E4]/70 hover:text-white uppercase tracking-wider transition-colors py-0.5"
-          >
-            Consultar dudas por WhatsApp →
-          </a>
+          {courses.length ? (
+            <a
+              href={reserveSeatWhatsAppUrl(cityCohort)}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-rybbit-event="click_banner_whatsapp_apartar"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#25D366] text-white text-xs uppercase tracking-wider font-bold hover:bg-[#20ba59] hover:scale-105 active:scale-95 transition-all duration-300 text-center shadow-lg"
+            >
+              <MessageCircle className="w-3.5 h-3.5" />
+              <span>Apartar por WhatsApp ($400)</span>
+            </a>
+          ) : (
+            <Link
+              to="/certificacion-pilates/webinar#registro"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-black/40 backdrop-blur-md border border-white/25 text-white/95 text-xs uppercase tracking-wider font-medium hover:bg-white/15 hover:border-white/40 hover:scale-105 active:scale-95 transition-all duration-300 text-center shadow-lg"
+            >
+              <span>Unirme a la Lista de Espera</span>
+            </Link>
+          )}
         </div>
       </div>
     </div>

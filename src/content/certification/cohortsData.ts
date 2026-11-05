@@ -391,6 +391,36 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
   },
 };
 
+// Seats are sold until the morning of the first class (Mexico City time).
+export function isCohortOpen(cohort: CityCertificationCohort, now = new Date()): boolean {
+  return now < new Date(`${cohort.weekends[0].startDate}T09:00:00-06:00`);
+}
+
+export function openCohorts(now = new Date()): CityCertificationCohort[] {
+  return Object.values(CERTIFICATION_COHORTS).filter((cohort) => isCohortOpen(cohort, now));
+}
+
+// "7 de noviembre"
+export function cohortStartLabel(cohort: CityCertificationCohort): string {
+  return new Date(`${cohort.weekends[0].startDate}T12:00:00-06:00`).toLocaleDateString('es-MX', {
+    day: 'numeric',
+    month: 'long',
+    timeZone: 'America/Mexico_City',
+  });
+}
+
+// Online payments are off, so a seat is reserved over WhatsApp, where the team sends the $400 MXN
+// payment details. Without a cohort the message names every course still taking reservations.
+export function reserveSeatWhatsAppUrl(cohort?: CityCertificationCohort | null): string {
+  const courses = (cohort ? [cohort] : openCohorts()).map(
+    (c) => `${c.cityName} (inicia el ${cohortStartLabel(c)})`
+  );
+  const text = courses.length
+    ? `Hola, quiero apartar mi lugar en el curso de Pilates Reformer en ${courses.join(' o ')}. ¿Me comparten los datos para el apartado de $400 MXN?`
+    : 'Hola, quiero apartar mi lugar en el próximo curso de Pilates Reformer. ¿Cuándo abren las siguientes fechas?';
+  return `https://wa.me/${WEBINAR_INFO.whatsappSupportNumber}?text=${encodeURIComponent(text)}`;
+}
+
 /**
  * Helper to generate Google Calendar Event URL
  */
