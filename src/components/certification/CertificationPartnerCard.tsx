@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   MapPin,
   Award,
@@ -14,6 +14,14 @@ import {
 } from 'lucide-react';
 import { CertificationPartner } from '@/content/certification/certificationsData';
 
+// A short folio in every WhatsApp message we send a partner school, logged with the click in Rybbit,
+// so both sides can match a referred lead to an enrolment. No 0/O or 1/I, so it reads well over chat.
+const FOLIO_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+function newFolio(): string {
+  const bytes = crypto.getRandomValues(new Uint8Array(5));
+  return `CDP-${Array.from(bytes, (b) => FOLIO_ALPHABET[b % FOLIO_ALPHABET.length]).join('')}`;
+}
+
 interface CertificationPartnerCardProps {
   partner: CertificationPartner;
   className?: string;
@@ -23,8 +31,9 @@ export const CertificationPartnerCard: React.FC<CertificationPartnerCardProps> =
   partner,
   className = '',
 }) => {
+  const [folio] = useState(newFolio);
   const whatsappUrl = `https://wa.me/${partner.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
-    `Hola ${partner.leadPerson}, vi su información en el Directorio de Certificaciones de camadepilates.com y quisiera solicitar informes sobre sus cursos de certificación de Pilates.`
+    `Hola ${partner.leadPerson}, vi su información en el Directorio de Certificaciones de camadepilates.com y quisiera solicitar informes sobre sus cursos de certificación de Pilates. (Folio ${folio})`
   )}`;
 
   return (
@@ -127,6 +136,10 @@ export const CertificationPartnerCard: React.FC<CertificationPartnerCardProps> =
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
+          data-rybbit-event="partner_whatsapp"
+          data-rybbit-prop-partner={partner.id}
+          data-rybbit-prop-city={partner.city}
+          data-rybbit-prop-folio={folio}
           className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#2A2624] text-[#EAE8E4] text-xs font-semibold uppercase tracking-wider hover:bg-[#3E2723] transition-all shadow-sm active:scale-95"
         >
           <MessageCircle className="w-4 h-4 text-emerald-400" />

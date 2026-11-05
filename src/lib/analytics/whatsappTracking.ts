@@ -26,7 +26,9 @@ export function startWhatsAppTracking() {
     'click',
     (event) => {
       const link = (event.target as Element | null)?.closest?.(WHATSAPP_LINK);
-      if (!link) return;
+      // Chats with partner schools from the directory are their leads, not ours; they are counted
+      // separately as partner_whatsapp.
+      if (!link || link.matches('[data-rybbit-event="partner_whatsapp"]')) return;
       const product = link.closest('[data-rybbit-prop-product]')?.getAttribute('data-rybbit-prop-product');
       track('whatsapp_click', {
         placement: placementOf(link),
