@@ -4,30 +4,23 @@ import type { Product } from '@/lib/shop/types';
 import { formatPrice } from '@/lib/shop/catalog';
 import { selectItem } from '@/lib/shop/analytics';
 import { useConvexAssets } from '@/lib/convexAssets';
-import { Info, Eye, TrendingUp, Flame, Clock, Star, MessageCircle, ArrowRight } from 'lucide-react';
+import { Info, Eye, MessageCircle, ArrowRight } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
 import { Badge } from '@/components/ui/badge';
 
 type Props = {
   product: Product;
   onQuickView?: (p: Product) => void;
-  showUrgency?: boolean;
 };
 
 const ProductCard21Enhanced: React.FC<Props> = ({
   product,
   onQuickView,
-  showUrgency = true
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const assets = useConvexAssets();
   const finishes = (product as Product & { finishes?: string[] }).finishes;
   const isMylo = (finishes || []).includes('mycelium') || /mycel/i.test(product?.name || '') || /mycel/i.test(product?.slug || '');
-
-  // Mock data for urgency (in production, fetch from API)
-  const stock = Math.floor(Math.random() * 8) + 3; // 3-10
-  const viewingNow = Math.floor(Math.random() * 5) + 2; // 2-6
-  const soldRecently = Math.floor(Math.random() * 15) + 5; // 5-19
 
   return (
     <Link
@@ -92,30 +85,12 @@ const ProductCard21Enhanced: React.FC<Props> = ({
               <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] animate-pulse" />
               12 MSI disponibles
             </span>
-            <span className="text-[10px] uppercase tracking-wider text-[#5D5550]/70 font-medium">
-              Garantía 3 años
-            </span>
+            {product.warranty && (
+              <span className="text-[10px] uppercase tracking-wider text-[#5D5550]/70 font-medium">
+                Garantía {product.warranty}
+              </span>
+            )}
           </div>
-
-          {/* Urgency Indicators */}
-          {showUrgency && (
-            <div className="pt-1 space-y-1">
-              {viewingNow > 3 && (
-                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <div className="flex items-center gap-1">
-                    <div className="w-2 h-2 bg-[#7A8A6F] rounded-full animate-pulse" />
-                    <span>{viewingNow} personas viendo ahora</span>
-                  </div>
-                </div>
-              )}
-              {soldRecently > 10 && (
-                <div className="flex items-center gap-1.5 text-xs text-[#A45A3E]">
-                  <Flame className="h-3 w-3" />
-                  <span>{soldRecently} vendidos esta semana</span>
-                </div>
-              )}
-            </div>
-          )}
 
           {/* Mylo Badge */}
           {isMylo && (

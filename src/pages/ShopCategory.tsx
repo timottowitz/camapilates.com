@@ -146,7 +146,6 @@ const ShopCategory: React.FC = () => {
                 key={product.slug}
                 product={product}
                 onQuickView={(p) => setQuick(p)}
-                showUrgency={false}
               />
             ))}
           </div>

@@ -460,7 +460,6 @@ const Shop: React.FC = () => {
                     key={product.slug}
                     product={product}
                     onQuickView={(p) => setQuick(p)}
-                    showUrgency={true}
                   />
                 ))}
               </div>

@@ -4,18 +4,27 @@ import { MessageCircle } from 'lucide-react';
 const WHATSAPP_NUMBER = '525548468190';
 const DEFAULT_MESSAGE = 'Hola, tengo una pregunta sobre sus productos de Pilates.';
 
+const whatsappUrl = (message: string) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+// Names the page the visitor is on, so the team knows what the chat is about and which page
+// brought it. Read at click time because Helmet sets the title after the route renders.
+function pageMessage(): string {
+  const title = document.title
+    .split(' | ')[0]
+    .replace(/\s*\[[^\]]*\]\s*/g, ' ')
+    .trim();
+  return title ? `Hola, estoy viendo «${title}» en camadepilates.com y tengo una pregunta.` : DEFAULT_MESSAGE;
+}
+
 interface FloatingWhatsAppProps {
   message?: string;
   showOnDesktop?: boolean;
 }
 
 const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({
-  message = DEFAULT_MESSAGE,
+  message,
   showOnDesktop = true,
 }) => {
-  const encodedMessage = encodeURIComponent(message);
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-
   return (
     <div
       className={`fixed bottom-20 right-4 md:bottom-8 md:right-8 z-40 flex items-center group ${
@@ -27,7 +36,10 @@ const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({
         ¿Dudas? Chatea con nosotros
       </span>
       <a
-        href={whatsappUrl}
+        href={whatsappUrl(message ?? DEFAULT_MESSAGE)}
+        onClick={(event) => {
+          if (!message) event.currentTarget.href = whatsappUrl(pageMessage());
+        }}
         target="_blank"
         rel="noopener noreferrer"
         data-rybbit-event="click_floating_whatsapp"
@@ -35,7 +47,7 @@ const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({
         aria-label="Contactar por WhatsApp"
       >
         <MessageCircle className="w-7 h-7 text-white" />
-        
+
         {/* Pulse animation */}
         <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-25 pointer-events-none" />
       </a>
