@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { Product } from '@/lib/shop/types';
-import { formatPrice } from '@/lib/shop/catalog';
+import { priceLabel } from '@/lib/shop/catalog';
 import { selectItem } from '@/lib/shop/analytics';
 import { useConvexAssets } from '@/lib/convexAssets';
 import { Info, Eye, MessageCircle, ArrowRight } from 'lucide-react';
@@ -69,7 +69,7 @@ const ProductCard21Enhanced: React.FC<Props> = ({
             </h3>
             <div className="text-right shrink-0">
               <span translate="no" className="notranslate block text-lg font-bold text-[#2A2624] font-sans">
-                ${Number(product.price).toLocaleString('es-MX')}
+                {priceLabel(product.price)}
               </span>
             </div>
           </div>
@@ -122,11 +122,11 @@ const ProductCard21Enhanced: React.FC<Props> = ({
           {/* CTA Buttons - Always visible and actionable */}
           <div className="pt-2 space-y-2">
             <div className="w-full py-2.5 px-4 rounded-full bg-[#2A2624] text-[#EAE8E4] text-[11px] uppercase tracking-[0.15em] font-bold group-hover:bg-[#3E2723] transition-colors shadow-sm flex items-center justify-center gap-1.5">
-              <span>Ver Cama y Acabados</span>
+              <span>{product.specs ? 'Ver medidas y detalles' : 'Ver detalles'}</span>
               <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
             </div>
             <a
-              href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar el modelo ${product.name} ($${Number(product.price).toLocaleString('es-MX')} MXN) con envío a mi código postal:`)}`}
+              href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar el modelo ${product.name} (${priceLabel(product.price)} MXN) con envío a mi código postal:`)}`}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}

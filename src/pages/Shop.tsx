@@ -1,145 +1,61 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link, useSearchParams } from 'react-router-dom';
+import { MessageCircle, ArrowRight } from 'lucide-react';
 import { DEFAULTS, getOrigin, generateBreadcrumbSchema } from '@/lib/seo';
-import { allProducts, regionEstimate, categoriesWithCounts, filterByCategory, availableFinishes, getBySlug } from '@/lib/shop/catalog';
-import { filterByFinishes, filterByAvailability } from '@/lib/shop/catalog';
-import type { FinishKey } from '@/lib/shop/types';
-import type { Region } from '@/lib/shop/types';
-import { toItemListSchema } from '@/lib/shop/catalog';
-import ProductGrid21 from '@/components/commerce21/ProductGrid21';
-import CategoryIcons21 from '@/components/commerce21/CategoryIcons21';
-import FeaturedProduct21 from '@/components/commerce21/FeaturedProduct21';
-import ProductRail21 from '@/components/commerce21/ProductRail21';
-import ExploreTiles21 from '@/components/commerce21/ExploreTiles21';
-import ShopHeaderAddon from '@/components/commerce21/ShopHeaderAddon';
-import RibbonBanner from '@/components/ui/ribbon-banner';
-import { useConvexAssets } from '@/lib/convexAssets';
-import TrustStrip from '@/components/ui/trust-strip';
-import QuickView21 from '@/components/commerce21/QuickView21';
-import type { Product as PType } from '@/lib/shop/types';
-import FilterBar21 from '@/components/commerce21/FilterBar21';
-import ActiveChips21, { Chip } from '@/components/commerce21/ActiveChips21';
-import { Link } from 'react-router-dom';
+import { allProducts, priceLabel, REFORMER_TYPE_LABELS, toItemListSchema } from '@/lib/shop/catalog';
 import { viewItemList } from '@/lib/shop/analytics';
-import { EnhancedHero } from '@/components/commerce21/EnhancedHero';
-import { LivePurchaseNotifications, CustomerReviewsPreview } from '@/components/commerce21/SocialProofWidget';
-import ExitIntentPopup, { useExitIntent } from '@/components/commerce21/ExitIntentPopup';
-import ProductCard21Enhanced from '@/components/commerce21/ProductCard21Enhanced';
+import type { Product, ReformerType } from '@/lib/shop/types';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
-import MobileFilterSheet, { MobileFilterTrigger } from '@/components/commerce21/MobileFilterSheet';
-import { ChevronDown, Mail, ArrowRight, MapPin } from 'lucide-react';
+import ProductCard21Enhanced from '@/components/commerce21/ProductCard21Enhanced';
+import QuickView21 from '@/components/commerce21/QuickView21';
 
-function getInitialRegion(): Region {
-  if (typeof window === 'undefined') return 'MX';
-  const v = window.localStorage?.getItem('regionPref');
-  return (v === 'US' || v === 'DE' || v === 'MX') ? v : 'MX';
-}
+type Filter = 'todos' | ReformerType | 'accesorios';
+
+const FILTERS: { key: Filter; label: string }[] = [
+  { key: 'todos', label: 'Todos los reformers' },
+  ...(Object.entries(REFORMER_TYPE_LABELS) as [ReformerType, string][]).map(([key, label]) => ({ key, label })),
+  { key: 'accesorios', label: 'Accesorios y ropa' },
+];
+
+const WHATSAPP = `https://wa.me/525548468190?text=${encodeURIComponent(
+  'Hola, estoy viendo la tienda de camadepilates.com y quiero ayuda para elegir mi reformer.'
+)}`;
+
+const isReformer = (p: Product) => p.category === 'Reformers';
 
 const Shop: React.FC = () => {
   const origin = getOrigin();
-  const title = 'Tienda — Camas de Pilates y Accesorios';
-  const desc = 'Compra tu Cama de Pilates (Reformer) y accesorios. Modelos para casa y estudio con envío en México.';
+  const title = 'Tienda de Camas de Pilates Reformer';
+  const desc =
+    'Reformers de roble, maple y aluminio, plegables y para gimnasio. Precios en MXN, medidas reales y asesoría por WhatsApp con envío a todo México.';
 
-  // Load images from Convex
-  const assets = useConvexAssets();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requested = searchParams.get('tipo') as Filter | null;
+  const filter: Filter = FILTERS.some((f) => f.key === requested) ? (requested as Filter) : 'todos';
+  const [quick, setQuick] = useState<Product | null>(null);
 
-  const [region, setRegion] = useState<Region>(getInitialRegion());
-  const [sort, setSort] = useState<'relevance' | 'price_asc' | 'price_desc'>('relevance');
-  const [minPrice, setMinPrice] = useState<string>('');
-  const [maxPrice, setMaxPrice] = useState<string>('');
-  const [search, setSearch] = useState<string>('');
-  const [activeCats, setActiveCats] = useState<string[]>([]);
-  const [quick, setQuick] = useState<PType | null>(null);
-  const [activeFinishes, setActiveFinishes] = useState<FinishKey[]>([]);
-  const [activeAvailability, setActiveAvailability] = useState<string[]>([]);
-  const [showExitPopup, setShowExitPopup] = useState(false);
-  const [showMobileFilters, setShowMobileFilters] = useState(false);
-
-  // Exit intent detection
-  useExitIntent(() => {
-    const hasSeenPopup = sessionStorage.getItem('exitPopupSeen');
-    if (!hasSeenPopup) {
-      setShowExitPopup(true);
-    }
-  });
-
-  const products = useMemo(() => {
-    let base = allProducts();
-    // Category filter(s)
-    base = filterByCategory(base, activeCats);
-    // Price filter
-    const min = minPrice ? Number(minPrice) : undefined;
-    const max = maxPrice ? Number(maxPrice) : undefined;
-    if (min !== undefined || max !== undefined) {
-      base = base.filter((p) => {
-        const val = Number(p.price);
-        if (!Number.isFinite(val)) return true;
-        if (min !== undefined && val < min) return false;
-        if (max !== undefined && val > max) return false;
-        return true;
-      });
-    }
-    // Finishes filter
-    base = filterByFinishes(base, activeFinishes);
-    // Availability filter
-    base = filterByAvailability(base, activeAvailability);
-    // Search filter
-    if (search.trim()) {
-      const q = search.toLowerCase();
-      base = base.filter((p) => p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q));
-    }
-    // Sort
-    if (sort === 'price_asc') return [...base].sort((a, b) => Number(a.price) - Number(b.price));
-    if (sort === 'price_desc') return [...base].sort((a, b) => Number(b.price) - Number(a.price));
-    return base;
-  }, [sort, minPrice, maxPrice, activeCats, activeFinishes, activeAvailability, search]);
-
-  const itemList = toItemListSchema(origin, products);
-  const cats = categoriesWithCounts();
-  const finishes = availableFinishes();
+  const all = allProducts();
+  const reformers = all.filter(isReformer);
+  const shown = useMemo(() => {
+    if (filter === 'todos') return reformers;
+    if (filter === 'accesorios') return all.filter((p) => !isReformer(p));
+    return reformers.filter((p) => p.type === filter);
+  }, [filter, all, reformers]);
 
   useEffect(() => {
-    viewItemList('shop', products);
-  }, [products]);
+    viewItemList('shop', shown);
+  }, [shown]);
 
-  // URL sync — read on mount
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const sp = new URLSearchParams(window.location.search);
-    setSearch(sp.get('s') || '');
-    setSort((sp.get('sort') as any) || 'relevance');
-    setMinPrice(sp.get('min') || '');
-    setMaxPrice(sp.get('max') || '');
-    const catCsv = sp.get('cats');
-    if (catCsv) setActiveCats(catCsv.split(',').map(decodeURIComponent));
-    const finCsv = sp.get('fins');
-    if (finCsv) setActiveFinishes(finCsv.split(',') as any);
-    const avlCsv = sp.get('avl');
-    if (avlCsv) setActiveAvailability(avlCsv.split(','));
-    const r = sp.get('r');
-    if (r === 'MX' || r === 'US' || r === 'DE') setRegion(r);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const count = (key: Filter) =>
+    key === 'todos' ? reformers.length : key === 'accesorios' ? all.length - reformers.length : reformers.filter((p) => p.type === key).length;
 
-  // URL sync — write on change (debounced)
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const id = setTimeout(() => {
-      const sp = new URLSearchParams();
-      if (search) sp.set('s', search);
-      if (sort && sort !== 'relevance') sp.set('sort', sort);
-      if (minPrice) sp.set('min', minPrice);
-      if (maxPrice) sp.set('max', maxPrice);
-      if (activeCats.length) sp.set('cats', activeCats.map(encodeURIComponent).join(','));
-      if (activeFinishes.length) sp.set('fins', activeFinishes.join(','));
-      if (activeAvailability.length) sp.set('avl', activeAvailability.join(','));
-      if (region !== 'MX') sp.set('r', region);
-      const q = sp.toString();
-      const url = q ? `/shop?${q}` : '/shop';
-      window.history.replaceState(null, '', url);
-    }, 300);
-    return () => clearTimeout(id);
-  }, [search, sort, minPrice, maxPrice, activeCats, activeFinishes, activeAvailability, region]);
+  const setFilter = (key: Filter) => {
+    const next = new URLSearchParams(searchParams);
+    if (key === 'todos') next.delete('tipo');
+    else next.set('tipo', key);
+    setSearchParams(next, { replace: true });
+  };
 
   return (
     <LuxuryLayout headerTheme="light">
@@ -147,573 +63,153 @@ const Shop: React.FC = () => {
         <title>{title} | {DEFAULTS.siteName}</title>
         <meta name="description" content={desc} />
         <link rel="canonical" href={`${origin}/shop`} />
-        {assets.shopHero && <link rel="preload" as="image" href={assets.shopHero} fetchPriority="high" />}
         <meta property="og:site_name" content={DEFAULTS.siteName} />
         <meta property="og:locale" content={DEFAULTS.locale} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={desc} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${origin}/shop`} />
-        <meta property="og:image" content={`${origin}${DEFAULTS.ogImage}`} />
-        <meta property="og:image:alt" content="Tienda de Camas de Pilates Reformer Edelweiss - comprar equipo premium en Mexico" />
-        <meta name="twitter:image:alt" content="Tienda de Camas de Pilates Reformer Edelweiss - comprar equipo premium en Mexico" />
-        <script type="application/ld+json">{JSON.stringify(itemList)}</script>
-        <script type="application/ld+json">{JSON.stringify(generateBreadcrumbSchema([
-          { name: 'Inicio', url: '/' },
-          { name: 'Tienda' }
-        ]))}</script>
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "¿Cuánto cuesta una cama de Pilates Reformer?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Nuestros reformers van desde $29,700 MXN (modelo Casa) hasta $46,600 MXN (modelo Profesional con acabado Mycelium). Ofrecemos financiamiento a 12 meses sin intereses."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "¿A qué estados de México realizan envíos?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Fabricamos en México y enviamos directamente a los 32 estados de la República Mexicana con empaque reforzado y flete asegurado (3 a 6–8 semanas según el modelo)."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "¿Qué garantía incluyen los reformers?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Todos nuestros reformers incluyen garantía de 1 año que cubre defectos de fabricación en estructura, muelles y accesorios básicos."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "¿Los reformers son silenciosos?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Sí, nuestro sistema Whisper Glide con 8 ruedas garantiza un deslizamiento completamente silencioso, ideal para práctica en casa o estudios."
-              }
-            }
-          ]
-        })}</script>
+        <meta property="og:image" content={`${origin}${reformers[0]?.image ?? DEFAULTS.ogImage}`} />
+        <script type="application/ld+json">{JSON.stringify(toItemListSchema(origin, reformers))}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(generateBreadcrumbSchema([{ name: 'Inicio', url: '/' }, { name: 'Tienda' }]))}
+        </script>
       </Helmet>
 
-      <div className="relative min-h-screen bg-[#F9F9F8]">
-        {/* Subtle Background Mesh */}
-        <div className="absolute top-0 left-0 right-0 h-[800px] bg-gradient-to-b from-white/60 to-transparent pointer-events-none" />
-        <div className="absolute top-40 left-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 opacity-20 blur-3xl">
-          <div className="h-full w-full bg-gradient-to-r from-[#e0dcd9] via-[#dcd8d4] to-[#e0dcd9] rounded-full animate-pulse duration-[5000ms]" />
-        </div>
-
-        <div className="container mx-auto px-6 md:px-24 py-12 space-y-12 relative z-10">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            {/* SEO H1 - Visually hidden */}
-            <h1 className="sr-only">Tienda de Camas de Pilates Reformer y Accesorios en México - Edelweiss Pilates</h1>
-            {/* Visual Title */}
-            <p className="text-5xl md:text-7xl font-serif italic text-[#2A2624] tracking-tighter loading-[0.9]" aria-hidden="true">
-              Shop<span className="text-[#EB4C42]">.</span>
-            </p>
-            <div className="flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.2em] opacity-60">
-              <a href="https://wa.me/525548468190" className="hover:text-[#EB4C42] transition-colors">WhatsApp</a>
-              <a href="tel:+525548468190" className="hover:text-[#EB4C42] transition-colors">Llamar</a>
-              <div className="hidden sm:block text-[#5D5550]">
-                <Link to="/shop/category/reformers" className="hover:text-[#EB4C42] transition-colors">Ver Reformers</Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Enhanced Hero */}
-          <EnhancedHero
-            title="Redescubre tu gracia"
-            subtitle="Tejidos no tóxicos & materiales premium (cuero genuino, nogal & acero). Pago seguro & entrega en 3 semanas."
-            backgroundImage={assets.shopHero || DEFAULTS.ogImage}
-            showTrustMetrics={false}
-            ctaPrimary={{ text: 'Ver promoción', href: '/product/reformer-aluminio-riel-deslizante-a068' }}
-            ctaSecondary={{ text: 'Ver Reformers', href: '/shop/category/reformers' }}
-          />
-
-          {/* Monterrey 7-Day Studio Package Banner */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-[#2A2624] text-[#EAE8E4] border border-[#EAE8E4]/15 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 my-6">
-            <div className="space-y-2 max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400 text-black text-[10px] font-extrabold uppercase tracking-widest">
-                <MapPin className="w-3.5 h-3.5" /> Exclusivo Monterrey & ZMM
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-serif italic text-white leading-tight">
-                ¿Abriendo Estudio en Monterrey, San Pedro o Cumbres?
-              </h3>
-              <p className="text-xs sm:text-sm text-[#EAE8E4]/80 font-light leading-relaxed">
-                Arma tu paquete de Reformers (4, 6 u 8 unidades) con despacho prioritario y <strong className="text-white font-semibold">envío asegurado a Monterrey en 7 días hábiles</strong>.
+      <div className="bg-[#F9F9F8] min-h-screen">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 py-10 md:py-14 space-y-10">
+          <header className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div className="max-w-2xl">
+              <h1 className="text-4xl md:text-6xl font-serif italic text-[#2A2624] tracking-tight leading-[1.05]">
+                Camas de Pilates Reformer
+              </h1>
+              <p className="mt-4 text-base md:text-lg text-[#5D5550] font-light leading-relaxed">
+                {reformers.length} modelos, de casa a gimnasio: roble, maple, aluminio y plegables. Precios finales en MXN y
+                envío a todo México.
               </p>
             </div>
-            <Link
-              to="/pilates-reformer-monterrey"
-              className="inline-flex items-center gap-2 bg-[#EAE8E4] text-[#2A2624] px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.15em] hover:bg-white hover:scale-105 transition-all duration-300 shrink-0 shadow-lg"
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-rybbit-event="click_shop_header_whatsapp"
+              className="inline-flex items-center justify-center gap-2 self-start md:self-auto px-6 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold uppercase tracking-wider shadow-sm transition-colors"
             >
-              Armar Paquete Monterrey <ArrowRight className="w-4 h-4" />
+              <MessageCircle className="w-4 h-4" /> Te ayudamos a elegir
+            </a>
+          </header>
+
+          <nav aria-label="Tipo de producto" className="flex flex-wrap gap-2">
+            {FILTERS.map(({ key, label }) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => setFilter(key)}
+                aria-pressed={filter === key}
+                className={`px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider border transition-colors ${
+                  filter === key
+                    ? 'bg-[#2A2624] text-[#EAE8E4] border-[#2A2624]'
+                    : 'bg-white text-[#2A2624] border-[#2A2624]/15 hover:border-[#2A2624]/40'
+                }`}
+              >
+                {label} <span className="opacity-60">({count(key)})</span>
+              </button>
+            ))}
+          </nav>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {shown.map((product) => (
+              <ProductCard21Enhanced key={product.slug} product={product} onQuickView={setQuick} />
+            ))}
+          </div>
+
+          <section aria-labelledby="compare" className="pt-6">
+            <h2 id="compare" className="text-2xl md:text-3xl font-serif italic text-[#2A2624] mb-2">
+              Compara los modelos
+            </h2>
+            <p className="text-sm text-[#5D5550] font-light mb-6">
+              Medidas y pesos del fabricante. Todos se ofrecen con tapicería negra, gris o blanca.
+            </p>
+            <div className="overflow-x-auto rounded-2xl border border-[#2A2624]/10 bg-white">
+              <table className="w-full min-w-[720px] text-sm">
+                <thead className="bg-[#F5F4F0] text-left text-[11px] uppercase tracking-wider text-[#5D5550]">
+                  <tr>
+                    <th className="px-4 py-3 font-semibold">Modelo</th>
+                    <th className="px-4 py-3 font-semibold">Tipo</th>
+                    <th className="px-4 py-3 font-semibold">Estructura</th>
+                    <th className="px-4 py-3 font-semibold">Medidas</th>
+                    <th className="px-4 py-3 font-semibold">Peso</th>
+                    <th className="px-4 py-3 font-semibold text-right">Precio</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[#2A2624]/10">
+                  {[...reformers]
+                    .sort((a, b) => Number(a.price) - Number(b.price))
+                    .map((p) => (
+                      <tr key={p.slug} className="hover:bg-[#FAF9F7]">
+                        <td className="px-4 py-3">
+                          <Link to={`/product/${p.slug}`} className="font-medium text-[#2A2624] hover:text-[#9E4733]">
+                            {p.name}
+                          </Link>
+                        </td>
+                        <td className="px-4 py-3 text-[#5D5550]">{p.type ? REFORMER_TYPE_LABELS[p.type] : ''}</td>
+                        <td className="px-4 py-3 text-[#5D5550]">
+                          {p.specs?.estructura}
+                          {p.specs?.torre ? ' + torre' : ''}
+                        </td>
+                        <td className="px-4 py-3 text-[#5D5550] whitespace-nowrap">
+                          {p.specs?.medidas}
+                          {p.specs?.medidasPlegado && <span className="block text-xs opacity-70">Plegado: {p.specs.medidasPlegado}</span>}
+                        </td>
+                        <td className="px-4 py-3 text-[#5D5550] whitespace-nowrap">{p.specs?.peso}</td>
+                        <td className="px-4 py-3 text-right font-semibold text-[#2A2624] whitespace-nowrap">{priceLabel(p.price)}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section className="p-6 sm:p-8 rounded-3xl bg-[#2A2624] text-[#EAE8E4] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <h2 className="text-xl md:text-2xl font-serif italic">¿Vas a equipar un estudio?</h2>
+              <p className="text-sm text-[#EAE8E4]/80 font-light mt-1">Packs de 4 a 10 reformers con precio por volumen.</p>
+            </div>
+            <Link
+              to="/packs/estudio"
+              className="inline-flex items-center gap-2 self-start px-6 py-3 rounded-full bg-[#EAE8E4] text-[#2A2624] text-xs font-bold uppercase tracking-wider hover:bg-white transition-colors"
+            >
+              Ver packs para estudio <ArrowRight className="w-4 h-4" />
             </Link>
-          </div>
+          </section>
 
-          {/* Shop by category icons */}
-          <div>
-            <h2 className="text-2xl font-serif italic text-[#2A2624] mb-6">Categorías</h2>
-            <CategoryIcons21 items={cats.map(c => {
-              const imgMap: Record<string, string | undefined> = {
-                'reformers': assets.catReformers,
-                'cadillacs-y-torres': assets.catCadillacs,
-                'sillas-y-barriles': assets.catChairs,
-                'accesorios': assets.catAccessories,
-                'ropa': assets.catRopa,
-                'terapia-de-luz': assets.catLuz,
-              };
-              return {
-                label: c.name,
-                href: `/shop/category/${c.slug}`,
-                count: c.count,
-                img: imgMap[c.slug] || assets.catReformers,
-              };
-            })} />
-          </div>
-
-          {/* Featured product (curated) */}
-          {getBySlug ? (getBySlug('reformer-profesional') ? <FeaturedProduct21 product={getBySlug('reformer-profesional') as any} /> : null) : (products[0] && <FeaturedProduct21 product={products[0] as any} />)}
-
-          {/* Best sellers rail */}
-          <ProductRail21 title="Más vendidos" products={(allProducts() as any).filter((p: any) => p.bestSeller).slice(0, 8)} />
-
-          {/* Sticky listing header */}
-          {/* Sticky listing header */}
-          <div className="sticky top-4 z-40 mx-auto max-w-7xl">
-            <div className="bg-white/80 backdrop-blur-md border border-white/40 shadow-sm rounded-full py-3 px-8 flex items-center justify-between gap-6 transition-all hover:shadow-md hover:bg-white/90">
-              <div className="text-[#5D5550] font-sans text-[10px] tracking-widest uppercase font-bold">{products.length} Items</div>
-              <FilterBar21 sort={sort} onSort={(v) => setSort(v as any)} region={region} onRegion={(v) => { setRegion(v); try { window.localStorage.setItem('regionPref', v); } catch { } }} search={search} onSearch={setSearch} />
+          <section className="pt-6 border-t border-[#2A2624]/10">
+            <h2 className="text-2xl font-serif italic text-[#2A2624] mb-6">Guías de compra</h2>
+            <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { to: '/cama-de-pilates/precio', kicker: 'Precios', title: 'Cuánto cuesta un reformer', text: 'Rangos de precio por tipo de modelo.' },
+                { to: '/reformer-para-casa', kicker: 'Para casa', title: 'Reformer para casa', text: 'Plegables y modelos para espacios pequeños.' },
+                { to: '/reformer-para-estudio', kicker: 'Para estudio', title: 'Reformers para estudio', text: 'Qué elegir para abrir o crecer tu estudio.' },
+                { to: '/blog/dimensiones-cama-de-pilates', kicker: 'Espacio', title: 'Medidas y espacio necesario', text: 'Cuánto lugar ocupa cada reformer.' },
+              ].map((g) => (
+                <Link
+                  key={g.to}
+                  to={g.to}
+                  className="p-4 bg-white border border-[#2A2624]/10 rounded-xl hover:border-[#3E2723] hover:shadow-sm transition-all group block"
+                >
+                  <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">{g.kicker}</span>
+                  <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">{g.title} →</span>
+                  <span className="text-xs text-[#5D5550] block mt-1">{g.text}</span>
+                </Link>
+              ))}
             </div>
-
-            <div className="mt-4 px-4">
-              <ActiveChips21 chips={((): Chip[] => {
-                const chips: Chip[] = [];
-                activeCats.forEach((c) => chips.push({ label: `Categoría: ${c}`, onRemove: () => setActiveCats((prev) => prev.filter(x => x !== c)) }));
-                activeFinishes.forEach((f) => chips.push({ label: `Acabado: ${f}`, onRemove: () => setActiveFinishes((prev) => prev.filter(x => x !== f)) }));
-                activeAvailability.forEach((a) => chips.push({ label: a.includes('InStock') ? 'En stock' : 'Preorden', onRemove: () => setActiveAvailability((prev) => prev.filter(x => x !== a)) }));
-                if (minPrice) chips.push({ label: `≥ $${minPrice}`, onRemove: () => setMinPrice('') });
-                if (maxPrice) chips.push({ label: `≤ $${maxPrice}`, onRemove: () => setMaxPrice('') });
-                if (search) chips.push({ label: `Buscar: ${search}`, onRemove: () => setSearch('') });
-                return chips;
-              })()} onClearAll={() => { setActiveCats([]); setActiveFinishes([]); setActiveAvailability([]); setMinPrice(''); setMaxPrice(''); setSearch(''); }} />
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-12">
-            {/* Enhanced Desktop Filter Sidebar */}
-            <aside className="hidden md:block md:col-span-1">
-              <div className="sticky top-24 space-y-6">
-                {/* Filter Header */}
-                <div className="flex items-center justify-between">
-                  <h2 className="font-serif italic text-xl text-[#2A2624]">Filtros</h2>
-                  {(activeCats.length > 0 || activeFinishes.length > 0 || minPrice || maxPrice) && (
-                    <button
-                      onClick={() => { setActiveCats([]); setActiveFinishes([]); setActiveAvailability([]); setMinPrice(''); setMaxPrice(''); setSearch(''); }}
-                      className="text-[10px] uppercase tracking-[0.15em] text-[#EB4C42] font-bold hover:underline"
-                    >
-                      Limpiar todo
-                    </button>
-                  )}
-                </div>
-
-                {/* Categories */}
-                <FilterAccordion title="Categorías" defaultOpen>
-                  <div className="space-y-1">
-                    {cats.map((c) => (
-                      <label
-                        key={c.slug}
-                        className={`
-                          flex items-center justify-between p-3 rounded-xl cursor-pointer
-                          transition-all duration-200
-                          ${activeCats.includes(c.name)
-                            ? 'bg-[#2A2624] text-white'
-                            : 'hover:bg-[#2A2624]/5'}
-                        `}
-                      >
-                        <div className="flex items-center gap-3">
-                          <div className={`
-                            w-5 h-5 rounded-md border-2 flex items-center justify-center transition-colors
-                            ${activeCats.includes(c.name)
-                              ? 'bg-white border-white'
-                              : 'border-[#2A2624]/20'}
-                          `}>
-                            {activeCats.includes(c.name) && (
-                              <svg className="w-3 h-3 text-[#2A2624]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                              </svg>
-                            )}
-                          </div>
-                          <span className="text-sm">{c.name}</span>
-                        </div>
-                        <span className={`text-xs px-2 py-0.5 rounded-full ${activeCats.includes(c.name) ? 'bg-white/20 text-white' : 'bg-[#2A2624]/5 text-[#5D5550]'}`}>
-                          {c.count}
-                        </span>
-                        <input
-                          type="checkbox"
-                          checked={activeCats.includes(c.name)}
-                          onChange={(e) => {
-                            setActiveCats((prev) => e.target.checked ? Array.from(new Set([...prev, c.name])) : prev.filter((x) => x !== c.name));
-                          }}
-                          className="sr-only"
-                        />
-                      </label>
-                    ))}
-                  </div>
-                </FilterAccordion>
-
-                {/* Finishes */}
-                <FilterAccordion title="Acabados">
-                  <div className="flex flex-wrap gap-2">
-                    {finishes.map((f) => (
-                      <button
-                        key={f}
-                        onClick={() => setActiveFinishes((prev) => prev.includes(f) ? prev.filter((x) => x !== f) : [...prev, f])}
-                        className={`
-                          px-4 py-2 rounded-full text-sm transition-all duration-200
-                          ${activeFinishes.includes(f)
-                            ? 'bg-[#2A2624] text-white'
-                            : 'bg-[#2A2624]/5 text-[#2A2624] hover:bg-[#2A2624]/10'}
-                        `}
-                      >
-                        {f}
-                      </button>
-                    ))}
-                  </div>
-                </FilterAccordion>
-
-                {/* Price Range */}
-                <FilterAccordion title="Precio">
-                  <div className="space-y-4">
-                    <div className="flex gap-3">
-                      <div className="flex-1">
-                        <label className="text-[10px] uppercase tracking-[0.15em] text-[#5D5550]/60 font-bold mb-2 block">
-                          Mínimo
-                        </label>
-                        <div className="relative">
-                          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#5D5550]/60 text-sm">$</span>
-                          <input
-                            type="number"
-                            value={minPrice}
-                            onChange={(e) => setMinPrice(e.target.value)}
-                            placeholder="0"
-                            className="w-full pl-7 pr-3 py-2.5 rounded-xl border border-[#2A2624]/10 bg-white text-sm focus:outline-none focus:border-[#2A2624]/30 focus:ring-2 focus:ring-[#2A2624]/5 transition-all"
-                          />
-                        </div>
-                      </div>
-                      <div className="flex-1">
-                        <label className="text-[10px] uppercase tracking-[0.15em] text-[#5D5550]/60 font-bold mb-2 block">
-                          Máximo
-                        </label>
-                        <div className="relative">
-                          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#5D5550]/60 text-sm">$</span>
-                          <input
-                            type="number"
-                            value={maxPrice}
-                            onChange={(e) => setMaxPrice(e.target.value)}
-                            placeholder="100,000"
-                            className="w-full pl-7 pr-3 py-2.5 rounded-xl border border-[#2A2624]/10 bg-white text-sm focus:outline-none focus:border-[#2A2624]/30 focus:ring-2 focus:ring-[#2A2624]/5 transition-all"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    {/* Quick ranges */}
-                    <div className="flex flex-wrap gap-1.5">
-                      {[
-                        { label: '< $1k', min: '', max: '1000' },
-                        { label: '$1-10k', min: '1000', max: '10000' },
-                        { label: '$10-50k', min: '10000', max: '50000' },
-                        { label: '> $50k', min: '50000', max: '' },
-                      ].map(range => (
-                        <button
-                          key={range.label}
-                          onClick={() => { setMinPrice(range.min); setMaxPrice(range.max); }}
-                          className="px-2.5 py-1 rounded-lg text-[10px] bg-[#2A2624]/5 text-[#2A2624] hover:bg-[#2A2624]/10 transition-colors font-medium"
-                        >
-                          {range.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </FilterAccordion>
-
-                {/* Delivery Info */}
-                <div className="p-4 rounded-2xl bg-gradient-to-br from-[#7A8A6F]/10 to-[#7A8A6F]/5 border border-[#7A8A6F]/20">
-                  <p className="text-xs text-[#5D5550] leading-relaxed">
-                    <span className="font-bold text-[#7A8A6F]">Envío gratis</span> en pedidos mayores a $5,000 MXN. Entrega en 3 semanas.
-                  </p>
-                </div>
-              </div>
-            </aside>
-
-            <div className="md:col-span-3">
-              {/* Enhanced Product Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                {products.map((product) => (
-                  <ProductCard21Enhanced
-                    key={product.slug}
-                    product={product}
-                    onQuickView={(p) => setQuick(p)}
-                  />
-                ))}
-              </div>
-
-              {/* Customer Reviews Preview */}
-              <CustomerReviewsPreview className="my-12" />
-
-              {/* Explore range blocks */}
-              <ExploreTiles21 items={[
-                { label: 'Reformers', desc: 'Silenciosos y precisos para casa y estudio', href: '/shop/category/reformers', img: '/images/explore-reformers.webp' },
-                { label: 'Accesorios', desc: 'Cintas, calcetines grip y mantenimiento', href: '/shop/category/accesorios', img: '/images/explore-accessories.webp' },
-                { label: 'Ropa', desc: 'Algodón orgánico: fitted y relaxed', href: '/shop/category/ropa', img: '/images/conjunto-fitted.webp' },
-                { label: 'Terapia de Luz', desc: 'Luz roja e infrarroja para estudios y casa', href: '/shop/category/terapia-de-luz', img: '/images/luz-studio-4.webp' },
-              ]} />
-
-              {/* Premium Newsletter Section */}
-              <section className="mt-16 relative overflow-hidden">
-                <div className="relative bg-gradient-to-br from-[#2A2624] via-[#3E2723] to-[#2A2624] rounded-[2rem] p-8 md:p-12">
-                  {/* Decorative elements */}
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-                  <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#EB4C42]/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-
-                  <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-8">
-                    {/* Content */}
-                    <div className="flex-1">
-                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm mb-4">
-                        <Mail className="h-3 w-3 text-[#EB4C42]" />
-                        <span className="text-[10px] uppercase tracking-[0.2em] text-white/80 font-bold">Newsletter</span>
-                      </div>
-                      <h3 className="font-serif italic text-2xl md:text-3xl text-white mb-2">
-                        Únete a la comunidad
-                      </h3>
-                      <p className="text-sm text-white/60 max-w-md">
-                        Recibe actualizaciones exclusivas, promociones y consejos de pilates directamente en tu bandeja.
-                      </p>
-                    </div>
-
-                    {/* Form */}
-                    <div className="flex-shrink-0 w-full md:w-auto">
-                      <form
-                        action="mailto:valery@camadepilates.com"
-                        method="post"
-                        className="flex flex-col sm:flex-row gap-3"
-                      >
-                        <div className="relative flex-1 md:w-72">
-                          <input
-                            type="email"
-                            required
-                            placeholder="tu@email.com"
-                            className="
-                              w-full px-5 py-4 rounded-xl
-                              bg-white/10 backdrop-blur-sm border border-white/20
-                              text-white placeholder:text-white/40
-                              focus:outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10
-                              transition-all text-sm
-                            "
-                          />
-                        </div>
-                        <button
-                          type="submit"
-                          className="
-                            inline-flex items-center justify-center gap-2
-                            px-6 py-4 rounded-xl
-                            bg-white text-[#2A2624]
-                            text-sm font-bold uppercase tracking-[0.1em]
-                            hover:bg-[#EB4C42] hover:text-white
-                            active:scale-[0.98]
-                            transition-all duration-200
-                            shadow-lg shadow-black/20
-                          "
-                        >
-                          Suscribirse
-                          <ArrowRight className="h-4 w-4" />
-                        </button>
-                      </form>
-                      <p className="text-[10px] text-white/40 mt-3 text-center md:text-left">
-                        Sin spam. Cancela cuando quieras.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              {/* Guías y Enlaces Especializados */}
-              <section className="mt-16 pt-12 border-t border-[#2A2624]/10">
-                <h2 className="text-2xl font-serif italic text-[#2A2624] mb-3">Guías de Compra y Recursos Especializados</h2>
-                <p className="text-sm text-[#5D5550] font-light mb-8 max-w-2xl">
-                  Encuentra recomendaciones técnicas para equipar tu casa o estudio con la mayor precisión biomecánica:
-                </p>
-                <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
-                  <Link to="/cama-de-pilates" className="p-4 bg-white border border-[#2A2624]/10 rounded-xl hover:border-[#3E2723] hover:shadow-sm transition-all group block">
-                    <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Catálogo Oficial</span>
-                    <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">Camas de Pilates en México →</span>
-                    <span className="text-xs text-[#5D5550] block mt-1">Estructuras de madera y de aluminio anodizado.</span>
-                  </Link>
-
-                  <Link to="/cama-de-pilates/precio" className="p-4 bg-white border border-[#2A2624]/10 rounded-xl hover:border-[#3E2723] hover:shadow-sm transition-all group block">
-                    <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Transparencia</span>
-                    <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">Precios y Financiamiento 12 MSI →</span>
-                    <span className="text-xs text-[#5D5550] block mt-1">Tabla comparativa de modelos residenciales y comerciales.</span>
-                  </Link>
-
-                  <Link to="/reformer-para-estudio" className="p-4 bg-white border border-[#2A2624]/10 rounded-xl hover:border-[#3E2723] hover:shadow-sm transition-all group block">
-                    <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Equipamiento Pro</span>
-                    <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">Reformers para Estudio →</span>
-                    <span className="text-xs text-[#5D5550] block mt-1">Ideal para estudios boutique y apertura de centros.</span>
-                  </Link>
-
-                  <Link to="/blog/calcetines-para-pilates-reformer" className="p-4 bg-white border border-[#2A2624]/10 rounded-xl hover:border-[#3E2723] hover:shadow-sm transition-all group block">
-                    <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Agarre y Seguridad</span>
-                    <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">Calcetines para Reformer →</span>
-                    <span className="text-xs text-[#5D5550] block mt-1">Caucho natural antideslizante para máximo control.</span>
-                  </Link>
-                </div>
-              </section>
-            </div>
-          </div>
+          </section>
         </div>
       </div>
 
-      {/* Mobile Filter Trigger Button */}
-      <MobileFilterTrigger
-        onClick={() => setShowMobileFilters(true)}
-        activeCount={activeCats.length + activeFinishes.length + (minPrice ? 1 : 0) + (maxPrice ? 1 : 0)}
-      />
-
-      {/* Mobile Filter Sheet */}
-      <MobileFilterSheet
-        isOpen={showMobileFilters}
-        onClose={() => setShowMobileFilters(false)}
-        categories={cats}
-        activeCats={activeCats}
-        setActiveCats={setActiveCats}
-        finishes={finishes}
-        activeFinishes={activeFinishes}
-        setActiveFinishes={setActiveFinishes}
-        minPrice={minPrice}
-        maxPrice={maxPrice}
-        setMinPrice={setMinPrice}
-        setMaxPrice={setMaxPrice}
-        resultsCount={products.length}
-        onClearAll={() => { setActiveCats([]); setActiveFinishes([]); setActiveAvailability([]); setMinPrice(''); setMaxPrice(''); setSearch(''); }}
-      />
-
-      {/* Live Purchase Notifications */}
-      <LivePurchaseNotifications />
-
-      {/* Exit Intent Popup */}
-      {
-        showExitPopup && (
-          <ExitIntentPopup
-            onClose={() => {
-              setShowExitPopup(false);
-              sessionStorage.setItem('exitPopupSeen', 'true');
-            }}
-            onSubscribe={(email) => {
-              console.log('Subscribed:', email);
-              // TODO: Connect to email service
-            }}
-          />
-        )
-      }
-
-      {quick && <QuickView21 product={quick as any} onClose={() => setQuick(null)} />}
-    </LuxuryLayout >
+      {quick && <QuickView21 product={quick} onClose={() => setQuick(null)} />}
+    </LuxuryLayout>
   );
 };
 
 export default Shop;
-
-// Local helper: lightweight dual range sliders synced with inputs
-function PriceSliders({
-  minPrice,
-  maxPrice,
-  onMin,
-  onMax,
-}: {
-  minPrice: string;
-  maxPrice: string;
-  onMin: (v: number) => void;
-  onMax: (v: number) => void;
-}) {
-  const all = allProducts();
-  const domain = React.useMemo(() => {
-    const vals = all.map((p) => Number(p.price)).filter((n) => Number.isFinite(n));
-    const min = Math.min(...vals);
-    const max = Math.max(...vals);
-    return { min: Math.floor(min), max: Math.ceil(max) };
-  }, [all.length]);
-  const minVal = minPrice ? Math.max(domain.min, Math.min(Number(minPrice), domain.max)) : domain.min;
-  const maxVal = maxPrice ? Math.max(domain.min, Math.min(Number(maxPrice), domain.max)) : domain.max;
-  const step = Math.max(1, Math.round((domain.max - domain.min) / 50));
-  return (
-    <div className="mt-3">
-      <div className="flex items-center justify-between text-xs text-muted-foreground">
-        <span>${'{'}{minVal}{'}'} MXN</span>
-        <span>${'{'}{maxVal}{'}'} MXN</span>
-      </div>
-      <div className="mt-2 space-y-2">
-        <input
-          type="range"
-          min={domain.min}
-          max={domain.max}
-          step={step}
-          value={minVal}
-          onChange={(e) => onMin(Math.min(Number(e.target.value), maxVal))}
-          aria-label="Precio mínimo"
-          className="w-full accent-[#3E2723]"
-        />
-        <input
-          type="range"
-          min={domain.min}
-          max={domain.max}
-          step={step}
-          value={maxVal}
-          onChange={(e) => onMax(Math.max(Number(e.target.value), minVal))}
-          aria-label="Precio máximo"
-          className="w-full accent-[#3E2723]"
-        />
-      </div>
-    </div>
-  );
-}
-
-// FilterAccordion component for desktop sidebar
-function FilterAccordion({
-  title,
-  defaultOpen = false,
-  children,
-}: {
-  title: string;
-  defaultOpen?: boolean;
-  children: React.ReactNode;
-}) {
-  const [isOpen, setIsOpen] = React.useState(defaultOpen);
-
-  return (
-    <div className="border-b border-[#2A2624]/10 pb-6">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between py-2 group"
-      >
-        <h3 className="text-xs uppercase tracking-[0.15em] text-[#5D5550] font-bold group-hover:text-[#2A2624] transition-colors">
-          {title}
-        </h3>
-        <ChevronDown
-          className={`h-4 w-4 text-[#5D5550] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
-        />
-      </button>
-      <div
-        className={`overflow-hidden transition-all duration-300 ease-out ${isOpen ? 'max-h-[500px] opacity-100 mt-3' : 'max-h-0 opacity-0'}`}
-      >
-        {children}
-      </div>
-    </div>
-  );
-}
