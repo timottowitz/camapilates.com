@@ -64,18 +64,24 @@ const ProductPage: React.FC = () => {
 
   const url = `${origin}/product/${safeProd.slug}`;
 
-  const materials = safeProd.materials?.length
-    ? safeProd.materials
-    : finish === 'mycelium'
-      ? ['cuero de micelio (sostenible)', 'madera de nogal', 'acero estructural']
-      : ['cuero genuino', 'madera de nogal', 'acero estructural'];
+  const materials = safeProd.materials?.length ? safeProd.materials : undefined;
 
-  const SPECS = {
-    dimensions: '~245 × 70 × 40 cm',
-    weight: '~70–95 kg (según acabado)',
-    carriage: 'Recorrido suave y silencioso',
-    warranty: safeProd.warranty || '1 año',
-  };
+  const specs = safeProd.specs;
+  const specRows: [string, string][] = [
+    ...(specs
+      ? ([
+          ['Modelo', specs.modelo],
+          ['Estructura', specs.estructura],
+          ...(specs.torre ? [['Torre', specs.torre]] : []),
+          ['Resortes', specs.resortes],
+          ['Tapicería', specs.tapiceria],
+          ['Medidas (largo × ancho × alto)', specs.medidas],
+          ...(specs.medidasPlegado ? [['Medidas plegado', specs.medidasPlegado]] : []),
+          ['Peso', specs.peso],
+        ] as [string, string][])
+      : []),
+    ...(safeProd.warranty ? ([['Garantía', safeProd.warranty]] as [string, string][]) : []),
+  ];
 
   const activeVariant = useMemo(() => {
     return (safeProd.variants || []).find(v => v.finish === finish);
@@ -161,9 +167,7 @@ const ProductPage: React.FC = () => {
     { '@type': 'PropertyValue', name: 'finish', value: finish },
     ...(finish === 'mycelium' ? [{ '@type': 'PropertyValue', name: 'sustainable', value: 'true' }] : [])
     ,
-    { '@type': 'PropertyValue', name: 'dimensions', value: SPECS.dimensions },
-    { '@type': 'PropertyValue', name: 'weight', value: SPECS.weight },
-    { '@type': 'PropertyValue', name: 'warranty', value: SPECS.warranty },
+    ...specRows.map(([name, value]) => ({ '@type': 'PropertyValue', name, value })),
     ...(activeVariant?.sku ? [{ '@type': 'PropertyValue', name: 'variant_sku', value: activeVariant.sku }] : []),
     ...((finish === 'mycelium' || (safeProd.finishes || []).includes('mycelium')) ? [{ '@type': 'PropertyValue', name: 'material_brand', value: 'Mylo (micelio)' }] : []),
   ];
@@ -177,7 +181,7 @@ const ProductPage: React.FC = () => {
         name: '¿Envían a cualquier estado de México?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Sí. Fabricamos en México y despachamos directamente a los 32 estados de la República Mexicana con flete especializado y empaque reforzado. Tiempo de producción y entrega: 3 a 6–8 semanas según modelo.'
+          text: `Sí. Enviamos a los 32 estados de la República Mexicana con flete especializado y empaque reforzado. Tiempo de entrega: ${safeProd.deliveryTime || 'consúltalo por WhatsApp'}.`
         }
       },
       {
@@ -185,7 +189,7 @@ const ProductPage: React.FC = () => {
         name: '¿Qué garantía incluye?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `Garantía de ${safeProd.warranty || '1 año'} que cubre defectos de fabricación en estructura, muelles y accesorios básicos. Incluye repuestos exprés y soporte en español.`
+          text: `Garantía de ${safeProd.warranty || '1 año'} contra defectos de fabricación, con soporte en español.`
         }
       },
       {
@@ -193,7 +197,9 @@ const ProductPage: React.FC = () => {
         name: '¿Qué materiales y acabados tiene?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Cuero genuino o de micelio (opción sostenible), madera de nogal y acero estructural con tolerancias precisas para un recorrido silencioso.'
+          text: specs
+            ? `Estructura de ${specs.estructura.toLowerCase()}${specs.torre ? ` con torre de ${specs.torre.toLowerCase()}` : ''}. Tapicería: ${specs.tapiceria.toLowerCase()}.`
+            : (materials ?? []).join(', ') || 'Consulta los materiales por WhatsApp.'
         }
       }
     ]
@@ -202,111 +208,13 @@ const ProductPage: React.FC = () => {
   const galleryImages = useMemo(() => {
     if (!prod) return [];
     
-    if (prod.slug === 'reformer-casa') {
-      return [
-        {
-          src: '/images/reformer-home-wide.webp',
-          alt: `${prod.name} — Vista panorámica en estudio`,
-          type: 'main' as const,
-          label: 'Vista Principal (Estudio)'
-        },
-        {
-          src: '/images/reformer-home-medium.webp',
-          alt: `${prod.name} — Vista media de la cama y muelles`,
-          type: 'lifestyle' as const,
-          label: 'Vista Media'
-        },
-        {
-          src: '/images/reformer-home-detail.webp',
-          alt: `${prod.name} — Detalle de ensamble en madera nogal`,
-          type: 'detail' as const,
-          label: 'Detalle de Madera'
-        }
-      ];
-    }
-    
-    if (prod.slug === 'reformer-profesional') {
-      return [
-        {
-          src: '/images/reformer-pro-wide.webp',
-          alt: `${prod.name} — Reformer profesional de estudio`,
-          type: 'main' as const,
-          label: 'Vista Principal (Estudio)'
-        },
-        {
-          src: '/images/reformer-pro-medium.webp',
-          alt: `${prod.name} — Vista media de la estructura y barandilla`,
-          type: 'lifestyle' as const,
-          label: 'Vista Media'
-        },
-        {
-          src: '/images/reformer-pro-detail.webp',
-          alt: `${prod.name} — Detalle del sistema de muelles de precisión`,
-          type: 'detail' as const,
-          label: 'Mecánica de Precisión'
-        }
-      ];
-    }
-
-    if (prod.slug === 'reformer-mycelium') {
-      return [
-        {
-          src: '/images/reformer-mycelium-wide.webp',
-          alt: `${prod.name} — Cama de Pilates ecológica con cuero Mylo`,
-          type: 'main' as const,
-          label: 'Vista Principal'
-        },
-        {
-          src: '/images/reformer-mycelium-detail.webp',
-          alt: `${prod.name} — Close-up del material de micelio biodegradable`,
-          type: 'detail' as const,
-          label: 'Textura Micelio (Mylo)'
-        }
-      ];
-    }
-
-    if (prod.slug === 'reformer-maple-barra-patentada-a001') {
-      return [
-        {
-          src: '/images/products/reformer-maple-barra-patentada-a001.webp',
-          alt: `${prod.name} — Vista Principal`,
-          type: 'main' as const,
-          label: 'Vista Principal'
-        },
-        {
-          src: '/images/products/reformer-maple-barra-patentada-a001-studio.jpg',
-          alt: `${prod.name} — Ambiente Estudio Cinematográfico`,
-          type: 'lifestyle' as const,
-          label: 'Vista de Estudio'
-        },
-        {
-          src: '/images/products/reformer-maple-barra-patentada-a001-box.jpg',
-          alt: `${prod.name} — Detalle de Caja y Carro`,
-          type: 'detail' as const,
-          label: 'Caja y Tapicería'
-        },
-        {
-          src: '/images/products/reformer-maple-barra-patentada-a001-box-interior.jpg',
-          alt: `${prod.name} — Ensamble Interior en Madera de Maple`,
-          type: 'detail' as const,
-          label: 'Interior Madera Maple'
-        },
-        {
-          src: '/images/products/reformer-maple-barra-patentada-a001-extender.jpg',
-          alt: `${prod.name} — Extensor de Mat y Resortes Alemanes`,
-          type: 'detail' as const,
-          label: 'Extensor y Resortes'
-        }
-      ];
-    }
-
     // Default fallback list of images
     const list = [];
     const mainImg = activeVariant?.image || prod.image;
     if (mainImg) {
       list.push({
         src: mainImg,
-        alt: `${prod.name} — ${FINISHES[finish]?.name || ''}`,
+        alt: prod.finishes?.length ? `${prod.name} — ${FINISHES[finish]?.name || ''}` : prod.name,
         type: 'main' as const,
         label: 'Vista Principal'
       });
@@ -320,13 +228,15 @@ const ProductPage: React.FC = () => {
       });
     }
     if (prod.galleryImages && Array.isArray(prod.galleryImages)) {
-      prod.galleryImages.forEach((imgSrc, idx) => {
+      prod.galleryImages.forEach((imgSrc) => {
         if (imgSrc && imgSrc !== mainImg && imgSrc !== prod.hoverImage) {
+          // The catalogue photo is the manufacturer's own shot; the others are studio scenes.
+          const isCatalogue = imgSrc.includes('-catalogo.');
           list.push({
             src: imgSrc,
-            alt: `${prod.name} — Detalle y mecánica ${idx + 1}`,
-            type: (idx % 2 === 0 ? 'detail' : 'lifestyle') as 'detail' | 'lifestyle',
-            label: idx % 2 === 0 ? 'Detalle y acabados' : 'Perspectiva arquitectónica'
+            alt: `${prod.name} — ${isCatalogue ? 'foto del catálogo del fabricante' : 'vista en estudio'}`,
+            type: (isCatalogue ? 'detail' : 'lifestyle') as 'detail' | 'lifestyle',
+            label: isCatalogue ? 'Foto del catálogo' : 'En estudio'
           });
         }
       });
@@ -549,24 +459,19 @@ const ProductPage: React.FC = () => {
               </div>
             </motion.div>
 
-            <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="grid grid-cols-2 gap-x-8 gap-y-8 pt-8 border-t border-[#2A2624]/10">
-              <div>
-                <h3 className="font-serif italic text-xl text-[#2A2624] mb-3">Materiales</h3>
-                <ul className="text-sm text-[#5D5550] space-y-2 font-light">
-                  <li>Cuero Genuino</li>
-                  <li>Nogal Americano</li>
-                  <li>Acero Estructural</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-serif italic text-xl text-[#2A2624] mb-3">Especificaciones</h3>
-                <ul className="text-sm text-[#5D5550] space-y-2 font-light">
-                  <li>{SPECS.dimensions}</li>
-                  <li>{SPECS.weight}</li>
-                  <li>{SPECS.warranty}</li>
-                </ul>
-              </div>
-            </motion.div>
+            {specRows.length > 0 && (
+              <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="pt-8 border-t border-[#2A2624]/10">
+                <h3 className="font-serif italic text-xl text-[#2A2624] mb-4">Especificaciones</h3>
+                <dl className="divide-y divide-[#2A2624]/10 text-sm">
+                  {specRows.map(([label, value]) => (
+                    <div key={label} className="grid grid-cols-[minmax(0,2fr)_minmax(0,3fr)] gap-4 py-2.5">
+                      <dt className="text-[#8C827A] font-light">{label}</dt>
+                      <dd className="text-[#2A2624]">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </motion.div>
+            )}
 
             <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="pt-4">
               <ReviewsPreview productSlug={prod.slug} onAggregate={(avg, count) => setAgg({ ratingValue: avg.toFixed(1), reviewCount: count })} />

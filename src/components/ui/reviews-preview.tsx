@@ -24,32 +24,16 @@ export const ReviewsPreview: React.FC<{ items?: ReviewItem[]; productSlug?: stri
     })();
   }, [productSlug, data]);
 
-  const list: ReviewItem[] = data || [
-    {
-      name: 'Laura • Instructora',
-      quote:
-        'El deslizamiento es silencioso y estable. Se nota la calidad en cuero y madera — ideal para clases largas.',
-      rating: 5,
-    },
-    {
-      name: 'Andrea • Estudio CDMX',
-      quote:
-        'Fácil de mantener y cero crujidos. La estética suma a la experiencia del estudio.',
-      rating: 5,
-    },
-    {
-      name: 'Mariana • Instructora',
-      quote:
-        'El ajuste de muelles se siente consistente. Transmite confianza al enseñar.',
-      rating: 5,
-    },
-  ];
+  // Only real reviews are shown (and fed to the rating schema); a product without any shows nothing.
+  const list: ReviewItem[] = data || [];
 
   const avg = list.length ? list.reduce((a, r) => a + (r.rating || 5), 0) / list.length : 0;
   // Avoid infinite loops: do not depend on onAggregate identity
   React.useEffect(() => {
-    if (onAggregate) onAggregate(avg, list.length);
+    if (onAggregate && list.length) onAggregate(avg, list.length);
   }, [avg, list.length]);
+
+  if (!list.length) return null;
 
   return (
     <div className="border border-border rounded-lg p-6 bg-card">
