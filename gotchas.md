@@ -131,3 +131,17 @@ Verify the whole set rather than spot-checking; the sweep is cheap:
 ```bash
 curl -s https://camadepilates.com/sitemap.xml | grep -oE '<loc>[^<]+</loc>' | sed -E 's|</?loc>||g' | while read -r u; do echo "$(curl -s -o /dev/null -w '%{http_code}' "$u") $u"; done | grep -v '^200 '
 ```
+
+---
+
+## AI product photos: real working studios, not empty showrooms
+
+**Rule:** studio images for products must look like a real, lived-in Pilates studio photographed
+on location: other reformers and props further back and out of focus, medium-format 65mm look
+at f/2 with clear background blur, natural light, film grain. Empty, perfectly clean rooms read as
+fake renders and were rejected.
+
+**Fidelity:** generate from the real catalogue photo and list the machine's must-keep parts in the
+prompt (backrest, box, footbar colour, legs, tower or no tower). Without that list Gemini added
+towers, dropped backrests or swapped legs in about a third of images. Check every output side by
+side with the source before using it.
