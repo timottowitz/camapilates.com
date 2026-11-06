@@ -22,6 +22,7 @@ import { getVersionedImageUrl } from '@/hooks/useVersionedImage';
 import HubList from '@/components/blog/HubList';
 import SeeAlso from '@/components/blog/SeeAlso';
 import RelatedProducts from '@/components/blog/RelatedProducts';
+import { blogCta, type BlogCta } from '@/components/blog/topicCta';
 import { ContextualImage } from '@/components/ContextualImage';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 
@@ -283,7 +284,7 @@ const BlogPost = () => {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-12">
               <article className="lg:col-span-8 xl:col-span-9 min-w-0">
                 <div className="prose prose-lg max-w-none prose-headings:font-serif prose-headings:italic prose-headings:text-[#2A2624] prose-p:text-[#5D5550] prose-p:font-light prose-strong:text-[#2A2624] prose-li:text-[#5D5550] prose-blockquote:text-[#3E2723] prose-blockquote:border-l-[#3E2723] prose-a:text-[#3E2723] prose-a:no-underline hover:prose-a:underline prose-hr:border-[#2A2624]/10">
-                  <ArticleContentWithCTAs content={normalizedContent} slug={postMeta.slug} />
+                  <ArticleContentWithCTAs content={normalizedContent} slug={postMeta.slug} cta={blogCta(postMeta.category, postMeta.title)} />
                 </div>
               </article>
 
@@ -317,6 +318,7 @@ const BlogPost = () => {
               variant="compact"
               title="Eleva tu Práctica de Pilates"
               description="Descubre nuestra colección de Reformers profesionales, diseñados con ingeniería de precisión y manufactura mexicana. Envíos asegurados y 12 MSI."
+              whatsappMessage={blogCta(postMeta.category, postMeta.title).whatsappMessage}
             />
           </div>
 
@@ -361,7 +363,7 @@ const BlogPost = () => {
   );
 };
 
-const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: string }) => {
+const ArticleContentWithCTAs = ({ content, slug, cta }: { content: string, slug: string, cta: BlogCta }) => {
   // Strip leading '# Title' from markdown and strip legacy unknown pseudo-tags
   const cleanedContent = content
     .replace(/^\s*#\s+[^\n]+\n+/, '')
@@ -575,8 +577,8 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
       {sections.slice(1).map((section, index) => {
         const maxImages = Math.min(3, sections.length - 1);
         const insertImage = index < maxImages;
-        const shouldShowCTA = index === Math.floor((sections.length - 1) * 0.3) ||
-          index === Math.floor((sections.length - 1) * 0.7);
+        // Right after the first section, where most readers still are, and once more near the end.
+        const shouldShowCTA = index === 0 || index === Math.floor((sections.length - 1) * 0.7);
 
         const headingMatch = section.match(/^[^\n]+/);
         const headingText = headingMatch ? headingMatch[0].trim() : undefined;
@@ -604,11 +606,7 @@ const ArticleContentWithCTAs = ({ content, slug }: { content: string, slug: stri
 
             {shouldShowCTA && (
               <div className="not-prose my-12">
-                <CTASection
-                  variant="compact"
-                  title="¿Listo para tu Cama de Pilates?"
-                  description="Asesoría personalizada para elegir tu Reformer residencial o comercial. Entrega en 3 semanas, 3 años de garantía y soporte en México."
-                />
+                <CTASection variant="compact" {...cta} />
               </div>
             )}
           </div>

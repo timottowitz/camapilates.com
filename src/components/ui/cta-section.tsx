@@ -7,13 +7,19 @@ interface CTASectionProps {
   description?: string;
   variant?: "default" | "compact" | "inline";
   className?: string;
+  whatsappMessage?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
 }
 
 const CTASection = ({
   title = "¿Buscas una cama de Pilates?",
   description = "Te ayudamos a elegir la cama de Pilates ideal para casa o estudio. Compara modelos, acabados en madera o aluminio y opciones a 12 MSI con envío asegurado en México.",
   variant = "default",
-  className = ""
+  className = "",
+  whatsappMessage = "Hola, quisiera asesoría personalizada para elegir mi cama de Pilates con envío en México.",
+  secondaryHref = "/shop/category/reformers",
+  secondaryLabel = "Ver Catálogo de Camas"
 }: CTASectionProps) => {
 
   if (variant === "compact") {
@@ -27,7 +33,7 @@ const CTASection = ({
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
           <Button asChild size="sm" className="bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold rounded-full px-6 py-2.5 shadow-sm">
             <a
-              href="https://wa.me/525548468190?text=Hola,%20quisiera%20asesor%C3%ADa%20personalizada%20para%20elegir%20mi%20cama%20de%20Pilates%20con%20env%C3%ADo%20en%20M%C3%A9xico."
+              href={`https://wa.me/525548468190?text=${encodeURIComponent(whatsappMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
               data-rybbit-event="click_blog_cta_whatsapp"
@@ -37,9 +43,9 @@ const CTASection = ({
             </a>
           </Button>
           <Button asChild variant="outline" size="sm" className="border-[#2A2624]/20 hover:bg-white text-[#2A2624] rounded-full px-6 py-2.5">
-            <Link to="/shop/category/reformers">
+            <Link to={secondaryHref}>
               <ArrowRight className="mr-2 h-4 w-4" />
-              Ver Catálogo de Camas
+              {secondaryLabel}
             </Link>
           </Button>
         </div>
