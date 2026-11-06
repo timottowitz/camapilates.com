@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { DEFAULTS } from '@/lib/seo';
 import { requireRouteMeta } from '@/lib/routeMeta';
+import { allProducts, priceLabel } from '@/lib/shop/catalog';
+import { CATALOG_MAX, CATALOG_MIN, GYM, TOWER } from '@/lib/shop/priceRanges';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
 import { ArrowRight, BookOpen, ShoppingBag, DollarSign, Ruler, Package, CheckCircle2, ShieldCheck, Zap, MessageCircle } from 'lucide-react';
@@ -11,6 +13,8 @@ const CamaDePilatesHub: React.FC = () => {
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://camadepilates.com';
   const url = `${origin}/cama-de-pilates`;
   const { title, description: desc } = requireRouteMeta('/cama-de-pilates');
+
+  const reformerCount = allProducts().filter(p => p.category === 'Reformers').length;
 
   const breadcrumbs = {
     '@context': 'https://schema.org',
@@ -32,19 +36,18 @@ const CamaDePilatesHub: React.FC = () => {
       { '@type': 'ListItem', position: 4, url: `${origin}/reformer-para-estudio`, name: 'Reformer de Estudio' },
       { '@type': 'ListItem', position: 5, url: `${origin}/reformer-para-casa`, name: 'Reformer para Casa' },
       { '@type': 'ListItem', position: 6, url: `${origin}/packs/estudio`, name: 'Pack para Estudios (8+)' },
-      { '@type': 'ListItem', position: 7, url: `${origin}/shop/category/cadillacs-y-torres`, name: 'Camas de Pilates Cadillac y Torres' },
-      { '@type': 'ListItem', position: 8, url: `${origin}/shop/category/ropa`, name: 'Ropa y Calcetines para Pilates Reformer' },
+      { '@type': 'ListItem', position: 7, url: `${origin}/shop/category/ropa`, name: 'Ropa y Calcetines para Pilates Reformer' },
     ],
   };
 
   const faqs = [
     {
       q: '¿Cuánto cuesta una cama de Pilates Reformer en México?',
-      a: 'En México, los precios de camas de Pilates profesionales inician desde $23,234 MXN para modelos clásicos de roble, entre $28,000 y $38,000 MXN para modelos de maple norteamericano y aluminio de alta gama, y entre $51,000 y $85,050 MXN para equipos que incorporan media torre o estructura de Cadillac. Todos nuestros precios incluyen IVA y garantía directa.'
+      a: `En México, los precios de nuestras camas de Pilates inician desde ${CATALOG_MIN} MXN para los modelos clásicos de roble y aluminio, entre ${priceLabel(TOWER.min)} y ${priceLabel(TOWER.max)} MXN para las versiones con torre y la de maple alta gama, y entre ${priceLabel(GYM.min)} y ${priceLabel(GYM.max)} MXN para los gym reformers multiestación. Todos nuestros precios incluyen IVA y garantía directa.`
     },
     {
       q: '¿Qué es una cama de Pilates Cadillac y en qué se diferencia del Reformer tradicional?',
-      a: 'La cama de Pilates Cadillac (o mesa trapecio) incorpora una estructura tubular superior de acero inoxidable con trapecio, barras de empuje y resortes aéreos. Permite trabajo de suspensión tridimensional y rehabilitación profunda que complementa al Reformer. En Edelweiss Pilates contamos con modelos de cama Cadillac completos en roble, maple y aluminio desde $26,287 MXN con entrega asegurada en México.'
+      a: `La cama de Pilates Cadillac (o mesa trapecio) incorpora una estructura tubular superior de acero inoxidable con trapecio, barras de empuje y resortes aéreos. Permite trabajo de suspensión tridimensional y rehabilitación profunda que complementa al Reformer. En Edelweiss Pilates ofrecemos Reformers de roble y maple con torre de acero inoxidable desde ${priceLabel(TOWER.min)} MXN, que combinan reformer y torre en una sola máquina, con entrega asegurada en México.`
     },
     {
       q: '¿Cuál es la diferencia entre un Reformer de madera y uno de aluminio?',
@@ -189,7 +192,7 @@ const CamaDePilatesHub: React.FC = () => {
                 Modelos y Venta Directa
               </h2>
               <p className="text-white/60 font-light text-lg mb-8 max-w-md">
-                22 modelos de Reformer con entrega asegurada en todo México y garantía de 3 años.
+                {reformerCount} modelos de Reformer con entrega asegurada en todo México y garantía de 3 años.
               </p>
               <span className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-white/50 group-hover:text-white transition-colors">
                 Explorar catálogo <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -324,7 +327,7 @@ const CamaDePilatesHub: React.FC = () => {
               <tbody className="divide-y divide-[#2A2624]/5 text-[#5D5550]">
                 <tr>
                   <td className="p-3 md:p-4 font-semibold text-[#2A2624]">Origen y Manufactura</td>
-                  <td className="p-3 md:p-4 font-bold text-[#2A2624] bg-[#2A2624]/5">Ingeniería alemana · Taller en México</td>
+                  <td className="p-3 md:p-4 font-bold text-[#2A2624] bg-[#2A2624]/5">Importado · Distribución y soporte en México</td>
                   <td className="p-3 md:p-4">Importación de China (revendedor)</td>
                   <td className="p-3 md:p-4">Marca de crossfit / fitness</td>
                   <td className="p-3 md:p-4">Importado de EE.UU. / Canadá</td>
@@ -359,7 +362,7 @@ const CamaDePilatesHub: React.FC = () => {
                 </tr>
                 <tr>
                   <td className="p-3 md:p-4 font-semibold text-[#2A2624]">Rango de Precios (MXN)</td>
-                  <td className="p-3 md:p-4 font-bold text-[#2A2624] bg-[#2A2624]/5">$23,234 a $85,050 MXN (12 MSI)</td>
+                  <td className="p-3 md:p-4 font-bold text-[#2A2624] bg-[#2A2624]/5">{CATALOG_MIN} a {CATALOG_MAX} MXN (12 MSI)</td>
                   <td className="p-3 md:p-4">$4,489 a $50,999 MXN (stock agotado)</td>
                   <td className="p-3 md:p-4">$19,690 a $25,990 MXN</td>
                   <td className="p-3 md:p-4">$90,000 a $160,000+ MXN</td>
@@ -486,7 +489,7 @@ const CamaDePilatesHub: React.FC = () => {
               },
               {
                 title: 'Materiales reales',
-                desc: 'Cuero genuino vs vinipiel, madera sólida (nogal) vs laminados, y acero estructural marcan durabilidad y sensación.',
+                desc: 'Cuero genuino vs vinipiel, madera sólida (roble, maple) vs laminados, y acero estructural marcan durabilidad y sensación.',
               },
               {
                 title: 'Para casa vs estudio',

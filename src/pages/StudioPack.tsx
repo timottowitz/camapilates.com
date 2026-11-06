@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { DEFAULTS } from '@/lib/seo';
 import { requireRouteMeta } from '@/lib/routeMeta';
+import { TOWER } from '@/lib/shop/priceRanges';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
@@ -13,7 +14,7 @@ const StudioPack: React.FC = () => {
   const { title, description: desc } = requireRouteMeta('/packs/estudio');
 
   const [qty, setQty] = useState(8);
-  const unitPrice = 50000; // MXN studio reformer base
+  const unitPrice = TOWER.min; // MXN, cheapest studio reformer with tower in products.json
   const discounted = Math.round(unitPrice * 0.8);
   const subtotal = qty * discounted;
 
@@ -23,7 +24,7 @@ const StudioPack: React.FC = () => {
     mainEntity: [
       { '@type': 'Question', name: '¿Cuál es el descuento para estudios?', acceptedAnswer: { '@type': 'Answer', text: '20% de descuento a partir de 8 unidades.' } },
       { '@type': 'Question', name: '¿Coordinan instalación?', acceptedAnswer: { '@type': 'Answer', text: 'Sí. Coordinamos entrega por lotes e instalación según agenda del estudio.' } },
-      { '@type': 'Question', name: '¿Cuánto tarda la entrega?', acceptedAnswer: { '@type': 'Answer', text: 'Entregas desde CDMX en 3 semanas dentro de México. Para pedidos voluminosos, confirmamos fecha de instalación.' } },
+      { '@type': 'Question', name: '¿Cuánto tarda la entrega?', acceptedAnswer: { '@type': 'Answer', text: 'Entregas dentro de México en 6 a 8 semanas según el modelo. Para pedidos voluminosos, confirmamos fecha de instalación.' } },
     ],
   };
 
@@ -31,16 +32,16 @@ const StudioPack: React.FC = () => {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: 'Pack de Estudio Edelweiss (8+ Reformers)',
-    description: 'Pack para estudios con descuento del 20% a partir de 8 unidades. Instalación coordinada y garantía de 1 año.',
+    description: 'Pack para estudios con descuento del 20% a partir de 8 unidades. Instalación coordinada y garantía de 3 años.',
     brand: { '@type': 'Brand', name: 'Edelweiss Pilates' },
     sku: 'EW-STUDIO-PACK',
-    image: [`${origin}/images/products/reformer-aluminio-media-torre-a102.webp`],
+    image: [`${origin}/images/products/reformer-clasico-roble-torre-pl006a.webp`],
     url,
     offers: {
       '@type': 'AggregateOffer',
       priceCurrency: 'MXN',
-      lowPrice: 8 * Math.round(50000 * 0.8),
-      highPrice: 20 * Math.round(50000 * 0.8),
+      lowPrice: 8 * discounted,
+      highPrice: 20 * discounted,
       offerCount: 2,
       availability: 'https://schema.org/InStock',
     },
@@ -86,7 +87,7 @@ const StudioPack: React.FC = () => {
             <span className="not-italic font-light font-sans tracking-tight">with Excellence.</span>
           </h1>
           <p className="text-lg text-[#5D5550] font-light max-w-2xl leading-relaxed">
-            <Link to="/packs/monterrey" className="underline hover:text-[#2A2624]">Pack para estudios</Link>: a partir de 8 <Link to="/blog/cama-de-pilates-guia-de-compra" className="underline hover:text-[#2A2624]">camas de Pilates Reformer</Link> obtén 20% de descuento. Coordinamos instalación, ofrecemos garantía de 1 año y repuestos exprés. Envío desde CDMX con rutas a toda la República.
+            <Link to="/packs/monterrey" className="underline hover:text-[#2A2624]">Pack para estudios</Link>: a partir de 8 <Link to="/blog/cama-de-pilates-guia-de-compra" className="underline hover:text-[#2A2624]">camas de Pilates Reformer</Link> obtén 20% de descuento. Coordinamos instalación, ofrecemos garantía de 3 años y repuestos exprés. Envío a toda la República.
           </p>
         </motion.div>
 
@@ -173,11 +174,11 @@ const StudioPack: React.FC = () => {
                 <ul className="space-y-3 text-[#5D5550] font-light">
                   <li className="flex items-center gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span>
-                    Reformers de estudio (cuero, nogal y acero)
+                    Reformers de estudio (roble, maple o aluminio)
                   </li>
                   <li className="flex items-center gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span>
-                    Garantía 1 año
+                    Garantía 3 años
                   </li>
                   <li className="flex items-center gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span>

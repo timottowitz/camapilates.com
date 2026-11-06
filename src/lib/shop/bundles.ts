@@ -48,7 +48,7 @@ export interface BundlePriceCalculation {
 }
 
 /**
- * Check if a product is a Reformer or Machine (Reformers, Cadillacs, Wunda Chairs, Ladder Barrels)
+ * Check if a product is a Reformer or Machine (Reformers, including towers and gym reformers)
  * that qualifies for studio volume package discounts.
  */
 export function isReformerBed(p: { category?: string; name?: string; slug?: string }): boolean {

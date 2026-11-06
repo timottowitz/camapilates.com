@@ -15,13 +15,13 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 );
 
 const FeaturedProducts: React.FC = () => {
-  // Select diverse featured products: 2 reformers, 1 clothing, 1 accessory, 1 light therapy
+  // Featured mix: 3 reformers (aluminio, roble con torre, plegable), 1 clothing, 1 accessory
   const featured = [
-    products.find(p => p.slug === 'reformer-aluminio-riel-deslizante-a068'),
-    products.find(p => p.slug === 'reformer-maple-barra-patentada-a001'),
+    products.find(p => p.slug === 'reformer-elite-aluminio-pl019'),
+    products.find(p => p.slug === 'reformer-clasico-roble-torre-pl006a'),
+    products.find(p => p.slug === 'reformer-plegable-aluminio-pl019f'),
     products.find(p => p.slug === 'conjunto-fitted-organico'),
     products.find(p => p.slug === 'calcetines-antideslizantes'),
-    products.find(p => p.slug === 'silla-wunda-roble-premium-a101'),
   ].filter(Boolean);
 
   const formatPrice = (price: string) => {

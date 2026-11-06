@@ -317,7 +317,7 @@ const BlogPost = () => {
             <CTASection
               variant="compact"
               title="Eleva tu Práctica de Pilates"
-              description="Descubre nuestra colección de Reformers profesionales, diseñados con ingeniería de precisión y manufactura mexicana. Envíos asegurados y 12 MSI."
+              description="Descubre nuestra colección de Reformers profesionales, diseñados con ingeniería de precisión, con distribución y soporte en México. Envíos asegurados y 12 MSI."
               whatsappMessage={blogCta(postMeta.category, postMeta.title).whatsappMessage}
             />
           </div>

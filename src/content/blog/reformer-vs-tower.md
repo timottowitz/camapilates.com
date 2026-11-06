@@ -77,7 +77,7 @@ Un dato revelador del mercado es que más del 80% de los usuarios mexicanos pref
 
 Si aún dudas entre el fluido deslizamiento del **carro móvil** y la estabilidad vertical de la Torre, la inversión definitiva es el 'Combo' de Edelweiss Pilates. Esta fusión te permite ejecutar la **Mat conversion** completa, alineándote con la filosofía de salud integral y coordinación cuerpo-mente que Joseph Pilates describe en sus textos.
 
-La ventaja real para tu bolsillo es que, al comprar a un fabricante nacional, eliminas los costos ocultos de importación y el riesgo cambiario del dólar. Ya sea que vivas en CDMX, Monterrey o Guadalajara, garantizamos **disponibilidad local** de refacciones. Olvídate de esperar meses por **resortes** nuevos de marcas extranjeras; aquí tienes **soporte en español** inmediato y directo de fábrica. Nuestros equipos incluyen la **Push-through bar** y la **Roll-down bar** fabricadas con materiales premium para tu seguridad.
+La ventaja real para tu bolsillo es que, al comprar a un proveedor con sede en México, evitas el trámite y los costos ocultos de importar por tu cuenta, y cotizas en pesos. Ya sea que vivas en CDMX, Monterrey o Guadalajara, garantizamos **disponibilidad local** de refacciones. Olvídate de esperar meses por **resortes** nuevos de marcas extranjeras; aquí tienes **soporte en español** inmediato y directo de la marca. Nuestros equipos incluyen la **Push-through bar** y la **Roll-down bar** fabricadas con materiales premium para tu seguridad.
 
 Recuerda siempre consultar con un profesional antes de iniciar cualquier rutina nueva para proteger tu espalda y articulaciones.
 

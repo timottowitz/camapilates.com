@@ -56,15 +56,15 @@ export const StudioPackPromoModal: React.FC = () => {
               </button>
 
               <div className="grid md:grid-cols-12 items-stretch">
-                {/* Left Column: Reformer A001 Image */}
+                {/* Left Column: Reformer Alta Gama Image */}
                 <div className="md:col-span-5 relative bg-[#1F1C1A] flex items-center justify-center p-6 min-h-[220px] md:min-h-full">
                   <span className="absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-amber-400 text-black text-[9px] font-extrabold uppercase tracking-widest flex items-center gap-1 shadow-md">
                     <Sparkles className="w-3 h-3" /> Best Seller Estudio
                   </span>
                   
                   <img
-                    src="/images/products/reformer-maple-barra-patentada-a001.webp"
-                    alt="Reformer de Maple con Barra Patentada A001"
+                    src="/images/products/reformer-maple-alta-gama-pl001m.webp"
+                    alt="Reformer de Maple Alta Gama"
                     width="1024"
                     height="1024"
                     loading="lazy"
@@ -74,7 +74,7 @@ export const StudioPackPromoModal: React.FC = () => {
 
                   <div className="absolute bottom-3 left-4 right-4 text-center">
                     <span className="text-[10px] text-white/60 uppercase tracking-widest block">
-                      Edelweiss Maple A001
+                      Edelweiss Maple PL001M
                     </span>
                   </div>
                 </div>
@@ -128,11 +128,11 @@ export const StudioPackPromoModal: React.FC = () => {
                   {/* Actions */}
                   <div className="space-y-3 pt-2">
                     <Link
-                      to="/product/reformer-maple-barra-patentada-a001"
+                      to="/product/reformer-maple-alta-gama-pl001m"
                       onClick={handleClose}
                       className="w-full flex items-center justify-center gap-2 bg-[#EAE8E4] text-[#2A2624] rounded-full py-3.5 px-6 uppercase tracking-[0.15em] text-xs font-bold hover:bg-white hover:scale-[1.02] transition-all duration-300 shadow-xl"
                     >
-                      Ver Reformer A001 & Paquetes <ArrowRight className="w-4 h-4" />
+                      Ver Reformer Alta Gama & Paquetes <ArrowRight className="w-4 h-4" />
                     </Link>
 
                     <div className="flex items-center justify-center gap-4 text-[10px] text-[#EAE8E4]/60">

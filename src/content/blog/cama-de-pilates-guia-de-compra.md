@@ -104,7 +104,7 @@ Al comprar un Reformer en México, comparar alternativas con total objetividad e
 | **UCAN** | $40,000 – $50,600 | Aluminio blanco lacado | Resortes de estudio estándar | 1 año | Catálogo acotado a 4 modelos; sin opciones en madera maciza |
 | **Balanced Body (EE.UU.)** | $90,000 – $180,000+ | Maple americano o Aluminio | Resortes Signature de alta gama | 5 años (en EE.UU.) | Se tramita en el extranjero; aranceles de importación y semanas de espera |
 
-**Conclusión del análisis de mercado:** Importar una marca estadounidense como Balanced Body o Merrithew garantiza un equipo de primera línea, pero con un sobreprecio de más del 50% en aranceles de importación, IVA aduanal y flete internacional pesado, además de la incertidumbre para conseguir una refacción simple. En Edelweiss Pilates obtienes ingeniería y tolerancias de estándar alemán con fabricación nacional, precios transparentes en pesos mexicanos sin sobrecostos aduanales, planes de hasta 12 MSI y stock local de piezas con envío exprés.
+**Conclusión del análisis de mercado:** Importar una marca estadounidense como Balanced Body o Merrithew garantiza un equipo de primera línea, pero con un sobreprecio de más del 50% en aranceles de importación, IVA aduanal y flete internacional pesado, además de la incertidumbre para conseguir una refacción simple. En Edelweiss Pilates obtienes ingeniería y tolerancias de estándar alemán, con distribución y soporte en México, precios transparentes en pesos mexicanos sin sobrecostos aduanales, planes de hasta 12 MSI y stock local de piezas con envío exprés.
 
 ## Espacio y Medidas: Cómo Planificar la Instalación en Casa
 

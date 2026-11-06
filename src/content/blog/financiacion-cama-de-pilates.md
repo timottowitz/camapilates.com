@@ -78,7 +78,7 @@ Al analizar el mercado, notarás que los precios actuales oscilan entre los **$1
 *   **Gama Media ($30k - $55k):** El punto dulce de fabricación nacional o importación de calidad que equilibra costo y durabilidad. Ideales para uso rudo residencial.
 *   **Gama Premium (>$80k):** Ofrece acabados de lujo, maderas exóticas y precisión de estudio internacional.
 
-Aquí entra un factor estratégico para tu bolsillo: la **fabricación nacional** frente a la importación. Al elegir un equipo hecho en México (ya sea en CDMX, Guadalajara o Monterrey), evitas sobrecostos por aranceles y la volatilidad del tipo de cambio. Además, garantizas **soporte y refacciones locales**, algo vital si necesitas mantenimiento y no quieres esperar semanas por una pieza extranjera.
+Aquí entra un factor estratégico para tu bolsillo: comprar a un proveedor con **presencia y soporte en México** frente a importar por tu cuenta. Al elegir un equipo con distribución en México (ya sea en CDMX, Guadalajara o Monterrey), evitas el trámite de importar y la volatilidad del tipo de cambio, porque cotizas en pesos. Además, garantizas **soporte y refacciones locales**, algo vital si necesitas mantenimiento y no quieres esperar semanas por una pieza extranjera.
 
 Piensa también en el **valor de reventa**. Un Reformer con buenas dimensiones para hogar y materiales de calidad mantiene su precio en el mercado de segunda mano, lo que reduce el riesgo de tu financiación.
 

@@ -7,6 +7,8 @@ import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
 import { Check, Star, Shield, Zap, DollarSign, ArrowRight, MessageCircle } from 'lucide-react';
 import BackLink from '@/components/ui/back-link';
+import { priceLabel } from '@/lib/shop/catalog';
+import { GYM, GYM_SLUGS, HOME_MSI, HOME_SLUGS, CATALOG_MAX, CATALOG_MIN, TOWER, TOWER_SLUGS, priceOf, rangeLabel } from '@/lib/shop/priceRanges';
 
 const CamaDePilatesPrecio: React.FC = () => {
   const origin = getOrigin();
@@ -16,15 +18,15 @@ const CamaDePilatesPrecio: React.FC = () => {
   const faqs = [
     {
       q: '¿Cuánto cuesta una cama de Pilates en México en 2026?',
-      a: 'En México, el precio de una cama de Pilates Reformer profesional oscila entre $23,234 MXN para modelos clásicos de roble o aluminio de entrada, y entre $32,900 y $85,050 MXN para modelos profesionales de estudio con acabados de nogal, roble macizo, aluminio anodizado estructural y aditamentos de media torre o Cadillac.'
+      a: `En México, el precio de una cama de Pilates Reformer Edelweiss va de ${CATALOG_MIN} MXN para los modelos clásicos de roble, aluminio y plegables, a ${priceLabel(TOWER.min)}–${priceLabel(TOWER.max)} MXN para las versiones con torre de acero inoxidable o maple alta gama, y hasta ${CATALOG_MAX} MXN para los gym reformers multiestación.`
     },
     {
       q: '¿Cuál es el precio de una cama de Pilates para casa?',
-      a: 'Nuestras opciones residenciales inician desde $23,234 MXN (o desde $1,936 MXN/mes a 12 MSI). Cuentan con chasis rígido que elimina vibraciones, carro silencioso con rodamientos sellados y sistema de 5 resortes alemanes de alambre de piano.'
+      a: `Nuestras opciones residenciales inician desde ${CATALOG_MIN} MXN (o desde ${HOME_MSI} MXN/mes a 12 MSI). Cuentan con chasis rígido que elimina vibraciones, carro silencioso con rodamientos sellados y sistema de 5 resortes alemanes de alambre de piano.`
     },
     {
       q: '¿Cuál es el precio de una cama de Pilates de estudio profesional?',
-      a: 'Los Reformers profesionales para estudio boutique rondan entre $36,716 y $69,617 MXN para camas fijas de madera maciza o aluminio aeroespacial, y hasta $85,050 MXN para modelos con media torre o estructura de Cadillac. Todos con garantía directa de 3 años y tolerancias para uso comercial continuo.'
+      a: `Para un estudio, los Reformers con torre de acero inoxidable cuestan entre ${priceLabel(TOWER.min)} y ${priceLabel(TOWER.max)} MXN, y los gym reformers multiestación para gimnasios y estudios de alto volumen entre ${priceLabel(GYM.min)} y ${priceLabel(GYM.max)} MXN. Todos con garantía directa de 3 años.`
     },
     {
       q: '¿Qué factores influyen en el precio de una cama de Pilates?',
@@ -103,7 +105,7 @@ const CamaDePilatesPrecio: React.FC = () => {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="text-lg md:text-xl text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed"
           >
-            Precios y modelos 2026 para casa y estudio: desde $23,234 MXN (hasta 12 MSI). Qué incluye el precio, diferencias de materiales, garantía directa y servicio técnico en México.
+            Precios y modelos 2026 para casa y estudio: desde {CATALOG_MIN} MXN (hasta 12 MSI). Qué incluye el precio, diferencias de materiales, garantía directa y servicio técnico en México.
           </motion.p>
 
           <motion.div
@@ -132,27 +134,27 @@ const CamaDePilatesPrecio: React.FC = () => {
             ¿Cuánto cuesta una cama de Pilates Reformer en México? (Respuesta Rápida)
           </h2>
           <p className="text-[#5D5550] text-base leading-relaxed mb-5">
-            En México en 2026, el precio de una cama de Pilates Reformer profesional oscila entre <strong>$23,234 MXN y $85,050 MXN</strong> según el chasis, la madera y los aditamentos incluidos:
+            En México en 2026, el precio de una cama de Pilates Reformer profesional oscila entre <strong>{CATALOG_MIN} MXN y {CATALOG_MAX} MXN</strong> según el material, la torre y la configuración:
           </p>
           <div className="grid sm:grid-cols-3 gap-4 text-sm">
             <div className="p-4 bg-[#F5F4F0] rounded-xl border border-[#2A2624]/5">
               <span className="block font-semibold text-[#2A2624] mb-1">Reformer para Casa</span>
-              <span className="text-lg font-serif italic text-[#3E2723] block mb-1">$23,234 – $36,716 MXN</span>
-              <span className="text-xs text-[#5D5550] leading-snug block">Roble macizo o aluminio, 5 resortes alemanes calibrados, chasis silencioso.</span>
+              <span className="text-lg font-serif italic text-[#3E2723] block mb-1">{rangeLabel(HOME_SLUGS)}</span>
+              <span className="text-xs text-[#5D5550] leading-snug block">Roble, maple o aluminio, con versiones plegables que se guardan al terminar.</span>
             </div>
             <div className="p-4 bg-[#F5F4F0] rounded-xl border border-[#2A2624]/5">
-              <span className="block font-semibold text-[#2A2624] mb-1">Reformer de Estudio</span>
-              <span className="text-lg font-serif italic text-[#3E2723] block mb-1">$36,716 – $69,617 MXN</span>
-              <span className="text-xs text-[#5D5550] leading-snug block">Uso continuo comercial (8+ hrs/día), riel de ultra precisión y mayor resistencia.</span>
+              <span className="block font-semibold text-[#2A2624] mb-1">Con Torre o Alta Gama</span>
+              <span className="text-lg font-serif italic text-[#3E2723] block mb-1">{rangeLabel(TOWER_SLUGS)}</span>
+              <span className="text-xs text-[#5D5550] leading-snug block">Roble o maple con torre de acero inoxidable, o la versión Alta Gama en maple blanco.</span>
             </div>
             <div className="p-4 bg-[#F5F4F0] rounded-xl border border-[#2A2624]/5">
-              <span className="block font-semibold text-[#2A2624] mb-1">Con Torre o Cadillac</span>
-              <span className="text-lg font-serif italic text-[#3E2723] block mb-1">$33,240 – $85,050 MXN</span>
-              <span className="text-xs text-[#5D5550] leading-snug block">Estación completa combinada con trapecio, resortes aéreos y torre vertical.</span>
+              <span className="block font-semibold text-[#2A2624] mb-1">Gym Reformer Multiestación</span>
+              <span className="text-lg font-serif italic text-[#3E2723] block mb-1">{rangeLabel(GYM_SLUGS)}</span>
+              <span className="text-xs text-[#5D5550] leading-snug block">Máquinas para gimnasios y estudios de alto volumen, con varias estaciones en un mismo carro.</span>
             </div>
           </div>
           <p className="text-xs text-[#5D5550]/80 mt-4 italic">
-            *Todos los precios de Edelweiss Pilates incluyen IVA, garantía directa de 3 años en México, refacciones inmediatas y opción de pago a 12 Meses Sin Intereses (desde $1,936 MXN/mes).
+            *Todos los precios de Edelweiss Pilates incluyen IVA, garantía directa de 3 años en México, refacciones inmediatas y opción de pago a 12 Meses Sin Intereses (desde {HOME_MSI} MXN/mes).
           </p>
         </motion.div>
 
@@ -165,15 +167,15 @@ const CamaDePilatesPrecio: React.FC = () => {
                 <div className="p-6 md:p-8 font-serif italic text-[#2A2624] text-lg">Rango (MXN)</div>
                 <div className="p-6 md:p-8 font-serif italic text-[#2A2624] text-lg">Uso ideal</div>
                 <div className="p-6 md:p-8 font-serif italic text-[#2A2624] text-lg">Qué incluye</div>
-                <div className="p-6 md:p-8 font-serif italic text-[#2A2624] text-lg">Riesgo común</div>
+                <div className="p-6 md:p-8 font-serif italic text-[#2A2624] text-lg">A considerar</div>
               </div>
 
               {[
-                { type: 'Reformer Clásico (Roble)', link: '/product/reformer-roble-a015', range: '$23,234 MXN', use: 'Hogar / uso personal diario', includes: 'Madera maciza + 5 resortes alemanes + box', risk: 'Comparativa: modelos importados usan ligas o aglomerado' },
-                { type: 'Reformer de Aluminio', link: '/product/reformer-aluminio-a070', range: '$23,488 MXN', use: 'Hogar o departamento', includes: 'Chasis ligero anodizado + silencioso', risk: 'Comparativa: modelos plegables pierden rigidez axial' },
-                { type: 'Reformer Studio (Maple)', link: '/shop/category/reformers', range: '$36,716–$42,400 MXN', use: 'Uso comercial continuo (8+ hrs)', includes: 'Maple norteamericano + riel de precisión', risk: 'Marcas extranjeras tardan 4–6 meses en repuestos' },
-                { type: 'Cadillac de Aluminio', link: '/product/cadillac-aluminio-a048', range: '$33,240 MXN', use: 'Estudio / rehabilitación física', includes: 'Estructura trapecio completa + resortes aéreos', risk: 'Requiere techo de al menos 2.40 m de altura' },
-                { type: 'Reformer con Torre Completa', link: '/shop/category/cadillacs-y-torres', range: '$51,000–$85,050 MXN', use: 'Estudio boutique alta gama', includes: 'Reformer 2 en 1 + torre de acero inox', risk: 'Inversión mayor; recuperable con clases privadas' },
+                { type: 'Reformer Clásico de Roble', link: '/product/reformer-clasico-roble-pl006', range: `${priceLabel(priceOf('reformer-clasico-roble-pl006'))} MXN`, use: 'Hogar / uso personal diario', includes: 'Roble macizo, caja de salto y barra de pies abatible', risk: 'Mide 238 × 73 cm: confirma el espacio libre' },
+                { type: 'Reformer Elite de Aluminio', link: '/product/reformer-elite-aluminio-pl019', range: `${priceLabel(priceOf('reformer-elite-aluminio-pl019'))} MXN`, use: 'Hogar, departamento o estudio moderno', includes: 'Aluminio con detalles de madera, 70 kg', risk: 'Mide 245 cm de largo y no se pliega' },
+                { type: 'Reformer Plegable de Aluminio', link: '/product/reformer-plegable-aluminio-pl019f', range: `${priceLabel(priceOf('reformer-plegable-aluminio-pl019f'))} MXN`, use: 'Departamentos y espacios pequeños', includes: 'Aluminio, se pliega y se guarda de pie (128 × 68 × 50 cm)', risk: 'Revisa dónde lo vas a guardar plegado' },
+                { type: 'Reformer Clásico con Torre', link: '/product/reformer-clasico-roble-torre-pl006a', range: rangeLabel(['reformer-clasico-roble-torre-pl006a', 'reformer-clasico-maple-torre-pl001a']), use: 'Estudio que quiere reformer y torre en una máquina', includes: 'Roble o maple con torre de acero inoxidable', risk: 'Mide más de 2 m de alto: revisa la altura del techo' },
+                { type: 'Gym Reformer Multiestación', link: '/product/gym-reformer-l009bt', range: rangeLabel(GYM_SLUGS), use: 'Gimnasios y estudios de alto volumen', includes: 'Aleación de aluminio, carro central con estaciones en los extremos', risk: 'Mide 319 cm de largo y pesa 185 kg' },
               ].map((row, i) => (
                 <div key={i} className="grid grid-cols-5 border-b border-[#2A2624]/5 last:border-0 hover:bg-white transition-colors group">
                   <div className="p-6 md:p-8 text-sm font-semibold text-[#2A2624]">
@@ -216,15 +218,15 @@ const CamaDePilatesPrecio: React.FC = () => {
               </div>
               <div className="text-right">
                 <p className="text-sm text-[#5D5550] font-light">Desde</p>
-                <p className="text-3xl font-serif italic text-[#2A2624]">$23,234</p>
-                <p className="text-xs text-[#5D5550]">MXN · 12 MSI de $1,936</p>
+                <p className="text-3xl font-serif italic text-[#2A2624]">{CATALOG_MIN}</p>
+                <p className="text-xs text-[#5D5550]">MXN · 12 MSI de {HOME_MSI}</p>
               </div>
             </div>
             <ul className="space-y-4 mb-10 border-t border-[#2A2624]/10 pt-8">
               {[
-                'Madera maciza de Roble o Maple / Aluminio aeroespacial',
-                '5 resortes alemanes de alambre de piano calibrados',
-                'Deslizamiento ultra silencioso con rodamientos sellados',
+                'Roble macizo, maple blanco o aluminio, con versiones plegables',
+                'Juego de resortes Normal, Estándar o Top a elegir',
+                'Tapicería en negro, gris o blanco (otros colores bajo pedido)',
                 'Garantía directa de 3 años y entrega asegurada en México',
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-[#5D5550] font-light">
@@ -235,7 +237,7 @@ const CamaDePilatesPrecio: React.FC = () => {
             </ul>
             <div className="space-y-3">
               <a
-                href={`https://wa.me/525548468190?text=${encodeURIComponent("Hola, me interesa cotizar el Reformer Home Edition ($23,234 MXN o 12 MSI de $1,936). ¿Cuál sería el costo de flete a mi código postal?")}`}
+                href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar un Reformer para casa (desde ${CATALOG_MIN} MXN o 12 MSI de ${HOME_MSI}). ¿Cuál sería el costo de flete a mi código postal?`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-rybbit-event="click_price_home_whatsapp"
@@ -269,15 +271,15 @@ const CamaDePilatesPrecio: React.FC = () => {
               </div>
               <div className="text-right">
                 <p className="text-sm text-white/50 font-light">Desde</p>
-                <p className="text-3xl font-serif italic text-[#EAE8E4]">$36,716</p>
-                <p className="text-xs text-white/50">MXN · Torres hasta $85,050</p>
+                <p className="text-3xl font-serif italic text-[#EAE8E4]">{priceLabel(TOWER.min)}</p>
+                <p className="text-xs text-white/50">MXN · Gym reformers hasta {CATALOG_MAX}</p>
               </div>
             </div>
             <ul className="space-y-4 mb-10 border-t border-white/10 pt-8">
               {[
-                'Madera maciza o Aluminio con opción a Media Torre o Cadillac',
-                'Tolerancias alemanas: cero vibración bajo uso continuo',
-                'Tapicería de microfibra de alta densidad y fácil desinfección',
+                'Roble o maple con torre de acero inoxidable, o gym reformers multiestación',
+                'Tapicería en negro, gris o blanco (otros colores bajo pedido)',
+                'Medidas y peso de cada modelo en su ficha técnica',
                 'Garantía directa de 3 años con stock de refacciones en México',
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-white/70 font-light">
@@ -288,7 +290,7 @@ const CamaDePilatesPrecio: React.FC = () => {
             </ul>
             <div className="space-y-3">
               <a
-                href={`https://wa.me/525548468190?text=${encodeURIComponent("Hola, me interesa cotizar camas Reformer Studio Professional ($36,716 MXN) para mi estudio de Pilates (solicito opciones de financiamiento y descuento por volumen).")}`}
+                href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar camas Reformer para mi estudio de Pilates (con torre desde ${priceLabel(TOWER.min)} MXN). Solicito opciones de financiamiento y descuento por volumen.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-rybbit-event="click_price_studio_whatsapp"
@@ -314,7 +316,7 @@ const CamaDePilatesPrecio: React.FC = () => {
               {
                 icon: Star,
                 title: 'Materiales del Chasis',
-                desc: 'Roble macizo, Maple canadiense o aleación de aluminio aeroespacial aseguran rigidez indeformable y años de vida útil.',
+                desc: 'Roble macizo, maple blanco o aluminio aseguran rigidez indeformable y años de vida útil.',
               },
               {
                 icon: Zap,
@@ -405,9 +407,9 @@ const CamaDePilatesPrecio: React.FC = () => {
               <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Presupuesto</span>
               <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">Cama de Pilates Barata →</span>
             </Link>
-            <Link to="/product/cadillac-aluminio-a048" className="p-4 rounded-xl bg-white border border-[#2A2624]/10 hover:border-[#3E2723] hover:shadow-sm transition-all group block">
-              <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Torre y Cadillac</span>
-              <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">Cadillac de Aluminio →</span>
+            <Link to="/product/reformer-clasico-roble-torre-pl006a" className="p-4 rounded-xl bg-white border border-[#2A2624]/10 hover:border-[#3E2723] hover:shadow-sm transition-all group block">
+              <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Reformer con Torre</span>
+              <span className="font-serif italic text-sm text-[#2A2624] group-hover:text-[#3E2723]">Reformer Clásico de Roble con Torre →</span>
             </Link>
             <Link to="/blog/mejores-marcas-cama-de-pilates" className="p-4 rounded-xl bg-white border border-[#2A2624]/10 hover:border-[#3E2723] hover:shadow-sm transition-all group block">
               <span className="text-[10px] text-[#3E2723] font-bold uppercase tracking-wider block mb-1">Marcas México</span>

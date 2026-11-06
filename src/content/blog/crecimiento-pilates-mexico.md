@@ -197,7 +197,7 @@ El mercado de apps fitness en México:
 **Problema**: Reformers importados cuestan 60% más por aranceles
 
 **Soluciones**:
-- **Edelweiss Pilates**: Manufactura mexicana, calidad alemana
+- **Edelweiss Pilates**: Distribución y soporte en México, calidad alemana
 - Programas de financiamiento 12-24 meses
 - Leasing operativo para estudios nuevos
 - Mercado secundario certificado

@@ -35,7 +35,7 @@ Ciudad de México concentra la oferta más grande de Pilates [Reformer](/blog/pi
 
 1. **Demografía activa**: 42 % de las personas que practican Reformer en México viven en CDMX o área metropolitana (datos Edelweiss 2025).
 2. **Oferta de estudios**: cadenas como Contrology Lab o Studio 14 conviven con instructores independientes que adaptan lofts o rooftops.
-3. **Acceso a equipamiento**: la ciudad tiene importadores oficiales y fabricantes (Edelweiss Pilates, Universo Pilates) que garantizan refacciones y upgrades sin esperar semanas.
+3. **Acceso a equipamiento**: la ciudad tiene importadores, distribuidores y fabricantes (Edelweiss Pilates, Universo Pilates) que garantizan refacciones y upgrades sin esperar semanas.
 
 ## Zonas y estudios representativos
 
@@ -91,7 +91,7 @@ Muchos estudios ofrecen **free week** o paquetes de lanzamiento en nuevas sucurs
 
 ## Recomendaciones Edelweiss Pilates
 
-Si buscas armar tu propio espacio en CDMX o equipar un estudio, Edelweiss Pilates fabrica Reformers con ingeniería alemana y manufactura mexicana, soporte técnico local y capacitación a instructores. Ofrecemos asesoría para evaluar rentabilidad (ROI), guías de mantenimiento y programas de certificación continua.
+Si buscas armar tu propio espacio en CDMX o equipar un estudio, Edelweiss Pilates ofrece Reformers con ingeniería alemana, distribución y soporte técnico en México, y capacitación a instructores. Ofrecemos asesoría para evaluar rentabilidad (ROI), guías de mantenimiento y programas de certificación continua.
 
 <hub-list category="Estudio" limit="6" title="Explora más guías para estudios" />
 

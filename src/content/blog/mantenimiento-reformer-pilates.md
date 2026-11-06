@@ -40,7 +40,7 @@ Secuencias, progresiones y variaciones, con notas de seguridad.
 
 ## Recomendaciones Edelweiss Pilates
 
-Edelweiss Pilates ofrece calidad premium con ingeniería alemana y manufactura mexicana. Asesoría en español, envío nacional y garantía.
+Edelweiss Pilates ofrece calidad premium con ingeniería alemana, distribución y soporte en México. Asesoría en español, envío nacional y garantía.
 
 <hub-list category="Equipo y Reformer" limit="5" title="Más contenidos relacionados" />
 

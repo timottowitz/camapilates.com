@@ -22,7 +22,7 @@ type HubCard = {
 const IndexAuthority: React.FC = () => {
   const origin = getOrigin();
   const title = 'Cama de Pilates (Reformer) en México — Guías, Precios y Venta';
-  const desc = 'Compra tu cama de Pilates Reformer en México: modelos para casa y estudio. Fabricación nacional con envíos asegurados a los 32 estados de la República Mexicana.';
+  const desc = 'Compra tu cama de Pilates Reformer en México: modelos para casa y estudio. Distribución y soporte en México, con envíos asegurados a los 32 estados de la República Mexicana.';
 
   const cards = useMemo<HubCard[]>(() => (
     [
@@ -66,7 +66,7 @@ const IndexAuthority: React.FC = () => {
       {
         eyebrow: 'EQUIPAMIENTO',
         title: 'Nuevos Reformers',
-        description: 'Madera de maple y aluminio. Fabricación 100% mexicana.',
+        description: 'Madera de maple y aluminio. Distribución y soporte en México.',
         to: '/shop/category/reformers',
         colSpan: 'md:col-span-6 lg:col-span-6',
         image: '/images/explore-reformers.webp',
@@ -235,7 +235,7 @@ const IndexAuthority: React.FC = () => {
                 <div className="flex flex-wrap items-center gap-3 text-xs text-[#5D5550] pt-1">
                   <span className="flex items-center gap-1.5 font-medium text-[#2A2624]">
                     <span className="w-2 h-2 rounded-full bg-emerald-600" />
-                    Fabricación 100% Mexicana
+                    Distribución y soporte en México
                   </span>
                   <span className="opacity-40">•</span>
                   <span>Envíos asegurados a los 32 estados</span>

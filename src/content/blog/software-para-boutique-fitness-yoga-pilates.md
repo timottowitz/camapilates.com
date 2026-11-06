@@ -91,7 +91,7 @@ Un **software para centros de bienestar y fitness** de primer nivel garantiza:
 
 La armonía visual de un estudio boutique depende de la coherencia entre tu diseño interior y tus equipos de movimiento.
 
-En **CAMA Pilates / Edelweiss Pilates**, fabricamos camas [Reformer para Estudio](/reformer-para-estudio) concebidas como piezas de alta ebanistería y precisión mecánica alemana. Su estructura en roble blanco y nogal macizo, combinada con herrajes de aluminio cepillado y tapicerías en piel artesanal, aporta una calidez orgánica que complementa a la perfección tanto salas zen de Yoga como áreas enérgicas de Reformer contemporáneo.
+En **CAMA Pilates / Edelweiss Pilates**, ofrecemos camas [Reformer para Estudio](/reformer-para-estudio) concebidas como piezas de alta ebanistería y precisión mecánica alemana. Su estructura en roble o maple macizo, combinada con aluminio y tapicerías en negro, gris o blanco, aporta una calidez orgánica que complementa a la perfección tanto salas zen de Yoga como áreas enérgicas de Reformer contemporáneo.
 
 Cuando combinas un equipamiento de manufactura impecable con un **sistema de gestión para Pilates** ágil y moderno, tu estudio se posiciona con solidez en el segmento premium, permitiéndote cobrar tarifas que reflejan la excelencia de tu servicio.
 

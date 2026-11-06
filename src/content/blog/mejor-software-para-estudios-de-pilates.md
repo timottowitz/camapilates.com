@@ -233,7 +233,7 @@ Para profundizar en aspectos específicos de la administración de tu espacio de
 
 La tecnología de gestión no trabaja en el vacío; su función es optimizar la vida útil y el rendimiento de tus activos físicos más valiosos: **tus camas de Pilates**.
 
-En [CAMA Pilates / Edelweiss Pilates](/), donde fabricamos camas de grado comercial combinando ingeniería alemana y manufactura artesanal en madera noble y aluminio reforzado, observamos frecuentemente los problemas que genera un software mal configurado:
+En [CAMA Pilates / Edelweiss Pilates](/), donde ofrecemos camas de grado comercial en madera noble y aluminio, observamos frecuentemente los problemas que genera un software mal configurado:
 
 ### 1. Desgaste Desbalanceado del Equipo
 Cuando un sistema no permite la asignación rotativa de lugares, los alumnos siempre reservan los mismos dos Reformers (usualmente los más cercanos a la puerta o al espejo principal). Como consecuencia, los resortes, poleas y tapicerías de esas dos camas sufren el triple de desgaste que las máquinas del fondo. Un buen sistema con visualización de cama te permite orientar las reservas y monitorear el balance de uso en toda la sala.

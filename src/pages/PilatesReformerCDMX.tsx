@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { DEFAULTS, getOrigin, generateBreadcrumbSchema } from '@/lib/seo';
 import { requireRouteMeta } from '@/lib/routeMeta';
+import { priceLabel } from '@/lib/shop/catalog';
+import { CATALOG_MIN, TOWER } from '@/lib/shop/priceRanges';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { MapPin, Building2, ShoppingBag, GraduationCap, ArrowRight, Phone } from 'lucide-react';
 
@@ -233,7 +235,7 @@ const PilatesReformerCDMX: React.FC = () => {
                   </div>
                   <div>
                     <p className="font-medium text-[#2A2624]">Reformer Casa</p>
-                    <p className="text-sm text-[#5D5550]">Desde $29,700 MXN</p>
+                    <p className="text-sm text-[#5D5550]">Desde {CATALOG_MIN} MXN</p>
                   </div>
                 </div>
                 
@@ -242,8 +244,8 @@ const PilatesReformerCDMX: React.FC = () => {
                     <Building2 className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="font-medium text-[#2A2624]">Reformer Profesional</p>
-                    <p className="text-sm text-[#5D5550]">Desde $42,400 MXN</p>
+                    <p className="font-medium text-[#2A2624]">Reformer con Torre</p>
+                    <p className="text-sm text-[#5D5550]">Desde {priceLabel(TOWER.min)} MXN</p>
                   </div>
                 </div>
               </div>
@@ -319,25 +321,25 @@ const PilatesReformerCDMX: React.FC = () => {
               <p className="text-sm text-[#5D5550] font-light">Todo lo que necesitas saber sobre estudios y zonas.</p>
             </Link>
             
-            <Link to="/product/reformer-torre-completa-aluminio-a045" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
+            <Link to="/shop/category/reformers" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
               <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
-                Reformer Torre Completa Aluminio
+                Catálogo de Reformers
               </h3>
-              <p className="text-sm text-[#5D5550] font-light">Estructura aeroespacial para uso intensivo.</p>
+              <p className="text-sm text-[#5D5550] font-light">Madera, aluminio, plegables y gym reformers.</p>
             </Link>
             
-            <Link to="/product/reformer-maple-torre-completa-a020m" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
+            <Link to="/product/reformer-clasico-maple-torre-pl001a" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
               <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
-                Reformer Maple Torre Completa
+                Reformer Clásico de Maple con Torre
               </h3>
-              <p className="text-sm text-[#5D5550] font-light">Madera de maple norteamericano con torre 304.</p>
+              <p className="text-sm text-[#5D5550] font-light">Maple blanco con torre de acero inoxidable.</p>
             </Link>
 
-            <Link to="/product/reformer-blanco-torre-completa-a081" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
+            <Link to="/product/reformer-clasico-roble-torre-pl006a" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
               <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
-                Reformer Blanco Torre Completa
+                Reformer Clásico de Roble con Torre
               </h3>
-              <p className="text-sm text-[#5D5550] font-light">Roble lacado blanco de máxima distinción.</p>
+              <p className="text-sm text-[#5D5550] font-light">Roble macizo con torre de acero inoxidable.</p>
             </Link>
 
             <Link to="/certificacion-pilates/cdmx" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">

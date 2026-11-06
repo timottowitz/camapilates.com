@@ -33,7 +33,7 @@ export function blogCta(category: string | undefined, articleTitle: string): Blo
   }
   return {
     title: '¿Listo para tu Cama de Pilates?',
-    description: 'Asesoría personalizada para elegir tu Reformer residencial o comercial. Entrega en 3 semanas, 3 años de garantía y soporte en México.',
+    description: 'Asesoría personalizada para elegir tu Reformer para casa, estudio o gimnasio, con envío a todo México y soporte en español.',
     whatsappMessage: `Hola, leí «${articleTitle}» en camadepilates.com y quisiera asesoría para elegir mi cama de Pilates.`,
     secondaryHref: '/shop/category/reformers',
     secondaryLabel: 'Ver Catálogo de Camas',

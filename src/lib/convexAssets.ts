@@ -32,8 +32,6 @@ export const CONVEX_IMAGE_NAMES = {
 
   // Category icons
   CAT_REFORMERS: 'catReformers',
-  CAT_CADILLACS: 'catCadillacs',
-  CAT_CHAIRS: 'catChairs',
   CAT_ACCESSORIES: 'catAccessories',
   CAT_ROPA: 'catRopa',
   CAT_LUZ: 'catLuz',
@@ -72,9 +70,7 @@ const FALLBACKS = {
   shopHero: '/images/shop-hero-bohemian.webp',
   featuredProducts: '/images/reformer-home.webp',
   reformerEditorial1: '/images/reformer-editorial-1.webp',
-  catReformers: '/images/products/reformer-roble-a015.webp',
-  catCadillacs: '/images/products/cadillac-roble-a019.webp',
-  catChairs: '/images/products/silla-wunda-roble-premium-a101.webp',
+  catReformers: '/images/products/reformer-clasico-roble-pl006.webp',
   catAccessories: '/images/pilates-straps-main.webp',
   catRopa: '/images/cat-icon-ropa.webp',
   catLuz: '/images/luz-studio-4.webp',
@@ -100,8 +96,6 @@ export function useConvexAssets() {
   const featuredProducts = useConvexImage(CONVEX_IMAGE_NAMES.FEATURED_PRODUCTS, getVersionedImageUrl(FALLBACKS.featuredProducts));
   const reformerEditorial1 = useConvexImage(CONVEX_IMAGE_NAMES.REFORMER_EDITORIAL_1, getVersionedImageUrl(FALLBACKS.reformerEditorial1));
   const catReformers = useConvexImage(CONVEX_IMAGE_NAMES.CAT_REFORMERS, getVersionedImageUrl(FALLBACKS.catReformers));
-  const catCadillacs = useConvexImage(CONVEX_IMAGE_NAMES.CAT_CADILLACS, getVersionedImageUrl(FALLBACKS.catCadillacs));
-  const catChairs = useConvexImage(CONVEX_IMAGE_NAMES.CAT_CHAIRS, getVersionedImageUrl(FALLBACKS.catChairs));
   const catAccessories = useConvexImage(CONVEX_IMAGE_NAMES.CAT_ACCESSORIES, getVersionedImageUrl(FALLBACKS.catAccessories));
   const catRopa = useConvexImage(CONVEX_IMAGE_NAMES.CAT_ROPA, getVersionedImageUrl(FALLBACKS.catRopa));
   const catLuz = useConvexImage(CONVEX_IMAGE_NAMES.CAT_LUZ, getVersionedImageUrl(FALLBACKS.catLuz));
@@ -122,8 +116,6 @@ export function useConvexAssets() {
     featuredProducts,
     reformerEditorial1,
     catReformers,
-    catCadillacs,
-    catChairs,
     catAccessories,
     catRopa,
     catLuz,

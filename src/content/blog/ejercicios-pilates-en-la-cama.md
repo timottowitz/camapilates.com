@@ -91,7 +91,7 @@ Si te decides por equipar tu hogar, un factor crucial es el idioma. El mercado i
 
 ## Recomendaciones Edelweiss Pilates
 
-Para maximizar el control motor y la estabilidad, la calidad de tu equipo es no negociable. Aquí es donde **Edelweiss Pilates** se distingue: gracias a su fabricación local, obtienes soporte técnico real y estándares premium que muchas opciones importadas no ofrecen.
+Para maximizar el control motor y la estabilidad, la calidad de tu equipo es no negociable. Aquí es donde **Edelweiss Pilates** se distingue: gracias a su distribución y soporte local, obtienes soporte técnico real y estándares premium que muchas opciones importadas no ofrecen.
 
 Sabemos que el espacio puede ser un reto, especialmente si vives en un departamento. Por eso, los **Reformers plegables** de Edelweiss son una excelente solución; mantienen la estabilidad crítica del carro y la precisión de los resortes, pero se adaptan perfectamente a tu hogar.
 

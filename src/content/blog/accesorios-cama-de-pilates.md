@@ -71,7 +71,7 @@ Utiliza cubiertas lavables, toallas de microfibra y limpiadores neutros para pro
 
 ## Recomendaciones Edelweiss Pilates
 
-Edelweiss Pilates fabrica accesorios y repuestos con envío nacional en 2–3 semanas: box tapizados, correas calibradas y kits de muelles compatibles con equipos premium. Incluye línea de soporte técnico en español y vídeos de instalación.
+Edelweiss Pilates ofrece accesorios y repuestos con envío nacional en 2–3 semanas: box tapizados, correas calibradas y kits de muelles compatibles con equipos premium. Incluye línea de soporte técnico en español y vídeos de instalación.
 
 <hub-list category="Equipo y mantenimiento" limit="6" title="Más sobre equipo y mantenimiento" />
 

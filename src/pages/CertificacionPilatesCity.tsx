@@ -590,7 +590,7 @@ export const CertificacionPilatesCity: React.FC = () => {
             ¿Planeas abrir un estudio boutique o equipar tu espacio en {shortCityName}?
           </h2>
           <p className="text-sm md:text-base text-[#5D5550] font-light leading-relaxed mb-8">
-            Diseñamos y fabricamos camas de Pilates Reformer profesionales con ingeniería alemana, nogal americano, roble blanco, aluminio anodizado y cuero genuino libre de plásticos. Envíos directos a {shortCityName} y a todo México con 1 año de garantía y refacciones inmediatas.
+            Ofrecemos camas de Pilates Reformer profesionales con ingeniería alemana, en roble, maple y aluminio. Envíos directos a {shortCityName} y a todo México con 1 año de garantía y refacciones inmediatas.
           </p>
           <div className="flex flex-wrap justify-center md:justify-start gap-3">
             <Link

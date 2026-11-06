@@ -122,7 +122,7 @@ Uno de los errores más frecuentes es saturar la semana intentando hacer sesione
 
 Para quien entrena atletismo de forma constante, la conveniencia horaria es determinante. Muchos corredores terminan sus entrenamientos a las 6:30 AM o a las 9:00 PM, horarios donde la mayoría de los estudios boutique están cerrados o con clases grupales llenas.
 
-Tener un **Reformer profesional para casa** (como los modelos de madera de nogal y rieles de precisión de Edelweiss Pilates con ingeniería alemana y fabricación en CDMX) permite realizar 20 minutos de descarga miofascial y fortalecimiento de core inmediatamente después de terminar el rodaje, sin perder tiempo en traslados ni pagar mensualidades continuas que rondan los \$2,500 a \$3,500 MXN mensuales en zonas como Polanco, Valle Oriente o Providencia.
+Tener un **Reformer profesional para casa** (como los modelos de madera y aluminio de Edelweiss Pilates, con entrega y soporte en México) permite realizar 20 minutos de descarga miofascial y fortalecimiento de core inmediatamente después de terminar el rodaje, sin perder tiempo en traslados ni pagar mensualidades continuas que rondan los \$2,500 a \$3,500 MXN mensuales en zonas como Polanco, Valle Oriente o Providencia.
 
 ---
 

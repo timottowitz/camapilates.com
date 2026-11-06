@@ -46,7 +46,7 @@ const About = () => {
           </span>
           <h1 className="text-5xl md:text-8xl lg:text-9xl font-serif italic text-[#2A2624] leading-[0.85] mb-12 tracking-tighter">
             German Engineering<span className="text-[#EB4C42]">.</span> <br />
-            <span className="not-italic font-light font-sans tracking-tight text-[#5D5550]">Mexican Soul</span>
+            <span className="not-italic font-light font-sans tracking-tight text-[#5D5550]">Made for Mexico</span>
           </h1>
         </FadeIn>
 
@@ -70,16 +70,16 @@ const About = () => {
           <div className="md:col-span-7 flex flex-col justify-center">
             <FadeIn delay={0.4}>
               <p className="text-xl md:text-3xl font-light text-[#2A2624] leading-relaxed mb-12 tracking-tight">
-                We unite <span className="font-normal border-b border-[#EB4C42]">precise German engineering</span> with the warmth of Mexican craftsmanship.
+                We unite <span className="font-normal border-b border-[#EB4C42]">careful engineering</span> with the warmth of natural materials.
                 Our goal was simple: a Reformer that is completely silent,
                 vibration-free, and beautiful enough to live in your home.
               </p>
               <p className="text-lg font-light text-[#5D5550] leading-relaxed mb-12 max-w-2xl">
-                Every Edelweiss Reformer is hand-assembled in Mexico City using sustainable American Walnut,
-                aerospace-grade aluminum, and premium full-grain leather. Discover our{' '}
+                Every Edelweiss Reformer comes in solid oak, maple or aluminum, with stainless-steel towers on the tower models,
+                and is delivered and supported across Mexico. Discover our{' '}
                 <Link to="/reformer-para-casa" className="underline hover:text-[#2A2624]">Pilates Reformers silenciosos para casa</Link>{' '}
                 and our flagship{' '}
-                <Link to="/product/reformer-aluminio-nogal-a039" className="underline hover:text-[#2A2624]">Reformer en madera de nogal</Link>.
+                <Link to="/product/reformer-elite-aluminio-pl019" className="underline hover:text-[#2A2624]">Reformer Elite de Aluminio</Link>.
                 We don't just build equipment; we craft instruments for movement.
               </p>
 

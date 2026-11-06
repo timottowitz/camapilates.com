@@ -128,7 +128,7 @@ Los estudios mexicanos están adoptando el modelo de "instructor invitado", perm
 ## Recursos Esenciales para la Comunidad
 
 ### Proveedores de Equipo Confiables
-- **Edelweiss Pilates**: Reformers con ingeniería alemana y manufactura mexicana
+- **Edelweiss Pilates**: Reformers con ingeniería alemana, distribución y soporte en México
 - **Importadores autorizados**: Balanced Body, Stott Pilates
 - **Mercado secundario**: Grupos de Facebook para equipo seminuevo (ahorro 30-50%)
 

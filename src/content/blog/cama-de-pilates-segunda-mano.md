@@ -66,7 +66,7 @@ Lo que parece una ganga inicial puede terminar saliendo más caro que comprar un
 
 Al comparar el gasto real de un equipo usado restaurado ($18,000 de compra + $7,000 de refacciones + $3,000 de flete = **$28,000 MXN sin garantía**), la alternativa más conveniente es estrenar un equipo de fábrica.
 
-En **[Edelweiss Pilates](/cama-de-pilates)** diseñamos y fabricamos [camas de Pilates Reformer](/blog/cama-de-pilates-venta-mexico) con ingeniería de estándar alemán en México:
+En **[Edelweiss Pilates](/cama-de-pilates)** ofrecemos [camas de Pilates Reformer](/blog/cama-de-pilates-venta-mexico) con ingeniería de estándar alemán, entrega y soporte en México:
 - **Precios desde [$23,234 MXN](/cama-de-pilates/precio)** para nuestro modelo de entrada en Roble Clásico o Aluminio.
 - **Financiamiento a 12 [Meses Sin Intereses](/blog/financiacion-cama-de-pilates) (MSI):** Adquiere tu cama desde **$1,936 MXN al mes**, pagando menos de lo que cuesta una mensualidad en un estudio boutique.
 - **Garantía Estructural Directa de 3 Años:** Cero vicios ocultos, cero piezas fatigadas.

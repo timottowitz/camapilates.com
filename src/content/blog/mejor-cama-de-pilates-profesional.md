@@ -78,7 +78,7 @@ Imagina que se rompe un resorte o se desgasta una rueda del carro. Si tu proveed
 
 ## Por qué elegir Edelweiss Pilates: La ventaja local
 
-Cuando decides invertir en tu estudio, la durabilidad es clave. Aquí es donde Edelweiss Pilates marca la diferencia con su ingeniería 100% mexicana. A diferencia de equipos importados que pueden quedar retenidos semanas en aduanas, elegir una manufactura local te garantiza una estabilidad del marco superior, diseñada específicamente para el uso rudo y continuo que exigen los estudios mexicanos.
+Cuando decides invertir en tu estudio, la durabilidad es clave. Aquí es donde Edelweiss Pilates marca la diferencia con su distribución y soporte en México. A diferencia de equipos importados por tu cuenta que pueden quedar retenidos semanas en aduanas, elegir un proveedor local te simplifica la entrega y el soporte para el uso continuo que exigen los estudios mexicanos.
 
 Como bien se menciona en *Return to Life*, Joseph Pilates insistía en que el control es la esencia del método, y ese control depende intrínsecamente de contar con el equipo adecuado. Si tu *reformer* vibra o se siente frágil, la técnica sufre. Al optar por Edelweiss Pilates, obtienes calidad de resortes con la tensión exacta y un deslizamiento del carro silencioso y fluido, permitiendo esa precisión. Además, siguiendo los principios de seguridad mecánica (Herman, 2005), nuestros sistemas de ajuste de barras y cuerdas son robustos y fiables.
 

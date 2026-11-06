@@ -92,7 +92,7 @@ Decidir entre el Mat y el Reformer no es cuestión de cuál es "mejor", sino de 
 
 ## La ventaja de Edelweiss Pilates: Calidad Premium Local
 
-Al dar el siguiente paso en tu práctica, elegir un [Reformer fabricado en México](/blog/beneficios-pilates-en-cama), como Edelweiss, te ofrece ventajas estratégicas sobre los equipos importados. Mientras que traer una máquina del extranjero implica tiempos de espera inciertos y costos de envío elevados, la disponibilidad inmediata local te permite empezar a entrenar ya.
+Al dar el siguiente paso en tu práctica, elegir un [Reformer con distribución y soporte en México](/blog/beneficios-pilates-en-cama), como Edelweiss, te ofrece ventajas estratégicas frente a importarlo por tu cuenta. Mientras que traer una máquina del extranjero implica tiempos de espera inciertos y costos de envío elevados, con entrega y soporte local puedes empezar a entrenar con menos fricción.
 
 La calidad técnica es innegable. La integridad de los resortes es fundamental para la seguridad y eficacia del movimiento; los equipos Edelweiss utilizan materiales de alta durabilidad adaptados al uso rudo y espacios reducidos, ideales para departamentos modernos. Además, tener acceso a refacciones y técnicos en tu idioma y zona horaria asegura que tu inversión esté protegida a largo plazo, facilitando ese entendimiento total del método que Joseph Pilates (1945) consideraba esencial.
 

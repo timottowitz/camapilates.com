@@ -92,7 +92,7 @@ Instituciones como el IMSS y la Secretaría de Salud destacan los beneficios de 
 
 ## La ventaja de Edelweiss Pilates: Calidad Mexicana
 
-Elegir un Reformer fabricado en México no es solo un tema de orgullo local, es una decisión estratégica para tu entrenamiento. Joseph Pilates enfatizaba la importancia del "control" absoluto en cada movimiento; lograr esa precisión es imposible si tu equipo se tambalea o si careces del soporte adecuado para mantenerlo a punto.
+Elegir un Reformer con distribución y soporte en México es una decisión estratégica para tu entrenamiento. Joseph Pilates enfatizaba la importancia del "control" absoluto en cada movimiento; lograr esa precisión es imposible si tu equipo se tambalea o si careces del soporte adecuado para mantenerlo a punto.
 
 Al optar por **Edelweiss Pilates**, te olvidas de la pesadilla de esperar semanas por refacciones importadas; la disponibilidad local en CDMX, Guadalajara y Monterrey garantiza que tu práctica no se detenga. Además, al contar con manuales y asesoría técnica 100% en español, operas el equipo con mayor seguridad, protegiendo tanto tu cuerpo como tu inversión.
 

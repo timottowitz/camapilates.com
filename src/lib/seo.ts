@@ -86,7 +86,7 @@ export function generateLocalBusinessSchema() {
     '@id': `${origin}/#localbusiness`,
     name: ORGANIZATION.name,
     alternateName: ORGANIZATION.legalName,
-    description: 'Fabricante y tienda de Camas de Pilates (Reformer) premium en México. Equipos de madera de nogal, cuero genuino y materiales orgánicos libres de plásticos.',
+    description: 'Tienda de Camas de Pilates (Reformer) premium en México, con entrega y soporte en todo el país. Equipos de roble, maple y aluminio, y materiales orgánicos libres de plásticos.',
     url: ORGANIZATION.url,
     logo: {
       '@type': 'ImageObject',
@@ -640,7 +640,7 @@ export function generateAboutPageSchema() {
         '@type': 'AboutPage',
         '@id': `${pageUrl}#aboutpage`,
         name: 'Sobre Edelweiss Pilates',
-        description: 'Conoce Edelweiss Pilates: Reformers silenciosos y precisos en cuero genuino, nogal y acero. Ingeniería alemana con manufactura en CDMX.',
+        description: 'Conoce Edelweiss Pilates: Reformers silenciosos y precisos en roble, maple y aluminio, con entrega y soporte en todo México.',
         url: pageUrl,
         inLanguage: 'es-MX',
         mainEntity: {
@@ -659,7 +659,7 @@ export function generateAboutPageSchema() {
               addressCountry: 'MX',
             },
           },
-          description: 'Fabricante de Reformers de Pilates premium con ingeniería alemana y manufactura mexicana.',
+          description: 'Marca de Reformers de Pilates premium con ingeniería alemana, distribución y soporte en México.',
           logo: {
             '@type': 'ImageObject',
             url: ORGANIZATION.logo.url,
@@ -805,7 +805,7 @@ export function generateCompareSchema() {
         '@type': 'WebPage',
         '@id': `${pageUrl}#webpage`,
         name: 'The Collection | Comparativa de Reformers Edelweiss',
-        description: 'Compara nuestros modelos de reformer profesional y para casa. Ingeniería alemana, alma mexicana. Entrega en 3 semanas.',
+        description: 'Compara nuestros modelos de reformer profesional y para casa. Ingeniería alemana, distribución y soporte en México. Entrega en 6 a 8 semanas.',
         url: pageUrl,
         inLanguage: 'es-MX',
       },

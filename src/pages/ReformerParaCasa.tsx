@@ -3,11 +3,19 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { getOrigin, generateBreadcrumbSchema } from '@/lib/seo';
 import { requireRouteMeta } from '@/lib/routeMeta';
+import { getBySlug, priceLabel } from '@/lib/shop/catalog';
+import { CATALOG_MIN, HOME } from '@/lib/shop/priceRanges';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { Home, Check, ArrowRight, Ruler, Volume2, Shield, Truck, MessageCircle } from 'lucide-react';
 
+const FEATURED_SLUG = 'reformer-plegable-aluminio-pl019f';
+
 const ReformerParaCasa: React.FC = () => {
   const origin = getOrigin();
+  const home = getBySlug(FEATURED_SLUG)!;
+  const homePrice = Number(home.price);
+  const homeMsi = priceLabel(Math.round(homePrice / 12));
+  const priceAnswer = `Un reformer para casa en México cuesta desde ${CATALOG_MIN} hasta ${priceLabel(HOME.max)} MXN según el material (roble, maple o aluminio) y si es plegable. Revisa las medidas y el peso de cada modelo en su ficha antes de comprar.`;
   const url = `${origin}/reformer-para-casa`;
   const { title, description: desc } = requireRouteMeta('/reformer-para-casa');
 
@@ -28,7 +36,7 @@ const ReformerParaCasa: React.FC = () => {
         name: '¿Cuánto cuesta un reformer para casa en México?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Un reformer de calidad para casa en México cuesta entre $35,000 y $45,000 MXN. Modelos económicos desde $15,000 MXN sacrifican durabilidad y silencio.'
+          text: priceAnswer
         }
       },
       {
@@ -53,17 +61,17 @@ const ReformerParaCasa: React.FC = () => {
   const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: 'Edelweiss Home Reformer',
-    description: 'Reformer de pilates para casa con diseño compacto, sistema silencioso Whisper Glide y acabados premium en madera de nogal.',
+    name: home.name,
+    description: home.description,
     brand: { '@type': 'Brand', name: 'Edelweiss Pilates' },
-    sku: 'EW-HOME-WALNUT',
-    image: [`${origin}/images/products/reformer-aluminio-nogal-a039.webp`],
+    sku: home.sku,
+    image: [`${origin}${home.image}`],
     url,
     offers: {
       '@type': 'Offer',
       url,
       priceCurrency: 'MXN',
-      price: '35000',
+      price: home.price,
       availability: 'https://schema.org/InStock',
       itemCondition: 'https://schema.org/NewCondition',
       seller: { '@type': 'Organization', name: 'Edelweiss Pilates' },
@@ -134,19 +142,19 @@ const ReformerParaCasa: React.FC = () => {
         {/* Quick Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
           <div className="p-6 bg-[#EAE8E4] rounded-sm text-center">
-            <p className="text-2xl font-serif italic text-[#2A2624] mb-1">$29,700</p>
+            <p className="text-2xl font-serif italic text-[#2A2624] mb-1">{CATALOG_MIN}</p>
             <p className="text-xs uppercase tracking-widest text-[#5D5550]">Precio desde</p>
           </div>
           <div className="p-6 bg-[#EAE8E4] rounded-sm text-center">
-            <p className="text-2xl font-serif italic text-[#2A2624] mb-1">245×70</p>
+            <p className="text-2xl font-serif italic text-[#2A2624] mb-1">{home.specs?.medidas.split(' × ').slice(0, 2).join('×')}</p>
             <p className="text-xs uppercase tracking-widest text-[#5D5550]">cm dimensiones</p>
           </div>
           <div className="p-6 bg-[#EAE8E4] rounded-sm text-center">
-            <p className="text-2xl font-serif italic text-[#2A2624] mb-1">3 sem</p>
+            <p className="text-2xl font-serif italic text-[#2A2624] mb-1">6–8 sem</p>
             <p className="text-xs uppercase tracking-widest text-[#5D5550]">Entrega México</p>
           </div>
           <div className="p-6 bg-[#EAE8E4] rounded-sm text-center">
-            <p className="text-2xl font-serif italic text-[#2A2624] mb-1">1 año</p>
+            <p className="text-2xl font-serif italic text-[#2A2624] mb-1">{home.warranty}</p>
             <p className="text-xs uppercase tracking-widest text-[#5D5550]">Garantía</p>
           </div>
         </div>
@@ -197,7 +205,7 @@ const ReformerParaCasa: React.FC = () => {
               <Ruler className="w-8 h-8 text-[#3E2723] mb-4" />
               <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Tamaño</h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                Mide tu espacio. Necesitas ~3m de largo libre. Algunos modelos son plegables pero sacrifican estabilidad.
+                Mide tu espacio. Necesitas ~3m de largo libre. Los modelos plegables se guardan de pie al terminar la sesión.
               </p>
             </div>
             
@@ -205,7 +213,7 @@ const ReformerParaCasa: React.FC = () => {
               <Shield className="w-8 h-8 text-[#3E2723] mb-4" />
               <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Calidad</h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                Invierte en materiales duraderos: madera sólida, acero estructural, cuero genuino. Durarán 10+ años.
+                Invierte en materiales duraderos: madera sólida, aluminio y acero inoxidable. Durarán 10+ años.
               </p>
             </div>
             
@@ -213,7 +221,7 @@ const ReformerParaCasa: React.FC = () => {
               <Truck className="w-8 h-8 text-[#3E2723] mb-4" />
               <h3 className="text-xl font-serif italic text-[#2A2624] mb-3">Entrega</h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                Fabricamos en México y despachamos con envío a domicilio asegurado a los 32 estados de la República Mexicana. Manejo especializado con empaque reforzado.
+                Despachamos con envío a domicilio asegurado a los 32 estados de la República Mexicana. Manejo especializado con empaque reforzado.
               </p>
             </div>
           </div>
@@ -229,40 +237,40 @@ const ReformerParaCasa: React.FC = () => {
                 Nuestra Recomendación
               </span>
               <h2 className="text-3xl md:text-4xl font-serif italic text-[#2A2624] mb-6">
-                Edelweiss Home Reformer
+                {home.name}
               </h2>
               <p className="text-lg text-[#5D5550] font-light leading-relaxed mb-8">
-                Diseñado específicamente para el hogar mexicano. Compacto, silencioso y con los mismos estándares de calidad que nuestro modelo profesional.
+                {home.description}
               </p>
               
               <ul className="space-y-4 mb-8">
                 <li className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-[#3E2723] mt-0.5 shrink-0" />
-                  <span className="text-[#5D5550]">Sistema Whisper Glide — silencio garantizado</span>
+                  <span className="text-[#5D5550]">Se pliega y se guarda de pie ({home.specs?.medidasPlegado} cm plegado)</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-[#3E2723] mt-0.5 shrink-0" />
-                  <span className="text-[#5D5550]">Madera de nogal americano y cuero genuino</span>
+                  <span className="text-[#5D5550]">Estructura de aluminio, {home.specs?.peso}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-[#3E2723] mt-0.5 shrink-0" />
-                  <span className="text-[#5D5550]">Entrega 3 semanas en todo México</span>
+                  <span className="text-[#5D5550]">Entrega en 6–8 semanas en todo México</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-[#3E2723] mt-0.5 shrink-0" />
-                  <span className="text-[#5D5550]">Garantía 1 año + soporte WhatsApp</span>
+                  <span className="text-[#5D5550]">Garantía {home.warranty} + soporte WhatsApp</span>
                 </li>
               </ul>
               
               <div className="flex items-baseline gap-4 mb-8">
-                <span className="text-3xl font-serif italic text-[#2A2624]">$29,700</span>
+                <span className="text-3xl font-serif italic text-[#2A2624]">{priceLabel(homePrice)}</span>
                 <span className="text-sm text-[#5D5550]">MXN</span>
-                <span className="text-xs text-[#128C7E] font-semibold uppercase tracking-widest">o 12 MSI de $2,475</span>
+                <span className="text-xs text-[#128C7E] font-semibold uppercase tracking-widest">o 12 MSI de {homeMsi}</span>
               </div>
               
               <div className="flex flex-wrap items-center gap-4">
                 <a
-                  href={`https://wa.me/525548468190?text=${encodeURIComponent("Hola, me interesa el Edelweiss Home Reformer ($29,700 MXN o 12 MSI). ¿Tienen disponibilidad y cotización de flete a mi código postal?")}`}
+                  href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa el ${home.name} (${priceLabel(homePrice)} MXN o 12 MSI). ¿Tienen disponibilidad y cotización de flete a mi código postal?`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   data-rybbit-event="click_home_reformer_recommendation_whatsapp"
@@ -281,8 +289,8 @@ const ReformerParaCasa: React.FC = () => {
             
             <div className="aspect-square bg-[#EAE8E4] rounded-sm overflow-hidden">
               <img
-                src="/images/compare-home.webp"
-                alt="Edelweiss Home Reformer - reformer de pilates para casa en madera de nogal"
+                src={home.image}
+                alt={`${home.name} - reformer de pilates para casa`}
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
@@ -309,7 +317,7 @@ const ReformerParaCasa: React.FC = () => {
             <div className="border-b border-white/20 pb-6">
               <h3 className="text-lg font-medium mb-3">¿Cuánto cuesta un reformer para casa en México?</h3>
               <p className="text-white/70 font-light">
-                Un reformer de calidad para casa en México cuesta entre $35,000 y $45,000 MXN. Modelos económicos desde $15,000 MXN sacrifican durabilidad y silencio.
+                {priceAnswer}
               </p>
             </div>
             
@@ -378,18 +386,18 @@ const ReformerParaCasa: React.FC = () => {
               <p className="text-sm text-[#5D5550] font-light">Rangos y opciones de pago a 12 MSI.</p>
             </Link>
 
-            <Link to="/product/reformer-aluminio-nogal-a039" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
+            <Link to="/product/reformer-elite-aluminio-pl019" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
               <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
-                Reformer en Madera de Nogal
+                Reformer Elite de Aluminio
               </h3>
-              <p className="text-sm text-[#5D5550] font-light">Elegancia residencial con ingeniería silenciosa.</p>
+              <p className="text-sm text-[#5D5550] font-light">Ligero y de líneas limpias para casa o estudio.</p>
             </Link>
 
-            <Link to="/product/reformer-aluminio-compacto-a039a" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
+            <Link to="/product/reformer-plegable-roble-pl0015s" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">
               <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
-                Reformer Compacto de Aluminio
+                Reformer Plegable Premium de Roble
               </h3>
-              <p className="text-sm text-[#5D5550] font-light">Diseño optimizado para departamentos.</p>
+              <p className="text-sm text-[#5D5550] font-light">Se pliega cuando no lo usas para liberar espacio.</p>
             </Link>
           </div>
         </div>

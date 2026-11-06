@@ -9,34 +9,41 @@ interface RelatedProductsProps {
   maxProducts?: number;
 }
 
+const HOME = 'reformer-plegable-aluminio-pl019f';
+const ENTRY = 'reformer-elite-aluminio-pl019';
+const PRO = 'reformer-clasico-roble-torre-pl006a';
+const STUDIO_MAPLE = 'reformer-clasico-maple-torre-pl001a';
+const HIGH_END = 'reformer-maple-alta-gama-pl001m';
+const GYM = 'gym-reformer-l009e';
+
 const TAG_PRODUCT_MAP: Record<string, string[]> = {
-  'reformer': ['reformer-aluminio-riel-deslizante-a068', 'reformer-roble-barra-patentada-a107'],
-  'cama de pilates': ['reformer-aluminio-riel-deslizante-a068', 'reformer-roble-barra-patentada-a107'],
-  'reformer casa': ['reformer-aluminio-riel-deslizante-a068'],
-  'reformer profesional': ['reformer-roble-barra-patentada-a107'],
+  'reformer': [ENTRY, PRO],
+  'cama de pilates': [ENTRY, PRO],
+  'reformer casa': [HOME],
+  'reformer profesional': [PRO],
   'accesorios': ['calcetines-antideslizantes', 'cintas-de-pilates', 'calcetines-pack-3'],
   'calcetines': ['calcetines-antideslizantes', 'calcetines-pack-3'],
   'ropa': ['conjunto-fitted-organico', 'leggings-organicos-fitted', 'top-organico-fitted'],
-  'espalda': ['reformer-aluminio-riel-deslizante-a068'],
-  'dolor': ['reformer-aluminio-riel-deslizante-a068'],
-  'estudio': ['reformer-roble-barra-patentada-a107', 'silla-wunda-roble-premium-a101'],
-  'luz': ['silla-wunda-roble-premium-a101'],
-  'terapia': ['silla-wunda-roble-premium-a101'],
-  'principiante': ['reformer-aluminio-riel-deslizante-a068', 'calcetines-antideslizantes'],
-  'casa': ['reformer-aluminio-riel-deslizante-a068', 'silla-wunda-maple-a022m'],
-  'profesional': ['reformer-roble-barra-patentada-a107', 'silla-wunda-roble-premium-a101'],
-  'ejercicios': ['reformer-aluminio-riel-deslizante-a068', 'calcetines-antideslizantes'],
+  'espalda': [ENTRY],
+  'dolor': [ENTRY],
+  'estudio': [PRO, STUDIO_MAPLE],
+  'luz': [HIGH_END],
+  'terapia': [PRO],
+  'principiante': [ENTRY, 'calcetines-antideslizantes'],
+  'casa': [HOME, ENTRY],
+  'profesional': [PRO, GYM],
+  'ejercicios': [ENTRY, 'calcetines-antideslizantes'],
   'mantenimiento': ['cintas-de-pilates'],
-  'precio': ['reformer-aluminio-riel-deslizante-a068', 'reformer-roble-barra-patentada-a107'],
-  'compra': ['reformer-aluminio-riel-deslizante-a068', 'reformer-roble-barra-patentada-a107'],
+  'precio': [ENTRY, PRO],
+  'compra': [ENTRY, PRO],
 };
 
 const CATEGORY_PRODUCT_MAP: Record<string, string[]> = {
-  'Guías de compra': ['reformer-aluminio-riel-deslizante-a068', 'reformer-roble-barra-patentada-a107', 'calcetines-antideslizantes'],
-  'Comparativas': ['reformer-aluminio-riel-deslizante-a068', 'reformer-roble-barra-patentada-a107'],
-  'Ejercicios y salud': ['reformer-aluminio-riel-deslizante-a068', 'calcetines-antideslizantes', 'conjunto-fitted-organico'],
+  'Guías de compra': [ENTRY, PRO, 'calcetines-antideslizantes'],
+  'Comparativas': [ENTRY, PRO],
+  'Ejercicios y salud': [ENTRY, 'calcetines-antideslizantes', 'conjunto-fitted-organico'],
   'Equipo y mantenimiento': ['cintas-de-pilates', 'calcetines-antideslizantes'],
-  'Estudio': ['reformer-roble-barra-patentada-a107', 'silla-wunda-roble-premium-a101'],
+  'Estudio': [PRO, STUDIO_MAPLE],
 };
 
 const RelatedProducts: React.FC<RelatedProductsProps> = ({ 

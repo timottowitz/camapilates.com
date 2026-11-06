@@ -1202,7 +1202,7 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
               <span class="text-stone-400 group-open:rotate-45 transition-transform text-xl font-light">+</span>
             </summary>
             <div class="mt-3 text-stone-600 text-sm leading-relaxed border-t border-stone-200/60 pt-3">
-              En México, el precio de una cama de Pilates Reformer profesional oscila entre $23,234 MXN para modelos clásicos de roble o aluminio de entrada, y entre $32,900 y $85,050 MXN para modelos profesionales de estudio con acabados de nogal, roble macizo, aluminio anodizado estructural y aditamentos de media torre o Cadillac.
+              En México, nuestros reformers van de $17,425.50 MXN (Reformer Clásico de Roble) a $29,000.25 MXN para modelos de madera con torre, y hasta $63,787.50 MXN para el Gym Reformer multiestación de uso comercial.
             </div>
           </details>
           <details class="border border-stone-200 rounded-xl p-5 group bg-stone-50/50">
@@ -1295,9 +1295,9 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
             <span class="text-xs text-amber-800 font-bold uppercase tracking-wider block mb-1">Presupuesto</span>
             <span class="font-semibold text-stone-900 text-sm">Cama de Pilates Barata</span>
           </a>
-          <a href="/product/cadillac-aluminio-a048" class="p-4 rounded-xl border border-stone-200 hover:border-stone-900 transition-colors block">
-            <span class="text-xs text-amber-800 font-bold uppercase tracking-wider block mb-1">Torre y Cadillac</span>
-            <span class="font-semibold text-stone-900 text-sm">Cadillac de Aluminio</span>
+          <a href="/product/reformer-clasico-roble-torre-pl006a" class="p-4 rounded-xl border border-stone-200 hover:border-stone-900 transition-colors block">
+            <span class="text-xs text-amber-800 font-bold uppercase tracking-wider block mb-1">Reformer con Torre</span>
+            <span class="font-semibold text-stone-900 text-sm">Reformer de Roble con Torre</span>
           </a>
           <a href="/blog/mejores-marcas-cama-de-pilates" class="p-4 rounded-xl border border-stone-200 hover:border-stone-900 transition-colors block">
             <span class="text-xs text-amber-800 font-bold uppercase tracking-wider block mb-1">Marcas México</span>
@@ -1898,20 +1898,22 @@ async function main() {
         }
       ]
     };
+    // The home page features the foldable aluminium reformer, the same product ReformerParaCasa.tsx shows.
+    const home = readProducts().find((p) => p.slug === 'reformer-plegable-aluminio-pl019f');
     const productSchema = {
       '@context': 'https://schema.org',
       '@type': 'Product',
-      name: 'Edelweiss Home Reformer',
-      description: 'Reformer de pilates para casa con diseño compacto, sistema silencioso Whisper Glide y acabados premium en madera de nogal.',
-      brand: { '@type': 'Brand', name: 'Edelweiss Pilates' },
-      sku: 'EW-HOME-WALNUT',
-      image: [`${origin}/images/products/reformer-aluminio-nogal-a039.webp`],
+      name: home.name,
+      description: home.description,
+      brand: { '@type': 'Brand', name: home.brand },
+      sku: home.sku,
+      image: [`${origin}${home.image}`],
       url: `${origin}/reformer-para-casa`,
       offers: {
         '@type': 'Offer',
         url: `${origin}/reformer-para-casa`,
         priceCurrency: 'MXN',
-        price: '35000',
+        price: home.price,
         availability: 'https://schema.org/InStock',
         itemCondition: 'https://schema.org/NewCondition',
         seller: { '@type': 'Organization', name: 'Edelweiss Pilates' },
@@ -1950,7 +1952,7 @@ async function main() {
       title: meta.title,
       description: meta.description,
       canonical: `${origin}${route}`,
-      ogImage: `${origin}/images/products/reformer-aluminio-nogal-a039.webp`,
+      ogImage: `${origin}${home.image}`,
       ogType: 'website',
     };
     const body = `
@@ -1958,11 +1960,11 @@ async function main() {
       <h1 class="text-4xl font-bold text-gray-900 mb-4">${htmlEscape(meta.title)}</h1>
       <p class="text-lg text-gray-600 max-w-2xl mb-8">${htmlEscape(meta.description)}</p>
       <div class="grid md:grid-cols-2 gap-8 items-center">
-        <img src="/images/products/reformer-aluminio-nogal-a039.webp" alt="Edelweiss Home Reformer" class="w-full h-auto rounded-lg border" />
+        <img src="${home.image}" alt="${htmlEscape(home.name)}" class="w-full h-auto rounded-lg border" />
         <div>
-          <h2 class="text-2xl font-bold text-gray-900">Edelweiss Home Reformer</h2>
-          <p class="mt-4 text-gray-700">Reformer de pilates para casa con diseño compacto, sistema silencioso Whisper Glide y acabados premium en madera de nogal.</p>
-          <div class="mt-6 text-2xl font-bold text-gray-900">$35,000 MXN</div>
+          <h2 class="text-2xl font-bold text-gray-900"><a href="/product/${home.slug}">${htmlEscape(home.name)}</a></h2>
+          <p class="mt-4 text-gray-700">${htmlEscape(home.description)}</p>
+          <div class="mt-6 text-2xl font-bold text-gray-900">$${Number(home.price).toLocaleString('es-MX', { minimumFractionDigits: 2 })} MXN</div>
         </div>
       </div>
       <div class="mt-16 pt-10 border-t border-gray-200">
@@ -1992,13 +1994,13 @@ async function main() {
             <h3 class="font-semibold text-gray-900 text-sm mb-1">Guía de Precios</h3>
             <p class="text-xs text-gray-600">Rangos de costo y 12 MSI.</p>
           </a>
-          <a href="/product/reformer-aluminio-nogal-a039" class="p-4 rounded-lg border hover:border-gray-900 block">
-            <h3 class="font-semibold text-gray-900 text-sm mb-1">Reformer de Nogal</h3>
-            <p class="text-xs text-gray-600">Elegancia residencial silenciosa.</p>
+          <a href="/product/reformer-elite-aluminio-pl019" class="p-4 rounded-lg border hover:border-gray-900 block">
+            <h3 class="font-semibold text-gray-900 text-sm mb-1">Reformer Elite de Aluminio</h3>
+            <p class="text-xs text-gray-600">Ligero, estable y de líneas limpias.</p>
           </a>
-          <a href="/product/reformer-aluminio-compacto-a039a" class="p-4 rounded-lg border hover:border-gray-900 block">
-            <h3 class="font-semibold text-gray-900 text-sm mb-1">Reformer Compacto</h3>
-            <p class="text-xs text-gray-600">Optimizado para departamentos.</p>
+          <a href="/product/reformer-plegable-roble-pl0015s" class="p-4 rounded-lg border hover:border-gray-900 block">
+            <h3 class="font-semibold text-gray-900 text-sm mb-1">Reformer Plegable de Roble</h3>
+            <p class="text-xs text-gray-600">Se pliega cuando no lo usas.</p>
           </a>
         </div>
       </div>
@@ -2188,7 +2190,7 @@ async function main() {
           name: '¿Cuánto cuesta una cama de Pilates en México en 2026?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'En México, el precio de una cama de Pilates Reformer profesional oscila entre $23,234 MXN para modelos clásicos de roble o aluminio de entrada, y entre $32,900 y $85,050 MXN para modelos profesionales de estudio con acabados de nogal, roble macizo, aluminio anodizado estructural y aditamentos de media torre o Cadillac.'
+            text: 'En México, nuestros reformers van de $17,425.50 MXN (Reformer Clásico de Roble) a $29,000.25 MXN para modelos de madera con torre, y hasta $63,787.50 MXN para el Gym Reformer multiestación de uso comercial.'
           }
         },
         {
@@ -2719,7 +2721,7 @@ async function main() {
       body = `
       <section class="container mx-auto px-4 py-12">
         <h1 class="text-3xl font-bold text-gray-900 mb-4">${htmlEscape(meta.title)}</h1>
-        <p class="text-lg text-gray-600 max-w-2xl mb-6">Conoce Edelweiss Pilates: <a href="/reformer-para-casa" class="text-amber-800 underline">Reformers silenciosos</a> y precisos en cuero genuino, <a href="/product/reformer-aluminio-nogal-a039" class="text-amber-800 underline">nogal</a> y acero. Ingeniería alemana con manufactura en CDMX.</p>
+        <p class="text-lg text-gray-600 max-w-2xl mb-6">Conoce Edelweiss Pilates: <a href="/shop/category/reformers" class="text-amber-800 underline">reformers de roble, maple y aluminio</a>, <a href="/reformer-para-casa" class="text-amber-800 underline">plegables para casa</a> y modelos para estudio, con distribución y soporte en México.</p>
         <div class="flex flex-wrap gap-4 mt-6">
           <a href="/services" class="px-5 py-2.5 rounded-lg border border-gray-300 font-semibold hover:bg-gray-50">Servicios</a>
           <a href="/reformer-para-casa" class="px-5 py-2.5 rounded-lg border border-gray-300 font-semibold hover:bg-gray-50">Reformer para Casa</a>
@@ -2733,9 +2735,9 @@ async function main() {
         <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
           <a href="/blog/pilates-reformer-cdmx" class="p-4 rounded border hover:border-gray-900">Guía Pilates CDMX</a>
           <a href="/blog/cama-de-pilates-venta-mexico" class="p-4 rounded border hover:border-gray-900">Venta de Camas en México</a>
-          <a href="/product/reformer-torre-completa-aluminio-a045" class="p-4 rounded border hover:border-gray-900">Reformer Torre Aluminio</a>
-          <a href="/product/reformer-maple-torre-completa-a020m" class="p-4 rounded border hover:border-gray-900">Reformer Maple Torre</a>
-          <a href="/product/reformer-blanco-torre-completa-a081" class="p-4 rounded border hover:border-gray-900">Reformer Blanco Torre</a>
+          <a href="/product/reformer-clasico-roble-torre-pl006a" class="p-4 rounded border hover:border-gray-900">Reformer Roble con Torre</a>
+          <a href="/product/reformer-clasico-maple-torre-pl001a" class="p-4 rounded border hover:border-gray-900">Reformer Maple con Torre</a>
+          <a href="/shop/category/reformers" class="p-4 rounded border hover:border-gray-900">Todos los Reformers</a>
           <a href="/certificacion-pilates/cdmx" class="p-4 rounded border hover:border-gray-900">Certificación Pilates CDMX</a>
         </div>
       </section>`;

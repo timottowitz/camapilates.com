@@ -400,7 +400,7 @@ En México, la inversión inicial para una **[cama de Pilates](/cama-de-pilates)
 Sí. El punto de articulación central [de una cama plegable](/blog/cama-de-pilates-plegable) suele desarrollar holgura y juego mecánico tras 6 a 12 meses de uso, interrumpiendo la fluidez del deslizamiento del carro. Para uso diario en casa, una estructura fija de madera maciza o aluminio con rodamientos sellados ofrece una vida útil tres veces mayor.
 
 ### ¿Conviene comprar en plataformas de marketplace o directamente con un fabricante local?
-Comprar con un fabricante especializado en México garantiza disponibilidad permanente de repuestos (resortes, ruedas, poleas), manuales y soporte técnico en español, y póliza de garantía directa de 3 años sin depender de importaciones inciertas ni aduanas.
+Comprar con un proveedor especializado con sede en México garantiza disponibilidad permanente de repuestos (resortes, ruedas, poleas), manuales y soporte técnico en español, y póliza de garantía directa de 3 años sin depender de importaciones inciertas ni aduanas.
 
 ### ¿Qué garantía mínima debo exigir al comprar un Reformer?
 Debes exigir un mínimo de 1 a 3 años de garantía sobre el chasis estructural y los mecanismos de deslizamiento. Desconfía de comercializadoras que solo ofrecen 30 a 90 días de garantía.
@@ -410,7 +410,7 @@ No. El mantenimiento habitual consiste en limpiar los rieles con un paño de mic
 
 ## Recomendaciones Finales: Invierte con Inteligencia
 
-No arriesgues tu columna con equipos desechables. En **[Edelweiss Pilates](/cama-de-pilates)** fabricamos equipos con ingeniería alemana y manufactura mexicana para brindarte el máximo valor por tu inversión:
+No arriesgues tu columna con equipos desechables. En **[Edelweiss Pilates](/cama-de-pilates)** ofrecemos equipos con ingeniería alemana, distribución y soporte en México para brindarte el máximo valor por tu inversión:
 
 - **[Catálogo de Camas de Pilates en México](/cama-de-pilates):** Conoce nuestros modelos en roble macizo y aluminio aeroespacial desde **$23,234 MXN**.
 - **[Tabla de Precios y Calculadora 12 MSI](/cama-de-pilates/precio):** Descubre cómo estrenar tu propio Reformer desde **$1,936 MXN mensuales**.

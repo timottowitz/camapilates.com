@@ -85,7 +85,7 @@ La magia ocurre con la constancia. Lo ideal es subirte al carro 2 o 3 veces por 
 
 Para proteger tu espalda, la calidad del equipo no es un lujo, es una necesidad técnica. Si los resortes no tienen la resistencia calibrada o el carro no se desliza suavemente, te arriesgas a sufrir "tirones" lumbares por la fricción o el impacto. Busca modelos para hogar que incluyan *headrest* ajustable y opción de *Box* para adaptar la ergonomía a tu estatura.
 
-Una gran ventaja de elegir un fabricante nacional es la asesoría en español y el soporte post-venta. Si vives en CDMX, Guadalajara o Monterrey, asegúrate de que la marca ofrezca refacciones inmediatas; nada es peor que tener tu equipo parado por una pieza importada. Recuerda los principios de control de *Return to Life*: tu máquina debe facilitarte el movimiento fluido, no entorpecerlo. Antes de invertir, consulta con un profesional para verificar qué modelo se ajusta a tus necesidades físicas.
+Una gran ventaja de elegir un proveedor con presencia en México es la asesoría en español y el soporte post-venta. Si vives en CDMX, Guadalajara o Monterrey, asegúrate de que la marca ofrezca refacciones inmediatas; nada es peor que tener tu equipo parado por una pieza importada. Recuerda los principios de control de *Return to Life*: tu máquina debe facilitarte el movimiento fluido, no entorpecerlo. Antes de invertir, consulta con un profesional para verificar qué modelo se ajusta a tus necesidades físicas.
 
 <hub-list category="Ejercicios y salud" limit="6" title="Más contenidos relacionados" />
 

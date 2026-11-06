@@ -76,7 +76,7 @@ const EdelweissNav: React.FC<EdelweissNavProps> = ({ darkBackground = false }) =
   return (
     <>
       <div className="bg-[#2A2624] text-[#EAE8E4] text-[10px] sm:text-xs font-medium py-1.5 px-4 text-center tracking-widest uppercase flex items-center justify-center gap-2 border-b border-[#EAE8E4]/10">
-        <span>🇲🇽 Fabricación Nacional</span>
+        <span>🇲🇽 Distribución y soporte en México</span>
         <span className="opacity-40">•</span>
         <span>Envíos asegurados a los 32 estados de la República Mexicana</span>
       </div>

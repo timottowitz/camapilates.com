@@ -7,6 +7,8 @@ import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
 import { Truck, Shield, Package, ArrowRight, MessageCircle } from 'lucide-react';
 import BackLink from '@/components/ui/back-link';
+import { priceLabel } from '@/lib/shop/catalog';
+import { CATALOG_MIN, TOWER } from '@/lib/shop/priceRanges';
 
 const CamaDePilatesEnVenta: React.FC = () => {
   const origin = getOrigin();
@@ -26,8 +28,8 @@ const CamaDePilatesEnVenta: React.FC = () => {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: [
-      { '@type': 'Question', name: '¿Envían a todos los estados de México?', acceptedAnswer: { '@type': 'Answer', text: 'Sí. Fabricamos en México y enviamos con flete asegurado a los 32 estados de la República Mexicana. Tiempo de producción y entrega de 3 a 6–8 semanas según el modelo.' } },
-      { '@type': 'Question', name: '¿Qué garantía ofrecen?', acceptedAnswer: { '@type': 'Answer', text: 'Garantía de 1 año. Repuestos exprés y soporte en español.' } },
+      { '@type': 'Question', name: '¿Envían a todos los estados de México?', acceptedAnswer: { '@type': 'Answer', text: 'Sí. Enviamos con flete asegurado a los 32 estados de la República Mexicana. Tiempo de entrega de 6 a 8 semanas según el modelo.' } },
+      { '@type': 'Question', name: '¿Qué garantía ofrecen?', acceptedAnswer: { '@type': 'Answer', text: 'Garantía de 3 años. Repuestos exprés y soporte en español.' } },
       { '@type': 'Question', name: '¿Hay descuento para estudios?', acceptedAnswer: { '@type': 'Answer', text: 'Sí. A partir de 8 unidades aplicamos 20% de descuento y podemos coordinar instalación.' } },
     ],
   };
@@ -83,7 +85,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
             className="text-lg md:text-2xl text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed tracking-tight"
           >
             Silencio total, estabilidad sin vibraciones. <br className="hidden md:block" />
-            Cuero genuino, nogal y acero estructural.
+            Roble, maple y aluminio, con torre de acero inoxidable.
           </motion.p>
         </div>
 
@@ -95,8 +97,8 @@ const CamaDePilatesEnVenta: React.FC = () => {
           className="grid md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto mb-20"
         >
           {[
-            { icon: Truck, label: 'Entrega', value: '3 semanas', detail: 'Desde CDMX a todo México' },
-            { icon: Shield, label: 'Garantía', value: '1 año', detail: 'Soporte en español' },
+            { icon: Truck, label: 'Entrega', value: '6–8 semanas', detail: 'Envío a todo México' },
+            { icon: Shield, label: 'Garantía', value: '3 años', detail: 'Soporte en español' },
             { icon: Package, label: 'Repuestos', value: 'Exprés', detail: 'Piezas y mantenimiento' },
           ].map((item, i) => (
             <div key={i} className="p-6 md:p-8 bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-2xl hover:bg-white hover:shadow-lg transition-all duration-500 group">
@@ -143,19 +145,19 @@ const CamaDePilatesEnVenta: React.FC = () => {
                     </h2>
                     <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-bold">Para estudio</p>
                   </div>
-                  <span className="text-xl font-serif italic text-white/50">$42,400</span>
+                  <span className="text-xl font-serif italic text-white/50">Desde {priceLabel(TOWER.min)}</span>
                 </div>
                 <ul className="text-white/70 font-light space-y-2 mb-8 text-sm md:text-base">
-                  <li>• Estructura reforzada para uso intensivo</li>
-                  <li>• Cuero genuino, nogal y acero estructural</li>
-                  <li>• Garantía 1 año, repuestos exprés</li>
+                  <li>• Roble o maple con torre de acero inoxidable</li>
+                  <li>• Gym reformers multiestación para alto volumen</li>
+                  <li>• Garantía 3 años, repuestos exprés</li>
                 </ul>
                 <div className="mt-8 flex flex-col sm:flex-row gap-3">
                   <span className="inline-flex items-center justify-center text-xs uppercase tracking-[0.2em] text-white/80 group-hover:text-white transition-colors py-3 px-6 rounded-full border border-white/20">
                     Ver detalles <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                   <a
-                    href={`https://wa.me/525548468190?text=${encodeURIComponent("Hola, me interesa cotizar el Reformer Profesional ($42,400 MXN) para mi estudio de Pilates. ¿Qué opciones de tapicería y flete tienen?")}`}
+                    href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar un Reformer para mi estudio de Pilates (con torre desde ${priceLabel(TOWER.min)} MXN). ¿Qué opciones de tapicería y flete tienen?`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
@@ -196,19 +198,19 @@ const CamaDePilatesEnVenta: React.FC = () => {
                     </h2>
                     <p className="text-[10px] uppercase tracking-[0.2em] text-[#5D5550] font-bold opacity-60">Para hogar</p>
                   </div>
-                  <span className="text-xl font-serif italic text-[#2A2624] opacity-50">$29,700</span>
+                  <span className="text-xl font-serif italic text-[#2A2624] opacity-50">Desde {CATALOG_MIN}</span>
                 </div>
                 <ul className="text-[#5D5550] font-light space-y-2 mb-8 text-sm md:text-base">
-                  <li>• Compacto sin sacrificar el recorrido</li>
-                  <li>• Cuero genuino y estructura de madera</li>
-                  <li>• Entrega rápida en México</li>
+                  <li>• Versiones plegables que se guardan de pie</li>
+                  <li>• Estructura de roble, maple o aluminio</li>
+                  <li>• Envío a todo México</li>
                 </ul>
                 <div className="mt-8 flex flex-col sm:flex-row gap-3">
                   <span className="inline-flex items-center justify-center text-xs uppercase tracking-[0.2em] text-[#3E2723]/80 group-hover:text-[#2A2624] transition-colors py-3 px-6 rounded-full border border-[#2A2624]/20">
                     Ver detalles <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                   <a
-                    href={`https://wa.me/525548468190?text=${encodeURIComponent("Hola, me interesa cotizar el Reformer Casa ($29,700 MXN) para mi hogar. ¿Tienen entrega inmediata y opciones a 12 MSI?")}`}
+                    href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar un Reformer para mi hogar (desde ${CATALOG_MIN} MXN). ¿Cuál es el tiempo de entrega y tienen opciones a 12 MSI?`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
@@ -228,9 +230,9 @@ const CamaDePilatesEnVenta: React.FC = () => {
           <h2 className="text-4xl font-serif italic text-[#2A2624] mb-12 text-center">Materiales y acabados</h2>
           <div className="grid md:grid-cols-3 gap-4">
             {[
-              { title: 'Cuero genuino', desc: 'Agradable al contacto, mantiene agarre y color con el uso.' },
-              { title: 'Madera de nogal', desc: 'Cálida y elegante; acabado protector que respira.' },
-              { title: 'Acero estructural', desc: 'Rigidez y precisión para un recorrido silencioso.' },
+              { title: 'Roble macizo', desc: 'Madera cálida y robusta en los modelos Clásico y Plegable Premium.' },
+              { title: 'Maple blanco', desc: 'Tono claro y acabado limpio en los modelos de Maple.' },
+              { title: 'Aluminio', desc: 'Ligero y estable, en los modelos Elite, Plegable y Gym Reformer.' },
             ].map((material, i) => (
               <div key={i} className="p-6 md:p-8 bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-2xl hover:bg-white hover:shadow-md transition-all duration-500">
                 <h3 className="text-xl font-serif italic text-[#2A2624] mb-2">{material.title}</h3>

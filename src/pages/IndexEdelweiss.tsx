@@ -58,20 +58,21 @@ const IndexEdelweiss = () => {
       }
     ]
   };
+  const schemaProduct = (products as Product[]).find(p => p.slug === 'reformer-elite-aluminio-pl019');
   const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: 'Reformer Profesional de Aluminio con Riel Deslizante',
-    description: 'Reformer de aluminio premium con riel deslizante y barra patentada.',
+    name: schemaProduct?.name,
+    description: schemaProduct?.description,
     brand: { '@type': 'Brand', name: 'Edelweiss Pilates' },
-    sku: 'EW-A068-AL',
-    image: [`${origin}/images/products/reformer-aluminio-riel-deslizante-a068.webp`],
-    url: `${origin}/product/reformer-aluminio-riel-deslizante-a068`,
+    sku: schemaProduct?.sku,
+    image: [`${origin}${schemaProduct?.image}`],
+    url: `${origin}/product/${schemaProduct?.slug}`,
     offers: {
       '@type': 'Offer',
-      url: `${origin}/product/reformer-aluminio-riel-deslizante-a068`,
+      url: `${origin}/product/${schemaProduct?.slug}`,
       priceCurrency: 'MXN',
-      price: '45000.00',
+      price: schemaProduct?.price,
       availability: 'https://schema.org/InStock',
       itemCondition: 'https://schema.org/NewCondition',
       hasMerchantReturnPolicy: {
@@ -148,8 +149,8 @@ const IndexEdelweiss = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={origin} />
         <meta property="og:image" content={`${origin}${DEFAULTS.ogImage}`} />
-        <meta property="og:image:alt" content="Cama de Pilates Reformer Edelweiss - equipo premium de madera de nogal para casa y estudio en Mexico" />
-        <meta name="twitter:image:alt" content="Cama de Pilates Reformer Edelweiss - equipo premium de madera de nogal para casa y estudio en Mexico" />
+        <meta property="og:image:alt" content="Cama de Pilates Reformer Edelweiss - equipo premium de madera y aluminio para casa y estudio en Mexico" />
+        <meta name="twitter:image:alt" content="Cama de Pilates Reformer Edelweiss - equipo premium de madera y aluminio para casa y estudio en Mexico" />
         <script type="application/ld+json">{JSON.stringify(orgSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(siteSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(localBusinessSchema)}</script>

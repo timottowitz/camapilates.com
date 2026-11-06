@@ -432,7 +432,7 @@ El [Reformer de Edelweiss Pilates](/blog/cama-de-pilates-para-principiantes) ofr
 **Valor Agregado:**
 - Uso por múltiples miembros de la familia
 - Disponibilidad 24/7 adaptada a horarios maternos
-- Calidad alemana con manufactura mexicana, supporting economía local
+- Calidad alemana con distribución y soporte en México
 
 <hub-list category="Tips para Instructores de Pilates" limit="5" title="Más consejos para instructores" />
 

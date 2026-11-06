@@ -44,7 +44,7 @@ Sin embargo, el crecimiento del mercado global durante los últimos treinta año
 2. **Comisiones y Gatekeeping**: Plataformas intermediarias que cobraban comisiones abusivas a las academias por conectar con prospectos, o directorios desactualizados que marginaban a prestigiosos centros locales en favor de quien pagara más publicidad.
 3. **El Muro del Equipamiento**: Graduarse con honores de una certificación de 480 horas para luego descubrir que abrir un estudio propio requería importar camas a precios inflados por fletes transoceánicos, aranceles y sin servicio posventa ni garantía local en México.
 
-En **Edelweiss** entendemos la democratización no como una rebaja de calidad, sino como la **eliminación de fricciones innecesarias**. Democratizar el Pilates significa ofrecer transparencia total en la formación, contacto directo de igual a igual entre alumnos y academias, y proveer equipamiento de ingeniería alemana fabricado en territorio nacional con materias primas nobles (roble blanco, nogal americano, aluminio anodizado y piel genuina) a un precio justo y accesible.
+En **Edelweiss** entendemos la democratización no como una rebaja de calidad, sino como la **eliminación de fricciones innecesarias**. Democratizar el Pilates significa ofrecer transparencia total en la formación, contacto directo de igual a igual entre alumnos y academias, y proveer equipamiento de ingeniería alemana, con distribución y soporte en México, en materiales nobles (roble, maple y aluminio) a un precio justo y accesible.
 
 ---
 
@@ -99,7 +99,7 @@ Para resolver este desafío de raíz, Edelweiss Pilates y Edelweiss estructuraro
 * **Paquetes Comerciales Llave en Mano**: Precios preferenciales y descuentos por volumen a partir de 3 unidades en nuestros modelos [Reformer para Estudio](/reformer-para-estudio).
 * **Personalización Institucional**: Grabado láser de logotipos de la academia o estudio en la madera maciza y selección de tonos de piel artesanal (Cognac, Tabaco, Ébano, Miel) para armonizar con la estética arquitectónica del espacio.
 * **Planes de Financiamiento y Arrendamiento**: Opciones de adquisición en mensualidades y financiamiento directo para mitigar el desembolso inicial de capital de trabajo.
-* **Garantía y Refacciones Locales**: Al fabricar en México bajo supervisión de ingeniería alemana, disponemos de refacciones inmediatas (resortes, correas, poleas, herrajes de aluminio) en menos de 48 horas en cualquier estado de la República, eliminando meses de espera por piezas de importación.
+* **Garantía y Refacciones Locales**: Al contar con distribución y soporte en México, disponemos de refacciones (resortes, correas, poleas, herrajes de aluminio) en menos de 48 horas en cualquier estado de la República, para evitar meses de espera por piezas de importación.
 
 ---
 

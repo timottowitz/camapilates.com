@@ -21,7 +21,7 @@ export const PilatesReformerMonterrey: React.FC = () => {
   }, []);
 
   const [selectedProductSlug, setSelectedProductSlug] = useState<string>(
-    reformers[0]?.slug || 'reformer-maple-barra-patentada-a001'
+    reformers[0]?.slug || 'reformer-clasico-roble-pl006'
   );
   const [selectedQty, setSelectedQty] = useState<BundleQuantity>(6);
 
@@ -477,7 +477,7 @@ export const PilatesReformerMonterrey: React.FC = () => {
                 ¿Qué pasa si necesito refacciones o muelles en el futuro?
               </h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                Al ser fabricantes en México, mantenemos un inventario permanente de refacciones (resortes alemanes de alambre de piano, correas de microfibra, poleas silenciosas). Cualquier repuesto adicional se envía a Monterrey con entrega al día siguiente.
+                Al contar con distribución y soporte en México, mantenemos un inventario permanente de refacciones (resortes alemanes de alambre de piano, correas de microfibra, poleas silenciosas). Cualquier repuesto adicional se envía a Monterrey con entrega al día siguiente.
               </p>
             </div>
           </div>
