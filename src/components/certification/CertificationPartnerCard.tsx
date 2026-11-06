@@ -132,19 +132,21 @@ export const CertificationPartnerCard: React.FC<CertificationPartnerCardProps> =
 
       {/* Action Bar */}
       <div className="pt-4 border-t border-[#2A2624]/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-rybbit-event="partner_whatsapp"
-          data-rybbit-prop-partner={partner.id}
-          data-rybbit-prop-city={partner.city}
-          data-rybbit-prop-folio={folio}
-          className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#2A2624] text-[#EAE8E4] text-xs font-semibold uppercase tracking-wider hover:bg-[#3E2723] transition-all shadow-sm active:scale-95"
-        >
-          <MessageCircle className="w-4 h-4 text-emerald-400" />
-          <span>Contactar por WhatsApp</span>
-        </a>
+        {partner.whatsapp && (
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-rybbit-event="partner_whatsapp"
+            data-rybbit-prop-partner={partner.id}
+            data-rybbit-prop-city={partner.city}
+            data-rybbit-prop-folio={folio}
+            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#2A2624] text-[#EAE8E4] text-xs font-semibold uppercase tracking-wider hover:bg-[#3E2723] transition-all shadow-sm active:scale-95"
+          >
+            <MessageCircle className="w-4 h-4 text-emerald-400" />
+            <span>Contactar por WhatsApp</span>
+          </a>
+        )}
 
         <div className="flex items-center justify-center gap-2">
           {partner.website && (

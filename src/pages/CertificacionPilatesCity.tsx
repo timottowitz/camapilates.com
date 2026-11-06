@@ -128,8 +128,8 @@ export const CertificacionPilatesCity: React.FC = () => {
       addressRegion: p.state,
       addressCountry: 'MX'
     },
-    telephone: p.phone,
-    email: p.email,
+    telephone: p.phone || undefined,
+    email: p.email || undefined,
     url: p.website || `${origin}/certificacion-pilates/${normalizedKey}`,
     description: `${p.roleTitle}: ${p.aboutCredentials}. Certificaciones: ${p.certificationsOffered}`,
   }));
@@ -168,7 +168,7 @@ export const CertificacionPilatesCity: React.FC = () => {
         },
         {
           question: `¿Cómo contacto a las escuelas de Pilates en ${shortCityName}?`,
-          answer: 'En cada ficha de academia encontrarás botones directos a su WhatsApp verificado, sitio web oficial, Instagram, teléfono y correo electrónico.',
+          answer: 'En cada ficha de academia encontrarás los contactos que publica cada escuela: WhatsApp, sitio web oficial, Instagram, teléfono o correo electrónico.',
         },
       ];
 
