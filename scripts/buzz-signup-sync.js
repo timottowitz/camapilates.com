@@ -17,12 +17,18 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const envFile = path.join(__dirname, '..', '.env.buzz');
+if (fs.existsSync(envFile)) process.loadEnvFile(envFile);
+
 // Buzz Configuration
 const BUZZ_CHANNEL_ID = '8a340e62-a52a-4d70-b322-9659dfa73218';
 const BUZZ_RELAY_URL = 'wss://vargas-gonzalez-delombard.communities.buzz.xyz';
 const BUZZ_CLI_PATH = '/Users/m3max361tb/.local/bin/buzz';
-const BUZZ_PRIVATE_KEY = 'nsec1z85t2xfw69l8jsln6fluxxa7etxexxwtfm9dcur0zalqppnvy8sq77g0jr';
-const BUZZ_AUTH_TAG = '["auth","3161e90a315fd1237a8d41bbbbca9f1258f4b8e9762fdbc09a06ab99f3acc0f4","","b48bc6982ca298b02b44cc322fbfac0da3d9ef92adc6a9f515468162d699a990741c27d1bbdc0f3ad9f61a016dbe474b7e4f861d04c63980f452f86e8542e152"]';
+const { BUZZ_PRIVATE_KEY, BUZZ_AUTH_TAG } = process.env;
+if (!BUZZ_PRIVATE_KEY || !BUZZ_AUTH_TAG) {
+  console.error('[BuzzSync] BUZZ_PRIVATE_KEY and BUZZ_AUTH_TAG must be set (see .env.buzz)');
+  process.exit(1);
+}
 
 // Convex Endpoints (listen to both dev and prod deployments)
 const CONVEX_ENDPOINTS = [
