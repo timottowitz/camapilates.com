@@ -205,7 +205,7 @@ async function optimizeTitleAndMeta(slug, targetKeyword, intent = 'informational
     const metaDescriptions = {
       informational: `Descubre todo sobre ${targetKeyword} en nuestra guía completa. Beneficios, técnicas y consejos de expertos. ✓ Información actualizada 2025`,
       commercial: `Encuentra el mejor ${targetKeyword} para ti. Comparativas, precios y reseñas reales. ✓ Calidad garantizada ✓ Envío a toda México`,
-      transactional: `Compra ${targetKeyword} con la mejor relación calidad-precio. ✓ Garantía extendida ✓ Financiamiento disponible ✓ Soporte técnico`
+      transactional: `Compra ${targetKeyword} con la mejor relación calidad-precio. ✓ Garantía de 1 año ✓ Financiamiento disponible ✓ Soporte técnico`
     };
 
     const optimizedTitles = titleVariations[intent] || titleVariations.informational;

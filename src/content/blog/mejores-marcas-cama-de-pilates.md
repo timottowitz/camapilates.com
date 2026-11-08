@@ -73,7 +73,7 @@ Para que tomes una decisión informada, analizamos las marcas con presencia acti
 | **Materiales Chasis** | Roble / Maple macizo 30 mm o Aluminio | Acero ligero / MDF o Roble chapado | Acero tubular plegable | Aluminio lacado | Maple americano / Aluminio |
 | **Sistema de Resistencia** | 5 resortes alemanes calibrados (25%, 50%, 100%) | Cuerdas elásticas o resortes genéricos | Cuerdas de nylon / Resortes gym | Resortes de estudio estándar | Resortes Signature calibrados |
 | **Capacidad de Carga** | 180 kg – 200 kg | 100 kg – 135 kg | 130 kg – 150 kg | 150 kg | 160 kg – 180 kg |
-| **Garantía Estructural** | 3 años directa | 3 a 6 meses | 1 año | 1 año | 5 a 10 años (en EE.UU.) |
+| **Garantía Estructural** | 1 año, directa | 3 a 6 meses | 1 año | 1 año | 5 a 10 años (en EE.UU.) |
 | **Refacciones en México** | 1 semana | Sujetas a importación periódica | Genéricas de gimnasio | Bajo pedido | Semanas por aduanas y fletes |
 | **Facilidades de Pago** | Hasta 12 MSI con bancos y SPEI | Tarjetas y meses en web | Tarjetas de crédito | Transferencia / Tarjeta | Pago de contado internacional |
 
@@ -91,7 +91,7 @@ Cuando decides invertir en un Reformer, a menudo te enfrentas a la disyuntiva en
 
 La calidad técnica no se queda atrás. La estabilidad del carro y la **resistencia de los resortes** son fundamentales para ejecutar los movimientos con la precisión que el método exige. Como bien señala Joseph Pilates en su libro *Return to Life Through Contrology* (1945, p. 19), el control consciente de los movimientos es la esencia de la disciplina; para lograrlo, necesitas un equipo que responda suavemente a tu fuerza sin vibraciones extrañas.
 
-El servicio también cuenta. Con Edelweiss Pilates tienes **refacciones en 1 semana** y una **garantía directa de 3 años en territorio nacional**, con soporte en tu idioma si necesitas ajustar la tensión o cambiar un componente.
+El servicio también cuenta. Con Edelweiss Pilates tienes **refacciones en 1 semana** y una **garantía directa de 1 año en territorio nacional**, con soporte en tu idioma si necesitas ajustar la tensión o cambiar un componente.
 
 Para explorar los acabados, accesorios y configuraciones residenciales o comerciales, consulta nuestro **[catálogo de camas de Pilates en México](/cama-de-pilates)** y revisa la **[tabla comparativa de precios y financiamiento](/cama-de-pilates/precio)**.
 
@@ -127,7 +127,7 @@ La diferencia radica en el uso proyectado y la resistencia de los componentes. L
 En zonas secas y con polvo (como CDMX, Monterrey o Puebla), se deben limpiar rieles y ruedas semanalmente con un paño de microfibra seco. En zonas de costa o alta humedad (Mérida, Cancún, Veracruz), es crucial que los resortes cuenten con tratamiento niquelado o galvanizado para evitar corrosión. No se deben utilizar lubricantes en aerosol con silicón ya que atrapan partículas abrasivas que deterioran los rodamientos.
 
 ### ¿Cómo funcionan las garantías y refacciones locales frente a marcas importadas?
-Al comprar una marca importada sin sede en México, cualquier pieza de repuesto (resortes, poleas, correas) debe solicitarse al extranjero, con costos de paquetería y trámites aduanales. Con Edelweiss Pilates, la garantía de 3 años es directa y las refacciones llegan en 1 semana a cualquier estado de la república.
+Al comprar una marca importada sin sede en México, cualquier pieza de repuesto (resortes, poleas, correas) debe solicitarse al extranjero, con costos de paquetería y trámites aduanales. Con Edelweiss Pilates, la garantía de 1 año es directa y las refacciones llegan en 1 semana a cualquier estado de la república.
 
 ### ¿Vale la pena comprar un Reformer con distribución y soporte en México frente a importarlo por mi cuenta?
 Sí, totalmente. Un proveedor con sede en México que ofrezca madera maciza y resortes con certificación alemana ofrece la misma precisión biomecánica que las marcas estadounidenses o canadienses, sin que tengas que pagar aranceles, intermediarios y flete marítimo por separado, además de contar con facturación formal con IVA desglosado y financiamiento en pesos mexicanos.

@@ -31,7 +31,7 @@ const FAQ = [
   {
     question: '¿Qué necesito para abrir mi estudio después de certificarme?',
     answer:
-      'Un espacio, tus Reformers y una forma de recibir reservas. Te ayudamos a calcular cuántas camas caben en tu local; a partir de 8 Reformers, el pack de estudio lleva 20% de descuento, instalación y calibración en tu estudio y garantía de 3 años.',
+      'Un espacio, tus Reformers y una forma de recibir reservas. Te ayudamos a calcular cuántas camas caben en tu local; a partir de 8 Reformers, el pack de estudio lleva 20% de descuento, instalación y calibración en tu estudio y garantía de 1 año.',
   },
 ];
 

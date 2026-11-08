@@ -46,7 +46,7 @@ Aquí es donde entra el análisis del retorno de inversión (ROI) de tener un Re
 Haz las cuentas: si optas por un equipo de gama media de unos $40,000 MXN, tu inversión se amortiza en menos de un año comparado con las visitas al estudio. Además, eliminas los tiempos de traslado y tienes la libertad de entrenar en tus propios términos. Tener la máquina en casa derriba la barrera de "no tengo tiempo de ir al gym", facilitando la consistencia que, a fin de cuentas, es lo que te dará los resultados clínicos que buscas.
 
 > 🏠 **Un Reformer en casa se paga solo. En un estudio, cada Reformer es un lugar más que vendes en cada clase.**  
-> Nuestros Reformers son de roble, maple o aluminio, con garantía de 3 años y envío a toda la República.  
+> Nuestros Reformers son de roble, maple o aluminio, con garantía de 1 año y envío a toda la República.  
 > • **Para tu estudio:** desde 8 Reformers tienes 20% de descuento y los instalamos y calibramos en tu espacio. [Calcula tu pack de estudio →](/packs/estudio)  
 > • **Para tu casa:** [Ver el Reformer para casa →](/reformer-para-casa)
 

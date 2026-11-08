@@ -397,7 +397,7 @@ const ProductPage: React.FC = () => {
                   </div>
                   <div className="flex items-center gap-2 text-[#2A2624] font-medium">
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                    <span>Garantía directa de 3 años en chasis y mecanismos</span>
+                    <span>Garantía directa de 1 año en chasis y mecanismos</span>
                   </div>
                   <div className="flex items-center gap-2 text-[#2A2624] font-medium">
                     <Package className="w-3.5 h-3.5 text-emerald-600 shrink-0" />

@@ -119,7 +119,7 @@ Para asegurar la calidad y tu seguridad, busca estudios que enfaticen la certifi
 > 🌱 **¿El Pilates te cambió la vida y quieres abrir tu propio estudio?**  
 > Cada Reformer es un lugar más que vendes en cada clase, y una alumna más a la que le cambias la vida.  
 > • 20% de descuento desde 8 Reformers con el pack de estudio.  
-> • Roble, maple o aluminio, con garantía de 3 años e instalación en tu estudio.  
+> • Roble, maple o aluminio, con garantía de 1 año e instalación en tu estudio.  
 > [Calcula tu pack de estudio →](/packs/estudio) · [Cotiza por WhatsApp, sin compromiso →](/reformer-para-estudio)
 
 ### Soy principiante, ¿debo empezar con Pilates de Mat o directamente en el Reformer?

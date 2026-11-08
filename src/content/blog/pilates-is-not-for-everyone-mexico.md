@@ -53,7 +53,7 @@ La raíz del problema radica en la estandarización. Si vives en ciudades median
 > 🏢 **¿Eres instructora certificada y quieres abrir un estudio en el Bajío o el Norte?**  
 > Ahí hay alumnas buscando clases bien dadas. Cada Reformer es un lugar más que vendes en cada clase.  
 > • 20% de descuento desde 8 Reformers con el pack de estudio.  
-> • Garantía de 3 años, e instalación y calibración en tu estudio.  
+> • Garantía de 1 año, e instalación y calibración en tu estudio.  
 > [Calcula tu pack de estudio →](/packs/estudio) · [Ver Reformers para estudio →](/reformer-para-estudio)
 
 Para que tú, como cliente, te sientas seguro progresando, necesitas instructores que dominen la biomecánica. Es por eso que la industria valora tanto los programas internacionales como Polestar, STOTT o BASI. Estos programas exigen cientos de horas de práctica, anatomía profunda y un entendimiento claro de las contraindicaciones. Cuando tu instructor posee esta base, puede adaptar ejercicios complejos en el Reformer o el Cadillac, asegurando que tu progresión sea efectiva y, sobre todo, segura.

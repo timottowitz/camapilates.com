@@ -123,7 +123,7 @@ const ShopCategory: React.FC = () => {
                   Entrega asegurada en todo México
                 </span>
                 <span className="hidden sm:inline opacity-40">•</span>
-                <span>3 años de garantía estructural</span>
+                <span>1 año de garantía estructural</span>
                 <span className="hidden sm:inline opacity-40">•</span>
                 <span>Planes a Meses Sin Intereses</span>
               </div>

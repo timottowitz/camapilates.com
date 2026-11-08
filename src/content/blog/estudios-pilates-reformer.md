@@ -63,7 +63,7 @@ Esto nos lleva al **instructor**. No te dejes llevar solo por quien tenga más s
 Finalmente, observa la higiene y el ratio de alumnos. Las correas de manos y pies (*loops*) deben verse limpias y sin deshilacharse; recuerda que el sudor y el vinil son mala combinación si no se limpian tras cada uso. Busca clases donde el instructor pueda atenderte; si pagas $350 MXN o más por clase, mereces correcciones personalizadas, no ser uno más en una sala de 20 personas sin supervisión.
 
 > 🏢 **¿Vas a abrir tu propio estudio? Dales a tus alumnas el equipo que esta guía les pide buscar.**  
-> Reformers de roble, maple o aluminio, con garantía de 3 años. Los instalamos y calibramos en tu estudio, en cualquier parte de la República.  
+> Reformers de roble, maple o aluminio, con garantía de 1 año. Los instalamos y calibramos en tu estudio, en cualquier parte de la República.  
 > Desde 8 Reformers tienes 20% de descuento: cada Reformer es un lugar más que vendes en cada clase.  
 > [Calcula tu pack de estudio →](/packs/estudio) · [Ver Reformers para estudio →](/reformer-para-estudio)
 

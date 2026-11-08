@@ -339,7 +339,7 @@ Sí, pero necesitas protección contra elementos. Requiere superficie nivelada, 
 
 **Edificios residenciales:** Verifica restricciones de peso en pisos superiores
 **Seguros:** Algunos seguros de hogar requieren declarar equipo de ejercicio
-**Garantías:** Edelweiss Pilates ofrece garantía extendida en territorio mexicano
+**Garantías:** Edelweiss Pilates ofrece garantía de 1 año en territorio mexicano
 
 ### Servicios de Instalación
 
@@ -347,7 +347,7 @@ Edelweiss Pilates proporciona:
 - Servicio de medición previa gratuito
 - Instalación profesional en CDMX y Guadalajara
 - Asesoría de planificación de espacio
-- Garantía de instalación de 2 años
+- Garantía de 1 año
 
 
 > 💡 **Lectura recomendada:** [Cama Pilates México 2024: Guía Completa de Compra, Beneficios y Ejercicios](/blog/cama-pilates)

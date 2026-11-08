@@ -47,7 +47,7 @@ Practicar Pilates en casa con tu propio reformer ofrece ventajas únicas que van
 - Chasis rígido en madera maciza de roble o perfil de aluminio aeroespacial
 - Sistema de resistencia profesional con 5 resortes de alambre de piano alemán calibrados
 - Deslizamiento silencioso con 8 rodamientos sellados de precisión
-- Garantía directa de 3 años de fábrica y refacciones en 1 semana
+- Garantía directa de 1 año de fábrica y refacciones en 1 semana
 - Compatible con accesorios de caja (*box*), tabla de salto y media torre
 - [Ver ficha y modelos en el catálogo](/cama-de-pilates) | [Consultar tabla de precios y MSI](/cama-de-pilates/precio)
 
@@ -446,7 +446,7 @@ Los **reformers plegables** han revolucionado el [Pilates doméstico en México]
 - Construcción reforzada para uso diario
 - Sistema de resistencia profesional con 6 resortes
 - Accesorios premium incluidos
-- Garantía extendida de 5 años
+- Garantía de 1 año
 - Acabados de lujo que mejoran cualquier espacio
 
 ### 4. **Edelweiss Space Saver** - Innovación en Espacios Reducidos
@@ -501,7 +501,7 @@ Sí, en [Edelweiss Pilates](/blog/cama-de-pilates-reformer) ofrecemos financiami
 
 Elegir la **[mejor cama de Pilates para casa](/cama-de-pilates)** es una inversión directa en tu calidad de vida, postura y salud física.
 
-- **Nuestra recomendación en relación calidad-precio:** El **Reformer Residencial Edelweiss Pilates** desde **[$23,234 MXN](/cama-de-pilates/precio)** (desde $1,936 MXN/mes a 12 MSI) con chasis en roble o aluminio, resortes alemanes y 3 años de garantía.
+- **Nuestra recomendación en relación calidad-precio:** El **Reformer Residencial Edelweiss Pilates** desde **[$23,234 MXN](/cama-de-pilates/precio)** (desde $1,936 MXN/mes a 12 MSI) con chasis en roble o aluminio, resortes alemanes y 1 año de garantía.
 - **Para espacios muy reducidos:** Evalúa modelos compactos de perfil bajo que mantengan estructura rígida sin bisagras débiles.
 - **Para uso intensivo o estudios:** Revisa nuestra selección de [Reformers de uso comercial con media torre](/reformer-para-estudio).
 

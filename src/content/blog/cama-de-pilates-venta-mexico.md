@@ -85,7 +85,7 @@ Al equipar tu espacio, ya sea un estudio de alto tráfico en la Condesa o tu gim
 - **Catálogo de Venta Directa:** Más de 20 modelos disponibles de **[camas de Pilates en venta](/cama-de-pilates)** con precios que inician desde **[$23,234 MXN](/cama-de-pilates/precio)** para chasis de roble macizo y aluminio estructural.
 - **Financiamiento a 12 [Meses Sin Intereses](/blog/financiacion-cama-de-pilates) (MSI):** Pagos programados desde **$1,936 MXN/mes**, con una inversión mensual inferior a la cuota promedio de un estudio boutique.
 - **Refacciones en 1 semana:** Pregunta siempre cuánto tarda una refacción; en Edelweiss Pilates la entrega es en 1 semana.
-- **Garantía Directa de 3 Años:** Cobertura de fábrica sobre marco, rodamientos y sistemas de muelles de precisión.
+- **Garantía Directa de 1 Año:** Cobertura de fábrica sobre marco, rodamientos y sistemas de muelles de precisión.
 - **Guías y Asesoría Especializada:** Revisa nuestra **[guía de precios de camas de Pilates](/cama-de-pilates/precio)** y la **[guía definitiva de compra de Reformer](/blog/cama-de-pilates-guia-de-compra)** para elegir la configuración perfecta para tu espacio.
 
 ## Consideraciones Técnicas: Espacio y Mantenimiento
@@ -101,7 +101,7 @@ Los clásicos ofrecen esa resistencia orgánica alineada a la filosofía de Cont
 
 > 🏢 **¿Vas a dar clases o abrir tu propio estudio? Cada Reformer es un lugar más que vendes en cada clase.**  
 > • 20% de descuento desde 8 Reformers con el pack de estudio.  
-> • Roble, maple o aluminio, con garantía de 3 años.  
+> • Roble, maple o aluminio, con garantía de 1 año.  
 > • Los instalamos y calibramos en tu estudio, con envío a toda la República.  
 > [Calcula tu pack de estudio →](/packs/estudio) · [Cotiza por WhatsApp, sin compromiso →](/reformer-para-estudio)
 

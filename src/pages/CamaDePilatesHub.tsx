@@ -68,7 +68,7 @@ const CamaDePilatesHub: React.FC = () => {
     },
     {
       q: '¿Qué garantía tienen los Reformers y cómo se gestionan las refacciones?',
-      a: 'Ofrecemos una garantía directa de 3 años en chasis, rieles y mecanismos estructurales. Resortes de repuesto, poleas y correas de cuero y microfibra se entregan en 1 semana.'
+      a: 'Ofrecemos una garantía directa de 1 año en chasis, rieles y mecanismos estructurales. Resortes de repuesto, poleas y correas de cuero y microfibra se entregan en 1 semana.'
     },
     {
       q: '¿Cómo se calibra la resistencia de los resortes y qué combinaciones se usan?',
@@ -193,7 +193,7 @@ const CamaDePilatesHub: React.FC = () => {
                 Modelos y Venta Directa
               </h2>
               <p className="text-white/60 font-light text-lg mb-8 max-w-md">
-                {reformerCount} modelos de Reformer con entrega asegurada en todo México y garantía de 3 años.
+                {reformerCount} modelos de Reformer con entrega asegurada en todo México y garantía de 1 año.
               </p>
               <span className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-white/50 group-hover:text-white transition-colors">
                 Explorar catálogo <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -370,7 +370,7 @@ const CamaDePilatesHub: React.FC = () => {
                 </tr>
                 <tr>
                   <td className="p-3 md:p-4 font-semibold text-[#2A2624]">Garantía y Refacciones</td>
-                  <td className="p-3 md:p-4 font-bold text-[#2A2624] bg-[#2A2624]/5 rounded-b-xl">3 años · Refacciones en 1 semana</td>
+                  <td className="p-3 md:p-4 font-bold text-[#2A2624] bg-[#2A2624]/5 rounded-b-xl">1 año · Refacciones en 1 semana</td>
                   <td className="p-3 md:p-4 text-rose-600">3-6 meses · Sin refacciones oficiales</td>
                   <td className="p-3 md:p-4">Garantía genérica de gimnasio</td>
                   <td className="p-3 md:p-4">Garantía en EE.UU. · Refacciones en USD</td>

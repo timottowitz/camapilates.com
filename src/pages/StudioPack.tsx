@@ -33,7 +33,7 @@ const StudioPack: React.FC = () => {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: 'Pack de Estudio Edelweiss (8+ Reformers)',
-    description: 'Pack para estudios con descuento del 20% a partir de 8 unidades. Instalación coordinada y garantía de 3 años.',
+    description: 'Pack para estudios con descuento del 20% a partir de 8 unidades. Instalación coordinada y garantía de 1 año.',
     brand: { '@type': 'Brand', name: 'Edelweiss Pilates' },
     sku: 'EW-STUDIO-PACK',
     image: [`${origin}/images/products/reformer-clasico-roble-torre-pl006a.webp`],
@@ -88,7 +88,7 @@ const StudioPack: React.FC = () => {
             <span className="not-italic font-light font-sans tracking-tight">with Excellence.</span>
           </h1>
           <p className="text-lg text-[#5D5550] font-light max-w-2xl leading-relaxed">
-            <Link to="/packs/monterrey" className="underline hover:text-[#2A2624]">Pack para estudios</Link>: a partir de 8 <Link to="/blog/cama-de-pilates-guia-de-compra" className="underline hover:text-[#2A2624]">camas de Pilates Reformer</Link> obtén 20% de descuento. Coordinamos instalación, ofrecemos garantía de 3 años y repuestos en 1 semana. Envío a toda la República.
+            <Link to="/packs/monterrey" className="underline hover:text-[#2A2624]">Pack para estudios</Link>: a partir de 8 <Link to="/blog/cama-de-pilates-guia-de-compra" className="underline hover:text-[#2A2624]">camas de Pilates Reformer</Link> obtén 20% de descuento. Coordinamos instalación, ofrecemos garantía de 1 año y repuestos en 1 semana. Envío a toda la República.
           </p>
         </motion.div>
 
@@ -155,7 +155,7 @@ const StudioPack: React.FC = () => {
               <div className="mt-8 flex flex-col sm:flex-row gap-4 items-center justify-between bg-[#2A2624] text-white p-6 rounded-2xl shadow-md">
                 <div>
                   <p className="text-xs uppercase tracking-widest text-[#D9865B] font-bold">Pack Estudio Seleccionado ({qty} Camas)</p>
-                  <p className="text-sm text-white/80 font-light mt-0.5">Incluye 20% descuento, garantía comercial 3 años y flete coordinado.</p>
+                  <p className="text-sm text-white/80 font-light mt-0.5">Incluye 20% descuento, garantía comercial de 1 año y flete coordinado.</p>
                 </div>
                 <a
                   href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar el Pack de Estudio de ${qty} Reformers (Subtotal estimado: $${subtotal.toLocaleString('es-MX')} MXN). Quisiera asesoría de tiempos de entrega e instalación.`)}`}
@@ -179,7 +179,7 @@ const StudioPack: React.FC = () => {
                   </li>
                   <li className="flex items-center gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span>
-                    Garantía 3 años
+                    Garantía 1 año
                   </li>
                   <li className="flex items-center gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span>

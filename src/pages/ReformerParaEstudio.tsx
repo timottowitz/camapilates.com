@@ -120,7 +120,7 @@ const ReformerParaEstudio: React.FC = () => {
               </div>
               <div className="flex items-center gap-3">
                 <ShieldCheck className="h-5 w-5 text-[#3E2723] shrink-0" />
-                <span className="text-xs font-medium text-[#2A2624]">Garantía de 3 años y refacciones en 1 semana</span>
+                <span className="text-xs font-medium text-[#2A2624]">Garantía de 1 año y refacciones en 1 semana</span>
               </div>
               <div className="flex items-center gap-3">
                 <Sparkles className="h-5 w-5 text-[#D9865B] shrink-0" />
@@ -167,7 +167,7 @@ const ReformerParaEstudio: React.FC = () => {
                         </span>
                       </div>
                       <span className="text-[10px] uppercase tracking-wider text-[#5D5550] bg-[#F2F0ED] px-2.5 py-1 rounded-full font-semibold">
-                        Garantía 3 años
+                        Garantía 1 año
                       </span>
                     </div>
                   </div>

@@ -241,7 +241,7 @@ const IndexAuthority: React.FC = () => {
                   <span className="opacity-40">•</span>
                   <span>Envíos asegurados a los 32 estados</span>
                   <span className="opacity-40">•</span>
-                  <span>3 años de garantía</span>
+                  <span>1 año de garantía</span>
                   <span className="opacity-40">•</span>
                   <span>Hasta 12 Meses Sin Intereses</span>
                 </div>
@@ -347,7 +347,7 @@ const IndexAuthority: React.FC = () => {
           >
             {[
               { label: 'Reseñas', to: '/soporte' },
-              { label: 'Garantía 5 Años', to: '/soporte' },
+              { label: 'Garantía 1 Año', to: '/soporte' },
               { label: 'Preguntas Frecuentes', to: '/soporte' },
               { label: 'Contacto Directo', to: '/soporte' },
               { label: 'Software para Estudios', to: '/blog/mejor-software-para-estudios-de-pilates' },

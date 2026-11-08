@@ -137,7 +137,7 @@ export const StudioPackPromoModal: React.FC = () => {
 
                     <div className="flex items-center justify-center gap-4 text-[10px] text-[#EAE8E4]/60">
                       <span className="flex items-center gap-1">
-                        <ShieldCheck className="w-3 h-3 text-amber-300" /> Garantía 3 Años
+                        <ShieldCheck className="w-3 h-3 text-amber-300" /> Garantía 1 Año
                       </span>
                       <span>•</span>
                       <span>Envío a Todo México</span>

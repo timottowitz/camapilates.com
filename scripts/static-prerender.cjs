@@ -565,7 +565,7 @@ function buildCamaDePilatesPage(reformers, origin) {
           Camas de Pilates Reformer en México: Modelos, Precios y Venta 2026
         </h1>
         <p class="text-lg md:text-xl text-stone-700 font-light leading-relaxed mb-8">
-          Encuentra en 2026 la mejor <strong>cama de Pilates (Reformer)</strong> en México desde $23,234 MXN para estudio o casa. En <strong>Edelweiss Pilates</strong> combinamos maderas macizas y aluminio estructural con resortes alemanes de alambre de piano y rodamientos ultra-silenciosos. Envíos asegurados a todo México con garantía directa de 3 años y refacciones en 1 semana.
+          Encuentra en 2026 la mejor <strong>cama de Pilates (Reformer)</strong> en México desde $23,234 MXN para estudio o casa. En <strong>Edelweiss Pilates</strong> combinamos maderas macizas y aluminio estructural con resortes alemanes de alambre de piano y rodamientos ultra-silenciosos. Envíos asegurados a todo México con garantía directa de 1 año y refacciones en 1 semana.
         </p>
         <div class="flex flex-wrap gap-4 mb-12">
           <a href="#catalogo" class="rounded-full bg-stone-900 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-stone-800 transition-all shadow-md">
@@ -589,7 +589,7 @@ function buildCamaDePilatesPage(reformers, origin) {
         </div>
         <div class="p-4 bg-white rounded-xl border border-stone-100 shadow-sm">
           <div class="text-xl mb-1">🛡️</div>
-          <h4 class="font-bold text-sm text-stone-900">Garantía Directa 3 Años</h4>
+          <h4 class="font-bold text-sm text-stone-900">Garantía Directa 1 Año</h4>
           <p class="text-xs text-stone-600 mt-1">Cobertura en estructura, rieles y mecanismos.</p>
         </div>
         <div class="p-4 bg-white rounded-xl border border-stone-100 shadow-sm">
@@ -697,7 +697,7 @@ function buildCamaDePilatesPage(reformers, origin) {
               </tr>
               <tr>
                 <td class="p-3 md:p-4 font-semibold text-stone-900">Garantía y Refacciones</td>
-                <td class="p-3 md:p-4 font-bold text-emerald-800 bg-emerald-50/30">3 años directos · Refacciones en 1 semana</td>
+                <td class="p-3 md:p-4 font-bold text-emerald-800 bg-emerald-50/30">1 año directo · Refacciones en 1 semana</td>
                 <td class="p-3 md:p-4 text-rose-700">3-6 meses básica · Sin refacciones oficiales en MX</td>
                 <td class="p-3 md:p-4 text-stone-600">Garantía estándar de equipo de gimnasio</td>
                 <td class="p-3 md:p-4 text-stone-600">Garantía en EE.UU. · Refacciones en USD con semanas de espera</td>
@@ -839,7 +839,7 @@ function buildCamaDePilatesPage(reformers, origin) {
         </p>
         <ol class="list-decimal pl-6 text-stone-700 space-y-3 mb-6">
           <li><strong>Gama Económica ($15,000 – $25,000 MXN):</strong> Reformers plegables de importación con perfiles delgados y sin refacciones locales.</li>
-          <li><strong>Gama Profesional Edelweiss ($23,234 – $42,567 MXN):</strong> Maderas macizas (Roble o Maple) o aluminio estructural con resortes alemanes y 3 años de garantía.</li>
+          <li><strong>Gama Profesional Edelweiss ($23,234 – $42,567 MXN):</strong> Maderas macizas (Roble o Maple) o aluminio estructural con resortes alemanes y 1 año de garantía.</li>
           <li><strong>Gama Torre y Cadillac ($51,000 – $85,050 MXN):</strong> Estaciones híbridas con torre de acero inoxidable para más de 300 ejercicios clínicos.</li>
         </ol>
 
@@ -922,7 +922,7 @@ function buildCamaDePilatesPage(reformers, origin) {
               <span class="text-stone-400 group-open:rotate-45 transition-transform text-2xl font-light">+</span>
             </summary>
             <div class="mt-4 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
-              Ofrecemos una garantía directa de 3 años en chasis, rieles y mecanismos estructurales. Resortes de repuesto, poleas y correas de cuero y microfibra se entregan en 1 semana.
+              Ofrecemos una garantía directa de 1 año en chasis, rieles y mecanismos estructurales. Resortes de repuesto, poleas y correas de cuero y microfibra se entregan en 1 semana.
             </div>
           </details>
 
@@ -1054,7 +1054,7 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
           Tabla de Precios Oficiales Edelweiss Pilates 2026
         </h2>
         <p class="text-stone-600 text-sm mb-6">
-          Precios actualizados con entrega en todo México, IVA incluido y garantía de fábrica de 3 años.
+          Precios actualizados con entrega en todo México, IVA incluido y garantía de fábrica de 1 año.
         </p>
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse text-sm">
@@ -1099,7 +1099,7 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
                 <td class="p-3 md:p-4 font-extrabold text-stone-900">$23,234 – $85,050</td>
                 <td class="p-3 md:p-4">5 resortes alemanes de alambre de piano calibrados</td>
                 <td class="p-3 md:p-4">Roble / Maple macizo o Aluminio aeroespacial</td>
-                <td class="p-3 md:p-4 text-emerald-800">3 años garantía directa, 12 MSI, refacciones en 1 semana</td>
+                <td class="p-3 md:p-4 text-emerald-800">1 año de garantía directa, 12 MSI, refacciones en 1 semana</td>
               </tr>
               <tr>
                 <td class="p-3 md:p-4 font-bold text-stone-900">Vanlig</td>
@@ -1221,7 +1221,7 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
               <span class="text-stone-400 group-open:rotate-45 transition-transform text-xl font-light">+</span>
             </summary>
             <div class="mt-3 text-stone-600 text-sm leading-relaxed border-t border-stone-200/60 pt-3">
-              Los Reformers profesionales para estudio boutique rondan entre $36,716 y $69,617 MXN para camas fijas de madera maciza o aluminio aeroespacial, y hasta $85,050 MXN para modelos con media torre o estructura de Cadillac. Todos con garantía directa de 3 años y tolerancias para uso comercial continuo de 8 a 10 horas diarias.
+              Los Reformers profesionales para estudio boutique rondan entre $36,716 y $69,617 MXN para camas fijas de madera maciza o aluminio aeroespacial, y hasta $85,050 MXN para modelos con media torre o estructura de Cadillac. Todos con garantía directa de 1 año y tolerancias para uso comercial continuo de 8 a 10 horas diarias.
             </div>
           </details>
           <details class="border border-stone-200 rounded-xl p-5 group bg-stone-50/50">
@@ -1509,7 +1509,7 @@ function renderProduct(p, origin) {
           <div class="mt-6 text-2xl text-gray-900 font-bold">$ ${formatMXN(p.price)} ${p.currency}</div>
           <div class="mt-2 text-sm text-stone-600">Disponible desde <strong>${calculateMSI(p.price, 12)}/mes</strong> a 12 Meses Sin Intereses</div>
           <ul class="mt-6 space-y-2 text-sm text-stone-700 bg-stone-50 p-4 rounded-lg border border-stone-200">
-            <li>✓ <strong>Garantía:</strong> 3 años directa de fábrica en México</li>
+            <li>✓ <strong>Garantía:</strong> 1 año, directa de fábrica en México</li>
             <li>✓ <strong>Resortes:</strong> 5 resortes alemanes de alambre de piano de alta precisión</li>
             <li>✓ <strong>Rodamientos:</strong> Deslizamiento ultra silencioso de alta durabilidad</li>
             <li>✓ <strong>Envíos:</strong> Embalaje en huacal de madera asegurado a toda la República Mexicana</li>
@@ -2117,7 +2117,7 @@ async function main() {
           name: '¿Qué garantía tienen los Reformers y cómo se gestionan las refacciones?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ofrecemos una garantía directa de 3 años en chasis, rieles y mecanismos estructurales. Resortes de repuesto, poleas y correas de cuero y microfibra se entregan en 1 semana.'
+            text: 'Ofrecemos una garantía directa de 1 año en chasis, rieles y mecanismos estructurales. Resortes de repuesto, poleas y correas de cuero y microfibra se entregan en 1 semana.'
           }
         },
         {
@@ -2201,7 +2201,7 @@ async function main() {
           name: '¿Cuál es el precio de una cama de Pilates de estudio profesional?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Los Reformers profesionales para estudio boutique rondan entre $36,716 y $69,617 MXN para camas fijas de madera maciza o aluminio aeroespacial, y hasta $85,050 MXN para modelos con media torre o estructura de Cadillac. Todos con garantía directa de 3 años y tolerancias para uso comercial continuo de 8 a 10 horas diarias.'
+            text: 'Los Reformers profesionales para estudio boutique rondan entre $36,716 y $69,617 MXN para camas fijas de madera maciza o aluminio aeroespacial, y hasta $85,050 MXN para modelos con media torre o estructura de Cadillac. Todos con garantía directa de 1 año y tolerancias para uso comercial continuo de 8 a 10 horas diarias.'
           }
         },
         {
@@ -2376,7 +2376,7 @@ async function main() {
       </section>
       <section class="mt-12">
         <h2 class="text-2xl font-bold text-foreground">Después de certificarte: equipa tu estudio</h2>
-        <p class="mt-3 text-muted-foreground">La renta del local es la misma con 4 Reformers que con 8; lo que cambia es cuántas alumnas caben en cada clase. A partir de 8 Reformers, el pack de estudio lleva 20% de descuento, instalación y calibración en tu estudio y garantía de 3 años.</p>
+        <p class="mt-3 text-muted-foreground">La renta del local es la misma con 4 Reformers que con 8; lo que cambia es cuántas alumnas caben en cada clase. A partir de 8 Reformers, el pack de estudio lleva 20% de descuento, instalación y calibración en tu estudio y garantía de 1 año.</p>
         <p class="mt-3"><a href="/packs/estudio">Calcular mi pack de estudio</a> · <a href="/reformer-para-estudio">Reformers para estudio</a></p>
       </section>
     </main>`;

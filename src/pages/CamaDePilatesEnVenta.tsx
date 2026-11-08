@@ -29,7 +29,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
     '@type': 'FAQPage',
     mainEntity: [
       { '@type': 'Question', name: '¿Envían a todos los estados de México?', acceptedAnswer: { '@type': 'Answer', text: 'Sí. Enviamos con flete asegurado a los 32 estados de la República Mexicana. Tiempo de entrega de 6 a 8 semanas según el modelo.' } },
-      { '@type': 'Question', name: '¿Qué garantía ofrecen?', acceptedAnswer: { '@type': 'Answer', text: 'Garantía de 3 años. Repuestos en 1 semana y soporte en español.' } },
+      { '@type': 'Question', name: '¿Qué garantía ofrecen?', acceptedAnswer: { '@type': 'Answer', text: 'Garantía de 1 año. Repuestos en 1 semana y soporte en español.' } },
       { '@type': 'Question', name: '¿Hay descuento para estudios?', acceptedAnswer: { '@type': 'Answer', text: 'Sí. A partir de 8 unidades aplicamos 20% de descuento y podemos coordinar instalación.' } },
     ],
   };
@@ -98,7 +98,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
         >
           {[
             { icon: Truck, label: 'Entrega', value: '6–8 semanas', detail: 'Envío a todo México' },
-            { icon: Shield, label: 'Garantía', value: '3 años', detail: 'Soporte en español' },
+            { icon: Shield, label: 'Garantía', value: '1 año', detail: 'Soporte en español' },
             { icon: Package, label: 'Repuestos', value: '1 semana', detail: 'Piezas y mantenimiento' },
           ].map((item, i) => (
             <div key={i} className="p-6 md:p-8 bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-2xl hover:bg-white hover:shadow-lg transition-all duration-500 group">
@@ -150,7 +150,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
                 <ul className="text-white/70 font-light space-y-2 mb-8 text-sm md:text-base">
                   <li>• Roble o maple con torre de acero inoxidable</li>
                   <li>• Gym reformers multiestación para alto volumen</li>
-                  <li>• Garantía 3 años, repuestos en 1 semana</li>
+                  <li>• Garantía de 1 año, repuestos en 1 semana</li>
                 </ul>
                 <div className="mt-8 flex flex-col sm:flex-row gap-3">
                   <span className="inline-flex items-center justify-center text-xs uppercase tracking-[0.2em] text-white/80 group-hover:text-white transition-colors py-3 px-6 rounded-full border border-white/20">

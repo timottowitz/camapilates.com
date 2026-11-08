@@ -160,7 +160,7 @@ Hospitales privados integrando Pilates:
 > 💡 **¿Vas a abrir o crecer tu estudio en este boom?**  
 > Cada Reformer es un lugar más que vendes en cada clase. Más camas, más lugares por clase.  
 > • 20% de descuento desde 8 Reformers con el pack de estudio.  
-> • Roble, maple o aluminio, con garantía de 3 años.  
+> • Roble, maple o aluminio, con garantía de 1 año.  
 > • Instalación y calibración en tu estudio, con envío a toda la República.  
 > [Calcula tu pack de estudio →](/packs/estudio) · [Cotiza por WhatsApp, sin compromiso →](/reformer-para-estudio)
 

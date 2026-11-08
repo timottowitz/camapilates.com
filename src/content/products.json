@@ -18,7 +18,7 @@
     "materials": [
       "roble macizo"
     ],
-    "warranty": "3 años",
+    "warranty": "1 año",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_clasico_roble_pl006_placeholder",
@@ -53,7 +53,7 @@
       "roble macizo",
       "tubo de acero inoxidable"
     ],
-    "warranty": "3 años",
+    "warranty": "1 año",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_clasico_roble_torre_pl006a_placeholder",
@@ -88,7 +88,7 @@
     "materials": [
       "maple blanco"
     ],
-    "warranty": "3 años",
+    "warranty": "1 año",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_clasico_maple_pl001_placeholder",
@@ -123,7 +123,7 @@
       "maple blanco",
       "tubo de acero inoxidable"
     ],
-    "warranty": "3 años",
+    "warranty": "1 año",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_clasico_maple_torre_pl001a_placeholder",
@@ -158,7 +158,7 @@
     "materials": [
       "maple blanco"
     ],
-    "warranty": "3 años",
+    "warranty": "1 año",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_maple_alta_gama_pl001m_placeholder",
@@ -192,7 +192,7 @@
     "materials": [
       "aluminio"
     ],
-    "warranty": "3 años",
+    "warranty": "1 año",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_elite_aluminio_pl019_placeholder",
@@ -226,7 +226,7 @@
     "materials": [
       "roble"
     ],
-    "warranty": "3 años",
+    "warranty": "1 año",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_plegable_roble_pl0015s_placeholder",
@@ -261,7 +261,7 @@
     "materials": [
       "aluminio"
     ],
-    "warranty": "3 años",
+    "warranty": "1 año",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_plegable_aluminio_pl019f_placeholder",
@@ -296,7 +296,7 @@
     "materials": [
       "aleación de aluminio"
     ],
-    "warranty": "3 años",
+    "warranty": "1 año",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_gym_reformer_l009bt_placeholder",
@@ -330,7 +330,7 @@
     "materials": [
       "aleación de aluminio"
     ],
-    "warranty": "3 años",
+    "warranty": "1 año",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_gym_reformer_l009e_placeholder",

@@ -48,7 +48,7 @@ Las camas de Pilates plegables ofrecen la **misma calidad de ejercicio que los m
 - **Peso**: 55 kg
 - **Capacidad**: 200 kg
 - **Material**: Madera de abedul ruso con acabados automotrices
-- **Garantía**: 5 años
+- **Garantía**: 1 año
 
 ### 2. IRONSIDE Reformer Plegable
 - **Precio**: $35,000 - $50,000 MXN

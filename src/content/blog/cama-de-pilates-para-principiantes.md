@@ -317,7 +317,7 @@ Los especialistas recomiendan practicar Mat Pilates durante al menos 3 meses ant
 - Sistema de resortes codificado por colores
 - Resistencia ajustable de 5 niveles
 - Incluye guía de ejercicios para principiantes
-- Garantía extendida de 2 años
+- Garantía de 1 año
 
 **Precio:** $18,999 MXN
 **Ideal para:** Primera compra, uso doméstico regular

@@ -131,7 +131,7 @@ Tener un **Reformer profesional para casa** (como los modelos de madera y alumin
 Si tienes un estudio, un centro de fisioterapia o entrenas corredores, una clase de Reformer pensada para runners llena lugares que hoy no estás vendiendo. Cada Reformer es un lugar más que vendes en cada clase.
 
 * **Pack de estudio:** 20% de descuento desde 8 Reformers.
-* **Hechos para durar:** roble, maple o aluminio, con garantía de 3 años.
+* **Hechos para durar:** roble, maple o aluminio, con garantía de 1 año.
 * **Listos para dar clase:** los instalamos y calibramos en tu estudio, con envío a toda la República.
 
 👉 [Calcula tu pack de estudio](/packs/estudio) · [Cotiza por WhatsApp, sin compromiso](/reformer-para-estudio)

@@ -61,7 +61,7 @@ Monterrey destaca por albergar programas de formación de primer nivel y por su 
 
 > 🏢 **¿Ya das clases y quieres tu propio estudio en Monterrey, Querétaro o donde vivas?**  
 > Cada Reformer es un lugar más que vendes en cada clase. Desde 8 Reformers tienes 20% de descuento con el pack de estudio.  
-> Madera que dura años, garantía de 3 años y la instalación la hacemos nosotros, en cualquier parte de la República.  
+> Madera que dura años, garantía de 1 año y la instalación la hacemos nosotros, en cualquier parte de la República.  
 > [Calcula tu pack de estudio →](/packs/estudio) · [Ver Reformers para estudio →](/reformer-para-estudio)
 
 <see-also limit="3" />
@@ -151,7 +151,7 @@ En Edelweiss Pilates entendemos que el éxito de un instructor o estudio depende
 - **Asesoría gratuita** para nuevos estudios
 - **Planes de financiamiento** desde 12 meses sin intereses
 - **Capacitación técnica** incluida con cada Reformer
-- **Garantía extendida** de 1 año
+- **Garantía** de 1 año
 - **Red de instructores Edelweiss**: Acceso exclusivo a nuestra comunidad de 500+ profesionales
 
 Nuestros Reformers están diseñados específicamente para el mercado mexicano, considerando espacios, clima y necesidades locales. Con envío gratis a toda la República y servicio técnico en las principales ciudades.

@@ -69,7 +69,7 @@ Al comparar el gasto real de un equipo usado restaurado ($18,000 de compra + $7,
 En **[Edelweiss Pilates](/cama-de-pilates)** ofrecemos [camas de Pilates Reformer](/blog/cama-de-pilates-venta-mexico) con ingeniería de estándar alemán, entrega y soporte en México:
 - **Precios desde [$23,234 MXN](/cama-de-pilates/precio)** para nuestro modelo de entrada en Roble Clásico o Aluminio.
 - **Financiamiento a 12 [Meses Sin Intereses](/blog/financiacion-cama-de-pilates) (MSI):** Adquiere tu cama desde **$1,936 MXN al mes**, pagando menos de lo que cuesta una mensualidad en un estudio boutique.
-- **Garantía Estructural Directa de 3 Años:** Cero vicios ocultos, cero piezas fatigadas.
+- **Garantía Estructural Directa de 1 Año:** Cero vicios ocultos, cero piezas fatigadas.
 - **Refacciones en 1 semana:** Resortes, ruedas y correas enviados a cualquier estado de la República.
 - **Embalaje en Huacal de Madera Reforzado:** Entrega asegurada de puerta a puerta en toda la República Mexicana.
 
@@ -93,6 +93,6 @@ La rigidez y el ciclo de carga. Los modelos residenciales soportan entre 100 y 1
 Ambos ofrecen gran longevidad si han sido bien cuidados. El aluminio anodizado es inmune a la humedad y plagas, lo que lo hace ideal para climas cálidos y costeros. La madera maciza de roble o arce absorbe de forma insuperable las microvibraciones y aporta una estética cálida y atemporal.
 
 ### ¿Edelweiss Pilates ofrece opciones nuevas con financiamiento accesible?
-Sí. En **Edelweiss Pilates** ofrecemos camas de Pilates Reformer nuevas desde **$23,234 MXN**, con esquemas de pago a **12 Meses Sin Intereses** con tarjetas bancarias participantes, 3 años de garantía de fábrica y entrega asegurada en todo México.
+Sí. En **Edelweiss Pilates** ofrecemos camas de Pilates Reformer nuevas desde **$23,234 MXN**, con esquemas de pago a **12 Meses Sin Intereses** con tarjetas bancarias participantes, 1 año de garantía de fábrica y entrega asegurada en todo México.
 
 <hub-list category="Guías de compra" limit="6" title="Más guías de compra de Reformer" />
