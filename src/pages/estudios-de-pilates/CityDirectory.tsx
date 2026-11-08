@@ -8,6 +8,7 @@ import StudioFilters, { FilterOptions } from "@/components/studios/StudioFilters
 import StudioSearch from "@/components/studios/StudioSearch";
 import { StudioMap } from "@/components/maps/StudioMap";
 import CertificationWebinarBanner from "@/components/certification/CertificationWebinarBanner";
+import { OFFER_OWN_COURSES } from '@/content/certification/cohortsData';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -438,7 +439,7 @@ const CityDirectory: React.FC = () => {
 
       <section className="px-8 md:px-24 pb-24">
         <div className="max-w-4xl mx-auto border-t border-[#2A2624]/10 pt-12">
-          {(normalizedSlug === 'queretaro' || normalizedSlug === 'monterrey') && (
+          {OFFER_OWN_COURSES && (normalizedSlug === 'queretaro' || normalizedSlug === 'monterrey') && (
             <CertificationWebinarBanner city={normalizedSlug} className="mb-12" />
           )}
           <h2 className="text-2xl font-serif italic text-[#2A2624]">¿Buscas formación o equipo profesional?</h2>

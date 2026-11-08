@@ -126,18 +126,15 @@ Tener un **Reformer profesional para casa** (como los modelos de madera y alumin
 
 ---
 
-## Oportunidad para Entrenadores y Fisioterapeutas: Certificación 2026–2027
+## Para Estudios y Entrenadores: Clases de Reformer para Corredores
 
-Si eres preparador físico, fisioterapeuta o instructora en México y deseas especializarte en biomecánica funcional aplicada tanto a deportistas de resistencia como al público general, Edelweiss Pilates ha abierto la convocatoria para sus cohortes presenciales (Curso Básico 28h / Certificación Completa 48h):
+Si tienes un estudio, un centro de fisioterapia o entrenas corredores, una clase de Reformer pensada para runners llena lugares que hoy no estás vendiendo. Cada Reformer es un lugar más que vendes en cada clase.
 
-* **Cohorte Querétaro:** Noviembre de 2026.
-* **Cohorte Monterrey:** Diciembre 2026 a Enero 2027.
-* **Condición de Excelencia:** Máximo 12 alumnas(os) por sede con **1 Reformer individual exclusivo asignado** (sin turnos ni rotaciones).
-* **Modalidades y Precios:** Curso Básico (28h · $25,000 MXN) y Certificación Completa (48h · $38,000 MXN), con opción de pre-reserva de $400 MXN para congelar 1 de los 12 cupos.
+* **Pack de estudio:** 20% de descuento desde 8 Reformers.
+* **Hechos para durar:** roble, maple o aluminio, con garantía de 3 años.
+* **Listos para dar clase:** los instalamos y calibramos en tu estudio, con envío a toda la República.
 
-El Info Day del 26 de septiembre con las Master Trainers internacionales **Gabi & Laura Munive** ya terminó, ¡gracias a quienes nos acompañaron! Si quieres enterarte primero de los próximos cursos, súmate a la lista de espera:
-
-👉 [Unirme a la lista de espera](/certificacion-pilates/webinar#registro)
+👉 [Calcula tu pack de estudio](/packs/estudio) · [Cotiza por WhatsApp, sin compromiso](/reformer-para-estudio)
 
 ---
 

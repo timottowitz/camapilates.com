@@ -40,12 +40,25 @@ requireCanonical(home, 'https://camadepilates.com/', 'index.html');
 requireText(home, '<h1', 'index.html');
 requireText(home, 'href="/shop/category/reformers"', 'index.html');
 
+const { offerOwnCourses } = JSON.parse(
+  fs.readFileSync(path.join(root, 'src', 'content', 'certification', 'courseOffer.json'), 'utf8'),
+);
 const certification = read('certificacion-pilates/monterrey.html');
 requireText(
   certification,
-  '<title>Certificación Pilates Monterrey [Fechas 2026] | Edelweiss Pilates</title>',
+  offerOwnCourses
+    ? '<title>Certificación Pilates Monterrey [Fechas 2026] | Edelweiss Pilates</title>'
+    : '<title>Certificación Pilates Monterrey [2026: Escuelas y Avales] | Edelweiss Pilates</title>',
   'certificacion-pilates/monterrey.html',
 );
+if (!offerOwnCourses) {
+  for (const file of ['certificacion-pilates.html', 'certificacion-pilates/monterrey.html', 'certificacion-pilates/queretaro.html']) {
+    const html = read(file);
+    for (const courseText of ['$25,000', '$400 MXN', 'Cohorte', '/certificacion-pilates/webinar']) {
+      rejectText(html, courseText, file);
+    }
+  }
+}
 requireCanonical(
   certification,
   'https://camadepilates.com/certificacion-pilates/monterrey',

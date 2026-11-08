@@ -8,6 +8,7 @@ import { calculateBundlePrice, type BundleQuantity } from '@/lib/shop/bundles';
 import { allProducts } from '@/lib/shop/catalog';
 import shopPolicy from '@/content/shop-policy.json';
 import CertificationWebinarBanner from '@/components/certification/CertificationWebinarBanner';
+import { OFFER_OWN_COURSES } from '@/content/certification/cohortsData';
 
 export const PilatesReformerMonterrey: React.FC = () => {
   const origin = getOrigin();
@@ -418,11 +419,13 @@ export const PilatesReformerMonterrey: React.FC = () => {
       </section>
 
       {/* Certification Cohort & Webinar Banner for Monterrey */}
-      <section className="py-12 px-6 sm:px-12 md:px-24 bg-[#F8F7F5]">
-        <div className="max-w-[1400px] mx-auto">
-          <CertificationWebinarBanner city="monterrey" />
-        </div>
-      </section>
+      {OFFER_OWN_COURSES && (
+        <section className="py-12 px-6 sm:px-12 md:px-24 bg-[#F8F7F5]">
+          <div className="max-w-[1400px] mx-auto">
+            <CertificationWebinarBanner city="monterrey" />
+          </div>
+        </section>
+      )}
 
       {/* FAQ Section */}
       <section className="py-20 px-6 sm:px-12 md:px-24 bg-white border-t border-[#2A2624]/10">

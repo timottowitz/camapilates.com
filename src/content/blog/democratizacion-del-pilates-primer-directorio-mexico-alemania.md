@@ -59,7 +59,7 @@ Cada región de México posee un dinamismo económico y una identidad propia. Po
 * **[Monterrey y San Pedro](/certificacion-pilates/monterrey)**: La capital industrial del norte, donde convergen el rigor biomecánico, programas intensivos de fin de semana y estudios boutique de gran escala comercial.
 * **[Guadalajara y Zapopan](/certificacion-pilates/guadalajara)**: Cuna del diseño, el bienestar y la innovación en el occidente del país, con escuelas de amplio reconocimiento en Providencia y Puerta de Hierro.
 * **[Puebla y Cholula](/certificacion-pilates/puebla)**: Fuerte arraigo de formación académica con respaldo de horas avaladas y enfoque en kinesiología y rehabilitación física.
-* **[Querétaro](/certificacion-pilates/queretaro)**: Uno de los mercados de mayor crecimiento en el Bajío, sede de cohortes presenciales exclusivas en Juriquilla y Centro Histórico.
+* **[Querétaro](/certificacion-pilates/queretaro)**: Uno de los mercados de mayor crecimiento en el Bajío.
 * **[Puerto Vallarta y Bahía de Banderas](/certificacion-pilates/puerto-vallarta)**: Especialización en Pilates para el bienestar holístico, retiros y la creciente comunidad internacional de residentes y nómadas.
 * **[Tijuana y Baja California](/certificacion-pilates/tijuana)**: El puente fronterizo con instructores bilingües avalados internacionalmente por la NPCP (National Pilates Certification Program).
 * **[Riviera Maya (Tulum, Playa del Carmen y Cancún)](/certificacion-pilates/riviera-maya)**: Formaciones inmersivas que combinan la biomecánica rigurosa del Reformer con el turismo de bienestar y la hospitalidad de lujo.

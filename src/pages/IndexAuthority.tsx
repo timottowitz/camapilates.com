@@ -6,6 +6,7 @@ import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { DEFAULTS, generateBreadcrumbSchema, generateLocalBusinessSchema, getOrigin } from '@/lib/seo';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import CertificationWebinarBanner from '@/components/certification/CertificationWebinarBanner';
+import { OFFER_OWN_COURSES } from '@/content/certification/cohortsData';
 
 type HubCard = {
   eyebrow: string;
@@ -326,14 +327,16 @@ const IndexAuthority: React.FC = () => {
           </motion.div>
 
           {/* Featured Certification & Webinar Banner */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-12"
-          >
-            <CertificationWebinarBanner />
-          </motion.div>
+          {OFFER_OWN_COURSES && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mt-12"
+            >
+              <CertificationWebinarBanner />
+            </motion.div>
+          )}
 
           {/* Quick Links Footer */}
           <motion.div

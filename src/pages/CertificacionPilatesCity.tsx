@@ -11,6 +11,7 @@ import CityListicleNav from '@/components/certification/CityListicleNav';
 import CertificationPartnerCard from '@/components/certification/CertificationPartnerCard';
 import {
   CERTIFICATION_COHORTS,
+  OFFER_OWN_COURSES,
   cohortStartLabel,
   isCohortOpen,
   openCohorts,
@@ -55,7 +56,7 @@ export const CertificacionPilatesCity: React.FC = () => {
   const cityInfo = getCityInfo(normalizedKey) || CERTIFICATION_CITIES[0];
   const partners = getPartnersByCitySlug(normalizedKey);
   const isCdmx = normalizedKey === 'cdmx';
-  const cohort = (normalizedKey === 'queretaro' || normalizedKey === 'monterrey')
+  const cohort = OFFER_OWN_COURSES && (normalizedKey === 'queretaro' || normalizedKey === 'monterrey')
     ? CERTIFICATION_COHORTS[normalizedKey as 'queretaro' | 'monterrey']
     : null;
 
@@ -67,9 +68,9 @@ export const CertificacionPilatesCity: React.FC = () => {
   const cityName = cityInfo.name;
   const shortCityName = cityInfo.shortName;
 
-  const title = normalizedKey === 'monterrey'
+  const title = cohort && normalizedKey === 'monterrey'
     ? 'Certificación Pilates Monterrey [Fechas 2026 y Academias]'
-    : normalizedKey === 'queretaro'
+    : cohort && normalizedKey === 'queretaro'
       ? 'Certificación Pilates Querétaro [Nov 2026 y Sedes]'
       : normalizedKey === 'puebla'
         ? 'Certificación Pilates Puebla 2026: Costos, Fechas y Aval Oficial'
@@ -684,7 +685,7 @@ export const CertificacionPilatesCity: React.FC = () => {
           >
             {cohortOpen ? 'Apartar Cupo' : `Apartar ${nextCohort.cityName}`}
           </a>
-        ) : (
+        ) : OFFER_OWN_COURSES ? (
           <button
             onClick={() => setModalOpen(true)}
             data-rybbit-event="click_mobile_sticky_preregistro"
@@ -693,6 +694,15 @@ export const CertificacionPilatesCity: React.FC = () => {
           >
             Pre-registro Gratis
           </button>
+        ) : (
+          <a
+            href="#academias"
+            data-rybbit-event="click_mobile_sticky_ver_escuelas"
+            data-rybbit-prop-city={shortCityName}
+            className="flex-1 py-3 px-3 bg-[#2A2624] text-[#EAE8E4] rounded-full text-center text-[11px] font-bold uppercase tracking-wider shadow-md hover:bg-[#3E2723] transition-all"
+          >
+            Ver Escuelas ({partners.length})
+          </a>
         )}
       </div>
     </LuxuryLayout>

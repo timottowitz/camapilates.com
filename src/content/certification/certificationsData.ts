@@ -4,6 +4,8 @@
  * sincronizado con docs/pilates_certification_partners_mexico_2026.csv
  */
 
+import { OFFER_OWN_COURSES } from './cohortsData';
+
 export interface CertificationPartner {
   id: string;
   slug: string;
@@ -64,9 +66,11 @@ export const CERTIFICATION_CITIES: CertificationCity[] = [
     landmarkImage: '/images/cities/monterrey.webp',
     landmarkTitle: 'Cerro de la Silla & San Pedro',
     tagline: 'Epicentro boutique y formación de alto nivel en San Pedro Garza García',
-    description: 'Convocatoria oficial para la Cohorte Edelweiss (Dic 2026 – Ene 2027) con Gabi y Laura Munive, junto a las principales academias del norte del país.',
+    description: OFFER_OWN_COURSES
+      ? 'Convocatoria oficial para la Cohorte Edelweiss (Dic 2026 – Ene 2027) con Gabi y Laura Munive, junto a las principales academias del norte del país.'
+      : 'Las principales academias formadoras del norte del país, con estudios boutique en San Pedro Garza García y Valle Oriente.',
     directorySlug: 'monterrey',
-    hasActiveCohort: true,
+    hasActiveCohort: OFFER_OWN_COURSES,
     cohortLabel: 'Cohorte Oficial Dic 2026',
   },
   {
@@ -77,9 +81,11 @@ export const CERTIFICATION_CITIES: CertificationCity[] = [
     landmarkImage: '/images/cities/queretaro.webp',
     landmarkTitle: 'Los Arcos de Querétaro',
     tagline: 'Formación clásica y avales con valor curricular oficial SEP en el Bajío',
-    description: 'Cohorte presencial Edelweiss (Nov 2026) en Álamos y Corregidora, combinando avales oficiales SEP-CONOCER y tradición de Power Pilates NYC.',
+    description: OFFER_OWN_COURSES
+      ? 'Cohorte presencial Edelweiss (Nov 2026) en Álamos y Corregidora, combinando avales oficiales SEP-CONOCER y tradición de Power Pilates NYC.'
+      : 'Academias del Bajío con avales oficiales SEP-CONOCER y tradición de Power Pilates NYC, en Álamos, Corregidora y el Centro Histórico.',
     directorySlug: 'queretaro',
-    hasActiveCohort: true,
+    hasActiveCohort: OFFER_OWN_COURSES,
     cohortLabel: 'Cohorte Oficial Nov 2026',
   },
   {

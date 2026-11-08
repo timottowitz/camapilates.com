@@ -116,11 +116,11 @@ El costo de las clases de Pilates con Reformer en México varía significativame
 
 Para asegurar la calidad y tu seguridad, busca estudios que enfaticen la certificación integral de sus instructores (por ejemplo, Stott, Polestar o Peak Pilates), ya que estas requieren cientos de horas de práctica. Pregunta por la proporción de alumnos por máquina; lo ideal en clase grupal es no exceder 5 personas. Aprovecha las clases de prueba que ofrecen muchos lugares en CDMX o Guadalajara. Finalmente, considera la higiene y el mantenimiento de las máquinas, pues un equipo bien cuidado, como los de Balance Body o Merrithew, es crucial para una práctica segura. No te bases solo en el precio, prioriza la experiencia del instructor.
 
-> 🎓 **¿Te apasiona el Pilates y quieres convertirte en Instructora Certificada?**  
-> Edelweiss abre convocatoria para formarse en Reformer en formato intensivo de fines de semana:  
-> • **Querétaro:** Noviembre 2026 (4 fines de semana). [Convocatoria Querétaro →](/certificacion-pilates/queretaro)  
-> • **Monterrey:** Diciembre 2026 – Enero 2027 (4 fines de semana). [Convocatoria Monterrey →](/certificacion-pilates/monterrey)  
-> • **Lista de espera:** El Info Day del 26 de septiembre ya terminó, ¡gracias a quienes nos acompañaron! Súmate a la lista de espera y te avisaremos primero sobre los próximos cursos. [Unirme a la lista de espera →](/certificacion-pilates/webinar#registro)
+> 🌱 **¿El Pilates te cambió la vida y quieres abrir tu propio estudio?**  
+> Cada Reformer es un lugar más que vendes en cada clase, y una alumna más a la que le cambias la vida.  
+> • 20% de descuento desde 8 Reformers con el pack de estudio.  
+> • Roble, maple o aluminio, con garantía de 3 años e instalación en tu estudio.  
+> [Calcula tu pack de estudio →](/packs/estudio) · [Cotiza por WhatsApp, sin compromiso →](/reformer-para-estudio)
 
 ### Soy principiante, ¿debo empezar con Pilates de Mat o directamente en el Reformer?
 

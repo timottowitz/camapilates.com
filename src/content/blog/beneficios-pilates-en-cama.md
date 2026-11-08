@@ -45,11 +45,10 @@ Aquí es donde entra el análisis del retorno de inversión (ROI) de tener un Re
 
 Haz las cuentas: si optas por un equipo de gama media de unos $40,000 MXN, tu inversión se amortiza en menos de un año comparado con las visitas al estudio. Además, eliminas los tiempos de traslado y tienes la libertad de entrenar en tus propios términos. Tener la máquina en casa derriba la barrera de "no tengo tiempo de ir al gym", facilitando la consistencia que, a fin de cuentas, es lo que te dará los resultados clínicos que buscas.
 
-> 🎓 **¿Te apasiona el Reformer y quieres convertirte en instructora certificada?**  
-> Próximas cohortes presenciales (Curso Básico 28h / Certificación Completa 48h) en fines de semana con cupo limitado a 12 participantes:  
-> • **Querétaro:** Noviembre 2026. [Ver fechas Querétaro →](/certificacion-pilates/queretaro)  
-> • **Monterrey:** Dic 2026 y Ene 2027. [Ver fechas Monterrey →](/certificacion-pilates/monterrey)  
-> • **Lista de espera:** El Info Day del 26 de septiembre ya terminó, ¡gracias a quienes nos acompañaron! Súmate a la lista de espera y te avisaremos primero sobre los próximos cursos. [Unirme a la lista de espera →](/certificacion-pilates/webinar#registro)
+> 🏠 **Un Reformer en casa se paga solo. En un estudio, cada Reformer es un lugar más que vendes en cada clase.**  
+> Nuestros Reformers son de roble, maple o aluminio, con garantía de 3 años y envío a toda la República.  
+> • **Para tu estudio:** desde 8 Reformers tienes 20% de descuento y los instalamos y calibramos en tu espacio. [Calcula tu pack de estudio →](/packs/estudio)  
+> • **Para tu casa:** [Ver el Reformer para casa →](/reformer-para-casa)
 
 <see-also limit="3" />
 

@@ -59,11 +59,10 @@ La perla tapatía cuenta con **Culture Body Pilates Studio** como referente, con
 
 Monterrey destaca por albergar programas de formación de primer nivel y por su enfoque en Pilates para rehabilitación y acondicionamiento boutique, con alta demanda en zonas como San Pedro Garza García y Valle Oriente.
 
-> 📢 **Próximas Cohortes Presenciales: Monterrey & Querétaro (Curso Básico 28h / Certificación Completa 48h)**  
-> Si buscas formarte profesionalmente en Pilates [Reformer](/blog/pilates-reformer-cdmx) sin tener que pausar tus actividades semanales:  
-> • **Monterrey:** 5 de Diciembre 2026 al 17 de Enero 2027 (San Pedro). [Ver convocatoria Monterrey →](/certificacion-pilates/monterrey)  
-> • **Querétaro:** 7 al 29 de Noviembre 2026. [Ver convocatoria Querétaro →](/certificacion-pilates/queretaro)  
-> • **Lista de espera:** El Info Day del 26 de septiembre ya terminó, ¡gracias a quienes nos acompañaron! Súmate a la lista de espera y te avisaremos primero sobre los próximos cursos. [Unirme a la lista de espera →](/certificacion-pilates/webinar#registro)
+> 🏢 **¿Ya das clases y quieres tu propio estudio en Monterrey, Querétaro o donde vivas?**  
+> Cada Reformer es un lugar más que vendes en cada clase. Desde 8 Reformers tienes 20% de descuento con el pack de estudio.  
+> Madera que dura años, garantía de 3 años y la instalación la hacemos nosotros, en cualquier parte de la República.  
+> [Calcula tu pack de estudio →](/packs/estudio) · [Ver Reformers para estudio →](/reformer-para-estudio)
 
 <see-also limit="3" />
 

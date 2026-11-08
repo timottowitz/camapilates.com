@@ -1567,6 +1567,8 @@ async function main() {
   const prods = readProducts();
   const studioData = readStudios();
   const routeMeta = JSON.parse(fs.readFileSync(path.join(ROOT, 'src', 'content', 'route-meta.json'), 'utf8'));
+  // Same switch the app reads: while we don't run our own course, certification pages are a directory.
+  const { offerOwnCourses } = JSON.parse(fs.readFileSync(path.join(ROOT, 'src', 'content', 'certification', 'courseOffer.json'), 'utf8'));
   
   const certCities = [
     { key: 'cdmx', name: 'Ciudad de México (CDMX)', shortName: 'Ciudad de México', directorySlug: 'ciudad-de-mexico' },
@@ -2351,7 +2353,35 @@ async function main() {
   }
 
   // Certification landing (static snapshot for SEO)
-  {
+  if (!offerOwnCourses) {
+    const meta = routeMeta['/certificacion-pilates'];
+    const head = {
+      title: meta.title,
+      description: meta.description,
+      canonical: `${origin}/certificacion-pilates`,
+      ogImage: `${origin}/og/cama-de-pilates-venta-mexico.png`,
+      ogType: 'website'
+    };
+    const body = `
+    <main class="container mx-auto px-4 py-12">
+      <p class="text-xs uppercase tracking-widest font-semibold">Directorio nacional de certificaciones</p>
+      <h1 class="mt-2 text-3xl md:text-5xl font-bold text-foreground">Certificaciones de Pilates en México</h1>
+      <p class="mt-4 text-lg text-muted-foreground max-w-2xl">Escuelas formadoras, academias con validez oficial (NPCP, SEP-CONOCER, linajes clásicos de Romana Kryzanowska y The New York Pilates Studio, STOTT Merrithew) y Master Trainers en ${certCities.length} ciudades. Elige tu ciudad y compara.</p>
+      <ul class="mt-8 grid gap-3 md:grid-cols-2">
+        ${certCities.map(c => `<li><a href="/certificacion-pilates/${c.key}">Certificación de Pilates en ${htmlEscape(c.shortName)}</a></li>`).join('\n        ')}
+      </ul>
+      <section class="mt-12">
+        <h2 class="text-2xl font-bold text-foreground">Certificación STOTT PILATES® en Ciudad de México</h2>
+        <p class="mt-3 text-muted-foreground">El programa internacional de Merrithew® se imparte en Santa Fe por un centro anfitrión independiente. <a href="/certificacion-pilates/cdmx">Ver la guía de STOTT CDMX</a>.</p>
+      </section>
+      <section class="mt-12">
+        <h2 class="text-2xl font-bold text-foreground">Después de certificarte: equipa tu estudio</h2>
+        <p class="mt-3 text-muted-foreground">La renta del local es la misma con 4 Reformers que con 8; lo que cambia es cuántas alumnas caben en cada clase. A partir de 8 Reformers, el pack de estudio lleva 20% de descuento, instalación y calibración en tu estudio y garantía de 3 años.</p>
+        <p class="mt-3"><a href="/packs/estudio">Calcular mi pack de estudio</a> · <a href="/reformer-para-estudio">Reformers para estudio</a></p>
+      </section>
+    </main>`;
+    writeFileForRoute('/certificacion-pilates', baseHtml(template, head, body));
+  } else {
     const head = {
       title: 'Certificación Pilates Reformer México [Aval Oficial] | Edelweiss',
       description: 'Certifícate como instructora de Pilates Reformer: Curso Básico (28h · $25k) o Certificación Completa (48h · $38k). Máquina individual por alumna y comunidad Whop. Sedes en Querétaro y Monterrey.',
@@ -2440,8 +2470,8 @@ async function main() {
 
   // Certification city pages (static snapshots)
   for (const c of certCities) {
-    const isQueretaro = c.key === 'queretaro';
-    const isMonterrey = c.key === 'monterrey';
+    const isQueretaro = offerOwnCourses && c.key === 'queretaro';
+    const isMonterrey = offerOwnCourses && c.key === 'monterrey';
     const isPuebla = c.key === 'puebla';
     const isCdmx = c.key === 'cdmx';
     const headingTitle = `Certificación de Pilates Reformer en ${c.shortName}`;
@@ -2491,8 +2521,8 @@ async function main() {
         ${cohortAlert}
         <div class="mt-6 flex flex-wrap gap-3">
           <a href="https://wa.me/525548468190?text=${encodeURIComponent('Hola, quiero información sobre la certificación de Pilates en ' + c.shortName)}" class="inline-flex items-center px-5 py-3 rounded-md bg-primary text-primary-foreground">Solicitar información</a>
-          <a href="/certificacion-pilates/webinar" class="inline-flex items-center px-5 py-3 rounded-md border border-foreground text-foreground">Pre-Webinar 26 Sep</a>
-          <a href="${certFormUrl}" class="inline-flex items-center px-5 py-3 rounded-md border border-foreground text-foreground">Pre-inscripción</a>
+          ${offerOwnCourses ? `<a href="/certificacion-pilates/webinar" class="inline-flex items-center px-5 py-3 rounded-md border border-foreground text-foreground">Pre-Webinar 26 Sep</a>
+          <a href="${certFormUrl}" class="inline-flex items-center px-5 py-3 rounded-md border border-foreground text-foreground">Pre-inscripción</a>` : `<a href="/certificacion-pilates" class="inline-flex items-center px-5 py-3 rounded-md border border-foreground text-foreground">Directorio nacional</a>`}
         </div>
       </div>
     </section>
@@ -2500,7 +2530,7 @@ async function main() {
       <h2 class="text-2xl font-bold text-foreground">Qué comparar antes de inscribirte</h2>
       <ul class="mt-5 space-y-3 text-muted-foreground">
         <li>Alcance de la formación: Reformer, Mat o ruta integral.</li>
-        <li>Horas de observación, práctica y enseñanza (28h Básica / 48h Completa).</li>
+        <li>Horas de observación, práctica y enseñanza.</li>
         <li>Método de evaluación y organismo que respalda el certificado.</li>
         <li>Costo total, materiales incluidos y políticas de pago.</li>
       </ul>
@@ -2545,7 +2575,12 @@ async function main() {
   }
 
   // Pre-Webinar registration route (static snapshot)
-  {
+  if (!offerOwnCourses) {
+    fs.appendFileSync(
+      path.join(DIST, '_redirects'),
+      '\n# No own course running (src/content/certification/courseOffer.json)\n/certificacion-pilates/webinar /certificacion-pilates 301\n/webinar /certificacion-pilates 301\n'
+    );
+  } else {
     const webinarHead = {
       title: 'Info Day en Vivo: Próximos Cursos de Certificación Pilates Reformer | Edelweiss Pilates',
       description: 'Sesión informativa en vivo este Sábado 26 de Septiembre a las 11:00 AM CST con Gabi y Laura Munive. Explicación de los próximos cursos: Curso Básico (28h · $25k) y Certificación Completa (48h · $38k) para Querétaro y Monterrey.',

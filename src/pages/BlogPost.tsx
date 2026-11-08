@@ -314,12 +314,7 @@ const BlogPost = () => {
           />
 
           <div className="mt-24 pt-12 border-t border-[#2A2624]/10">
-            <CTASection
-              variant="compact"
-              title="Eleva tu Práctica de Pilates"
-              description="Descubre nuestra colección de Reformers profesionales, diseñados con ingeniería de precisión, con distribución y soporte en México. Envíos asegurados y 12 MSI."
-              whatsappMessage={blogCta(postMeta.category, postMeta.title).whatsappMessage}
-            />
+            <CTASection variant="compact" {...blogCta(postMeta.category, postMeta.title)} />
           </div>
 
           <div className="mt-16">

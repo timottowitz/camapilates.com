@@ -51,11 +51,11 @@ const LuxuryLayout = ({ children, className = "", noPadding = false, headerTheme
                         <div>
                             <h4 className="text-xs uppercase tracking-[0.2em] mb-6 text-white/40 font-semibold">Certificaciones</h4>
                             <ul className="space-y-3 text-xs font-light text-white/80">
-                                <li><Link to="/certificacion-pilates" className="hover:text-white transition-colors">Certificación Reformer México</Link></li>
-                                <li><Link to="/certificacion-pilates/monterrey" className="hover:text-white transition-colors">Sede Monterrey (NL)</Link></li>
-                                <li><Link to="/certificacion-pilates/queretaro" className="hover:text-white transition-colors">Sede Querétaro</Link></li>
-                                <li><Link to="/certificacion-pilates/puebla" className="hover:text-white transition-colors">Sede Puebla</Link></li>
-                                <li><Link to="/certificacion-pilates/guadalajara" className="hover:text-white transition-colors">Sede Guadalajara</Link></li>
+                                <li><Link to="/certificacion-pilates" className="hover:text-white transition-colors">Directorio de Certificaciones</Link></li>
+                                <li><Link to="/certificacion-pilates/monterrey" className="hover:text-white transition-colors">Certificación en Monterrey</Link></li>
+                                <li><Link to="/certificacion-pilates/queretaro" className="hover:text-white transition-colors">Certificación en Querétaro</Link></li>
+                                <li><Link to="/certificacion-pilates/puebla" className="hover:text-white transition-colors">Certificación en Puebla</Link></li>
+                                <li><Link to="/certificacion-pilates/guadalajara" className="hover:text-white transition-colors">Certificación en Guadalajara</Link></li>
                                 <li><Link to="/certificacion-pilates/cdmx" className="hover:text-white transition-colors">STOTT CDMX</Link></li>
                                 <li><Link to="/app" className="hover:text-white transition-colors">Campus Virtual & Whop Hub</Link></li>
                             </ul>

@@ -50,11 +50,11 @@ La confianza que depositas en tu instructor es directamente proporcional a la ca
 
 La raíz del problema radica en la estandarización. Si vives en ciudades medianas o pequeñas fuera del Valle de México o el área metropolitana de Monterrey, la búsqueda de un instructor altamente calificado se complica. Los datos lo confirman: **Solo el 35% de los instructores fuera de CDMX y Monterrey tienen certificaciones internacionales reconocidas** (ST02). Esto significa que la mayoría de los instructores en ciudades como Querétaro, Tijuana o Mérida dependen de certificaciones locales menos rigurosas, lo que genera una brecha técnica significativa y, a menudo, pone en riesgo la seguridad del usuario.
 
-> 🚨 **Convocatoria 2026: Formación Profesional Pilates Reformer en Querétaro y Monterrey**  
-> Para cerrar la brecha de instructoras calificadas en el Bajío y el Norte, Edelweiss abre registro para las cohortes presenciales (Curso Básico 28h / Certificación Completa 48h):  
-> • **Querétaro:** Noviembre 2026. [Ver sede Querétaro →](/certificacion-pilates/queretaro)  
-> • **Monterrey:** Dic 2026 y Ene 2027 (San Pedro). [Ver sede Monterrey →](/certificacion-pilates/monterrey)  
-> • **Lista de espera:** El Info Day del 26 de septiembre ya terminó, ¡gracias a quienes nos acompañaron! Súmate a la lista de espera y te avisaremos primero sobre los próximos cursos. [Unirme a la lista de espera →](/certificacion-pilates/webinar#registro)
+> 🏢 **¿Eres instructora certificada y quieres abrir un estudio en el Bajío o el Norte?**  
+> Ahí hay alumnas buscando clases bien dadas. Cada Reformer es un lugar más que vendes en cada clase.  
+> • 20% de descuento desde 8 Reformers con el pack de estudio.  
+> • Garantía de 3 años, e instalación y calibración en tu estudio.  
+> [Calcula tu pack de estudio →](/packs/estudio) · [Ver Reformers para estudio →](/reformer-para-estudio)
 
 Para que tú, como cliente, te sientas seguro progresando, necesitas instructores que dominen la biomecánica. Es por eso que la industria valora tanto los programas internacionales como Polestar, STOTT o BASI. Estos programas exigen cientos de horas de práctica, anatomía profunda y un entendimiento claro de las contraindicaciones. Cuando tu instructor posee esta base, puede adaptar ejercicios complejos en el Reformer o el Cadillac, asegurando que tu progresión sea efectiva y, sobre todo, segura.
 

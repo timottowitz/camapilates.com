@@ -76,7 +76,9 @@ const ReformerParaCasa = lazyWithRetry(() => import('./pages/ReformerParaCasa'))
 const ReformerParaEstudio = lazyWithRetry(() => import('./pages/ReformerParaEstudio'));
 const PilatesReformerCDMX = lazyWithRetry(() => import('./pages/PilatesReformerCDMX'));
 const PilatesReformerMonterrey = lazyWithRetry(() => import('./pages/PilatesReformerMonterrey'));
-const CertificacionPilates = lazyWithRetry(() => import('./pages/CertificacionPilates'));
+const CertificacionPilates = lazyWithRetry(() =>
+  courseOffer.offerOwnCourses ? import('./pages/CertificacionPilates') : import('./pages/CertificacionDirectorio')
+);
 const CertificacionPilatesCity = lazyWithRetry(() => import('./pages/CertificacionPilatesCity'));
 const CertificacionWebinar = lazyWithRetry(() => import('./pages/CertificacionWebinar'));
 const WebappExperience = lazyWithRetry(() => import('./pages/WebappExperience'));
@@ -97,6 +99,7 @@ const ResetPassword = lazyWithRetry(() => import('./pages/instructores-pilates/R
 import GAListener from "@/components/analytics/GAListener";
 import FloatingCart21 from "@/components/commerce21/FloatingCart21";
 import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
+import courseOffer from "@/content/certification/courseOffer.json";
 import StudioPackPromoModal from "@/components/shop/StudioPackPromoModal";
 import ShoprocketLoader from "@/components/commerce21/ShoprocketLoader";
 import AdminGuard from "@/components/auth/AdminGuard";
@@ -142,8 +145,8 @@ const App = () => (
               <Route path="/pilates-reformer-monterrey" element={<Suspense fallback={<PageLoader />}><PilatesReformerMonterrey /></Suspense>} />
               <Route path="/packs/monterrey" element={<Suspense fallback={<PageLoader />}><PilatesReformerMonterrey /></Suspense>} />
               <Route path="/certificacion-pilates" element={<Suspense fallback={<PageLoader />}><CertificacionPilates /></Suspense>} />
-              <Route path="/certificacion-pilates/webinar" element={<Suspense fallback={<PageLoader />}><CertificacionWebinar /></Suspense>} />
-              <Route path="/webinar" element={<Suspense fallback={<PageLoader />}><CertificacionWebinar /></Suspense>} />
+              <Route path="/certificacion-pilates/webinar" element={courseOffer.offerOwnCourses ? <Suspense fallback={<PageLoader />}><CertificacionWebinar /></Suspense> : <Navigate to="/certificacion-pilates" replace />} />
+              <Route path="/webinar" element={courseOffer.offerOwnCourses ? <Suspense fallback={<PageLoader />}><CertificacionWebinar /></Suspense> : <Navigate to="/certificacion-pilates" replace />} />
               <Route path="/app" element={<Suspense fallback={<PageLoader />}><WebappExperience /></Suspense>} />
               <Route path="/campus" element={<Suspense fallback={<PageLoader />}><WebappExperience /></Suspense>} />
               <Route path="/comunidad" element={<Suspense fallback={<PageLoader />}><WebappExperience /></Suspense>} />

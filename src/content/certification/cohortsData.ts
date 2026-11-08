@@ -3,6 +3,8 @@
  * Incluye la información del Info Day / Sesión Informativa en vivo con Gabi y Laura Munive.
  */
 
+import courseOffer from './courseOffer.json';
+
 export interface CohortWeekend {
   weekendNumber: number;
   dates: string;
@@ -392,7 +394,13 @@ export const CERTIFICATION_COHORTS: Record<'queretaro' | 'monterrey', CityCertif
 };
 
 // Seats are sold until the morning of the first class (Mexico City time).
+// While we don't run our own course, every cohort counts as closed, so pages that list open
+// cohorts or take seat reservations fall back to the directory of other schools.
+// The switch lives in JSON because scripts/static-prerender.cjs reads it too.
+export const OFFER_OWN_COURSES: boolean = courseOffer.offerOwnCourses;
+
 export function isCohortOpen(cohort: CityCertificationCohort, now = new Date()): boolean {
+  if (!OFFER_OWN_COURSES) return false;
   return now < new Date(`${cohort.weekends[0].startDate}T09:00:00-06:00`);
 }
 

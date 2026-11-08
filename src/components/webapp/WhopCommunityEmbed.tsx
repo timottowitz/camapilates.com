@@ -16,6 +16,7 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import { WHOP_CONFIG } from '@/lib/whop/whopConfig';
+import { OFFER_OWN_COURSES } from '@/content/certification/cohortsData';
 import { WhopForumReader } from './WhopForumReader';
 
 export type WhopEmbedTab = 'reader' | 'forum' | 'chat' | 'courses' | 'portal';
@@ -331,10 +332,10 @@ export const WhopCommunityEmbed: React.FC<WhopCommunityEmbedProps> = ({
         </div>
         <div className="flex items-center gap-3">
           <a
-            href="/certificacion-pilates/webinar#registro"
+            href={OFFER_OWN_COURSES ? '/certificacion-pilates/webinar#registro' : '/certificacion-pilates'}
             className="text-neutral-800 hover:text-neutral-950 font-medium underline"
           >
-            Lista de espera próximos cursos →
+            {OFFER_OWN_COURSES ? 'Lista de espera próximos cursos →' : 'Directorio de certificaciones →'}
           </a>
           <a
             href={WHOP_CONFIG.customerPortalUrl}

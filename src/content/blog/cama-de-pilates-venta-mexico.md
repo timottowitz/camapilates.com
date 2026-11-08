@@ -99,11 +99,11 @@ Según Herman (2017, p. 12), es crucial revisar la configuración de los resorte
 **¿Resortes clásicos o modernos?**
 Los clásicos ofrecen esa resistencia orgánica alineada a la filosofía de Contrología de Joseph Pilates (1945, p. 34), mientras que los sistemas modernos brindan una tensión más uniforme. Finalmente, considera la logística: mover una cama profesional de madera sólida a ciudades como Monterrey o Guadalajara desde CDMX puede sumar entre $2,000 y $4,500 MXN al costo final, así que cotiza bien antes de dar el "tarjetazo".
 
-> 🌟 **¿Quieres certificarte profesionalmente en Reformer en Querétaro o Monterrey?**  
-> Si buscas no solo entrenar sino impartir clases o abrir tu propio estudio, abrimos convocatorias presenciales (Curso Básico 28h / Certificación Completa 48h) en fines de semana (12 lugares por ciudad):  
-> • **Querétaro:** Noviembre 2026. [Ver cohorte Querétaro →](/certificacion-pilates/queretaro)  
-> • **Monterrey:** Dic 2026 y Ene 2027. [Ver cohorte Monterrey →](/certificacion-pilates/monterrey)  
-> • **Lista de espera:** El Info Day del 26 de septiembre ya terminó, ¡gracias a quienes nos acompañaron! Súmate a la lista de espera y te avisaremos primero sobre los próximos cursos. [Unirme a la lista de espera →](/certificacion-pilates/webinar#registro)
+> 🏢 **¿Vas a dar clases o abrir tu propio estudio? Cada Reformer es un lugar más que vendes en cada clase.**  
+> • 20% de descuento desde 8 Reformers con el pack de estudio.  
+> • Roble, maple o aluminio, con garantía de 3 años.  
+> • Los instalamos y calibramos en tu estudio, con envío a toda la República.  
+> [Calcula tu pack de estudio →](/packs/estudio) · [Cotiza por WhatsApp, sin compromiso →](/reformer-para-estudio)
 
 ## FAQ
 

@@ -62,11 +62,10 @@ Esto nos lleva al **instructor**. No te dejes llevar solo por quien tenga más s
 
 Finalmente, observa la higiene y el ratio de alumnos. Las correas de manos y pies (*loops*) deben verse limpias y sin deshilacharse; recuerda que el sudor y el vinil son mala combinación si no se limpian tras cada uso. Busca clases donde el instructor pueda atenderte; si pagas $350 MXN o más por clase, mereces correcciones personalizadas, no ser uno más en una sala de 20 personas sin supervisión.
 
-> 🌟 **¿Quieres formarte como Instructora Certificada en Monterrey o Querétaro?**  
-> Si quieres enseñar con rigor biomecánico en estudios boutique o abrir tu propio espacio:  
-> • **Monterrey:** 5 de Diciembre 2026 al 17 de Enero 2027 (4 fines de semana en San Pedro). [Ver sede Monterrey →](/certificacion-pilates/monterrey)  
-> • **Querétaro:** 7 al 29 de Noviembre 2026 (4 fines de semana). [Ver sede Querétaro →](/certificacion-pilates/queretaro)  
-> • **Lista de espera:** El Info Day del 26 de septiembre ya terminó, ¡gracias a quienes nos acompañaron! Súmate a la lista de espera y te avisaremos primero sobre los próximos cursos. [Unirme a la lista de espera →](/certificacion-pilates/webinar#registro)
+> 🏢 **¿Vas a abrir tu propio estudio? Dales a tus alumnas el equipo que esta guía les pide buscar.**  
+> Reformers de roble, maple o aluminio, con garantía de 3 años. Los instalamos y calibramos en tu estudio, en cualquier parte de la República.  
+> Desde 8 Reformers tienes 20% de descuento: cada Reformer es un lugar más que vendes en cada clase.  
+> [Calcula tu pack de estudio →](/packs/estudio) · [Ver Reformers para estudio →](/reformer-para-estudio)
 
 ## 4. Análisis de Precios: Membresías vs. Home Studio
 
