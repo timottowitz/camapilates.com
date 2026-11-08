@@ -17,6 +17,7 @@ export function toAbsoluteUrl(maybePath: string | undefined | null): string | un
 
 import { getVersionedImageUrl } from '@/hooks/useVersionedImage';
 import { allProducts } from '@/lib/shop/catalog';
+import shopPolicy from '@/content/shop-policy.json';
 
 export const DEFAULTS = {
   siteName: (import.meta as any).env?.VITE_SITE_NAME || 'Edelweiss Pilates',
@@ -71,7 +72,7 @@ function reformerAggregateOffer() {
     lowPrice: Math.min(...prices),
     highPrice: Math.max(...prices),
     offerCount: prices.length,
-    availability: 'https://schema.org/InStock',
+    availability: shopPolicy.availability,
     url: `${getOrigin()}/shop/category/reformers`,
   };
 }
@@ -831,7 +832,7 @@ export function generateCompareSchema() {
               '@type': 'Offer',
               price: product.price,
               priceCurrency: 'MXN',
-              availability: 'https://schema.org/InStock',
+              availability: shopPolicy.availability,
               itemCondition: 'https://schema.org/NewCondition',
             },
           },

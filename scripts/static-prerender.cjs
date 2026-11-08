@@ -8,6 +8,7 @@ const ROOT = path.resolve(__dirname, '..');
 const DIST = path.join(ROOT, 'dist');
 const CONTENT = path.join(ROOT, 'src', 'content', 'blog');
 const PRODUCTS = path.join(ROOT, 'src', 'content', 'products.json');
+const SHOP_POLICY = JSON.parse(fs.readFileSync(path.join(ROOT, 'src', 'content', 'shop-policy.json'), 'utf8'));
 const STUDIOS = path.join(ROOT, 'src', 'data', 'studios.json');
 const SHOP_CATEGORY_SEO = JSON.parse(
   fs.readFileSync(path.join(ROOT, 'src', 'content', 'shop-category-seo.json'), 'utf8')
@@ -584,7 +585,7 @@ function buildCamaDePilatesPage(reformers, origin) {
         <div class="p-4 bg-white rounded-xl border border-stone-100 shadow-sm">
           <div class="text-xl mb-1">🚚</div>
           <h4 class="font-bold text-sm text-stone-900">Envío Asegurado 32 Estados</h4>
-          <p class="text-xs text-stone-600 mt-1">Flete asegurado a todo el país en 3 a 8 semanas.</p>
+          <p class="text-xs text-stone-600 mt-1">Flete asegurado a todo el país. Fabricación bajo pedido: ${SHOP_POLICY.deliveryWindow}.</p>
         </div>
         <div class="p-4 bg-white rounded-xl border border-stone-100 shadow-sm">
           <div class="text-xl mb-1">🛡️</div>
@@ -911,7 +912,7 @@ function buildCamaDePilatesPage(reformers, origin) {
               <span class="text-stone-400 group-open:rotate-45 transition-transform text-2xl font-light">+</span>
             </summary>
             <div class="mt-4 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
-              Sí, realizamos envíos asegurados a las 32 entidades federativas del país. La mercancía viaja con seguro contra daños de transporte puerta a puerta. El tiempo estimado de producción y entrega es de 3 a 8 semanas según el acabado y modelo seleccionado.
+              Sí, realizamos envíos asegurados a las 32 entidades federativas del país. La mercancía viaja con seguro contra daños de transporte puerta a puerta. Fabricamos cada equipo bajo pedido; la entrega es de ${SHOP_POLICY.deliveryWindow}.
             </div>
           </details>
 
@@ -1439,7 +1440,7 @@ function renderProduct(p, origin) {
       url: `${origin}/product/${p.slug}`,
       priceCurrency: p.currency,
       price: p.price,
-      availability: p.availability,
+      availability: SHOP_POLICY.availability,
       itemCondition: 'https://schema.org/NewCondition',
       hasMerchantReturnPolicy: {
         '@type': 'MerchantReturnPolicy',
@@ -1453,11 +1454,7 @@ function renderProduct(p, origin) {
         {
           '@type': 'OfferShippingDetails',
           shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'MX' },
-          deliveryTime: {
-            '@type': 'ShippingDeliveryTime',
-            handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 2, unitCode: 'DAY' },
-            transitTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' }
-          },
+          deliveryTime: SHOP_POLICY.shippingDeliveryTime,
           shippingRate: {
             '@type': 'MonetaryAmount',
             value: '0',
@@ -1914,7 +1911,7 @@ async function main() {
         url: `${origin}/reformer-para-casa`,
         priceCurrency: 'MXN',
         price: home.price,
-        availability: 'https://schema.org/InStock',
+        availability: SHOP_POLICY.availability,
         itemCondition: 'https://schema.org/NewCondition',
         seller: { '@type': 'Organization', name: 'Edelweiss Pilates' },
         hasMerchantReturnPolicy: {
@@ -1929,11 +1926,7 @@ async function main() {
           {
             '@type': 'OfferShippingDetails',
             shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'MX' },
-            deliveryTime: {
-              '@type': 'ShippingDeliveryTime',
-              handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 2, unitCode: 'DAY' },
-              transitTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' }
-            },
+            deliveryTime: SHOP_POLICY.shippingDeliveryTime,
             shippingRate: {
               '@type': 'MonetaryAmount',
               value: '0',
@@ -2114,7 +2107,7 @@ async function main() {
           name: '¿Hacen envíos a Monterrey, Guadalajara, Querétaro y todo México?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Sí, realizamos envíos asegurados a las 32 entidades federativas del país. La mercancía viaja con seguro contra daños de transporte puerta a puerta. El tiempo estimado de producción y entrega es de 3 a 8 semanas según el acabado y modelo seleccionado.'
+            text: 'Sí, realizamos envíos asegurados a las 32 entidades federativas del país. La mercancía viaja con seguro contra daños de transporte puerta a puerta. Fabricamos cada equipo bajo pedido; la entrega es de ' + SHOP_POLICY.deliveryWindow + '.'
           }
         },
         {
@@ -2702,7 +2695,7 @@ async function main() {
         <h1 class="text-3xl font-bold text-gray-900 mb-4">${htmlEscape(meta.title)}</h1>
         <p class="text-lg text-gray-600 max-w-2xl mb-6"><a href="/packs/monterrey" class="text-amber-800 underline">Pack para estudios</a>: a partir de 8 <a href="/blog/cama-de-pilates-guia-de-compra" class="text-amber-800 underline">camas de Pilates Reformer</a> obtén 20% de descuento. Instalación coordinada, garantía 1 año y repuestos exprés.</p>
         <div class="flex flex-wrap gap-4 mt-6">
-          <a href="/packs/monterrey" class="px-5 py-2.5 rounded-lg border border-gray-300 font-semibold hover:bg-gray-50">Pack Monterrey (7 Días)</a>
+          <a href="/packs/monterrey" class="px-5 py-2.5 rounded-lg border border-gray-300 font-semibold hover:bg-gray-50">Pack Monterrey</a>
           <a href="/blog/cama-de-pilates-guia-de-compra" class="px-5 py-2.5 rounded-lg border border-gray-300 font-semibold hover:bg-gray-50">Guía de Compra</a>
           <a href="/reformer-para-estudio" class="px-5 py-2.5 rounded-lg border border-gray-300 font-semibold hover:bg-gray-50">Reformers para Estudio</a>
         </div>
@@ -2711,7 +2704,7 @@ async function main() {
       body = `
       <section class="container mx-auto px-4 py-12">
         <h1 class="text-3xl font-bold text-gray-900 mb-4">${htmlEscape(meta.title)}</h1>
-        <p class="text-lg text-gray-600 max-w-2xl mb-6">Arma tu <a href="/packs/estudio" class="text-amber-800 underline">estudio de Pilates Reformer</a> en Monterrey y ZMM (<a href="/packs/monterrey" class="text-amber-800 underline">San Pedro Garza García, Valle Oriente, Cumbres, Carretera Nacional</a>). Envíos express de Paquetes Studio Reformer a Monterrey en 7 días hábiles.</p>
+        <p class="text-lg text-gray-600 max-w-2xl mb-6">Arma tu <a href="/packs/estudio" class="text-amber-800 underline">estudio de Pilates Reformer</a> en Monterrey y ZMM (<a href="/packs/monterrey" class="text-amber-800 underline">San Pedro Garza García, Valle Oriente, Cumbres, Carretera Nacional</a>). Paquetes Studio Reformer fabricados bajo pedido, con entrega en Monterrey en ${SHOP_POLICY.deliveryWindow}.</p>
         <div class="flex flex-wrap gap-4 mt-6">
           <a href="/packs/estudio" class="px-5 py-2.5 rounded-lg border border-gray-300 font-semibold hover:bg-gray-50">Pack para Estudios Nacional</a>
           <a href="/packs/monterrey" class="px-5 py-2.5 rounded-lg border border-gray-300 font-semibold hover:bg-gray-50">Paquetes Monterrey</a>

@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { DEFAULTS, getOrigin } from '@/lib/seo';
 import { requireRouteMeta } from '@/lib/routeMeta';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
+import shopPolicy from '@/content/shop-policy.json';
 
 const LegalTerms: React.FC = () => {
   const { title, description: desc } = requireRouteMeta('/legal/terminos');
@@ -29,7 +30,7 @@ const LegalTerms: React.FC = () => {
 
           <h3 className="font-serif italic text-[#2A2624] mt-12 mb-4">2. Envíos y Entregas</h3>
           <p>
-            Realizamos envíos asegurados a los 32 estados de la República Mexicana (Jalisco, Nuevo León, Querétaro, Quintana Roo, Baja California, Yucatán, Puebla, Veracruz, CDMX y más). El tiempo estimado de producción y entrega oscila entre 3 y 6–8 semanas según el modelo de equipo.
+            Realizamos envíos asegurados a los 32 estados de la República Mexicana (Jalisco, Nuevo León, Querétaro, Quintana Roo, Baja California, Yucatán, Puebla, Veracruz, CDMX y más). Todos los equipos se fabrican bajo pedido; el tiempo de producción y entrega es de {shopPolicy.deliveryWindow}.
           </p>
 
           <h3 className="font-serif italic text-[#2A2624] mt-12 mb-4">3. Garantía</h3>

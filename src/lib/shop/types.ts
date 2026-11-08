@@ -45,7 +45,6 @@ export type Product = {
   image: string;
   price: string; // keep as string in content; format for UI
   currency: string; // e.g., MXN
-  availability: string; // schema URL
   productId: string; // Shoprocket product id
   publishableKey: string; // Shoprocket key
   category?: string; // e.g., Reformers, Accesorios, Ropa, Terapia de Luz
@@ -54,7 +53,6 @@ export type Product = {
   finishes?: FinishKey[];
   materials?: string[];
   warranty?: string;
-  deliveryTime?: string; // e.g., "6–8 semanas (fabricación bajo pedido)"
   variants?: ProductVariant[];
   bestSeller?: boolean;
   isNew?: boolean;

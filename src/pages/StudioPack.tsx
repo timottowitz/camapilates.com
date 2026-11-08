@@ -7,6 +7,7 @@ import { TOWER } from '@/lib/shop/priceRanges';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
+import shopPolicy from '@/content/shop-policy.json';
 
 const StudioPack: React.FC = () => {
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://camadepilates.com';
@@ -43,7 +44,7 @@ const StudioPack: React.FC = () => {
       lowPrice: 8 * discounted,
       highPrice: 20 * discounted,
       offerCount: 2,
-      availability: 'https://schema.org/InStock',
+      availability: shopPolicy.availability,
     },
   };
 
@@ -274,7 +275,7 @@ const StudioPack: React.FC = () => {
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
             <Link to="/packs/monterrey" className="p-6 rounded-xl border border-[#2A2624]/10 bg-white hover:border-[#2A2624] transition-all group">
               <h3 className="font-semibold text-[#2A2624] group-hover:text-[#EB4C42] mb-2">Pack para estudios en Monterrey</h3>
-              <p className="text-xs text-[#5D5550] leading-relaxed">Ruta prioritaria a San Pedro, Valle Oriente y Carretera Nacional en 7 días hábiles.</p>
+              <p className="text-xs text-[#5D5550] leading-relaxed">Entrega en San Pedro, Valle Oriente, Carretera Nacional y toda la ZMM.</p>
             </Link>
             <Link to="/blog/cama-de-pilates-guia-de-compra" className="p-6 rounded-xl border border-[#2A2624]/10 bg-white hover:border-[#2A2624] transition-all group">
               <h3 className="font-semibold text-[#2A2624] group-hover:text-[#EB4C42] mb-2">Guía de Compra de Camas de Pilates</h3>

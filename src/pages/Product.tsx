@@ -18,6 +18,7 @@ import { motion } from 'framer-motion';
 import { isReformerBed, calculateBundlePrice, type BundleQuantity } from '@/lib/shop/bundles';
 import { BundleSelector } from '@/components/shop/BundleSelector';
 import productInternalLinks from '@/content/product-internal-links.json';
+import shopPolicy from '@/content/shop-policy.json';
 
 const ProductPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -26,28 +27,11 @@ const ProductPage: React.FC = () => {
 
   const safeProd = prod ?? allProducts()[0];
 
-  const initialRegion = ((): 'MX' | 'US' | 'DE' => {
-    if (typeof window === 'undefined') return 'MX';
-    const v = window.localStorage?.getItem('regionPref');
-    return (v === 'US' || v === 'DE' || v === 'MX') ? v : 'MX';
-  })();
-  const [region, setRegion] = useState<'MX' | 'US' | 'DE'>(initialRegion);
   const [finish, setFinish] = useState<FinishKey>('walnut');
   const [agg, setAgg] = useState<{ ratingValue: string; reviewCount: number } | undefined>(undefined);
   const [selectedQuantity, setSelectedQuantity] = useState<BundleQuantity>(1);
 
   const isReformer = useMemo(() => isReformerBed(safeProd), [safeProd]);
-
-  const estimate = useMemo(() => {
-    if (region === 'MX') return safeProd.deliveryTime || '3 semanas';
-    if (region === 'US') return '4–5 semanas (estimado)';
-    return '4–6 semanas (estimado)';
-  }, [region, safeProd]);
-
-  const onChangeRegion = (value: 'MX' | 'US' | 'DE') => {
-    setRegion(value);
-    try { if (typeof window !== 'undefined') window.localStorage.setItem('regionPref', value); } catch { /* ignore */ }
-  };
 
   // React Router keeps this component mounted when only the slug changes, so without
   // this a pack chosen on one machine follows you to the next one: the new product
@@ -116,7 +100,7 @@ const ProductPage: React.FC = () => {
       priceCurrency: safeProd.currency,
       price: priceToShow,
       priceValidUntil: '2026-12-31',
-      availability: safeProd.availability,
+      availability: shopPolicy.availability,
       itemCondition: 'https://schema.org/NewCondition',
       hasMerchantReturnPolicy: {
         '@type': 'MerchantReturnPolicy',
@@ -126,37 +110,11 @@ const ProductPage: React.FC = () => {
         returnMethod: 'https://schema.org/ReturnByMail',
         returnFees: 'https://schema.org/FreeReturn'
       },
-      shippingDetails: [
-        {
-          '@type': 'OfferShippingDetails',
-          shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'MX' },
-          deliveryTime: {
-            '@type': 'ShippingDeliveryTime',
-            handlingTime: safeProd.deliveryTime
-              ? { '@type': 'QuantitativeValue', minValue: 42, maxValue: 56, unitCode: 'DAY' }
-              : { '@type': 'QuantitativeValue', minValue: 0, maxValue: 2, unitCode: 'DAY' },
-            transitTime: { '@type': 'QuantitativeValue', minValue: safeProd.deliveryTime ? 0 : 19, maxValue: safeProd.deliveryTime ? 7 : 21, unitCode: 'DAY' }
-          }
-        },
-        {
-          '@type': 'OfferShippingDetails',
-          shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'US' },
-          deliveryTime: {
-            '@type': 'ShippingDeliveryTime',
-            handlingTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 4, unitCode: 'DAY' },
-            transitTime: { '@type': 'QuantitativeValue', minValue: 26, maxValue: 35, unitCode: 'DAY' }
-          }
-        },
-        {
-          '@type': 'OfferShippingDetails',
-          shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'DE' },
-          deliveryTime: {
-            '@type': 'ShippingDeliveryTime',
-            handlingTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 5, unitCode: 'DAY' },
-            transitTime: { '@type': 'QuantitativeValue', minValue: 26, maxValue: 42, unitCode: 'DAY' }
-          }
-        }
-      ]
+      shippingDetails: ['MX', 'US', 'DE'].map((addressCountry) => ({
+        '@type': 'OfferShippingDetails',
+        shippingDestination: { '@type': 'DefinedRegion', addressCountry },
+        deliveryTime: shopPolicy.shippingDeliveryTime
+      }))
     }
   } as Record<string, unknown>;
   if (agg) productSchema.aggregateRating = { '@type': 'AggregateRating', ...agg };
@@ -178,7 +136,7 @@ const ProductPage: React.FC = () => {
         name: '¿Envían a cualquier estado de México?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `Sí. Enviamos a los 32 estados de la República Mexicana con flete especializado y empaque reforzado. Tiempo de entrega: ${safeProd.deliveryTime || 'consúltalo por WhatsApp'}.`
+          text: `Sí. Enviamos a los 32 estados de la República Mexicana con flete especializado y empaque reforzado. Tiempo de entrega: ${shopPolicy.deliveryTime}.`
         }
       },
       {
@@ -309,15 +267,8 @@ const ProductPage: React.FC = () => {
             }}
             className="space-y-8 md:sticky md:top-32"
           >
-            {/* Region selector */}
-            <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[#5D5550]">
-              <label htmlFor="region" className="mr-2">Región:</label>
-              <select id="region" className="bg-transparent border-none focus:ring-0 p-0 text-[#2A2624] font-medium cursor-pointer" value={region} onChange={(e) => onChangeRegion(e.target.value as 'MX' | 'US' | 'DE')}>
-                <option value="MX">México</option>
-                <option value="US">USA</option>
-                <option value="DE">Europe</option>
-              </select>
-              <span className="ml-3 opacity-50 border-l border-[#2A2624]/20 pl-3">Entrega: {estimate}</span>
+            <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="text-[10px] uppercase tracking-[0.2em] text-[#5D5550]">
+              Entrega: {shopPolicy.deliveryTime}
             </motion.div>
 
             <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}>
@@ -356,7 +307,7 @@ const ProductPage: React.FC = () => {
                   <span className="text-sm font-sans not-italic text-[#5D5550] tracking-normal">{prod.currency}</span>
                 </div>
                 <div className="text-[10px] uppercase tracking-[0.2em] text-[#3E2723] flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723] animate-pulse" /> En stock
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]" /> Fabricación bajo pedido
                 </div>
               </div>
 
@@ -509,12 +460,12 @@ const ProductPage: React.FC = () => {
         {/* FAQ & Related */}
         <div className="mt-32 grid md:grid-cols-3 gap-16 border-t border-[#2A2624]/10 pt-16">
           <div className="md:col-span-2 space-y-12">
-            <h2 className="text-4xl font-serif italic text-[#2A2624]">Common Questions</h2>
+            <h2 className="text-4xl font-serif italic text-[#2A2624]">Preguntas frecuentes</h2>
             <div className="space-y-6">
               {[
-                { q: '¿Cuánto tarda la entrega?', a: 'En México la entrega estimada es de 3 semanas. Envíos a EE. UU. y Europa entre 4–6 semanas.' },
-                { q: '¿Qué garantía incluye?', a: 'Garantía de 1 año que cubre defectos de fabricación en estructura, muelles y accesorios básicos.' },
-                { q: '¿Qué materiales y acabados tiene?', a: 'Cuero genuino o de micelio (opción sostenible), madera de nogal y acero estructural.' }
+                { q: '¿Cuánto tarda la entrega?', a: `${shopPolicy.deliveryTime}, tanto en México como en EE. UU. y Europa.` },
+                { q: '¿Qué garantía incluye?', a: `Garantía de ${safeProd.warranty ?? '1 año'} contra defectos de fabricación, con soporte en español.` },
+                { q: '¿De qué materiales está hecho?', a: `Materiales: ${(safeProd.materials ?? []).join(', ')}.` }
               ].map((faq, i) => (
                 <details key={i} className="group bg-transparent border-b border-[#2A2624]/10 pb-6">
                   <summary className="font-serif italic text-xl text-[#2A2624] cursor-pointer hover:text-[#3E2723] transition-colors list-none flex justify-between items-center">
@@ -529,7 +480,7 @@ const ProductPage: React.FC = () => {
             </div>
           </div>
           <div>
-            <h2 className="text-4xl font-serif italic text-[#2A2624] mb-10">Related</h2>
+            <h2 className="text-4xl font-serif italic text-[#2A2624] mb-10">También te puede interesar</h2>
             <div className="space-y-10">
               {(() => {
                 const rawLinks = (productInternalLinks as Record<string, Array<{ target: string; role: string; anchor?: string }>>)[safeProd.slug] || [];

@@ -61,9 +61,9 @@ const sitemapData: SitemapSection[] = [
         badge: 'Ahorro',
       },
       {
-        title: 'Estudio Reformer Monterrey (Pack Express)',
+        title: 'Estudio Reformer Monterrey',
         path: '/packs/monterrey',
-        description: 'Paquetes con logística express para San Pedro Garza García y Monterrey en 7 días.',
+        description: 'Paquetes de reformers para estudios en San Pedro Garza García y Monterrey.',
       },
       {
         title: 'Catálogo de Reformers en Tienda',

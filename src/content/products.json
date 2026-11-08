@@ -13,14 +13,12 @@
     ],
     "price": "17425.50",
     "currency": "MXN",
-    "availability": "https://schema.org/InStock",
     "category": "Reformers",
     "type": "madera",
     "materials": [
       "roble macizo"
     ],
     "warranty": "3 años",
-    "deliveryTime": "6–8 semanas (fabricación bajo pedido)",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_clasico_roble_pl006_placeholder",
@@ -49,7 +47,6 @@
     ],
     "price": "24675.75",
     "currency": "MXN",
-    "availability": "https://schema.org/InStock",
     "category": "Reformers",
     "type": "madera",
     "materials": [
@@ -57,7 +54,6 @@
       "tubo de acero inoxidable"
     ],
     "warranty": "3 años",
-    "deliveryTime": "6–8 semanas (fabricación bajo pedido)",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_clasico_roble_torre_pl006a_placeholder",
@@ -87,14 +83,12 @@
     ],
     "price": "21750.00",
     "currency": "MXN",
-    "availability": "https://schema.org/InStock",
     "category": "Reformers",
     "type": "madera",
     "materials": [
       "maple blanco"
     ],
     "warranty": "3 años",
-    "deliveryTime": "6–8 semanas (fabricación bajo pedido)",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_clasico_maple_pl001_placeholder",
@@ -123,7 +117,6 @@
     ],
     "price": "29000.25",
     "currency": "MXN",
-    "availability": "https://schema.org/InStock",
     "category": "Reformers",
     "type": "madera",
     "materials": [
@@ -131,7 +124,6 @@
       "tubo de acero inoxidable"
     ],
     "warranty": "3 años",
-    "deliveryTime": "6–8 semanas (fabricación bajo pedido)",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_clasico_maple_torre_pl001a_placeholder",
@@ -161,14 +153,12 @@
     ],
     "price": "24675.75",
     "currency": "MXN",
-    "availability": "https://schema.org/InStock",
     "category": "Reformers",
     "type": "madera",
     "materials": [
       "maple blanco"
     ],
     "warranty": "3 años",
-    "deliveryTime": "6–8 semanas (fabricación bajo pedido)",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_maple_alta_gama_pl001m_placeholder",
@@ -197,14 +187,12 @@
     ],
     "price": "17616.00",
     "currency": "MXN",
-    "availability": "https://schema.org/InStock",
     "category": "Reformers",
     "type": "aluminio",
     "materials": [
       "aluminio"
     ],
     "warranty": "3 años",
-    "deliveryTime": "6–8 semanas (fabricación bajo pedido)",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_elite_aluminio_pl019_placeholder",
@@ -233,14 +221,12 @@
     ],
     "price": "21177.75",
     "currency": "MXN",
-    "availability": "https://schema.org/InStock",
     "category": "Reformers",
     "type": "plegable",
     "materials": [
       "roble"
     ],
     "warranty": "3 años",
-    "deliveryTime": "6–8 semanas (fabricación bajo pedido)",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_plegable_roble_pl0015s_placeholder",
@@ -270,14 +256,12 @@
     ],
     "price": "18824.25",
     "currency": "MXN",
-    "availability": "https://schema.org/InStock",
     "category": "Reformers",
     "type": "plegable",
     "materials": [
       "aluminio"
     ],
     "warranty": "3 años",
-    "deliveryTime": "6–8 semanas (fabricación bajo pedido)",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_reformer_plegable_aluminio_pl019f_placeholder",
@@ -307,14 +291,12 @@
     ],
     "price": "63787.50",
     "currency": "MXN",
-    "availability": "https://schema.org/InStock",
     "category": "Reformers",
     "type": "gimnasio",
     "materials": [
       "aleación de aluminio"
     ],
     "warranty": "3 años",
-    "deliveryTime": "6–8 semanas (fabricación bajo pedido)",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_gym_reformer_l009bt_placeholder",
@@ -343,14 +325,12 @@
     ],
     "price": "52212.75",
     "currency": "MXN",
-    "availability": "https://schema.org/InStock",
     "category": "Reformers",
     "type": "gimnasio",
     "materials": [
       "aleación de aluminio"
     ],
     "warranty": "3 años",
-    "deliveryTime": "6–8 semanas (fabricación bajo pedido)",
     "bestSeller": true,
     "isNew": true,
     "productId": "prod_gym_reformer_l009e_placeholder",
@@ -375,7 +355,6 @@
     "hoverImage": "/images/products/cintas-de-pilates-studio.webp",
     "price": "763.50",
     "currency": "MXN",
-    "availability": "https://schema.org/InStock",
     "category": "Accesorios",
     "materials": [
       "algodón orgánico",
@@ -401,7 +380,6 @@
     "hoverImage": "/images/products/calcetines-antideslizantes-studio.webp",
     "price": "286.50",
     "currency": "MXN",
-    "availability": "https://schema.org/InStock",
     "category": "Accesorios",
     "materials": [
       "algodón orgánico certificado GOTS",
@@ -445,7 +423,6 @@
     "hoverImage": "/images/products/calcetines-pack-3-studio.webp",
     "price": "731.25",
     "currency": "MXN",
-    "availability": "https://schema.org/InStock",
     "category": "Accesorios",
     "materials": [
       "algodón orgánico certificado GOTS",
@@ -472,7 +449,6 @@
     "hoverImage": "/images/products/leggings-organicos-fitted-studio.webp",
     "price": "1144.50",
     "currency": "MXN",
-    "availability": "https://schema.org/InStock",
     "category": "Ropa",
     "materials": [
       "algodón orgánico certificado GOTS",
@@ -516,7 +492,6 @@
     "hoverImage": "/images/products/top-organico-fitted-studio.webp",
     "price": "763.50",
     "currency": "MXN",
-    "availability": "https://schema.org/InStock",
     "category": "Ropa",
     "materials": [
       "algodón orgánico certificado GOTS",
@@ -560,7 +535,6 @@
     "hoverImage": "/images/products/conjunto-fitted-organico-studio.webp",
     "price": "1716.75",
     "currency": "MXN",
-    "availability": "https://schema.org/InStock",
     "category": "Ropa",
     "materials": [
       "algodón orgánico certificado GOTS",
@@ -604,7 +578,6 @@
     "hoverImage": "/images/products/pantalon-organico-relaxed-studio.webp",
     "price": "1017.75",
     "currency": "MXN",
-    "availability": "https://schema.org/InStock",
     "category": "Ropa",
     "materials": [
       "algodón orgánico certificado GOTS",
@@ -648,7 +621,6 @@
     "hoverImage": "/images/products/top-organico-relaxed-studio.webp",
     "price": "699.75",
     "currency": "MXN",
-    "availability": "https://schema.org/InStock",
     "category": "Ropa",
     "materials": [
       "algodón orgánico certificado GOTS",
@@ -692,7 +664,6 @@
     "hoverImage": "/images/products/conjunto-relaxed-organico-studio.webp",
     "price": "1545.75",
     "currency": "MXN",
-    "availability": "https://schema.org/InStock",
     "category": "Ropa",
     "materials": [
       "algodón orgánico certificado GOTS",

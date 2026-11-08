@@ -1,0 +1,10 @@
+{
+  "deliveryWindow": "6–8 semanas",
+  "deliveryTime": "6–8 semanas (fabricación bajo pedido)",
+  "availability": "https://schema.org/MadeToOrder",
+  "shippingDeliveryTime": {
+    "@type": "ShippingDeliveryTime",
+    "handlingTime": { "@type": "QuantitativeValue", "minValue": 35, "maxValue": 49, "unitCode": "DAY" },
+    "transitTime": { "@type": "QuantitativeValue", "minValue": 7, "maxValue": 7, "unitCode": "DAY" }
+  }
+}

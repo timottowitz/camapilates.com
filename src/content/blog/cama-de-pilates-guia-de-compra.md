@@ -142,7 +142,7 @@ Consulta nuestra **[guía de precios de camas de Pilates](/cama-de-pilates/preci
 6) Poleas con rodamientos sellados; giro suave.
 7) Accesorios base: box/correas/poleas.
 8) Garantía 1 año y repuestos exprés.
-9) Entrega 3 semanas (MX) y soporte en español.
+9) Fabricación bajo pedido, entrega en 6–8 semanas y soporte en español.
 10) Costo total en 1 año (mantenimiento + recambios + tiempo de inactividad).
 
 ## Recomendaciones Edelweiss Pilates

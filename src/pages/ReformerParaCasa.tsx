@@ -7,6 +7,7 @@ import { getBySlug, priceLabel } from '@/lib/shop/catalog';
 import { CATALOG_MIN, HOME } from '@/lib/shop/priceRanges';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { Home, Check, ArrowRight, Ruler, Volume2, Shield, Truck, MessageCircle } from 'lucide-react';
+import shopPolicy from '@/content/shop-policy.json';
 
 const FEATURED_SLUG = 'reformer-plegable-aluminio-pl019f';
 
@@ -72,7 +73,7 @@ const ReformerParaCasa: React.FC = () => {
       url,
       priceCurrency: 'MXN',
       price: home.price,
-      availability: 'https://schema.org/InStock',
+      availability: shopPolicy.availability,
       itemCondition: 'https://schema.org/NewCondition',
       seller: { '@type': 'Organization', name: 'Edelweiss Pilates' },
       hasMerchantReturnPolicy: {
@@ -87,11 +88,7 @@ const ReformerParaCasa: React.FC = () => {
         {
           '@type': 'OfferShippingDetails',
           shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'MX' },
-          deliveryTime: {
-            '@type': 'ShippingDeliveryTime',
-            handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 2, unitCode: 'DAY' },
-            transitTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' }
-          },
+          deliveryTime: shopPolicy.shippingDeliveryTime,
           shippingRate: {
             '@type': 'MonetaryAmount',
             value: '0',
@@ -254,7 +251,7 @@ const ReformerParaCasa: React.FC = () => {
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-[#3E2723] mt-0.5 shrink-0" />
-                  <span className="text-[#5D5550]">Entrega en 6–8 semanas en todo México</span>
+                  <span className="text-[#5D5550]">Entrega en {shopPolicy.deliveryWindow} en todo México</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-[#3E2723] mt-0.5 shrink-0" />

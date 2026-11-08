@@ -14,7 +14,6 @@ type ReformerProduct = {
   image: string;
   price: string;
   currency: string;
-  availability: string;
   category: string;
 };
 
@@ -23,9 +22,7 @@ const ReformerParaEstudio: React.FC = () => {
   const url = `${origin}/reformer-para-estudio`;
   const { title, description } = requireRouteMeta("/reformer-para-estudio");
   const reformers = (products as ReformerProduct[]).filter(
-    (product) =>
-      product.category === "Reformers" &&
-      product.availability === "https://schema.org/InStock",
+    (product) => product.category === "Reformers",
   );
 
   const itemList = {

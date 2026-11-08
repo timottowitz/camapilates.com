@@ -6,13 +6,14 @@ import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { MapPin, Building2, Truck, ShieldCheck, ArrowRight, MessageCircle, Sparkles, Clock, CheckCircle2 } from 'lucide-react';
 import { calculateBundlePrice, type BundleQuantity } from '@/lib/shop/bundles';
 import { allProducts } from '@/lib/shop/catalog';
+import shopPolicy from '@/content/shop-policy.json';
 import CertificationWebinarBanner from '@/components/certification/CertificationWebinarBanner';
 
 export const PilatesReformerMonterrey: React.FC = () => {
   const origin = getOrigin();
   const url = `${origin}/pilates-reformer-monterrey`;
-  const title = 'Arma Tu Estudio de Pilates en Monterrey | Reformer Studio Packs Envío 7 Días';
-  const desc = 'Arma tu estudio de Pilates Reformer en Monterrey y ZMM (San Pedro Garza García, Valle Oriente, Cumbres, Carretera Nacional). Paquetes de Reformers con envío express garantizado en 7 días hábiles.';
+  const title = 'Arma Tu Estudio de Pilates en Monterrey | Paquetes de Reformer para Estudio';
+  const desc = `Arma tu estudio de Pilates Reformer en Monterrey y ZMM (San Pedro Garza García, Valle Oriente, Cumbres, Carretera Nacional). Paquetes de Reformers fabricados bajo pedido, con entrega en ${shopPolicy.deliveryWindow}.`;
 
   // Interactive Configurator State
   const reformers = useMemo(() => {
@@ -36,15 +37,15 @@ export const PilatesReformerMonterrey: React.FC = () => {
   const whatsappMessage = useMemo(() => {
     const text = `Hola, me interesa armar mi estudio en Monterrey con el ${selectedProd?.name}. ` +
       `Paquete seleccionado: ${selectedQty} Unidades ($${bundleCalc.discountedTotalPrice.toLocaleString('es-MX')} MXN). ` +
-      `Me gustaría confirmar el envío express de 7 días hábiles a Monterrey.`;
+      `Me gustaría confirmar la fecha de entrega en Monterrey.`;
     return `https://wa.me/525548468190?text=${encodeURIComponent(text)}`;
   }, [selectedProd, selectedQty, bundleCalc]);
 
   const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: 'Edelweiss Pilates - Envíos Express Monterrey',
-    description: 'Venta de paquetes de camas de Pilates Reformer para estudios en Monterrey y Zona Metropolitana. Envío express asegurado en 7 días hábiles.',
+    name: 'Edelweiss Pilates - Paquetes de Estudio Monterrey',
+    description: `Venta de paquetes de camas de Pilates Reformer para estudios en Monterrey y Zona Metropolitana. Fabricación bajo pedido y entrega en ${shopPolicy.deliveryWindow}.`,
     areaServed: [
       { '@type': 'City', name: 'Monterrey' },
       { '@type': 'City', name: 'San Pedro Garza García' },
@@ -65,7 +66,7 @@ export const PilatesReformerMonterrey: React.FC = () => {
         name: '¿Cuánto tarda el envío de un paquete de Reformers a Monterrey?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Despachamos nuestros Paquetes de Estudio directamente a Monterrey y Zona Metropolitana (San Pedro, Valle Oriente, Cumbres, Carretera Nacional) en un lapso garantizado de 7 días hábiles.'
+          text: `Fabricamos cada Paquete de Estudio bajo pedido y lo entregamos en Monterrey y Zona Metropolitana (San Pedro, Valle Oriente, Cumbres, Carretera Nacional) en ${shopPolicy.deliveryWindow}.`
         }
       },
       {
@@ -88,12 +89,12 @@ export const PilatesReformerMonterrey: React.FC = () => {
   };
 
   const zones = [
-    { name: 'San Pedro Garza García', deliveryTime: '7 Días Hábiles', status: 'Ruta Prioritaria' },
-    { name: 'Valle Oriente & Valle Poniente', deliveryTime: '7 Días Hábiles', status: 'Ruta Prioritaria' },
-    { name: 'Cumbres & Jerónimo', deliveryTime: '7 Días Hábiles', status: 'Entregas Semanales' },
-    { name: 'Carretera Nacional & Pueblo Serena', deliveryTime: '7 Días Hábiles', status: 'Entregas Semanales' },
-    { name: 'Santa Catarina & Vía Cordillera', deliveryTime: '7 Días Hábiles', status: 'Entregas Semanales' },
-    { name: 'San Nicolás & Contry', deliveryTime: '7 Días Hábiles', status: 'Entregas Semanales' },
+    'San Pedro Garza García',
+    'Valle Oriente & Valle Poniente',
+    'Cumbres & Jerónimo',
+    'Carretera Nacional & Pueblo Serena',
+    'Santa Catarina & Vía Cordillera',
+    'San Nicolás & Contry',
   ];
 
   return (
@@ -132,7 +133,7 @@ export const PilatesReformerMonterrey: React.FC = () => {
               </h1>
 
               <p className="text-lg sm:text-xl text-[#5D5550] font-light leading-relaxed max-w-2xl">
-                Arma tu <Link to="/packs/estudio" className="font-semibold text-[#2A2624] underline hover:text-[#3E2723]">estudio de Pilates Reformer</Link> en Monterrey y ZMM (San Pedro Garza García, <Link to="/packs/monterrey" className="font-semibold text-[#2A2624] underline hover:text-[#3E2723]">Valle Oriente, Cumbres, Carretera Nacional</Link>). Despachamos nuestros Studio Reformer Packs directamente a Monterrey en un lapso garantizado de <strong className="text-[#3E2723] font-bold underline decoration-amber-400 decoration-2 underline-offset-4">7 Días Hábiles</strong>.
+                Arma tu <Link to="/packs/estudio" className="font-semibold text-[#2A2624] underline hover:text-[#3E2723]">estudio de Pilates Reformer</Link> en Monterrey y ZMM (San Pedro Garza García, <Link to="/packs/monterrey" className="font-semibold text-[#2A2624] underline hover:text-[#3E2723]">Valle Oriente, Cumbres, Carretera Nacional</Link>). Fabricamos tus Studio Reformer Packs bajo pedido y los entregamos en tu local de Monterrey en <strong className="text-[#3E2723] font-bold underline decoration-amber-400 decoration-2 underline-offset-4">{shopPolicy.deliveryWindow}</strong>.
               </p>
 
               {/* Delivery Guarantee Pill */}
@@ -143,17 +144,13 @@ export const PilatesReformerMonterrey: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="text-xs font-bold uppercase tracking-wider text-[#2A2624]">
-                      Envío Express Garantizado a Monterrey
+                      Entrega a domicilio en Monterrey
                     </h4>
                     <p className="text-xs text-[#5D5550]">
-                      7 Días Hábiles a San Pedro, Valle, Cumbres, Carretera Nacional y ZMM.
+                      {shopPolicy.deliveryTime} a San Pedro, Valle, Cumbres, Carretera Nacional y ZMM.
                     </p>
                   </div>
                 </div>
-
-                <span className="px-3 py-1 rounded-full bg-emerald-700 text-white text-[10px] font-bold uppercase tracking-widest shrink-0">
-                  En Stock Express
-                </span>
               </div>
 
               {/* Fast Features list */}
@@ -181,19 +178,8 @@ export const PilatesReformerMonterrey: React.FC = () => {
                   alt="Estudio de Pilates Reformer en Monterrey"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 
-                <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
-                  <span className="text-[10px] uppercase tracking-widest text-amber-300 font-bold block">
-                    Luxury Studio Standard
-                  </span>
-                  <p className="text-base font-serif italic">
-                    “Nuestras 6 camas llegaron en 7 días exactos a San Pedro. Calidad de nivel internacional.”
-                  </p>
-                  <p className="text-[11px] text-white/70">
-                    — Estudio San Pedro Garza García, N.L.
-                  </p>
-                </div>
+                
               </div>
             </div>
 
@@ -209,10 +195,10 @@ export const PilatesReformerMonterrey: React.FC = () => {
               <Sparkles className="w-4 h-4 text-amber-500" /> Configura Tu Estudio
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif italic text-[#2A2624]">
-              Build Your Own Studio — Monterrey Edition
+              Configura tu estudio en Monterrey
             </h2>
             <p className="text-sm sm:text-base text-[#5D5550] font-light">
-              Selecciona el modelo de Reformer y la cantidad de unidades para tu local en Monterrey. Obtén precios preferenciales con garantía de despacho en 7 días hábiles.
+              Selecciona el modelo de Reformer y la cantidad de unidades para tu local en Monterrey. Obtén precios preferenciales por volumen.
             </p>
           </div>
 
@@ -376,7 +362,7 @@ export const PilatesReformerMonterrey: React.FC = () => {
               <div className="p-4 rounded-xl bg-white/5 border border-white/10 flex items-center gap-3">
                 <Truck className="w-5 h-5 text-amber-300 shrink-0" />
                 <div className="text-xs">
-                  <span className="font-bold text-white block">Envío Express Monterrey: 7 Días Hábiles</span>
+                  <span className="font-bold text-white block">Entrega en Monterrey: {shopPolicy.deliveryTime}</span>
                   <span className="text-[#EAE8E4]/70 text-[11px]">Entregamos directo a tu local o dirección en ZMM.</span>
                 </div>
               </div>
@@ -389,12 +375,12 @@ export const PilatesReformerMonterrey: React.FC = () => {
                   rel="noopener noreferrer"
                   className="w-full flex items-center justify-center gap-2 bg-[#EAE8E4] text-[#2A2624] rounded-full py-4 px-6 uppercase tracking-[0.15em] text-xs font-bold hover:bg-white hover:scale-[1.02] transition-all duration-300 shadow-xl"
                 >
-                  <MessageCircle className="w-4 h-4 text-emerald-700" /> Pedir Paquete Monterrey (Envío 7 Días)
+                  <MessageCircle className="w-4 h-4 text-emerald-700" /> Pedir Paquete Monterrey
                 </a>
 
                 <div className="flex items-center justify-center gap-4 text-[10px] text-[#EAE8E4]/60 pt-1">
                   <span className="flex items-center gap-1">
-                    <ShieldCheck className="w-3 h-3 text-amber-300" /> Garantía 3 Años
+                    <ShieldCheck className="w-3 h-3 text-amber-300" /> Garantía {selectedProd?.warranty}
                   </span>
                   <span>•</span>
                   <span>Asesoría en Español</span>
@@ -414,22 +400,17 @@ export const PilatesReformerMonterrey: React.FC = () => {
               Cobertura en Monterrey y ZMM
             </span>
             <h2 className="text-3xl sm:text-4xl font-serif italic text-[#2A2624]">
-              Entregas Coordinadas en 7 Días Hábiles
+              Entregamos en toda la Zona Metropolitana
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {zones.map((z) => (
-              <div key={z.name} className="p-6 rounded-2xl bg-white border border-[#2A2624]/10 shadow-sm flex items-center justify-between">
-                <div>
-                  <h4 className="font-serif italic text-lg text-[#2A2624]">{z.name}</h4>
-                  <span className="text-xs text-[#5D5550] block mt-0.5">{z.status}</span>
-                </div>
-                <div className="text-right">
-                  <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 text-[10px] font-bold uppercase tracking-wider inline-block">
-                    {z.deliveryTime}
-                  </span>
-                </div>
+            {zones.map((zone) => (
+              <div key={zone} className="p-6 rounded-2xl bg-white border border-[#2A2624]/10 shadow-sm flex items-center justify-between">
+                <h4 className="font-serif italic text-lg text-[#2A2624]">{zone}</h4>
+                <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 text-[10px] font-bold uppercase tracking-wider inline-block">
+                  {shopPolicy.deliveryWindow}
+                </span>
               </div>
             ))}
           </div>
@@ -456,10 +437,10 @@ export const PilatesReformerMonterrey: React.FC = () => {
           <div className="space-y-6">
             <div className="p-6 rounded-2xl bg-[#F8F7F5] border border-[#2A2624]/10 space-y-2">
               <h3 className="text-lg font-serif italic text-[#2A2624]">
-                ¿Cómo garantizan la entrega en 7 días hábiles a Monterrey?
+                ¿Cuánto tarda la entrega a Monterrey?
               </h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                Contamos con una ruta logística prioritaria semanal dedicada exclusivamente a la Zona Metropolitana de Monterrey (San Pedro, Valle, Cumbres, Carretera Nacional). Al realizar tu pedido de Studio Pack, coordinamos la fecha exacta de descarga en tu local.
+                Fabricamos cada reformer bajo pedido, así que la entrega es de {shopPolicy.deliveryWindow}. Cuando se acerca la fecha, coordinamos contigo el día exacto de descarga en tu local.
               </p>
             </div>
 

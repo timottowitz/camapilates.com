@@ -8,6 +8,7 @@ import { CATALOG_MAX, CATALOG_MIN, GYM, TOWER } from '@/lib/shop/priceRanges';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
 import { ArrowRight, BookOpen, ShoppingBag, DollarSign, Ruler, Package, CheckCircle2, ShieldCheck, Zap, MessageCircle } from 'lucide-react';
+import shopPolicy from '@/content/shop-policy.json';
 
 const CamaDePilatesHub: React.FC = () => {
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://camadepilates.com';
@@ -63,7 +64,7 @@ const CamaDePilatesHub: React.FC = () => {
     },
     {
       q: '¿Hacen envíos a Monterrey, Guadalajara, Querétaro y todo México?',
-      a: 'Sí, realizamos envíos asegurados a las 32 entidades federativas del país. La mercancía viaja con seguro contra daños de transporte puerta a puerta en caja de exportación de madera tratada. El tiempo estimado de entrega es de 3 a 8 semanas según el acabado y modelo seleccionado.'
+      a: 'Sí, realizamos envíos asegurados a las 32 entidades federativas del país. La mercancía viaja con seguro contra daños de transporte puerta a puerta en caja de exportación de madera tratada. Fabricamos cada equipo bajo pedido; la entrega es de ' + shopPolicy.deliveryWindow + '.'
     },
     {
       q: '¿Qué garantía tienen los Reformers y cómo se gestionan las refacciones?',
@@ -535,7 +536,7 @@ const CamaDePilatesHub: React.FC = () => {
               Reformer de Casa
             </h2>
             <p className="text-[#5D5550] font-light mb-8 max-w-md">
-              Compacto y silencioso con cuero genuino. Entrega en 3 semanas.
+              Compacto y silencioso con cuero genuino. Entrega en {shopPolicy.deliveryWindow}.
             </p>
             <span className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-[#3E2723]/60 group-hover:text-[#2A2624] transition-colors">
               Ver Casa <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />

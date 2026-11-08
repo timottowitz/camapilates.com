@@ -7,6 +7,7 @@ import { priceLabel } from '@/lib/shop/catalog';
 import { CATALOG_MIN, TOWER } from '@/lib/shop/priceRanges';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { MapPin, Building2, ShoppingBag, GraduationCap, ArrowRight, Phone } from 'lucide-react';
+import shopPolicy from '@/content/shop-policy.json';
 
 const PilatesReformerCDMX: React.FC = () => {
   const origin = getOrigin();
@@ -64,7 +65,7 @@ const PilatesReformerCDMX: React.FC = () => {
         name: '¿Dónde comprar un reformer en Ciudad de México?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Edelweiss Pilates entrega reformers en CDMX en 3 semanas. Contacta por WhatsApp para agendar visita al showroom o compra directo en línea.'
+          text: 'Edelweiss Pilates fabrica cada reformer bajo pedido y lo entrega en CDMX en ' + shopPolicy.deliveryWindow + '. Contacta por WhatsApp para agendar visita al showroom o compra directo en línea.'
         }
       },
       {
@@ -225,7 +226,7 @@ const PilatesReformerCDMX: React.FC = () => {
                 Reformers con Entrega en Ciudad de México
               </h2>
               <p className="text-lg text-[#5D5550] font-light leading-relaxed mb-8">
-                Entregamos tu reformer Edelweiss en cualquier punto de CDMX en 3 semanas con seguro puerta a puerta. Consulta nuestra guía sobre <Link to="/blog/cama-de-pilates-venta-mexico" className="underline hover:text-[#3E2723]">venta de camas de Pilates en México</Link> o cotiza <Link to="/packs/estudio" className="underline hover:text-[#3E2723]">packs para estudios</Link>.
+                Fabricamos tu reformer Edelweiss bajo pedido y lo entregamos en cualquier punto de CDMX en {shopPolicy.deliveryWindow}, con seguro puerta a puerta. Consulta nuestra guía sobre <Link to="/blog/cama-de-pilates-venta-mexico" className="underline hover:text-[#3E2723]">venta de camas de Pilates en México</Link> o cotiza <Link to="/packs/estudio" className="underline hover:text-[#3E2723]">packs para estudios</Link>.
               </p>
               
               <div className="space-y-4 mb-8">
@@ -294,7 +295,7 @@ const PilatesReformerCDMX: React.FC = () => {
             <div className="border-b border-white/20 pb-6">
               <h3 className="text-lg font-medium mb-3">¿Dónde comprar un reformer en Ciudad de México?</h3>
               <p className="text-white/70 font-light">
-                Edelweiss Pilates entrega reformers en CDMX en 3 semanas. Contacta por WhatsApp para agendar visita al showroom o compra directo en línea.
+                Edelweiss Pilates fabrica cada reformer bajo pedido y lo entrega en CDMX en {shopPolicy.deliveryWindow}. Contacta por WhatsApp para agendar visita al showroom o compra directo en línea.
               </p>
             </div>
             

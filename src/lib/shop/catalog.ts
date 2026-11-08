@@ -1,4 +1,5 @@
 import products from '@/content/products.json';
+import shopPolicy from '@/content/shop-policy.json';
 import type { Product, ReformerType } from './types';
 import { slugify } from '@/utils/slug';
 
@@ -48,7 +49,7 @@ export function toItemListSchema(origin: string, list: Product[]) {
           url: `${origin}/product/${p.slug}`,
           priceCurrency: p.currency,
           price: p.price,
-          availability: p.availability,
+          availability: shopPolicy.availability,
           itemCondition: 'https://schema.org/NewCondition',
           hasMerchantReturnPolicy: {
             '@type': 'MerchantReturnPolicy',
@@ -62,11 +63,7 @@ export function toItemListSchema(origin: string, list: Product[]) {
             {
               '@type': 'OfferShippingDetails',
               shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'MX' },
-              deliveryTime: {
-                '@type': 'ShippingDeliveryTime',
-                handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 2, unitCode: 'DAY' },
-                transitTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' }
-              },
+              deliveryTime: shopPolicy.shippingDeliveryTime,
               shippingRate: {
                 '@type': 'MonetaryAmount',
                 value: '0',
