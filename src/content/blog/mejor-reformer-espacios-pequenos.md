@@ -72,7 +72,7 @@ Si vives en la Condesa, en la zona de Andares (GDL) o San Pedro (MTY), la estét
 
 Su diseño maximiza la funcionalidad: el sistema de almacenamiento vertical te permite recuperar tu espacio en segundos. Lo crucial es que este ahorro de espacio no compromete la estabilidad del carro ni el rango de movimiento, respetando los principios de precisión de Joseph Pilates. Además, su robusta capacidad de peso garantiza durabilidad.
 
-La gran ventaja competitiva es la tranquilidad. Tienes **disponibilidad inmediata y soporte local**; si necesitas mantenimiento o repuestos, tratas directo con un proveedor en México, evitando las pesadillas de aduanas. Recuerda: contar con un equipo sólido es el primer paso para una práctica segura.
+La gran ventaja competitiva es la tranquilidad. Tienes **soporte local** y repuestos en 1 semana; si necesitas mantenimiento, tratas directo con un proveedor en México, evitando las pesadillas de aduanas. Recuerda: contar con un equipo sólido es el primer paso para una práctica segura.
 
 ## Preguntas Frecuentes (FAQ)
 

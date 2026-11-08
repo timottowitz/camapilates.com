@@ -72,7 +72,7 @@ Ahora, ¿qué puedes esperar realmente al abrir la cartera? El rango de precio p
 
 Un factor que a menudo se ignora hasta que es demasiado tarde es la procedencia y el soporte. Aunque hay [marcas](/blog/mejores-marcas-cama-de-pilates) importadas excelentes, traer un equipo de Estados Unidos o Europa conlleva tiempos de espera en aduanas y costos de envío que pueden inflar el precio final hasta un 30%. Además, existe una clara preferencia del mercado: datos recientes indican que más del 80% de los compradores en México priorizan el soporte técnico en español.
 
-Imagina que se rompe un resorte o se desgasta una rueda del carro. Si tu proveedor es nacional o tiene distribución oficial en México, la refacción llega en días por paquetería local. Si dependes de una marca extranjera sin presencia aquí, podrías quedarte con tu Reformer parado semanas esperando una pieza y lidiando con servicio al cliente en otro idioma. Antes de dar el "tarjetazo", asegúrate de preguntar: ¿Tienen refacciones en bodega en México? Tu "yo" del futuro te agradecerá esa precaución.
+Imagina que se rompe un resorte o se desgasta una rueda del carro. Si tu proveedor es nacional o tiene distribución oficial en México, la refacción llega por paquetería local, sin trámites aduanales. Si dependes de una marca extranjera sin presencia aquí, podrías quedarte con tu Reformer parado semanas esperando una pieza y lidiando con servicio al cliente en otro idioma. Antes de dar el "tarjetazo", asegúrate de preguntar: ¿En cuánto tiempo entregan refacciones en México? Tu "yo" del futuro te agradecerá esa precaución.
 
 *Nota de seguridad: Antes de iniciar cualquier rutina en casa con tu nuevo equipo, consulta con un profesional certificado para asegurar una técnica adecuada y evitar lesiones.*
 
@@ -82,7 +82,7 @@ Cuando decides invertir en tu estudio, la durabilidad es clave. Aquí es donde E
 
 Como bien se menciona en *Return to Life*, Joseph Pilates insistía en que el control es la esencia del método, y ese control depende intrínsecamente de contar con el equipo adecuado. Si tu *reformer* vibra o se siente frágil, la técnica sufre. Al optar por Edelweiss Pilates, obtienes calidad de resortes con la tensión exacta y un deslizamiento del carro silencioso y fluido, permitiendo esa precisión. Además, siguiendo los principios de seguridad mecánica (Herman, 2005), nuestros sistemas de ajuste de barras y cuerdas son robustos y fiables.
 
-El verdadero "as bajo la manga" es el soporte post-venta. Si necesitas una refacción en Guadalajara o Mérida, no tienes que esperar importaciones de China ni pagar fletes internacionales cotizados en dólares. Tienes disponibilidad inmediata de repuestos y técnicos que entienden tus necesidades. Tu inversión está protegida con una garantía real y accesible, asegurando que tu práctica o tu negocio nunca se detengan.
+El verdadero "as bajo la manga" es el soporte post-venta. Si necesitas una refacción en Guadalajara o Mérida, no tienes que esperar importaciones de China ni pagar fletes internacionales cotizados en dólares. Tienes repuestos en 1 semana y técnicos que entienden tus necesidades. Tu inversión está protegida con una garantía real y accesible, asegurando que tu práctica o tu negocio nunca se detengan.
 
 ## Consideraciones prácticas antes de comprar
 

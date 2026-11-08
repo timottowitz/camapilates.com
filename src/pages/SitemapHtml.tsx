@@ -254,7 +254,7 @@ const sitemapData: SitemapSection[] = [
       {
         title: 'Garantía & Soporte al Cliente',
         path: '/soporte',
-        description: 'Póliza de garantía de 1 año, refacciones inmediatas y asistencia por WhatsApp.',
+        description: 'Póliza de garantía de 1 año, refacciones en 1 semana y asistencia por WhatsApp.',
       },
       {
         title: 'Términos y Condiciones',

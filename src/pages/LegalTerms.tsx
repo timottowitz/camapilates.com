@@ -20,7 +20,7 @@ const LegalTerms: React.FC = () => {
         <h1 className="text-4xl md:text-6xl font-serif italic text-[#2A2624] mb-12">Terms & Conditions</h1>
         <div className="prose prose-lg max-w-3xl text-[#5D5550] font-light">
           <p className="lead text-xl text-[#2A2624] font-normal mb-8">
-            Resumen: ventas en MX con pago seguro, tiempos de envío, garantía 1 año, repuestos exprés y políticas de devolución (14 días sin uso). Para detalles operativos o cotizaciones de estudio, contáctanos.
+            Resumen: ventas en MX con pago seguro, tiempos de envío, garantía 1 año, repuestos en 1 semana y políticas de devolución (14 días sin uso). Para detalles operativos o cotizaciones de estudio, contáctanos.
           </p>
 
           <h3 className="font-serif italic text-[#2A2624] mt-12 mb-4">1. General</h3>

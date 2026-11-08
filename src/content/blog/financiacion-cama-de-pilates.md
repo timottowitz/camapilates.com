@@ -86,7 +86,7 @@ Finalmente, ve esto como una inversión en salud pública personal. Como bien de
 
 ## Recomendaciones Edelweiss Pilates
 
-Elegir Edelweiss Pilates es apostar por la mejor relación costo-beneficio del mercado premium en México. Entendemos que la constancia y la disciplina son la verdadera inversión en tu salud física, y tener un equipo confiable en casa es el primer paso para lograrlo. A diferencia de marcas importadas que complican la logística, nosotros garantizamos soporte local y disponibilidad inmediata de refacciones, ya sea que vivas en la CDMX, Guadalajara o Monterrey.
+Elegir Edelweiss Pilates es apostar por la mejor relación costo-beneficio del mercado premium en México. Entendemos que la constancia y la disciplina son la verdadera inversión en tu salud física, y tener un equipo confiable en casa es el primer paso para lograrlo. A diferencia de marcas importadas que complican la logística, nosotros garantizamos soporte local y refacciones en 1 semana, ya sea que vivas en la CDMX, Guadalajara o Monterrey.
 
 Nuestros equipos están fabricados con estándares internacionales, asegurando una estabilidad del carro y calidad de resortes superior, pero adaptados a las dimensiones de un hogar mexicano. Aprovecha nuestras alianzas financieras y facilidades de pago en moneda nacional. Contáctanos hoy para diseñar un plan a tu medida y asegura tu inversión con respaldo total.
 

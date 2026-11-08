@@ -565,7 +565,7 @@ function buildCamaDePilatesPage(reformers, origin) {
           Camas de Pilates Reformer en México: Modelos, Precios y Venta 2026
         </h1>
         <p class="text-lg md:text-xl text-stone-700 font-light leading-relaxed mb-8">
-          Encuentra en 2026 la mejor <strong>cama de Pilates (Reformer)</strong> en México desde $23,234 MXN para estudio o casa. En <strong>Edelweiss Pilates</strong> combinamos maderas macizas y aluminio estructural con resortes alemanes de alambre de piano y rodamientos ultra-silenciosos. Envíos asegurados a todo México con garantía directa de 3 años y refacciones locales inmediatas.
+          Encuentra en 2026 la mejor <strong>cama de Pilates (Reformer)</strong> en México desde $23,234 MXN para estudio o casa. En <strong>Edelweiss Pilates</strong> combinamos maderas macizas y aluminio estructural con resortes alemanes de alambre de piano y rodamientos ultra-silenciosos. Envíos asegurados a todo México con garantía directa de 3 años y refacciones en 1 semana.
         </p>
         <div class="flex flex-wrap gap-4 mb-12">
           <a href="#catalogo" class="rounded-full bg-stone-900 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-stone-800 transition-all shadow-md">
@@ -599,8 +599,8 @@ function buildCamaDePilatesPage(reformers, origin) {
         </div>
         <div class="p-4 bg-white rounded-xl border border-stone-100 shadow-sm">
           <div class="text-xl mb-1">⚙️</div>
-          <h4 class="font-bold text-sm text-stone-900">Refacciones Locales</h4>
-          <p class="text-xs text-stone-600 mt-1">Resortes, poleas y correas en inventario nacional.</p>
+          <h4 class="font-bold text-sm text-stone-900">Refacciones en 1 semana</h4>
+          <p class="text-xs text-stone-600 mt-1">Resortes, poleas y correas enviados a todo México.</p>
         </div>
       </div>
     </section>
@@ -638,7 +638,7 @@ function buildCamaDePilatesPage(reformers, origin) {
           Edelweiss Pilates vs. Otras Marcas en México: Vanlig, Ironside, UCAN y Balanced Body
         </h2>
         <p class="text-stone-600 text-sm mb-8 max-w-3xl leading-relaxed">
-          Al invertir en una cama de Pilates en México en 2026, las diferencias técnicas se traducen en seguridad biomecánica, durabilidad del chasis de hasta 200 kg y disponibilidad de refacciones locales en 24 a 48 horas frente a las alternativas del mercado.
+          Al invertir en una cama de Pilates en México en 2026, las diferencias técnicas se traducen en seguridad biomecánica, durabilidad del chasis de hasta 200 kg y refacciones en 1 semana.
         </p>
 
         <div class="overflow-x-auto">
@@ -697,7 +697,7 @@ function buildCamaDePilatesPage(reformers, origin) {
               </tr>
               <tr>
                 <td class="p-3 md:p-4 font-semibold text-stone-900">Garantía y Refacciones</td>
-                <td class="p-3 md:p-4 font-bold text-emerald-800 bg-emerald-50/30">3 años directos · Refacciones en almacén MX en 24-48h</td>
+                <td class="p-3 md:p-4 font-bold text-emerald-800 bg-emerald-50/30">3 años directos · Refacciones en 1 semana</td>
                 <td class="p-3 md:p-4 text-rose-700">3-6 meses básica · Sin refacciones oficiales en MX</td>
                 <td class="p-3 md:p-4 text-stone-600">Garantía estándar de equipo de gimnasio</td>
                 <td class="p-3 md:p-4 text-stone-600">Garantía en EE.UU. · Refacciones en USD con semanas de espera</td>
@@ -784,7 +784,7 @@ function buildCamaDePilatesPage(reformers, origin) {
               <span class="text-amber-700 font-bold">2.</span> Comprar equipos importados sin almacén de refacciones en México
             </h3>
             <p class="leading-relaxed text-stone-600">
-              Los resortes, poleas y correas son consumibles sometidos a tracción continua. En un estudio comercial, un resorte roto significa una máquina fuera de servicio. Si compras marcas importadas de Asia o Norteamérica sin representación oficial en México, sustituir un resorte o una rueda puede demorar hasta 12 semanas y costar cientos de dólares en trámites aduanales. En Edelweiss Pilates mantenemos inventario permanente en CDMX con envíos en 24 a 48 horas a cualquier estado.
+              Los resortes, poleas y correas son consumibles sometidos a tracción continua. En un estudio comercial, un resorte roto significa una máquina fuera de servicio. Si compras marcas importadas de Asia o Norteamérica sin representación oficial en México, sustituir un resorte o una rueda puede demorar hasta 12 semanas y costar cientos de dólares en trámites aduanales. En Edelweiss Pilates enviamos refacciones en 1 semana a cualquier estado.
             </p>
           </div>
 
@@ -922,7 +922,7 @@ function buildCamaDePilatesPage(reformers, origin) {
               <span class="text-stone-400 group-open:rotate-45 transition-transform text-2xl font-light">+</span>
             </summary>
             <div class="mt-4 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
-              Ofrecemos una garantía directa de 3 años en chasis, rieles y mecanismos estructurales. A diferencia de las máquinas importadas donde un repuesto puede tardar meses o ser imposible de conseguir, en Edelweiss Pilates contamos con almacén de refacciones en México con resortes de repuesto, poleas, correas de cuero y microfibra con envío exprés de 24 a 48 horas.
+              Ofrecemos una garantía directa de 3 años en chasis, rieles y mecanismos estructurales. Resortes de repuesto, poleas y correas de cuero y microfibra se entregan en 1 semana.
             </div>
           </details>
 
@@ -1099,7 +1099,7 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
                 <td class="p-3 md:p-4 font-extrabold text-stone-900">$23,234 – $85,050</td>
                 <td class="p-3 md:p-4">5 resortes alemanes de alambre de piano calibrados</td>
                 <td class="p-3 md:p-4">Roble / Maple macizo o Aluminio aeroespacial</td>
-                <td class="p-3 md:p-4 text-emerald-800">3 años garantía directa, 12 MSI, refacciones 24-48h</td>
+                <td class="p-3 md:p-4 text-emerald-800">3 años garantía directa, 12 MSI, refacciones en 1 semana</td>
               </tr>
               <tr>
                 <td class="p-3 md:p-4 font-bold text-stone-900">Vanlig</td>
@@ -1163,7 +1163,7 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
           <div class="p-6 bg-white border border-stone-200 rounded-xl">
             <h3 class="font-bold text-base text-stone-900 mb-2">4. Soporte Local y Refacciones en México</h3>
             <p class="text-xs text-stone-600 leading-relaxed">
-              Comprar marcas extranjeras implica meses de espera y costosos aranceles de importación ante cualquier refacción. En Edelweiss Pilates contamos con stock permanente en México de resortes, poleas, correas dobles y tapicería para entrega en 24–48 horas.
+              Comprar marcas extranjeras implica aranceles de importación ante cualquier refacción. En Edelweiss Pilates enviamos resortes, poleas, correas dobles y tapicería en 1 semana.
             </p>
           </div>
         </div>
@@ -2117,7 +2117,7 @@ async function main() {
           name: '¿Qué garantía tienen los Reformers y cómo se gestionan las refacciones?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Ofrecemos una garantía directa de 3 años en chasis, rieles y mecanismos estructurales. A diferencia de las máquinas importadas donde un repuesto puede tardar meses o ser imposible de conseguir, en Edelweiss Pilates contamos con almacén de refacciones en México con resortes de repuesto, poleas, correas de cuero y microfibra con envío exprés de 24 a 48 horas.'
+            text: 'Ofrecemos una garantía directa de 3 años en chasis, rieles y mecanismos estructurales. Resortes de repuesto, poleas y correas de cuero y microfibra se entregan en 1 semana.'
           }
         },
         {
@@ -2728,7 +2728,7 @@ async function main() {
       body = `
       <section class="container mx-auto px-4 py-12">
         <h1 class="text-3xl font-bold text-gray-900 mb-4">${htmlEscape(meta.title)}</h1>
-        <p class="text-lg text-gray-600 max-w-2xl mb-6"><a href="/packs/monterrey" class="text-amber-800 underline">Pack para estudios</a>: a partir de 8 <a href="/blog/cama-de-pilates-guia-de-compra" class="text-amber-800 underline">camas de Pilates Reformer</a> obtén 20% de descuento. Instalación coordinada, garantía 1 año y repuestos exprés.</p>
+        <p class="text-lg text-gray-600 max-w-2xl mb-6"><a href="/packs/monterrey" class="text-amber-800 underline">Pack para estudios</a>: a partir de 8 <a href="/blog/cama-de-pilates-guia-de-compra" class="text-amber-800 underline">camas de Pilates Reformer</a> obtén 20% de descuento. Instalación coordinada, garantía 1 año y repuestos en 1 semana.</p>
         <div class="flex flex-wrap gap-4 mt-6">
           <a href="/packs/monterrey" class="px-5 py-2.5 rounded-lg border border-gray-300 font-semibold hover:bg-gray-50">Pack Monterrey</a>
           <a href="/blog/cama-de-pilates-guia-de-compra" class="px-5 py-2.5 rounded-lg border border-gray-300 font-semibold hover:bg-gray-50">Guía de Compra</a>

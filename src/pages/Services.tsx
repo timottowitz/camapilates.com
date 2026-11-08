@@ -62,7 +62,7 @@ const Services = () => {
             },
             {
               title: "Maintenance",
-              desc: "Keep your reformers gliding silently. Annual service packages, express parts delivery, and essential accessories.",
+              desc: "Keep your reformers gliding silently. Annual service packages, spare parts in 1 week, and essential accessories.",
               link: "/blog/accesorios-cama-de-pilates",
               linkText: "Accesorios y Guías"
             },

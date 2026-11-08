@@ -88,7 +88,7 @@ const StudioPack: React.FC = () => {
             <span className="not-italic font-light font-sans tracking-tight">with Excellence.</span>
           </h1>
           <p className="text-lg text-[#5D5550] font-light max-w-2xl leading-relaxed">
-            <Link to="/packs/monterrey" className="underline hover:text-[#2A2624]">Pack para estudios</Link>: a partir de 8 <Link to="/blog/cama-de-pilates-guia-de-compra" className="underline hover:text-[#2A2624]">camas de Pilates Reformer</Link> obtén 20% de descuento. Coordinamos instalación, ofrecemos garantía de 3 años y repuestos exprés. Envío a toda la República.
+            <Link to="/packs/monterrey" className="underline hover:text-[#2A2624]">Pack para estudios</Link>: a partir de 8 <Link to="/blog/cama-de-pilates-guia-de-compra" className="underline hover:text-[#2A2624]">camas de Pilates Reformer</Link> obtén 20% de descuento. Coordinamos instalación, ofrecemos garantía de 3 años y repuestos en 1 semana. Envío a toda la República.
           </p>
         </motion.div>
 
@@ -183,7 +183,7 @@ const StudioPack: React.FC = () => {
                   </li>
                   <li className="flex items-center gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span>
-                    Soporte y repuestos exprés
+                    Soporte y repuestos en 1 semana
                   </li>
                 </ul>
               </div>

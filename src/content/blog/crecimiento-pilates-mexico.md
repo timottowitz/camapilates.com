@@ -241,7 +241,7 @@ En Edelweiss Pilates, hemos acompañado el crecimiento de más de **200 estudios
 - **Ahorro del 40%** vs importación
 - **Garantía de 1 año** en todos los Reformers
 - **Servicio técnico** en 15 ciudades
-- **Refacciones inmediatas** sin esperar importación
+- **Refacciones en 1 semana**
 
 ### 2. Asesoría Especializada
 - **Análisis de ubicación** gratuito

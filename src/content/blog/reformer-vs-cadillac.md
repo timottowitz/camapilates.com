@@ -90,7 +90,7 @@ Si el presupuesto lo permite pero el espacio te limita, tu mejor opción es el h
 
 ## La ventaja de Edelweiss Pilates: Calidad Local
 
-Al invertir en tu estudio, ya sea en la Roma (CDMX) o en San Pedro (MTY), el peor escenario es tener un equipo parado por falta de refacciones. Aquí radica la ventaja de Edelweiss Pilates: evitas el riesgo de inversión de equipos importados que tardan meses en aduanas o carecen de soporte. Edelweiss te ofrece disponibilidad inmediata y servicio técnico local con manuales en español, cubriendo así la preferencia del 80% del mercado que prioriza el servicio post-venta accesible.
+Al invertir en tu estudio, ya sea en la Roma (CDMX) o en San Pedro (MTY), el peor escenario es tener un equipo parado por falta de refacciones. Edelweiss Pilates te ofrece refacciones en 1 semana y servicio técnico local con manuales en español, cubriendo así la preferencia del 80% del mercado que prioriza el servicio post-venta accesible.
 
 Técnicamente, la fabricación premium de Edelweiss asegura la estabilidad crítica tanto para la altura imponente del Cadillac como para el uso eficiente del espacio de suelo del Reformer. La precisión en la resistencia de los resortes es fundamental para respetar la filosofía original del aparato y facilitar la rehabilitación correcta; por ello, la personalización de tensión que ofrece Edelweiss es un diferenciador clave frente a marcas genéricas.
 

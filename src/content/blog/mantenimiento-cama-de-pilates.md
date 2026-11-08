@@ -76,7 +76,7 @@ heroImage: "/images/blog/mantenimiento-cama-de-pilates/hero.webp"
 
 ## Cuándo contactar servicio Edelweiss
 - Ruidos persistentes tras limpieza, juego lateral, anclajes dañados o dudas sobre sustituciones.
-- Soporte en español y repuestos exprés para reducir paros.
+- Soporte en español y repuestos en 1 semana.
 
 ## Recomendaciones Edelweiss Pilates
 - **[Accesorios](/blog/accesorios-cama-de-pilates) y repuestos**: [ver colección](/shop/category/accesorios)

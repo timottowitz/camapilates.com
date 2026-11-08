@@ -100,7 +100,7 @@ Consulta todos los modelos desglosados en nuestra **[guía de precios de camas d
 
 | Marca | Rango de Precio (MXN) | Garantía | Características Principales |
 |-------|----------------------|----------|----------------------------|
-| **Edelweiss Pilates®** | **$23,234 – $85,050** | **3 años directa** | **Madera maciza de roble/maple o aluminio, resortes alemanes, 12 MSI, refacciones 24-48h** |
+| **Edelweiss Pilates®** | **$23,234 – $85,050** | **3 años directa** | **Madera maciza de roble/maple o aluminio, resortes alemanes, 12 MSI, refacciones en 1 semana** |
 | **Vanlig** | $4,489 – $50,999 | 3 a 6 meses | Plegables económicos (ligas) y modelos de importación con quiebres frecuentes de stock |
 | **UCAN** | $40,000 – $50,600 | 1 año | Aluminio boutique lacado en blanco, sin opción de madera maciza natural |
 | **Universo Pilates** | $29,600 – $53,000 | 6 años | Madera de abedul contrachapado, fabricación en CDMX con cotización vía WhatsApp |
@@ -113,7 +113,7 @@ Consulta todos los modelos desglosados en nuestra **[guía de precios de camas d
 2. **Sistema de resortes**: Acero de piano alemán calibrado por código de color vs. ligas elásticas de rápida elongación.
 3. **Precisión de manufactura**: Rodamientos sellados y rieles anodizados con deslizamiento ultra silencioso.
 4. **Accesorios incluidos**: Box (caja de Pilates), jumpboard, extensor de plataforma y correas dobles.
-5. **Garantía y refacciones en México**: Almacén local con entrega inmediata vs. trámites aduanales de semanas.
+5. **Garantía y refacciones en México**: plazo de entrega de refacciones y trámites aduanales.
 Para un análisis paso a paso de cada punto, revisa nuestra **[guía de compra de camas de Pilates](/blog/cama-de-pilates-guia-de-compra)**.
 
 ## Comparativa Detallada: Casa vs. Estudio Profesional
@@ -224,7 +224,7 @@ Para un análisis paso a paso de cada punto, revisa nuestra **[guía de compra d
 - **Garantía de resortes**: 2-1 año
 - **Garantía de accesorios**: 1-2 años
 - **Servicio técnico**: Disponibilidad en México
-- **Repuestos**: Stock permanente y precios competitivos
+- **Repuestos**: En 1 semana y precios competitivos
 
 **En Edelweiss Pilates** ofrecemos:
 - Garantía extendida en todos nuestros equipos
@@ -433,7 +433,7 @@ Para **principiantes**, se recomienda **mínimo 10-15 sesiones con instructor ce
 - Acceso a repuestos originales
 - Mantenimiento especializado
 
-**Garantía Edelweiss Pilates**: Ofrecemos una de las garantías más completas del mercado mexicano, con servicio técnico local y repuestos siempre disponibles.
+**Garantía Edelweiss Pilates**: Ofrecemos una de las garantías más completas del mercado mexicano, con servicio técnico local y repuestos en 1 semana.
 
 ### ¿Cuánto tiempo dura un Reformer con uso regular?
 
@@ -494,7 +494,7 @@ El Reformer es **excelente para rehabilitación**, pero requiere:
 - **Soporte continuo**: Línea directa de ayuda técnica
 
 **Compromiso con México:**
-- **Stock permanente** de repuestos en Ciudad de México
+- **Repuestos en 1 semana** a todo México
 - **Precios competitivos** sin intermediarios innecesarios
 - **Financiamiento flexible** adaptado al mercado mexicano
 - **Garantía extendida** superior a estándares internacionales

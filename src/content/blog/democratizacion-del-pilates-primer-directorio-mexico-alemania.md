@@ -97,9 +97,9 @@ Uno de los problemas más graves que enfrentan los instructores recién graduado
 
 Para resolver este desafío de raíz, Edelweiss Pilates y Edelweiss estructuraron un programa integral de **Sinergia B2B para Egresados y Nuevos Estudios**:
 * **Paquetes Comerciales Llave en Mano**: Precios preferenciales y descuentos por volumen a partir de 3 unidades en nuestros modelos [Reformer para Estudio](/reformer-para-estudio).
-* **Personalización Institucional**: Grabado láser de logotipos de la academia o estudio en la madera maciza y selección de tonos de piel artesanal (Cognac, Tabaco, Ébano, Miel) para armonizar con la estética arquitectónica del espacio.
+* **Personalización Institucional**: Grabado láser del logotipo de la academia o estudio en la madera maciza ($2,000 MXN adicionales por cama) y selección de tonos de piel artesanal (Cognac, Tabaco, Ébano, Miel) para armonizar con la estética arquitectónica del espacio.
 * **Planes de Financiamiento y Arrendamiento**: Opciones de adquisición en mensualidades y financiamiento directo para mitigar el desembolso inicial de capital de trabajo.
-* **Garantía y Refacciones Locales**: Al contar con distribución y soporte en México, disponemos de refacciones (resortes, correas, poleas, herrajes de aluminio) en menos de 48 horas en cualquier estado de la República, para evitar meses de espera por piezas de importación.
+* **Garantía y Refacciones**: Al contar con distribución y soporte en México, enviamos refacciones (resortes, correas, poleas, herrajes de aluminio) en 1 semana a cualquier estado de la República.
 
 ---
 

@@ -71,9 +71,9 @@ const Support: React.FC = () => {
               <div className="flex gap-4">
                 <Wrench className="w-6 h-6 text-[#3E2723] flex-shrink-0 mt-1" />
                 <div>
-                  <h3 className="font-medium text-[#2A2624] mb-2">Express Parts</h3>
+                  <h3 className="font-medium text-[#2A2624] mb-2">Repuestos en 1 semana</h3>
                   <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                    Mantenemos stock de repuestos en CDMX para envío inmediato. Incluimos guías de instalación en video para mantenimiento sencillo.
+                    Enviamos repuestos en 1 semana. Incluimos guías de instalación en video para mantenimiento sencillo.
                   </p>
                 </div>
               </div>

@@ -85,7 +85,7 @@ Si decides llevar tu práctica a casa, un Reformer [residencial en México](/blo
 
 ## La ventaja de Edelweiss Pilates: Calidad y soporte local
 
-Al invertir en tu práctica, la procedencia del equipo es tan crucial como el ejercicio mismo. Elegir un Reformer con distribución y soporte en México te ofrece una ventaja logística inigualable: **disponibilidad inmediata de refacciones y mantenimiento**. Esto es vital si resides en zonas activas como CDMX, Guadalajara o Monterrey, donde esperar semanas por una pieza importada (y cotizada en dólares) puede frenar tu rutina.
+Al invertir en tu práctica, la procedencia del equipo es tan crucial como el ejercicio mismo. Elegir un Reformer con distribución y soporte en México te ofrece **refacciones en 1 semana y mantenimiento en español**, cotizados en pesos, vivas en CDMX, Guadalajara, Monterrey o cualquier otra ciudad.
 
 La seguridad es tu prioridad. Necesitas un *Carriage* estable y una tensión de resortes confiable. Según Herman (2005, p. 15), la mecánica fluida del equipo es esencial para mantener la alineación correcta durante el esfuerzo sin sacrificar el control.
 

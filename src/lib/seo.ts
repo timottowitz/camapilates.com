@@ -710,7 +710,7 @@ export function generateServicesSchema() {
     },
     {
       name: 'Mantenimiento',
-      description: 'Mantén tus reformers deslizándose silenciosamente. Paquetes de servicio anual y entrega exprés de repuestos.',
+      description: 'Mantén tus reformers deslizándose silenciosamente. Paquetes de servicio anual y repuestos en 1 semana.',
       url: `${origin}/soporte`,
     },
     {

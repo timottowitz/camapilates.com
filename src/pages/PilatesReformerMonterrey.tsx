@@ -461,7 +461,7 @@ export const PilatesReformerMonterrey: React.FC = () => {
                 ¿Qué pasa si necesito refacciones o muelles en el futuro?
               </h3>
               <p className="text-sm text-[#5D5550] font-light leading-relaxed">
-                Al contar con distribución y soporte en México, mantenemos un inventario permanente de refacciones (resortes alemanes de alambre de piano, correas de microfibra, poleas silenciosas). Cualquier repuesto adicional se envía a Monterrey con entrega al día siguiente.
+                Enviamos refacciones a Monterrey en 1 semana (resortes alemanes de alambre de piano, correas de microfibra, poleas silenciosas).
               </p>
             </div>
           </div>

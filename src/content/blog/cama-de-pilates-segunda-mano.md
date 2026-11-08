@@ -70,7 +70,7 @@ En **[Edelweiss Pilates](/cama-de-pilates)** ofrecemos [camas de Pilates Reforme
 - **Precios desde [$23,234 MXN](/cama-de-pilates/precio)** para nuestro modelo de entrada en Roble Clásico o Aluminio.
 - **Financiamiento a 12 [Meses Sin Intereses](/blog/financiacion-cama-de-pilates) (MSI):** Adquiere tu cama desde **$1,936 MXN al mes**, pagando menos de lo que cuesta una mensualidad en un estudio boutique.
 - **Garantía Estructural Directa de 3 Años:** Cero vicios ocultos, cero piezas fatigadas.
-- **Stock Local de Refacciones en México:** Resortes, ruedas y accesorios despachados en 24–48 horas a cualquier estado de la República.
+- **Refacciones en 1 semana:** Resortes, ruedas y correas enviados a cualquier estado de la República.
 - **Embalaje en Huacal de Madera Reforzado:** Entrega asegurada de puerta a puerta en toda la República Mexicana.
 
 Consulta nuestro **[catálogo completo de camas de Pilates](/cama-de-pilates)** o revisa la **[guía definitiva de compra de Reformer](/blog/cama-de-pilates-guia-de-compra)** para conocer todas las especificaciones y acabados disponibles.

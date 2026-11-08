@@ -28,7 +28,7 @@ heroImage: "/images/blog/reformer-casa-vs-profesional/hero.webp"
 | Silencio y estabilidad | Recorrido silencioso, juego lateral nulo | Silencio total con tolerancias más exigentes |
 | Ajustes | Básicos, suficientes para práctica personal | Footbar/gearbar robustos, cambios rápidos |
 | Accesorios | Kit de arranque | Kit completo para clases |
-| Servicio | Garantía 1 año, repuestos exprés | Idem, con respuesta prioritaria para estudio |
+| Servicio | Garantía 1 año, repuestos en 1 semana | Idem, con respuesta prioritaria para estudio |
 | Precio (MXN) | $25k–$45k | $50k–$95k |
 
 <see-also limit="3" />
@@ -76,7 +76,7 @@ Consulta los [Reformers para estudio](/reformer-para-estudio).
 ## Precio y costo total de propiedad (TCO)
 **Casa (MXN 25k–45k)**: [compra](/blog/cama-de-pilates-guia-de-compra) + envío + accesorios de arranque + mantenimiento ligero.
 
-**Profesional (MXN 50k–95k)**: compra + kit completo + mantenimiento + recambios + tiempo de inactividad (idealmente minimizado con repuestos exprés) + valor de reventa. Para estudios, calcula ROI: 
+**Profesional (MXN 50k–95k)**: compra + kit completo + mantenimiento + recambios + tiempo de inactividad + valor de reventa. Para estudios, calcula ROI: 
 
 > ROI ≈ (precio/clase × clases/semana × ocupación × 52 × n° reformers) − inversión total.
 

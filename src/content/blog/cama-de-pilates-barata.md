@@ -400,13 +400,13 @@ En México, la inversión inicial para una **[cama de Pilates](/cama-de-pilates)
 Sí. El punto de articulación central [de una cama plegable](/blog/cama-de-pilates-plegable) suele desarrollar holgura y juego mecánico tras 6 a 12 meses de uso, interrumpiendo la fluidez del deslizamiento del carro. Para uso diario en casa, una estructura fija de madera maciza o aluminio con rodamientos sellados ofrece una vida útil tres veces mayor.
 
 ### ¿Conviene comprar en plataformas de marketplace o directamente con un fabricante local?
-Comprar con un proveedor especializado con sede en México garantiza disponibilidad permanente de repuestos (resortes, ruedas, poleas), manuales y soporte técnico en español, y póliza de garantía directa de 3 años sin depender de importaciones inciertas ni aduanas.
+Comprar con un proveedor especializado con sede en México garantiza repuestos en 1 semana (resortes, ruedas, poleas), manuales y soporte técnico en español, y póliza de garantía directa de 3 años sin depender de importaciones inciertas ni aduanas.
 
 ### ¿Qué garantía mínima debo exigir al comprar un Reformer?
 Debes exigir un mínimo de 1 a 3 años de garantía sobre el chasis estructural y los mecanismos de deslizamiento. Desconfía de comercializadoras que solo ofrecen 30 a 90 días de garantía.
 
 ### ¿Es costoso el mantenimiento preventivo de una cama de Pilates?
-No. El mantenimiento habitual consiste en limpiar los rieles con un paño de microfibra seco semanalmente y desinfectar la tapicería con agua jabonosa neutra. Los resortes de piano alemanes solo requieren recambio cada 3 a 4 años en uso residencial, con repuestos de entrega inmediata en México.
+No. El mantenimiento habitual consiste en limpiar los rieles con un paño de microfibra seco semanalmente y desinfectar la tapicería con agua jabonosa neutra. Los resortes de piano alemanes solo requieren recambio cada 3 a 4 años en uso residencial, con repuestos en 1 semana.
 
 ## Recomendaciones Finales: Invierte con Inteligencia
 

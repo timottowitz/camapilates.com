@@ -68,7 +68,7 @@ Progresar implica variar resistencia, rango, tempo y soportes. Mantén movimient
 - Silencio y estabilidad: relevante en departamentos; una base amortiguada reduce vibración.
 - Materiales y mantenimiento: tapicería resistente, rieles de fácil limpieza, repuestos locales.
 - Presupuesto en MXN: considera IVA, envío e instalación; piensa en costo total de propiedad.
-- Soporte local: garantía de 1 año y refacciones exprés simplifican la experiencia.
+- Soporte local: garantía de 1 año y refacciones en 1 semana simplifican la experiencia.
 
 ## Recomendaciones Edelweiss Pilates
 Nuestros Reformers priorizan estabilidad, recorrido suave y materiales premium con soporte posventa en México.

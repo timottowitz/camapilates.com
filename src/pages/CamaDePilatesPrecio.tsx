@@ -154,7 +154,7 @@ const CamaDePilatesPrecio: React.FC = () => {
             </div>
           </div>
           <p className="text-xs text-[#5D5550]/80 mt-4 italic">
-            *Todos los precios de Edelweiss Pilates incluyen IVA, garantía directa de 3 años en México, refacciones inmediatas y opción de pago a 12 Meses Sin Intereses (desde {HOME_MSI} MXN/mes).
+            *Todos los precios de Edelweiss Pilates incluyen IVA, garantía directa de 3 años en México, refacciones en 1 semana y opción de pago a 12 Meses Sin Intereses (desde {HOME_MSI} MXN/mes).
           </p>
         </motion.div>
 
@@ -280,7 +280,7 @@ const CamaDePilatesPrecio: React.FC = () => {
                 'Roble o maple con torre de acero inoxidable, o gym reformers multiestación',
                 'Tapicería en negro, gris o blanco (otros colores bajo pedido)',
                 'Medidas y peso de cada modelo en su ficha técnica',
-                'Garantía directa de 3 años con stock de refacciones en México',
+                'Garantía directa de 3 años y refacciones en 1 semana',
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-white/70 font-light">
                   <Check className="w-5 h-5 text-[#EAE8E4] mt-0.5 flex-shrink-0" strokeWidth={1.5} />
@@ -326,7 +326,7 @@ const CamaDePilatesPrecio: React.FC = () => {
               {
                 icon: Shield,
                 title: 'Garantía y Refacciones Locales',
-                desc: 'Garantía directa de 3 años con almacén de piezas en México, evitando meses de espera y aranceles de importación.',
+                desc: 'Garantía directa de 3 años en México y refacciones en 1 semana, sin aranceles de importación.',
               },
             ].map((item, i) => (
               <div key={i} className="p-6 md:p-8 bg-white/60 backdrop-blur-sm border border-[#2A2624]/5 rounded-2xl hover:bg-white hover:shadow-md transition-all duration-500">

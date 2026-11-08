@@ -31,7 +31,7 @@ Para tomar una decisión acertada, debes entender los cuatro pilares biomecánic
 1. **Rigidez estructural y estabilidad del chasis:** Que el equipo no se tambalee, no cruja ni se flexione bajo tu peso corporal.
 2. **Calibración elástica de los resortes:** Uso de alambre de piano alemán con tensión predecible y suave, nunca cuerdas elásticas ni resortes genéricos de gimnasio.
 3. **Fluidez y silencio absoluto del carro deslizante:** Rodamientos sellados de precisión que permitan una concentración plena en la respiración sin rechinidos molestos.
-4. **Soporte postventa, garantía y refacciones locales en México:** La certeza de que si requieres un resorte adicional o una correa de recambio, no tendrás que lidiar con aduanas ni meses de espera.
+4. **Soporte postventa, garantía y refacciones locales en México:** La certeza de que si requieres un resorte adicional o una correa de recambio, no tendrás que lidiar con aduanas.
 
 ## Tipos de Cama de Pilates: ¿Para Casa o para Estudio?
 
@@ -98,13 +98,13 @@ Al comprar un Reformer en México, comparar alternativas con total objetividad e
 
 | Marca | Rango de Precio (MXN) | Material Chasis | Calidad de Resortes | Garantía | Refacciones y Servicio Local |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Edelweiss Pilates®** | **$23,234 – $85,050** | Roble / Maple macizo 30 mm o Aluminio | 5 resortes alemanes de alambre de piano calibrados | **3 años directa** | Almacén central en México (entrega en 24–48 horas) + 12 MSI |
+| **Edelweiss Pilates®** | **$23,234 – $85,050** | Roble / Maple macizo 30 mm o Aluminio | 5 resortes alemanes de alambre de piano calibrados | **3 años directa** | Refacciones en 1 semana + 12 MSI |
 | **Vanlig** | $4,489 – $50,999 | Plegable acero / MDF chapado roble | Cuerdas elásticas en gama baja / resortes estándar | 3 a 6 meses | Sujeto a importación; inventario recurrente agotado |
 | **Ironside / Tayga** | $19,690 – $25,990 | Acero tubular plegable | Cordones de nylon o resortes de gym (130-150 kg max) | 1 año | Piezas de fitness comercial, no especializadas en Pilates |
 | **UCAN** | $40,000 – $50,600 | Aluminio blanco lacado | Resortes de estudio estándar | 1 año | Catálogo acotado a 4 modelos; sin opciones en madera maciza |
 | **Balanced Body (EE.UU.)** | $90,000 – $180,000+ | Maple americano o Aluminio | Resortes Signature de alta gama | 5 años (en EE.UU.) | Se tramita en el extranjero; aranceles de importación y semanas de espera |
 
-**Conclusión del análisis de mercado:** Importar una marca estadounidense como Balanced Body o Merrithew garantiza un equipo de primera línea, pero con un sobreprecio de más del 50% en aranceles de importación, IVA aduanal y flete internacional pesado, además de la incertidumbre para conseguir una refacción simple. En Edelweiss Pilates obtienes ingeniería y tolerancias de estándar alemán, con distribución y soporte en México, precios transparentes en pesos mexicanos sin sobrecostos aduanales, planes de hasta 12 MSI y stock local de piezas con envío exprés.
+**Conclusión del análisis de mercado:** Importar una marca estadounidense como Balanced Body o Merrithew garantiza un equipo de primera línea, pero con un sobreprecio de más del 50% en aranceles de importación, IVA aduanal y flete internacional pesado, además de la incertidumbre para conseguir una refacción simple. En Edelweiss Pilates obtienes ingeniería y tolerancias de estándar alemán, con distribución y soporte en México, precios transparentes en pesos mexicanos sin sobrecostos aduanales, planes de hasta 12 MSI y refacciones en 1 semana.
 
 ## Espacio y Medidas: Cómo Planificar la Instalación en Casa
 
@@ -141,7 +141,7 @@ Consulta nuestra **[guía de precios de camas de Pilates](/cama-de-pilates/preci
 5) Tapicería con densidad y doble costura.
 6) Poleas con rodamientos sellados; giro suave.
 7) Accesorios base: box/correas/poleas.
-8) Garantía 1 año y repuestos exprés.
+8) Garantía 1 año y repuestos en 1 semana.
 9) Fabricación bajo pedido, entrega en 6–8 semanas y soporte en español.
 10) Costo total en 1 año (mantenimiento + recambios + tiempo de inactividad).
 
@@ -189,7 +189,7 @@ Para ejecutar el repertorio clásico y contemporáneo completo, tu cama de Pilat
 El mantenimiento preventivo es sencillo y garantiza décadas de funcionamiento óptimo:
 - **Diario/Semanal:** Limpieza de rieles de aluminio con un paño de microfibra seco para eliminar polvo; desinfección de tapicería vinílica con solución jabonosa suave libre de alcohol o solventes.
 - **Trimestral:** Revisión visual de mosquetones, anclajes de cuerdas y apriete de pernos estructurales.
-- **Reemplazo de resortes:** En estudios comerciales intensivos, se recomienda sustituir los 5 resortes cada **18 a 24 meses**. Para uso particular en casa, el recambio preventivo se aconseja cada **3 a 4 años**, o antes si se percibe separación entre espiras en reposo. En Edelweiss Pilates contamos con stock permanente de resortes con envío exprés nacional.
+- **Reemplazo de resortes:** En estudios comerciales intensivos, se recomienda sustituir los 5 resortes cada **18 a 24 meses**. Para uso particular en casa, el recambio preventivo se aconseja cada **3 a 4 años**, o antes si se percibe separación entre espiras en reposo. En Edelweiss Pilates enviamos resortes de repuesto en 1 semana.
 
 ### ¿Tienen opciones de pago a Meses Sin Intereses y envíos a toda la República?
 Sí. En Edelweiss Pilates ofrecemos esquemas de financiamiento a **3, 6, 9 y 12 Meses Sin Intereses (MSI)** con todas las tarjetas de crédito mexicanas participantes. Realizamos envíos consolidados y asegurados a través de transporte de carga pesada a toda la República Mexicana (CDMX, Estado de México, Jalisco, Nuevo León, Querétaro, Puebla, Quintana Roo, Yucatán, entre otros), con embalaje en caja de madera reforzada y rastreo directo hasta tu domicilio.

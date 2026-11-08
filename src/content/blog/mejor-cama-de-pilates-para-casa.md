@@ -47,7 +47,7 @@ Practicar Pilates en casa con tu propio reformer ofrece ventajas únicas que van
 - Chasis rígido en madera maciza de roble o perfil de aluminio aeroespacial
 - Sistema de resistencia profesional con 5 resortes de alambre de piano alemán calibrados
 - Deslizamiento silencioso con 8 rodamientos sellados de precisión
-- Garantía directa de 3 años de fábrica y refacciones disponibles en México en 24-48 horas
+- Garantía directa de 3 años de fábrica y refacciones en 1 semana
 - Compatible con accesorios de caja (*box*), tabla de salto y media torre
 - [Ver ficha y modelos en el catálogo](/cama-de-pilates) | [Consultar tabla de precios y MSI](/cama-de-pilates/precio)
 
