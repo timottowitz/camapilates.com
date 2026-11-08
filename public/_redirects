@@ -120,5 +120,14 @@
 /shop/category/sillas-y-barriles /shop/category/reformers 301
 /shop/category/sillas-y-barriles/ /shop/category/reformers 301
 
-# SPA fallback: must stay last
-/* /index.html 200
+# Client-only routes have no prerendered page, so serve the app shell.
+# Cloudflare Pages drops a catch-all `/* /index.html 200` as an infinite loop and
+# turns `/index.html` targets into redirects, so each route is rewritten to `/`.
+# Any other unknown URL keeps returning the real 404 page.
+/claim-teacher / 200
+/mi-perfil / 200
+/mi-perfil/editar / 200
+/reset-password / 200
+/setup-cuenta / 200
+/admin / 200
+/admin/* / 200
