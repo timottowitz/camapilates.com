@@ -262,24 +262,6 @@ const Blog: React.FC = () => {
                     </div>
                     <TagCloud21 tags={tagCounts} />
                   </div>
-
-                  <div className="p-8 bg-[#EAE8E4] rounded-[2rem] border border-white/50 shadow-sm relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
-                      <div className="w-32 h-32 rounded-full border border-[#2A2624]" />
-                    </div>
-                    <h3 className="font-serif italic text-3xl mb-4 text-[#2A2624]">Newsletter</h3>
-                    <p className="text-sm font-light text-[#5D5550] mb-6 leading-relaxed">
-                      Join 2,000+ pilates enthusiasts receiving our weekly digest.
-                    </p>
-                    <input
-                      type="email"
-                      placeholder="Your email address"
-                      className="w-full bg-white/50 border-none rounded-xl px-4 py-3 text-[#2A2624] text-sm focus:ring-1 focus:ring-[#2A2624]/20 mb-4 placeholder:text-[#2A2624]/30"
-                    />
-                    <button className="w-full py-4 bg-[#2A2624] text-[#EAE8E4] rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-[#3E2723] transition-colors shadow-lg">
-                      Subscribe
-                    </button>
-                  </div>
                 </div>
               </motion.aside>
             </div>
