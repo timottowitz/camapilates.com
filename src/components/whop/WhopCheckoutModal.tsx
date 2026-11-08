@@ -24,6 +24,7 @@ import {
 import { WhopCheckoutEmbed } from '@whop/checkout/react';
 import { WHOP_CONFIG } from '@/lib/whop/whopConfig';
 import { track } from '@/lib/analytics/track';
+import { formatMXN } from '@/lib/shop/catalog';
 
 interface WhopCheckoutModalProps {
   isOpen: boolean;
@@ -141,7 +142,7 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
         email: waitlistEmail.trim(),
         fullName: waitlistName.trim() || undefined,
         phone: waitlistPhone.trim() || undefined,
-        serviceOrPlan: `${activePlan.name} ($${activePlan.price.toLocaleString('es-MX')} MXN)`,
+        serviceOrPlan: `${activePlan.name} ($${formatMXN(activePlan.price)} MXN)`,
         cohort,
         source: 'service-waitlist-modal',
       });
@@ -190,7 +191,7 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
                 </span>
               ) : (
                 <span className="text-2xl font-bold tracking-tight text-neutral-900">
-                  ${activePlan.price.toLocaleString('es-MX')} MXN
+                  ${formatMXN(activePlan.price)} MXN
                 </span>
               )}
             </div>
@@ -299,7 +300,7 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
                       Servicio Solicitado
                     </div>
                     <div className="text-sm font-bold text-neutral-900">
-                      {activePlan.name} · ${activePlan.price.toLocaleString('es-MX')} MXN
+                      {activePlan.name} · ${formatMXN(activePlan.price)} MXN
                     </div>
                   </div>
                 </div>
@@ -527,7 +528,7 @@ export const WhopCheckoutModal: React.FC<WhopCheckoutModalProps> = ({
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-8 py-3.5 bg-neutral-900 hover:bg-neutral-800 text-white font-semibold text-xs uppercase tracking-wider rounded-full transition-all shadow-md"
                 >
-                  Abrir Checkout Seguro en Whop (${activePlan.price.toLocaleString('es-MX')} MXN)
+                  Abrir Checkout Seguro en Whop (${formatMXN(activePlan.price)} MXN)
                   <ExternalLink className="w-4 h-4" />
                 </a>
               </div>

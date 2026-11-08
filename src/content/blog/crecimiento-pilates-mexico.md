@@ -236,18 +236,11 @@ El mercado de apps fitness en México:
 En Edelweiss Pilates, hemos acompañado el crecimiento de más de **200 estudios exitosos** en México. Nuestra experiencia nos dice que el éxito requiere:
 
 ### 1. Equipo de Calidad Nacional
-- **Ahorro del 40%** vs importación
 - **Garantía de 1 año** en todos los Reformers
 - **Servicio técnico** en 15 ciudades
 - **Refacciones en 1 semana**
 
-### 2. Asesoría Especializada
-- **Análisis de ubicación** gratuito
-- **Plan de negocio** personalizado
-- **Conexión con instructores** certificados
-- **Estrategias de marketing** probadas
-
-### 3. Descuento por Volumen
+### 2. Descuento por Volumen
 - **20% de descuento** desde 8 Reformers
 
 <hub-list category="Comunidad Pilates México" limit="5" title="Recursos para emprendedores" />

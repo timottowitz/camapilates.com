@@ -8,6 +8,7 @@ import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
 import shopPolicy from '@/content/shop-policy.json';
+import { formatMXN } from '@/lib/shop/catalog';
 
 const StudioPack: React.FC = () => {
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://camadepilates.com';
@@ -51,7 +52,7 @@ const StudioPack: React.FC = () => {
   const mailto = () => {
     const subject = encodeURIComponent('Cotización Pack Estudio Edelweiss');
     const body = encodeURIComponent(
-      `Hola, me interesa el pack de estudio.\n\nCantidad: ${qty}\nSubtotal estimado: MXN ${subtotal.toLocaleString()}\n\nNombre:\nEstudio/Ciudad:\nTeléfono/WhatsApp:\nNotas:`
+      `Hola, me interesa el pack de estudio.\n\nCantidad: ${qty}\nSubtotal estimado: MXN ${formatMXN(subtotal)}\n\nNombre:\nEstudio/Ciudad:\nTeléfono/WhatsApp:\nNotas:`
     );
     window.location.href = `mailto:ventas@camadepilates.com?subject=${subject}&body=${body}`;
   };
@@ -100,17 +101,17 @@ const StudioPack: React.FC = () => {
               <div className="grid md:grid-cols-3 gap-8">
                 <div>
                   <div className="text-xs uppercase tracking-widest text-[#5D5550] mb-2">Precio Unitario</div>
-                  <div translate="no" className="notranslate text-3xl font-serif italic text-[#2A2624]">$ {unitPrice.toLocaleString('es-MX')} MXN</div>
+                  <div translate="no" className="notranslate text-3xl font-serif italic text-[#2A2624]">$ {formatMXN(unitPrice)} MXN</div>
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-widest text-[#5D5550] mb-2">Precio Preferencial (-20%)</div>
-                  <div translate="no" className="notranslate text-3xl font-serif italic text-[#3E2723]">$ {discounted.toLocaleString('es-MX')} MXN</div>
+                  <div translate="no" className="notranslate text-3xl font-serif italic text-[#3E2723]">$ {formatMXN(discounted)} MXN</div>
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-widest text-[#5D5550] mb-2">
                     Total (x<span translate="no" className="notranslate">{qty}</span>)
                   </div>
-                  <div translate="no" className="notranslate text-3xl font-serif italic text-[#2A2624]">$ {subtotal.toLocaleString('es-MX')} MXN</div>
+                  <div translate="no" className="notranslate text-3xl font-serif italic text-[#2A2624]">$ {formatMXN(subtotal)} MXN</div>
                 </div>
               </div>
 
@@ -158,7 +159,7 @@ const StudioPack: React.FC = () => {
                   <p className="text-sm text-white/80 font-light mt-0.5">Incluye 20% descuento, garantía comercial de 1 año y flete coordinado.</p>
                 </div>
                 <a
-                  href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar el Pack de Estudio de ${qty} Reformers (Subtotal estimado: $${subtotal.toLocaleString('es-MX')} MXN). Quisiera asesoría de tiempos de entrega e instalación.`)}`}
+                  href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar el Pack de Estudio de ${qty} Reformers (Subtotal estimado: $${formatMXN(subtotal)} MXN). Quisiera asesoría de tiempos de entrega e instalación.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   data-rybbit-event="click_studiopack_whatsapp_quote"

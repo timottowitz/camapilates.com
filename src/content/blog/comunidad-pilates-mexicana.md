@@ -149,11 +149,9 @@ Carlos Mendoza, instructor en Querétaro, triplicó su clientela tras participar
 En Edelweiss Pilates entendemos que el éxito de un instructor o estudio depende tanto del equipo como de la comunidad que lo respalda. Por eso ofrecemos:
 
 - **Asesoría gratuita** para nuevos estudios
-- **Capacitación técnica** incluida con cada Reformer
 - **Garantía** de 1 año
-- **Red de instructores Edelweiss**: Acceso exclusivo a nuestra comunidad de 500+ profesionales
 
-Nuestros Reformers están diseñados específicamente para el mercado mexicano, considerando espacios, clima y necesidades locales. Con envío gratis a toda la República y servicio técnico en las principales ciudades.
+Nuestros Reformers están diseñados específicamente para el mercado mexicano, considerando espacios, clima y necesidades locales. Con envío a toda la República.
 
 <hub-list category="Comunidad Pilates México" limit="5" title="Más contenidos de la comunidad" />
 

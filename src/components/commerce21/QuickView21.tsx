@@ -5,6 +5,7 @@ import { MessageCircle } from 'lucide-react';
 import { beginCheckout } from '@/lib/shop/analytics';
 import { productWhatsAppUrl } from '@/lib/shop/whatsapp';
 import { FINISHES } from '@/components/product/Finishes';
+import { formatMXN } from '@/lib/shop/catalog';
 
 type Props = {
   product: Product;
@@ -48,7 +49,7 @@ const QuickView21: React.FC<Props> = ({ product, onClose }) => {
                 translate="no"
                 className="notranslate mt-2 text-lg font-semibold text-foreground"
               >
-                $ {Number(priceToShow).toLocaleString('es-MX')} {product.currency}
+                $ {formatMXN(priceToShow)} {product.currency}
               </div>
               {product.finishes?.length ? (
                 <div className="mt-3">

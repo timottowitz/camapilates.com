@@ -7,7 +7,7 @@ import { getOrigin, DEFAULTS } from '@/lib/seo';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { ContextualImage } from '@/components/ContextualImage';
 import type { FinishKey, Product } from '@/lib/shop/types';
-import { allProducts, getBySlug, toCategorySlug } from '@/lib/shop/catalog';
+import { allProducts, formatMXN, getBySlug, toCategorySlug } from '@/lib/shop/catalog';
 import { beginCheckout, viewItem } from '@/lib/shop/analytics';
 import { productWhatsAppUrl } from '@/lib/shop/whatsapp';
 import { EnhancedGallery } from '@/components/commerce21/EnhancedGallery';
@@ -303,7 +303,7 @@ const ProductPage: React.FC = () => {
               <div className="flex items-baseline gap-4">
                 {/* translate="no": browser translation detaches React's text nodes, freezing live prices */}
                 <div translate="no" className="notranslate text-4xl sm:text-5xl font-serif italic text-[#2A2624]">
-                  $ {Number(priceToShow).toLocaleString('es-MX')}{' '}
+                  $ {formatMXN(priceToShow)}{' '}
                   <span className="text-sm font-sans not-italic text-[#5D5550] tracking-normal">{prod.currency}</span>
                 </div>
                 <div className="text-[10px] uppercase tracking-[0.2em] text-[#3E2723] flex items-center gap-1">
@@ -314,14 +314,14 @@ const ProductPage: React.FC = () => {
               {bundleCalc.quantity > 1 ? (
                 <div className="space-y-1">
                   <p className="text-xs font-medium text-[#2A2624]">
-                    Paquete de <span translate="no" className="notranslate">{bundleCalc.quantity}</span> Unidades · <span translate="no" className="notranslate font-bold text-[#3E2723]">${bundleCalc.discountedUnitPrice.toLocaleString('es-MX')} {prod.currency} / unidad</span>
+                    Paquete de <span translate="no" className="notranslate">{bundleCalc.quantity}</span> Unidades · <span translate="no" className="notranslate font-bold text-[#3E2723]">${formatMXN(bundleCalc.discountedUnitPrice)} {prod.currency} / unidad</span>
                   </p>
                   <p className="text-xs text-[#5D5550]">
-                    Precio regular sin descuento: <span translate="no" className="notranslate line-through">${bundleCalc.originalTotalPrice.toLocaleString('es-MX')} {prod.currency}</span> ·{' '}
+                    Precio regular sin descuento: <span translate="no" className="notranslate line-through">${formatMXN(bundleCalc.originalTotalPrice)} {prod.currency}</span> ·{' '}
                     <span className="font-bold text-emerald-700">
                       Ahorras{' '}
                       <span translate="no" className="notranslate">
-                        ${bundleCalc.totalSavings.toLocaleString('es-MX')} {prod.currency}
+                        ${formatMXN(bundleCalc.totalSavings)} {prod.currency}
                       </span>
                     </span>
                   </p>
@@ -513,7 +513,7 @@ const ProductPage: React.FC = () => {
                         </div>
                         <div className="flex justify-between items-baseline">
                           <div className="font-serif italic text-xl text-[#2A2624] group-hover:text-[#3E2723] transition-colors">{p.name}</div>
-                          <div className="text-[10px] uppercase tracking-widest text-[#5D5550]">$ {p.price} {p.currency}</div>
+                          <div className="text-[10px] uppercase tracking-widest text-[#5D5550]">$ {formatMXN(p.price)} {p.currency}</div>
                         </div>
                       </Link>
                     ))}

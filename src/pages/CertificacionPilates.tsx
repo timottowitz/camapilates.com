@@ -47,6 +47,7 @@ import PreRegistrationModal from '@/components/certification/PreRegistrationModa
 import CityListicleNav from '@/components/certification/CityListicleNav';
 import CertificationCityGrid from '@/components/certification/CertificationCityGrid';
 import StottCdmxSection from '@/components/certification/StottCdmxSection';
+import { formatMXN } from '@/lib/shop/catalog';
 
 type CapabilityTab = 'curriculo' | 'comunidad' | 'oferta' | 'faq';
 
@@ -704,10 +705,10 @@ export const CertificacionPilates: React.FC = () => {
               <div className="flex items-baseline justify-between mb-4">
                 <div>
                   <div className="text-xs font-mono uppercase tracking-wider text-neutral-400 line-through">
-                    ${CERTIFICATION_COHORTS.queretaro.regularPrice.toLocaleString('es-MX')} MXN
+                    ${formatMXN(CERTIFICATION_COHORTS.queretaro.regularPrice)} MXN
                   </div>
                   <div className="text-3xl font-bold text-neutral-900 tracking-tight">
-                    ${CERTIFICATION_COHORTS.queretaro.discountedPrice.toLocaleString('es-MX')} MXN
+                    ${formatMXN(CERTIFICATION_COHORTS.queretaro.discountedPrice)} MXN
                   </div>
                 </div>
                 <div className="text-right">
@@ -715,7 +716,7 @@ export const CertificacionPilates: React.FC = () => {
                     Apartado de Cupo
                   </div>
                   <div className="text-xl font-bold text-neutral-900">
-                    ${CERTIFICATION_COHORTS.queretaro.depositPrice.toLocaleString('es-MX')} MXN
+                    ${formatMXN(CERTIFICATION_COHORTS.queretaro.depositPrice)} MXN
                   </div>
                 </div>
               </div>
@@ -786,10 +787,10 @@ export const CertificacionPilates: React.FC = () => {
               <div className="flex items-baseline justify-between mb-4">
                 <div>
                   <div className="text-xs font-mono uppercase tracking-wider text-neutral-400 line-through">
-                    ${CERTIFICATION_COHORTS.monterrey.regularPrice.toLocaleString('es-MX')} MXN
+                    ${formatMXN(CERTIFICATION_COHORTS.monterrey.regularPrice)} MXN
                   </div>
                   <div className="text-3xl font-bold text-neutral-900 tracking-tight">
-                    ${CERTIFICATION_COHORTS.monterrey.discountedPrice.toLocaleString('es-MX')} MXN
+                    ${formatMXN(CERTIFICATION_COHORTS.monterrey.discountedPrice)} MXN
                   </div>
                 </div>
                 <div className="text-right">
@@ -797,7 +798,7 @@ export const CertificacionPilates: React.FC = () => {
                     Apartado de Cupo
                   </div>
                   <div className="text-xl font-bold text-neutral-900">
-                    ${CERTIFICATION_COHORTS.monterrey.depositPrice.toLocaleString('es-MX')} MXN
+                    ${formatMXN(CERTIFICATION_COHORTS.monterrey.depositPrice)} MXN
                   </div>
                 </div>
               </div>
@@ -1086,7 +1087,7 @@ export const CertificacionPilates: React.FC = () => {
                     </div>
                     <div className="text-right shrink-0">
                       <div className="font-mono text-sm text-neutral-400 line-through">
-                        ${bonus.value.toLocaleString('es-MX')} MXN
+                        ${formatMXN(bonus.value)} MXN
                       </div>
                       <div className="text-xs font-mono text-emerald-700 font-semibold">Incluido</div>
                     </div>
@@ -1110,11 +1111,11 @@ export const CertificacionPilates: React.FC = () => {
                     </p>
                     <div className="mt-5 pt-4 border-t border-neutral-100">
                       <div className="text-3xl font-bold text-neutral-900 tracking-tight">
-                        ${WHOP_CONFIG.plans.cursoBasico.price.toLocaleString('es-MX')}{' '}
+                        ${formatMXN(WHOP_CONFIG.plans.cursoBasico.price)}{' '}
                         <span className="text-xs font-mono font-normal text-neutral-500">MXN</span>
                       </div>
                       <div className="text-xs text-neutral-500 mt-1">
-                        O aparta hoy tu lugar con solo <strong>${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN</strong>
+                        O aparta hoy tu lugar con solo <strong>${formatMXN(WHOP_CONFIG.plans.apartado.price)} MXN</strong>
                       </div>
                     </div>
                   </div>
@@ -1125,16 +1126,16 @@ export const CertificacionPilates: React.FC = () => {
                       className="w-full py-3.5 rounded-full bg-[#111111] text-white text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors text-center shadow-md"
                     >
                       {WHOP_CONFIG.paymentsEnabled
-                        ? `Inscribirme a Básico ($${WHOP_CONFIG.plans.cursoBasico.price.toLocaleString('es-MX')} MXN)`
-                        : `Inscribirme · Básico ($${WHOP_CONFIG.plans.cursoBasico.price.toLocaleString('es-MX')} MXN)`}
+                        ? `Inscribirme a Básico ($${formatMXN(WHOP_CONFIG.plans.cursoBasico.price)} MXN)`
+                        : `Inscribirme · Básico ($${formatMXN(WHOP_CONFIG.plans.cursoBasico.price)} MXN)`}
                     </button>
                     <button
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
                       className="w-full py-2.5 rounded-full border border-neutral-300 text-neutral-700 text-xs font-mono uppercase tracking-wider hover:border-neutral-900 transition-colors text-center"
                     >
                       {WHOP_CONFIG.paymentsEnabled
-                        ? `Apartar Cupo ($${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN)`
-                        : `Apartar por WhatsApp ($${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN)`}
+                        ? `Apartar Cupo ($${formatMXN(WHOP_CONFIG.plans.apartado.price)} MXN)`
+                        : `Apartar por WhatsApp ($${formatMXN(WHOP_CONFIG.plans.apartado.price)} MXN)`}
                     </button>
                   </div>
                 </div>
@@ -1158,11 +1159,11 @@ export const CertificacionPilates: React.FC = () => {
                     </p>
                     <div className="mt-5 pt-4 border-t border-neutral-800">
                       <div className="text-3xl font-bold text-white tracking-tight">
-                        ${WHOP_CONFIG.plans.colegiaturaCompleta.price.toLocaleString('es-MX')}{' '}
+                        ${formatMXN(WHOP_CONFIG.plans.colegiaturaCompleta.price)}{' '}
                         <span className="text-xs font-mono font-normal text-neutral-400">MXN</span>
                       </div>
                       <div className="text-xs text-neutral-400 mt-1">
-                        O aparta hoy tu lugar con solo <strong>${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN</strong>
+                        O aparta hoy tu lugar con solo <strong>${formatMXN(WHOP_CONFIG.plans.apartado.price)} MXN</strong>
                       </div>
                     </div>
                   </div>
@@ -1173,16 +1174,16 @@ export const CertificacionPilates: React.FC = () => {
                       className="w-full py-3.5 rounded-full bg-amber-400 text-neutral-950 text-xs font-bold uppercase tracking-wider hover:bg-amber-300 transition-colors text-center shadow-lg"
                     >
                       {WHOP_CONFIG.paymentsEnabled
-                        ? `Inscribirme a Completa ($${WHOP_CONFIG.plans.colegiaturaCompleta.price.toLocaleString('es-MX')} MXN)`
-                        : `Inscribirme · Completa ($${WHOP_CONFIG.plans.colegiaturaCompleta.price.toLocaleString('es-MX')} MXN)`}
+                        ? `Inscribirme a Completa ($${formatMXN(WHOP_CONFIG.plans.colegiaturaCompleta.price)} MXN)`
+                        : `Inscribirme · Completa ($${formatMXN(WHOP_CONFIG.plans.colegiaturaCompleta.price)} MXN)`}
                     </button>
                     <button
                       onClick={() => handleOpenCheckout(WHOP_CONFIG.plans.apartado.id)}
                       className="w-full py-2.5 rounded-full border border-neutral-700 text-neutral-300 text-xs font-mono uppercase tracking-wider hover:border-white transition-colors text-center"
                     >
                       {WHOP_CONFIG.paymentsEnabled
-                        ? `Apartar Cupo ($${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN)`
-                        : `Apartar por WhatsApp ($${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN)`}
+                        ? `Apartar Cupo ($${formatMXN(WHOP_CONFIG.plans.apartado.price)} MXN)`
+                        : `Apartar por WhatsApp ($${formatMXN(WHOP_CONFIG.plans.apartado.price)} MXN)`}
                     </button>
                   </div>
                 </div>
@@ -1347,15 +1348,14 @@ export const CertificacionPilates: React.FC = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <span className="block text-xs font-mono tracking-widest uppercase text-neutral-500 mb-4">
-                // BENEFICIO EXCLUSIVO DE GRADUADAS
+                // PARA TU ESTUDIO
               </span>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 leading-tight mb-6">
                 Equipa Tu Futuro Estudio con Precios Preferenciales
               </h2>
               <p className="text-neutral-600 leading-relaxed mb-8">
-                Al graduarte de cualquiera de nuestras modalidades formativas (28h Básico o 48h Completo), accedes a un 15% de descuento directo en la
-                compra de camas de Pilates Reformer profesionales Edelweiss con madera noble, cuero genuino y resortes
-                alemanes.
+                Reformers profesionales Edelweiss de madera noble, con resortes alemanes. A partir de 8 Reformers,
+                el pack de estudio lleva 20% de descuento.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
@@ -1375,12 +1375,8 @@ export const CertificacionPilates: React.FC = () => {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-[#F8F8F6] p-6 rounded-2xl border border-neutral-200">
-                <div className="text-3xl font-mono font-bold text-neutral-900 mb-1">15%</div>
-                <p className="text-xs text-neutral-500">Descuento para graduadas en reformers</p>
-              </div>
-              <div className="bg-[#F8F8F6] p-6 rounded-2xl border border-neutral-200">
-                <div className="text-3xl font-mono font-bold text-neutral-900 mb-1">2+</div>
-                <p className="text-xs text-neutral-500">Envío e instalación preferencial</p>
+                <div className="text-3xl font-mono font-bold text-neutral-900 mb-1">20%</div>
+                <p className="text-xs text-neutral-500">Descuento desde 8 Reformers</p>
               </div>
               <div className="bg-[#F8F8F6] p-6 rounded-2xl border border-neutral-200">
                 <div className="text-3xl font-mono font-bold text-neutral-900 mb-1">1 Año</div>

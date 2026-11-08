@@ -104,7 +104,7 @@ En la Ciudad de México, una clase suelta de Pilates Reformer cuesta entre $350 
 Una membresía mensual con clases ilimitadas en [estudios boutique](/blog/estudios-pilates-reformer) de CDMX se ubica entre $3,800 y $5,200 MXN mensuales. Si asistes 3 o más veces por semana, el costo por sesión desciende a menos de $300 MXN.
 
 ### ¿Conviene más pagar estudio o comprar una cama de Pilates para casa en CDMX?
-Si asistes a clases 3 veces por semana en CDMX a un costo promedio de $4,500 MXN mensuales, tu gasto anual es de $54,000 MXN. Un Reformer residencial premium de Edelweiss Pilates inicia desde $29,700 MXN, amortizándose por completo en menos de 7 meses y permitiendo entrenar con horarios libres y máxima privacidad.
+Si asistes a clases 3 veces por semana en CDMX a un costo promedio de $4,500 MXN mensuales, tu gasto anual es de $54,000 MXN. Un Reformer residencial de Edelweiss Pilates inicia desde $17,426 MXN, amortizándose por completo en menos de 4 meses y permitiendo entrenar con horarios libres y máxima privacidad.
 
 ### ¿Cuántas clases necesito para notar resultados?
 Con 2‑3 sesiones semanales, la mayoría siente mejor postura y estabilidad en 4‑6 semanas. A los 3 meses puedes avanzar a rutinas intermedias (tower, jumpboard).

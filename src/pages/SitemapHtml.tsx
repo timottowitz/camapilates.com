@@ -5,7 +5,7 @@ import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { requireRouteMeta } from '@/lib/routeMeta';
 import { canonicalUrl } from '@/lib/seo';
 import { priceLabel } from '@/lib/shop/catalog';
-import { CATALOG_MIN, TOWER } from '@/lib/shop/priceRanges';
+import { CATALOG_MIN, REFORMER_COUNT, TOWER } from '@/lib/shop/priceRanges';
 import { Layers, GraduationCap, MapPin, Users, BookOpen, ShoppingBag, ArrowRight } from 'lucide-react';
 
 interface SitemapSection {
@@ -41,7 +41,7 @@ const sitemapData: SitemapSection[] = [
       {
         title: 'Catálogo de Camas de Pilates Reformer',
         path: '/shop/category/reformers',
-        description: 'Catálogo completo de 22 modelos de camas Reformer para casa y estudio en México.',
+        description: `Catálogo completo de ${REFORMER_COUNT} modelos de camas Reformer para casa y estudio en México.`,
         badge: 'Catálogo',
       },
       {

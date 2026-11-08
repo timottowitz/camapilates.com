@@ -88,19 +88,19 @@ Estudios recientes han demostrado múltiples beneficios del Pilates Reformer:
 
 ## Mercado Mexicano 2026: Precios y Disponibilidad
 
-En México, adquirir una **[cama de Pilates Reformer](/cama-de-pilates)** nueva de calidad profesional se divide en tres niveles de inversión claros:
+En Edelweiss Pilates, nuestras 10 **[camas de Pilates Reformer](/cama-de-pilates)** nuevas se dividen en tres niveles de inversión claros:
 
 ### Rangos de Precios Actuales
-- **Gama Residencial / Casa:** desde **$23,234 hasta $36,716 MXN**. Chasis en roble macizo o aluminio extrusionado con 5 resortes alemanes.
-- **Gama Estudio Comercial:** desde **$36,716 hasta $58,000 MXN**. Diseñados para más de 8 horas continuas diarias de trabajo con usuarios de hasta 200 kg.
-- **Modelos Multifuncionales (Torre / Cadillac):** desde **$58,000 hasta $85,050 MXN**. Con aditamentos para el repertorio completo avanzado y rehabilitación.
+- **Para casa (sin torre):** 6 modelos desde **$17,426 hasta $24,676 MXN**. Chasis en roble o maple macizo, o aluminio extrusionado, con 5 resortes alemanes.
+- **Con torre:** 2 modelos, **$24,676 (roble) y $29,000 MXN (maple)**. Con aditamentos para el repertorio completo avanzado y rehabilitación.
+- **Gimnasio:** 2 modelos, **$52,213 (Gym Reformer Compacto) y $63,788 MXN (Gym Reformer Multiestación)**. Diseñados para más de 8 horas continuas diarias de trabajo con usuarios de hasta 200 kg.
 Consulta todos los modelos desglosados en nuestra **[guía de precios de camas de Pilates](/cama-de-pilates/precio)**.
 
 ### Principales Marcas en México
 
 | Marca | Rango de Precio (MXN) | Garantía | Características Principales |
 |-------|----------------------|----------|----------------------------|
-| **Edelweiss Pilates®** | **$23,234 – $85,050** | **1 año, directa** | **Madera maciza de roble/maple o aluminio, resortes alemanes, refacciones en 1 semana** |
+| **Edelweiss Pilates®** | **$17,426 – $63,788** | **1 año, directa** | **Madera maciza de roble/maple o aluminio, resortes alemanes, refacciones en 1 semana** |
 | **Vanlig** | $4,489 – $50,999 | 3 a 6 meses | Plegables económicos (ligas) y modelos de importación con quiebres frecuentes de stock |
 | **UCAN** | $40,000 – $50,600 | 1 año | Aluminio boutique lacado en blanco, sin opción de madera maciza natural |
 | **Universo Pilates** | $29,600 – $53,000 | 6 años | Madera de abedul contrachapado, fabricación en CDMX con cotización vía WhatsApp |
@@ -229,7 +229,6 @@ Para un análisis paso a paso de cada punto, revisa nuestra **[guía de compra d
 **En Edelweiss Pilates** ofrecemos:
 - Garantía de 1 año en todos nuestros equipos
 - Servicio técnico especializado en Ciudad de México
-- Capacitación gratuita para maximizar el uso
 - 20% de descuento para estudios a partir de 8 Reformers
 
 ## Instalación y Espacio Requerido
@@ -511,9 +510,9 @@ El Reformer es **excelente para rehabilitación**, pero requiere:
 
 **¿Listo para transformar tu práctica o equipar tu estudio?**
 
-- **[Catálogo de Camas de Pilates en México](/cama-de-pilates):** Explora nuestros 22 modelos en madera maciza de roble/maple y aluminio aeroespacial desde **$23,234 MXN**.
+- **[Catálogo de Camas de Pilates en México](/cama-de-pilates):** Explora nuestros 10 modelos en madera maciza de roble/maple y aluminio aeroespacial desde **$17,426 MXN**.
 - **[Tabla de Precios](/cama-de-pilates/precio):** Desglose detallado de precios por modelo, transferencias SPEI y envíos asegurados.
-- **[Packs para Estudio con 20% OFF](/packs/estudio):** Paquetes integrales de 4 a 12 camas con instalación técnica coordinada y capacitación.
+- **[Packs para Estudio hasta 20% OFF](/packs/estudio):** Descuento por unidad de ~10% con 4 camas, 16% con 6 y 20% con 8, con instalación técnica coordinada y capacitación.
 - **[Guía de Compra y Comparativas](/blog/cama-de-pilates-guia-de-compra):** Dimensiones mínimas requeridas, calibración de resortes alemanes y retorno de inversión.
 
 <hub-list category="Guías de compra" limit="6" title="Más guías sobre Camas de Pilates" />

@@ -38,6 +38,7 @@ import { EditorialFeatureCards } from '@/components/webapp/EditorialFeatureCards
 import { CourseModuleEditorialCard } from '@/components/webapp/CourseModuleEditorialCard';
 import { WEBINAR_INFO, getGoogleCalendarUrl, CERTIFICATION_COHORTS } from '@/content/certification/cohortsData';
 import { getOrigin } from '@/lib/seo';
+import { formatMXN } from '@/lib/shop/catalog';
 
 type WebappTab = 'campus' | 'comunidad' | 'webinar' | 'recursos' | 'pagos';
 
@@ -1173,7 +1174,7 @@ const WebappExperience: React.FC = () => {
                       {WHOP_CONFIG.plans.apartado.name}
                     </h3>
                     <p className="text-2xl font-extrabold tracking-tight text-neutral-950 font-mono">
-                      ${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')} MXN
+                      ${formatMXN(WHOP_CONFIG.plans.apartado.price)} MXN
                     </p>
                     <p className="text-xs text-neutral-600 leading-relaxed">
                       {WHOP_CONFIG.plans.apartado.tagline}
@@ -1201,7 +1202,7 @@ const WebappExperience: React.FC = () => {
                       {WHOP_CONFIG.plans.cursoBasico.name}
                     </h3>
                     <p className="text-2xl font-extrabold tracking-tight text-neutral-950 font-mono">
-                      ${WHOP_CONFIG.plans.cursoBasico.price.toLocaleString('es-MX')} MXN
+                      ${formatMXN(WHOP_CONFIG.plans.cursoBasico.price)} MXN
                     </p>
                     <p className="text-xs text-neutral-600 leading-relaxed">
                       {WHOP_CONFIG.plans.cursoBasico.tagline}
@@ -1229,7 +1230,7 @@ const WebappExperience: React.FC = () => {
                       {WHOP_CONFIG.plans.colegiaturaCompleta.name}
                     </h3>
                     <p className="text-2xl font-extrabold tracking-tight text-neutral-950 font-mono">
-                      ${WHOP_CONFIG.plans.colegiaturaCompleta.price.toLocaleString('es-MX')} MXN
+                      ${formatMXN(WHOP_CONFIG.plans.colegiaturaCompleta.price)} MXN
                     </p>
                     <p className="text-xs text-neutral-600 leading-relaxed">
                       {WHOP_CONFIG.plans.colegiaturaCompleta.tagline}
@@ -1257,7 +1258,7 @@ const WebappExperience: React.FC = () => {
                       {WHOP_CONFIG.plans.cursoOnline.name}
                     </h3>
                     <p className="text-2xl font-extrabold tracking-tight text-neutral-950 font-mono">
-                      ${WHOP_CONFIG.plans.cursoOnline.price.toLocaleString('es-MX')} MXN
+                      ${formatMXN(WHOP_CONFIG.plans.cursoOnline.price)} MXN
                     </p>
                     <p className="text-xs text-neutral-600 leading-relaxed">
                       {WHOP_CONFIG.plans.cursoOnline.tagline}
@@ -1316,7 +1317,7 @@ const WebappExperience: React.FC = () => {
                     </h3>
                   </div>
                   <div className="text-right">
-                    <span className="text-xs font-mono text-neutral-400 line-through">Valor Total: ${WHOP_CONFIG.offerStack.totalValue.toLocaleString('es-MX')} MXN</span>
+                    <span className="text-xs font-mono text-neutral-400 line-through">Valor Total: ${formatMXN(WHOP_CONFIG.offerStack.totalValue)} MXN</span>
                     <p className="text-lg font-bold text-neutral-900">Básico 28h: $25,000 MXN · Completo 48h: $38,000 MXN</p>
                   </div>
                 </div>
@@ -1326,7 +1327,7 @@ const WebappExperience: React.FC = () => {
                     <div key={idx} className="p-4 rounded-2xl bg-neutral-50/70 border border-neutral-200/70 space-y-1.5">
                       <div className="flex items-center justify-between">
                         <span className="font-bold text-xs text-neutral-900">{bonus.title}</span>
-                        <span className="font-mono text-[11px] font-semibold text-neutral-500">${bonus.value.toLocaleString('es-MX')} MXN</span>
+                        <span className="font-mono text-[11px] font-semibold text-neutral-500">${formatMXN(bonus.value)} MXN</span>
                       </div>
                       <p className="text-xs text-neutral-600 leading-relaxed">{bonus.description}</p>
                     </div>

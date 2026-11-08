@@ -1,6 +1,7 @@
 import type { Product } from './types';
 import { getOrigin } from '@/lib/seo';
 import type { BundlePriceCalculation } from './bundles';
+import { formatMXN } from './catalog';
 
 export const WHATSAPP_PHONE = '525548468190';
 
@@ -23,9 +24,9 @@ export function productWhatsAppUrl(
     msgParts = [
       `Hola, me interesa comprar el Paquete de ${bundleCalc.quantity} unidades de: ${p.name}`,
       `Paquete Preferencial de Estudio (${bundleCalc.quantity} Unidades)`,
-      `Precio Unitario: $${bundleCalc.discountedUnitPrice.toLocaleString('es-MX')} ${p.currency}`,
-      `Total Paquete (${bundleCalc.quantity} Reformers): $${bundleCalc.discountedTotalPrice.toLocaleString('es-MX')} ${p.currency}`,
-      `Ahorro total: $${bundleCalc.totalSavings.toLocaleString('es-MX')} ${p.currency}`,
+      `Precio Unitario: $${formatMXN(bundleCalc.discountedUnitPrice)} ${p.currency}`,
+      `Total Paquete (${bundleCalc.quantity} Reformers): $${formatMXN(bundleCalc.discountedTotalPrice)} ${p.currency}`,
+      `Ahorro total: $${formatMXN(bundleCalc.totalSavings)} ${p.currency}`,
       `SKU: ${sku}`,
       url,
     ];

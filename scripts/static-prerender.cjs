@@ -420,7 +420,7 @@ function buildShopIndex(products) {
       <img src="${p.image}" alt="${p.name}" class="w-full h-auto rounded mb-4 border" />
       <h2 class="font-semibold text-gray-900 group-hover:text-black">${p.name}</h2>
       <p class="text-sm text-gray-600 mt-2">${p.description}</p>
-      <div class="mt-3 font-semibold text-gray-900">$ ${p.price} ${p.currency}</div>
+      <div class="mt-3 font-semibold text-gray-900">${priceLabel(p.price)} ${p.currency}</div>
     </a>
   `).join('\n');
   return `
@@ -459,7 +459,7 @@ function buildStudioReformerPage(reformers) {
         <h2 class="text-xl font-semibold text-gray-900">${htmlEscape(product.name)}</h2>
       </a>
       <p class="mt-3 text-gray-700">${htmlEscape(product.description)}</p>
-      <p class="mt-4 font-semibold text-gray-900">$ ${htmlEscape(product.price)} ${htmlEscape(product.currency)}</p>
+      <p class="mt-4 font-semibold text-gray-900">${priceLabel(product.price)} ${htmlEscape(product.currency)}</p>
     </article>
   `).join('\n');
 
@@ -504,7 +504,32 @@ function formatMXN(price) {
   return new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(num);
 }
 
-function buildCamaDePilatesPage(reformers, origin) {
+// "$1,234.50", or "$17,616" when there are no cents.
+function priceLabel(price) {
+  const num = Number(price);
+  const digits = Math.round(num * 100) % 100 === 0 ? 0 : 2;
+  return `$${num.toLocaleString('es-MX', { minimumFractionDigits: digits, maximumFractionDigits: digits })}`;
+}
+
+// Same groups as src/lib/shop/priceRanges.ts: gym machines, reformers with a tower, everything else (home).
+function reformerPrices(products) {
+  const reformers = products.filter(p => p.category === 'Reformers');
+  const isGym = p => p.type === 'gimnasio';
+  const hasTower = p => !isGym(p) && Boolean(p.specs && p.specs.torre);
+  const range = list => {
+    const values = list.map(p => Number(p.price));
+    return { min: priceLabel(Math.min(...values)), max: priceLabel(Math.max(...values)) };
+  };
+  return {
+    count: reformers.length,
+    all: range(reformers),
+    home: range(reformers.filter(p => !isGym(p) && !hasTower(p))),
+    tower: range(reformers.filter(hasTower)),
+    gym: range(reformers.filter(isGym)),
+  };
+}
+
+function buildCamaDePilatesPage(reformers, origin, prices) {
   const productCards = reformers.map(p => {
     const formattedPrice = formatMXN(p.price);
     const materialsList = Array.isArray(p.materials) ? p.materials.slice(0, 3).join(' · ') : '';
@@ -558,7 +583,7 @@ function buildCamaDePilatesPage(reformers, origin) {
           Camas de Pilates Reformer en México: Modelos, Precios y Venta 2026
         </h1>
         <p class="text-lg md:text-xl text-stone-700 font-light leading-relaxed mb-8">
-          Encuentra en 2026 la mejor <strong>cama de Pilates (Reformer)</strong> en México desde $23,234 MXN para estudio o casa. En <strong>Edelweiss Pilates</strong> combinamos maderas macizas y aluminio estructural con resortes alemanes de alambre de piano y rodamientos ultra-silenciosos. Envíos asegurados a todo México con garantía directa de 1 año y refacciones en 1 semana.
+          Encuentra en 2026 la mejor <strong>cama de Pilates (Reformer)</strong> en México desde ${prices.home.min} MXN para estudio o casa. En <strong>Edelweiss Pilates</strong> combinamos maderas macizas y aluminio estructural con resortes alemanes de alambre de piano y rodamientos ultra-silenciosos. Envíos asegurados a todo México con garantía directa de 1 año y refacciones en 1 semana.
         </p>
         <div class="flex flex-wrap gap-4 mb-12">
           <a href="#catalogo" class="rounded-full bg-stone-900 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-stone-800 transition-all shadow-md">
@@ -602,12 +627,12 @@ function buildCamaDePilatesPage(reformers, origin) {
             Modelos de Camas de Pilates en Venta
           </h2>
           <p class="text-stone-600 mt-2 max-w-xl text-sm">
-            Compara 22 modelos de camas de Pilates con precios desde $23,234 MXN hasta $85,050 MXN, desde equipos compactos para casa hasta Reformers clínicos con media torre.
+            Compara ${prices.count} modelos de camas de Pilates con precios desde ${prices.all.min} MXN hasta ${prices.all.max} MXN, desde equipos compactos para casa hasta Reformers con torre y multiestaciones de gimnasio.
           </p>
         </div>
         <div class="mt-4 md:mt-0 flex gap-2">
           <a href="/packs/estudio" class="text-xs font-bold text-stone-800 bg-white border border-stone-300 px-4 py-2 rounded-lg hover:bg-stone-50">
-            Packs de Estudio (20% Desc.)
+            Packs de Estudio (hasta 20% Desc.)
           </a>
         </div>
       </div>
@@ -678,7 +703,7 @@ function buildCamaDePilatesPage(reformers, origin) {
               </tr>
               <tr>
                 <td class="p-3 md:p-4 font-semibold text-stone-900">Rango de Precios (MXN)</td>
-                <td class="p-3 md:p-4 font-bold text-emerald-800 bg-emerald-50/30">$23,234 a $85,050 MXN</td>
+                <td class="p-3 md:p-4 font-bold text-emerald-800 bg-emerald-50/30">${prices.all.min} a ${prices.all.max} MXN</td>
                 <td class="p-3 md:p-4 text-stone-600">$4,489 a $50,999 MXN (stock muy limitado)</td>
                 <td class="p-3 md:p-4 text-stone-600">$19,690 a $25,990 MXN (solo 1-2 modelos)</td>
                 <td class="p-3 md:p-4 text-stone-600">$90,000 a $160,000+ MXN (altos aranceles)</td>
@@ -823,12 +848,13 @@ function buildCamaDePilatesPage(reformers, origin) {
 
         <h3 class="text-2xl font-bold text-stone-800 mt-8 mb-4">¿Cuánto Cuesta una Cama de Pilates en México en 2026?</h3>
         <p class="text-stone-700 leading-relaxed mb-4">
-          En 2026, el precio de una cama de Pilates Reformer en México oscila entre $23,234 y $85,050 MXN según especificaciones:
+          En 2026, el precio de una cama de Pilates Reformer en México oscila entre ${prices.all.min} y ${prices.all.max} MXN según especificaciones:
         </p>
         <ol class="list-decimal pl-6 text-stone-700 space-y-3 mb-6">
           <li><strong>Gama Económica ($15,000 – $25,000 MXN):</strong> Reformers plegables de importación con perfiles delgados y sin refacciones locales.</li>
-          <li><strong>Gama Profesional Edelweiss ($23,234 – $42,567 MXN):</strong> Maderas macizas (Roble o Maple) o aluminio estructural con resortes alemanes y 1 año de garantía.</li>
-          <li><strong>Gama Torre y Cadillac ($51,000 – $85,050 MXN):</strong> Estaciones híbridas con torre de acero inoxidable para más de 300 ejercicios clínicos.</li>
+          <li><strong>Reformers para casa Edelweiss (${prices.home.min} – ${prices.home.max} MXN):</strong> Maderas macizas (Roble o Maple), aluminio estructural o plegables, con resortes alemanes y 1 año de garantía.</li>
+          <li><strong>Reformers con torre (${prices.tower.min} – ${prices.tower.max} MXN):</strong> El mismo Reformer de madera con torre para trabajo con barra y resortes de pie.</li>
+          <li><strong>Reformers de gimnasio (${prices.gym.min} – ${prices.gym.max} MXN):</strong> Equipos multiestación para uso comercial intensivo.</li>
         </ol>
 
         <h3 class="text-2xl font-bold text-stone-800 mt-8 mb-4">Dimensiones y Requisitos de Espacio para Instalar tu Cama</h3>
@@ -860,7 +886,7 @@ function buildCamaDePilatesPage(reformers, origin) {
               <span class="text-stone-400 group-open:rotate-45 transition-transform text-2xl font-light">+</span>
             </summary>
             <div class="mt-4 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
-              En México, los precios de camas de Pilates profesionales inician desde $23,234 MXN para modelos clásicos de roble, entre $28,000 y $38,000 MXN para modelos de maple norteamericano y aluminio de alta gama, y entre $51,000 y $85,050 MXN para equipos que incorporan media torre o estructura de Cadillac. Todos nuestros precios incluyen IVA y garantía directa.
+              En México, nuestras camas de Pilates para casa (madera maciza de roble o maple, aluminio y plegables) cuestan de ${prices.home.min} a ${prices.home.max} MXN, los modelos con torre de ${prices.tower.min} a ${prices.tower.max} MXN y los Reformers de gimnasio multiestación de ${prices.gym.min} a ${prices.gym.max} MXN. Todos nuestros precios incluyen IVA y garantía directa.
             </div>
           </details>
 
@@ -980,7 +1006,7 @@ function buildCamaDePilatesPage(reformers, origin) {
   </main>`;
 }
 
-function buildCamaDePilatesPrecioPage(reformers, origin) {
+function buildCamaDePilatesPrecioPage(reformers, origin, prices) {
   const priceRows = reformers.slice(0, 10).map(p => {
     const formattedPrice = formatMXN(p.price);
     return `
@@ -1010,7 +1036,7 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
           ¿Cuánto Cuesta una Cama de Pilates en México? Precios y Presupuestos 2026
         </h1>
         <p class="text-lg md:text-xl text-stone-700 font-light leading-relaxed mb-8">
-          En México, el precio de una <strong>cama de Pilates Reformer</strong> profesional oscila entre <strong>$23,234 MXN y $85,050 MXN</strong>, dependiendo del tipo de chasis (madera maciza de arce/roble vs. aleación de aluminio extrusionado), la presencia de media torre o aditamentos de Cadillac, y la calidad de los rodamientos y resortes alemanes. Analizamos con total transparencia los rangos de costo y qué factores determinan una inversión segura y rentable.
+          En México, el precio de una <strong>cama de Pilates Reformer</strong> profesional oscila entre <strong>${prices.all.min} MXN y ${prices.all.max} MXN</strong>, dependiendo del tipo de chasis (madera maciza de arce/roble vs. aleación de aluminio extrusionado), si lleva torre o es un equipo multiestación de gimnasio, y la calidad de los rodamientos y resortes alemanes. Analizamos con total transparencia los rangos de costo y qué factores determinan una inversión segura y rentable.
         </p>
         <div class="flex flex-wrap gap-4 mb-12">
           <a href="/cama-de-pilates" class="rounded-full bg-stone-900 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-stone-800 transition-all shadow-md">
@@ -1071,7 +1097,7 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
             <tbody class="divide-y divide-stone-100 text-stone-700">
               <tr class="bg-emerald-50/50 font-medium">
                 <td class="p-3 md:p-4 font-bold text-emerald-900">Edelweiss Pilates®</td>
-                <td class="p-3 md:p-4 font-extrabold text-stone-900">$23,234 – $85,050</td>
+                <td class="p-3 md:p-4 font-extrabold text-stone-900">${prices.all.min} – ${prices.all.max}</td>
                 <td class="p-3 md:p-4">5 resortes alemanes de alambre de piano calibrados</td>
                 <td class="p-3 md:p-4">Roble / Maple macizo o Aluminio aeroespacial</td>
                 <td class="p-3 md:p-4 text-emerald-800">1 año de garantía directa, refacciones en 1 semana</td>
@@ -1150,7 +1176,7 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
         <ul class="list-disc pl-6 text-stone-700 space-y-2 mb-6">
           <li><strong>Clase Privada promedio en México (CDMX/MTY/GDL):</strong> $500 a $900 MXN por hora.</li>
           <li><strong>Clase Grupal (paquete mensual 8 sesiones):</strong> $2,200 a $3,800 MXN por alumno al mes.</li>
-          <li><strong>Amortización:</strong> Con apenas 4 a 6 horas de ocupación diaria por máquina, una cama de $32,900 MXN recupera el 100% de su valor inicial en <strong>2 a 3 meses de operación</strong>, generando flujo neto positivo durante los años posteriores.</li>
+          <li><strong>Amortización:</strong> Con apenas 4 a 6 horas de ocupación diaria por máquina, una cama de ${prices.home.max} MXN recupera el 100% de su valor inicial en <strong>2 a 3 meses de operación</strong>, generando flujo neto positivo durante los años posteriores.</li>
         </ul>
 
         <!-- Promo Banner to /cama-de-pilates -->
@@ -1178,7 +1204,7 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
               <span class="text-stone-400 group-open:rotate-45 transition-transform text-xl font-light">+</span>
             </summary>
             <div class="mt-3 text-stone-600 text-sm leading-relaxed border-t border-stone-200/60 pt-3">
-              En México, nuestros reformers van de $17,425.50 MXN (Reformer Clásico de Roble) a $29,000.25 MXN para modelos de madera con torre, y hasta $63,787.50 MXN para el Gym Reformer multiestación de uso comercial.
+              En México, nuestros reformers para casa van de ${prices.home.min} a ${prices.home.max} MXN, los modelos de madera con torre de ${prices.tower.min} a ${prices.tower.max} MXN y los Gym Reformers multiestación de uso comercial de ${prices.gym.min} a ${prices.gym.max} MXN.
             </div>
           </details>
           <details class="border border-stone-200 rounded-xl p-5 group bg-stone-50/50">
@@ -1187,7 +1213,7 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
               <span class="text-stone-400 group-open:rotate-45 transition-transform text-xl font-light">+</span>
             </summary>
             <div class="mt-3 text-stone-600 text-sm leading-relaxed border-t border-stone-200/60 pt-3">
-              Nuestras opciones residenciales inician desde $23,234 MXN. Cuentan con chasis rígido que elimina vibraciones, carro silencioso con rodamientos sellados y sistema de 5 resortes alemanes de alambre de piano.
+              Nuestras opciones residenciales van de ${prices.home.min} a ${prices.home.max} MXN. Cuentan con chasis rígido que elimina vibraciones, carro silencioso con rodamientos sellados y sistema de 5 resortes alemanes de alambre de piano.
             </div>
           </details>
           <details class="border border-stone-200 rounded-xl p-5 group bg-stone-50/50">
@@ -1196,7 +1222,7 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
               <span class="text-stone-400 group-open:rotate-45 transition-transform text-xl font-light">+</span>
             </summary>
             <div class="mt-3 text-stone-600 text-sm leading-relaxed border-t border-stone-200/60 pt-3">
-              Los Reformers profesionales para estudio boutique rondan entre $36,716 y $69,617 MXN para camas fijas de madera maciza o aluminio aeroespacial, y hasta $85,050 MXN para modelos con media torre o estructura de Cadillac. Todos con garantía directa de 1 año y tolerancias para uso comercial continuo de 8 a 10 horas diarias.
+              Para estudio boutique ofrecemos camas fijas de madera maciza o aluminio aeroespacial de ${prices.home.min} a ${prices.home.max} MXN, modelos con torre de ${prices.tower.min} a ${prices.tower.max} MXN y Reformers multiestación de gimnasio de ${prices.gym.min} a ${prices.gym.max} MXN, con hasta 20% de descuento en packs de estudio. Todos con garantía directa de 1 año y tolerancias para uso comercial continuo de 8 a 10 horas diarias.
             </div>
           </details>
           <details class="border border-stone-200 rounded-xl p-5 group bg-stone-50/50">
@@ -1286,7 +1312,7 @@ function buildShopCategoryIndex(slug, category, products) {
       <img src="${htmlEscape(p.image)}" alt="${htmlEscape(p.name)}" class="w-full h-auto rounded mb-4 border" />
       <h2 class="font-semibold text-gray-900 group-hover:text-black">${htmlEscape(p.name)}</h2>
       <p class="text-sm text-gray-600 mt-2">${htmlEscape(p.description)}</p>
-      <div class="mt-3 font-semibold text-gray-900">$ ${htmlEscape(p.price)} ${htmlEscape(p.currency)}</div>
+      <div class="mt-3 font-semibold text-gray-900">${priceLabel(p.price)} ${htmlEscape(p.currency)}</div>
     </a>
   `).join('\n');
   const sections = category.sections.map(section => `
@@ -1530,6 +1556,7 @@ async function main() {
   const origin = process.env.SITE_ORIGIN || 'https://camadepilates.com';
   const posts = readPosts().sort((a,b) => new Date(b.date) - new Date(a.date));
   const prods = readProducts();
+  const prices = reformerPrices(prods);
   const studioData = readStudios();
   const routeMeta = JSON.parse(fs.readFileSync(path.join(ROOT, 'src', 'content', 'route-meta.json'), 'utf8'));
   // Same switch the app reads: while we don't run our own course, certification pages are a directory.
@@ -1562,14 +1589,14 @@ async function main() {
       <header class="max-w-4xl">
         <p class="text-sm uppercase tracking-widest text-gray-600">Reformers para México</p>
         <h1 class="mt-4 text-4xl md:text-6xl font-bold text-gray-900">Cama de Pilates Reformer en México</h1>
-        <p class="mt-6 text-lg text-gray-700 leading-8">Compara 22 modelos de camas de Pilates para casa y estudio, consulta precios actualizados 2026 desde $23,234 MXN y encuentra guías para elegir tu cama con envío asegurado a todo México.</p>
+        <p class="mt-6 text-lg text-gray-700 leading-8">Compara ${prices.count} modelos de camas de Pilates para casa y estudio, consulta precios actualizados 2026 desde ${prices.home.min} MXN y encuentra guías para elegir tu cama con envío asegurado a todo México.</p>
       </header>
       <section class="mt-12">
         <h2 class="sr-only">Ecosistema de Cama de Pilates: Modelos Reformer, Estudios y Certificación</h2>
         <nav aria-label="Enlaces principales" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           <a href="/cama-de-pilates" class="rounded-xl border-2 border-stone-900 bg-stone-900 text-white p-6 hover:bg-stone-800 transition-colors sm:col-span-2 lg:col-span-3">
             <h3 class="text-xl font-bold text-white mb-1">Camas de Pilates Reformer en México (Catálogo Completo 2026)</h3>
-            <p class="text-sm text-stone-300">Explora todos los 22 modelos de madera noble y aluminio con especificaciones técnicas, precios y cotización directa.</p>
+            <p class="text-sm text-stone-300">Explora los ${prices.count} modelos de madera noble, aluminio y plegables con especificaciones técnicas, precios y cotización directa.</p>
           </a>
           <a href="/shop/category/reformers" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Tienda de Reformers</h3><p class="mt-1 text-sm text-gray-600">Explora modelos y precios disponibles.</p></a>
           <a href="/reformer-para-estudio" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Reformer para estudio</h3><p class="mt-1 text-sm text-gray-600">Equipo profesional para uso intensivo.</p></a>
@@ -1841,7 +1868,7 @@ async function main() {
           name: '¿Cuánto cuesta un reformer para casa en México?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Un reformer de calidad para casa en México cuesta entre $35,000 y $45,000 MXN. Modelos económicos desde $15,000 MXN sacrifican durabilidad y silencio.'
+            text: `Nuestros Reformers para casa cuestan entre ${prices.home.min} y ${prices.home.max} MXN. Los modelos económicos de menos de $15,000 MXN sacrifican durabilidad y silencio.`
           }
         },
         {
@@ -1924,7 +1951,7 @@ async function main() {
         <div>
           <h2 class="text-2xl font-bold text-gray-900"><a href="/product/${home.slug}">${htmlEscape(home.name)}</a></h2>
           <p class="mt-4 text-gray-700">${htmlEscape(home.description)}</p>
-          <div class="mt-6 text-2xl font-bold text-gray-900">$${Number(home.price).toLocaleString('es-MX', { minimumFractionDigits: 2 })} MXN</div>
+          <div class="mt-6 text-2xl font-bold text-gray-900">${priceLabel(home.price)} MXN</div>
         </div>
       </div>
       <div class="mt-16 pt-10 border-t border-gray-200">
@@ -1973,7 +2000,7 @@ async function main() {
           </div>
           <div class="border border-gray-200 rounded-lg p-5">
             <h3 class="font-bold text-gray-900 mb-2">¿Cuánto cuesta un reformer para casa en México?</h3>
-            <p class="text-gray-700 text-sm">Un reformer de calidad para casa en México cuesta entre $35,000 y $45,000 MXN. Modelos económicos desde $15,000 MXN sacrifican durabilidad y silencio.</p>
+            <p class="text-gray-700 text-sm">Nuestros Reformers para casa cuestan entre ${prices.home.min} y ${prices.home.max} MXN. Los modelos económicos de menos de $15,000 MXN sacrifican durabilidad y silencio.</p>
           </div>
           <div class="border border-gray-200 rounded-lg p-5">
             <h3 class="font-bold text-gray-900 mb-2">¿Es difícil instalar un reformer en casa?</h3>
@@ -2042,7 +2069,7 @@ async function main() {
           name: '¿Cuánto cuesta una cama de Pilates Reformer en México?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'En México, los precios de camas de Pilates profesionales inician desde $23,234 MXN para modelos clásicos de roble, entre $28,000 y $38,000 MXN para modelos de maple norteamericano y aluminio de alta gama, y entre $51,000 y $85,050 MXN para equipos que incorporan media torre o estructura de Cadillac. Todos nuestros precios incluyen IVA y garantía directa.'
+            text: `En México, nuestras camas de Pilates para casa (madera maciza de roble o maple, aluminio y plegables) cuestan de ${prices.home.min} a ${prices.home.max} MXN, los modelos con torre de ${prices.tower.min} a ${prices.tower.max} MXN y los Reformers de gimnasio multiestación de ${prices.gym.min} a ${prices.gym.max} MXN. Todos nuestros precios incluyen IVA y garantía directa.`
           }
         },
         {
@@ -2111,7 +2138,7 @@ async function main() {
       ogType: 'website',
     };
     const graphHtml = wrapJsonLdInGraph([breadcrumb, collectionPage, itemList, faqSchema], `${origin}${route}`);
-    let html = baseHtml(template, head, buildCamaDePilatesPage(reformers, origin));
+    let html = baseHtml(template, head, buildCamaDePilatesPage(reformers, origin, prices));
     html = html.replace(
       '</head>',
       `${graphHtml}\n</head>`
@@ -2142,7 +2169,7 @@ async function main() {
           name: '¿Cuánto cuesta una cama de Pilates en México en 2026?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'En México, nuestros reformers van de $17,425.50 MXN (Reformer Clásico de Roble) a $29,000.25 MXN para modelos de madera con torre, y hasta $63,787.50 MXN para el Gym Reformer multiestación de uso comercial.'
+            text: `En México, nuestros reformers para casa van de ${prices.home.min} a ${prices.home.max} MXN, los modelos de madera con torre de ${prices.tower.min} a ${prices.tower.max} MXN y los Gym Reformers multiestación de uso comercial de ${prices.gym.min} a ${prices.gym.max} MXN.`
           }
         },
         {
@@ -2150,7 +2177,7 @@ async function main() {
           name: '¿Cuál es el precio de una cama de Pilates para casa?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Nuestras opciones residenciales inician desde $23,234 MXN. Cuentan con chasis rígido que elimina vibraciones, carro silencioso con rodamientos sellados y sistema de 5 resortes alemanes de alambre de piano.'
+            text: `Nuestras opciones residenciales van de ${prices.home.min} a ${prices.home.max} MXN. Cuentan con chasis rígido que elimina vibraciones, carro silencioso con rodamientos sellados y sistema de 5 resortes alemanes de alambre de piano.`
           }
         },
         {
@@ -2158,7 +2185,7 @@ async function main() {
           name: '¿Cuál es el precio de una cama de Pilates de estudio profesional?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Los Reformers profesionales para estudio boutique rondan entre $36,716 y $69,617 MXN para camas fijas de madera maciza o aluminio aeroespacial, y hasta $85,050 MXN para modelos con media torre o estructura de Cadillac. Todos con garantía directa de 1 año y tolerancias para uso comercial continuo de 8 a 10 horas diarias.'
+            text: `Para estudio boutique ofrecemos camas fijas de madera maciza o aluminio aeroespacial de ${prices.home.min} a ${prices.home.max} MXN, modelos con torre de ${prices.tower.min} a ${prices.tower.max} MXN y Reformers multiestación de gimnasio de ${prices.gym.min} a ${prices.gym.max} MXN, con hasta 20% de descuento en packs de estudio. Todos con garantía directa de 1 año y tolerancias para uso comercial continuo de 8 a 10 horas diarias.`
           }
         },
         {
@@ -2196,14 +2223,14 @@ async function main() {
       ]
     };
     const head = {
-      title: meta ? meta.title : '¿Cuánto Cuesta una Cama de Pilates en México? Precios Desde $23,234 MXN [2026]',
-      description: meta ? meta.description : 'Guía completa de precios de camas de Pilates (Reformer) en México 2026: modelos para casa y estudio desde $23,234 MXN. Incluye garantía directa de 1 año.',
+      title: meta ? meta.title : `¿Cuánto Cuesta una Cama de Pilates en México? Precios Desde ${prices.home.min} MXN [2026]`,
+      description: meta ? meta.description : `Guía completa de precios de camas de Pilates (Reformer) en México 2026: modelos para casa y estudio desde ${prices.home.min} MXN. Incluye garantía directa de 1 año.`,
       canonical: `${origin}${route}`,
       ogImage: `${origin}${reformers[0].image}`,
       ogType: 'website',
     };
     const graphHtml = wrapJsonLdInGraph([breadcrumb, faqSchema], `${origin}${route}`);
-    let html = baseHtml(template, head, buildCamaDePilatesPrecioPage(reformers, origin));
+    let html = baseHtml(template, head, buildCamaDePilatesPrecioPage(reformers, origin, prices));
     html = html.replace(
       '</head>',
       `${graphHtml}\n</head>`

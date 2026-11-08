@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import products from '@/content/products.json';
+import { formatMXN } from '@/lib/shop/catalog';
 
 const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => (
   <motion.div
@@ -27,7 +28,7 @@ const FeaturedProducts: React.FC = () => {
   const formatPrice = (price: string) => {
     const num = parseFloat(price);
     if (num === 0) return 'Cotizar';
-    return `$${num.toLocaleString('es-MX')} MXN`;
+    return `$${formatMXN(num)} MXN`;
   };
 
   return (

@@ -5,7 +5,7 @@ import { DEFAULTS, getOrigin, generateBreadcrumbSchema } from '@/lib/seo';
 import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { MapPin, Building2, Truck, ShieldCheck, ArrowRight, MessageCircle, Sparkles, Clock, CheckCircle2 } from 'lucide-react';
 import { calculateBundlePrice, type BundleQuantity } from '@/lib/shop/bundles';
-import { allProducts } from '@/lib/shop/catalog';
+import { allProducts, formatMXN } from '@/lib/shop/catalog';
 import shopPolicy from '@/content/shop-policy.json';
 import CertificationWebinarBanner from '@/components/certification/CertificationWebinarBanner';
 import { OFFER_OWN_COURSES } from '@/content/certification/cohortsData';
@@ -37,7 +37,7 @@ export const PilatesReformerMonterrey: React.FC = () => {
 
   const whatsappMessage = useMemo(() => {
     const text = `Hola, me interesa armar mi estudio en Monterrey con el ${selectedProd?.name}. ` +
-      `Paquete seleccionado: ${selectedQty} Unidades ($${bundleCalc.discountedTotalPrice.toLocaleString('es-MX')} MXN). ` +
+      `Paquete seleccionado: ${selectedQty} Unidades ($${formatMXN(bundleCalc.discountedTotalPrice)} MXN). ` +
       `Me gustaría confirmar la fecha de entrega en Monterrey.`;
     return `https://wa.me/525548468190?text=${encodeURIComponent(text)}`;
   }, [selectedProd, selectedQty, bundleCalc]);
@@ -240,11 +240,11 @@ export const PilatesReformerMonterrey: React.FC = () => {
                         </div>
                         <div className="mt-3 pt-2 border-t border-[#2A2624]/10">
                           <div translate="no" className="notranslate text-xs font-bold text-[#2A2624]">
-                            ${modelBundle.discountedUnitPrice.toLocaleString('es-MX')} MXN
+                            ${formatMXN(modelBundle.discountedUnitPrice)} MXN
                             <span className="text-[10px] font-normal text-[#5D5550]"> / u.</span>
                           </div>
                           <div translate="no" className="notranslate text-[10px] text-[#5D5550] line-through">
-                            ${Number(p.price).toLocaleString('es-MX')} MXN
+                            ${formatMXN(p.price)} MXN
                           </div>
                         </div>
                       </button>
@@ -282,7 +282,7 @@ export const PilatesReformerMonterrey: React.FC = () => {
                           {qty === 4 ? 'Studio Starter' : qty === 6 ? 'Studio Pro' : 'Estudio Completo'}
                         </span>
                         <span translate="no" className={`notranslate text-[10px] font-bold block mt-1.5 ${isSelected ? 'text-emerald-300' : 'text-emerald-700'}`}>
-                          ${tierBundle.discountedUnitPrice.toLocaleString('es-MX')} / u.
+                          ${formatMXN(tierBundle.discountedUnitPrice)} / u.
                         </span>
                       </button>
                     );
@@ -332,19 +332,19 @@ export const PilatesReformerMonterrey: React.FC = () => {
                 <div className="flex justify-between text-xs text-[#EAE8E4]/70">
                   <span>Precio Unitario Preferencial:</span>
                   <span translate="no" className="notranslate font-semibold text-white">
-                    ${bundleCalc.discountedUnitPrice.toLocaleString('es-MX')} MXN
+                    ${formatMXN(bundleCalc.discountedUnitPrice)} MXN
                   </span>
                 </div>
                 <div className="flex justify-between text-xs text-[#EAE8E4]/70">
                   <span>Precio Regular sin Descuento:</span>
                   <span translate="no" className="notranslate line-through">
-                    ${bundleCalc.originalTotalPrice.toLocaleString('es-MX')} MXN
+                    ${formatMXN(bundleCalc.originalTotalPrice)} MXN
                   </span>
                 </div>
                 <div className="flex justify-between text-sm text-emerald-400 font-bold pt-1">
                   <span>Ahorro Total Paquete:</span>
                   <span translate="no" className="notranslate">
-                    ${bundleCalc.totalSavings.toLocaleString('es-MX')} MXN
+                    ${formatMXN(bundleCalc.totalSavings)} MXN
                   </span>
                 </div>
               </div>
@@ -354,7 +354,7 @@ export const PilatesReformerMonterrey: React.FC = () => {
                   Total Final con Envío a Monterrey:
                 </span>
                 <div translate="no" className="notranslate text-3xl font-serif italic font-bold text-white">
-                  ${bundleCalc.discountedTotalPrice.toLocaleString('es-MX')}{' '}
+                  ${formatMXN(bundleCalc.discountedTotalPrice)}{' '}
                   <span className="text-xs font-sans not-italic text-[#EAE8E4]/80">MXN</span>
                 </div>
               </div>

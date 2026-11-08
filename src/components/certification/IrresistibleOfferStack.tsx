@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { WHOP_CONFIG } from '@/lib/whop/whopConfig';
 import { WhopCheckoutModal } from '@/components/whop/WhopCheckoutModal';
+import { formatMXN } from '@/lib/shop/catalog';
 
 interface IrresistibleOfferStackProps {
   city?: 'queretaro' | 'monterrey';
@@ -104,7 +105,7 @@ export const IrresistibleOfferStack: React.FC<IrresistibleOfferStackProps> = ({
                   </div>
                   <div className="md:text-right shrink-0">
                     <span className="text-sm font-semibold text-stone-300">
-                      ${item.value.toLocaleString('es-MX')} MXN
+                      ${formatMXN(item.value)} MXN
                     </span>
                   </div>
                 </div>
@@ -119,7 +120,7 @@ export const IrresistibleOfferStack: React.FC<IrresistibleOfferStackProps> = ({
                 Valor Total del Programa Completo
               </p>
               <p className="text-2xl font-serif line-through text-stone-500">
-                ${WHOP_CONFIG.offerStack.totalValue.toLocaleString('es-MX')} MXN
+                ${formatMXN(WHOP_CONFIG.offerStack.totalValue)} MXN
               </p>
             </div>
             <div className="text-right">
@@ -128,7 +129,7 @@ export const IrresistibleOfferStack: React.FC<IrresistibleOfferStackProps> = ({
               </span>
               <p className="text-xs text-stone-400">Inversión Directa Oficial</p>
               <p className="text-2xl md:text-3xl font-serif font-bold text-amber-300">
-                ${WHOP_CONFIG.plans.cursoBasico.price.toLocaleString('es-MX')} (28h) · ${WHOP_CONFIG.plans.colegiaturaCompleta.price.toLocaleString('es-MX')} (48h)
+                ${formatMXN(WHOP_CONFIG.plans.cursoBasico.price)} (28h) · ${formatMXN(WHOP_CONFIG.plans.colegiaturaCompleta.price)} (48h)
               </p>
             </div>
           </div>
@@ -157,7 +158,7 @@ export const IrresistibleOfferStack: React.FC<IrresistibleOfferStackProps> = ({
               <div className="py-2">
                 <div className="flex items-baseline gap-2">
                   <span className="text-3xl font-serif font-bold text-amber-300">
-                    ${WHOP_CONFIG.plans.apartado.price.toLocaleString('es-MX')}
+                    ${formatMXN(WHOP_CONFIG.plans.apartado.price)}
                   </span>
                   <span className="text-xs text-stone-400 uppercase">MXN Anticipo</span>
                 </div>
@@ -215,7 +216,7 @@ export const IrresistibleOfferStack: React.FC<IrresistibleOfferStackProps> = ({
               <div className="py-2">
                 <div className="flex items-baseline gap-2">
                   <span className="text-3xl font-serif font-bold text-stone-100">
-                    ${WHOP_CONFIG.plans.cursoBasico.price.toLocaleString('es-MX')}
+                    ${formatMXN(WHOP_CONFIG.plans.cursoBasico.price)}
                   </span>
                   <span className="text-xs text-stone-400 uppercase">MXN Contado</span>
                 </div>
@@ -277,7 +278,7 @@ export const IrresistibleOfferStack: React.FC<IrresistibleOfferStackProps> = ({
               <div className="py-2">
                 <div className="flex items-baseline gap-2">
                   <span className="text-3xl font-serif font-bold text-amber-300">
-                    ${WHOP_CONFIG.plans.colegiaturaCompleta.price.toLocaleString('es-MX')}
+                    ${formatMXN(WHOP_CONFIG.plans.colegiaturaCompleta.price)}
                   </span>
                   <span className="text-xs text-stone-400 uppercase">MXN Contado</span>
                 </div>

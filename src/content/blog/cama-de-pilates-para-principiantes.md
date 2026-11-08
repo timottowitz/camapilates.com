@@ -298,73 +298,56 @@ Los especialistas recomiendan practicar Mat Pilates durante al menos 3 meses ant
 ### Modelos recomendados por rango de precio:
 
 **Gama accesible ($15,000 - $25,000 MXN):**
-- Edelweiss Starter Pro
+- Edelweiss Reformer Clásico de Roble o Elite de Aluminio
 - Reformer Classic Home
 
 **Gama media ($25,000 - $40,000 MXN):**
-- Edelweiss Professional Series
+- Edelweiss Reformer Clásico de Maple con Torre
 - Reformer Studio Quality
 
 **Gama premium ($40,000+ MXN):**
-- Edelweiss Elite Reformer
 - Studio Professional Plus
 
 ## Opciones Edelweiss para principiantes
 
-### 1. Edelweiss Starter Pro
+Todos nuestros Reformers se fabrican sobre pedido (entrega en 6 a 8 semanas), con 1 año de garantía y refacciones en 1 semana.
+
+### 1. Reformer Clásico de Roble
 **Características:**
-- Diseñado específicamente para principiantes
-- Sistema de resortes codificado por colores
-- Resistencia ajustable de 5 niveles
-- Incluye guía de ejercicios para principiantes
+- Estructura de roble macizo
+- Incluye caja de salto y barra de pies abatible
+- Juego de resortes Normal, Estándar o Top según tu nivel
 - Garantía de 1 año
 
-**Precio:** $18,999 MXN
+**Precio:** $17,426 MXN
 **Ideal para:** Primera compra, uso doméstico regular
 
-### 2. Edelweiss Home Studio
+### 2. Reformer Plegable de Aluminio
 **Características:**
-- Calidad de estudio en casa
-- Accesorios completos incluidos
-- Sistema de plegado para espacios pequeños
-- Manual y videos de entrenamiento
-- Soporte técnico gratuito por 6 meses
+- Se pliega y se guarda de pie (128 × 68 × 50 cm plegado)
+- Pesa 70 kg
+- La opción más práctica para departamentos
 
-**Precio:** $24,999 MXN
-**Ideal para:** Principiantes serios, espacios limitados
+**Precio:** $18,824 MXN
+**Ideal para:** Principiantes con espacio limitado
 
-### 3. Edelweiss Professional Beginner
+### 3. Reformer Clásico de Maple
 **Características:**
-- Construcción robusta para uso intensivo
-- Ajustes precisos y suaves
-- Accesorios profesionales incluidos
-- Programa de actualización disponible
+- Maple blanco de tono claro y acabado limpio
+- Caja, apoyos de hombros y poleas en postes de madera
 - Garantía de 1 año
 
-**Precio:** $32,999 MXN
+**Precio:** $21,750 MXN
 **Ideal para:** Principiantes que planean uso a largo plazo
 
-### 4. Edelweiss Complete Package
+### 4. Reformer Clásico de Roble con Torre
 **Características:**
-- Reformer + accesorios completos
-- Clases virtuales incluidas por 3 meses
-- Consultoría de setup personalizada
-- Programa de mantenimiento
-- Actualización gratuita de software
+- Torre de acero inoxidable con barra push-through
+- Resortes de brazos y piernas para ampliar el repertorio
+- Reformer y torre en el mismo espacio
 
-**Precio:** $38,999 MXN
+**Precio:** $24,676 MXN
 **Ideal para:** Experiencia completa de principiante a intermedio
-
-### 5. Edelweiss Smart Reformer
-**Características:**
-- Conectividad inteligente
-- App con seguimiento de progreso
-- Videos de ejercicios integrados
-- Resistencia automática programable
-- Análisis de rendimiento
-
-**Precio:** $45,999 MXN
-**Ideal para:** Tecnófilos, seguimiento detallado del progreso
 
 ## Frecuencia recomendada de práctica para principiantes
 

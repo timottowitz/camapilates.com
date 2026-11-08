@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MessageCircle, Heart, Share2, Phone } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { formatMXN } from '@/lib/shop/catalog';
 
 interface StickyMobileCTAProps {
   productName: string;
@@ -80,7 +81,7 @@ export function StickyMobileCTA({
             </h3>
             <div className="flex items-baseline gap-1.5">
               <span translate="no" className="notranslate text-lg font-bold text-primary">
-                ${price.toLocaleString('es-MX')}
+                ${formatMXN(price)}
               </span>
               <span className="text-xs text-muted-foreground">{currency}</span>
               <Badge variant="secondary" className="text-[10px] px-1.5 py-0 ml-1">
@@ -139,11 +140,6 @@ export function StickyMobileCTA({
 
         {/* Trust indicator */}
         <div className="mt-2 flex items-center justify-center gap-2 text-[10px] text-muted-foreground">
-          <div className="flex items-center gap-1">
-            <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-            <span>Envío gratis</span>
-          </div>
-          <span>•</span>
           <span>Garantía {warranty}</span>
           <span>•</span>
           <span>Pago seguro</span>

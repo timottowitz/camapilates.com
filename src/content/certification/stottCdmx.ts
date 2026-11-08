@@ -1,3 +1,5 @@
+import { priceLabel } from '@/lib/shop/catalog';
+
 /**
  * Programa premium de certificación STOTT PILATES® en Ciudad de México.
  * Datos del programa impartido por Pilates EduCare (pilateseducare.com),
@@ -166,5 +168,5 @@ export const STOTT_EXAM_PROCESS = [
   'Al aprobar, obtienes la certificación STOTT PILATES® con validez en más de 100 países.',
 ];
 
-export const formatMXN = (value: number): string =>
-  `$${value.toLocaleString('es-MX')} MXN`;
+export const stottPriceLabel = (value: number): string =>
+  `${priceLabel(value)} MXN`;

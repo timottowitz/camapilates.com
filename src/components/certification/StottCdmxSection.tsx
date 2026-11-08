@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { STOTT_COURSES, STOTT_PROVIDER, STOTT_VENUE, formatMXN } from '@/content/certification/stottCdmx';
+import { STOTT_COURSES, STOTT_PROVIDER, STOTT_VENUE, stottPriceLabel } from '@/content/certification/stottCdmx';
 
 // The STOTT PILATES® program in Santa Fe is run by another school; we only point students to it.
 const StottCdmxSection: React.FC = () => (
@@ -37,7 +37,7 @@ const StottCdmxSection: React.FC = () => (
                 {course.tagline}
               </p>
               <div className="text-2xl font-bold text-neutral-900 mb-1">
-                {course.price ? formatMXN(course.price) : 'Por anunciar'}
+                {course.price ? stottPriceLabel(course.price) : 'Por anunciar'}
               </div>
               <div className="text-xs text-neutral-500 font-mono">
                 {course.hours.total} horas totales · {course.modality}

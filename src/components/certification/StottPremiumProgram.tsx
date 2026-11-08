@@ -6,7 +6,7 @@ import {
   STOTT_PROVIDER,
   STOTT_STATUS_LABEL,
   STOTT_VENUE,
-  formatMXN,
+  stottPriceLabel,
   type StottCourse,
 } from '@/content/certification/stottCdmx';
 
@@ -53,11 +53,11 @@ const CourseCard: React.FC<{
       <div className="flex items-end justify-between mb-6 pb-6 border-b border-[#2A2624]/10">
         <div>
           <div className="text-3xl font-serif italic text-[#3E2723]">
-            {course.price ? formatMXN(course.price) : 'Por anunciar'}
+            {course.price ? stottPriceLabel(course.price) : 'Por anunciar'}
           </div>
           {course.deposit && (
             <div className="text-xs text-[#5D5550] font-light mt-1">
-              Apartado: {formatMXN(course.deposit)}
+              Apartado: {stottPriceLabel(course.deposit)}
             </div>
           )}
         </div>

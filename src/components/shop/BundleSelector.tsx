@@ -5,6 +5,7 @@ import {
   calculateBundlePrice,
   type BundleQuantity,
 } from '@/lib/shop/bundles';
+import { formatMXN } from '@/lib/shop/catalog';
 
 interface BundleSelectorProps {
   basePrice: number | string;
@@ -80,16 +81,16 @@ export const BundleSelector: React.FC<BundleSelectorProps> = ({
                 {bundle.discountPercentage > 0 ? (
                   <>
                     <div translate="no" className="notranslate text-xs font-bold text-[#2A2624]">
-                      ${calc.discountedUnitPrice.toLocaleString('es-MX')}
+                      ${formatMXN(calc.discountedUnitPrice)}
                       <span className="text-[9px] font-normal text-[#5D5550]"> / u.</span>
                     </div>
                     <div translate="no" className="notranslate text-[10px] text-[#5D5550] line-through">
-                      ${calc.originalUnitPrice.toLocaleString('es-MX')}
+                      ${formatMXN(calc.originalUnitPrice)}
                     </div>
                   </>
                 ) : (
                   <div translate="no" className="notranslate text-xs font-bold text-[#2A2624]">
-                    ${calc.originalUnitPrice.toLocaleString('es-MX')}
+                    ${formatMXN(calc.originalUnitPrice)}
                     <span className="text-[9px] font-normal text-[#5D5550]"> / u.</span>
                   </div>
                 )}
@@ -113,19 +114,19 @@ export const BundleSelector: React.FC<BundleSelectorProps> = ({
               </span>
             </div>
             <p className="text-xs text-[#EAE8E4]/80">
-              Precio Unitario: <span translate="no" className="notranslate font-semibold text-white">${currentCalc.discountedUnitPrice.toLocaleString('es-MX')} {currency}</span>
+              Precio Unitario: <span translate="no" className="notranslate font-semibold text-white">${formatMXN(currentCalc.discountedUnitPrice)} {currency}</span>
             </p>
           </div>
 
           <div className="text-right sm:text-right border-t sm:border-t-0 border-[#EAE8E4]/15 pt-2 sm:pt-0">
             <div translate="no" className="notranslate text-[11px] text-[#EAE8E4]/60 line-through">
-              Precio Regular: ${currentCalc.originalTotalPrice.toLocaleString('es-MX')} {currency}
+              Precio Regular: ${formatMXN(currentCalc.originalTotalPrice)} {currency}
             </div>
             <div translate="no" className="notranslate text-xl font-serif italic font-bold text-white">
-              Total: ${currentCalc.discountedTotalPrice.toLocaleString('es-MX')} <span className="text-xs font-sans not-italic text-[#EAE8E4]/80">{currency}</span>
+              Total: ${formatMXN(currentCalc.discountedTotalPrice)} <span className="text-xs font-sans not-italic text-[#EAE8E4]/80">{currency}</span>
             </div>
             <div translate="no" className="notranslate inline-flex items-center gap-1 text-[10px] font-bold text-emerald-400 uppercase tracking-widest mt-0.5">
-              <Tag className="w-3 h-3" /> Ahorro total: ${currentCalc.totalSavings.toLocaleString('es-MX')} {currency}
+              <Tag className="w-3 h-3" /> Ahorro total: ${formatMXN(currentCalc.totalSavings)} {currency}
             </div>
           </div>
         </div>

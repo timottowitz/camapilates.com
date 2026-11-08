@@ -21,7 +21,6 @@ import {
   STOTT_COURSES,
   STOTT_PROVIDER,
   STOTT_VENUE,
-  formatMXN,
 } from '@/content/certification/stottCdmx';
 import {
   CERTIFICATION_CITIES,

@@ -4,6 +4,7 @@ import type { Product } from './types';
 // Price groups for the landing and price pages, derived from products.json so their copy
 // follows the catalogue: gym machines, reformers with a tower, and everything else (home).
 const reformers = allProducts().filter((p) => p.category === 'Reformers');
+export const REFORMER_COUNT = reformers.length;
 const slugsWhere = (test: (p: Product) => boolean) => reformers.filter(test).map((p) => p.slug);
 
 export const GYM_SLUGS = slugsWhere((p) => p.type === 'gimnasio');

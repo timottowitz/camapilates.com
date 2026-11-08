@@ -198,7 +198,7 @@ async function optimizeTitleAndMeta(slug, targetKeyword, intent = 'informational
       transactional: [
         `Comprar ${targetKeyword} México - CAMA Pilates`,
         `${targetKeyword} Precio México - Ofertas 2025`,
-        `${targetKeyword} Venta Online - Envío Gratis`
+        `${targetKeyword} Venta Online`
       ]
     };
 

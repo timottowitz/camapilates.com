@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import products from '@/content/products.json';
 import { MessageCircle } from 'lucide-react';
+import { formatMXN } from '@/lib/shop/catalog';
 
 interface RelatedProductsProps {
   tags?: string[];
@@ -88,7 +89,7 @@ const RelatedProducts: React.FC<RelatedProductsProps> = ({
   const formatPrice = (price: string) => {
     const num = parseFloat(price);
     if (num === 0) return 'Cotizar';
-    return `$${num.toLocaleString('es-MX')}`;
+    return `$${formatMXN(num)}`;
   };
 
   return (

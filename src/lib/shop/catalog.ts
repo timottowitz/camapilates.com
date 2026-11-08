@@ -11,10 +11,16 @@ export function getBySlug(slug: string): Product | undefined {
   return (products as Product[]).find(p => p.slug === slug);
 }
 
-// "$17,425.50" or "$21,750": cents only when the price has them.
+// "1,234.50" or "21,750": cents only when the amount has them, and then always two digits.
+export function formatMXN(amount: string | number): string {
+  const n = Number(amount);
+  const hasCents = Math.round(n * 100) % 100 !== 0;
+  return n.toLocaleString('es-MX', { minimumFractionDigits: hasCents ? 2 : 0, maximumFractionDigits: 2 });
+}
+
+// "$1,234.50" or "$21,750".
 export function priceLabel(price: string | number): string {
-  const n = Number(price);
-  return `$${n.toLocaleString('es-MX', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 })}`;
+  return `$${formatMXN(price)}`;
 }
 
 export const REFORMER_TYPE_LABELS: Record<ReformerType, string> = {
@@ -25,8 +31,7 @@ export const REFORMER_TYPE_LABELS: Record<ReformerType, string> = {
 };
 
 export function formatPrice(p: Product): string {
-  // keep currency code next to price for clarity (no localization here yet)
-  return `$ ${p.price} ${p.currency}`;
+  return `$ ${formatMXN(p.price)} ${p.currency}`;
 }
 
 export function toItemListSchema(origin: string, list: Product[]) {

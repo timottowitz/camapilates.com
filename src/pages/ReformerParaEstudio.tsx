@@ -6,6 +6,7 @@ import products from "@/content/products.json";
 import { DEFAULTS, generateBreadcrumbSchema, getOrigin } from "@/lib/seo";
 import { requireRouteMeta } from "@/lib/routeMeta";
 import { ArrowRight, Building2, MessageCircle, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
+import { formatMXN } from "@/lib/shop/catalog";
 
 type ReformerProduct = {
   slug: string;
@@ -160,7 +161,7 @@ const ReformerParaEstudio: React.FC = () => {
                     <div className="mt-4 flex items-baseline justify-between border-t border-[#2A2624]/10 pt-3">
                       <div>
                         <span className="text-xl font-serif italic text-[#2A2624]">
-                          ${Number(product.price).toLocaleString("es-MX")} {product.currency}
+                          ${formatMXN(product.price)} {product.currency}
                         </span>
                       </div>
                       <span className="text-[10px] uppercase tracking-wider text-[#5D5550] bg-[#F2F0ED] px-2.5 py-1 rounded-full font-semibold">

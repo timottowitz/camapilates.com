@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import type { Product } from '@/lib/shop/types';
-import { formatPrice } from '@/lib/shop/catalog';
+import { formatMXN, formatPrice } from '@/lib/shop/catalog';
 import { selectItem } from '@/lib/shop/analytics';
 import { useConvexAssets } from '@/lib/convexAssets';
 import { Info, MessageCircle } from 'lucide-react';
@@ -78,7 +78,7 @@ const ProductCard21: React.FC<Props> = ({ product, onQuickView }) => {
               Ver Cama y Acabados →
             </div>
             <a
-              href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar el modelo ${product.name} ($${Number(product.price).toLocaleString('es-MX')} MXN) con envío a mi código postal:`)}`}
+              href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar el modelo ${product.name} ($${formatMXN(product.price)} MXN) con envío a mi código postal:`)}`}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}

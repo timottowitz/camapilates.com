@@ -426,8 +426,8 @@ El [Reformer de Edelweiss Pilates](/blog/cama-de-pilates-para-principiantes) ofr
 
 **Análisis Costo-Beneficio:**
 - Clases regulares en estudio: $24,000-30,000 pesos anuales
-- Reformer Edelweiss para hogar: $45,000-65,000 pesos una vez
-- Retorno de inversión: 2-1 año con uso regular familiar
+- Reformer Edelweiss para hogar: $17,426-24,676 pesos una vez
+- Retorno de inversión: entre 7 y 13 meses con uso regular familiar
 
 **Valor Agregado:**
 - Uso por múltiples miembros de la familia

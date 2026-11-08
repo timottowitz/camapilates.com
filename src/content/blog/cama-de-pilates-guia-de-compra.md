@@ -42,17 +42,18 @@ Antes de comparar acabados o colores de tapicería, debes definir con honestidad
 ### 1. Reformer Residencial (Home Edition)
 - **Perfil de usuario:** Practicantes particulares o parejas que desean entrenar entre 3 y 6 sesiones semanales en la comodidad de su hogar.
 - **Prioridades de diseño:** Huella compacta, estética cálida que armonice con la decoración del departamento o recámara, y estabilidad estructural absoluta sin vibraciones.
-- **Rango de precios en México:** $23,234 a $36,716 MXN.
+- **Rango de precios (Edelweiss Pilates):** $17,426 a $24,676 MXN en nuestros 6 modelos para casa sin torre.
 - **Recomendación clave:** Asegúrate de que el chasis sea rígido (madera maciza de 30 mm o aluminio estructural). Evita las camas plegables ultraligeras de menos de $15,000 MXN: su bisagra central inevitablemente genera un salto o desnivel que perjudica la alineación de la columna.
 
 ### 2. Reformer Profesional de Estudio
 - **Perfil de usuario:** Estudios boutique, clínicas de fisioterapia, gimnasios de alta gama o practicantes avanzados que buscan la máxima robustez.
 - **Prioridades de diseño:** Fabricado para operar entre 6 y 10 horas continuas al día, con capacidad de hasta 180–200 kg de peso de usuario, barra de pies de regulación rápida con múltiples ángulos y tapicerías antibacterianas de uso rudo.
-- **Rango de precios en México:** $36,716 a $69,617 MXN (modelos estándar de estudio) y hasta $85,050 MXN (equipos con media torre integrada o estructura de Cadillac).
+- **Rango de precios (Edelweiss Pilates):** $52,213 MXN (Gym Reformer Compacto) y $63,788 MXN (Gym Reformer Multiestación).
 
 ### 3. Reformer con Media Torre o Cadillac Completo
 - **Perfil de usuario:** Instructores certificados que buscan un repertorio completo de más de 500 ejercicios clásicos de Contrología, incorporando barras de empuje (*push-through bar*), barras de balanceo (*trapeze*) y resortes aéreos.
 - **Ventaja diferencial:** Permite trabajar tanto con el carro móvil como con una plataforma fija acolchada para rehabilitación específica y fortalecimiento postural avanzado.
+- **Rango de precios (Edelweiss Pilates):** $24,676 MXN (Reformer Clásico de Roble con Torre) y $29,000 MXN (Reformer Clásico de Maple con Torre). No fabricamos Cadillacs completos.
 
 <see-also limit="3" />
 
@@ -98,7 +99,7 @@ Al comprar un Reformer en México, comparar alternativas con total objetividad e
 
 | Marca | Rango de Precio (MXN) | Material Chasis | Calidad de Resortes | Garantía | Refacciones y Servicio Local |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Edelweiss Pilates®** | **$23,234 – $85,050** | Roble / Maple macizo 30 mm o Aluminio | 5 resortes alemanes de alambre de piano calibrados | **1 año, directa** | Refacciones en 1 semana |
+| **Edelweiss Pilates®** | **$17,426 – $63,788** | Roble / Maple macizo 30 mm o Aluminio | 5 resortes alemanes de alambre de piano calibrados | **1 año, directa** | Refacciones en 1 semana |
 | **Vanlig** | $4,489 – $50,999 | Plegable acero / MDF chapado roble | Cuerdas elásticas en gama baja / resortes estándar | 3 a 6 meses | Sujeto a importación; inventario recurrente agotado |
 | **Ironside / Tayga** | $19,690 – $25,990 | Acero tubular plegable | Cordones de nylon o resortes de gym (130-150 kg max) | 1 año | Piezas de fitness comercial, no especializadas en Pilates |
 | **UCAN** | $40,000 – $50,600 | Aluminio blanco lacado | Resortes de estudio estándar | 1 año | Catálogo acotado a 4 modelos; sin opciones en madera maciza |
@@ -123,12 +124,12 @@ Hagamos números claros para evaluar si la compra es financieramente viable fren
 ### Ahorro para Uso Personal en Casa
 - Una membresía de estudio de Pilates Reformer en CDMX, Monterrey o Guadalajara oscila entre **$2,400 y $4,200 MXN mensuales** (8 a 12 clases grupales) o hasta **$5,000–$8,000 MXN** si se toman clases privadas.
 - Si entrenan dos personas en el hogar, el gasto anual familiar alcanza entre $57,600 y $100,000 MXN al año.
-- Adquiriendo una cama residencial Edelweiss Pilates desde **$23,234 MXN**, el equipo se amortiza en **menos de 6 meses de práctica continua**, brindándote libertad horaria total sin desplazamientos ni tráfico.
+- Adquiriendo una cama residencial Edelweiss Pilates desde **$17,426 MXN**, el equipo se paga en **4 a 7 meses** si sustituye la membresía de una persona ($2,400–$4,200 al mes), o en **2 a 4 meses** si entrenan dos, brindándote libertad horaria total sin desplazamientos ni tráfico.
 
 ### Amortización para Estudios y Emprendedores
 Para profesionales que instalan su propio estudio, el modelo de negocio con camas de Pilates ofrece uno de los retornos más acelerados del sector bienestar:
 - Cobrando una tarifa promedio de $600 MXN por sesión privada o $300 MXN por alumno en clase semiprivada (2–4 personas), una cama que opere apenas 4 horas al día genera entre **$24,000 y $48,000 MXN mensuales brutos**.
-- Con este flujo, la inversión por equipo se recupera al 100% en **2 a 3 meses de operación comercial**, generando utilidades netas consistentes a lo largo de sus más de 10 años de vida útil.
+- Con este flujo, un Gym Reformer de $52,213 a $63,788 MXN se recupera al 100% en **1 a 3 meses de operación comercial**, generando utilidades netas consistentes a lo largo de sus más de 10 años de vida útil.
 - Para estudios que equipan 8 o más camas, contamos con un plan especial de [pack de estudio con 20% de descuento](/packs/estudio) e instalación coordinada.
 
 Consulta nuestra **[guía de precios de camas de Pilates](/cama-de-pilates/precio)** para el desglose detallado de costos por modelo y configuración.
@@ -157,10 +158,10 @@ Consulta nuestra **[guía de precios de camas de Pilates](/cama-de-pilates/preci
 
 ## FAQ
 ### ¿Cuánto cuesta una cama de Pilates Reformer en México en 2026?
-En el mercado mexicano actual, los precios de un Reformer nuevo y garantizado se distribuyen en tres gamas principales:
-- **Gama Residencial / Casa:** desde **$23,234 hasta $36,716 MXN**. Modelos en madera de roble o aluminio con 5 resortes de resistencia graduada y accesorios base.
-- **Gama Estudio Comercial:** desde **$36,716 hasta $58,000 MXN**. Reformers con chasis reforzado para más de 8 horas diarias de uso continuo y tapicería antimicrobiana de alta densidad.
-- **Modelos Combinados con Torre o Cadillac:** desde **$58,000 hasta $85,050 MXN**. Equipos multifuncionales completos para entrenamiento avanzado o rehabilitación física.
+En Edelweiss Pilates, nuestros 10 Reformers nuevos y garantizados se distribuyen en tres gamas:
+- **Para casa (sin torre):** 6 modelos desde **$17,426 hasta $24,676 MXN**. Madera de roble, maple o aluminio, incluidas dos versiones plegables, con 5 resortes de resistencia graduada y accesorios base.
+- **Con torre:** 2 modelos, **$24,676 (roble) y $29,000 MXN (maple)**. Reformer con torre para el repertorio avanzado y la rehabilitación física.
+- **Gimnasio:** 2 modelos, **$52,213 (Compacto) y $63,788 MXN (Multiestación)**. Chasis reforzado para más de 8 horas diarias de uso continuo y tapicería antimicrobiana de alta densidad.
 Consulta nuestro desglose actualizado en la **[guía de precios de camas de Pilates](/cama-de-pilates/precio)**.
 
 ### ¿Cuál es la diferencia entre un Reformer para casa y uno profesional de estudio?

@@ -11,7 +11,7 @@
       "/images/products/reformer-clasico-roble-pl006-hacienda.webp",
       "/images/products/reformer-clasico-roble-pl006-catalogo.webp"
     ],
-    "price": "17425.50",
+    "price": "17426",
     "currency": "MXN",
     "category": "Reformers",
     "type": "madera",
@@ -45,7 +45,7 @@
       "/images/products/reformer-clasico-roble-torre-pl006a-hacienda.webp",
       "/images/products/reformer-clasico-roble-torre-pl006a-catalogo.webp"
     ],
-    "price": "24675.75",
+    "price": "24676",
     "currency": "MXN",
     "category": "Reformers",
     "type": "madera",
@@ -81,7 +81,7 @@
       "/images/products/reformer-clasico-maple-pl001-hacienda.webp",
       "/images/products/reformer-clasico-maple-pl001-catalogo.webp"
     ],
-    "price": "21750.00",
+    "price": "21750",
     "currency": "MXN",
     "category": "Reformers",
     "type": "madera",
@@ -115,7 +115,7 @@
       "/images/products/reformer-clasico-maple-torre-pl001a-hacienda.webp",
       "/images/products/reformer-clasico-maple-torre-pl001a-catalogo.webp"
     ],
-    "price": "29000.25",
+    "price": "29000",
     "currency": "MXN",
     "category": "Reformers",
     "type": "madera",
@@ -151,7 +151,7 @@
       "/images/products/reformer-maple-alta-gama-pl001m-hacienda.webp",
       "/images/products/reformer-maple-alta-gama-pl001m-catalogo.webp"
     ],
-    "price": "24675.75",
+    "price": "24676",
     "currency": "MXN",
     "category": "Reformers",
     "type": "madera",
@@ -185,7 +185,7 @@
       "/images/products/reformer-elite-aluminio-pl019-hacienda.webp",
       "/images/products/reformer-elite-aluminio-pl019-catalogo.webp"
     ],
-    "price": "17616.00",
+    "price": "17616",
     "currency": "MXN",
     "category": "Reformers",
     "type": "aluminio",
@@ -219,7 +219,7 @@
       "/images/products/reformer-plegable-roble-pl0015s-hacienda.webp",
       "/images/products/reformer-plegable-roble-pl0015s-catalogo.webp"
     ],
-    "price": "21177.75",
+    "price": "21178",
     "currency": "MXN",
     "category": "Reformers",
     "type": "plegable",
@@ -254,7 +254,7 @@
       "/images/products/reformer-plegable-aluminio-pl019f-hacienda.webp",
       "/images/products/reformer-plegable-aluminio-pl019f-catalogo.webp"
     ],
-    "price": "18824.25",
+    "price": "18824",
     "currency": "MXN",
     "category": "Reformers",
     "type": "plegable",
@@ -289,7 +289,7 @@
       "/images/products/gym-reformer-l009bt-hacienda.webp",
       "/images/products/gym-reformer-l009bt-catalogo.webp"
     ],
-    "price": "63787.50",
+    "price": "63788",
     "currency": "MXN",
     "category": "Reformers",
     "type": "gimnasio",
@@ -323,7 +323,7 @@
       "/images/products/gym-reformer-l009e-hacienda.webp",
       "/images/products/gym-reformer-l009e-catalogo.webp"
     ],
-    "price": "52212.75",
+    "price": "52213",
     "currency": "MXN",
     "category": "Reformers",
     "type": "gimnasio",
@@ -353,7 +353,7 @@
     "sku": "ACC-PETALS-SET-5",
     "image": "/images/pilates-straps-main.webp",
     "hoverImage": "/images/products/cintas-de-pilates-studio.webp",
-    "price": "763.50",
+    "price": "764",
     "currency": "MXN",
     "category": "Accesorios",
     "materials": [
@@ -378,7 +378,7 @@
     "sku": "ACC-SOCKS-ORG-001",
     "image": "/images/socks-organic-main.webp",
     "hoverImage": "/images/products/calcetines-antideslizantes-studio.webp",
-    "price": "286.50",
+    "price": "287",
     "currency": "MXN",
     "category": "Accesorios",
     "materials": [
@@ -421,7 +421,7 @@
     "sku": "ACC-SOCKS-PACK3-001",
     "image": "/images/socks-pack3.webp",
     "hoverImage": "/images/products/calcetines-pack-3-studio.webp",
-    "price": "731.25",
+    "price": "731",
     "currency": "MXN",
     "category": "Accesorios",
     "materials": [
@@ -447,7 +447,7 @@
     "sku": "ROPA-LEG-FIT-001",
     "image": "/images/leggings-fitted.webp",
     "hoverImage": "/images/products/leggings-organicos-fitted-studio.webp",
-    "price": "1144.50",
+    "price": "1145",
     "currency": "MXN",
     "category": "Ropa",
     "materials": [
@@ -490,7 +490,7 @@
     "sku": "ROPA-TOP-FIT-001",
     "image": "/images/top-fitted.webp",
     "hoverImage": "/images/products/top-organico-fitted-studio.webp",
-    "price": "763.50",
+    "price": "764",
     "currency": "MXN",
     "category": "Ropa",
     "materials": [
@@ -533,7 +533,7 @@
     "sku": "ROPA-SET-FIT-001",
     "image": "/images/conjunto-fitted.webp",
     "hoverImage": "/images/products/conjunto-fitted-organico-studio.webp",
-    "price": "1716.75",
+    "price": "1717",
     "currency": "MXN",
     "category": "Ropa",
     "materials": [
@@ -576,7 +576,7 @@
     "sku": "ROPA-PANT-REL-001",
     "image": "/images/pantalon-relaxed.webp",
     "hoverImage": "/images/products/pantalon-organico-relaxed-studio.webp",
-    "price": "1017.75",
+    "price": "1018",
     "currency": "MXN",
     "category": "Ropa",
     "materials": [
@@ -619,7 +619,7 @@
     "sku": "ROPA-TOP-REL-001",
     "image": "/images/top-relaxed.webp",
     "hoverImage": "/images/products/top-organico-relaxed-studio.webp",
-    "price": "699.75",
+    "price": "700",
     "currency": "MXN",
     "category": "Ropa",
     "materials": [
@@ -662,7 +662,7 @@
     "sku": "ROPA-SET-REL-001",
     "image": "/images/conjunto-relaxed.webp",
     "hoverImage": "/images/products/conjunto-relaxed-organico-studio.webp",
-    "price": "1545.75",
+    "price": "1546",
     "currency": "MXN",
     "category": "Ropa",
     "materials": [

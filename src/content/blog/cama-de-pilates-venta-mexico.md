@@ -1,7 +1,7 @@
 ---
 title: 'Cama de Pilates: Venta en México (Casa y Estudio) — Guía 2026'
 description: >-
-  Cómo elegir y comprar una cama de Pilates en México con precios 2026 desde $23,234 MXN,
+  Cómo elegir y comprar una cama de Pilates en México con precios 2026 desde $17,426 MXN,
   ROI, soporte local y catálogo Edelweiss Pilates.
 category: Guías de compra
 tags:
@@ -82,7 +82,7 @@ Finalmente, considera el valor de reventa. Un equipo premium con buena estabilid
 
 Al equipar tu espacio, ya sea un estudio de alto tráfico en la Condesa o tu gimnasio en casa en Monterrey, la ventaja estratégica de elegir **[Edelweiss Pilates](/cama-de-pilates)** radica en su distribución y soporte en México, con riguroso estándar de ingeniería alemana:
 
-- **Catálogo de Venta Directa:** Más de 20 modelos disponibles de **[camas de Pilates en venta](/cama-de-pilates)** con precios que inician desde **[$23,234 MXN](/cama-de-pilates/precio)** para chasis de roble macizo y aluminio estructural.
+- **Catálogo de Venta Directa:** 10 modelos de **[camas de Pilates en venta](/cama-de-pilates)**: 6 para casa desde **[$17,426 MXN](/cama-de-pilates/precio)** en roble macizo, maple y aluminio estructural, 2 con torre ($24,676 y $29,000 MXN) y 2 de gimnasio ($52,213 y $63,788 MXN).
 - **Refacciones en 1 semana:** Pregunta siempre cuánto tarda una refacción; en Edelweiss Pilates la entrega es en 1 semana.
 - **Garantía Directa de 1 Año:** Cobertura de fábrica sobre marco, rodamientos y sistemas de muelles de precisión.
 - **Guías y Asesoría Especializada:** Revisa nuestra **[guía de precios de camas de Pilates](/cama-de-pilates/precio)** y la **[guía definitiva de compra de Reformer](/blog/cama-de-pilates-guia-de-compra)** para elegir la configuración perfecta para tu espacio.

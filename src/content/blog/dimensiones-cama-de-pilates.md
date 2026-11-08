@@ -344,7 +344,6 @@ Sí, pero necesitas protección contra elementos. Requiere superficie nivelada, 
 ### Servicios de Instalación
 
 Edelweiss Pilates proporciona:
-- Servicio de medición previa gratuito
 - Instalación profesional en CDMX y Guadalajara
 - Asesoría de planificación de espacio
 - Garantía de 1 año
