@@ -483,7 +483,7 @@ export const PilatesReformerMonterrey: React.FC = () => {
             </Link>
             <Link to="/cama-de-pilates" className="p-6 rounded-xl bg-white border border-[#2A2624]/10 hover:border-[#2A2624] transition-all group">
               <h3 className="font-semibold text-[#2A2624] group-hover:text-[#EB4C42] mb-2">Catálogo de Camas de Pilates</h3>
-              <p className="text-xs text-[#5D5550] leading-relaxed">Guía completa de modelos, especificaciones técnicas y precios con 12 MSI.</p>
+              <p className="text-xs text-[#5D5550] leading-relaxed">Guía completa de modelos, especificaciones técnicas y precios.</p>
             </Link>
           </div>
         </div>

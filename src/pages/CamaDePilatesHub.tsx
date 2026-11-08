@@ -59,10 +59,6 @@ const CamaDePilatesHub: React.FC = () => {
       a: 'El equipo mide en promedio 240 cm de largo por 70 cm de ancho. Se aconseja disponer de una superficie de al menos 3.0 m x 1.8 m para entrar y salir con comodidad y extender los brazos lateralmente sin obstáculos.'
     },
     {
-      q: '¿Ofrecen opciones de pago a Meses Sin Intereses (MSI)?',
-      a: 'Sí. Aceptamos pagos con tarjeta de crédito con planes de hasta 12 Meses Sin Intereses con bancos participantes a través de nuestras pasarelas de pago certificadas. También contamos con descuentos preferenciales en pagos de contado por transferencia bancaria SPEI.'
-    },
-    {
       q: '¿Hacen envíos a Monterrey, Guadalajara, Querétaro y todo México?',
       a: 'Sí, realizamos envíos asegurados a las 32 entidades federativas del país. La mercancía viaja con seguro contra daños de transporte puerta a puerta en caja de exportación de madera tratada. Fabricamos cada equipo bajo pedido; la entrega es de ' + shopPolicy.deliveryWindow + '.'
     },
@@ -363,7 +359,7 @@ const CamaDePilatesHub: React.FC = () => {
                 </tr>
                 <tr>
                   <td className="p-3 md:p-4 font-semibold text-[#2A2624]">Rango de Precios (MXN)</td>
-                  <td className="p-3 md:p-4 font-bold text-[#2A2624] bg-[#2A2624]/5">{CATALOG_MIN} a {CATALOG_MAX} MXN (12 MSI)</td>
+                  <td className="p-3 md:p-4 font-bold text-[#2A2624] bg-[#2A2624]/5">{CATALOG_MIN} a {CATALOG_MAX} MXN</td>
                   <td className="p-3 md:p-4">$4,489 a $50,999 MXN (stock agotado)</td>
                   <td className="p-3 md:p-4">$19,690 a $25,990 MXN</td>
                   <td className="p-3 md:p-4">$90,000 a $160,000+ MXN</td>

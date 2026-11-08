@@ -106,7 +106,7 @@ const ReformerParaEstudio: React.FC = () => {
                 to="/cama-de-pilates/precio"
                 className="inline-flex items-center rounded-full border border-[#2A2624]/20 px-8 py-4 text-xs uppercase tracking-[0.2em] text-[#2A2624] transition-colors hover:bg-white"
               >
-                Precios y 12 MSI
+                Guía de precios
               </Link>
             </div>
           </div>
@@ -161,9 +161,6 @@ const ReformerParaEstudio: React.FC = () => {
                       <div>
                         <span className="text-xl font-serif italic text-[#2A2624]">
                           ${Number(product.price).toLocaleString("es-MX")} {product.currency}
-                        </span>
-                        <span className="block text-[11px] text-[#128C7E] font-medium">
-                          12 MSI disponibles
                         </span>
                       </div>
                       <span className="text-[10px] uppercase tracking-wider text-[#5D5550] bg-[#F2F0ED] px-2.5 py-1 rounded-full font-semibold">
@@ -238,7 +235,7 @@ const ReformerParaEstudio: React.FC = () => {
               },
               {
                 to: "/cama-de-pilates/precio",
-                title: "Precios y Financiamiento 12 MSI",
+                title: "Precios de Camas de Pilates",
                 description: "Tabla comparativa de costos y retorno de inversión.",
               },
               {

@@ -57,7 +57,7 @@ El mercado actual presenta un rango de precios para Reformers de hogar que va de
 
 Para que tomes una decisión informada, analizamos las marcas con presencia activa en el mercado mexicano:
 
-1. **Edelweiss Pilates® ([Distribución y Soporte en México](/blog/cama-de-pilates-venta-mexico) con Estándar Alemán)**: Especialistas en camas de Pilates Reformer con chasis de madera maciza seleccionada (Roble y Maple canadiense de 30 mm) y líneas de aluminio aeroespacial. Incorporan un sistema de 5 resortes alemanes de alambre de piano calibrados con exactitud biomecánica (amarillo 25%, azul 50%, rojo 100%). Precios transparentes desde $17,425.50 hasta $63,787.50 MXN con IVA incluido, planes de hasta 12 [Meses Sin Intereses](/blog/financiacion-cama-de-pilates) y refacciones en 1 semana.
+1. **Edelweiss Pilates® ([Distribución y Soporte en México](/blog/cama-de-pilates-venta-mexico) con Estándar Alemán)**: Especialistas en camas de Pilates Reformer con chasis de madera maciza seleccionada (Roble y Maple canadiense de 30 mm) y líneas de aluminio aeroespacial. Incorporan un sistema de 5 resortes alemanes de alambre de piano calibrados con exactitud biomecánica (amarillo 25%, azul 50%, rojo 100%). Precios transparentes desde $17,425.50 hasta $63,787.50 MXN con IVA incluido y refacciones en 1 semana.
 2. **Vanlig (Comercializadora e Importación)**: Marca presente en marketplaces y venta directa en CDMX. Maneja desde camas plegables compactas hasta modelos de roble chapado con precios de $4,489 a $50,999 MXN. Su principal desventaja es que los modelos económicos sustituyen los resortes por ligas elásticas de rápida fatiga, gran parte de su catálogo presenta quiebres de inventario recurrentes y sus garantías son de 3 a 6 meses.
 3. **Ironside / Tayga (Equipamiento de Fitness y Cross-Training)**: Marcas consolidadas en el sector de gimnasios y peso libre que han incorporado reformers plegables a su catálogo ($19,690 a $25,990 MXN). Aunque tienen buena resistencia en marcos de acero (130-150 kg de límite), utilizan cordones de nylon o resortes genéricos de gimnasio, lo que resta la sensibilidad y fluidez que exige el método Pilates clásico.
 4. **UCAN (Reformers Boutique de Aluminio)**: Marca con presencia en estudios boutique que comercializa camas con estructura de aluminio lacado en blanco y gris ($40,000 a $50,600 MXN). Su diseño es limpio y moderno para salas contemporáneas, aunque no ofrece alternativas en madera maciza natural y sus tiempos de entrega suelen ser prolongados.
@@ -75,7 +75,7 @@ Para que tomes una decisión informada, analizamos las marcas con presencia acti
 | **Capacidad de Carga** | 180 kg – 200 kg | 100 kg – 135 kg | 130 kg – 150 kg | 150 kg | 160 kg – 180 kg |
 | **Garantía Estructural** | 1 año, directa | 3 a 6 meses | 1 año | 1 año | 5 a 10 años (en EE.UU.) |
 | **Refacciones en México** | 1 semana | Sujetas a importación periódica | Genéricas de gimnasio | Bajo pedido | Semanas por aduanas y fletes |
-| **Facilidades de Pago** | Hasta 12 MSI con bancos y SPEI | Tarjetas y meses en web | Tarjetas de crédito | Transferencia / Tarjeta | Pago de contado internacional |
+| **Facilidades de Pago** | Transferencia SPEI | Tarjetas y meses en web | Tarjetas de crédito | Transferencia / Tarjeta | Pago de contado internacional |
 
 Por unos **$20,000 - $30,000 MXN**, generalmente encontrarás equipos con marco de metal ligero o aluminio, a veces plegables. Son [prácticos para espacios pequeños](/blog/reformer-compacto), pero suelen sacrificar la estabilidad del carro y la fluidez en la resistencia de los resortes. Como menciona Joseph Pilates en *Return to Life Through Contrology* (1945, p. 23), el método requiere "control consciente" de cada movimiento muscular; esto se vuelve casi imposible si tu equipo se tambalea o vibra durante un ejercicio intenso.
 
@@ -87,13 +87,13 @@ Finalmente, no subestimes la barrera del idioma. Existe una preferencia del 80% 
 
 ## Por qué Edelweiss Pilates destaca en el mercado nacional
 
-Cuando decides invertir en un Reformer, a menudo te enfrentas a la disyuntiva entre pagar sobreprecios por importación o sacrificar calidad. Aquí es donde **[Edelweiss Pilates](/cama-de-pilates)** ha logrado el punto de equilibrio ideal para el mercado mexicano. Con distribución y soporte en México y estrictos estándares de ingeniería alemana, nos encargamos de la importación por ti, evitando que pagues aranceles y fletes marítimos por separado, y te permitimos adquirir un equipo premium con chasis en roble o arce macizo y opciones en aluminio aeroespacial desde **[$17,425.50 MXN](/cama-de-pilates/precio)** con facilidades de hasta **12 Meses Sin Intereses**.
+Cuando decides invertir en un Reformer, a menudo te enfrentas a la disyuntiva entre pagar sobreprecios por importación o sacrificar calidad. Aquí es donde **[Edelweiss Pilates](/cama-de-pilates)** ha logrado el punto de equilibrio ideal para el mercado mexicano. Con distribución y soporte en México y estrictos estándares de ingeniería alemana, nos encargamos de la importación por ti, evitando que pagues aranceles y fletes marítimos por separado, y te permitimos adquirir un equipo premium con chasis en roble o arce macizo y opciones en aluminio aeroespacial desde **[$17,425.50 MXN](/cama-de-pilates/precio)**.
 
 La calidad técnica no se queda atrás. La estabilidad del carro y la **resistencia de los resortes** son fundamentales para ejecutar los movimientos con la precisión que el método exige. Como bien señala Joseph Pilates en su libro *Return to Life Through Contrology* (1945, p. 19), el control consciente de los movimientos es la esencia de la disciplina; para lograrlo, necesitas un equipo que responda suavemente a tu fuerza sin vibraciones extrañas.
 
 El servicio también cuenta. Con Edelweiss Pilates tienes **refacciones en 1 semana** y una **garantía directa de 1 año en territorio nacional**, con soporte en tu idioma si necesitas ajustar la tensión o cambiar un componente.
 
-Para explorar los acabados, accesorios y configuraciones residenciales o comerciales, consulta nuestro **[catálogo de camas de Pilates en México](/cama-de-pilates)** y revisa la **[tabla comparativa de precios y financiamiento](/cama-de-pilates/precio)**.
+Para explorar los acabados, accesorios y configuraciones residenciales o comerciales, consulta nuestro **[catálogo de camas de Pilates en México](/cama-de-pilates)** y revisa la **[tabla comparativa de precios](/cama-de-pilates/precio)**.
 
 <hub-list category="Guías de compra" limit="6" title="Más contenidos relacionados" />
 
@@ -115,7 +115,7 @@ Los resortes son el corazón del Reformer. Las mejores marcas utilizan resortes 
 La barra de pies (*footbar*) debe tener múltiples posiciones de bloqueo vertical y horizontal. En su libro *Pilates Reformer*, Ellie Herman destaca la importancia de ajustar el equipo a la antropometría del usuario para mantener la alineación pélvica neutra. Una barra fija limita severamente el repertorio de ejercicios y puede forzar rodillas y lumbares en personas de estaturas diversas.
 
 ### ¿Cuáles son las mejores marcas disponibles en México y cuánto cuestan?
-En el mercado internacional destacan Balanced Body y Merrithew, cuyos equipos superan los $90,000 a $180,000 MXN al importarse a México por impuestos y fletes. En el mercado nacional, Edelweiss Pilates ofrece la mejor relación valor-precio con equipos de madera maciza y aluminio con ingeniería alemana entre $23,234 y $85,050 MXN con 12 MSI. Otras opciones locales incluyen Vanlig ($4,489 a $50,999 MXN), UCAN ($40,000 a $50,600 MXN) e Ironside ($19,690 a $25,990 MXN).
+En el mercado internacional destacan Balanced Body y Merrithew, cuyos equipos superan los $90,000 a $180,000 MXN al importarse a México por impuestos y fletes. En el mercado nacional, Edelweiss Pilates ofrece la mejor relación valor-precio con equipos de madera maciza y aluminio con ingeniería alemana entre $23,234 y $85,050 MXN. Otras opciones locales incluyen Vanlig ($4,489 a $50,999 MXN), UCAN ($40,000 a $50,600 MXN) e Ironside ($19,690 a $25,990 MXN).
 
 ### ¿Cuánto espacio necesito realmente para tener un Reformer en casa o departamento?
 Un Reformer estándar mide en promedio 2.40 metros de largo por 70 cm de ancho. Para entrenar con seguridad y amplitud de movimiento se requiere dejar un margen libre de al menos 50 a 60 cm a cada lado y en la cabecera, totalizando un área recomendada de 3.0 m x 1.8 m. Esto permite extender brazos y piernas con correas sin riesgo de chocar con paredes o muebles.
@@ -130,4 +130,4 @@ En zonas secas y con polvo (como CDMX, Monterrey o Puebla), se deben limpiar rie
 Al comprar una marca importada sin sede en México, cualquier pieza de repuesto (resortes, poleas, correas) debe solicitarse al extranjero, con costos de paquetería y trámites aduanales. Con Edelweiss Pilates, la garantía de 1 año es directa y las refacciones llegan en 1 semana a cualquier estado de la república.
 
 ### ¿Vale la pena comprar un Reformer con distribución y soporte en México frente a importarlo por mi cuenta?
-Sí, totalmente. Un proveedor con sede en México que ofrezca madera maciza y resortes con certificación alemana ofrece la misma precisión biomecánica que las marcas estadounidenses o canadienses, sin que tengas que pagar aranceles, intermediarios y flete marítimo por separado, además de contar con facturación formal con IVA desglosado y financiamiento en pesos mexicanos.
+Sí, totalmente. Un proveedor con sede en México que ofrezca madera maciza y resortes con certificación alemana ofrece la misma precisión biomecánica que las marcas estadounidenses o canadienses, sin que tengas que pagar aranceles, intermediarios y flete marítimo por separado, además de contar con facturación formal con IVA desglosado y precios en pesos mexicanos.

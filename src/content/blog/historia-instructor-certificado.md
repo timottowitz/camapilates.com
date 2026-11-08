@@ -279,12 +279,10 @@ En Edelweiss Pilates hemos sido testigos de cientos de transformaciones. Sabemos
 
 ### Para Instructores en Formación:
 - **Programa "Futuro Instructor"**: Descuentos del 30% en equipo personal
-- **Renta con opción a compra**: Ideal para prácticas en casa
 - **Mentorías gratuitas**: Con instructores Edelweiss experimentados
 
 ### Para Nuevos Instructores Certificados:
 - **Paquete "Mi Primer Estudio"**: Reformer + accesorios desde $45,000 MXN
-- **Financiamiento especial**: 18 meses sin intereses
 - **Asesoría de ubicación**: Análisis de mercado gratuito
 - **Kit de marketing**: Plantillas y estrategias probadas
 

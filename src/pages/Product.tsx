@@ -447,7 +447,7 @@ const ProductPage: React.FC = () => {
                   ← Ver catálogo completo de Camas de Pilates en México
                 </Link>
                 <Link to="/cama-de-pilates/precio" className="text-[#5D5550] hover:text-[#2A2624] transition-colors">
-                  Tabla de precios 2026 y facilidades a 12 MSI
+                  Tabla de precios 2026
                 </Link>
                 <Link to="/blog/cama-de-pilates-guia-de-compra" className="text-[#5D5550] hover:text-[#2A2624] transition-colors">
                   Guía definitiva de compra de Reformer (resortes y medidas)

@@ -15,7 +15,6 @@ const ReformerParaCasa: React.FC = () => {
   const origin = getOrigin();
   const home = getBySlug(FEATURED_SLUG)!;
   const homePrice = Number(home.price);
-  const homeMsi = priceLabel(Math.round(homePrice / 12));
   const priceAnswer = `Un reformer para casa en México cuesta desde ${CATALOG_MIN} hasta ${priceLabel(HOME.max)} MXN según el material (roble, maple o aluminio) y si es plegable. Revisa las medidas y el peso de cada modelo en su ficha antes de comprar.`;
   const url = `${origin}/reformer-para-casa`;
   const { title, description: desc } = requireRouteMeta('/reformer-para-casa');
@@ -177,7 +176,7 @@ const ReformerParaCasa: React.FC = () => {
             to="/cama-de-pilates/precio"
             className="px-8 py-4 border border-[#2A2624] text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors"
           >
-            Precios y 12 MSI
+            Guía de precios
           </Link>
         </div>
       </section>
@@ -262,12 +261,11 @@ const ReformerParaCasa: React.FC = () => {
               <div className="flex items-baseline gap-4 mb-8">
                 <span className="text-3xl font-serif italic text-[#2A2624]">{priceLabel(homePrice)}</span>
                 <span className="text-sm text-[#5D5550]">MXN</span>
-                <span className="text-xs text-[#128C7E] font-semibold uppercase tracking-widest">o 12 MSI de {homeMsi}</span>
               </div>
               
               <div className="flex flex-wrap items-center gap-4">
                 <a
-                  href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa el ${home.name} (${priceLabel(homePrice)} MXN o 12 MSI). ¿Tienen disponibilidad y cotización de flete a mi código postal?`)}`}
+                  href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa el ${home.name} (${priceLabel(homePrice)} MXN). ¿Tienen disponibilidad y cotización de flete a mi código postal?`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   data-rybbit-event="click_home_reformer_recommendation_whatsapp"
@@ -380,7 +378,7 @@ const ReformerParaCasa: React.FC = () => {
               <h3 className="font-serif italic text-[#2A2624] group-hover:text-[#3E2723] mb-2">
                 Guía de Precios en México
               </h3>
-              <p className="text-sm text-[#5D5550] font-light">Rangos y opciones de pago a 12 MSI.</p>
+              <p className="text-sm text-[#5D5550] font-light">Rangos de precio por material y modelo.</p>
             </Link>
 
             <Link to="/product/reformer-elite-aluminio-pl019" className="group p-6 border border-[#2A2624]/10 rounded-sm hover:bg-[#EAE8E4] transition-colors">

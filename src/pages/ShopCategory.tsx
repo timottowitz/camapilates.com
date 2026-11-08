@@ -124,8 +124,6 @@ const ShopCategory: React.FC = () => {
                 </span>
                 <span className="hidden sm:inline opacity-40">•</span>
                 <span>1 año de garantía estructural</span>
-                <span className="hidden sm:inline opacity-40">•</span>
-                <span>Planes a Meses Sin Intereses</span>
               </div>
               <a
                 href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, estoy viendo la categoría ${categorySeo?.h1 || category || 'Reformer'} en camadepilates.com y quisiera cotización formal con envío a mi ciudad.`)}`}

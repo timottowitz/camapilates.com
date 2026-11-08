@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import { Check, Star, Shield, Zap, DollarSign, ArrowRight, MessageCircle } from 'lucide-react';
 import BackLink from '@/components/ui/back-link';
 import { priceLabel } from '@/lib/shop/catalog';
-import { GYM, GYM_SLUGS, HOME_MSI, HOME_SLUGS, CATALOG_MAX, CATALOG_MIN, TOWER, TOWER_SLUGS, priceOf, rangeLabel } from '@/lib/shop/priceRanges';
+import { GYM, GYM_SLUGS, HOME_SLUGS, CATALOG_MAX, CATALOG_MIN, TOWER, TOWER_SLUGS, priceOf, rangeLabel } from '@/lib/shop/priceRanges';
 
 const CamaDePilatesPrecio: React.FC = () => {
   const origin = getOrigin();
@@ -22,7 +22,7 @@ const CamaDePilatesPrecio: React.FC = () => {
     },
     {
       q: '¿Cuál es el precio de una cama de Pilates para casa?',
-      a: `Nuestras opciones residenciales inician desde ${CATALOG_MIN} MXN (o desde ${HOME_MSI} MXN/mes a 12 MSI). Cuentan con chasis rígido que elimina vibraciones, carro silencioso con rodamientos sellados y sistema de 5 resortes alemanes de alambre de piano.`
+      a: `Nuestras opciones residenciales inician desde ${CATALOG_MIN} MXN. Cuentan con chasis rígido que elimina vibraciones, carro silencioso con rodamientos sellados y sistema de 5 resortes alemanes de alambre de piano.`
     },
     {
       q: '¿Cuál es el precio de una cama de Pilates de estudio profesional?',
@@ -39,10 +39,6 @@ const CamaDePilatesPrecio: React.FC = () => {
     {
       q: '¿Qué incluye normalmente el precio de un Reformer Edelweiss Pilates?',
       a: 'Incluye el chasis completo ensamblado, carro tapizado en microfibra de alta resistencia, barra de pies ajustable multidireccional, sistema de 5 resortes alemanes calibrados por color, cabecera ajustable de 3 posiciones, hombreras ergonómicas, juego de poleas silenciosas, correas dobles de manos/pies y caja (box) según el modelo seleccionado.'
-    },
-    {
-      q: '¿Ofrecen opciones de pago a Meses Sin Intereses (MSI)?',
-      a: 'Sí, contamos con financiamiento de hasta 12 Meses Sin Intereses con tarjetas de crédito de bancos participantes en México a través de pasarelas de pago seguras, además de descuentos preferenciales por pago de contado vía transferencia SPEI.'
     },
     {
       q: '¿Cuánto cuesta el envío y cómo se protege el equipo durante el transporte?',
@@ -105,7 +101,7 @@ const CamaDePilatesPrecio: React.FC = () => {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="text-lg md:text-xl text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed"
           >
-            Precios y modelos 2026 para casa y estudio: desde {CATALOG_MIN} MXN (hasta 12 MSI). Qué incluye el precio, diferencias de materiales, garantía directa y servicio técnico en México.
+            Precios y modelos 2026 para casa y estudio: desde {CATALOG_MIN} MXN. Qué incluye el precio, diferencias de materiales, garantía directa y servicio técnico en México.
           </motion.p>
 
           <motion.div
@@ -154,7 +150,7 @@ const CamaDePilatesPrecio: React.FC = () => {
             </div>
           </div>
           <p className="text-xs text-[#5D5550]/80 mt-4 italic">
-            *Todos los precios de Edelweiss Pilates incluyen IVA, garantía directa de 1 año en México, refacciones en 1 semana y opción de pago a 12 Meses Sin Intereses (desde {HOME_MSI} MXN/mes).
+            *Todos los precios de Edelweiss Pilates incluyen IVA, garantía directa de 1 año en México y refacciones en 1 semana.
           </p>
         </motion.div>
 
@@ -219,7 +215,7 @@ const CamaDePilatesPrecio: React.FC = () => {
               <div className="text-right">
                 <p className="text-sm text-[#5D5550] font-light">Desde</p>
                 <p className="text-3xl font-serif italic text-[#2A2624]">{CATALOG_MIN}</p>
-                <p className="text-xs text-[#5D5550]">MXN · 12 MSI de {HOME_MSI}</p>
+                <p className="text-xs text-[#5D5550]">MXN</p>
               </div>
             </div>
             <ul className="space-y-4 mb-10 border-t border-[#2A2624]/10 pt-8">
@@ -237,7 +233,7 @@ const CamaDePilatesPrecio: React.FC = () => {
             </ul>
             <div className="space-y-3">
               <a
-                href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar un Reformer para casa (desde ${CATALOG_MIN} MXN o 12 MSI de ${HOME_MSI}). ¿Cuál sería el costo de flete a mi código postal?`)}`}
+                href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar un Reformer para casa (desde ${CATALOG_MIN} MXN). ¿Cuál sería el costo de flete a mi código postal?`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-rybbit-event="click_price_home_whatsapp"
@@ -290,7 +286,7 @@ const CamaDePilatesPrecio: React.FC = () => {
             </ul>
             <div className="space-y-3">
               <a
-                href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar camas Reformer para mi estudio de Pilates (con torre desde ${priceLabel(TOWER.min)} MXN). Solicito opciones de financiamiento y descuento por volumen.`)}`}
+                href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar camas Reformer para mi estudio de Pilates (con torre desde ${priceLabel(TOWER.min)} MXN). Solicito cotización con descuento por volumen.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-rybbit-event="click_price_studio_whatsapp"

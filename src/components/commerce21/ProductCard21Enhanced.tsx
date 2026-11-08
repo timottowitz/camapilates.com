@@ -80,17 +80,13 @@ const ProductCard21Enhanced: React.FC<Props> = ({
           </p>
 
           {/* Micro Trust Line */}
-          <div className="flex items-center justify-between text-[11px] pt-0.5 border-t border-[#2A2624]/5">
-            <span className="inline-flex items-center gap-1 text-[#128C7E] font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] animate-pulse" />
-              12 MSI disponibles
-            </span>
-            {product.warranty && (
+          {product.warranty && (
+            <div className="flex items-center text-[11px] pt-0.5 border-t border-[#2A2624]/5">
               <span className="text-[10px] uppercase tracking-wider text-[#5D5550]/70 font-medium">
                 Garantía {product.warranty}
               </span>
-            )}
-          </div>
+            </div>
+          )}
 
           {/* Mylo Badge */}
           {isMylo && (

@@ -68,7 +68,6 @@ Al comparar el gasto real de un equipo usado restaurado ($18,000 de compra + $7,
 
 En **[Edelweiss Pilates](/cama-de-pilates)** ofrecemos [camas de Pilates Reformer](/blog/cama-de-pilates-venta-mexico) con ingeniería de estándar alemán, entrega y soporte en México:
 - **Precios desde [$23,234 MXN](/cama-de-pilates/precio)** para nuestro modelo de entrada en Roble Clásico o Aluminio.
-- **Financiamiento a 12 [Meses Sin Intereses](/blog/financiacion-cama-de-pilates) (MSI):** Adquiere tu cama desde **$1,936 MXN al mes**, pagando menos de lo que cuesta una mensualidad en un estudio boutique.
 - **Garantía Estructural Directa de 1 Año:** Cero vicios ocultos, cero piezas fatigadas.
 - **Refacciones en 1 semana:** Resortes, ruedas y correas enviados a cualquier estado de la República.
 - **Embalaje en Huacal de Madera Reforzado:** Entrega asegurada de puerta a puerta en toda la República Mexicana.
@@ -84,7 +83,7 @@ Si la estructura es de madera maciza (como roble o arce) o de perfil de aluminio
 No. Los resortes con óxido o fisuras microscópicas han perdido su resistencia elástica y pueden quebrarse repentinamente bajo tensión alta, con riesgo de golpear al usuario. Si compras una cama usada con resortes viejos, es obligatorio cambiarlos por resortes nuevos calibrados antes de realizar el primer ejercicio.
 
 ### ¿Cuál es el precio justo en pesos mexicanos para un Reformer usado?
-En el mercado mexicano actual, un Reformer doméstico usado en condiciones aceptables oscila entre **$15,000 y $25,000 MXN**. Modelos profesionales de estudio de marcas internacionales pueden pedir entre **$35,000 y $60,000 MXN**. Si el precio supera los $25,000 MXN, conviene evaluar un equipo nuevo con garantía y 12 MSI.
+En el mercado mexicano actual, un Reformer doméstico usado en condiciones aceptables oscila entre **$15,000 y $25,000 MXN**. Modelos profesionales de estudio de marcas internacionales pueden pedir entre **$35,000 y $60,000 MXN**. Si el precio supera los $25,000 MXN, conviene evaluar un equipo nuevo con garantía.
 
 ### ¿Qué diferencia hay entre un Reformer casero y uno profesional usado?
 La rigidez y el ciclo de carga. Los modelos residenciales soportan entre 100 y 130 kg de peso y 1–2 horas de uso diario; los profesionales toleran usuarios de hasta 180–200 kg durante 8 a 12 horas diarias y cuentan con sistemas de ajuste rápido de footbar y gearbar.
@@ -92,7 +91,7 @@ La rigidez y el ciclo de carga. Los modelos residenciales soportan entre 100 y 1
 ### ¿Madera o metal: cuál material resiste mejor el paso del tiempo?
 Ambos ofrecen gran longevidad si han sido bien cuidados. El aluminio anodizado es inmune a la humedad y plagas, lo que lo hace ideal para climas cálidos y costeros. La madera maciza de roble o arce absorbe de forma insuperable las microvibraciones y aporta una estética cálida y atemporal.
 
-### ¿Edelweiss Pilates ofrece opciones nuevas con financiamiento accesible?
-Sí. En **Edelweiss Pilates** ofrecemos camas de Pilates Reformer nuevas desde **$23,234 MXN**, con esquemas de pago a **12 Meses Sin Intereses** con tarjetas bancarias participantes, 1 año de garantía de fábrica y entrega asegurada en todo México.
+### ¿Edelweiss Pilates ofrece camas nuevas como alternativa?
+Sí. En **Edelweiss Pilates** ofrecemos camas de Pilates Reformer nuevas desde **$23,234 MXN**, fabricadas bajo pedido (entrega en 6 a 8 semanas), con 1 año de garantía de fábrica y entrega asegurada en todo México.
 
 <hub-list category="Guías de compra" limit="6" title="Más guías de compra de Reformer" />

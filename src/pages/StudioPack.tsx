@@ -198,10 +198,6 @@ const StudioPack: React.FC = () => {
                     <span className="w-1.5 h-1.5 rounded-full bg-[#5D5550]/50"></span>
                     Ropa y calcetines (materiales naturales)
                   </li>
-                  <li className="flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#5D5550]/50"></span>
-                    Financiamiento bajo cotización
-                  </li>
                 </ul>
               </div>
             </div>

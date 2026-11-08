@@ -198,9 +198,7 @@ El mercado de apps fitness en México:
 **Problema**: Reformers importados cuestan 60% más por aranceles
 
 **Soluciones**:
-- **Edelweiss Pilates**: Distribución y soporte en México, calidad alemana
-- Programas de financiamiento 12-24 meses
-- Leasing operativo para estudios nuevos
+- **Edelweiss Pilates**: Distribución y soporte en México, calidad alemana, 20% de descuento desde 8 Reformers
 - Mercado secundario certificado
 
 ### 🚧 Reto 3: Estacionalidad y Retención
@@ -249,11 +247,8 @@ En Edelweiss Pilates, hemos acompañado el crecimiento de más de **200 estudios
 - **Conexión con instructores** certificados
 - **Estrategias de marketing** probadas
 
-### 3. Financiamiento Inteligente
-- **Sin enganche** para estudios nuevos (sujeto a aprobación)
-- **12-24 meses sin intereses**
-- **Leasing con opción a compra**
-- **Paquetes de apertura** desde $180K MXN
+### 3. Descuento por Volumen
+- **20% de descuento** desde 8 Reformers
 
 <hub-list category="Comunidad Pilates México" limit="5" title="Recursos para emprendedores" />
 

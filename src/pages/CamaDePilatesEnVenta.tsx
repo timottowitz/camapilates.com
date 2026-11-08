@@ -210,7 +210,7 @@ const CamaDePilatesEnVenta: React.FC = () => {
                     Ver detalles <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                   <a
-                    href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar un Reformer para mi hogar (desde ${CATALOG_MIN} MXN). ¿Cuál es el tiempo de entrega y tienen opciones a 12 MSI?`)}`}
+                    href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar un Reformer para mi hogar (desde ${CATALOG_MIN} MXN). ¿Cuál es el tiempo de entrega?`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}

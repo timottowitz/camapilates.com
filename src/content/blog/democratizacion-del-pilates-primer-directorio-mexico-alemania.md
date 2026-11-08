@@ -96,9 +96,8 @@ Nuestra expansión hacia Alemania replicará la misma fórmula transparente: un 
 Uno de los problemas más graves que enfrentan los instructores recién graduados es el salto al emprendimiento. Obtener una certificación internacional exige una inversión de entre $25,000 y más de $70,000 MXN en horas lectivas y exámenes. Al finalizar, montar un estudio propio con 4 a 8 Reformers solía parecer una meta inalcanzable.
 
 Para resolver este desafío de raíz, Edelweiss Pilates y Edelweiss estructuraron un programa integral de **Sinergia B2B para Egresados y Nuevos Estudios**:
-* **Paquetes Comerciales Llave en Mano**: Precios preferenciales y descuentos por volumen a partir de 3 unidades en nuestros modelos [Reformer para Estudio](/reformer-para-estudio).
+* **Paquetes Comerciales Llave en Mano**: 20% de descuento desde 8 Reformers en nuestros modelos [Reformer para Estudio](/reformer-para-estudio).
 * **Personalización Institucional**: Grabado láser del logotipo de la academia o estudio en la madera maciza ($2,000 MXN adicionales por cama) y selección de tonos de piel artesanal (Cognac, Tabaco, Ébano, Miel) para armonizar con la estética arquitectónica del espacio.
-* **Planes de Financiamiento y Arrendamiento**: Opciones de adquisición en mensualidades y financiamiento directo para mitigar el desembolso inicial de capital de trabajo.
 * **Garantía y Refacciones**: Al contar con distribución y soporte en México, enviamos refacciones (resortes, correas, poleas, herrajes de aluminio) en 1 semana a cualquier estado de la República.
 
 ---
@@ -134,4 +133,4 @@ Las academias y master trainers que cumplan con los estándares de horas prácti
 La fase de investigación, homologación de academias con el Deutscher Pilates Verband y levantamiento de sedes en Alemania (Berlín, Múnich, Hamburgo, Colonia y Fráncfort) se encuentra activa durante el último trimestre de 2026, con apertura al público programada para inicios de 2027.
 
 ### ¿Ofrecen facilidades de equipamiento para quienes terminen su certificación?
-Sí. A través de nuestro programa para egresados de academias aliadas, ofrecemos condiciones preferenciales en la [compra](/blog/cama-de-pilates-guia-de-compra) de camas [Reformer para Estudio](/reformer-para-estudio), asesoría en distribución de espacio y financiamiento directo para facilitar la apertura de nuevos centros de Pilates.
+Sí. A través de nuestro programa para egresados de academias aliadas, ofrecemos condiciones preferenciales en la [compra](/blog/cama-de-pilates-guia-de-compra) de camas [Reformer para Estudio](/reformer-para-estudio), asesoría en distribución de espacio y 20% de descuento desde 8 Reformers para facilitar la apertura de nuevos centros de Pilates.

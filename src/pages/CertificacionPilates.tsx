@@ -1355,7 +1355,7 @@ export const CertificacionPilates: React.FC = () => {
               <p className="text-neutral-600 leading-relaxed mb-8">
                 Al graduarte de cualquiera de nuestras modalidades formativas (28h Básico o 48h Completo), accedes a un 15% de descuento directo en la
                 compra de camas de Pilates Reformer profesionales Edelweiss con madera noble, cuero genuino y resortes
-                alemanes, además de financiamiento a 12 meses sin intereses.
+                alemanes.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
@@ -1377,10 +1377,6 @@ export const CertificacionPilates: React.FC = () => {
               <div className="bg-[#F8F8F6] p-6 rounded-2xl border border-neutral-200">
                 <div className="text-3xl font-mono font-bold text-neutral-900 mb-1">15%</div>
                 <p className="text-xs text-neutral-500">Descuento para graduadas en reformers</p>
-              </div>
-              <div className="bg-[#F8F8F6] p-6 rounded-2xl border border-neutral-200">
-                <div className="text-3xl font-mono font-bold text-neutral-900 mb-1">12 MSI</div>
-                <p className="text-xs text-neutral-500">Financiamiento disponible en México</p>
               </div>
               <div className="bg-[#F8F8F6] p-6 rounded-2xl border border-neutral-200">
                 <div className="text-3xl font-mono font-bold text-neutral-900 mb-1">2+</div>

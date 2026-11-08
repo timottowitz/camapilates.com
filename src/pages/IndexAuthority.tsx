@@ -242,8 +242,6 @@ const IndexAuthority: React.FC = () => {
                   <span>Envíos asegurados a los 32 estados</span>
                   <span className="opacity-40">•</span>
                   <span>1 año de garantía</span>
-                  <span className="opacity-40">•</span>
-                  <span>Hasta 12 Meses Sin Intereses</span>
                 </div>
               </div>
             </motion.div>

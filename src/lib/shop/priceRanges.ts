@@ -28,4 +28,3 @@ export const GYM = rangeOf(GYM_SLUGS);
 
 export const CATALOG_MIN = priceLabel(HOME.min);
 export const CATALOG_MAX = priceLabel(GYM.max);
-export const HOME_MSI = priceLabel(Math.round(HOME.min / 12));

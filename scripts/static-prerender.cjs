@@ -436,7 +436,7 @@ function buildShopIndex(products) {
         </a>
         <a href="/cama-de-pilates/precio" class="p-4 border rounded-lg hover:border-gray-900 block">
           <h3 class="font-semibold text-gray-900 text-sm mb-1">Guía de Precios</h3>
-          <p class="text-xs text-gray-600">Precios transparentes y 12 Meses Sin Intereses.</p>
+          <p class="text-xs text-gray-600">Precios transparentes por modelo.</p>
         </a>
         <a href="/reformer-para-estudio" class="p-4 border rounded-lg hover:border-gray-900 block">
           <h3 class="font-semibold text-gray-900 text-sm mb-1">Reformers para Estudio</h3>
@@ -489,7 +489,7 @@ function buildStudioReformerPage(reformers) {
         <h2 class="text-2xl font-bold text-gray-900">Planifica el equipamiento de tu estudio</h2>
         <ul class="mt-5 space-y-3">
           <li><a href="/cama-de-pilates">Catálogo completo de Camas de Pilates en México</a></li>
-          <li><a href="/cama-de-pilates/precio">Precios oficiales y financiamiento a 12 MSI</a></li>
+          <li><a href="/cama-de-pilates/precio">Precios oficiales por modelo</a></li>
           <li><a href="/blog/reformer-casa-vs-profesional">Compara Reformer para casa vs profesional</a></li>
           <li><a href="/blog/cama-de-pilates-guia-de-compra">Consulta la guía de compra de cama de Pilates</a></li>
           <li><a href="/blog/mantenimiento-cama-de-pilates">Revisa la guía de mantenimiento del Reformer</a></li>
@@ -504,14 +504,8 @@ function formatMXN(price) {
   return new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(num);
 }
 
-function calculateMSI(price, months = 12) {
-  const num = typeof price === 'string' ? parseFloat(price) : price;
-  return formatMXN(Math.round(num / months));
-}
-
 function buildCamaDePilatesPage(reformers, origin) {
   const productCards = reformers.map(p => {
-    const msi = calculateMSI(p.price, 12);
     const formattedPrice = formatMXN(p.price);
     const materialsList = Array.isArray(p.materials) ? p.materials.slice(0, 3).join(' · ') : '';
     const badge = p.bestSeller
@@ -537,8 +531,7 @@ function buildCamaDePilatesPage(reformers, origin) {
           <span class="text-2xl font-extrabold text-stone-900">${htmlEscape(formattedPrice)}</span>
           <span class="text-xs text-stone-500 font-semibold ml-1">MXN</span>
         </div>
-        <p class="text-xs text-emerald-700 font-semibold mb-4">Hasta 12 MSI de ${htmlEscape(msi)} MXN</p>
-        <div class="grid grid-cols-2 gap-2">
+        <div class="grid grid-cols-2 gap-2 mt-3">
           <a href="/product/${htmlEscape(p.slug)}" class="inline-flex items-center justify-center text-xs font-bold uppercase tracking-wider py-2.5 px-3 rounded-lg border border-stone-300 text-stone-800 hover:bg-stone-50 transition-colors text-center">
             Ver Ficha
           </a>
@@ -581,7 +574,7 @@ function buildCamaDePilatesPage(reformers, origin) {
       </div>
 
       <!-- Trust Badges Grid -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 py-8 border-y border-stone-200 mb-16">
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 py-8 border-y border-stone-200 mb-16">
         <div class="p-4 bg-white rounded-xl border border-stone-100 shadow-sm">
           <div class="text-xl mb-1">🚚</div>
           <h4 class="font-bold text-sm text-stone-900">Envío Asegurado 32 Estados</h4>
@@ -591,11 +584,6 @@ function buildCamaDePilatesPage(reformers, origin) {
           <div class="text-xl mb-1">🛡️</div>
           <h4 class="font-bold text-sm text-stone-900">Garantía Directa 1 Año</h4>
           <p class="text-xs text-stone-600 mt-1">Cobertura en estructura, rieles y mecanismos.</p>
-        </div>
-        <div class="p-4 bg-white rounded-xl border border-stone-100 shadow-sm">
-          <div class="text-xl mb-1">💳</div>
-          <h4 class="font-bold text-sm text-stone-900">Hasta 12 MSI</h4>
-          <p class="text-xs text-stone-600 mt-1">Financiamiento con tarjetas y transferencias.</p>
         </div>
         <div class="p-4 bg-white rounded-xl border border-stone-100 shadow-sm">
           <div class="text-xl mb-1">⚙️</div>
@@ -690,7 +678,7 @@ function buildCamaDePilatesPage(reformers, origin) {
               </tr>
               <tr>
                 <td class="p-3 md:p-4 font-semibold text-stone-900">Rango de Precios (MXN)</td>
-                <td class="p-3 md:p-4 font-bold text-emerald-800 bg-emerald-50/30">$23,234 a $85,050 MXN (12 MSI disponibles)</td>
+                <td class="p-3 md:p-4 font-bold text-emerald-800 bg-emerald-50/30">$23,234 a $85,050 MXN</td>
                 <td class="p-3 md:p-4 text-stone-600">$4,489 a $50,999 MXN (stock muy limitado)</td>
                 <td class="p-3 md:p-4 text-stone-600">$19,690 a $25,990 MXN (solo 1-2 modelos)</td>
                 <td class="p-3 md:p-4 text-stone-600">$90,000 a $160,000+ MXN (altos aranceles)</td>
@@ -898,16 +886,6 @@ function buildCamaDePilatesPage(reformers, origin) {
 
           <details class="bg-white border border-stone-200 rounded-2xl p-6 group">
             <summary class="font-bold text-lg text-stone-900 cursor-pointer list-none flex justify-between items-center">
-              ¿Ofrecen opciones de pago a Meses Sin Intereses (MSI)?
-              <span class="text-stone-400 group-open:rotate-45 transition-transform text-2xl font-light">+</span>
-            </summary>
-            <div class="mt-4 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
-              Sí. Aceptamos pagos con tarjeta de crédito con planes de hasta 12 Meses Sin Intereses con bancos participantes a través de nuestras pasarelas de pago certificadas. También contamos con descuentos preferenciales en pagos de contado por transferencia bancaria SPEI.
-            </div>
-          </details>
-
-          <details class="bg-white border border-stone-200 rounded-2xl p-6 group">
-            <summary class="font-bold text-lg text-stone-900 cursor-pointer list-none flex justify-between items-center">
               ¿Hacen envíos a Monterrey, Guadalajara, Querétaro y todo México?
               <span class="text-stone-400 group-open:rotate-45 transition-transform text-2xl font-light">+</span>
             </summary>
@@ -1005,7 +983,6 @@ function buildCamaDePilatesPage(reformers, origin) {
 function buildCamaDePilatesPrecioPage(reformers, origin) {
   const priceRows = reformers.slice(0, 10).map(p => {
     const formattedPrice = formatMXN(p.price);
-    const msi = calculateMSI(p.price, 12);
     return `
     <tr class="border-b border-stone-100 hover:bg-stone-50">
       <td class="p-4 font-semibold text-stone-900">
@@ -1013,7 +990,6 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
       </td>
       <td class="p-4 text-stone-600 text-xs">${htmlEscape(p.materials ? p.materials[0] : 'Aluminio / Madera')}</td>
       <td class="p-4 font-bold text-stone-900">${htmlEscape(formattedPrice)} MXN</td>
-      <td class="p-4 font-semibold text-emerald-700">12 MSI de ${htmlEscape(msi)}</td>
       <td class="p-4">
         <a href="/product/${htmlEscape(p.slug)}" class="text-xs font-bold uppercase tracking-wider text-stone-900 hover:underline">Ver Ficha →</a>
       </td>
@@ -1034,13 +1010,13 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
           ¿Cuánto Cuesta una Cama de Pilates en México? Precios y Presupuestos 2026
         </h1>
         <p class="text-lg md:text-xl text-stone-700 font-light leading-relaxed mb-8">
-          En México, el precio de una <strong>cama de Pilates Reformer</strong> profesional oscila entre <strong>$23,234 MXN y $85,050 MXN</strong>, dependiendo del tipo de chasis (madera maciza de arce/roble vs. aleación de aluminio extrusionado), la presencia de media torre o aditamentos de Cadillac, y la calidad de los rodamientos y resortes alemanes. Analizamos con total transparencia los rangos de costo, facilidades de 12 Meses Sin Intereses y qué factores determinan una inversión segura y rentable.
+          En México, el precio de una <strong>cama de Pilates Reformer</strong> profesional oscila entre <strong>$23,234 MXN y $85,050 MXN</strong>, dependiendo del tipo de chasis (madera maciza de arce/roble vs. aleación de aluminio extrusionado), la presencia de media torre o aditamentos de Cadillac, y la calidad de los rodamientos y resortes alemanes. Analizamos con total transparencia los rangos de costo y qué factores determinan una inversión segura y rentable.
         </p>
         <div class="flex flex-wrap gap-4 mb-12">
           <a href="/cama-de-pilates" class="rounded-full bg-stone-900 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-stone-800 transition-all shadow-md">
             Ver Modelos y Comprar en /cama-de-pilates →
           </a>
-          <a href="https://wa.me/525548468190?text=${encodeURIComponent('Hola, me gustaría cotizar una cama de Pilates Reformer con opciones de precio y financiamiento en México.')}" target="_blank" rel="noopener noreferrer" class="rounded-full bg-emerald-700 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-emerald-800 transition-all shadow-md">
+          <a href="https://wa.me/525548468190?text=${encodeURIComponent('Hola, me gustaría cotizar una cama de Pilates Reformer con envío en México.')}" target="_blank" rel="noopener noreferrer" class="rounded-full bg-emerald-700 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-emerald-800 transition-all shadow-md">
             Cotizar por WhatsApp
           </a>
         </div>
@@ -1063,7 +1039,6 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
                 <th class="p-4">Modelo Reformer</th>
                 <th class="p-4">Material Principal</th>
                 <th class="p-4">Precio Contado (MXN)</th>
-                <th class="p-4">Financiamiento (MSI)</th>
                 <th class="p-4">Detalle</th>
               </tr>
             </thead>
@@ -1099,7 +1074,7 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
                 <td class="p-3 md:p-4 font-extrabold text-stone-900">$23,234 – $85,050</td>
                 <td class="p-3 md:p-4">5 resortes alemanes de alambre de piano calibrados</td>
                 <td class="p-3 md:p-4">Roble / Maple macizo o Aluminio aeroespacial</td>
-                <td class="p-3 md:p-4 text-emerald-800">1 año de garantía directa, 12 MSI, refacciones en 1 semana</td>
+                <td class="p-3 md:p-4 text-emerald-800">1 año de garantía directa, refacciones en 1 semana</td>
               </tr>
               <tr>
                 <td class="p-3 md:p-4 font-bold text-stone-900">Vanlig</td>
@@ -1212,7 +1187,7 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
               <span class="text-stone-400 group-open:rotate-45 transition-transform text-xl font-light">+</span>
             </summary>
             <div class="mt-3 text-stone-600 text-sm leading-relaxed border-t border-stone-200/60 pt-3">
-              Nuestras opciones residenciales inician desde $23,234 MXN (o desde $1,936 MXN/mes a 12 MSI). Cuentan con chasis rígido que elimina vibraciones, carro silencioso con rodamientos sellados y sistema de 5 resortes alemanes de alambre de piano.
+              Nuestras opciones residenciales inician desde $23,234 MXN. Cuentan con chasis rígido que elimina vibraciones, carro silencioso con rodamientos sellados y sistema de 5 resortes alemanes de alambre de piano.
             </div>
           </details>
           <details class="border border-stone-200 rounded-xl p-5 group bg-stone-50/50">
@@ -1249,15 +1224,6 @@ function buildCamaDePilatesPrecioPage(reformers, origin) {
             </summary>
             <div class="mt-3 text-stone-600 text-sm leading-relaxed border-t border-stone-200/60 pt-3">
               Incluye el chasis completo ensamblado, carro tapizado en microfibra de alta resistencia, barra de pies ajustable multidireccional, sistema de 5 resortes alemanes calibrados por color, cabecera ajustable de 3 posiciones, hombreras ergonómicas, juego de poleas silenciosas, correas dobles de manos/pies y caja (box) según el modelo seleccionado.
-            </div>
-          </details>
-          <details class="border border-stone-200 rounded-xl p-5 group bg-stone-50/50">
-            <summary class="font-bold text-base text-stone-900 cursor-pointer list-none flex justify-between items-center">
-              ¿Ofrecen opciones de pago a Meses Sin Intereses (MSI)?
-              <span class="text-stone-400 group-open:rotate-45 transition-transform text-xl font-light">+</span>
-            </summary>
-            <div class="mt-3 text-stone-600 text-sm leading-relaxed border-t border-stone-200/60 pt-3">
-              Sí, contamos con financiamiento de hasta 12 Meses Sin Intereses con tarjetas de crédito de bancos participantes en México a través de pasarelas de pago seguras, además de descuentos preferenciales por pago de contado vía transferencia SPEI.
             </div>
           </details>
           <details class="border border-stone-200 rounded-xl p-5 group bg-stone-50/50">
@@ -1507,7 +1473,6 @@ function renderProduct(p, origin) {
           <h1 class="text-3xl font-bold text-gray-900">${htmlEscape(p.name)}</h1>
           <p class="mt-4 text-gray-700 leading-relaxed">${htmlEscape(p.description)}</p>
           <div class="mt-6 text-2xl text-gray-900 font-bold">$ ${formatMXN(p.price)} ${p.currency}</div>
-          <div class="mt-2 text-sm text-stone-600">Disponible desde <strong>${calculateMSI(p.price, 12)}/mes</strong> a 12 Meses Sin Intereses</div>
           <ul class="mt-6 space-y-2 text-sm text-stone-700 bg-stone-50 p-4 rounded-lg border border-stone-200">
             <li>✓ <strong>Garantía:</strong> 1 año, directa de fábrica en México</li>
             <li>✓ <strong>Resortes:</strong> 5 resortes alemanes de alambre de piano de alta precisión</li>
@@ -1524,7 +1489,7 @@ function renderProduct(p, origin) {
             ${recsHtml}
             <div class="flex flex-col gap-1.5 mt-3 pt-3 border-t border-stone-100">
               <a href="/cama-de-pilates" class="text-amber-800 font-medium hover:underline">← Ver catálogo completo de Camas de Pilates en México</a>
-              <a href="/cama-de-pilates/precio" class="text-stone-600 hover:text-stone-900 hover:underline">Tabla comparativa de precios y financiamiento 12 MSI</a>
+              <a href="/cama-de-pilates/precio" class="text-stone-600 hover:text-stone-900 hover:underline">Tabla comparativa de precios</a>
               <a href="/blog/cama-de-pilates-guia-de-compra" class="text-stone-600 hover:text-stone-900 hover:underline">Guía definitiva de compra de Reformer (medidas, resortes y ROI)</a>
             </div>
           </div>
@@ -1597,14 +1562,14 @@ async function main() {
       <header class="max-w-4xl">
         <p class="text-sm uppercase tracking-widest text-gray-600">Reformers para México</p>
         <h1 class="mt-4 text-4xl md:text-6xl font-bold text-gray-900">Cama de Pilates Reformer en México</h1>
-        <p class="mt-6 text-lg text-gray-700 leading-8">Compara 22 modelos de camas de Pilates para casa y estudio, consulta precios actualizados 2026 desde $23,234 MXN y encuentra guías para elegir tu cama con envío asegurado a todo México y hasta 12 MSI.</p>
+        <p class="mt-6 text-lg text-gray-700 leading-8">Compara 22 modelos de camas de Pilates para casa y estudio, consulta precios actualizados 2026 desde $23,234 MXN y encuentra guías para elegir tu cama con envío asegurado a todo México.</p>
       </header>
       <section class="mt-12">
         <h2 class="sr-only">Ecosistema de Cama de Pilates: Modelos Reformer, Estudios y Certificación</h2>
         <nav aria-label="Enlaces principales" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           <a href="/cama-de-pilates" class="rounded-xl border-2 border-stone-900 bg-stone-900 text-white p-6 hover:bg-stone-800 transition-colors sm:col-span-2 lg:col-span-3">
             <h3 class="text-xl font-bold text-white mb-1">Camas de Pilates Reformer en México (Catálogo Completo 2026)</h3>
-            <p class="text-sm text-stone-300">Explora todos los 22 modelos de madera noble y aluminio con especificaciones técnicas, precios, financiamiento y cotización directa.</p>
+            <p class="text-sm text-stone-300">Explora todos los 22 modelos de madera noble y aluminio con especificaciones técnicas, precios y cotización directa.</p>
           </a>
           <a href="/shop/category/reformers" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Tienda de Reformers</h3><p class="mt-1 text-sm text-gray-600">Explora modelos y precios disponibles.</p></a>
           <a href="/reformer-para-estudio" class="rounded-lg border p-6"><h3 class="text-lg font-bold text-gray-900">Reformer para estudio</h3><p class="mt-1 text-sm text-gray-600">Equipo profesional para uso intensivo.</p></a>
@@ -1987,7 +1952,7 @@ async function main() {
           </a>
           <a href="/cama-de-pilates/precio" class="p-4 rounded-lg border hover:border-gray-900 block">
             <h3 class="font-semibold text-gray-900 text-sm mb-1">Guía de Precios</h3>
-            <p class="text-xs text-gray-600">Rangos de costo y 12 MSI.</p>
+            <p class="text-xs text-gray-600">Rangos de costo por modelo.</p>
           </a>
           <a href="/product/reformer-elite-aluminio-pl019" class="p-4 rounded-lg border hover:border-gray-900 block">
             <h3 class="font-semibold text-gray-900 text-sm mb-1">Reformer Elite de Aluminio</h3>
@@ -2098,14 +2063,6 @@ async function main() {
         },
         {
           '@type': 'Question',
-          name: '¿Ofrecen opciones de pago a Meses Sin Intereses (MSI)?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Sí. Aceptamos pagos con tarjeta de crédito con planes de hasta 12 Meses Sin Intereses con bancos participantes a través de nuestras pasarelas de pago certificadas. También contamos con descuentos preferenciales en pagos de contado por transferencia bancaria SPEI.'
-          }
-        },
-        {
-          '@type': 'Question',
           name: '¿Hacen envíos a Monterrey, Guadalajara, Querétaro y todo México?',
           acceptedAnswer: {
             '@type': 'Answer',
@@ -2193,7 +2150,7 @@ async function main() {
           name: '¿Cuál es el precio de una cama de Pilates para casa?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Nuestras opciones residenciales inician desde $23,234 MXN (o desde $1,936 MXN/mes a 12 MSI). Cuentan con chasis rígido que elimina vibraciones, carro silencioso con rodamientos sellados y sistema de 5 resortes alemanes de alambre de piano.'
+            text: 'Nuestras opciones residenciales inician desde $23,234 MXN. Cuentan con chasis rígido que elimina vibraciones, carro silencioso con rodamientos sellados y sistema de 5 resortes alemanes de alambre de piano.'
           }
         },
         {
@@ -2230,14 +2187,6 @@ async function main() {
         },
         {
           '@type': 'Question',
-          name: '¿Ofrecen opciones de pago a Meses Sin Intereses (MSI)?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Sí, contamos con financiamiento de hasta 12 Meses Sin Intereses con tarjetas de crédito de bancos participantes en México a través de pasarelas de pago seguras, además de descuentos preferenciales por pago de contado vía transferencia SPEI.'
-          }
-        },
-        {
-          '@type': 'Question',
           name: '¿Cuánto cuesta el envío y cómo se protege el equipo durante el transporte?',
           acceptedAnswer: {
             '@type': 'Answer',
@@ -2248,7 +2197,7 @@ async function main() {
     };
     const head = {
       title: meta ? meta.title : '¿Cuánto Cuesta una Cama de Pilates en México? Precios Desde $23,234 MXN [2026]',
-      description: meta ? meta.description : 'Guía completa de precios de camas de Pilates (Reformer) en México 2026: modelos para casa y estudio desde $23,234 MXN. Incluye garantía y 12 MSI.',
+      description: meta ? meta.description : 'Guía completa de precios de camas de Pilates (Reformer) en México 2026: modelos para casa y estudio desde $23,234 MXN. Incluye garantía directa de 1 año.',
       canonical: `${origin}${route}`,
       ogImage: `${origin}${reformers[0].image}`,
       ogType: 'website',

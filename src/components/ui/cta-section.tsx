@@ -14,7 +14,7 @@ interface CTASectionProps {
 
 const CTASection = ({
   title = "¿Buscas una cama de Pilates?",
-  description = "Te ayudamos a elegir la cama de Pilates ideal para casa o estudio. Compara modelos, acabados en madera o aluminio y opciones a 12 MSI con envío asegurado en México.",
+  description = "Te ayudamos a elegir la cama de Pilates ideal para casa o estudio. Compara modelos, acabados en madera o aluminio con envío asegurado en México.",
   variant = "default",
   className = "",
   whatsappMessage = "Hola, quisiera asesoría personalizada para elegir mi cama de Pilates con envío en México.",

@@ -149,7 +149,6 @@ Carlos Mendoza, instructor en Querétaro, triplicó su clientela tras participar
 En Edelweiss Pilates entendemos que el éxito de un instructor o estudio depende tanto del equipo como de la comunidad que lo respalda. Por eso ofrecemos:
 
 - **Asesoría gratuita** para nuevos estudios
-- **Planes de financiamiento** desde 12 meses sin intereses
 - **Capacitación técnica** incluida con cada Reformer
 - **Garantía** de 1 año
 - **Red de instructores Edelweiss**: Acceso exclusivo a nuestra comunidad de 500+ profesionales

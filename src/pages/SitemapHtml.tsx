@@ -68,7 +68,7 @@ const sitemapData: SitemapSection[] = [
       {
         title: 'Catálogo de Reformers en Tienda',
         path: '/shop/category/reformers',
-        description: 'Compra en línea con checkout seguro y opciones de financiamiento.',
+        description: 'Compra en línea con checkout seguro.',
       },
     ],
   },
