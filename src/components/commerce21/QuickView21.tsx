@@ -22,7 +22,10 @@ const QuickView21: React.FC<Props> = ({ product, onClose }) => {
   const activeVariant = React.useMemo(() => (product.variants || []).find(v => v.finish === finish), [finish, product.slug]);
   const priceToShow = activeVariant?.price || product.price;
   const displaySku = activeVariant?.sku || product.sku;
-  const images = React.useMemo(() => [activeVariant?.image || '', FINISHES[finish]?.img || '', product.image].filter(Boolean) as string[], [finish, product.slug]);
+  const images = React.useMemo(
+    () => [...new Set([activeVariant?.image, product.image, ...(product.galleryImages ?? [])].filter((src): src is string => Boolean(src)))],
+    [activeVariant, product]
+  );
 
   return (
     <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" onClick={onClose}>

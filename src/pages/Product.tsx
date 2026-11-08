@@ -106,10 +106,7 @@ const ProductPage: React.FC = () => {
     image: [
       ...(activeVariant?.image ? [activeVariant.image] : []),
       origin + safeProd.image,
-      origin + '/images/finish-walnut.jpg',
-      origin + '/images/finish-white.jpg',
-      origin + '/images/finish-black.jpg',
-      origin + '/images/finish-mycelium.webp'
+      ...(safeProd.galleryImages ?? []).map((src) => origin + src)
     ],
     material: materials,
     url,
