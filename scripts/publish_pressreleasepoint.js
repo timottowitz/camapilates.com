@@ -3,7 +3,7 @@ import fs from "fs";
 
 async function run() {
   console.log("=== Launching browser for PressReleasePoint final publish ===");
-  const browser = await chromium.launch({ headless: false });
+  const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({
     viewport: { width: 1300, height: 1100 },
     userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
@@ -22,12 +22,12 @@ async function run() {
   await page.waitForTimeout(2000);
 
   // Check form values
-  const title = await page.$eval("#edit-title, input[name=\"title\"]", el => el.value).catch(() => "");
+  const title = await page.$eval("#edit-title-field-en-0-value", el => el.value).catch(() => "");
   console.log("Current loaded title:", title);
 
   if (!title) {
     console.log("Populating title...");
-    await page.fill("#edit-title, input[name=\"title\"]", "Edelweiss / CAMA Pilates Announces Democratization of Pilates: Mexico's First Open Certification Directory");
+    await page.fill("#edit-title-field-en-0-value", "Edelweiss / CAMA Pilates Announces Democratization of Pilates: Mexico's First Open Certification Directory");
   }
 
   // Topic selection
