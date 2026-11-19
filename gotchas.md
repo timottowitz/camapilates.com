@@ -37,6 +37,20 @@ window.cancelAnimationFrame = (id) => clearTimeout(id);
 Head tags are prerendered into the served HTML anyway (see below), so `curl` is the
 more reliable way to check what a crawler actually receives.
 
+**The pane can also throttle instead of suspend.** `visibilityState` reads `visible` and
+the check above reports `fired: true`, but rAF runs at about 2 frames per second, so
+every framer-motion entrance looks stuck at `opacity: 0` for many seconds (a hero with
+no headline, a blank product page). Count frames before trusting a screenshot:
+
+```js
+let n = 0; const t0 = performance.now();
+const tick = () => { n++; if (performance.now() - t0 < 1000) requestAnimationFrame(tick); };
+requestAnimationFrame(tick); setTimeout(() => console.log(n), 1300);
+```
+
+Anything far below 60 means the page is fine and the measurement is not. The same pane
+reports `prefers-reduced-motion: reduce`, so CSS transitions there are instant.
+
 ---
 
 ## Browser auto-translation freezes any value React re-renders
@@ -145,3 +159,6 @@ fake renders and were rejected.
 prompt (backrest, box, footbar colour, legs, tower or no tower). Without that list Gemini added
 towers, dropped backrests or swapped legs in about a third of images. Check every output side by
 side with the source before using it.
+
+## Never build free delivery into prices without asking
+In the VOG pricing model I folded delivery into the product price and called it "free delivery" because the carrier quotes came out cheap. The owner doesn't offer free delivery. **Rule:** delivery is always a separate fee the customer pays, at our cost plus IVA, by postal code. Never move a cost out of the customer's bill and into the margin (free delivery, free assembly, absorbed fees) unless the owner asks for it.
