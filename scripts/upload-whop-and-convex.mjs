@@ -1,7 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 
-const WHOP_API_KEY = 'apik_rKu6KhWJYxtaz_C6408634_C_37dee9ea7ba242beb2f2a311ae8b3ba48bc5664de188fd7710ef5085f9e8a4';
+// Pass the key in the environment (WHOP_API_KEY=... node scripts/upload-whop-and-convex.mjs).
+// It must never be written into this file: the repository is public.
+const WHOP_API_KEY = process.env.WHOP_API_KEY;
+if (!WHOP_API_KEY) {
+  console.error('WHOP_API_KEY is not set');
+  process.exit(1);
+}
 const PRODUCT_ID = 'prod_Iv5ZnKkugonCn';
 
 async function uploadFileToWhop(filePath, filename) {

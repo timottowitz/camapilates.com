@@ -5,11 +5,12 @@ const WHOP_API_BASE = 'https://api.whop.com';
 const FORUM_EXP_ID = 'exp_CY1aVHXdSlxCCb';
 const PRODUCT_ID = 'prod_Iv5ZnKkugonCn';
 
+// The key lives only in the deployment's environment. It must never be written into this file:
+// the repository is public.
 function getApiKey(): string {
-  return (
-    process.env.WHOP_API_KEY ||
-    'apik_rKu6KhWJYxtaz_C6408634_C_37dee9ea7ba242beb2f2a311ae8b3ba48bc5664de188fd7710ef5085f9e8a4'
-  );
+  const key = process.env.WHOP_API_KEY;
+  if (!key) throw new Error('WHOP_API_KEY is not set in the Convex environment');
+  return key;
 }
 
 // Clean names and sanitize content
