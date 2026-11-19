@@ -130,15 +130,15 @@ const Blog: React.FC = () => {
                   The Journal<span className="text-[#EB4C42]">.</span>
                 </h1>
                 <p className="text-lg md:text-xl text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed">
-                  Expert guides on buying, practice, and maintenance. <br className="hidden md:block" />
-                  Everything you need to know about the Pilates Reformer.
+                  Guías expertas de compra, práctica y mantenimiento. <br className="hidden md:block" />
+                  Todo lo que necesitas saber sobre el Pilates Reformer.
                 </p>
               </motion.div>
             </div>
 
             {/* Loading Notice */}
             {loading && (
-              <div className="mb-6 text-center text-xs uppercase tracking-widest text-[#5D5550] animate-pulse">Loading articles...</div>
+              <div className="mb-6 text-center text-xs uppercase tracking-widest text-[#5D5550] animate-pulse">Cargando artículos...</div>
             )}
 
             {/* Category filter chips */}
@@ -192,7 +192,7 @@ const Blog: React.FC = () => {
                       onClick={() => setVisible(v => v + 9)}
                       className="px-10 py-5 bg-[#2A2624] text-[#EAE8E4] rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#3E2723] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
                     >
-                      Load More
+                      Cargar Más
                     </button>
                   </motion.div>
                 )}

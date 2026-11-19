@@ -82,11 +82,11 @@ const StudioPack: React.FC = () => {
           className="max-w-4xl"
         >
           <span className="block text-xs font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-8">
-            Professional Studios
+            Estudios Profesionales
           </span>
           <h1 className="text-5xl md:text-7xl font-serif italic text-[#2A2624] leading-[0.9] mb-8">
-            Equip your studio <br />
-            <span className="not-italic font-light font-sans tracking-tight">with Excellence.</span>
+            Equipa tu estudio <br />
+            <span className="not-italic font-light font-sans tracking-tight">con Excelencia.</span>
           </h1>
           <p className="text-lg text-[#5D5550] font-light max-w-2xl leading-relaxed">
             <Link to="/packs/monterrey" className="underline hover:text-[#2A2624]">Pack para estudios</Link>: a partir de 8 <Link to="/blog/cama-de-pilates-guia-de-compra" className="underline hover:text-[#2A2624]">camas de Pilates Reformer</Link> obtén 20% de descuento. Coordinamos instalación, ofrecemos garantía de 1 año y repuestos en 1 semana. Envío a toda la República.
@@ -97,7 +97,7 @@ const StudioPack: React.FC = () => {
           {/* Pricing Block */}
           <div className="lg:col-span-2 space-y-12">
             <div key={`studio-investment-${qty}`} className="bg-white/50 border border-[#2A2624]/10 p-8 md:p-12 rounded-sm backdrop-blur-sm">
-              <h2 className="text-2xl font-serif italic text-[#2A2624] mb-8">Estimated Investment</h2>
+              <h2 className="text-2xl font-serif italic text-[#2A2624] mb-8">Inversión Estimada</h2>
               <div className="grid md:grid-cols-3 gap-8">
                 <div>
                   <div className="text-xs uppercase tracking-widest text-[#5D5550] mb-2">Precio Unitario</div>
@@ -172,7 +172,7 @@ const StudioPack: React.FC = () => {
 
             <div className="grid md:grid-cols-2 gap-12">
               <div>
-                <h3 className="font-serif italic text-xl text-[#2A2624] mb-4">Included</h3>
+                <h3 className="font-serif italic text-xl text-[#2A2624] mb-4">Incluye</h3>
                 <ul className="space-y-3 text-[#5D5550] font-light">
                   <li className="flex items-center gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#3E2723]"></span>
@@ -189,7 +189,7 @@ const StudioPack: React.FC = () => {
                 </ul>
               </div>
               <div>
-                <h3 className="font-serif italic text-xl text-[#2A2624] mb-4">Optional</h3>
+                <h3 className="font-serif italic text-xl text-[#2A2624] mb-4">Opcional</h3>
                 <ul className="space-y-3 text-[#5D5550] font-light">
                   <li className="flex items-center gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#5D5550]/50"></span>
@@ -206,7 +206,7 @@ const StudioPack: React.FC = () => {
 
           {/* Lead Form */}
           <div className="bg-[#2A2624] text-[#EAE8E4] p-8 md:p-12 rounded-sm">
-            <h2 className="text-2xl font-serif italic mb-2">Request Quote</h2>
+            <h2 className="text-2xl font-serif italic mb-2">Solicitar Cotización</h2>
             <p className="text-white/60 font-light text-sm mb-8">Responde y nos pondremos en contacto hoy mismo.</p>
 
             <form onSubmit={(e) => { e.preventDefault(); mailto(); }} className="space-y-6">
@@ -252,20 +252,6 @@ const StudioPack: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-24 px-8 md:px-24 border-t border-[#2A2624]/10">
-        <div className="max-w-[1800px] mx-auto">
-          <h2 className="text-3xl font-serif italic text-[#2A2624] mb-12 text-center">Trusted by Studios</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
-            {/* Placeholder for studio logos - using text for now as per design system */}
-            {['Equilibrium', 'Pilates Center', 'Movement Lab', 'Core Studio'].map((studio, i) => (
-              <div key={i} className="flex items-center justify-center h-24 border border-[#2A2624]/10 rounded-sm">
-                <span className="font-serif italic text-xl text-[#2A2624]">{studio}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="py-20 px-8 md:px-24 bg-white/50 border-t border-[#2A2624]/10">
         <div className="max-w-[1800px] mx-auto">
           <h2 className="text-2xl md:text-3xl font-serif italic text-[#2A2624] mb-8">Sedes y Recursos para Estudios</h2>
@@ -280,7 +266,7 @@ const StudioPack: React.FC = () => {
             </Link>
             <Link to="/reformer-para-estudio" className="p-6 rounded-xl border border-[#2A2624]/10 bg-white hover:border-[#2A2624] transition-all group">
               <h3 className="font-semibold text-[#2A2624] group-hover:text-[#EB4C42] mb-2">Catálogo Reformer para Estudio</h3>
-              <p className="text-xs text-[#5D5550] leading-relaxed">Modelos comerciales de nogal, roble, maple y aluminio con media torre o torre completa.</p>
+              <p className="text-xs text-[#5D5550] leading-relaxed">Modelos comerciales de roble, maple y aluminio con media torre o torre completa.</p>
             </Link>
           </div>
         </div>

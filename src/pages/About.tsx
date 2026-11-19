@@ -5,6 +5,31 @@ import LuxuryLayout from '@/components/layout/LuxuryLayout';
 import { motion } from 'framer-motion';
 import { generateAboutPageSchema } from '@/lib/seo';
 import { requireRouteMeta } from '@/lib/routeMeta';
+import { allProducts } from '@/lib/shop/catalog';
+
+const reformerCount = allProducts().filter((p) => p.category === 'Reformers').length;
+
+// Descriptions follow the catalog entry each card links to.
+const MATERIALS = [
+  {
+    title: 'Roble Macizo',
+    desc: 'La estructura de nuestros Reformers clásicos. Una base sólida para casa o estudio.',
+    img: '/images/products/reformer-clasico-roble-pl006.webp',
+    to: '/product/reformer-clasico-roble-pl006',
+  },
+  {
+    title: 'Maple Blanco',
+    desc: 'De tono claro y acabado limpio, con poleas en postes de madera.',
+    img: '/images/products/reformer-clasico-maple-pl001.webp',
+    to: '/product/reformer-clasico-maple-pl001',
+  },
+  {
+    title: 'Aluminio',
+    desc: 'Con detalles de madera: ligero, estable y de líneas limpias para estudios modernos.',
+    img: '/images/products/reformer-elite-aluminio-pl019.webp',
+    to: '/product/reformer-elite-aluminio-pl019',
+  },
+];
 
 const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: number }) => (
   <motion.div
@@ -42,11 +67,11 @@ const About = () => {
 
         <FadeIn>
           <span className="block text-xs font-bold font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-8 opacity-60">
-            Our Philosophy
+            Nuestra Filosofía
           </span>
           <h1 className="text-5xl md:text-8xl lg:text-9xl font-serif italic text-[#2A2624] leading-[0.85] mb-12 tracking-tighter">
-            German Engineering<span className="text-[#EB4C42]">.</span> <br />
-            <span className="not-italic font-light font-sans tracking-tight text-[#5D5550]">Made for Mexico</span>
+            Ingeniería Alemana<span className="text-[#EB4C42]">.</span> <br />
+            <span className="not-italic font-light font-sans tracking-tight text-[#5D5550]">Hecha para México</span>
           </h1>
         </FadeIn>
 
@@ -56,13 +81,13 @@ const About = () => {
               <div className="aspect-[3/4] w-full bg-[#D6D3CD] rounded-[2rem] overflow-hidden relative shadow-2xl">
                 <img
                   src="/images/about-hero.webp"
-                  alt="Pilates Studio"
+                  alt="Estudio de Pilates"
                   className="absolute inset-0 w-full h-full object-cover opacity-95 hover:scale-105 transition-transform duration-[1.5s]"
                 />
               </div>
               <div className="mt-6 flex justify-between text-[10px] uppercase tracking-widest text-[#5D5550] font-bold opacity-60">
-                <span>Est. 2015</span>
-                <span>Mexico City</span>
+                <span>Edelweiss Pilates</span>
+                <span>Ciudad de México</span>
               </div>
             </FadeIn>
           </div>
@@ -70,27 +95,27 @@ const About = () => {
           <div className="md:col-span-7 flex flex-col justify-center">
             <FadeIn delay={0.4}>
               <p className="text-xl md:text-3xl font-light text-[#2A2624] leading-relaxed mb-12 tracking-tight">
-                We unite <span className="font-normal border-b border-[#EB4C42]">careful engineering</span> with the warmth of natural materials.
-                Our goal was simple: a Reformer that is completely silent,
-                vibration-free, and beautiful enough to live in your home.
+                Unimos una <span className="font-normal border-b border-[#EB4C42]">ingeniería cuidadosa</span> con la calidez de los materiales naturales.
+                Nuestra meta era simple: un Reformer silencioso, estable
+                y lo bastante bello para vivir en tu casa.
               </p>
               <p className="text-lg font-light text-[#5D5550] leading-relaxed mb-12 max-w-2xl">
-                Every Edelweiss Reformer comes in solid oak, maple or aluminum, with stainless-steel towers on the tower models,
-                and is delivered and supported across Mexico. Discover our{' '}
+                Cada Reformer Edelweiss viene en roble macizo, maple o aluminio, con torres de acero inoxidable en los modelos con torre,
+                y cuenta con entrega y soporte en todo México. Descubre nuestros{' '}
                 <Link to="/reformer-para-casa" className="underline hover:text-[#2A2624]">Pilates Reformers silenciosos para casa</Link>{' '}
-                and our flagship{' '}
+                y nuestro modelo insignia, el{' '}
                 <Link to="/product/reformer-elite-aluminio-pl019" className="underline hover:text-[#2A2624]">Reformer Elite de Aluminio</Link>.
-                We don't just build equipment; we craft instruments for movement.
+                No solo fabricamos equipo; creamos instrumentos para el movimiento.
               </p>
 
               <div className="grid grid-cols-2 gap-12 border-t border-[#2A2624]/10 pt-12">
                 <div>
-                  <span className="block text-5xl md:text-6xl font-serif italic text-[#2A2624] mb-2">500<span className="text-[#EB4C42] text-3xl align-top">+</span></span>
-                  <span className="text-[10px] uppercase tracking-widest text-[#5D5550] font-bold">Studios Equipped</span>
+                  <span className="block text-5xl md:text-6xl font-serif italic text-[#2A2624] mb-2">{reformerCount}</span>
+                  <span className="text-[10px] uppercase tracking-widest text-[#5D5550] font-bold">Modelos de Reformer</span>
                 </div>
                 <div>
-                  <span className="block text-5xl md:text-6xl font-serif italic text-[#2A2624] mb-2">10<span className="text-[#EB4C42] text-3xl align-top">+</span></span>
-                  <span className="text-[10px] uppercase tracking-widest text-[#5D5550] font-bold">Years Experience</span>
+                  <span className="block text-5xl md:text-6xl font-serif italic text-[#2A2624] mb-2">32</span>
+                  <span className="text-[10px] uppercase tracking-widest text-[#5D5550] font-bold">Estados con Envío Asegurado</span>
                 </div>
               </div>
             </FadeIn>
@@ -103,63 +128,35 @@ const About = () => {
         <div className="max-w-[1800px] mx-auto">
           <FadeIn>
             <h2 className="text-4xl md:text-6xl font-serif italic text-[#2A2624] mb-24 text-center">
-              Honest Materials<span className="text-[#EB4C42]">.</span>
+              Materiales Honestos<span className="text-[#EB4C42]">.</span>
             </h2>
           </FadeIn>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "American Walnut",
-                desc: "Sourced from sustainable forests. Dense, stable, and naturally shock-absorbing.",
-                img: "/images/feature_1.webp"
-              },
-              {
-                title: "Surgical Steel",
-                desc: "Structural integrity that lasts a lifetime. Precision-welded for zero flex.",
-                img: "https://images.unsplash.com/photo-1535069898890-5a72d920334c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              },
-              {
-                title: "Full Grain Leather",
-                desc: "Hand-stitched upholstery that breathes and improves with age.",
-                img: "https://images.unsplash.com/photo-1550583724-b2692b85b150?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              }
-            ].map((item, i) => (
-              <FadeIn delay={i * 0.2} key={i}>
-                <div className="group cursor-pointer bg-white p-6 rounded-[2rem] shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-[#2A2624]/5">
+            {MATERIALS.map((item, i) => (
+              <FadeIn delay={i * 0.2} key={item.title}>
+                <Link
+                  to={item.to}
+                  className="group block bg-white p-6 rounded-[2rem] shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-[#2A2624]/5"
+                >
                   <div className="aspect-square w-full bg-[#D6D3CD] mb-8 overflow-hidden rounded-[1.5rem] relative">
                     <img
                       src={item.img}
-                      alt={item.title}
+                      alt={`Reformer Edelweiss de ${item.title.toLowerCase()}`}
+                      loading="lazy"
+                      decoding="async"
                       className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-110"
                     />
                   </div>
-                  <h3 className="text-2xl font-serif italic mb-4 text-[#2A2624] group-hover:text-[#EB4C42] transition-colors">{item.title}</h3>
-                  <p className="text-sm text-[#5D5550] leading-relaxed max-w-xs opacity-80 group-hover:opacity-100">
+                  <h3 className="mt-0 text-2xl font-serif italic mb-4 text-[#2A2624] group-hover:text-[#EB4C42] transition-colors">{item.title}</h3>
+                  <p className="mb-0 text-sm text-[#5D5550] leading-relaxed max-w-xs opacity-80 group-hover:opacity-100">
                     {item.desc}
                   </p>
-                </div>
+                </Link>
               </FadeIn>
             ))}
           </div>
         </div>
-      </section>
-
-      {/* Trusted By Section */}
-      <section className="py-32 px-8 md:px-24 max-w-[1800px] mx-auto text-center border-t border-[#2A2624]/5">
-        <FadeIn>
-          <p className="text-[10px] uppercase tracking-[0.3em] text-[#3E2723] mb-16 opacity-50 font-bold">
-            Trusted by Professional Studios
-          </p>
-          <div className="flex flex-wrap justify-center gap-12 md:gap-24 opacity-40 grayscale hover:grayscale-0 transition-all duration-500 text-[#2A2624]">
-            {/* Using text placeholders for logos to keep it clean if no SVGs available */}
-            <span className="text-xl md:text-2xl font-serif italic">Pilates Madrid</span>
-            <span className="text-xl md:text-2xl font-serif italic">Wellness BCN</span>
-            <span className="text-xl md:text-2xl font-serif italic">Core Studio</span>
-            <span className="text-xl md:text-2xl font-serif italic">Flow Space</span>
-            <span className="text-xl md:text-2xl font-serif italic">Balance Hub</span>
-          </div>
-        </FadeIn>
       </section>
 
       {/* Services Section */}

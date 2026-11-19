@@ -170,7 +170,7 @@ const BlogPost = () => {
     return (
       <LuxuryLayout>
         <div className="container mx-auto px-4 py-8 text-center">
-          <h1 className="text-2xl font-serif italic text-[#2A2624]">Loading...</h1>
+          <h1 className="text-2xl font-serif italic text-[#2A2624]">Cargando...</h1>
         </div>
       </LuxuryLayout>
     );

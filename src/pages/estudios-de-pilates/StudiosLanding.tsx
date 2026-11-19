@@ -129,7 +129,7 @@ const StudiosLanding: React.FC = () => {
             El directorio más completo de México
           </span>
           <h1 className="text-5xl md:text-7xl font-serif italic text-[#2A2624] leading-[0.9] mb-8">
-            Find Your Studio<span className="text-[#EB4C42]">.</span>
+            Encuentra tu Estudio<span className="text-[#EB4C42]">.</span>
           </h1>
           <p className="text-lg text-[#5D5550] font-light max-w-2xl mx-auto leading-relaxed mb-6">
             Descubre y compara los mejores estudios de Pilates cerca de ti. Reseñas verificadas, precios transparentes y toda la información que necesitas.
@@ -170,7 +170,7 @@ const StudiosLanding: React.FC = () => {
 
       <section id="cities" className="py-24 px-8 md:px-24 bg-white/40 border-t border-[#2A2624]/10">
         <div className="max-w-[1800px] mx-auto">
-          <h2 className="text-3xl font-serif italic text-[#2A2624] mb-12 text-center">Browse by City</h2>
+          <h2 className="text-3xl font-serif italic text-[#2A2624] mb-12 text-center">Explora por Ciudad</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {cities.map((city) => (
@@ -218,7 +218,7 @@ const StudiosLanding: React.FC = () => {
           <div className="mt-16 text-center">
             <div className="inline-block p-8 border border-dashed border-[#2A2624]/20 rounded-sm bg-[#2A2624]/5">
               <Building className="w-8 h-8 mx-auto mb-4 text-[#3E2723]" />
-              <h3 className="text-lg font-serif italic text-[#2A2624] mb-2">More Cities Coming Soon</h3>
+              <h3 className="text-lg font-serif italic text-[#2A2624] mb-2">Más Ciudades Próximamente</h3>
               <p className="text-sm text-[#5D5550] font-light mb-6">
                 Estamos expandiendo nuestro directorio a más ciudades de México
               </p>
@@ -233,7 +233,7 @@ const StudiosLanding: React.FC = () => {
       {featuredStudios.length > 0 && (
         <section className="py-24 px-8 md:px-24 border-t border-[#2A2624]/10">
           <div className="max-w-[1800px] mx-auto">
-            <h2 className="text-3xl font-serif italic text-[#2A2624] mb-12 text-center">Featured Studios</h2>
+            <h2 className="text-3xl font-serif italic text-[#2A2624] mb-12 text-center">Estudios Destacados</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {featuredStudios.map((studio) => (
@@ -284,7 +284,7 @@ const StudiosLanding: React.FC = () => {
 
       <section className="py-24 px-8 md:px-24 bg-[#2A2624] text-[#EAE8E4]">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-serif italic mb-6">Own a Pilates Studio?</h2>
+          <h2 className="text-3xl md:text-4xl font-serif italic mb-6">¿Tienes un Estudio de Pilates?</h2>
           <p className="text-lg text-white/70 font-light mb-8 max-w-2xl mx-auto">
             Añade tu estudio a nuestro directorio de forma gratuita y conecta con nuevos clientes.
           </p>

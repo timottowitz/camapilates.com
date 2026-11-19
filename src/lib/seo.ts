@@ -18,6 +18,7 @@ export function toAbsoluteUrl(maybePath: string | undefined | null): string | un
 import { getVersionedImageUrl } from '@/hooks/useVersionedImage';
 import { allProducts } from '@/lib/shop/catalog';
 import shopPolicy from '@/content/shop-policy.json';
+import courseOffer from '@/content/certification/courseOffer.json';
 
 export const DEFAULTS = {
   siteName: (import.meta as any).env?.VITE_SITE_NAME || 'Edelweiss Pilates',
@@ -650,7 +651,6 @@ export function generateAboutPageSchema() {
           name: 'Edelweiss Pilates',
           alternateName: 'Edelweiss',
           url: origin,
-          foundingDate: '2015',
           foundingLocation: {
             '@type': 'Place',
             name: 'Ciudad de México',
@@ -715,7 +715,9 @@ export function generateServicesSchema() {
     },
     {
       name: 'Capacitación',
-      description: 'Programas de certificación para instructores en equipos Edelweiss. Domina la mecánica del movimiento.',
+      description: courseOffer.offerOwnCourses
+        ? 'Programas de certificación para instructores en equipos Edelweiss. Domina la mecánica del movimiento.'
+        : 'Directorio de las academias que forman instructoras de Pilates en México.',
       url: `${origin}/certificacion-pilates`,
     },
   ];

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { generateServicesSchema } from '@/lib/seo';
 import { requireRouteMeta } from '@/lib/routeMeta';
+import { OFFER_OWN_COURSES } from '@/content/certification/cohortsData';
 
 const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: number }) => (
   <motion.div
@@ -41,11 +42,11 @@ const Services = () => {
 
         <FadeIn>
           <span className="block text-xs font-bold font-sans tracking-[0.3em] uppercase text-[#3E2723] mb-8 opacity-60">
-            Expertise
+            Experiencia
           </span>
           <h1 className="text-5xl md:text-8xl lg:text-9xl font-serif italic text-[#2A2624] leading-[0.85] mb-12 tracking-tighter">
-            Beyond the <br />
-            <span className="not-italic font-light font-sans tracking-tight text-[#5D5550]">Equipment<span className="text-[#EB4C42]">.</span></span>
+            Más allá del <br />
+            <span className="not-italic font-light font-sans tracking-tight text-[#5D5550]">Equipo<span className="text-[#EB4C42]">.</span></span>
           </h1>
           <p className="max-w-3xl text-lg font-light leading-relaxed text-[#5D5550] mb-8">
             Servicios profesionales <Link to="/packs/estudio" className="font-medium text-[#2A2624] underline hover:text-[#EB4C42]">para estudios de Pilates</Link>: diseño arquitectónico de espacios, mantenimiento preventivo y selección de <Link to="/blog/accesorios-cama-de-pilates" className="font-medium text-[#2A2624] underline hover:text-[#EB4C42]">accesorios para cama de Pilates</Link>.
@@ -55,23 +56,30 @@ const Services = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
           {[
             {
-              title: "Studio Design",
-              desc: "We help you plan your space for optimal flow and aesthetic harmony. Paquetes y equipamiento para estudios de Pilates.",
+              title: "Diseño de Estudio",
+              desc: "Te ayudamos a planear tu espacio para un flujo óptimo y armonía estética. Paquetes y equipamiento para estudios de Pilates.",
               link: "/packs/estudio",
               linkText: "Packs de Estudio"
             },
             {
-              title: "Maintenance",
-              desc: "Keep your reformers gliding silently. Annual service packages, spare parts in 1 week, and essential accessories.",
+              title: "Mantenimiento",
+              desc: "Mantén tus Reformers deslizándose en silencio. Paquetes de servicio anual, repuestos en 1 semana y accesorios esenciales.",
               link: "/blog/accesorios-cama-de-pilates",
               linkText: "Accesorios y Guías"
             },
-            {
-              title: "Education",
-              desc: "Certification programs for instructors on Edelweiss equipment. Master the mechanics of movement.",
-              link: "/certificacion-pilates",
-              linkText: "View Courses"
-            }
+            OFFER_OWN_COURSES
+              ? {
+                  title: "Capacitación",
+                  desc: "Programas de certificación para instructores en equipos Edelweiss. Domina la mecánica del movimiento.",
+                  link: "/certificacion-pilates",
+                  linkText: "Ver Cursos"
+                }
+              : {
+                  title: "Capacitación",
+                  desc: "Por ahora no impartimos cursos propios. Reunimos en un directorio las academias que forman instructoras en México.",
+                  link: "/certificacion-pilates",
+                  linkText: "Ver Directorio"
+                }
           ].map((service, i) => (
             <FadeIn delay={i * 0.2} key={i}>
               <div className="group h-full p-8 bg-white/60 backdrop-blur-sm rounded-[2rem] border border-[#2A2624]/5 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between">
@@ -97,18 +105,18 @@ const Services = () => {
         <div className="max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
           <FadeIn>
             <h2 className="text-4xl md:text-6xl font-serif italic mb-8">
-              Partner with <br />
-              <span className="font-sans not-italic font-light">Perfection.</span>
+              Alíate con <br />
+              <span className="font-sans not-italic font-light">la Perfección.</span>
             </h2>
             <p className="text-white/60 font-light leading-relaxed mb-12 max-w-md">
-              Whether you are opening a new studio or upgrading your home practice,
-              we are here to support your journey with technical expertise and design guidance.
+              Ya sea que vayas a abrir un nuevo estudio o a mejorar tu práctica en casa,
+              estamos aquí para acompañarte con experiencia técnica y asesoría de diseño.
             </p>
             <Link
               to="/soporte"
               className="inline-block px-10 py-4 bg-[#EAE8E4] text-[#2A2624] rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white transition-colors"
             >
-              Contact Us
+              Contáctanos
             </Link>
           </FadeIn>
           <FadeIn delay={0.2}>
