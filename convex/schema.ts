@@ -592,6 +592,17 @@ export default defineSchema({
     invoiceRequired: v.boolean(),
     sourcePath: v.optional(v.string()),
     shippingQuote: v.optional(v.number()),
+    // One entry per Whop payment link sent to the buyer: a deposit, the balance, or the full total.
+    payments: v.optional(v.array(v.object({
+      checkoutId: v.string(), // Whop checkout configuration, ch_…
+      variantId: v.string(), // the single-use price Whop created for this link, plan_…
+      url: v.string(),
+      amount: v.number(),
+      createdAt: v.number(),
+      paidAt: v.optional(v.number()),
+      paymentId: v.optional(v.string()), // Whop payment, pay_…
+    }))),
+    paymentCheckedAt: v.optional(v.number()),
     adminNotes: v.optional(v.string()),
     notifiedAt: v.optional(v.number()),
     createdAt: v.number(),

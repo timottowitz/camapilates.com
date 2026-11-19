@@ -35,3 +35,8 @@ test('order flow: an unknown product goes to the shop', async ({ page }) => {
   await page.goto('/pedido/no-existe');
   await expect(page).toHaveURL(/\/shop$/);
 });
+
+test('payment page: an unknown order number says so', async ({ page }) => {
+  await page.goto('/pedido/pago?pedido=EDW-000000-XXXX');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('No encontramos ese pedido');
+});

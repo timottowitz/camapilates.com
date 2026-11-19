@@ -70,6 +70,7 @@ const AdminTeacherSeeds = lazyWithRetry(() => import('./pages/AdminTeacherSeeds'
 const AdminTeacherProfiles = lazyWithRetry(() => import('./pages/AdminTeacherProfiles'));
 const Product = lazyWithRetry(() => import('./pages/Product'));
 const Pedido = lazyWithRetry(() => import('./pages/Pedido'));
+const PedidoPago = lazyWithRetry(() => import('./pages/PedidoPago'));
 const AdminOrders = lazyWithRetry(() => import('./pages/AdminOrders'));
 const CamaDePilatesEnVenta = lazyWithRetry(() => import('./pages/CamaDePilatesEnVenta'));
 const CamaDePilatesPrecio = lazyWithRetry(() => import('./pages/CamaDePilatesPrecio'));
@@ -190,6 +191,7 @@ const App = () => (
               <Route path="/admin/instructor-claims" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminTeacherClaims /></AdminGuard></Suspense>} />
               <Route path="/admin/teacher-profiles" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminTeacherProfiles /></AdminGuard></Suspense>} />
               <Route path="/product/:slug" element={<Suspense fallback={<PageLoader />}><Product /></Suspense>} />
+              <Route path="/pedido/pago" element={<Suspense fallback={<PageLoader />}><PedidoPago /></Suspense>} />
               <Route path="/pedido/:slug" element={<Suspense fallback={<PageLoader />}><Pedido /></Suspense>} />
               <Route path="/admin/pedidos" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminOrders /></AdminGuard></Suspense>} />
 

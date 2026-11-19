@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, Navigate, useParams, useSearchParams } from 'react-router-dom';
-import { ChevronDown, MessageCircle } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { api } from '../../convex/_generated/api';
 import { convexClient } from '@/lib/convexProvider';
 import { whatsappUrl } from '@/lib/contact';
@@ -28,6 +28,7 @@ import {
 import type { Product } from '@/lib/shop/types';
 import { DEFAULTS } from '@/lib/seo';
 import OrderConfirmation, { type OrderResult } from '@/components/order/OrderConfirmation';
+import OrderHeader from '@/components/order/OrderHeader';
 import OrderSummary from '@/components/order/OrderSummary';
 import { StepContact, StepDelivery, StepProduct } from '@/components/order/OrderSteps';
 
@@ -204,8 +205,6 @@ function OrderFlow({ product }: { product: Product }) {
     }
   };
 
-  const helpUrl = whatsappUrl(`Hola, estoy haciendo un pedido de ${product.name} en camadepilates.com y tengo una pregunta.`);
-
   return (
     <div className="min-h-screen bg-[#F2F0ED] text-[#2A2624] selection:bg-[#EB4C42] selection:text-white">
       <Helmet>
@@ -214,12 +213,11 @@ function OrderFlow({ product }: { product: Product }) {
       </Helmet>
 
       <header className="border-b border-[#2A2624]/10 bg-[#F2F0ED]">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-8">
-          <Link to={`/product/${product.slug}`} className="flex items-baseline gap-0.5" aria-label="Edelweiss, volver al producto">
-            <span className="font-serif text-xl italic tracking-tight sm:text-2xl">Edelweiss</span>
-            <span className="mb-0.5 h-1.5 w-1.5 rounded-full bg-[#EB4C42]" />
-          </Link>
-
+        <OrderHeader
+          homeTo={`/product/${product.slug}`}
+          homeLabel="Edelweiss, volver al producto"
+          helpMessage={`Hola, estoy haciendo un pedido de ${product.name} en camadepilates.com y tengo una pregunta.`}
+        >
           {!confirmed && (
             <ol className="m-0 hidden list-none items-center gap-2 p-0 md:flex">
               {STEPS.map((item, i) => {
@@ -251,17 +249,7 @@ function OrderFlow({ product }: { product: Product }) {
               })}
             </ol>
           )}
-
-          <a
-            href={helpUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-rybbit-event="click_order_help_whatsapp"
-            className="inline-flex h-10 items-center gap-2 rounded-full border border-[#25D366]/40 bg-[#25D366]/10 px-4 text-sm font-semibold text-[#128C7E] transition-colors hover:bg-[#25D366] hover:text-white"
-          >
-            <MessageCircle className="h-4 w-4" /> <span className="hidden sm:inline">¿Dudas?</span> WhatsApp
-          </a>
-        </div>
+        </OrderHeader>
 
         {!confirmed && (
           <div className="md:hidden">

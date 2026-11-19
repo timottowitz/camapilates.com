@@ -22,12 +22,9 @@ import {
   type PlaceType,
 } from '../src/lib/shop/order';
 import { stateForPostalCode } from '../src/lib/shipping/postalCodes';
+import { SITE_URL, TEAM_EMAIL, TEAM_WHATSAPP, emailShell, escapeHtml, sendEmail, teamInbox } from './lib/orderEmail';
 
-const SITE_URL = 'https://camadepilates.com';
-const FROM_EMAIL = 'Edelweiss Pilates <noreply@camadepilates.com>';
-const TEAM_EMAIL = 'hello@camadepilates.com';
-const TEAM_WHATSAPP = '525548468190';
-const STATUSES = ['new', 'quoted', 'accepted', 'cancelled'];
+const STATUSES = ['new', 'quoted', 'accepted', 'paid', 'cancelled'];
 
 // No 0/O or 1/I, so the number survives being read out loud or typed from a screenshot.
 const ORDER_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
@@ -157,29 +154,6 @@ export const markNotified = internalMutation({
   },
 });
 
-const escapeHtml = (value: string) =>
-  value.replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char] ?? char);
-
-function emailShell(body: string): string {
-  return `<!DOCTYPE html>
-<html>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #2A2624; max-width: 600px; margin: 0 auto; padding: 24px;">
-  <p style="font-family: Georgia, serif; font-style: italic; font-size: 24px; margin: 0 0 24px;">Edelweiss</p>
-  ${body}
-</body>
-</html>`;
-}
-
-async function sendEmail(apiKey: string, to: string, subject: string, html: string, replyTo?: string): Promise<boolean> {
-  const response = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from: FROM_EMAIL, to, subject, html, ...(replyTo ? { reply_to: replyTo } : {}) }),
-  });
-  if (!response.ok) console.error('Resend API error:', await response.text());
-  return response.ok;
-}
-
 // Tells the team there is an order to quote, and tells the buyer we have it. A failure here never
 // loses the order: it is already stored and shows in the admin list without `notifiedAt`.
 export const notify = internalAction({
@@ -187,12 +161,6 @@ export const notify = internalAction({
   handler: async (ctx, { id }) => {
     const order = await ctx.runQuery(internal.orderRequests.getInternal, { id });
     if (!order) return;
-    const apiKey = process.env.RESEND_API_KEY;
-    if (!apiKey) {
-      console.error('RESEND_API_KEY not configured; order emails not sent for', order.orderNumber);
-      return;
-    }
-
     const e = escapeHtml;
     const place = placeLabel(order.delivery.city, order.delivery.state);
     const address = [order.delivery.street, order.delivery.neighborhood, place, `C.P. ${order.delivery.postalCode}`]
@@ -235,10 +203,9 @@ export const notify = internalAction({
   </ol>
   <p>¿Tienes dudas? <a href="${teamWhatsApp}">Escríbenos por WhatsApp</a> o responde a este correo.</p>`);
 
-    const teamTo = process.env.ORDER_NOTIFY_EMAIL || TEAM_EMAIL;
     const [teamSent] = await Promise.all([
-      sendEmail(apiKey, teamTo, `Nuevo pedido ${order.orderNumber}: ${itemLine}, ${place}`, teamHtml, order.contact.email),
-      sendEmail(apiKey, order.contact.email, `Recibimos tu pedido ${order.orderNumber} | Edelweiss Pilates`, customerHtml, TEAM_EMAIL),
+      sendEmail(teamInbox(), `Nuevo pedido ${order.orderNumber}: ${itemLine}, ${place}`, teamHtml, order.contact.email),
+      sendEmail(order.contact.email, `Recibimos tu pedido ${order.orderNumber} | Edelweiss Pilates`, customerHtml, TEAM_EMAIL),
     ]);
     if (teamSent) await ctx.runMutation(internal.orderRequests.markNotified, { id });
   },

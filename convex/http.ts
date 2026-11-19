@@ -1,6 +1,6 @@
 import { httpRouter } from 'convex/server';
 import { httpAction } from './_generated/server';
-import { api } from './_generated/api';
+import { api, internal } from './_generated/api';
 
 // Minimal helpers to read/write encrypted settings in Convex DB
 async function decryptConfig(b64: string, keyStr: string) {
@@ -266,12 +266,21 @@ http.route({
         });
       }
 
-      // Handle payment.succeeded or membership.went_valid
-      if (
-        action === 'payment.succeeded' ||
-        action === 'membership.went_valid' ||
-        action === 'payment.created'
-      ) {
+      // A request body proves nothing: anyone can post one to this URL. The payment it names is
+      // looked up at Whop, and only a payment Whop reports as paid is acted on. Order payments are
+      // settled by that lookup itself; anything else falls through to the course records below.
+      const paymentId = typeof data.id === 'string' && data.id.startsWith('pay_') ? data.id : undefined;
+      const confirmation = paymentId
+        ? await ctx.runAction(internal.orderPayments.confirmPayment, { paymentId })
+        : { paid: false, forOrder: false };
+      if (!confirmation.paid || confirmation.forOrder) {
+        return new Response(JSON.stringify({ received: true }), {
+          status: 200,
+          headers: { 'content-type': 'application/json' },
+        });
+      }
+
+      if (action === 'payment.succeeded' || action === 'payment.created') {
         const email = (
           data.email ||
           data.user?.email ||

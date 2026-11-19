@@ -150,3 +150,16 @@ export function orderFieldError(step: OrderStep, fields: string[]) {
 export function orderSubmitted(product: Product, quantity: number, value: number, state: string, via: 'stored' | 'whatsapp') {
   emit('order_submitted', { ...orderItem(product, quantity, value), state, via });
 }
+
+// A payment the server confirmed with Whop, reported once per order and amount in this browser.
+export function orderPaid(orderNumber: string, value: number, currency: string) {
+  const key = `edw-paid:${orderNumber}:${value}`;
+  try {
+    if (sessionStorage.getItem(key)) return;
+    sessionStorage.setItem(key, '1');
+  } catch {
+    // Without storage the event may repeat on reload, which is better than losing it.
+  }
+  try { gaEvent('purchase', { transaction_id: orderNumber, value, currency }); } catch { /* noop */ }
+  emit('order_paid', { value, currency });
+}
