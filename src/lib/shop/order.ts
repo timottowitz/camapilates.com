@@ -141,9 +141,15 @@ export function validateContact(contact: OrderContact): FieldErrors<OrderContact
   return errors;
 }
 
+// "Guadalajara, Jalisco", but just "Ciudad de México" when city and state are the same name.
+export function placeLabel(city: string, state?: string | null): string {
+  const name = city.trim();
+  if (!state) return name;
+  return name && name.toLowerCase() !== state.toLowerCase() ? `${name}, ${state}` : state;
+}
+
 export function deliveryPlace(delivery: OrderDelivery): string {
-  const state = stateForPostalCode(delivery.postalCode);
-  return [delivery.city.trim(), state].filter(Boolean).join(', ');
+  return placeLabel(delivery.city, stateForPostalCode(delivery.postalCode));
 }
 
 export function formatAmount(amount: number, currency = 'MXN'): string {

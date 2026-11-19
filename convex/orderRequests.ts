@@ -13,6 +13,7 @@ import {
   formatAmount,
   hasUpholsteryChoice,
   normalizePhone,
+  placeLabel,
   priceOrder,
   validateContact,
   validateDelivery,
@@ -193,7 +194,7 @@ export const notify = internalAction({
     }
 
     const e = escapeHtml;
-    const place = [order.delivery.city, order.delivery.state].filter(Boolean).join(', ');
+    const place = placeLabel(order.delivery.city, order.delivery.state);
     const address = [order.delivery.street, order.delivery.neighborhood, place, `C.P. ${order.delivery.postalCode}`]
       .filter(Boolean)
       .join(', ');

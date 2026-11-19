@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { formatAmount } from '@/lib/shop/order';
+import { formatAmount, placeLabel } from '@/lib/shop/order';
 import { whatsappUrl } from '@/lib/contact';
 
 type Order = Doc<'orderRequests'>;
@@ -23,7 +23,7 @@ const STATUS_LABELS: Record<string, string> = {
 const dateTime = new Intl.DateTimeFormat('es-MX', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'America/Mexico_City' });
 
 function quoteMessage(order: Order, shipping: number): string {
-  const place = [order.delivery.city, order.delivery.state].filter(Boolean).join(', ');
+  const place = placeLabel(order.delivery.city, order.delivery.state);
   return [
     `Hola ${order.contact.name.split(' ')[0]}, gracias por tu pedido ${order.orderNumber} en Edelweiss Pilates.`,
     '',
@@ -41,7 +41,7 @@ function OrderCard({ order, token }: { order: Order; token: string }) {
   const [saving, setSaving] = useState(false);
   const amount = Number(shipping);
   const hasAmount = shipping.trim() !== '' && Number.isFinite(amount) && amount >= 0;
-  const address = [order.delivery.street, order.delivery.neighborhood, order.delivery.city, order.delivery.state, `C.P. ${order.delivery.postalCode}`]
+  const address = [order.delivery.street, order.delivery.neighborhood, placeLabel(order.delivery.city, order.delivery.state), `C.P. ${order.delivery.postalCode}`]
     .filter(Boolean)
     .join(', ');
 
