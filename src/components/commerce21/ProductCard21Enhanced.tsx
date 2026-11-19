@@ -23,10 +23,10 @@ const ProductCard21Enhanced: React.FC<Props> = ({
   const isMylo = (finishes || []).includes('mycelium') || /mycel/i.test(product?.name || '') || /mycel/i.test(product?.slug || '');
 
   return (
-    <Link
-      to={`/product/${product.slug}`}
-      className="block group relative bg-white rounded-[2.5rem] shadow-[0_2px_40px_-12px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-500 overflow-hidden"
-      onClick={() => selectItem(product, 'shop')}
+    // The product link is stretched over the whole card from the title, instead of wrapping the
+    // card in an <a>: the WhatsApp and Mylo links inside would be anchors nested in an anchor.
+    <article
+      className="group relative bg-white rounded-[2.5rem] shadow-[0_2px_40px_-12px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-500 overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -47,11 +47,8 @@ const ProductCard21Enhanced: React.FC<Props> = ({
             <div className="absolute inset-0 bg-black/20 backdrop-blur-[2px] flex items-center justify-center transition-all duration-300">
               <button
                 type="button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onQuickView(product);
-                }}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-[#2A2624] font-bold text-xs uppercase tracking-widest hover:bg-[#F2F0ED] transform hover:scale-105 transition-all shadow-xl"
+                onClick={() => onQuickView(product)}
+                className="relative z-10 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-[#2A2624] font-bold text-xs uppercase tracking-widest hover:bg-[#F2F0ED] transform hover:scale-105 transition-all shadow-xl"
               >
                 <Eye className="h-3 w-3" />
                 Vista Rápida
@@ -65,7 +62,13 @@ const ProductCard21Enhanced: React.FC<Props> = ({
           {/* Product Name & Price */}
           <div className="flex justify-between items-start gap-2">
             <h3 className="font-serif italic text-xl text-[#2A2624] leading-tight group-hover:text-[#EB4C42] transition-colors">
-              {product.name}
+              <Link
+                to={`/product/${product.slug}`}
+                onClick={() => selectItem(product, 'shop')}
+                className="after:absolute after:inset-0 after:content-['']"
+              >
+                {product.name}
+              </Link>
             </h3>
             <div className="text-right shrink-0">
               <span translate="no" className="notranslate block text-lg font-bold text-[#2A2624] font-sans">
@@ -97,8 +100,7 @@ const ProductCard21Enhanced: React.FC<Props> = ({
                     href="https://boltthreads.com/technology/mylo/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:underline flex items-center gap-1"
-                    onClick={(e) => e.stopPropagation()}
+                    className="relative z-10 hover:underline flex items-center gap-1"
                   >
                     Edición Mylo™
                     <Tooltip>
@@ -125,10 +127,9 @@ const ProductCard21Enhanced: React.FC<Props> = ({
               href={`https://wa.me/525548468190?text=${encodeURIComponent(`Hola, me interesa cotizar el modelo ${product.name} (${priceLabel(product.price)} MXN) con envío a mi código postal:`)}`}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
               data-rybbit-event="click_card_whatsapp_quote"
               data-rybbit-prop-product={product.name}
-              className="w-full py-2 px-3 rounded-full bg-[#25D366]/10 hover:bg-[#25D366] text-[#128C7E] hover:text-white border border-[#25D366]/30 text-[11px] font-semibold flex items-center justify-center gap-1.5 transition-all duration-200"
+              className="relative z-10 w-full py-2 px-3 rounded-full bg-[#25D366]/10 hover:bg-[#25D366] text-[#128C7E] hover:text-white border border-[#25D366]/30 text-[11px] font-semibold flex items-center justify-center gap-1.5 transition-all duration-200"
             >
               <MessageCircle className="h-3.5 w-3.5" />
               <span>Cotizar por WhatsApp</span>
@@ -136,7 +137,7 @@ const ProductCard21Enhanced: React.FC<Props> = ({
           </div>
         </div>
       </div>
-    </Link>
+    </article>
   );
 };
 

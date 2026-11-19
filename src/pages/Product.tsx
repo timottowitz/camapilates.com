@@ -246,17 +246,13 @@ const ProductPage: React.FC = () => {
         <BackLink className="mb-6 hidden md:inline-flex" fallbackTo="/cama-de-pilates" label="Volver al catálogo" />
 
         <div className="grid md:grid-cols-2 gap-16 items-start">
-          {/* Left Column: Gallery */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
+          {/* Left Column: Gallery. It is the shorter column, so it is the one that follows the scroll. */}
+          <div className="md:sticky md:top-28">
             <EnhancedGallery
               images={galleryImages}
               showLabels={true}
             />
-          </motion.div>
+          </div>
 
           {/* Right Column: Info */}
           <motion.div
@@ -265,7 +261,7 @@ const ProductPage: React.FC = () => {
             variants={{
               visible: { transition: { staggerChildren: 0.1 } }
             }}
-            className="space-y-8 md:sticky md:top-32"
+            className="space-y-8"
           >
             <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="text-[10px] uppercase tracking-[0.2em] text-[#5D5550]">
               Entrega: {shopPolicy.deliveryTime}
@@ -458,9 +454,9 @@ const ProductPage: React.FC = () => {
         </div>
 
         {/* FAQ & Related */}
-        <div className="mt-32 grid md:grid-cols-3 gap-16 border-t border-[#2A2624]/10 pt-16">
-          <div className="md:col-span-2 space-y-12">
-            <h2 className="text-4xl font-serif italic text-[#2A2624]">Preguntas frecuentes</h2>
+        <div className="mt-24 md:mt-32 space-y-20 md:space-y-28 border-t border-[#2A2624]/10 pt-16">
+          <div className="max-w-3xl space-y-10">
+            <h2 className="m-0 text-4xl font-serif italic text-[#2A2624]">Preguntas frecuentes</h2>
             <div className="space-y-6">
               {[
                 { q: '¿Cuánto tarda la entrega?', a: `${shopPolicy.deliveryTime}, tanto en México como en EE. UU. y Europa.` },
@@ -480,8 +476,8 @@ const ProductPage: React.FC = () => {
             </div>
           </div>
           <div>
-            <h2 className="text-4xl font-serif italic text-[#2A2624] mb-10">También te puede interesar</h2>
-            <div className="space-y-10">
+            <h2 className="mt-0 mb-10 text-4xl font-serif italic text-[#2A2624]">También te puede interesar</h2>
+            <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
               {(() => {
                 const rawLinks = (productInternalLinks as Record<string, Array<{ target: string; role: string; anchor?: string }>>)[safeProd.slug] || [];
                 const customProducts: Product[] = [];
@@ -508,17 +504,17 @@ const ProductPage: React.FC = () => {
                     {displayProducts.map((p) => (
                       <Link key={p.slug} to={`/product/${p.slug}`} className="block group">
                         <div className="aspect-[4/3] overflow-hidden rounded-sm bg-[#EAE8E4] mb-4 relative">
-                          <img src={p.image} alt={p.name} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+                          <img src={p.image} alt={p.name} loading="lazy" decoding="async" className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
                         </div>
-                        <div className="flex justify-between items-baseline">
+                        <div className="flex justify-between items-baseline gap-4">
                           <div className="font-serif italic text-xl text-[#2A2624] group-hover:text-[#3E2723] transition-colors">{p.name}</div>
-                          <div className="text-[10px] uppercase tracking-widest text-[#5D5550]">$ {formatMXN(p.price)} {p.currency}</div>
+                          <div className="shrink-0 text-xs uppercase tracking-widest text-[#5D5550]">$ {formatMXN(p.price)} {p.currency}</div>
                         </div>
                       </Link>
                     ))}
                     {landingLinks.map((ll) => (
-                      <Link key={ll.target} to={ll.target} className="block p-4 border border-[#2A2624]/10 rounded-sm bg-[#FAF9F6] hover:bg-[#EAE8E4] transition-colors">
+                      <Link key={ll.target} to={ll.target} className="block self-start p-4 border border-[#2A2624]/10 rounded-sm bg-[#FAF9F6] hover:bg-[#EAE8E4] transition-colors">
                         <span className="text-[10px] uppercase tracking-widest text-[#3E2723] block mb-1">Guía Relacionada</span>
                         <span className="font-serif italic text-sm text-[#2A2624] hover:text-[#3E2723]">{ll.title} →</span>
                       </Link>
@@ -538,9 +534,6 @@ const ProductPage: React.FC = () => {
         whatsappUrl={buyWhatsAppUrl}
         onBuy={() => beginCheckout({ product: prod })}
         warranty={prod.warranty}
-        productSlug={prod.slug}
-        selectedQuantity={bundleCalc.quantity}
-        totalSavings={bundleCalc.totalSavings}
       />
     </LuxuryLayout >
   );
