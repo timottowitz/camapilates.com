@@ -20,16 +20,16 @@ const LuxuryLayout = ({ children, className = "", noPadding = false, headerTheme
             </main>
 
             {/* Comprehensive SEO & Internal Linking Footer */}
-            <footer className="bg-[#2A2624] text-[#EAE8E4] py-20 px-8 md:px-24 mt-24">
+            <footer className="bg-[#2A2624] text-[#EAE8E4] pt-16 pb-28 md:py-20 px-5 sm:px-8 md:px-24 mt-24">
                 <div className="max-w-[1800px] mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
-                        <div className="lg:col-span-1">
-                            <h3 className="text-3xl font-serif italic mb-6">Edelweiss</h3>
-                            <p className="text-white/60 font-light text-sm leading-relaxed mb-6">
+                    <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-12 mb-16">
+                        <div className="col-span-2 lg:col-span-1">
+                            <h3 className="mt-0 mb-6 text-3xl font-serif font-normal italic">Edelweiss</h3>
+                            <p className="text-white/70 text-sm leading-relaxed mb-6">
                                 El primer ecosistema de Pilates Reformer libre de plásticos en México.
                                 Maderas nobles, cuero genuino e ingeniería alemana.
                             </p>
-                            <div className="space-y-2 text-xs text-white/60">
+                            <div className="space-y-2 text-sm text-white/70 [&_p]:m-0 [&_p]:text-sm">
                                 <p><a href="mailto:hello@camadepilates.com" className="hover:text-white transition-colors">hello@camadepilates.com</a></p>
                                 <p><a href="https://wa.me/525548468190" className="hover:text-white transition-colors">WhatsApp: +52 55 4846 8190</a></p>
                                 <p>Ciudad de México · Envíos a todo el país</p>
@@ -37,8 +37,8 @@ const LuxuryLayout = ({ children, className = "", noPadding = false, headerTheme
                         </div>
 
                         <div>
-                            <h4 className="text-xs uppercase tracking-[0.2em] mb-6 text-white/40 font-semibold">Equipamiento</h4>
-                            <ul className="space-y-3 text-xs font-light text-white/80">
+                            <h4 className="text-xs uppercase tracking-[0.2em] mb-5 text-white/50 font-semibold">Equipamiento</h4>
+                            <ul className="space-y-3 text-sm text-white/80">
                                 <li><Link to="/cama-de-pilates" className="hover:text-white transition-colors">Camas de Pilates en México</Link></li>
                                 <li><Link to="/cama-de-pilates/precio" className="hover:text-white transition-colors">Precios de Camas de Pilates</Link></li>
                                 <li><Link to="/reformer-para-casa" className="hover:text-white transition-colors">Reformer para Casa</Link></li>
@@ -49,8 +49,8 @@ const LuxuryLayout = ({ children, className = "", noPadding = false, headerTheme
                         </div>
 
                         <div>
-                            <h4 className="text-xs uppercase tracking-[0.2em] mb-6 text-white/40 font-semibold">Certificaciones</h4>
-                            <ul className="space-y-3 text-xs font-light text-white/80">
+                            <h4 className="text-xs uppercase tracking-[0.2em] mb-5 text-white/50 font-semibold">Certificaciones</h4>
+                            <ul className="space-y-3 text-sm text-white/80">
                                 <li><Link to="/certificacion-pilates" className="hover:text-white transition-colors">Directorio de Certificaciones</Link></li>
                                 <li><Link to="/certificacion-pilates/monterrey" className="hover:text-white transition-colors">Certificación en Monterrey</Link></li>
                                 <li><Link to="/certificacion-pilates/queretaro" className="hover:text-white transition-colors">Certificación en Querétaro</Link></li>
@@ -62,8 +62,8 @@ const LuxuryLayout = ({ children, className = "", noPadding = false, headerTheme
                         </div>
 
                         <div>
-                            <h4 className="text-xs uppercase tracking-[0.2em] mb-6 text-white/40 font-semibold">Directorio</h4>
-                            <ul className="space-y-3 text-xs font-light text-white/80">
+                            <h4 className="text-xs uppercase tracking-[0.2em] mb-5 text-white/50 font-semibold">Directorio</h4>
+                            <ul className="space-y-3 text-sm text-white/80">
                                 <li><Link to="/estudios-de-pilates" className="hover:text-white transition-colors">Directorio de Estudios México</Link></li>
                                 <li><Link to="/estudios-de-pilates/ciudad-de-mexico" className="hover:text-white transition-colors">Estudios en CDMX</Link></li>
                                 <li><Link to="/estudios-de-pilates/monterrey" className="hover:text-white transition-colors">Estudios en Monterrey</Link></li>
@@ -74,8 +74,8 @@ const LuxuryLayout = ({ children, className = "", noPadding = false, headerTheme
                         </div>
 
                         <div>
-                            <h4 className="text-xs uppercase tracking-[0.2em] mb-6 text-white/40 font-semibold">Recursos & Tienda</h4>
-                            <ul className="space-y-3 text-xs font-light text-white/80">
+                            <h4 className="text-xs uppercase tracking-[0.2em] mb-5 text-white/50 font-semibold">Recursos & Tienda</h4>
+                            <ul className="space-y-3 text-sm text-white/80">
                                 <li><Link to="/blog" className="hover:text-white transition-colors">The Journal</Link></li>
                                 <li><Link to="/blog/category/guias-de-compra" className="hover:text-white transition-colors">Guías de Compra</Link></li>
                                 <li><Link to="/blog/category/comparativas" className="hover:text-white transition-colors">Comparativas de Reformer</Link></li>
@@ -88,8 +88,8 @@ const LuxuryLayout = ({ children, className = "", noPadding = false, headerTheme
                         </div>
                     </div>
 
-                    <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-white/40 uppercase tracking-widest gap-4">
-                        <p>&copy; {new Date().getFullYear()} Edelweiss Pilates · México</p>
+                    <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-white/50 uppercase tracking-widest gap-4">
+                        <p className="m-0 text-xs">&copy; {new Date().getFullYear()} Edelweiss Pilates · México</p>
                         <div className="flex gap-6">
                             <Link to="/mapa-del-sitio" className="hover:text-white transition-colors">Mapa del Sitio</Link>
                             <Link to="/legal/terminos" className="hover:text-white transition-colors">Términos</Link>

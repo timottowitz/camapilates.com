@@ -40,7 +40,7 @@ const EdelweissNav: React.FC<EdelweissNavProps> = ({ darkBackground = false }) =
   }, [location.pathname]);
 
   // Accent color for brand dot and active states
-  const accentColor = '#CF6C63';
+  const accentColor = '#EB4C42';
 
   const collectionLinks = Object.entries(SHOP_CATEGORY_SEO).map(([slug, category]) => ({
     to: `/shop/category/${slug}`,
@@ -63,6 +63,9 @@ const EdelweissNav: React.FC<EdelweissNavProps> = ({ darkBackground = false }) =
     return location.pathname === path || location.pathname.startsWith(path + '/');
   };
 
+  // The open mobile menu is dark, so the header has to stay clear over it even when scrolled.
+  const isSolid = isScrolled && !isMobileMenuOpen;
+
   // Determine text color based on scroll state and background
   // Default: dark text for light backgrounds
   // darkBackground: light text for dark hero images (before scroll)
@@ -75,145 +78,157 @@ const EdelweissNav: React.FC<EdelweissNavProps> = ({ darkBackground = false }) =
 
   return (
     <>
-      <div className="bg-[#2A2624] text-[#EAE8E4] text-[10px] sm:text-xs font-medium py-1.5 px-4 text-center tracking-widest uppercase flex items-center justify-center gap-2 border-b border-[#EAE8E4]/10">
-        <span>🇲🇽 Distribución y soporte en México</span>
-        <span className="opacity-40">•</span>
-        <span>Envíos asegurados a los 32 estados de la República Mexicana</span>
-      </div>
+      {/* Holds the bar's place in the flow; the bar itself rides in the fixed block below. */}
+      <div className="h-[29px] sm:h-[33px]" aria-hidden="true" />
 
-      <motion.header
-        initial={false}
-        animate={{
-          backgroundColor: isScrolled
-            ? 'rgba(245, 244, 241, 0.92)'
-            : 'rgba(245, 244, 241, 0)',
-          backdropFilter: isScrolled ? 'blur(20px)' : 'blur(0px)',
-          borderBottomColor: isScrolled
-            ? 'rgba(28, 25, 23, 0.08)'
-            : 'rgba(28, 25, 23, 0)',
-        }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className={`
-          fixed top-[29px] sm:top-[33px] left-0 right-0 z-50
-          border-b
-          ${getTextColor()}
-        `}
-      >
-        <div className="max-w-[1800px] mx-auto px-5 sm:px-8 lg:px-12">
-          <div className="flex items-center justify-between h-16 sm:h-20">
-
-            {/* Logo with accent dot */}
-            <Link
-              to="/"
-              className="relative group z-50 flex items-baseline gap-0.5"
-            >
-              <motion.span
-                className="text-xl sm:text-2xl font-serif italic tracking-tight"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-              >
-                Edelweiss
-              </motion.span>
-              <span
-                className="w-1.5 h-1.5 rounded-full mb-0.5"
-                style={{ backgroundColor: accentColor }}
-              />
-            </Link>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-1">
-              {navLinks.map((link) => {
-                const active = isActive(link.to, (link as { exact?: boolean }).exact);
-                return (
-                  <div key={link.to} className="relative group">
-                    <Link
-                      to={link.to}
-                      className="relative block px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] transition-colors duration-200 hover:opacity-70"
-                      style={active ? { color: accentColor } : undefined}
-                      aria-haspopup={link.children ? 'menu' : undefined}
-                    >
-                      {link.label}
-                      <AnimatePresence>
-                        {active && (
-                          <motion.span
-                            layoutId="nav-indicator"
-                            initial={{ opacity: 0, scaleX: 0 }}
-                            animate={{ opacity: 1, scaleX: 1 }}
-                            exit={{ opacity: 0, scaleX: 0 }}
-                            transition={{ type: 'spring', stiffness: 500, damping: 35 }}
-                            className="absolute bottom-0 left-4 right-4 h-[2px] rounded-full"
-                            style={{ backgroundColor: accentColor }}
-                          />
-                        )}
-                      </AnimatePresence>
-                    </Link>
-
-                    {link.children && (
-                      <div className="invisible absolute left-1/2 top-full w-64 -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-                        <div className="rounded-2xl border border-[#2A2624]/10 bg-[#F5F4F1]/95 p-2 text-[#1C1917] shadow-xl backdrop-blur-xl" role="menu">
-                          <Link
-                            to="/shop"
-                            className="block rounded-xl px-4 py-3 text-xs font-semibold uppercase tracking-[0.12em] hover:bg-[#2A2624]/5"
-                            role="menuitem"
-                          >
-                            Ver toda la tienda
-                          </Link>
-                          {link.children.map((child) => (
-                            <Link
-                              key={child.to}
-                              to={child.to}
-                              className="block rounded-xl px-4 py-3 text-sm font-medium hover:bg-[#2A2624]/5 hover:text-[#CF6C63] transition-colors"
-                              role="menuitem"
-                            >
-                              {child.label}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </nav>
-
-            {/* Mobile Menu Toggle */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden z-50 relative w-10 h-10 flex items-center justify-center"
-              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-            >
-              <div className="relative w-6 h-4">
-                <motion.span
-                  animate={{
-                    rotate: isMobileMenuOpen ? 45 : 0,
-                    y: isMobileMenuOpen ? 7 : 0,
-                    backgroundColor: isMobileMenuOpen ? '#F5F4F1' : 'currentColor',
-                  }}
-                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute top-0 left-0 w-full h-[2px] bg-current origin-center"
-                />
-                <motion.span
-                  animate={{
-                    opacity: isMobileMenuOpen ? 0 : 1,
-                    scaleX: isMobileMenuOpen ? 0 : 1,
-                  }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute top-1/2 left-0 w-full h-[2px] bg-current -translate-y-1/2"
-                />
-                <motion.span
-                  animate={{
-                    rotate: isMobileMenuOpen ? -45 : 0,
-                    y: isMobileMenuOpen ? -7 : 0,
-                    backgroundColor: isMobileMenuOpen ? '#F5F4F1' : 'currentColor',
-                  }}
-                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute bottom-0 left-0 w-full h-[2px] bg-current origin-center"
-                />
-              </div>
-            </button>
+      {/* While the menu is open, it and this bar sit above every other fixed element (buy bar, chat button). */}
+      <div className={`fixed top-0 left-0 right-0 ${isMobileMenuOpen ? 'z-[70]' : 'z-50'}`}>
+        <div
+          className={`grid bg-[#2A2624] text-[#EAE8E4] transition-[grid-template-rows] duration-300 ease-out ${
+            isScrolled ? 'grid-rows-[0fr]' : 'grid-rows-[1fr]'
+          }`}
+        >
+          <div className="overflow-hidden">
+            <p className="m-0 flex h-[29px] sm:h-[33px] items-center justify-center gap-2 whitespace-nowrap px-4 text-[10px] sm:text-xs font-medium uppercase tracking-widest text-[#EAE8E4]">
+              <span className="hidden sm:inline">🇲🇽 Distribución y soporte en México</span>
+              <span className="hidden sm:inline opacity-40">•</span>
+              <span className="sm:hidden">🇲🇽 Envíos asegurados a los 32 estados</span>
+              <span className="hidden sm:inline">Envíos asegurados a los 32 estados de la República Mexicana</span>
+            </p>
           </div>
         </div>
-      </motion.header>
+
+        <motion.header
+          initial={false}
+          animate={{
+            backgroundColor: isSolid
+              ? 'rgba(245, 244, 241, 0.92)'
+              : 'rgba(245, 244, 241, 0)',
+            backdropFilter: isSolid ? 'blur(20px)' : 'blur(0px)',
+            borderBottomColor: isSolid
+              ? 'rgba(28, 25, 23, 0.08)'
+              : 'rgba(28, 25, 23, 0)',
+          }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className={`border-b ${getTextColor()}`}
+        >
+          <div className="max-w-[1800px] mx-auto px-5 sm:px-8 lg:px-12">
+            <div className="flex items-center justify-between h-16 sm:h-20">
+
+              {/* Logo with accent dot */}
+              <Link
+                to="/"
+                className="relative group z-50 flex items-baseline gap-0.5"
+              >
+                <motion.span
+                  className="text-xl sm:text-2xl font-serif italic tracking-tight"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                >
+                  Edelweiss
+                </motion.span>
+                <span
+                  className="w-1.5 h-1.5 rounded-full mb-0.5"
+                  style={{ backgroundColor: accentColor }}
+                />
+              </Link>
+
+              {/* Desktop Navigation */}
+              <nav className="hidden lg:flex items-center gap-1">
+                {navLinks.map((link) => {
+                  const active = isActive(link.to, (link as { exact?: boolean }).exact);
+                  return (
+                    <div key={link.to} className="relative group">
+                      <Link
+                        to={link.to}
+                        className="relative block px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] transition-colors duration-200 hover:opacity-70"
+                        style={active ? { color: accentColor } : undefined}
+                        aria-haspopup={link.children ? 'menu' : undefined}
+                      >
+                        {link.label}
+                        <AnimatePresence>
+                          {active && (
+                            <motion.span
+                              layoutId="nav-indicator"
+                              initial={{ opacity: 0, scaleX: 0 }}
+                              animate={{ opacity: 1, scaleX: 1 }}
+                              exit={{ opacity: 0, scaleX: 0 }}
+                              transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                              className="absolute bottom-0 left-4 right-4 h-[2px] rounded-full"
+                              style={{ backgroundColor: accentColor }}
+                            />
+                          )}
+                        </AnimatePresence>
+                      </Link>
+
+                      {link.children && (
+                        <div className="invisible absolute left-1/2 top-full w-64 -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                          <div className="rounded-2xl border border-[#2A2624]/10 bg-[#F5F4F1]/95 p-2 text-[#1C1917] shadow-xl backdrop-blur-xl" role="menu">
+                            <Link
+                              to="/shop"
+                              className="block rounded-xl px-4 py-3 text-xs font-semibold uppercase tracking-[0.12em] hover:bg-[#2A2624]/5"
+                              role="menuitem"
+                            >
+                              Ver toda la tienda
+                            </Link>
+                            {link.children.map((child) => (
+                              <Link
+                                key={child.to}
+                                to={child.to}
+                                className="block rounded-xl px-4 py-3 text-sm font-medium hover:bg-[#2A2624]/5 hover:text-[#EB4C42] transition-colors"
+                                role="menuitem"
+                              >
+                                {child.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </nav>
+
+              {/* Mobile Menu Toggle */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="lg:hidden z-50 relative w-10 h-10 flex items-center justify-center"
+                aria-label={isMobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+                aria-expanded={isMobileMenuOpen}
+              >
+                <div className="relative w-6 h-4">
+                  <motion.span
+                    animate={{
+                      rotate: isMobileMenuOpen ? 45 : 0,
+                      y: isMobileMenuOpen ? 7 : 0,
+                      backgroundColor: isMobileMenuOpen ? '#F5F4F1' : 'currentColor',
+                    }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute top-0 left-0 w-full h-[2px] bg-current origin-center"
+                  />
+                  <motion.span
+                    animate={{
+                      opacity: isMobileMenuOpen ? 0 : 1,
+                      scaleX: isMobileMenuOpen ? 0 : 1,
+                    }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-1/2 left-0 w-full h-[2px] bg-current -translate-y-1/2"
+                  />
+                  <motion.span
+                    animate={{
+                      rotate: isMobileMenuOpen ? -45 : 0,
+                      y: isMobileMenuOpen ? -7 : 0,
+                      backgroundColor: isMobileMenuOpen ? '#F5F4F1' : 'currentColor',
+                    }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute bottom-0 left-0 w-full h-[2px] bg-current origin-center"
+                  />
+                </div>
+              </button>
+            </div>
+          </div>
+        </motion.header>
+      </div>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
@@ -223,7 +238,7 @@ const EdelweissNav: React.FC<EdelweissNavProps> = ({ darkBackground = false }) =
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 bg-[#1C1917]"
+            className="fixed inset-0 z-[60] bg-[#1C1917]"
           >
             {/* Decorative gradient */}
             <div className="absolute inset-0 opacity-30">

@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React, { Suspense, lazy, ComponentType } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { MotionConfig } from "framer-motion";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import Index from "./pages/Index";
 
@@ -123,6 +124,8 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        {/* Visitors who ask their system for reduced motion get fades instead of movement. */}
+        <MotionConfig reducedMotion="user">
         <BrowserRouter>
           <ShoprocketLoader />
           <GAListener />
@@ -198,6 +201,7 @@ const App = () => (
           <FloatingWhatsApp />
           <StudioPackPromoModal />
         </BrowserRouter>
+        </MotionConfig>
       </TooltipProvider>
     </QueryClientProvider>
   </HelmetProvider>

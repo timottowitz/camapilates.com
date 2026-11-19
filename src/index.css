@@ -95,14 +95,15 @@
   }
 
   body {
-    @apply bg-gray-50 text-foreground font-sans antialiased;
+    @apply bg-[#EAE8E4] text-foreground font-sans antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
-    scroll-behavior: smooth;
   }
 
+  /* Headings and paragraphs take their color from the section they sit in, so the same
+     markup works on the light pages and on the dark footer and hero blocks. */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-extrabold text-bennett-navy;
-    font-family: 'Inter', system-ui, sans-serif;
+    @apply font-sans font-bold;
+    color: inherit;
   }
 
   h1 {
@@ -118,40 +119,18 @@
   }
 
   p {
-    @apply text-base md:text-lg leading-relaxed mb-6 text-bennett-slate;
+    @apply text-base md:text-lg leading-relaxed mb-6;
+    color: inherit;
   }
 
-  /* Enhanced focus styles for accessibility */
   *:focus-visible {
-    @apply outline-none ring-2 ring-bennett-gold ring-opacity-50; /* gold maps to terracotta now */
-  }
-
-  .article-body p {
-    @apply my-8;
-  }
-
-  .article-body ul {
-    @apply list-disc pl-6 my-8 text-bennett-slate text-base md:text-lg space-y-2;
-  }
-
-  .article-body ol {
-    @apply list-decimal pl-6 my-8 text-bennett-slate text-base md:text-lg space-y-2;
-  }
-
-  .article-body li {
-    @apply mb-3;
+    @apply outline-none ring-2 ring-[#EB4C42]/60;
   }
 
   blockquote {
-    @apply pl-6 italic border-l-4 border-bennett-gold my-12 text-bennett-slate bg-bennett-lightGold/50 py-4 rounded-r-lg;
+    @apply pl-6 italic border-l-4 border-[#2A2624]/25 my-12 text-[#5D5550] bg-[#2A2624]/[0.04] py-4 rounded-r-lg;
   }
 
-  /* Custom grid pattern */
-  .bg-grid-white\/\[0\.02\] {
-    background-image: radial-gradient(circle, white 1px, transparent 1px);
-  }
-
-  /* Reduced motion for accessibility */
   @media (prefers-reduced-motion: reduce) {
     * {
       animation-duration: 0.01ms !important;
@@ -161,99 +140,19 @@
   }
 }
 
-/* Enhanced animations */
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.6s ease-out;
-}
-
-.animate-slide-up {
-  animation: slide-up 0.6s ease-out;
-}
-
-.animate-scale-in {
-  animation: scale-in 0.4s ease-out;
-}
-
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #EAE8E4;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #6b7280;
+  background: #B5AFA8;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #b8892a;
-}
-
-/* Smooth animations */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Enhanced hover effects */
-.hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-/* Skip to main content for accessibility */
-.skip-link {
-  @apply absolute -top-full left-6 z-50 bg-bennett-navy text-white px-4 py-2 rounded transition-all;
-}
-
-.skip-link:focus {
-  @apply top-6;
+  background: #5D5550;
 }
