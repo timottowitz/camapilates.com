@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { MessageCircle, ShieldCheck, CheckCircle2, Package, Phone, FileText } from 'lucide-react';
+import { ArrowRight, MessageCircle, ShieldCheck, CheckCircle2, Package, Phone, FileText } from 'lucide-react';
 import { ReviewsPreview } from '@/components/ui/reviews-preview';
 import { Finishes, FINISHES } from '@/components/product/Finishes';
 import { Helmet } from 'react-helmet-async';
@@ -79,6 +79,7 @@ const ProductPage: React.FC = () => {
 
   const priceToShow = bundleCalc.quantity > 1 ? bundleCalc.discountedTotalPrice.toString() : basePriceToShow;
   const buyWhatsAppUrl = productWhatsAppUrl(safeProd, basePriceToShow, displaySku, isReformer ? bundleCalc : undefined);
+  const orderUrl = `/pedido/${safeProd.slug}?cantidad=${selectedQuantity}`;
 
   const productSchema = {
     '@context': 'https://schema.org',
@@ -353,20 +354,31 @@ const ProductPage: React.FC = () => {
               )}
 
               <div className="flex flex-col gap-3 pt-2">
-                <a
-                  href={buyWhatsAppUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-rybbit-event="click_product_whatsapp_buy"
+                <Link
+                  to={orderUrl}
+                  data-rybbit-event="click_product_start_order"
                   data-rybbit-prop-sku={displaySku}
                   data-rybbit-prop-price={priceToShow}
                   onClick={() => beginCheckout({ product: prod })}
-                  className="w-full flex items-center justify-center gap-2.5 bg-[#25D366] text-white rounded-full py-5 uppercase tracking-[0.2em] text-xs font-bold hover:bg-[#20ba59] hover:scale-[1.02] active:scale-95 transition-all duration-300 shadow-xl shadow-[#25D366]/20"
+                  className="w-full flex items-center justify-center gap-2.5 bg-[#EB4C42] text-white rounded-full py-5 uppercase tracking-[0.2em] text-xs font-bold hover:bg-[#D43D33] hover:scale-[1.02] active:scale-95 transition-all duration-300 shadow-xl shadow-[#EB4C42]/20"
                 >
-                  <MessageCircle className="h-5 w-5" /> Comprar por WhatsApp
-                </a>
+                  Iniciar pedido <ArrowRight className="h-4 w-4" />
+                </Link>
+                <div className="text-center text-xs text-[#5D5550]">
+                  Sin pago hoy. Te cotizamos el envío a tu código postal.
+                </div>
 
                 <div className="grid grid-cols-2 gap-3">
+                  <a
+                    href={buyWhatsAppUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-rybbit-event="click_product_whatsapp_buy"
+                    data-rybbit-prop-sku={displaySku}
+                    className="flex items-center justify-center gap-1.5 px-4 py-3 border border-[#25D366]/40 bg-[#25D366]/10 rounded-full text-[10px] uppercase tracking-[0.15em] text-[#128C7E] hover:bg-[#25D366] hover:text-white transition-colors font-bold text-center"
+                  >
+                    <MessageCircle className="w-3.5 h-3.5" /> WhatsApp
+                  </a>
                   <a
                     href={`${buyWhatsAppUrl}%20Quisiera%20solicitar%20una%20cotizaci%C3%B3n%20formal%20en%20PDF%20con%20desglose%20de%20IVA%20y%20flete.`}
                     target="_blank"
@@ -376,14 +388,14 @@ const ProductPage: React.FC = () => {
                   >
                     <FileText className="w-3.5 h-3.5" /> Cotización PDF
                   </a>
-                  <a
-                    href="tel:+525548468190"
-                    data-rybbit-event="click_product_call"
-                    className="flex items-center justify-center gap-1.5 px-4 py-3 border border-[#2A2624]/20 rounded-full text-[10px] uppercase tracking-[0.15em] text-[#2A2624] hover:bg-[#2A2624] hover:text-[#EAE8E4] transition-colors font-medium text-center"
-                  >
-                    <Phone className="w-3.5 h-3.5" /> Llamar (+52 55)
-                  </a>
                 </div>
+                <a
+                  href="tel:+525548468190"
+                  data-rybbit-event="click_product_call"
+                  className="inline-flex items-center justify-center gap-1.5 self-center text-xs text-[#5D5550] underline decoration-[#2A2624]/20 underline-offset-4 hover:text-[#2A2624]"
+                >
+                  <Phone className="w-3.5 h-3.5" /> O llámanos al +52 55 4846 8190
+                </a>
 
                 {/* Risk Reversals & FUD Busters */}
                 <div className="mt-2 p-3.5 rounded-2xl bg-white/70 border border-[#2A2624]/10 space-y-1.5 text-xs text-[#5D5550]">
@@ -532,7 +544,8 @@ const ProductPage: React.FC = () => {
         price={Number(priceToShow)}
         currency={prod.currency}
         whatsappUrl={buyWhatsAppUrl}
-        onBuy={() => beginCheckout({ product: prod })}
+        orderUrl={orderUrl}
+        onStartOrder={() => beginCheckout({ product: prod })}
         warranty={prod.warranty}
       />
     </LuxuryLayout >

@@ -4,7 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React, { Suspense, lazy, ComponentType } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { MotionConfig } from "framer-motion";
 import ScrollToTop from "@/components/ui/scroll-to-top";
@@ -69,6 +69,8 @@ const AdminTeacherLinks = lazyWithRetry(() => import('./pages/AdminTeacherLinks'
 const AdminTeacherSeeds = lazyWithRetry(() => import('./pages/AdminTeacherSeeds'));
 const AdminTeacherProfiles = lazyWithRetry(() => import('./pages/AdminTeacherProfiles'));
 const Product = lazyWithRetry(() => import('./pages/Product'));
+const Pedido = lazyWithRetry(() => import('./pages/Pedido'));
+const AdminOrders = lazyWithRetry(() => import('./pages/AdminOrders'));
 const CamaDePilatesEnVenta = lazyWithRetry(() => import('./pages/CamaDePilatesEnVenta'));
 const CamaDePilatesPrecio = lazyWithRetry(() => import('./pages/CamaDePilatesPrecio'));
 const StudioPack = lazyWithRetry(() => import('./pages/StudioPack'));
@@ -117,6 +119,19 @@ const PageLoader = () => (
     </div>
   </div>
 );
+
+// The order flow is one focused task with its own help link, so the floating promos stay out of it.
+const FloatingExtras = () => {
+  const { pathname } = useLocation();
+  if (pathname.startsWith('/pedido/')) return null;
+  return (
+    <>
+      <FloatingCart21 />
+      <FloatingWhatsApp />
+      <StudioPackPromoModal />
+    </>
+  );
+};
 
 const App = () => (
   <HelmetProvider>
@@ -175,6 +190,8 @@ const App = () => (
               <Route path="/admin/instructor-claims" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminTeacherClaims /></AdminGuard></Suspense>} />
               <Route path="/admin/teacher-profiles" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminTeacherProfiles /></AdminGuard></Suspense>} />
               <Route path="/product/:slug" element={<Suspense fallback={<PageLoader />}><Product /></Suspense>} />
+              <Route path="/pedido/:slug" element={<Suspense fallback={<PageLoader />}><Pedido /></Suspense>} />
+              <Route path="/admin/pedidos" element={<Suspense fallback={<PageLoader />}><AdminGuard><AdminOrders /></AdminGuard></Suspense>} />
 
               {/* Studio Directory Routes */}
               <Route path="/estudios-de-pilates" element={<Suspense fallback={<PageLoader />}><StudiosLanding /></Suspense>} />
@@ -197,9 +214,7 @@ const App = () => (
               <Route path="*" element={<Suspense fallback={<PageLoader />}><NotFound /></Suspense>} />
             </Routes>
           </ErrorBoundary>
-          <FloatingCart21 />
-          <FloatingWhatsApp />
-          <StudioPackPromoModal />
+          <FloatingExtras />
         </BrowserRouter>
         </MotionConfig>
       </TooltipProvider>

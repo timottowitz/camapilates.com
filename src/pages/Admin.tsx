@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Lock, LayoutDashboard, FileText, Settings, Image as ImageIcon, UserPlus, UserCheck, Database, Table2 } from 'lucide-react';
+import { Lock, LayoutDashboard, FileText, Settings, Image as ImageIcon, UserPlus, UserCheck, Database, Table2, Package } from 'lucide-react';
 
 const Admin = () => {
   const [username, setUsername] = useState('');
@@ -118,6 +118,22 @@ const Admin = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Link to="/admin/pedidos" className="block group">
+            <Card className="h-full transition-all hover:shadow-md group-hover:border-primary/50">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Package className="w-5 h-5 text-emerald-600" />
+                  Pedidos
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Order requests from the site. Add the shipping quote and send it to the buyer.
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
+
           <Link to="/admin/blogs" className="block group">
             <Card className="h-full transition-all hover:shadow-md group-hover:border-primary/50">
               <CardHeader>

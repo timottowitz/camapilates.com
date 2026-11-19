@@ -131,3 +131,4 @@
 /setup-cuenta / 200
 /admin / 200
 /admin/* / 200
+/pedido/* / 200

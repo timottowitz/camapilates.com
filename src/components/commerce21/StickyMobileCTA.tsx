@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { MessageCircle, Share2, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, MessageCircle, Share2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { formatMXN } from '@/lib/shop/catalog';
 
@@ -10,7 +11,8 @@ interface StickyMobileCTAProps {
   price: number;
   currency?: string;
   whatsappUrl: string; // pre-filled WhatsApp link for this product
-  onBuy?: () => void; // e.g., analytics
+  orderUrl: string; // the order flow for this product and quantity
+  onStartOrder?: () => void; // e.g., analytics
   warranty?: string;
 }
 
@@ -19,7 +21,8 @@ export function StickyMobileCTA({
   price,
   currency = 'MXN',
   whatsappUrl,
-  onBuy,
+  orderUrl,
+  onStartOrder,
   warranty = '1 año',
 }: StickyMobileCTAProps) {
   const [isVisible, setIsVisible] = useState(false);
@@ -74,23 +77,25 @@ export function StickyMobileCTA({
 
         <div className="flex items-center gap-2">
           <a
-            href="tel:+525548468190"
-            className="flex-shrink-0 inline-flex items-center justify-center px-4 py-3 rounded-full border border-[#2A2624]/15 bg-background text-foreground hover:bg-muted transition-colors"
-            aria-label="Llamar"
-          >
-            <Phone className="h-4 w-4" />
-          </a>
-
-          <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={onBuy}
-            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full bg-[#25D366] text-white hover:bg-[#20ba59] transition-all shadow-md active:scale-95"
+            data-rybbit-event="click_product_sticky_whatsapp"
+            className="flex-shrink-0 inline-flex items-center justify-center px-4 py-3 rounded-full border border-[#25D366]/40 bg-[#25D366]/10 text-[#128C7E] hover:bg-[#25D366] hover:text-white transition-colors"
+            aria-label="Preguntar por WhatsApp"
           >
-            <MessageCircle className="h-4 w-4" />
-            <span className="text-sm font-semibold">Comprar por WhatsApp</span>
+            <MessageCircle className="h-5 w-5" />
           </a>
+
+          <Link
+            to={orderUrl}
+            onClick={onStartOrder}
+            data-rybbit-event="click_product_sticky_start_order"
+            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full bg-[#EB4C42] text-white hover:bg-[#D43D33] transition-all shadow-md active:scale-95"
+          >
+            <span className="text-sm font-semibold">Iniciar pedido</span>
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </div>

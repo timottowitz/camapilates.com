@@ -22,6 +22,8 @@ const url = resolveConvexUrl();
 const client = url ? new ConvexReactClient(url) : null;
 
 export const hasConvex = Boolean(client);
+// For calls made outside a component tree hook, where a missing backend must not throw.
+export const convexClient = client;
 
 export const ConvexProviderMaybe: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   if (!client) return <>{children}</>;

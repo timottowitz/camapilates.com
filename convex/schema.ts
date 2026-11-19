@@ -558,6 +558,49 @@ export default defineSchema({
     .index('by_plan', ['planId'])
     .index('by_created', ['createdAt']),
 
+  // Order requests from /pedido. The buyer sends product and delivery details; freight is quoted
+  // afterwards (shippingQuote) and nothing is charged until they accept the total.
+  orderRequests: defineTable({
+    orderNumber: v.string(),
+    clientRef: v.string(), // generated in the browser, so a retried submit is not stored twice
+    status: v.string(), // 'new' | 'quoted' | 'accepted' | 'cancelled'
+    productSlug: v.string(),
+    productName: v.string(),
+    sku: v.string(),
+    quantity: v.number(),
+    upholstery: v.optional(v.string()),
+    unitPrice: v.number(),
+    listUnitPrice: v.number(),
+    subtotal: v.number(),
+    currency: v.string(),
+    contact: v.object({
+      name: v.string(),
+      phone: v.string(),
+      email: v.string(),
+      channel: v.string(),
+    }),
+    delivery: v.object({
+      postalCode: v.string(),
+      state: v.optional(v.string()),
+      city: v.string(),
+      neighborhood: v.string(),
+      street: v.string(),
+      placeType: v.string(),
+      access: v.string(),
+      notes: v.string(),
+    }),
+    invoiceRequired: v.boolean(),
+    sourcePath: v.optional(v.string()),
+    shippingQuote: v.optional(v.number()),
+    adminNotes: v.optional(v.string()),
+    notifiedAt: v.optional(v.number()),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index('by_created', ['createdAt'])
+    .index('by_client_ref', ['clientRef'])
+    .index('by_order_number', ['orderNumber']),
+
   // Teachers Directory
   teachers: defineTable({
     // === IDENTITY ===

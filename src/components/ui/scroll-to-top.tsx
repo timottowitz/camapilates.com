@@ -23,7 +23,8 @@ const ScrollToTop = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  if (!isVisible) return null;
+  // The order flow has a form at the bottom of the screen; nothing should float over it.
+  if (!isVisible || pathname.startsWith('/pedido/')) return null;
 
   // Bottom left: the bottom right corner belongs to the WhatsApp button.
   return (

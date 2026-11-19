@@ -37,6 +37,7 @@ import type * as lib_crypto from "../lib/crypto.js";
 import type * as lib_github from "../lib/github.js";
 import type * as lib_googleAuth from "../lib/googleAuth.js";
 import type * as llm from "../llm.js";
+import type * as orderRequests from "../orderRequests.js";
 import type * as pipeline from "../pipeline.js";
 import type * as placeholderGeneration from "../placeholderGeneration.js";
 import type * as placeholders from "../placeholders.js";
@@ -91,6 +92,7 @@ declare const fullApi: ApiFromModules<{
   "lib/github": typeof lib_github;
   "lib/googleAuth": typeof lib_googleAuth;
   llm: typeof llm;
+  orderRequests: typeof orderRequests;
   pipeline: typeof pipeline;
   placeholderGeneration: typeof placeholderGeneration;
   placeholders: typeof placeholders;
